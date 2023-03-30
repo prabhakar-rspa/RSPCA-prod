@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reason_for_Status__c</fullName>
+    <externalId>false</externalId>
+    <label>Reason for Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Non-compliant</fullName>
+                <default>false</default>
+                <label>Non-compliant</label>
+            </value>
+            <value>
+                <fullName>Non-payment</fullName>
+                <default>false</default>
+                <label>Non-payment</label>
+            </value>
+            <value>
+                <fullName>Non-receipt of evidence</fullName>
+                <default>false</default>
+                <label>Non-receipt of evidence</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

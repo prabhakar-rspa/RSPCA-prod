@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- I confirm that these non-compliances were identified during this assessment and the assessor adhered to biosecurity and health and safety requirements. --></help>
+        <label><!-- Agreed To Disclaimer --></label>
+        <name>Agreed_To_Disclaimer__c</name>
+    </CustomFieldTranslation>

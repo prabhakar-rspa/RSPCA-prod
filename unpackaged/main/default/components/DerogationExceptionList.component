@@ -1,0 +1,26 @@
+<apex:component controller="NotificationsComponentController" access="global">
+    
+    <table cellspacing="0" cellpadding="1" border="2" bordercolor="#ffffff" width="100%" valign="top" style="border: 2px solid white;">
+        <!-- DerogationExceptions Columns -->
+        <tr>
+            <td width="15%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px; word-wrap:break-word;"><strong><span style="margin: 5px;">Derrogation/Exception Number</span></strong></td>
+            <td width="15%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px; word-wrap:break-word;"><strong><span style="margin: 5px;">Derogation/Exception</span></strong></td>
+            <td width="15%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px;"><strong><span style="margin: 5px;">Site</span></strong></td>
+            <td width="20%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px;"><strong><span style="margin: 5px;">Stage</span></strong></td>
+            <td width="15%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px; word-wrap:break-word;"><strong><span style="margin: 5px;">Standard number</span></strong></td>
+            <td width="15%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px;"><strong><span style="margin: 5px;">Start Date</span></strong></td>
+        </tr>
+        <!-- DerogationExceptions Rows -->
+        <apex:repeat value="{!DerogationExceptions}" var="a"> 
+            <tr>                
+                <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px;"><span style="margin: 5px;"><a href="{!sfdcBaseURL}/{!a.Id}">{!a.Name}</a></span></td>
+                <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px;"><span style="margin: 5px;">{!a.Derogation_Exception__c}</span></td>
+                <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px;"><span style="margin: 5px;">{!a.Site__r.Name}</span></td>
+                <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px;"><span style="margin: 5px;">{!a.Stage__c}</span></td>
+                <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px;"><span style="margin: 5px;">{!a.Standard_number__c}</span></td>
+                <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px;"><span style="margin: 5px;">{!LPAD(TEXT(DAY(a.Start_Date__c)),2,'0')}/{!LPAD(TEXT(MONTH(a.Start_Date__c)),2,'0')}/{!TEXT(YEAR(a.Start_Date__c))}</span></td>
+            </tr>
+            
+        </apex:repeat>
+    </table>
+</apex:component>

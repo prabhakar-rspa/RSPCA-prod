@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Group Renewal Confirmation</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Group Renewal Confirmation</name>
+    <pageDevName>Group_Renewal_Confirmation</pageDevName>
+    <relatedEntityType>Account</relatedEntityType>
+    <style>none</style>
+    <subject>Group Renewal Confirmation</subject>
+    <textOnly>Dear {{{Recipient.FirstName}}} {{{Recipient.LastName}}}
+
+Many thanks for the payment of your membership renewal. The payment has now been processed and we are pleased to confirm your continued Certification for the following Sites
+
+Membership Number and Site Name
+
+Your certificates are available for you to download at any time from the RSPCA Members Portal. You will have received an email invitation for us to the RSPCA Members Portal &lt; https://rspcaassured--fullsb.sandbox.my.site.com &gt; which details how to log in and set your unique password. Please email help@rspcaassured.org.uk &lt; mailto:help@rspcaassured.org.uk &gt; if you require a copy. 
+
+We will be in touch with you before your certificates expires, to invite you to renew your certification.
+
+Your certificates are issued by Supply Chain In-Sites Ltd our Certification Body, the SCI Certification Obligations and Conditions which apply to your on-going certification can be found here &lt; https://www.scinsites.com/impartiality-statement &gt; . and also within the RSPCA Assured Membership Agreement available here &lt; https://business.rspcaassured.org.uk/resources-for-farmers/join-rspca-assured-now/ &gt; .
+
+We will be in touch to arrange your next assessments, information regarding assessments and the audit plan are available from our website &lt; https://business.rspcaassured.org.uk/ &gt; 
+
+Your certification status enables you to use the RSPCA Assured logo, for more information, or if you have any questions, need to make changes to your membership, or need assistance we are here to help. Please contact RSPCA Assured Membership Services on 01403 286170 or help@rspcaassured.org.uk &lt; https://mailto:rspcaassured.org.uk &gt; 
+
+Yours Sincerely,
+
+Membership Services
+
+RSPCA Assured</textOnly>
+    <type>custom</type>
+    <uiType>SFX</uiType>
+</EmailTemplate>

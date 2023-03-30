@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Must_provide_notes_when_On_Hold_or_Close</fullName>
+    <active>true</active>
+    <description>ensures that if &#39;Other&#39; is selected from On Hold or Closed, a reason must be provided.</description>
+    <errorConditionFormula>(ispickval(SRM_PP_ClosedReason__c, &quot;Other&quot;) ||
+	 ispickval(SRM_PP_HoldReason__c, &quot;Other&quot;))
+		&amp;&amp;  ISBLANK(SRM_PP_HoldCloseNotes__c )</errorConditionFormula>
+    <errorDisplayField>SRM_PP_HoldCloseNotes__c</errorDisplayField>
+    <errorMessage>Please provide a reason why this Opportunity is Closed or On Hold.</errorMessage>
+</ValidationRule>

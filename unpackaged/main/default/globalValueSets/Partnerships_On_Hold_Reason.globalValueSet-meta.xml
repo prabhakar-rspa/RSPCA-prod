@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Certification costs too expensive</fullName>
+        <default>false</default>
+        <label>Certification costs too expensive</label>
+    </customValue>
+    <customValue>
+        <fullName>Changed funding priorities</fullName>
+        <default>false</default>
+        <label>Changed funding priorities</label>
+    </customValue>
+    <customValue>
+        <fullName>Conflicting priorities</fullName>
+        <default>false</default>
+        <label>Conflicting priorities</label>
+    </customValue>
+    <customValue>
+        <fullName>Cost of product too expensive</fullName>
+        <default>false</default>
+        <label>Cost of product too expensive</label>
+    </customValue>
+    <customValue>
+        <fullName>Internal delays</fullName>
+        <default>false</default>
+        <label>Internal delays</label>
+    </customValue>
+    <customValue>
+        <fullName>No longer required by customer</fullName>
+        <default>false</default>
+        <label>No longer required by customer</label>
+    </customValue>
+    <customValue>
+        <fullName>Product / species availability</fullName>
+        <default>false</default>
+        <label>Product / species availability</label>
+    </customValue>
+    <customValue>
+        <fullName>Proposal amends required</fullName>
+        <default>false</default>
+        <label>Proposal amends required</label>
+    </customValue>
+    <customValue>
+        <fullName>Right contact not yet identified</fullName>
+        <default>false</default>
+        <label>Right contact not yet identified</label>
+    </customValue>
+    <customValue>
+        <fullName>Sustainability / CSR requirements</fullName>
+        <default>false</default>
+        <label>Sustainability / CSR requirements</label>
+    </customValue>
+    <customValue>
+        <fullName>Timing no longer right</fullName>
+        <default>false</default>
+        <label>Timing no longer right</label>
+    </customValue>
+    <customValue>
+        <fullName>Volume availability</fullName>
+        <default>false</default>
+        <label>Volume availability</label>
+    </customValue>
+    <customValue>
+        <fullName>Other</fullName>
+        <default>false</default>
+        <label>Other</label>
+    </customValue>
+    <customValue>
+        <fullName>Rephase - Proposal amends required</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Rephase - Proposal amends required</label>
+    </customValue>
+    <customValue>
+        <fullName>Rephase - Changed funding capacity</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Rephase - Changed funding capacity</label>
+    </customValue>
+    <customValue>
+        <fullName>Rephase - Timing no longer right</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Rephase - Timing no longer right</label>
+    </customValue>
+    <customValue>
+        <fullName>Donor opted for payment holiday</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Donor opted for payment holiday</label>
+    </customValue>
+    <masterLabel>Partnerships On Hold Reason</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

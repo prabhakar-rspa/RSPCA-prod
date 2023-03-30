@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Six week reminder</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Renewal Six Week reminder</name>
+    <style>none</style>
+    <subject>Membership renewal reminder</subject>
+    <textOnly>EmailTemplate-Responsive
+
+Dear [title] [name] [surname]
+
+Membership renewal reminder
+
+Your current membership certificate expires on 00 Month 0000. To renew your membership, simply click on the following link to confirm your details, agree to the terms and conditions, and pay:
+
+
+Renew
+
+
+Once you’ve renewed and paid, your new certificate will be available on your member portal as soon as your current certificate expires.
+
+If we do not receive payment by 00 Month 0000, your membership will expire and unfortunately you will have to reapply.
+
+Your assessor will contact you during your new membership period to arrange your next assessment.
+
+If you have any questions please refer to our ‘renewing your membership’ fact sheet. Alternatively, you can contact our member services team on 01403 800141 or help@rspcaassured.org.uk.
+
+Yours sincerely
+
+Membership services
+RSPCA Assured
+
+
+
+For your reference:
+
+
+RSPCA welfare standards
+RSPCA Assured renewing your membership fact sheet
+RSPCA Assured membership agreement (including SCI scheme regulations)</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

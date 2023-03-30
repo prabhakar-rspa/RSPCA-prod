@@ -1,0 +1,17 @@
+Dear {!Application__c.Applicant_Full_Name__c},
+
+Your assessment of {!Application__c.Membership_Number__c}, {!Application__c.Site_Name__c}  has been booked for {!Application__c.Assessment_Date__c}.
+
+Your assessor is {!Application__c.Assessor_Full_Name__c} and can be contacted on {!Application__c.Assessor_Mobile__c} or {!Application__c.Assessor_Email__c}.
+
+For more information about what to expect on the day or advice on how to prepare for your assessment, please refer to our handy assessment plan: renewing your membership (https://business.rspcaassured.org.uk/media/d3obtaiy/rspca-renew-membership.pdf).
+
+In the meantime, if you have any questions please call us on 01403 286170 or email help@rspcaassured.org.uk.
+
+Yours sincerely
+
+Membership Services
+RSPCA Assured
+
+
+Please note: If you need to rearrange your assessment, please contact your assessor as soon as possible and we will consider your request. If you cancel your assessment with less than 48 hours notice you may be charged £199.

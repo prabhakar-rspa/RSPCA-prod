@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Only_1_Open_Renewal_Aplication</fullName>
+    <active>false</active>
+    <description>Can only have 1 open renewal application.</description>
+    <errorConditionFormula>Open_Renewal_Applications__c  &gt; 1</errorConditionFormula>
+    <errorMessage>Cannot have more than one open Renewal Application.</errorMessage>
+</ValidationRule>

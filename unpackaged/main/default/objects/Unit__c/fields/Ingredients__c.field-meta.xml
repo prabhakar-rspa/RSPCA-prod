@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Ingredients__c</fullName>
+    <externalId>false</externalId>
+    <label>Ingredients</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Business__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetName>Ingredients</valueSetName>
+        <valueSettings>
+            <controllingFieldValue>Supply Chain</controllingFieldValue>
+            <valueName>Beef</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Supply Chain</controllingFieldValue>
+            <valueName>Chicken</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Supply Chain</controllingFieldValue>
+            <valueName>Dairy</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Supply Chain</controllingFieldValue>
+            <valueName>Duck</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Supply Chain</controllingFieldValue>
+            <valueName>Eggs</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Supply Chain</controllingFieldValue>
+            <valueName>Lamb</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Supply Chain</controllingFieldValue>
+            <valueName>Pork</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Supply Chain</controllingFieldValue>
+            <valueName>Salmon</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Supply Chain</controllingFieldValue>
+            <valueName>Trout</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Supply Chain</controllingFieldValue>
+            <valueName>Turkey</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Supply Chain</controllingFieldValue>
+            <valueName>Veal</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Supply Chain</controllingFieldValue>
+            <valueName>Other</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

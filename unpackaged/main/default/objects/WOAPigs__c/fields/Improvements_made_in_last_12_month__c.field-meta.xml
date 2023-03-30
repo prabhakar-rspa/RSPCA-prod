@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Improvements_made_in_last_12_month__c</fullName>
+    <externalId>false</externalId>
+    <label>Improvements made in last 12 month</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Improvement_Changes</valueSetName>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

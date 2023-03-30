@@ -1,0 +1,8 @@
+<messaging:emailTemplate subject="Membership renewal reminder" recipientType="Contact" relatedToType="Account">
+    <messaging:htmlEmailBody >
+        <c:RenewalReminderSixWeeksEmail accId="{!relatedTo.Id}" />
+    </messaging:htmlEmailBody>
+    <messaging:attachment renderAs="PDF" filename="MembershipPrices.pdf">
+        <c:RenewalPriceOfUnitsBulk accountId="{!relatedTo.Id}"/>
+    </messaging:attachment>
+</messaging:emailTemplate>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Farm shop selling Freedom Food products? --></label>
+        <name>Farm_shop_selling_Freedom_Food_products__c</name>
+    </CustomFieldTranslation>

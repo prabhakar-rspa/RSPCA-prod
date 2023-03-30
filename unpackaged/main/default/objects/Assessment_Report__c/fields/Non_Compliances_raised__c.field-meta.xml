@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Non_Compliances_raised__c</fullName>
+    <description>Number of non-compliances raised.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Number of non-compliances raised.</inlineHelpText>
+    <label>Non-Compliances raised</label>
+    <summaryForeignKey>Non_Compliance__c.Assessment_Report__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

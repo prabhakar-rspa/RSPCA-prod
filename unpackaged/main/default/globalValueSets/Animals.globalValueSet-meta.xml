@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Beef Cattle</fullName>
+        <default>false</default>
+        <label>Beef Cattle</label>
+    </customValue>
+    <customValue>
+        <fullName>Chickens</fullName>
+        <default>false</default>
+        <label>Chickens</label>
+    </customValue>
+    <customValue>
+        <fullName>Dairy Cattle</fullName>
+        <default>false</default>
+        <label>Dairy Cattle</label>
+    </customValue>
+    <customValue>
+        <fullName>Ducklings</fullName>
+        <default>false</default>
+        <label>Ducklings</label>
+    </customValue>
+    <customValue>
+        <fullName>Ducks</fullName>
+        <default>false</default>
+        <label>Ducks</label>
+    </customValue>
+    <customValue>
+        <fullName>Laying Hen Chicks</fullName>
+        <default>false</default>
+        <label>Laying Hen Chicks</label>
+    </customValue>
+    <customValue>
+        <fullName>Laying Hens</fullName>
+        <default>false</default>
+        <label>Laying Hens</label>
+    </customValue>
+    <customValue>
+        <fullName>Lumpfish</fullName>
+        <default>false</default>
+        <label>Lumpfish</label>
+    </customValue>
+    <customValue>
+        <fullName>Meat Chicken Chicks</fullName>
+        <default>false</default>
+        <label>Meat Chicken Chicks</label>
+    </customValue>
+    <customValue>
+        <fullName>Pigs</fullName>
+        <default>false</default>
+        <label>Pigs</label>
+    </customValue>
+    <customValue>
+        <fullName>Pullets</fullName>
+        <default>false</default>
+        <label>Pullets</label>
+    </customValue>
+    <customValue>
+        <fullName>Salmon</fullName>
+        <default>false</default>
+        <label>Salmon</label>
+    </customValue>
+    <customValue>
+        <fullName>Sheep</fullName>
+        <default>false</default>
+        <label>Sheep</label>
+    </customValue>
+    <customValue>
+        <fullName>Trout</fullName>
+        <default>false</default>
+        <label>Trout</label>
+    </customValue>
+    <customValue>
+        <fullName>Turkey Poults</fullName>
+        <default>false</default>
+        <label>Turkey Poults</label>
+    </customValue>
+    <customValue>
+        <fullName>Turkeys</fullName>
+        <default>false</default>
+        <label>Turkeys</label>
+    </customValue>
+    <customValue>
+        <fullName>Veal Calves</fullName>
+        <default>false</default>
+        <label>Veal Calves</label>
+    </customValue>
+    <customValue>
+        <fullName>Wrasse</fullName>
+        <default>false</default>
+        <label>Wrasse</label>
+    </customValue>
+    <masterLabel>Animals</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

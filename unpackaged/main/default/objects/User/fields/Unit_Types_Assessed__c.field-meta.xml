@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Unit_Types_Assessed__c</fullName>
+    <description>Used to identify best assessor based on species</description>
+    <externalId>false</externalId>
+    <inlineHelpText>What types of unit is this assessor trained to assess?</inlineHelpText>
+    <label>Unit Types Assessed</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Abattoirs (fish)</fullName>
+                <default>false</default>
+                <label>Abattoirs (fish)</label>
+            </value>
+            <value>
+                <fullName>Abattoirs (livestock)</fullName>
+                <default>false</default>
+                <label>Abattoirs (livestock)</label>
+            </value>
+            <value>
+                <fullName>Abattoirs (poultry)</fullName>
+                <default>false</default>
+                <label>Abattoirs (poultry)</label>
+            </value>
+            <value>
+                <fullName>Beef Cattle</fullName>
+                <default>false</default>
+                <label>Beef Cattle</label>
+            </value>
+            <value>
+                <fullName>Chickens</fullName>
+                <default>false</default>
+                <label>Chickens</label>
+            </value>
+            <value>
+                <fullName>Dairy Cattle</fullName>
+                <default>false</default>
+                <label>Dairy Cattle</label>
+            </value>
+            <value>
+                <fullName>Ducks</fullName>
+                <default>false</default>
+                <label>Ducks</label>
+            </value>
+            <value>
+                <fullName>Hatcheries (fish)</fullName>
+                <default>false</default>
+                <label>Hatcheries (fish)</label>
+            </value>
+            <value>
+                <fullName>Hatcheries (poultry)</fullName>
+                <default>false</default>
+                <label>Hatcheries (poultry)</label>
+            </value>
+            <value>
+                <fullName>Hauliers (fish)</fullName>
+                <default>false</default>
+                <label>Hauliers (fish)</label>
+            </value>
+            <value>
+                <fullName>Hauliers (livestock)</fullName>
+                <default>false</default>
+                <label>Hauliers (livestock)</label>
+            </value>
+            <value>
+                <fullName>Hauliers (poultry)</fullName>
+                <default>false</default>
+                <label>Hauliers (poultry)</label>
+            </value>
+            <value>
+                <fullName>Hens</fullName>
+                <default>false</default>
+                <label>Hens</label>
+            </value>
+            <value>
+                <fullName>Pigs</fullName>
+                <default>false</default>
+                <label>Pigs</label>
+            </value>
+            <value>
+                <fullName>Pullets</fullName>
+                <default>false</default>
+                <label>Pullets</label>
+            </value>
+            <value>
+                <fullName>Sheep</fullName>
+                <default>false</default>
+                <label>Sheep</label>
+            </value>
+            <value>
+                <fullName>Turkeys</fullName>
+                <default>false</default>
+                <label>Turkeys</label>
+            </value>
+            <value>
+                <fullName>Veal</fullName>
+                <default>false</default>
+                <label>Veal</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

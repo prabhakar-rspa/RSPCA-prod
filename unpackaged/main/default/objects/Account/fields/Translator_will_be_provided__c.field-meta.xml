@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Translator_will_be_provided__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>A translator will be provided to allow the assessor to complete their assessment.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>A translator will be provided to allow the assessor to complete their assessment.</inlineHelpText>
+    <label>Translator will be provided</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

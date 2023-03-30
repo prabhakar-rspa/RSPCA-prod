@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SRM_PP_NodPlanning__c</fullName>
+    <description>Formula field which calculates the amount of days the Opportunity has been in the Planning stage by subtracting Approach date from Planning date OR today’s date from the Planning date (if Approach stage has not yet been reached).</description>
+    <externalId>false</externalId>
+    <formula>IF(
+ISBLANK(SRM_PP_ApproachDate__c),
+TODAY() - SRM_PP_PlanningDate__c,
+SRM_PP_ApproachDate__c - SRM_PP_PlanningDate__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Days in Planning Stage</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

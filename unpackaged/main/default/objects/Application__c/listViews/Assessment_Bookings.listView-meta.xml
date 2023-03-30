@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Assessment_Bookings</fullName>
+    <columns>NAME</columns>
+    <columns>Membership_Number__c</columns>
+    <columns>Status__c</columns>
+    <columns>Application_Type__c</columns>
+    <columns>Applicant_Contact__c</columns>
+    <columns>Head_Office__c</columns>
+    <columns>Site__c</columns>
+    <columns>CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Stage__c</field>
+        <operation>equals</operation>
+        <value>Assessment</value>
+    </filters>
+    <filters>
+        <field>Renewal_Stage__c</field>
+        <operation>equals</operation>
+        <value>Assessment</value>
+    </filters>
+    <label>Assessment Bookings</label>
+</ListView>

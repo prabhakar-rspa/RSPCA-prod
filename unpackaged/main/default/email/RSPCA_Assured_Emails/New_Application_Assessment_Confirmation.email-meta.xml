@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>An email confirmations sent to the applicant confirming their assessment. Sent when in compliance stage for new application.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>New Application Assessment Confirmation</name>
+    <style>none</style>
+    <subject>Assessment Confirmation</subject>
+    <textOnly>Dear {!Application__c.Applicant_Full_Name__c}
+
+Assessment confirmation
+
+This email is to confirm {!Application__c.Site_Name__c}, {!Application__c.Site_Postcode__c} was assessed by {!Application__c.Assessor_Full_Name__c} on {!Application__c.Assessment_Date__c}.
+
+{!Application__c.Assessor_Full_Name__c} will have left a copy of their assessment report. This report will tell you what if any a) non-compliances were found and b) evidence is needed to correct these non-compliances.
+
+If you do have non-compliances please email your evidence to help@rspcaassured.org.uk by [date].
+
+In the meantime, if you have any questions please feel free to contact our membership services team at the email above or on 01403 800141.
+
+Yours sincerely
+
+Membership services
+RSPCA Assured</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

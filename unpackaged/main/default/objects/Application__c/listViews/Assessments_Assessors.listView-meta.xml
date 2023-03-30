@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Assessments_Assessors</fullName>
+    <booleanFilter>(1 OR 2) AND 3 AND 4</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Membership_Number__c</columns>
+    <columns>Application_Type__c</columns>
+    <columns>Stage__c</columns>
+    <columns>Applicant_Contact__c</columns>
+    <columns>Site__c</columns>
+    <columns>Assessment_Approved_By_Office__c</columns>
+    <columns>Assessment_Approved_By_Assessor__c</columns>
+    <columns>Assessment_Approved_By_Assessor_Date__c</columns>
+    <columns>CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Stage__c</field>
+        <operation>equals</operation>
+        <value>Assessment</value>
+    </filters>
+    <filters>
+        <field>Renewal_Stage__c</field>
+        <operation>equals</operation>
+        <value>Assessment</value>
+    </filters>
+    <filters>
+        <field>Assessment_Approved_By_Office__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <filters>
+        <field>Assessment_Approved_By_Assessor__c</field>
+        <operation>equals</operation>
+    </filters>
+    <label>Assessments- Assessors</label>
+    <sharedTo>
+        <group>Assessors</group>
+    </sharedTo>
+</ListView>

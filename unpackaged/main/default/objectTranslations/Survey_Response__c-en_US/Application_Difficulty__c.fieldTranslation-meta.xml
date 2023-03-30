@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- How quick and easy was it to apply or renew? 1 = Very Difficult. 5 = Very Easy. --></help>
+        <label><!-- Application Difficulty --></label>
+        <name>Application_Difficulty__c</name>
+    </CustomFieldTranslation>

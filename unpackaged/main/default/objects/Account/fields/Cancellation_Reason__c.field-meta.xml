@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cancellation_Reason__c</fullName>
+    <externalId>false</externalId>
+    <label>Cancellation Reason</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Status__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>No longer in production</fullName>
+                <default>false</default>
+                <label>No longer in production</label>
+            </value>
+            <value>
+                <fullName>No longer required</fullName>
+                <default>false</default>
+                <label>No longer required</label>
+            </value>
+            <value>
+                <fullName>Not renewing</fullName>
+                <default>false</default>
+                <label>Not renewing</label>
+            </value>
+            <value>
+                <fullName>As requested by group</fullName>
+                <default>false</default>
+                <label>As requested by group</label>
+            </value>
+            <value>
+                <fullName>As transferring membership</fullName>
+                <default>false</default>
+                <label>As transferring membership</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>CANCELLED</controllingFieldValue>
+            <valueName>No longer in production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>CANCELLED</controllingFieldValue>
+            <valueName>No longer required</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>CANCELLED</controllingFieldValue>
+            <valueName>Not renewing</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>CANCELLED</controllingFieldValue>
+            <valueName>As requested by group</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>CANCELLED</controllingFieldValue>
+            <valueName>As transferring membership</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>CANCELLED</controllingFieldValue>
+            <valueName>Other</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

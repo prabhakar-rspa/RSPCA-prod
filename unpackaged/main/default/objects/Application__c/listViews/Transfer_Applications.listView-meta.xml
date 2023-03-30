@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Transfer_Applications</fullName>
+    <columns>NAME</columns>
+    <columns>Membership_Number__c</columns>
+    <columns>Application_Type__c</columns>
+    <columns>CREATEDBY_USER</columns>
+    <columns>UPDATEDBY_USER</columns>
+    <columns>Status__c</columns>
+    <columns>Head_Office__c</columns>
+    <columns>Site__c</columns>
+    <columns>Paid__c</columns>
+    <columns>Renewal_Stage__c</columns>
+    <columns>Stage__c</columns>
+    <columns>CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Application_Type__c</field>
+        <operation>equals</operation>
+        <value>Transfer</value>
+    </filters>
+    <label>Application Type - Transfer</label>
+</ListView>

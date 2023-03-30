@@ -1,0 +1,8 @@
+<apex:component controller="FindEnquiryStandards" access="global">
+    <apex:attribute name="lid" type="id" description="Id of the lead" assignTo="{!leadId}"/>
+    <ul>
+        <apex:repeat value="{!EnquiryStandards}" var="es">
+       		<li><apex:outputLink style="color: #000000; text-decoration: underline;" target="_blank" value="{!es.Standards_link__c}">RSPCA welfare standards for {!es.Standard_Name__c}</apex:outputLink></li>  
+    	</apex:repeat>
+    </ul>
+</apex:component>

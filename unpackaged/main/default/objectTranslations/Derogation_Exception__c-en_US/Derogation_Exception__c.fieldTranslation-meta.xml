@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Derogation/Exception --></label>
+        <name>Derogation_Exception__c</name>
+        <picklistValues>
+            <masterLabel>Derogation</masterLabel>
+            <translation><!-- Derogation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Exception</masterLabel>
+            <translation><!-- Exception --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

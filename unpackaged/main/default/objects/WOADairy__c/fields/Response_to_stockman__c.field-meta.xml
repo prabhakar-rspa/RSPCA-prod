@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Response_to_stockman__c</fullName>
+    <externalId>false</externalId>
+    <label>Response to stockman</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>sociable</fullName>
+                <default>false</default>
+                <label>sociable</label>
+            </value>
+            <value>
+                <fullName>relaxed</fullName>
+                <default>false</default>
+                <label>relaxed</label>
+            </value>
+            <value>
+                <fullName>nervous</fullName>
+                <default>false</default>
+                <label>nervous</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

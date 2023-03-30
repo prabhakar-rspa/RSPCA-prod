@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Open_Renewal_Applications__c</fullName>
+    <description>Rolls up the number of open renewal applications for this site.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Rolls up the number of open renewal applications for this site.</inlineHelpText>
+    <label>Open Renewal Applications</label>
+    <summaryFilterItems>
+        <field>Application__c.RecordTypeId</field>
+        <operation>equals</operation>
+        <value>Renewal</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>Application__c.Application_Type__c</field>
+        <operation>equals</operation>
+        <value>Renewal</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>Application__c.Renewal_Stage__c</field>
+        <operation>notEqual</operation>
+        <value>Compliance</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>Application__c.Approvals_Complete__c</field>
+        <operation>notEqual</operation>
+        <value>Yes</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Application__c.Site__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <type>Summary</type>
+</CustomField>

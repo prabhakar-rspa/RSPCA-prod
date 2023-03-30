@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- An application for a new unit or extension to flock size mid certificate --></help>
+        <label><!-- Update Type --></label>
+        <name>Update_Type__c</name>
+        <picklistValues>
+            <masterLabel>New Unit</masterLabel>
+            <translation><!-- New Unit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Update to flock size</masterLabel>
+            <translation><!-- Update to flock size --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Certificate_Extension_Request_Approved</fullName>
+        <description>Certificate Extension Request Approved</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Account_Manager__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>RSPCA_Assured_Emails/Certificate_Extension_Request_Approved</template>
+    </alerts>
+    <alerts>
+        <fullName>Certificate_Extension_Request_Rejected</fullName>
+        <description>Certificate Extension Request Rejected</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Account_Manager__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>RSPCA_Assured_Emails/Certificate_Extension_Request_Rejected</template>
+    </alerts>
+    <alerts>
+        <fullName>Certificate_Extension_Requested</fullName>
+        <description>Certificate Extension Requested</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Certifiers</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <field>Account_Manager__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>RSPCA_Assured_Emails/Certificate_Extension_Requested</template>
+    </alerts>
+    <alerts>
+        <fullName>Site_Suspension_Approved_Alert</fullName>
+        <description>Site Suspension Approved Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Administrator__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderAddress>help@rspcaassured.org.uk</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>RSPCA_Assured_Emails/Site_suspension_approved</template>
+    </alerts>
+    <alerts>
+        <fullName>Site_Suspension_Rejected_Alert</fullName>
+        <description>Site Suspension Rejected Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Administrator__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderAddress>help@rspcaassured.org.uk</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>RSPCA_Assured_Emails/Site_suspension_rejected</template>
+    </alerts>
+    <alerts>
+        <fullName>Site_pending_suspension</fullName>
+        <description>Sent to Assessor when site pending suspension</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Certifiers</recipient>
+            <type>group</type>
+        </recipients>
+        <senderAddress>help@rspcaassured.org.uk</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>RSPCA_Assured_Emails/Pending_Suspension</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>LeadToAccountRecordTypeUpdate</fullName>
+        <field>LeadToAccountRecordType__c</field>
+        <name>LeadToAccountRecordTypeUpdate</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>UpdateAccountPhone</fullName>
+        <description>Update the account phone number to format with a space between the area code and local code.</description>
+        <field>Phone</field>
+        <formula>LEFT( SUBSTITUTE(Phone, &quot; &quot;, &quot;&quot;) , 5)  
+&amp; &quot; &quot;  &amp;  
+SUBSTITUTE(SUBSTITUTE(Phone, &quot; &quot;, &quot;&quot;), LEFT( SUBSTITUTE(Phone, &quot; &quot;, &quot;&quot;) , 5), &quot;&quot;)</formula>
+        <name>UpdateAccountPhone</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Membership_Number_Text</fullName>
+        <field>Membership_Number_Text__c</field>
+        <formula>Membership_Number__c</formula>
+        <name>Update Membership Number Text</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>AccountPhoneFormatRule</fullName>
+        <actions>
+            <name>UpdateAccountPhone</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Account.Phone</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <description>Rule for formatting the account phone number with a space between the area code and local code.</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>ClearLeadToAccountRecordTypeValue</fullName>
+        <actions>
+            <name>LeadToAccountRecordTypeUpdate</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Account.LeadToAccountRecordType__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <description>Remove the values from the &#39;LeadToAccountRecordType&#39; field after account creation so that account record types may be changed afterwards if needed.</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Membership Number Text Autopopulate</fullName>
+        <actions>
+            <name>Update_Membership_Number_Text</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Auto-populate membership number in the text field so that it is searchable.</description>
+        <formula>Membership_Number_Text__c  &lt;&gt;  Membership_Number__c</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

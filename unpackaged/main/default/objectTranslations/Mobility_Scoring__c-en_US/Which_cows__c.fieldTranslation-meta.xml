@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Which cows? --></label>
+        <name>Which_cows__c</name>
+        <picklistValues>
+            <masterLabel>All milking and dry cows (incl. the hospital pen)</masterLabel>
+            <translation><!-- All milking and dry cows (incl. the hospital pen) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>All milking cows (incl.those in the hospital pen)</masterLabel>
+            <translation><!-- All milking cows (incl.those in the hospital pen) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

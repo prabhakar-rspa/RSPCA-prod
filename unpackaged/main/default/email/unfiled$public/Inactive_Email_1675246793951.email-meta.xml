@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Inactive Email</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Inactive Email</name>
+    <pageDevName>Inactive_Email</pageDevName>
+    <relatedEntityType>Account</relatedEntityType>
+    <style>none</style>
+    <subject>Inactive Email</subject>
+    <textOnly>Dear {{{Recipient.FirstName}}} {{{Recipient.LastName}}}
+
+Farm name: {{{Account.Name}}}
+
+Registration:{{{Account.Membership_Number__c}}}
+
+Certificate status: INACTIVE
+
+Date effective from: (MST to add inactive effective date)
+
+We are writing to you as we have been informed that your site is within an extended break in livestock production. In consequence of this, we will not be able to carry out an on-site assessment as it will not be possible to confirm your full compliance with the RSPCA Welfare standards. Our records show an assessment will need to take place before the end of your current certificate, due to conclude on {{{Account.Membership_Expiry_Date__c}}}
+
+We will be classifying your certificate as inactive, effective from the above effective date. This status means that your certificate has not been validated by an assessment.
+
+In order for your certificate to be reinstated as current (active), you will need to let us know when you have returned to livestock production, enabling an assessment to take place. However, should your current certificate expire before you return to livestock production, we will cancel your membership in consequence. In this respect, you will need to reapply as a new applicant to the scheme.
+
+Please be aware that whilst your certificate is deemed as inactive, no product arising from this site can be associated with RSPCA Assured identity. 
+
+Should you have any queries regarding the above, please email us at help@rspcaassured.org.uk &lt; mailto:help@rspcaassured.org.uk &gt; or call 01403 286170.
+
+Kind regards,
+
+{{{Account.Account_Manager__c}}}
+
+Membership Services Team
+
+RSPCA Assured</textOnly>
+    <type>custom</type>
+    <uiType>SFX</uiType>
+</EmailTemplate>

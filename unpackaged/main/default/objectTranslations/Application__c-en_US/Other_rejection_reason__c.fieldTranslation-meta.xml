@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Other rejection reason must be provided when other is selected on the reason for rejection. --></help>
+        <label><!-- Other rejection reason --></label>
+        <name>Other_rejection_reason__c</name>
+    </CustomFieldTranslation>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Too dirty to assess Tail lesions --></label>
+        <name>Too_dirty_to_assess_Tail_lesions__c</name>
+    </CustomFieldTranslation>

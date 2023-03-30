@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Pen design finishing pigs --></label>
+        <name>Pen_design_finishing_pigs__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other (specify)</masterLabel>
+            <translation><!-- Other (specify) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Outdoor arcs (and/or) tents</masterLabel>
+            <translation><!-- Outdoor arcs (and/or) tents --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pen - part slatted floor</masterLabel>
+            <translation><!-- Pen - part slatted floor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pen - solid floor (scrape)</masterLabel>
+            <translation><!-- Pen - solid floor (scrape) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Straw yard</masterLabel>
+            <translation><!-- Straw yard --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

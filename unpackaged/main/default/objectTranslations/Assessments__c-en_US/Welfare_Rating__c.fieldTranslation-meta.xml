@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- A - Excellent standards of husbandry evident, goes above and beyond to improve animal welfare
+B - Good standards of husbandry evident, livestock well looked after
+C - Acceptable standards of husbandry, standards met
+D - Poor standards of husbandry, basic needs of livestock met --></help>
+        <label><!-- Welfare Rating --></label>
+        <name>Welfare_Rating__c</name>
+        <picklistValues>
+            <masterLabel>A</masterLabel>
+            <translation><!-- A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>B</masterLabel>
+            <translation><!-- B --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>C</masterLabel>
+            <translation><!-- C --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>D</masterLabel>
+            <translation><!-- D --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

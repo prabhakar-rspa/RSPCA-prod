@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>P_P_Account_Type__c</fullName>
+    <description>To be able to differentiate on the different company types for reporting purposes</description>
+    <externalId>false</externalId>
+    <inlineHelpText>To be able to differentiate on the different company types for reporting purposes</inlineHelpText>
+    <label>P&amp;P Account Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Farm</fullName>
+                <default>false</default>
+                <label>Farm</label>
+            </value>
+            <value>
+                <fullName>Main Retailer</fullName>
+                <default>false</default>
+                <label>Main Retailer</label>
+            </value>
+            <value>
+                <fullName>Catering</fullName>
+                <default>false</default>
+                <label>Catering</label>
+            </value>
+            <value>
+                <fullName>Food Service (Pub / Restaurant / Cafe site)</fullName>
+                <default>false</default>
+                <label>Food Service (Pub / Restaurant / Cafe site)</label>
+            </value>
+            <value>
+                <fullName>Retailer</fullName>
+                <default>false</default>
+                <label>Retailer</label>
+            </value>
+            <value>
+                <fullName>Brand</fullName>
+                <default>false</default>
+                <label>Brand</label>
+            </value>
+            <value>
+                <fullName>Meal box / delivery</fullName>
+                <default>false</default>
+                <label>Meal box / delivery</label>
+            </value>
+            <value>
+                <fullName>Wholesale</fullName>
+                <default>false</default>
+                <label>Wholesale</label>
+            </value>
+            <value>
+                <fullName>Farm Shop</fullName>
+                <default>false</default>
+                <label>Farm Shop</label>
+            </value>
+            <value>
+                <fullName>Manufacturer</fullName>
+                <default>false</default>
+                <label>Manufacturer</label>
+            </value>
+            <value>
+                <fullName>Pet Food</fullName>
+                <default>false</default>
+                <label>Pet Food</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- A - Excellent housekeeping with all facilities in perfect order, very tidy appearance internally and externally
+B - Good housekeeping with all facilities in good order, tidy appearance internally and externally
+C - Acceptable housekeeping with facilities in acceptable order, site acceptably clean, room for improvement
+D - Poor housekeeping, disorganised, repair and maintenance limited and infrequent, visually untidy with clutter, requires major improvement --></help>
+        <label><!-- Farm Rating --></label>
+        <name>Farm_Rating__c</name>
+        <picklistValues>
+            <masterLabel>A</masterLabel>
+            <translation><!-- A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>B</masterLabel>
+            <translation><!-- B --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>C</masterLabel>
+            <translation><!-- C --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>D</masterLabel>
+            <translation><!-- D --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

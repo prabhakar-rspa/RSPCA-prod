@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Milking --></label>
+        <name>Milking__c</name>
+        <picklistValues>
+            <masterLabel>1/day</masterLabel>
+            <translation><!-- 1/day --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2/day</masterLabel>
+            <translation><!-- 2/day --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3/day</masterLabel>
+            <translation><!-- 3/day --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>robotic</masterLabel>
+            <translation><!-- robotic --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

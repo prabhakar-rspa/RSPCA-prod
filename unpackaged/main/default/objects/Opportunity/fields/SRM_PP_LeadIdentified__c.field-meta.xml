@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SRM_PP_LeadIdentified__c</fullName>
+    <description>The date the lead was identified</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The date the lead was identified</inlineHelpText>
+    <label>Lead Identified</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

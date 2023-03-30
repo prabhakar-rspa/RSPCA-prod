@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MustHaveAccountManager</fullName>
+    <active>true</active>
+    <description>Ensures the related Site has an Account Manager in order to trigger the first task for Office Approval</description>
+    <errorConditionFormula>All_Documentation_Submitted__c = TRUE &amp;&amp;
+	ISBLANK(Site__r.Account_Manager__c)</errorConditionFormula>
+    <errorMessage>You must ensure this Site has an Account Manager.</errorMessage>
+</ValidationRule>

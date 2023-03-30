@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Checkbox is ticked from the workflow if the assessment confirmation is sent. --></help>
+        <label><!-- Assessment Confirmation Sent? --></label>
+        <name>Assessment_Confirmation_Sent__c</name>
+    </CustomFieldTranslation>

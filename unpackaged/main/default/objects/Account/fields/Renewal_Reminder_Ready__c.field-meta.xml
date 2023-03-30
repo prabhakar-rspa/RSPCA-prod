@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Renewal_Reminder_Ready__c</fullName>
+    <externalId>false</externalId>
+    <formula>Latest_Renewal_Price_Date_For__c =  Membership_Expiry_Date__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Renewal Reminder Ready</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

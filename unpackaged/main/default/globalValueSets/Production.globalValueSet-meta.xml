@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Abattoir</fullName>
+        <default>false</default>
+        <label>Abattoir</label>
+    </customValue>
+    <customValue>
+        <fullName>Brand/Marketing</fullName>
+        <default>false</default>
+        <label>Brand/Marketing</label>
+    </customValue>
+    <customValue>
+        <fullName>Breeding</fullName>
+        <default>false</default>
+        <label>Breeding</label>
+    </customValue>
+    <customValue>
+        <fullName>Brood</fullName>
+        <default>false</default>
+        <label>Brood</label>
+    </customValue>
+    <customValue>
+        <fullName>Calves</fullName>
+        <default>false</default>
+        <label>Calves</label>
+    </customValue>
+    <customValue>
+        <fullName>Catching Team</fullName>
+        <default>false</default>
+        <label>Catching Team</label>
+    </customValue>
+    <customValue>
+        <fullName>Cleaner Fish</fullName>
+        <default>false</default>
+        <label>Cleaner Fish</label>
+    </customValue>
+    <customValue>
+        <fullName>Distributor</fullName>
+        <default>false</default>
+        <label>Distributor</label>
+    </customValue>
+    <customValue>
+        <fullName>Dry Cows</fullName>
+        <default>false</default>
+        <label>Dry Cows</label>
+    </customValue>
+    <customValue>
+        <fullName>Finishing</fullName>
+        <default>false</default>
+        <label>Finishing</label>
+    </customValue>
+    <customValue>
+        <fullName>Flat deck (one-storey)</fullName>
+        <default>false</default>
+        <label>Flat deck (one-storey)</label>
+    </customValue>
+    <customValue>
+        <fullName>Flat deck (two storey)</fullName>
+        <default>false</default>
+        <label>Flat deck (two storey)</label>
+    </customValue>
+    <customValue>
+        <fullName>Flat deck with Veranda</fullName>
+        <default>false</default>
+        <label>Flat deck with Veranda</label>
+    </customValue>
+    <customValue>
+        <fullName>Freshwater</fullName>
+        <default>false</default>
+        <label>Freshwater</label>
+    </customValue>
+    <customValue>
+        <fullName>Gilts</fullName>
+        <default>false</default>
+        <label>Gilts</label>
+    </customValue>
+    <customValue>
+        <fullName>Grazing</fullName>
+        <default>false</default>
+        <label>Grazing</label>
+    </customValue>
+    <customValue>
+        <fullName>Hatchery</fullName>
+        <default>false</default>
+        <label>Hatchery</label>
+    </customValue>
+    <customValue>
+        <fullName>Hatchery (On Grower)</fullName>
+        <default>false</default>
+        <label>Hatchery (On Grower)</label>
+    </customValue>
+    <customValue>
+        <fullName>Hatchery (Ova)</fullName>
+        <default>false</default>
+        <label>Hatchery (Ova)</label>
+    </customValue>
+    <customValue>
+        <fullName>Haulier</fullName>
+        <default>false</default>
+        <label>Haulier</label>
+    </customValue>
+    <customValue>
+        <fullName>Heifers</fullName>
+        <default>false</default>
+        <label>Heifers</label>
+    </customValue>
+    <customValue>
+        <fullName>Multi-tier (one-storey)</fullName>
+        <default>false</default>
+        <label>Multi-tier (one-storey)</label>
+    </customValue>
+    <customValue>
+        <fullName>Multi-tier (two-storey)</fullName>
+        <default>false</default>
+        <label>Multi-tier (two-storey)</label>
+    </customValue>
+    <customValue>
+        <fullName>Multi-tier with Veranda</fullName>
+        <default>false</default>
+        <label>Multi-tier with Veranda</label>
+    </customValue>
+    <customValue>
+        <fullName>Packer</fullName>
+        <default>false</default>
+        <label>Packer</label>
+    </customValue>
+    <customValue>
+        <fullName>Processor</fullName>
+        <default>false</default>
+        <label>Processor</label>
+    </customValue>
+    <customValue>
+        <fullName>Processor/Packer</fullName>
+        <default>false</default>
+        <label>Processor/Packer</label>
+    </customValue>
+    <customValue>
+        <fullName>Producer</fullName>
+        <default>false</default>
+        <label>Producer</label>
+    </customValue>
+    <customValue>
+        <fullName>Rearing</fullName>
+        <default>false</default>
+        <label>Rearing</label>
+    </customValue>
+    <customValue>
+        <fullName>Retailer</fullName>
+        <default>false</default>
+        <label>Retailer</label>
+    </customValue>
+    <customValue>
+        <fullName>Seawater</fullName>
+        <default>false</default>
+        <label>Seawater</label>
+    </customValue>
+    <customValue>
+        <fullName>Suckler</fullName>
+        <default>false</default>
+        <label>Suckler</label>
+    </customValue>
+    <customValue>
+        <fullName>Wholesaler</fullName>
+        <default>false</default>
+        <label>Wholesaler</label>
+    </customValue>
+    <customValue>
+        <fullName>Breeding to rearing</fullName>
+        <default>false</default>
+        <label>Breeding to rearing</label>
+    </customValue>
+    <customValue>
+        <fullName>Breeding to finishing</fullName>
+        <default>false</default>
+        <label>Breeding to finishing</label>
+    </customValue>
+    <customValue>
+        <fullName>Rearing to finishing</fullName>
+        <default>false</default>
+        <label>Rearing to finishing</label>
+    </customValue>
+    <customValue>
+        <fullName>Aviary Rearing</fullName>
+        <default>false</default>
+        <label>Aviary Rearing</label>
+    </customValue>
+    <masterLabel>Production</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

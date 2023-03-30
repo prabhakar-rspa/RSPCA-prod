@@ -1,0 +1,157 @@
+<apex:page showHeader="false" standardController="Account" extensions="DownloadCertificatesPerSpeciesController" lightningStylesheets="true">
+  <apex:slds />
+  <apex:includeLightning />
+<head>
+    <style>
+      div.content {
+        /* font style */ 
+        text-align: left;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        mso-height-rule: exactly;
+        line-height: 20px;
+        color: #000000;
+      }
+      div.certificate-section {
+        padding: 5px;
+      }
+
+    </style>
+  </head>
+
+  <!-- Content -->
+  <div class="content">
+    <div style="{!IF(hideSpinner, 'display:none', 'display:block')}">
+      <div id="spinner" style="position:fixed;" class="slds-spinner_container">
+          <div class="slds-spinner--brand slds-spinner slds-spinner--medium" role="alert">
+            <span class="slds-assistive-text">Loading</span>
+            <div class="slds-spinner__dot-a"></div>
+            <div class="slds-spinner__dot-b"></div>
+          </div>
+        </div> 
+    </div>
+
+    <div style="{!IF(hasSupplyChainCertificate, 'display:block', 'display:none')}">
+        <div class="certificate-section">
+            <strong>Supply Chain Certificate</strong> <a href="" onclick="downloadAllSupplyChain();">Click here</a> to download all file
+            <!--File is being downloaded. If it doesn't download,--> <!--a href="{!supplyChainCertificateURL}" id="supplyChainCertificate" target="_blank" download="{!currentRecord.Membership_Number__c} {!currentRecord.Name} Certificate.pdf" onload="auto_download();">click here</a> to download file. !--><br/>
+          </div>
+            <table cellspacing="0" cellpadding="1" border="2" bordercolor="#ffffff" width="100%" valign="top" style="border: 2px solid white;">
+              <tr>
+                  <!--td width="15%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><strong><span style="margin: 5px;">Unit Number</span></strong></td>
+                  <td width="30%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><strong><span style="margin: 5px;">Description</span></strong></td>
+                  <td width="15%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><strong><span style="margin: 5px;">Business</span></strong></td!-->
+                  <td width="15%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><strong><span style="margin: 5px;">Species</span></strong></td>
+                  <td width="15%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><strong><span style="margin: 5px;">Link</span></strong></td>
+              </tr>
+              <!-- Line item Rows -->
+              <apex:repeat value="{!supplyChainCertificateList}" var="sc"> 
+                  <tr>                
+                      <!--td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><span style="margin: 5px;">{!sc.Name}</span></td>
+                      <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><span style="margin: 5px;">{!sc.Description__c}</span></td>
+                      <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><span style="margin: 5px;">{!sc.Business__c}</span></td-->
+                      <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><span style="margin: 5px;">Supply Chain</span></td>
+                      <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;">
+                          <span style="margin: 5px;">
+                              <a href="{!(supplyChainCertificateURL+'species=' + sc.Animals__c)}" class="supply-chain-certificate" target="_blank" download="{!currentRecord.Membership_Number__c} {!currentRecord.Name} {!sc.Animals__c} Certificate.pdf" onload="auto_download();">Download</a>
+                          </span>
+                      </td>
+                  </tr>
+                  
+              </apex:repeat>
+            </table>
+            <!--div style="text-align:right;" class="slds-p-right_small slds-p-top_x-small">
+                <button class="slds-button slds-button_brand" onclick="downloadAllSupplyChain();" >Download All</button>
+            </div-->
+    </div>
+    
+
+    
+  <!--
+    <div class="certificate-section" style="{!IF(hasTroutCertificate, 'display:block', 'display:none')}">
+      <strong>Trout Certificate</strong><br/>
+      File is being downloaded. If it doesn't download, <a href="{!troutCertificateURL}" id="troutCertificate" target="_blank" download="{!currentRecord.Membership_Number__c} {!currentRecord.Name} Certificate.pdf" onload="auto_download();">click here</a> to download file.
+    </div>
+  -->
+  <div style="{!IF(hasSCICertificate, 'display:block', 'display:none')}">
+    <div class="certificate-section" >
+        <strong>SCI Certificate</strong> <a href="" onclick="downloadAllSCI();">Click here</a> to download all file
+        <!--File is being downloaded. If it doesn't download, <a href="{!sciCertificate}" id="sciCertificate" target="_blank" download="{!currentRecord.Membership_Number__c} {!currentRecord.Name} Certificate.pdf" onload="auto_download();">click here</a> to download file.--> <br/>
+      </div>
+      <table cellspacing="0" cellpadding="1" border="2" bordercolor="#ffffff" width="100%" valign="top" style="border: 2px solid white;">
+          <tr>
+              <!--td width="15%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><strong><span style="margin: 5px;">Unit Number</span></strong></td>
+              <td width="30%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><strong><span style="margin: 5px;">Description</span></strong></td>
+              <td width="15%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><strong><span style="margin: 5px;">Business</span></strong></td-->
+              <td width="15%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><strong><span style="margin: 5px;">Species</span></strong></td>
+              <td width="15%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><strong><span style="margin: 5px;">Link</span></strong></td>
+          </tr>
+          <!-- Line item Rows -->
+          <apex:repeat value="{!sciCertificateList}" var="sc"> 
+              <tr>                
+                  <!--td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><span style="margin: 5px;">{!sc.Name}</span></td>
+                  <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><span style="margin: 5px;">{!sc.Description__c}</span></td>
+                  <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><span style="margin: 5px;">{!sc.Business__c}</span></td-->
+                  <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><span style="margin: 5px;">{!sc.Animals__c}</span></td>
+                  <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;">
+                      <span style="margin: 5px;">
+                          <a href="{!(sciCertificate+'species=' + sc.Animals__c)}" class="sci-certificate" target="_blank" download="{!currentRecord.Membership_Number__c} {!currentRecord.Name} {!sc.Animals__c} Certificate.pdf" onload="auto_download();">Download</a>
+                      </span>
+                  </td>
+              </tr>
+              
+          </apex:repeat>
+        </table>
+        <!--div style="text-align:right;" class="slds-p-right_small slds-p-top_x-small">
+            <button class="slds-button slds-button_brand" onclick="downloadAllSCI();" >Download All</button>
+        </div-->
+  </div>
+    
+    <!-- render this div only if there are no certifications available to download -->
+    <div class="certificate-section" style="{!IF(hasSupplyChainCertificate || hasTroutCertificate || hasSCICertificate, 'display:none', 'display:block')}">
+      <strong>No certifications available for download.</strong><br/>
+    </div>
+  </div> 
+
+  <!-- Script to controll the auto download of certificates -->
+  <script>
+    function downloadAllSCI(){
+        downloadAll('sci-certificate');
+
+    }
+    function downloadAllSupplyChain(){
+        downloadAll('supply-chain-certificate');
+    }
+    function downloadAll(linkId){
+        let Links = document.querySelectorAll('.'+linkId);
+        if(Links){
+            Links.forEach(link=>{
+                link.click();
+            });
+        }
+    }
+    function auto_download(){
+      var hasSupplyChain = {!hasSupplyChainCertificate};
+      //var hasTrout = {!hasTroutCertificate};
+      var hasSCI = {!hasSCICertificate};
+      //alert('hasSupplyChain: ' + hasSupplyChain);
+      //alert('hasTrout: ' + hasTrout);
+      //alert('hasNSFUKAS: ' + hasNSFUKAS);
+      if(hasSupplyChain){
+        //----document.getElementById('supplyChainCertificate').click();
+      }
+      /*
+      if(hasTrout){
+        document.getElementById('troutCertificate').click();
+      }
+      */
+      if(hasSCI){
+        //---document.getElementById('sciCertificate').click();
+      }
+
+    };
+    
+    //trigger auto-download
+    window.setTimeout(auto_download, 10);
+  </script>
+</apex:page>

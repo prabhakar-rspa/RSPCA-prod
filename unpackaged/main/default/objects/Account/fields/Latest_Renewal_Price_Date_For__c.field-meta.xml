@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Latest_Renewal_Price_Date_For__c</fullName>
+    <externalId>false</externalId>
+    <label>Latest Renewal Price Date For</label>
+    <summarizedField>Renewal_Price_Report__c.Membership_Expiry_Date__c</summarizedField>
+    <summaryForeignKey>Renewal_Price_Report__c.Site__c</summaryForeignKey>
+    <summaryOperation>max</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <type>Summary</type>
+</CustomField>

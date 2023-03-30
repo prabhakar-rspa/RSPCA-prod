@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status_Approved__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Box checked manually by a user which auto-populates the read-only lookup field Status Approved By.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Once this box is checked, your user ID will automatically populate in the Status Approved By field.</inlineHelpText>
+    <label>Status Approved</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

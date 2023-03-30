@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Renewal_Applications</fullName>
+    <columns>NAME</columns>
+    <columns>Application_Type__c</columns>
+    <columns>Applicant_Contact__c</columns>
+    <columns>Head_Office__c</columns>
+    <columns>Site__c</columns>
+    <columns>CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Application__c.Renewal</value>
+    </filters>
+    <label>Renewal Applications</label>
+</ListView>

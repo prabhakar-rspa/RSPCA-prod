@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Detail of improvements in last12 months --></label>
+        <name>Detail_of_improvements_in_last12_months__c</name>
+    </CustomFieldTranslation>

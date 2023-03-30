@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Communications__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Use this to link to any additional communication, e.g., letters or emails, in a Google Drive folder.</inlineHelpText>
+    <label>Communications</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Url</type>
+</CustomField>

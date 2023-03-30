@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Company_Type_Detail__c</fullName>
+    <externalId>false</externalId>
+    <label>Company Type Detail</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Company_Type__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Farm</fullName>
+                <default>false</default>
+                <label>Farm</label>
+            </value>
+            <value>
+                <fullName>Processor / Packer</fullName>
+                <default>false</default>
+                <label>Processor / Packer</label>
+            </value>
+            <value>
+                <fullName>Brand</fullName>
+                <default>false</default>
+                <label>Brand</label>
+            </value>
+            <value>
+                <fullName>Bakery Chain</fullName>
+                <default>false</default>
+                <label>Bakery Chain</label>
+            </value>
+            <value>
+                <fullName>Contract Caterers</fullName>
+                <default>false</default>
+                <label>Contract Caterers</label>
+            </value>
+            <value>
+                <fullName>Cafe Chain</fullName>
+                <default>false</default>
+                <label>Cafe Chain</label>
+            </value>
+            <value>
+                <fullName>Hotel Chains</fullName>
+                <default>false</default>
+                <label>Hotel Chains</label>
+            </value>
+            <value>
+                <fullName>Pub Chain</fullName>
+                <default>false</default>
+                <label>Pub Chain</label>
+            </value>
+            <value>
+                <fullName>Restaurant Chain</fullName>
+                <default>false</default>
+                <label>Restaurant Chain</label>
+            </value>
+            <value>
+                <fullName>Meal Box / Delivery</fullName>
+                <default>false</default>
+                <label>Meal Box / Delivery</label>
+            </value>
+            <value>
+                <fullName>Caterer (Independent)</fullName>
+                <default>false</default>
+                <label>Caterer (Independent)</label>
+            </value>
+            <value>
+                <fullName>Cafe (Independent)</fullName>
+                <default>false</default>
+                <label>Cafe (Independent)</label>
+            </value>
+            <value>
+                <fullName>Pub (Independent)</fullName>
+                <default>false</default>
+                <label>Pub (Independent)</label>
+            </value>
+            <value>
+                <fullName>Restaurant (Independent)</fullName>
+                <default>false</default>
+                <label>Restaurant (Independent)</label>
+            </value>
+            <value>
+                <fullName>Main Supermarket Retailer</fullName>
+                <default>false</default>
+                <label>Main Supermarket Retailer</label>
+            </value>
+            <value>
+                <fullName>Manufacturer (Processor)</fullName>
+                <default>false</default>
+                <label>Manufacturer (Processor)</label>
+            </value>
+            <value>
+                <fullName>Farm shop</fullName>
+                <default>false</default>
+                <label>Farm shop</label>
+            </value>
+            <value>
+                <fullName>Individual stores / shops</fullName>
+                <default>false</default>
+                <label>Individual stores / shops</label>
+            </value>
+            <value>
+                <fullName>Convenience chains</fullName>
+                <default>false</default>
+                <label>Convenience chains</label>
+            </value>
+            <value>
+                <fullName>Wholesale</fullName>
+                <default>false</default>
+                <label>Wholesale</label>
+            </value>
+            <value>
+                <fullName>Agent</fullName>
+                <default>false</default>
+                <label>Agent</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Farm</controllingFieldValue>
+            <valueName>Farm</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Processor / Packer</controllingFieldValue>
+            <valueName>Processor / Packer</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Brand</controllingFieldValue>
+            <controllingFieldValue>Pet Food</controllingFieldValue>
+            <valueName>Brand</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Food Service (Consumer facing)</controllingFieldValue>
+            <valueName>Bakery Chain</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Food Service (Consumer facing)</controllingFieldValue>
+            <valueName>Contract Caterers</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Food Service (Consumer facing)</controllingFieldValue>
+            <valueName>Cafe Chain</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Food Service (Consumer facing)</controllingFieldValue>
+            <valueName>Hotel Chains</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Food Service (Consumer facing)</controllingFieldValue>
+            <valueName>Pub Chain</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Food Service (Consumer facing)</controllingFieldValue>
+            <valueName>Restaurant Chain</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Food Service (Consumer facing)</controllingFieldValue>
+            <valueName>Meal Box / Delivery</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Food Service (Consumer facing)</controllingFieldValue>
+            <valueName>Caterer (Independent)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Food Service (Consumer facing)</controllingFieldValue>
+            <valueName>Cafe (Independent)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Food Service (Consumer facing)</controllingFieldValue>
+            <valueName>Pub (Independent)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Food Service (Consumer facing)</controllingFieldValue>
+            <valueName>Restaurant (Independent)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Food Service (Consumer facing)</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Other</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Supermarket Retailer</controllingFieldValue>
+            <valueName>Main Supermarket Retailer</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Pet Food</controllingFieldValue>
+            <valueName>Manufacturer (Processor)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Shops</controllingFieldValue>
+            <valueName>Farm shop</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Shops</controllingFieldValue>
+            <valueName>Individual stores / shops</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Shops</controllingFieldValue>
+            <valueName>Convenience chains</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Wholesale</controllingFieldValue>
+            <valueName>Wholesale</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Agent</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

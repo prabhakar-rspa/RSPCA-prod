@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Company Type Detail --></label>
+        <name>Company_Type_Detail__c</name>
+        <picklistValues>
+            <masterLabel>Agent</masterLabel>
+            <translation><!-- Agent --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bakery Chain</masterLabel>
+            <translation><!-- Bakery Chain --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Brand</masterLabel>
+            <translation><!-- Brand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cafe (Independent)</masterLabel>
+            <translation><!-- Cafe (Independent) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cafe Chain</masterLabel>
+            <translation><!-- Cafe Chain --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Caterer (Independent)</masterLabel>
+            <translation><!-- Caterer (Independent) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Contract Caterers</masterLabel>
+            <translation><!-- Contract Caterers --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Convenience chains</masterLabel>
+            <translation><!-- Convenience chains --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Farm</masterLabel>
+            <translation><!-- Farm --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Farm shop</masterLabel>
+            <translation><!-- Farm shop --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hotel Chains</masterLabel>
+            <translation><!-- Hotel Chains --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Individual stores / shops</masterLabel>
+            <translation><!-- Individual stores / shops --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Main Supermarket Retailer</masterLabel>
+            <translation><!-- Main Supermarket Retailer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Manufacturer (Processor)</masterLabel>
+            <translation><!-- Manufacturer (Processor) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Meal Box / Delivery</masterLabel>
+            <translation><!-- Meal Box / Delivery --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Processor / Packer</masterLabel>
+            <translation><!-- Processor / Packer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pub (Independent)</masterLabel>
+            <translation><!-- Pub (Independent) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pub Chain</masterLabel>
+            <translation><!-- Pub Chain --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Restaurant (Independent)</masterLabel>
+            <translation><!-- Restaurant (Independent) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Restaurant Chain</masterLabel>
+            <translation><!-- Restaurant Chain --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wholesale</masterLabel>
+            <translation><!-- Wholesale --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

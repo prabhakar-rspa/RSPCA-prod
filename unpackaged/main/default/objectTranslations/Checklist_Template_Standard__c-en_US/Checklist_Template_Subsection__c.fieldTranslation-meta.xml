@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Checklist Template Subsection --></label>
+        <name>Checklist_Template_Subsection__c</name>
+        <relationshipLabel><!-- Checklist Template Standards --></relationshipLabel>
+    </CustomFieldTranslation>

@@ -1,0 +1,5 @@
+<messaging:emailTemplate subject="Assessment Complete" recipientType="Contact" relatedToType="Application__c">
+<messaging:htmlEmailBody >
+<c:AssessmentCompleteEmail appId="{!relatedTo.Id}"></c:AssessmentCompleteEmail>
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

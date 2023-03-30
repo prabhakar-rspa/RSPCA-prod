@@ -1,0 +1,5 @@
+<messaging:emailTemplate subject="Payment Reminder" recipientType="Contact" relatedToType="Account">
+<messaging:htmlEmailBody >
+<c:PaymentReminder accId="{!relatedTo.Id}"/>
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

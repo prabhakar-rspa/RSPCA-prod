@@ -1,0 +1,16 @@
+Dear {!Application__c.Applicant_Full_Name__c}
+<br>
+<br>
+Don’t forget, you must submit your corrective actions and evidence by {!Application__c.Evidence_Deadline__c}.
+<br>
+<br>
+If we don’t receive your corrective actions and evidence on time your membership will lapse and you may have to reapply.
+<br>
+<br>
+If you have any questions please feel free to contact our membership services team on
+01403 286170 or help@rspcaassured.org.uk.
+<br>
+<br>
+ <p>Yours sincerely</p>
+ <p><span style="font-weight: bold">Membership services<br/>
+ RSPCA Assured</span></p>

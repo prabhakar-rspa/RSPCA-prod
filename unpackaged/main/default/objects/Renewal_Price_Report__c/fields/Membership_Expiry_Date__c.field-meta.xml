@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Membership_Expiry_Date__c</fullName>
+    <description>The renewal price report is for the following membership expiry date.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The renewal price report is for the following membership expiry date.</inlineHelpText>
+    <label>Membership Expiry Date</label>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

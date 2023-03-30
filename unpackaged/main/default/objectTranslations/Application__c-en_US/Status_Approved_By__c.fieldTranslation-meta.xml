@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- This field will auto-populate when the Status Approved checkbox is checked. --></help>
+        <label><!-- Status Approved By --></label>
+        <name>Status_Approved_By__c</name>
+        <relationshipLabel><!-- Applications (Status Approved By) --></relationshipLabel>
+    </CustomFieldTranslation>

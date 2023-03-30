@@ -1,0 +1,366 @@
+<apex:page showHeader="false"  controller="CertificatesPerSpeciesController" standardStylesheets="false" renderAs="pdf" applyBodyTag="false" applyHtmlTag="false">
+
+    <head>
+        <style>
+            /* add margin and size to our page */
+            @Page :first {
+                /* add page's header and footer */
+                
+                 /*background */
+              
+                @top-center { 
+                    content: element(header); 
+             
+                }
+                @bottom-left { 
+                    content: element(footer);        
+                }
+                @bottom-right {
+                    content: "Page " counter(page) " of " counter(pages);
+                    width:80px;
+                    font-family: Arial, sans-serif; 
+                    vertical-align:bottom;
+                    font-size: 10px;
+                    color: white;
+                    padding-bottom: 10px;
+                    padding-right: 10px;
+                }
+                
+                /* Page Size */
+                size: 8.27in 11.69in; /* A4 width and height */
+                /* margin */
+                margin-left: 0;
+                margin-right: 0;
+                margin-top: 0;
+                margin-bottom:270.5px;
+                
+                
+               
+                /* padding */
+                padding-top:210px; 
+                
+                background-image: url("{!IF((species != 'Trout'),URLFOR($Resource.Certificate_Images, 'images/SCIbackground01.png'), URLFOR($Resource.Certificate_Images, 'images/SCIbackground02.png'))}");
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: cover;
+            }
+            @page {
+                size: 8.27in 11.69in;
+                margin-left: 0;
+                margin-right: 0;
+                @top-center { 
+                    content: element(content-second-page-header); 
+                }
+                @bottom-right {
+                    content: "Page " counter(page) " of " counter(pages);
+                    width:80px;
+                    font-family: Arial, sans-serif; 
+                    vertical-align:bottom;
+                    font-size: 10px;
+                    color: rgb(0, 0, 0);
+                    padding-bottom: 10px;
+                    padding-right: 10px;
+
+                }
+                
+            }
+
+            /* sets the header as the matching element */
+            div.header { 
+                position: running(header); 
+
+            }
+            /* sets the footer as the matching element */
+            div.footer { 
+                position: running(footer); 
+
+                padding-left: 60px;
+                padding-right: 0px;
+
+
+
+                /* font style */ 
+                
+                font-family: Arial, sans-serif;
+                font-size: 14px;
+                mso-height-rule: exactly;
+                line-height: 20px;
+                color: #000000;
+
+            }
+
+            div.content{
+                /* */
+                margin-left: 65px;
+                margin-right:65px;
+            }
+            div.content-second-page{
+                 /* */
+                margin-left: 70px;
+                margin-right:70px;
+            }
+            div.content-second-page-header{
+                height: 70px;
+            }
+            div.content-bottom{
+                page-break-inside: avoid;
+            }
+
+            /* Unit Styling */
+            div.unit-container { 
+                width:90%; 
+                margin: auto;
+            }
+            div.row {
+                display: inline-block; 
+                *display: inline; 
+                zoom: 1; 
+                vertical-align: top; 
+                width: 49%; 
+
+                padding-left: 3px;
+                text-align: center; 
+                font-size: 18px; 
+                font-weight: bold; 
+
+            }
+            .s1 {
+                color: #005942;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 28pt;
+                width: 653px;
+                 padding-top: 70pt;
+            }
+            .s2{
+                color: #005942;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 14pt;
+
+                padding-top: 11pt;
+            }
+            .s3 {
+                color: #231F20;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 20pt;
+            }
+            .s4 {
+                color: #231F20;
+                font-family: Verdana, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 20pt;
+
+                padding-top: 8pt;
+            }
+            .s5 {
+                color: #005942;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 9pt;
+                padding-top: 4pt;
+            }
+            .s6 {
+                color: #231F20;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 25pt;
+            }
+            .s7 {
+                color: #231F20;
+                font-family: Verdana, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 10pt;
+                padding-top: 5pt;
+            }
+            .s8 {
+                color: #231F20;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 10pt;
+            }
+            .vl {
+                border-left: 2px solid #085942;
+                height: 100%;
+                width:2px;
+            }
+            .td_va_center{
+                vertical-align: center;
+                height: 100%;
+                width: 100%;
+                padding-top: 30px;
+                margin-bottom: auto;
+            }
+         
+
+        </style>
+        
+    </head>
+  
+
+   
+     <!-- Header Section -->
+    <div class="header">
+        <table cellspacing="0" cellpadding="0" border="0" align="center" width="50%" style=" padding-top:30px;">
+        </table>
+    </div>
+    
+    <!-- Footer Section -->
+    <div class="footer" name="footer">
+             
+        <table width="90%" align="center" border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+            
+            <tr>
+                <td style="border-top:1pt solid #085942;"></td>
+                <td style="border-top:1pt solid #085942;"></td>
+                <td style="border-top:1pt solid #085942;"></td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+             
+            <tr>
+                <td></td>
+                <td><img src="{!URLFOR($Resource.Certificate_Images, 'images/Paul_Eveleigh_Signature.png')}" width="192" height="40" alt=""/></td>
+                
+                <td width="35%" ><img src="{!URLFOR($Resource.Certificate_Images, 'images/Mike_Baker_Signature.png')}" width="192" height="40" alt=""/></td>
+               
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td> 
+            </tr>
+            <tr><!--085942-->
+               
+               <td></td>
+                <td valign="bottom">
+                    <p style="text-align: left; font-size: 11px; line-height: 1.2; color: black;"><strong>Paul Eveleigh</strong><br/>
+                    Chairman SCI Ltd </p>
+                </td>
+            
+                <td valign="bottom">
+                    <p style="text-align: left; font-size: 11px; line-height: 1.2;"><strong>Mike Baker 
+                        </strong><br/>
+                        Chief Executive, RSPCA Assured <br/>
+                    </p>
+                </td>
+                    
+            </tr>
+            </tbody>
+        </table>
+        
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr>
+                    <td align="center" valign="bottom">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tbody>
+                            <tr>
+                                <td width="100%" valign="bottom" ><p style="text-align: center; font-size: 10px; line-height: 1.2;"><strong>This certificate remains the property of Supply Chain In-Sites Ltd and must be returned on request.</strong><br/>
+                                    As the certificate holder, it is your responsibility to inform customers of any changes in the certification status. It is the customer's responsibility to verify the certification status with Freedom Food Ltd (t/a RSPCA Assured). To do this, please
+                                    call 01403 286170 or email help@rspcaassured.org.uk. Alternatively, write to SCI Certified RSPCA Scheme
+                                    at Wilberforce Way, Southwater, Horsham, West Sussex, RH13 9RS</p></td>
+                         <br/>   </tr>
+                            <tr>
+                                <td width="100%" valign="bottom"><p style="text-align: center; font-size: 10px; line-height: 1.2; color: white;">Supply Chain In-Sites, 78 Cannon Street, London, EC4N 6AF</p></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+     <!-- Content Section -->
+    <div class="content">
+
+        <table>
+            <tr>
+                <td>
+                
+             
+
+                 
+                    <div style="height: 630px; overflow: hidden; font-family: Arial, sans-serif; text-align:center;">
+                        <div class="s1"><Strong>CERTIFICATE OF CONFORMITY</Strong></div>
+                        <div class="s2"><Strong>THIS IS TO CERITIFY THAT</Strong></div>
+                        <p style="font-size: 12pt"></p>
+                        <div class="s3"><Strong>{!currentRecord.Parent.Name}</Strong></div>
+                        <div class="s3"><Strong>Site: {!currentRecord.Name}</Strong></div>
+                        <div class="s4"> {!currentRecord.BillingStreet}, {!currentRecord.BillingCity}, {!IF(NOT(ISBLANK(currentRecord.County__c)), currentRecord.County__c & ',', '' )} {!currentRecord.BillingPostalcode}</div>
+                        <p style="font-size: 12pt"></p>
+                        <div class="s5"><Strong>IS IN COMPLIANCE WITH THE STANDARD</Strong></div>
+                        <p style="font-size: 12pt"></p>
+                        <div class="s6"><Strong>RSPCA Assured</Strong></div>
+                        <div class="s6">{!SCISchemeTitle}</div>
+                        <div class="s7">and is approved for the species on the following page(s) specifically reared for the RSPCA Assured Scheme in accordance with the RSPCA welfare standards for {!SCISchemeTexts} </div>
+                        <p style="font-size: 7pt"></p>
+                        <br/>
+                        <div class="s8"><Strong>Registration Number: {!currentRecord.Membership_Number__c}</Strong></div>
+                      <div class="s8"><Strong>Issue date: {!startDate}</Strong></div>
+                     <div class="s8"><Strong>Expiry date: {!endDate}</Strong></div>
+                    </div>
+                    
+                   
+                
+                </td>
+            </tr>
+             
+                
+        </table>
+    </div>
+    
+
+    <div class="content-second-page-header">
+
+    </div>
+
+    <div class="content-second-page">
+        <div class="s3" style="font-family: Arial, sans-serif; padding:3px">
+            {!currentRecord.Name} - {!currentRecord.Membership_Number__c}
+        </div>
+        <table cellspacing="0" cellpadding="1" border="2" bordercolor="#ffffff" width="100%" valign="top" style="border: 2px solid white;">
+        
+            <!-- Line Item Columns -->
+            <tr>
+                <td width="15%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><strong><span style="margin: 5px;">Unit Number</span></strong></td>
+                <td width="30%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><strong><span style="margin: 5px;">Description</span></strong></td>
+                <td width="15%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><strong><span style="margin: 5px;">Business</span></strong></td>
+                <td width="15%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><strong><span style="margin: 5px;">Species</span></strong></td>
+                <td width="15%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><strong><span style="margin: 5px;">Vehicle Registration (Hauliers only)</span></strong></td>
+            </tr>
+            <!-- Line item Rows -->
+            <apex:repeat value="{!NSFUKASUnits}" var="u"> 
+                <tr>                
+                    <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><span style="margin: 5px;">{!u.Name}</span></td>
+                    <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><span style="margin: 5px;">{!u.Description__c}</span></td>
+                    <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><span style="margin: 5px;">{!u.Business__c}</span></td>
+                    <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><span style="margin: 5px;">{!u.Animals__c}</span></td>
+                    <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><span style="margin: 5px;">{!u.Vehicle_Registration__c}</span></td>
+                </tr>
+            </apex:repeat>
+        </table>
+
+        <div class="s7" style="font-family: Arial, sans-serif; padding:3px">
+            <br/>
+            <br/>
+            This will list all Units/Houses for the site.
+        </div>
+    </div>
+
+
+</apex:page>

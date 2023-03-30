@@ -1,0 +1,165 @@
+<apex:page showHeader="false"  controller="CertificatesController" standardStylesheets="false" renderAs="pdf" applyBodyTag="false" applyHtmlTag="false">
+
+    <head>
+        <style>
+            /* add margin and size to our page */
+            @Page {
+                /* add page's header and footer */
+                @top-center { 
+                    content: element(header); 
+                }
+                @bottom-left { 
+                    content: element(footer);
+                }
+                /* Page Size */
+                size: 8.27in 11.69in; /* A4 width and height */
+                /* margin */
+                margin-left: 0;
+                margin-right: 0;
+                margin-top: 0;
+                margin-bottom:414.5px;
+                
+                /* padding */
+                padding-top:286px;
+
+                /* background */
+                background-image: url("{!URLFOR($Resource.Certificate_Images, 'images/Graduated-background.png')}");
+                background-repeat: no-repeat;
+                background-position: center;
+
+            }
+
+            /* sets the header as the matching element */
+            div.header { 
+                position: running(header); 
+
+            }
+            /* sets the footer as the matching element */
+            div.footer { 
+                position: running(footer); 
+
+                padding-left: 40px;
+                padding-right: 35px;
+                padding-top:10px;
+                padding-bottom: 10px;
+
+
+
+                /* font style */ 
+                text-align: left;
+                font-family: Arial, sans-serif;
+                font-size: 14px;
+                mso-height-rule: exactly;
+                line-height: 20px;
+                color: #000000;
+
+            }
+
+            div.content{
+                margin-left: 100px;
+                margin-right: 100px;
+
+            }
+            div.content-bottom{
+                page-break-inside: avoid;
+            }
+        </style>
+        
+    </head>
+
+        
+    <!-- Header Section -->
+    <div class="header">
+        <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%">
+            <tr>
+                <td width="100%" style="padding: 0px 0px 0px 0px; "><img src="{!URLFOR($Resource.Certificate_Images, 'images/NSF-Certificate-header.png')}" style="z-index: 1;" alt="" width="100%"/></td>
+            </tr>
+        </table>
+    </div>
+    
+    
+    
+    <!-- Footer Section -->
+    <div class="footer" name="footer">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+            <tr>
+                <td><img src="{!URLFOR($Resource.Certificate_Images, 'images/Clive-Brazier-signature.png')}" width="202" height="91" alt=""/></td>
+                <td valign="bottom">&nbsp;</td>
+                <td width="40%" ><img src="{!URLFOR($Resource.Certificate_Images, 'images/Anita-Signature-larger.png')}" width="192" height="40" alt=""/></td>
+            </tr>
+            <tr>
+                <td style="border-top:1pt solid #0058a5;" width="30%" valign="bottom"><p style="text-align: left; font-size: 11px; line-height: 1.2; color: #0058a5;"><strong>Clive Brazier</strong><br/>
+                RSPCA Assured (Freedom Food Ltd)<br/>
+                </p></td>
+                <td width="30%" valign="bottom">&nbsp;</td>
+                <td style="border-top:1pt solid #0058a5;" valign="bottom"><p style="text-align: left; font-size: 11px; line-height: 1.2; color: #0058a5;"><strong>Anita Roberts 
+                    </strong><br/>
+                Director Agriculture, EMEA, NSF Certification UK Ltd <br/>
+                </p></td>
+            </tr>
+            </tbody>
+        </table>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr>
+                <td width="85" align="left" valign="bottom"><img src="{!URLFOR($Resource.Certificate_Images, 'images/RSPCA-Assured-Certification-logo-boxed-RGB.png')}" width="70" height="109" alt=""/></td>
+                <td align="center" valign="bottom"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tbody>
+                    <tr>
+                        <td valign="bottom" >&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td width="" valign="bottom" ><p style="text-align: center; font-size: 10px; line-height: 1.2; color: #0058a5;"><strong>This certificate remains the property of NSF Certification UK Ltd.</strong><br/>
+                        As the certificate holder, it is your responsibility to inform customers of any changes in the certification status.<br/>
+                        And it is the customer’s responsibility to verify the certification status with Freedom Food Ltd (t/a RSPCA Assured). <br/>
+                        To do this, please call 01403 800141 or email help@rspcaassured.org.uk. Alternatively, write to <br/>
+                        NSF Certified Freedom Food Scheme at Wilberforce Way, Southwater, Horsham, West Sussex, RH13 9RS.</p></td>
+                    </tr>
+                    <tr>
+                        <td width="75%" valign="bottom" style="border-top:1pt solid #0058a5;"><p style="text-align: center; font-size: 10px; line-height: 1.2; color: #0058a5;">NSF Certification UK Ltd, Hanborough Business Park, Long Hanborough, Oxon, OX29 8SJ, UK <br/>
+                        www.nsf.org certificationuk@nsf.org +44 (0) 1993 885 600</p></td>
+                    </tr>
+                    </tbody>
+                </table></td>
+                <td width="85" align="right" valign="bottom">&nbsp;</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Content Section -->
+    <div class="content">
+        
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+            <tr>
+                <td style="padding: 0px 0px 0px 0px; text-align: left; font-family: Arial, sans-serif; font-size: 14px; mso-height-rule: exactly; line-height: 20px; color: #000000;">
+                    
+                    <p style="text-align: center; font-size: 18px; font-weight: bold;">Registration No. {!currentRecord.Membership_Number__c}</p>
+                    <p style="text-align: center; font-size: 18px; font-weight: bold;">{!currentRecord.Name}, {!currentRecord.BillingStreet}, {!currentRecord.BillingCity}, {!currentRecord.County__c}, {!currentRecord.BillingPostalcode}</p>
+                    <!-- Units List -->
+                    <div>
+                        <apex:repeat value="{!trouts}" var="t" id="trouts">
+                            <p style="text-align: center; font-size: 18px; font-weight: bold;">{!t.Name} {!t.Production__c}</p>
+                        </apex:repeat>
+                    </div>
+
+                    <div class="content-bottom">
+                        <p style="text-align: center; font-size: 14px;">has satisfied the certification requirements of the <strong>RSPCA Assured {!troutAnimalScheme}</strong><br/>
+                            and is approved for the above animals specifically reared for the RSPCA Assured Scheme<br/>
+                            in accordance with the RSPCA welfare standards for <strong>{!TroutAnimals}</strong><br/>
+                            as an Authorised Category A User may use the approved Scheme Mark for <br/>
+                            <strong>{!troutRearingSystems} </strong></p>
+                            <p style="text-align: center; font-size: 14px;">The certificate is valid <br/>
+                            <strong>From {!startDate} to {!endDate} </strong></p>
+                    </div>
+                    
+                </td>
+            </tr>
+        </table>
+        
+    </div>
+
+
+</apex:page>

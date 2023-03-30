@@ -1,0 +1,214 @@
+<template>
+  <div
+    id="containerDiv"
+    class="slds-border_right slds-border_left tableScroll"
+    style="overflow: initial"
+  >
+    <div if:true={isLoading} style="position:relative;">
+      <lightning-spinner
+        alternative-text="Loading"
+        size="medium"
+      ></lightning-spinner>
+    </div>
+    <div id="tableViewInnerDiv" class="slds-table_edit_container">
+      <table
+        class="slds-table slds-table_bordered slds-table_edit slds-table--col-bordered"
+        style="width: 100%"
+      >
+        <thead>
+          <tr >
+            <th class="slds-is-resizable dv-dynamic-width" scope="col">
+              <div class="">
+                <a class="slds-th__action slds-text-link--reset">
+                  <span class="slds-truncate"
+                    >Who scores?
+                    <!--abbr class="slds-required" title="required">* </abbr--></span
+                  >
+                </a>
+              </div>
+            </th>
+            <th class="slds-is-resizable dv-dynamic-width" scope="col">
+              <div class="">
+                <a class="slds-th__action slds-text-link--reset">
+                  <span class="slds-truncate"
+                    >RoMS?
+                    <!--abbr class="slds-required" title="required">* </abbr--></span
+                  >
+                </a>
+              </div>
+            </th>
+            <th class="slds-is-resizable dv-dynamic-width" scope="col">
+              <div class="">
+                <a class="slds-th__action slds-text-link--reset">
+                  <span class="slds-truncate"
+                    >How often?
+                    <!--abbr class="slds-required" title="required">* </abbr--></span
+                  >
+                </a>
+              </div>
+            </th>
+            <th class="slds-is-resizable dv-dynamic-width" scope="col">
+              <div class="">
+                <a class="slds-th__action slds-text-link--reset">
+                  <span class="slds-truncate"
+                    >Which cows?
+                    <!--abbr class="slds-required" title="required">* </abbr--></span
+                  >
+                </a>
+              </div>
+            </th>
+            <th
+              class="slds-is-resizable dv-dynamic-width"
+              scope="col"
+              style="width: 10rem"
+            >
+              <div class=""></div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <template for:each={records} for:item="record" for:index="index">
+            <tr key={record.index} data-index={index} style="width: 10rem">
+              <td class="slds-cell-wrap" style="overflow: initial">
+                <div>
+                  <div>
+                    <lightning-combobox
+                      name="Who_scores__c"
+                      data-fieldname="Who_scores__c"
+                      label="Who scores"
+                      data-index={index}
+                      variant="label-hidden"
+                      value={record.Who_scores__c}
+                      placeholder="Select"
+                      options={whoScoresPicklistValues}
+                      onchange={handleChange}
+                      disabled={disableAll}
+                    ></lightning-combobox>
+                  </div>
+                  <div
+                    if:true={record.showWhoScoresNotes}
+                    class="slds-p-top_xx-small"
+                  >
+                    <lightning-input
+                      name="Who_scores_Other_Text__c"
+                      value={record.Who_scores_Other_Text__c}
+                      data-fieldname="Who_scores_Other_Text__c"
+                      data-index={index}
+                      variant="label-hidden"
+                      onchange={handleChange}
+                      placeholder="please specify"
+                      required="true"
+                      disabled={disableAll}
+                    ></lightning-input>
+                  </div>
+                </div>
+              </td>
+              <td class="slds-cell-wrap" style="overflow: initial">
+                <lightning-combobox
+                  name="RoMS__c"
+                  data-fieldname="RoMS__c"
+                  label="Who scores"
+                  data-index={index}
+                  variant="label-hidden"
+                  value={record.RoMS__c}
+                  placeholder="Select"
+                  options={romsPicklistValues}
+                  onchange={handleChange}
+                  required="true"
+                  disabled={disableAll}
+                ></lightning-combobox>
+              </td>
+              <td class="slds-cell-wrap" style="overflow: initial">
+                <div>
+                  <div>
+                    <lightning-combobox
+                      name="How_often__c"
+                      data-fieldname="How_often__c"
+                      label="How often"
+                      data-index={index}
+                      variant="label-hidden"
+                      value={record.How_often__c}
+                      placeholder="Select"
+                      options={howOftenPicklistValues}
+                      onchange={handleChange}
+                      disabled={disableAll}
+                    ></lightning-combobox>
+                  </div>
+                  <div
+                    if:true={record.showHowOftenNotes}
+                    class="slds-p-top_xx-small"
+                  >
+                    <lightning-input
+                      name="How_often_Other_Text__c"
+                      value={record.How_often_Other_Text__c}
+                      data-fieldname="How_often_Other_Text__c"
+                      data-index={index}
+                      variant="label-hidden"
+                      onchange={handleChange}
+                      placeholder="please specify"
+                      required="true"
+                      disabled={disableAll}
+                    ></lightning-input>
+                  </div>
+                </div>
+              </td>
+              <td class="slds-cell-wrap" style="overflow: initial">
+                <div>
+                  <div>
+                    <lightning-combobox
+                      name="Which_cows__c"
+                      data-fieldname="Which_cows__c"
+                      label="Who cows"
+                      data-index={index}
+                      variant="label-hidden"
+                      value={record.Which_cows__c}
+                      placeholder="Select"
+                      options={whichCowsPicklistValues}
+                      onchange={handleChange}
+                      disabled={disableAll}
+                    ></lightning-combobox>
+                  </div>
+                  <div
+                    if:true={record.showWhichCowsNotes}
+                    class="slds-p-top_xx-small"
+                  >
+                    <lightning-input
+                      name="Which_cows_Other_Text__c"
+                      value={record.Which_cows_Other_Text__c}
+                      data-fieldname="Which_cows_Other_Text__c"
+                      data-index={index}
+                      variant="label-hidden"
+                      onchange={handleChange}
+                      placeholder="please specify"
+                      required="true"
+                      disabled={disableAll}
+                    ></lightning-input>
+                  </div>
+                </div>
+              </td>
+              <td class="slds-cell-edit slds-no-print" style="width: 5%">
+                <div class="slds-truncate slds-cell-edit" if:false={disableAll}>
+                  <lightning-icon
+                    icon-name="action:delete"
+                    size="x-small"
+                    data-index={index}
+                    data-id={record.Id}
+                    alternative-text="Delete"
+                    title="Delete"
+                    onclick={removeRow}
+                  ></lightning-icon>
+                </div>
+              </td>
+            </tr>
+          </template>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="slds-p-top_small" if:false={disableAll}>
+    <lightning-button
+      label="Add another row"
+      onclick={addRow}
+    ></lightning-button>
+  </div>
+</template>

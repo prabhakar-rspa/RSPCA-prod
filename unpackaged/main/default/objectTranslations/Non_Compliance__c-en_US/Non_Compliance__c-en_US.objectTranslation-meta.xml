@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Non-Compliance</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Non-Compliances</value>
+    </caseValues>
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Assessors Non-Compliance Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Disclaimer --></label>
+            <section>Disclaimer</section>
+        </sections>
+        <sections>
+            <label><!-- Non-Compliance --></label>
+            <section>Non-Compliance</section>
+        </sections>
+        <sections>
+            <label><!-- Rectification --></label>
+            <section>Rectification</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Community Members Non-Compliance Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Disclaimer --></label>
+            <section>Disclaimer</section>
+        </sections>
+        <sections>
+            <label><!-- Non-Compliance --></label>
+            <section>Non-Compliance</section>
+        </sections>
+        <sections>
+            <label><!-- Rectification --></label>
+            <section>Rectification</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Generate_Site_Number__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>When this checkbox is ticked (automated process), and the site number field is empty, a new site number will be generated.</description>
+    <externalId>false</externalId>
+    <label>Generate Site Number</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

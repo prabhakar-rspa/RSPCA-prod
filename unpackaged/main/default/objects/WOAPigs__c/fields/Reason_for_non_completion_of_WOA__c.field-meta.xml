@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reason_for_non_completion_of_WOA__c</fullName>
+    <externalId>false</externalId>
+    <label>Reason for non-completion of WOA</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>recently mixed</fullName>
+                <default>false</default>
+                <label>recently mixed</label>
+            </value>
+            <value>
+                <fullName>recently treated</fullName>
+                <default>false</default>
+                <label>recently treated</label>
+            </value>
+            <value>
+                <fullName>no stock on site</fullName>
+                <default>false</default>
+                <label>no stock on site</label>
+            </value>
+            <value>
+                <fullName>not correct weight</fullName>
+                <default>false</default>
+                <label>not correct weight</label>
+            </value>
+            <value>
+                <fullName>non-audit visit</fullName>
+                <default>false</default>
+                <label>non-audit visit</label>
+            </value>
+            <value>
+                <fullName>multiple FF licence holder - more than one WOA generated for visit</fullName>
+                <default>false</default>
+                <label>multiple FF licence holder - more than one WOA generated for visit</label>
+            </value>
+            <value>
+                <fullName>replacement gilt unit</fullName>
+                <default>false</default>
+                <label>replacement gilt unit</label>
+            </value>
+            <value>
+                <fullName>other</fullName>
+                <default>false</default>
+                <label>other</label>
+            </value>
+            <value>
+                <fullName>rearing only</fullName>
+                <default>false</default>
+                <label>rearing only</label>
+            </value>
+            <value>
+                <fullName>multiple FF license holder - more then one WOA generated for visit</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>multiple FF license holder - more then one WOA generated for visit</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Roles --></label>
+        <name>Roles__c</name>
+        <picklistValues>
+            <masterLabel>Administration Contact</masterLabel>
+            <translation><!-- Administration Contact --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Agricultural/Technical Contact</masterLabel>
+            <translation><!-- Agricultural/Technical Contact --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Artwork Contact</masterLabel>
+            <translation><!-- Artwork Contact --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Assessments Contact</masterLabel>
+            <translation><!-- Assessments Contact --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Certification Contact</masterLabel>
+            <translation><!-- Certification Contact --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Compliance Contact</masterLabel>
+            <translation><!-- Compliance Contact --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Licence Fee Contact</masterLabel>
+            <translation><!-- Licence Fee Contact --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Membership Fee Contact</masterLabel>
+            <translation><!-- Membership Fee Contact --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Partnerships Commercial Contact</masterLabel>
+            <translation><!-- Partnerships Commercial Contact --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Payments Contact</masterLabel>
+            <translation><!-- Payments Contact --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Traceability Contact</masterLabel>
+            <translation><!-- Traceability Contact --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

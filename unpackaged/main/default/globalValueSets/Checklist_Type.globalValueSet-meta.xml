@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Welfare Standard Checklist</fullName>
+        <default>false</default>
+        <label>Welfare Standard Checklist</label>
+    </customValue>
+    <customValue>
+        <fullName>Welfare Outcome Assessment Checklist</fullName>
+        <default>false</default>
+        <label>Welfare Outcome Assessment Checklist</label>
+    </customValue>
+    <masterLabel>Checklist Type</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

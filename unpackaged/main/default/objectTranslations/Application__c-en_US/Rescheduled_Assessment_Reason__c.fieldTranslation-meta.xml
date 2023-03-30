@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Please provide a reason if assessment is rescheduled. --></help>
+        <label><!-- Rescheduled Assessment Reason --></label>
+        <name>Rescheduled_Assessment_Reason__c</name>
+    </CustomFieldTranslation>

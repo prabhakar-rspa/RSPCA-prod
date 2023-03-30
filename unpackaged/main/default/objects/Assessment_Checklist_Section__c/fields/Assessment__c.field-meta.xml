@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Assessment__c</fullName>
+    <externalId>false</externalId>
+    <label>Assessment</label>
+    <referenceTo>Assessments__c</referenceTo>
+    <relationshipLabel>Assessment Checklist Section</relationshipLabel>
+    <relationshipName>Assessment_Checklist_Section</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

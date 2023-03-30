@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Rejection_Date__c</fullName>
+    <description>Rejection Date to be auto populated when application is rejected.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Rejection Date auto populated when application is rejected.</inlineHelpText>
+    <label>Rejection Date</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>DateTime</type>
+</CustomField>

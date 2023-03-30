@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- This field must be populated in order to mark an Additional Visit as complete. --></help>
+        <label><!-- Reason for Visit --></label>
+        <name>Reason_for_Visit__c</name>
+        <picklistValues>
+            <masterLabel>Allegation</masterLabel>
+            <translation><!-- Allegation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Assessment</masterLabel>
+            <translation><!-- Assessment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Complaint</masterLabel>
+            <translation><!-- Complaint --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Monitoring</masterLabel>
+            <translation><!-- Monitoring --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

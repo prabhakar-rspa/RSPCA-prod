@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The date that the extension was granted on. --></help>
+        <label><!-- Extension Granted On --></label>
+        <name>Extension_Granted_On__c</name>
+    </CustomFieldTranslation>

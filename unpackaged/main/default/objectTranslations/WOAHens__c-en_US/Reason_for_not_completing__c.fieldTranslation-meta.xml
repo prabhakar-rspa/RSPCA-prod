@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Reason for not completing --></label>
+        <name>Reason_for_not_completing__c</name>
+        <picklistValues>
+            <masterLabel>multiple FF licence holder - more than one WOA generated for visit</masterLabel>
+            <translation><!-- multiple FF licence holder - more than one WOA generated for visit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>no stock on site</masterLabel>
+            <translation><!-- no stock on site --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>non-audit visit</masterLabel>
+            <translation><!-- non-audit visit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>not old enough</masterLabel>
+            <translation><!-- not old enough --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>other</masterLabel>
+            <translation><!-- other --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

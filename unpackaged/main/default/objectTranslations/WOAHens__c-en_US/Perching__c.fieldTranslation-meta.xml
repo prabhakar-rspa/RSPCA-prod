@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Perching --></label>
+        <name>Perching__c</name>
+        <picklistValues>
+            <masterLabel>At least 15 cm raised perching per hen</masterLabel>
+            <translation><!-- At least 15 cm raised perching per hen --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Less than 15 cm raised perching per hen</masterLabel>
+            <translation><!-- Less than 15 cm raised perching per hen --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

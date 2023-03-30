@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Object in pen --></label>
+        <name>Object_in_pen__c</name>
+        <picklistValues>
+            <masterLabel>Chain</masterLabel>
+            <translation><!-- Chain --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Forage</masterLabel>
+            <translation><!-- Forage --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mixed</masterLabel>
+            <translation><!-- Mixed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>None</masterLabel>
+            <translation><!-- None --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other (specify)</masterLabel>
+            <translation><!-- Other (specify) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toy</masterLabel>
+            <translation><!-- Toy --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Number of non-compliances raised. --></help>
+        <label><!-- Non-Compliances raised --></label>
+        <name>Non_Compliances_raised__c</name>
+    </CustomFieldTranslation>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VAT__c</fullName>
+    <externalId>false</externalId>
+    <label>VAT</label>
+    <summarizedField>Renewal_Price_Line__c.VAT__c</summarizedField>
+    <summaryForeignKey>Renewal_Price_Line__c.Renewal_Price_Report__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

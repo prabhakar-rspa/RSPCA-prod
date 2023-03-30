@@ -1,0 +1,24 @@
+<apex:component controller="NotificationsComponentController" access="global">
+    <table cellspacing="0" cellpadding="1" border="2" bordercolor="#ffffff" width="100%" valign="top" style="border: 2px solid white;">
+        <!-- Enquires Columns -->
+        <tr>
+            <td width="15%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px;"><strong><span style="margin: 5px;">Site Name</span></strong></td>
+            <td width="15%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px;"><strong><span style="margin: 5px;">Membership No</span></strong></td>
+            <td width="15%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px;"><strong><span style="margin: 5px;">Date Requested</span></strong></td>
+            <td width="30%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px;"><strong><span style="margin: 5px;">Reason for Request</span></strong></td>
+            <td width="20%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px;"><strong><span style="margin: 5px;">Administrator Name</span></strong></td>
+            <td width="15%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px;"><strong><span style="margin: 5px;">Approved Status</span></strong></td>
+        </tr>
+        <!-- Enquiries Rows -->
+        <apex:repeat value="{!SuspensionsPendingApproval}" var="a"> 
+            <tr>                
+                <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px;"><span style="margin: 5px;"><a href="{!sfdcBaseURL}/{!a.Id}">{!a.Name}</a></span></td>
+                <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px;"><span style="margin: 5px;">{!a.Membership_Number__c}</span></td>
+                <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px;"><span style="margin: 5px;">{!LPAD(TEXT(DAY(a.Date_Requested_For_Suspension__c)),2,'0')}/{!LPAD(TEXT(MONTH(a.Date_Requested_For_Suspension__c)),2,'0')}/{!TEXT(YEAR(a.Date_Requested_For_Suspension__c))}</span></td>
+                <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px;"><span style="margin: 5px;">{!a.Reason_for_Suspension__c}</span></td>
+                <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px;"><span style="margin: 5px;">{!a.Administrator__r.Name}</span></td>
+                <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px;"><span style="margin: 5px;">{!a.Approved__c}</span></td>
+            </tr>
+        </apex:repeat>
+    </table>
+</apex:component>

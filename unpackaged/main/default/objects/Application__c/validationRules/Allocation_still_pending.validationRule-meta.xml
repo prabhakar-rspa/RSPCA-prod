@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Allocation_still_pending</fullName>
+    <active>true</active>
+    <description>Cannot progress to the next stage without approving inspector allocation.</description>
+    <errorConditionFormula>/* If the application record type is Additional Visit */
+
+RecordType.DeveloperName = &#39;Additional_Visit&#39;
+&amp;&amp;
+ISPICKVAL(Stage__c, &quot;Visit&quot;)
+&amp;&amp;
+NOT(ISBLANK(Allocated_Inspector__c))
+				&amp;&amp;
+				ISPICKVAL(Allocation_Status__c, &quot;Pending&quot;)</errorConditionFormula>
+    <errorDisplayField>Allocation_Status__c</errorDisplayField>
+    <errorMessage>The allocated inspector is still pending. The status must be approved to progress to the next stage.</errorMessage>
+</ValidationRule>

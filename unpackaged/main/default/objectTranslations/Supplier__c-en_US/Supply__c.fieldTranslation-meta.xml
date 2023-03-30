@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Supply --></label>
+        <name>Supply__c</name>
+        <picklistValues>
+            <masterLabel>Beef</masterLabel>
+            <translation><!-- Beef --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chicken</masterLabel>
+            <translation><!-- Chicken --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dairy</masterLabel>
+            <translation><!-- Dairy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Duck</masterLabel>
+            <translation><!-- Duck --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Eggs</masterLabel>
+            <translation><!-- Eggs --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lamb</masterLabel>
+            <translation><!-- Lamb --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pork</masterLabel>
+            <translation><!-- Pork --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Salmon</masterLabel>
+            <translation><!-- Salmon --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trout</masterLabel>
+            <translation><!-- Trout --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Turkey</masterLabel>
+            <translation><!-- Turkey --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Veal</masterLabel>
+            <translation><!-- Veal --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

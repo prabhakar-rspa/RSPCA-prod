@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Beak trimming --></label>
+        <name>Beak_trimming__c</name>
+        <picklistValues>
+            <masterLabel>beak trimmed as an emergency</masterLabel>
+            <translation><!-- beak trimmed as an emergency --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>beak trimmed before 10 days</masterLabel>
+            <translation><!-- beak trimmed before 10 days --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>not beak trimmed</masterLabel>
+            <translation><!-- not beak trimmed --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

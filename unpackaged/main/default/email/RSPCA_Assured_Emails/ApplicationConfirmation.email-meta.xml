@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email used to send confirmation to the applicant that their application has been received.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>ApplicationConfirmation</name>
+    <style>none</style>
+    <subject>Application Confirmation</subject>
+    <textOnly>Dear {!Contact.Salutation} {!Contact.FirstName} {!Contact.LastName}
+
+Application confirmation
+
+Thank you for your application.
+
+You will shortly receive another email with your invoice.
+
+Once we have received your payment we will arrange the Assessment.  This will take place within 12 weeks of receiving your application but we will always try to do so sooner. For further details about your Assessment please visit our website page.
+
+In the meantime, if you have any questions please feel free to contact our membership services team on 01403 800141 or help@rspcaassured.org.uk
+
+Yours sincerely
+
+Membership services
+RSPCA Assured
+
+
+
+For your reference:
+
+RSPCA welfare standards
+RSPCA Assured information booklet
+RSPCA Assured membership agreement (including SCI scheme regulations)</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

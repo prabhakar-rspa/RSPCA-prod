@@ -1,0 +1,3 @@
+An Additional Visit for {!Application__c.Site_Name__c} has been completed.
+
+Please access the record via the following link and review the report: {!Application__c.Link}

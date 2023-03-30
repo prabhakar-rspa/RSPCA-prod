@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Other_contact_name_telephone_number__c</fullName>
+    <externalId>false</externalId>
+    <label>Other contact name/telephone number</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Assessment_Yes_No_Values</valueSetName>
+    </valueSet>
+</CustomField>

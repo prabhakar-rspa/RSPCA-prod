@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The object ID of the target for which the reminder occurred. --></help>
+        <label><!-- Target Object Id --></label>
+        <name>Target_Object_Id__c</name>
+    </CustomFieldTranslation>

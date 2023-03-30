@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Pigs mixed (inc. drawn) within past 7 da --></label>
+        <name>Pigs_mixed_inc_drawn_within_past_7_da__c</name>
+    </CustomFieldTranslation>

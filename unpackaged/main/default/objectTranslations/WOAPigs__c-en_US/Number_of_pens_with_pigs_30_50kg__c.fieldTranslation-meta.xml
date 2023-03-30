@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Number of pens with pigs 30 - 50kg --></label>
+        <name>Number_of_pens_with_pigs_30_50kg__c</name>
+    </CustomFieldTranslation>

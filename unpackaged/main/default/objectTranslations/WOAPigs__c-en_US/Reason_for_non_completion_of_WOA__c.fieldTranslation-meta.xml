@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Reason for non-completion of WOA --></label>
+        <name>Reason_for_non_completion_of_WOA__c</name>
+        <picklistValues>
+            <masterLabel>multiple FF licence holder - more than one WOA generated for visit</masterLabel>
+            <translation><!-- multiple FF licence holder - more than one WOA generated for visit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>no stock on site</masterLabel>
+            <translation><!-- no stock on site --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>non-audit visit</masterLabel>
+            <translation><!-- non-audit visit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>not correct weight</masterLabel>
+            <translation><!-- not correct weight --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>other</masterLabel>
+            <translation><!-- other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>rearing only</masterLabel>
+            <translation><!-- rearing only --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>recently mixed</masterLabel>
+            <translation><!-- recently mixed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>recently treated</masterLabel>
+            <translation><!-- recently treated --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>replacement gilt unit</masterLabel>
+            <translation><!-- replacement gilt unit --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

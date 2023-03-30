@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- To be able to differentiate on the different company types for reporting purposes --></help>
+        <label><!-- Account Type --></label>
+        <name>Account_Type__c</name>
+        <picklistValues>
+            <masterLabel>Brand</masterLabel>
+            <translation><!-- Brand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Catering</masterLabel>
+            <translation><!-- Catering --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Farm</masterLabel>
+            <translation><!-- Farm --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Farm Shop</masterLabel>
+            <translation><!-- Farm Shop --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Food Service (Pub / Restaurant / Cafe site)</masterLabel>
+            <translation><!-- Food Service (Pub / Restaurant / Cafe site) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Main Retailer</masterLabel>
+            <translation><!-- Main Retailer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Manufacturer</masterLabel>
+            <translation><!-- Manufacturer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Meal box / delivery</masterLabel>
+            <translation><!-- Meal box / delivery --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pet Food</masterLabel>
+            <translation><!-- Pet Food --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Retailer</masterLabel>
+            <translation><!-- Retailer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wholesale</masterLabel>
+            <translation><!-- Wholesale --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

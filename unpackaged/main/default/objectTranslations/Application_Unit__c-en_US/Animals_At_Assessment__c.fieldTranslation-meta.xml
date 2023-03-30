@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Animals At Assessment --></label>
+        <name>Animals_At_Assessment__c</name>
+    </CustomFieldTranslation>

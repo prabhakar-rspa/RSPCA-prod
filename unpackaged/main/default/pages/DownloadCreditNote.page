@@ -1,0 +1,49 @@
+<apex:page showHeader="false" standardController="Opportunity" extensions="DownloadCreditNoteController" lightningStylesheets="true">
+    <head>
+        <style>
+          div.content {
+            /* font style */ 
+            text-align: left;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            mso-height-rule: exactly;
+            line-height: 20px;
+            color: #000000;
+          }
+          div.certificate-section {
+            padding: 5px;
+          }
+    
+        </style>
+      </head>
+      <div class="content">
+        <div class="certificate-section" style="{!IF(allowedToDownload, 'display:block', 'display:none')}">
+          <strong>Credit Note Certificate</strong><br/>
+          File is being downloaded. If it doesn't download, <a href="{!downloadCreditNotePdfUrl}" id="downloadCreditNotePdfUrl" target="_blank" download="{!currentRecord.Name}.pdf" onload="auto_download();">click here</a> to download file.
+        </div>
+        <div class="certificate-section" style="{!IF(allowedToDownload, 'display:none', 'display:block')}">
+            <strong>Download credit note is not allowed.</strong><br/>
+        </div>
+    </div>
+    <script>
+        function auto_download(){
+      var allowedToDownload = {!allowedToDownload};
+      
+      if(allowedToDownload){
+        document.getElementById('downloadCreditNotePdfUrl').click();
+      }
+      /*
+      if(hasTrout){
+        document.getElementById('troutCertificate').click();
+      }
+      */
+      if(hasSCI){
+        document.getElementById('sciCertificate').click();
+      }
+
+    };
+    
+    //trigger auto-download
+    window.setTimeout(auto_download, 10);
+    </script>
+</apex:page>

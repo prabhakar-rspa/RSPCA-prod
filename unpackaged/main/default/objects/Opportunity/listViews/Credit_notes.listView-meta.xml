@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Credit_notes</fullName>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>OPPORTUNITY.CLOSE_DATE</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>ia_crm__Intacct_Transaction_ID__c</columns>
+    <columns>Credit_Note_Number__c</columns>
+    <columns>ia_crm__Synced_With_Intacct_Date_1__c</columns>
+    <columns>CORE.USERS.FULL_NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>ia_crm__Intacct_Transaction__c</field>
+        <operation>equals</operation>
+        <value>Sales Credit Note</value>
+    </filters>
+    <label>Credit notes</label>
+    <sharedTo>
+        <group>Accounts</group>
+        <group>Leadership</group>
+    </sharedTo>
+</ListView>

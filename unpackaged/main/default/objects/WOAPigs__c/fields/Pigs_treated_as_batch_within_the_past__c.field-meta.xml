@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Pigs_treated_as_batch_within_the_past__c</fullName>
+    <defaultValue>false</defaultValue>
+    <externalId>false</externalId>
+    <label>Pigs treated (as batch) within the past</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Fish</fullName>
+        <default>false</default>
+        <label>Fish</label>
+    </customValue>
+    <customValue>
+        <fullName>Livestock</fullName>
+        <default>false</default>
+        <label>Livestock</label>
+    </customValue>
+    <customValue>
+        <fullName>Poultry</fullName>
+        <default>false</default>
+        <label>Poultry</label>
+    </customValue>
+    <customValue>
+        <fullName>Supply Chain</fullName>
+        <default>false</default>
+        <label>Supply Chain</label>
+    </customValue>
+    <customValue>
+        <fullName>Other</fullName>
+        <default>false</default>
+        <label>Other</label>
+    </customValue>
+    <masterLabel>Company Industry</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

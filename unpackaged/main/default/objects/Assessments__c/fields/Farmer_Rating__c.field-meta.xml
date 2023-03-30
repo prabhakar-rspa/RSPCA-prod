@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Farmer_Rating__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>A - Member extremely co-operative and positive towards the scheme
+B - Member co-operative and appears positive to the scheme
+C - Member reasonably co-operative
+D - Member offers limited co-operation, confrontational and appears negative to the scheme</inlineHelpText>
+    <label>Farmer Rating</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>A</fullName>
+                <default>false</default>
+                <label>A</label>
+            </value>
+            <value>
+                <fullName>B</fullName>
+                <default>false</default>
+                <label>B</label>
+            </value>
+            <value>
+                <fullName>C</fullName>
+                <default>false</default>
+                <label>C</label>
+            </value>
+            <value>
+                <fullName>D</fullName>
+                <default>false</default>
+                <label>D</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

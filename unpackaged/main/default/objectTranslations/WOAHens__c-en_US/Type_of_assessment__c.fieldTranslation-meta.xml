@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Type of assessment --></label>
+        <name>Type_of_assessment__c</name>
+        <picklistValues>
+            <masterLabel>DTA</masterLabel>
+            <translation><!-- DTA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On-site visit - full access to sheds</masterLabel>
+            <translation><!-- On-site visit - full access to sheds --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On-site visit - sheds not walked</masterLabel>
+            <translation><!-- On-site visit - sheds not walked --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Enquiry Confirmation</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Enquiry Confirmation</name>
+    <style>none</style>
+    <subject>Enquiry Confirmation</subject>
+    <textOnly>Thank you
+
+Thank you for your interest in becoming a member of RSPCA Assured.
+Our membership services team are reviewing your enquiry and will be in touch shortly with instructions on how to progress your application.
+
+Yours sincerely
+Membership services
+RSPCA Assured</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

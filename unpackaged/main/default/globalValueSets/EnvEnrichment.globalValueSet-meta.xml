@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Hanging, non-destructible</fullName>
+        <default>false</default>
+        <label>Hanging, non-destructible</label>
+    </customValue>
+    <customValue>
+        <fullName>Hanging, destructible</fullName>
+        <default>false</default>
+        <label>Hanging, destructible</label>
+    </customValue>
+    <customValue>
+        <fullName>Floor, non-destructible</fullName>
+        <default>false</default>
+        <label>Floor, non-destructible</label>
+    </customValue>
+    <customValue>
+        <fullName>Floor, destructible</fullName>
+        <default>false</default>
+        <label>Floor, destructible</label>
+    </customValue>
+    <customValue>
+        <fullName>Straw bales</fullName>
+        <default>false</default>
+        <label>Straw bales</label>
+    </customValue>
+    <customValue>
+        <fullName>Other bales</fullName>
+        <default>false</default>
+        <label>Other bales</label>
+    </customValue>
+    <customValue>
+        <fullName>No enrichment</fullName>
+        <default>false</default>
+        <label>No enrichment</label>
+    </customValue>
+    <masterLabel>EnvEnrichment</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

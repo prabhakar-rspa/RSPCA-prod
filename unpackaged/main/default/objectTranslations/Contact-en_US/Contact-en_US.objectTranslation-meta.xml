@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Community Head Office Contact Layout</layout>
+        <sections>
+            <label><!-- Contact Details --></label>
+            <section>Contact Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Community Site Contact Layout</layout>
+        <sections>
+            <label><!-- Contact Details --></label>
+            <section>Contact Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>RSPCA Contact Layout</layout>
+        <sections>
+            <label><!-- Contact Details --></label>
+            <section>Contact Details</section>
+        </sections>
+    </layouts>
+    <validationRules>
+        <errorMessage><!-- Please enter a valid phone number. --></errorMessage>
+        <name>LandlineNumberValidation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter a valid Mobile Number. --></errorMessage>
+        <name>MobileNumberValidation</name>
+    </validationRules>
+</CustomObjectTranslation>

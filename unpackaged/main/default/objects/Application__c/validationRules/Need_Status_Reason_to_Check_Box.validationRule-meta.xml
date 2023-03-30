@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Need_Status_Reason_to_Check_Box</fullName>
+    <active>true</active>
+    <description>Requires the Reason For Status picklist has an option selected when the user attempts to check the Status Approved checkbox</description>
+    <errorConditionFormula>ISPICKVAL(Site__r.Reason_for_Status__c , &quot;&quot;) 
+&amp;&amp; Status_Approved__c = TRUE</errorConditionFormula>
+    <errorDisplayField>Status_Approved__c</errorDisplayField>
+    <errorMessage>You cannot approve this status without providing a reason. Please ensure a reason has been selected from the related Site record.</errorMessage>
+</ValidationRule>

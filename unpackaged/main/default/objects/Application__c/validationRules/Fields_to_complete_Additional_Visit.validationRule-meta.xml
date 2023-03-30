@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Fields_to_complete_Additional_Visit</fullName>
+    <active>false</active>
+    <description>Ensures certain fields have been populated before marking the Additional Visit as complete.</description>
+    <errorConditionFormula>AND(
+				ISPICKVAL(Stage__c, &quot;Complete&quot;),
+					OR(
+									ISBLANK(Report__c), 
+	ISBLANK(Contact__c),
+	ISBLANK(Site__c),
+ 	ISBLANK( Allocated_Inspector__c),
+					ISBLANK(Check__c),
+					ISBLANK(Further_Information__c),
+					ISPICKVAL(Reason_for_Visit__c, &quot;&quot;),
+					ISBLANK(Visit_Deadline__c),
+					ISPICKVAL(Visit_Type__c, &quot;&quot;)))</errorConditionFormula>
+    <errorMessage>You must populate All fields with Help Text icons must be populated to mark this Additional Visit as complete. Please review.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Format_membership_number</fullName>
+        <field>Supplier_Membership__c</field>
+        <formula>LEFT( Supplier_Membership__c,4) &amp; &quot;.&quot; &amp; RIGHT( Supplier_Membership__c ,4)</formula>
+        <name>Format membership number</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Update Supplier Membership Number</fullName>
+        <actions>
+            <name>Format_membership_number</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>If there are 8 digits then the input will be split to 4 on the left and 4 on the right with &#39;.&#39; separating the digits.</description>
+        <formula>AND( IF(  ISNUMBER( SUBSTITUTE( Supplier_Membership__c  , &quot;.&quot;, &quot;&quot;)),TRUE,FALSE), IF(LEN( Supplier_Membership__c ) &gt;= 8,TRUE,FALSE))</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

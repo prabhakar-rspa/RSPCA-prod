@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Unit Type dry sows --></label>
+        <name>Unit_Type_dry_sows__c</name>
+        <picklistValues>
+            <masterLabel>Indoor</masterLabel>
+            <translation><!-- Indoor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Outdoor</masterLabel>
+            <translation><!-- Outdoor --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

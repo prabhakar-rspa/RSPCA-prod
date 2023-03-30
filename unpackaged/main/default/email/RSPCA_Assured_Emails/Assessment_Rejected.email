@@ -1,0 +1,8 @@
+Membership Services,
+
+The allocated assessor {!Application__c.Previous_Assessor_Name__c} has rejected the assessment for {!Application__c.Site_Name__c}.
+
+Click the link below to allocate another assessor:
+{!Application__c.Link}
+
+Salesforce

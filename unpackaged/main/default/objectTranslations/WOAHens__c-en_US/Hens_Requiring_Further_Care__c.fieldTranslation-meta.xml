@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Hens Requiring Further Care --></label>
+        <name>Hens_Requiring_Further_Care__c</name>
+    </CustomFieldTranslation>

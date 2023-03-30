@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Barn</fullName>
+        <default>false</default>
+        <label>Barn</label>
+    </customValue>
+    <customValue>
+        <fullName>Free Range</fullName>
+        <default>false</default>
+        <label>Free Range</label>
+    </customValue>
+    <customValue>
+        <fullName>Indoor</fullName>
+        <default>false</default>
+        <label>Indoor</label>
+    </customValue>
+    <customValue>
+        <fullName>Organic</fullName>
+        <default>false</default>
+        <label>Organic</label>
+    </customValue>
+    <customValue>
+        <fullName>Outdoor Bred</fullName>
+        <default>false</default>
+        <label>Outdoor Bred</label>
+    </customValue>
+    <customValue>
+        <fullName>Outdoor Reared</fullName>
+        <default>false</default>
+        <label>Outdoor Reared</label>
+    </customValue>
+    <customValue>
+        <fullName>n/a</fullName>
+        <default>false</default>
+        <label>n/a</label>
+    </customValue>
+    <customValue>
+        <fullName>Pasture</fullName>
+        <default>false</default>
+        <label>Pasture</label>
+    </customValue>
+    <masterLabel>Rearing System</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

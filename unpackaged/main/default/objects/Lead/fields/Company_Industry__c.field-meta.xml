@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Company_Industry__c</fullName>
+    <description>Custom Industry Multi Picklist field for RSPCA Assured as a company can have more than one industry value selected.</description>
+    <externalId>false</externalId>
+    <label>Company Industry</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Company_Industry</valueSetName>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

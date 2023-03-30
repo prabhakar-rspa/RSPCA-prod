@@ -1,0 +1,785 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>ALERT_New_Application_Assessment_Confirmation</fullName>
+        <description>ALERT: New Application Assessment Confirmation</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Applicant_Contact__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>RSPCA_Assured_Emails/New_Application_Assessment_Confirmation</template>
+    </alerts>
+    <alerts>
+        <fullName>ALERT_Renewal_Assessment_Confirmation</fullName>
+        <description>ALERT: Renewal Assessment Confirmation</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Applicant_Contact__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>RSPCA_Assured_Emails/Renewal_Application_Assessment_Confirmation</template>
+    </alerts>
+    <alerts>
+        <fullName>Additional_Visit_Allocation_Status_Accepted</fullName>
+        <description>Additional Visit Allocation Status Accepted</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Allocated_Inspector__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>RSPCA_Assured_Emails/Additional_Visit_Allocation_Status_Accepted</template>
+    </alerts>
+    <alerts>
+        <fullName>Additional_Visit_Completed</fullName>
+        <description>Additional Visit Completed</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <recipients>
+            <field>Allocated_Inspector__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>RSPCA_Assured_Emails/Additional_Visit_Complete</template>
+    </alerts>
+    <alerts>
+        <fullName>Allocation_Rejected_Email</fullName>
+        <description>Allocation Rejected Email</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Membership_Services</recipient>
+            <type>group</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>RSPCA_Assured_Emails/Assessment_Rejected</template>
+    </alerts>
+    <alerts>
+        <fullName>Application_Payment_Confirmation_Email_Alert</fullName>
+        <description>Application Payment Confirmation Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Applicant_Contact__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>help@rspcaassured.org.uk</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>RSPCA_Assured_Emails/PaymentConfirmationReciept</template>
+    </alerts>
+    <alerts>
+        <fullName>Assessment_Allocation_Email</fullName>
+        <description>Assessment Allocation Email</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Assessor__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>RSPCA_Assured_Emails/Assessment_Allocation</template>
+    </alerts>
+    <alerts>
+        <fullName>Assessment_Booked_email_member</fullName>
+        <ccEmails>support@rspcaassured.org.uk</ccEmails>
+        <description>Assessment Booked email member</description>
+        <protected>false</protected>
+        <senderType>CurrentUser</senderType>
+        <template>RSPCA_Assured_Emails/You_re_All_Booked</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_Application_Submitted_confirmation_email_to_the_applicant</fullName>
+        <description>Send Application Submitted confirmation email to the applicant.</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Applicant_Contact__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>help@rspcaassured.org.uk</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>RSPCA_Assured_Emails/ApplicationConfirmation</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_Certification_Confirmation_Email</fullName>
+        <description>Send Certification Confirmation Email</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Applicant_Contact__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>RSPCA_Assured_Emails/Certification_Confirmation</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Allocation_Status_Pending</fullName>
+        <field>Allocation_Status__c</field>
+        <literalValue>Accepted</literalValue>
+        <name>Allocation Status Accepted</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Membership_Date_Renew</fullName>
+        <field>Membership_Expiry_Date__c</field>
+        <formula>ADDMONTHS(Site__r.Membership_Expiry_Date__c ,12)</formula>
+        <name>Membership Date Renew</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>Site__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Populate_Rejection_Date</fullName>
+        <description>Populates the rejection date to today&#39;s date.</description>
+        <field>Rejection_Date__c</field>
+        <formula>NOW()</formula>
+        <name>Populate Rejection Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Remove_Assessor</fullName>
+        <field>Assessor__c</field>
+        <name>Remove Assessor</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Renewal_Certificate_Issue_Date</fullName>
+        <field>Certificate_Issue_Date__c</field>
+        <formula>IF(
+ ISBLANK(Site__r.Certificate_Issue_Date__c),
+ Date_Certified__c ,
+ ADDMONTHS(Site__r.Certificate_Issue_Date__c,12) 
+)</formula>
+        <name>Renewal Certificate Issue Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>Site__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Assessment_Deadline_Application</fullName>
+        <description>Set&#39;s the assessment deadline for application to be 3 months after the paid date.</description>
+        <field>Assessment_Deadline__c</field>
+        <formula>ADDMONTHS( Date_of_Payment__c ,3)</formula>
+        <name>Set Assessment Deadline Application</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Assessment_Deadline_Renewal</fullName>
+        <description>Sets the assessment deadline for renewals to be 10 months after payment has been made</description>
+        <field>Assessment_Deadline__c</field>
+        <formula>ADDMONTHS( Previous_Assessment_Date__c ,14)</formula>
+        <name>Set Assessment Deadline Renewal</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Date_Certified</fullName>
+        <field>Date_Certified__c</field>
+        <formula>TODAY()</formula>
+        <name>Set Date Certified</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Invoice_Date</fullName>
+        <field>Invoice_Date__c</field>
+        <formula>TODAY()</formula>
+        <name>Set Invoice Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Membership_Expiry_New_Application</fullName>
+        <field>Membership_Expiry_Date__c</field>
+        <formula>ADDMONTHS(Date_Certified__c,12)</formula>
+        <name>Set Membership Expiry New Application</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>Site__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Site_to_Active</fullName>
+        <field>Active__c</field>
+        <literalValue>1</literalValue>
+        <name>Set Site to Active</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>Site__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Assessment_Confirmation_Sent</fullName>
+        <description>Updates &#39;Assessment Confirmation Sent&#39; to true.</description>
+        <field>Assessment_Confirmation_Sent__c</field>
+        <literalValue>1</literalValue>
+        <name>Update: Assessment Confirmation Sent</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Certificate_Issue_Date</fullName>
+        <field>Certificate_Issue_Date__c</field>
+        <formula>Date_Certified__c</formula>
+        <name>Update Certificate Issue Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>Site__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Evidence_Deadline</fullName>
+        <description>Evidence Deadline is 4 weeks from the Scheduled Assessment Date.</description>
+        <field>Evidence_Deadline__c</field>
+        <formula>Assessment_Date__c + 28</formula>
+        <name>Update Evidence Deadline</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Extension_Deadline_Date</fullName>
+        <description>Update Extension deadline date based on the extension period selected.</description>
+        <field>Extension_Deadline__c</field>
+        <formula>CASE(Extension_Period__c, 
+					&#39;1 Week&#39;, Evidence_Deadline__c + 7,
+					&#39;2 Weeks&#39;, Evidence_Deadline__c + 14,
+					&#39;3 Weeks&#39;, Evidence_Deadline__c + 21,
+					&#39;4 Weeks&#39;, Evidence_Deadline__c + 28,
+					&#39;5 Weeks&#39;, Evidence_Deadline__c + 35,
+					&#39;6 Weeks&#39;, Evidence_Deadline__c + 42,
+					&#39;2 Months&#39;, Evidence_Deadline__c + 56,
+					&#39;3 Months&#39;, Evidence_Deadline__c + 84,
+					&#39;4 Months&#39;, Evidence_Deadline__c + 112,
+					&#39;5 Months&#39;, Evidence_Deadline__c + 140,
+					&#39;6 Months&#39;, Evidence_Deadline__c + 168,
+					null)</formula>
+        <name>Update Extension Deadline Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Payment_Due_Date</fullName>
+        <field>Payment_Due_Date__c</field>
+        <formula>CreatedDate + 14</formula>
+        <name>Update Payment Due Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Previous_Assessor_Name</fullName>
+        <field>Previous_Assessor_Name__c</field>
+        <formula>Assessor_Full_Name__c</formula>
+        <name>Update Previous Assessor Name</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Renewal_Stage_Assessment</fullName>
+        <field>Renewal_Stage__c</field>
+        <literalValue>Assessment</literalValue>
+        <name>Update Renewal Stage - Assessment</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Stage_Assessment</fullName>
+        <field>Stage__c</field>
+        <literalValue>Assessment</literalValue>
+        <name>Update Stage - Assessment</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>%28Application%29 Assessor Accepted Allocation</fullName>
+        <actions>
+            <name>Update_Stage_Assessment</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Application__c.Stage__c</field>
+            <operation>equals</operation>
+            <value>Allocation</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application__c.Allocation_Status__c</field>
+            <operation>equals</operation>
+            <value>Accepted</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application__c.Assessor__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>%28Renewal%29 Assessor Accepted Allocation</fullName>
+        <actions>
+            <name>Update_Renewal_Stage_Assessment</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Application__c.Renewal_Stage__c</field>
+            <operation>equals</operation>
+            <value>Allocation</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application__c.Allocation_Status__c</field>
+            <operation>equals</operation>
+            <value>Accepted</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application__c.Assessor__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Allocation Status Rejected</fullName>
+        <actions>
+            <name>Remove_Assessor</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Application__c.Allocation_Status__c</field>
+            <operation>equals</operation>
+            <value>Rejected</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Allocation Status Rejected Email</fullName>
+        <actions>
+            <name>Allocation_Rejected_Email</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Application__c.Allocation_Status__c</field>
+            <operation>equals</operation>
+            <value>Rejected</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application__c.Previous_Assessor_Name__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Application Certification Date</fullName>
+        <actions>
+            <name>Set_Date_Certified</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Application__c.Stage__c</field>
+            <operation>equals</operation>
+            <value>Certification</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application__c.Date_Certified__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <description>Date certified is populated when the stage is moved to certification for applications</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Application Invoice Date Populated</fullName>
+        <actions>
+            <name>Set_Invoice_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Application__c.Send_Invoice__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application__c.InvoiceSent__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Application Submitted Confirmation</fullName>
+        <actions>
+            <name>Send_Application_Submitted_confirmation_email_to_the_applicant</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Application__c.Send_Application_Confirmation_Email__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <description>Workflow rule to send application confirmation email to applicants when they submit their application.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Assessment Booked Email</fullName>
+        <actions>
+            <name>Assessment_Booked_email_member</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>AND(      NOT(ISBLANK(Assessment_Date__c)), 					ISCHANGED(Assessment_Date__c) 	)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Assessor Allocation Email</fullName>
+        <actions>
+            <name>Allocation_Status_Pending</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_Previous_Assessor_Name</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Application__c.Assessor__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Auto Populate Rejection Date</fullName>
+        <actions>
+            <name>Populate_Rejection_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Application__c.Reject__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application__c.Rejection_Date__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <description>Auto populates rejection date if the Reject checkbox is ticked.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Evidence Deadline 4 weeks from Assessment Date</fullName>
+        <actions>
+            <name>Update_Evidence_Deadline</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>Application__c.Assessment_Date__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application__c.Assessment_Date__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <description>If Assessment Date is populated, update the Evidence deadline to be 4 weeks from that date.</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Extenstion Deadline Date Population</fullName>
+        <actions>
+            <name>Update_Extension_Deadline_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Application__c.Extension_Granted__c</field>
+            <operation>equals</operation>
+            <value>Yes</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application__c.Extension_Period__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application__c.Evidence_Deadline__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <description>If extension is granted, then extension deadline must be updated to a date base on the extension period.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>New Application Assessment Confirmation</fullName>
+        <actions>
+            <name>ALERT_New_Application_Assessment_Confirmation</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Update_Assessment_Confirmation_Sent</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Application__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Applications</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application__c.Stage__c</field>
+            <operation>equals</operation>
+            <value>Compliance</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application__c.Assessment_Confirmation_Sent__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
+        <description>Rule for sending out assessment confirmation to the applicant when the application reaches compliance stage.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>New Application Certification Email Rule</fullName>
+        <actions>
+            <name>Send_Certification_Confirmation_Email</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Application__c.Stage__c</field>
+            <operation>equals</operation>
+            <value>Certification</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Applications</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>New Application Membership Expiry Date</fullName>
+        <actions>
+            <name>Set_Membership_Expiry_New_Application</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Set_Site_to_Active</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_Certificate_Issue_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Application__c.Date_Certified__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Account.Membership_Expiry_Date__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application__c.Application_Type__c</field>
+            <operation>equals</operation>
+            <value>New,Transfer</value>
+        </criteriaItems>
+        <description>Set the membership expiry date for new application that are certified</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Renew Membership Expiry Date Updated</fullName>
+        <actions>
+            <name>Membership_Date_Renew</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Renewal_Certificate_Issue_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Application__c.Date_Certified__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Account.Membership_Expiry_Date__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application__c.Application_Type__c</field>
+            <operation>equals</operation>
+            <value>Renewal</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Renewal Application Assessment Confirmation</fullName>
+        <actions>
+            <name>ALERT_Renewal_Assessment_Confirmation</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Update_Assessment_Confirmation_Sent</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Application__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Renewal</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application__c.Renewal_Stage__c</field>
+            <operation>equals</operation>
+            <value>Compliance</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application__c.Assessment_Confirmation_Sent__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
+        <description>Rule for sending out assessment confirmation to the applicant when the application reaches compliance stage.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Renewal Application Certification Email Rule</fullName>
+        <actions>
+            <name>Send_Certification_Confirmation_Email</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Application__c.Renewal_Stage__c</field>
+            <operation>equals</operation>
+            <value>Certification</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Renewal</value>
+        </criteriaItems>
+        <description>Rule to trigger the sending of certification confirmation email for renewal applications.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Renewal Certification Date</fullName>
+        <actions>
+            <name>Set_Date_Certified</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Application__c.Renewal_Stage__c</field>
+            <operation>equals</operation>
+            <value>Certification</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application__c.Date_Certified__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <description>Date certified is populated when the stage is moved to certification for applications</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Set Assessment Deadline for Application</fullName>
+        <actions>
+            <name>Set_Assessment_Deadline_Application</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Application__c.Paid__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application__c.Date_of_Payment__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Applications</value>
+        </criteriaItems>
+        <description>Sets the assessment deadline for application once payment has been made.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Set Assessment Deadline for Renewal</fullName>
+        <actions>
+            <name>Set_Assessment_Deadline_Renewal</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Application__c.Paid__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application__c.Date_of_Payment__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Renewal</value>
+        </criteriaItems>
+        <description>Sets the assessment deadline for renewal once payment has been made.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Set Payment Due Date</fullName>
+        <actions>
+            <name>Update_Payment_Due_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Application__c.Payment_Due_Date__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <description>Set&#39;s the payment due date for the application to be 14 days after the created date of the application.</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

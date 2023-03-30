@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Deadline Extension Confirmation</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Deadline Extension Confirmation</name>
+    <pageDevName>Deadline_Extension_Confirmation</pageDevName>
+    <relatedEntityType>Account</relatedEntityType>
+    <style>none</style>
+    <subject>Deadline Extension Confirmation</subject>
+    <textOnly>Dear {{{Recipient.FirstName}}} {{{Recipient.LastName}}}
+
+Farm name:{{{Account.Site}}}
+
+Registration: [Membership Number]
+
+Extension to deadline granted – New date: (MST to add date granted)
+
+Following review of information received, the Scheme Manager has asked us to write to you.
+
+As you are aware the 28 day requirement to respond to non-compliance is normally final. However, owing to exceptional circumstances the Certification Body has agreed on this occasion to extend the deadline date as above, for submission of corrective action and supporting objective evidence to the following non-compliance:
+
+ - Standard Ref: (MST to add standard ref)
+
+Please note that under scheme rules you are required to notify us that work has been completed and provide evidence of this before the new deadline date expires. This is to ensure all paperwork can be processed and approved by the Scheme Manager within the timeframe. We should advise that failure to meet the new deadline will result in a nullified application or withdrawal of certificates. 
+
+Please forward all correspondence to us at help@rspcaassured.org.uk
+
+We thank you in advance for your cooperation.
+
+Kind regards,
+
+{{{Account.Account_Manager__c}}}
+
+Membership Services Team
+
+RSPCA Assured</textOnly>
+    <type>custom</type>
+    <uiType>SFX</uiType>
+</EmailTemplate>

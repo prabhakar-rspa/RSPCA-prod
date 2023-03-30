@@ -1,0 +1,5 @@
+<messaging:emailTemplate subject="Payment Confirmation" recipientType="Contact" relatedToType="Account">
+<messaging:htmlEmailBody >
+<c:CombinedPaymentConfirmation accId="{!relatedTo.Id}" />
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

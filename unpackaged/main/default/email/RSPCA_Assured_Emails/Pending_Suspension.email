@@ -1,0 +1,5 @@
+The Site {!Account.Name} has been suspended on {!Account.Date_Requested_For_Suspension__c}.
+
+The reason for suspension is: {!Account.Reason_for_Suspension__c}
+
+To approve this suspension, please access the record via this link: {!Account.Link}

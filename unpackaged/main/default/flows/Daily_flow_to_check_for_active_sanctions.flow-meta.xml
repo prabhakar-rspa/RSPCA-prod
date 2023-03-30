@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>54.0</apiVersion>
+    <decisions>
+        <name>Is_sanction_active</name>
+        <label>Is sanction ticked active</label>
+        <locationX>314</locationX>
+        <locationY>276</locationY>
+        <defaultConnector>
+            <targetReference>is_today_s_date_within_the_sanction_period1</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Active_Checked</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Active__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Is_today_s_date_within_the_sanction_period</targetReference>
+            </connector>
+            <label>Active = Checked</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_today_s_date_within_the_sanction_period</name>
+        <label>Is today&#39;s date within the sanction period</label>
+        <locationX>50</locationX>
+        <locationY>396</locationY>
+        <defaultConnector>
+            <targetReference>Update_sanction_to_inactive_0</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Today_s_date_is_within_the_period_0</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Start_Date__c</leftValueReference>
+                <operator>LessThanOrEqualTo</operator>
+                <rightValue>
+                    <elementReference>TodaysDate</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.End_Date__c</leftValueReference>
+                <operator>GreaterThanOrEqualTo</operator>
+                <rightValue>
+                    <elementReference>TodaysDate</elementReference>
+                </rightValue>
+            </conditions>
+            <label>Today&#39;s date is within the period</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>is_today_s_date_within_the_sanction_period1</name>
+        <label>is today&#39;s date within the sanction period</label>
+        <locationX>578</locationX>
+        <locationY>396</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Today_s_date_is_within_the_period_0_0</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Start_Date__c</leftValueReference>
+                <operator>LessThanOrEqualTo</operator>
+                <rightValue>
+                    <elementReference>TodaysDate</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.End_Date__c</leftValueReference>
+                <operator>GreaterThanOrEqualTo</operator>
+                <rightValue>
+                    <elementReference>TodaysDate</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_sanction_to_active</targetReference>
+            </connector>
+            <label>Today&#39;s date is within the period</label>
+        </rules>
+    </decisions>
+    <description>Checks at 00:15 if today&#39;s date is within the start and end dates of a sanction, updates active to checked/unchecked based on this.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>TodaysDate</name>
+        <dataType>Date</dataType>
+        <expression>today()</expression>
+    </formulas>
+    <interviewLabel>Daily flow to check for active sanctions {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Daily flow to check for active sanctions</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_sanction_to_active</name>
+        <label>Update sanction to active</label>
+        <locationX>446</locationX>
+        <locationY>516</locationY>
+        <inputAssignments>
+            <field>Active__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_sanction_to_inactive_0</name>
+        <label>Update sanction to inactive</label>
+        <locationX>182</locationX>
+        <locationY>516</locationY>
+        <inputAssignments>
+            <field>Active__c</field>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>188</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Is_sanction_active</targetReference>
+        </connector>
+        <object>Sanctions__c</object>
+        <schedule>
+            <frequency>Daily</frequency>
+            <startDate>2022-01-28</startDate>
+            <startTime>00:15:00.000Z</startTime>
+        </schedule>
+        <triggerType>Scheduled</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Percentage euthanased in dry sows --></label>
+        <name>Percentage_euthanased_in_dry_sows__c</name>
+    </CustomFieldTranslation>

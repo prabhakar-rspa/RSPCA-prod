@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SRM_PP_NodQualification__c</fullName>
+    <description>Formula field which calculates the amount of days the Opportunity has been in the Qualification stage by subtracting Planning date from Qualification date OR today’s date from the Identification date (if Planning stage has not yet been reached)</description>
+    <externalId>false</externalId>
+    <formula>IF(
+ISBLANK(SRM_PP_PlanningDate__c),
+TODAY() - SRM_PP_QualificationDate__c,
+SRM_PP_PlanningDate__c - SRM_PP_QualificationDate__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Days in Qualification Stage</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

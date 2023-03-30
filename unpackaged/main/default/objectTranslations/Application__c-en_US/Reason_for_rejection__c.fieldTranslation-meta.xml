@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- NSF to provide their reason for rejection. --></help>
+        <label><!-- Reason for rejection --></label>
+        <name>Reason_for_rejection__c</name>
+        <picklistValues>
+            <masterLabel>Insufficient evidence</masterLabel>
+            <translation><!-- Insufficient evidence --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Major non-compliance</masterLabel>
+            <translation><!-- Major non-compliance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No evidence</masterLabel>
+            <translation><!-- No evidence --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reputational risks</masterLabel>
+            <translation><!-- Reputational risks --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unsatisfactory evidence</masterLabel>
+            <translation><!-- Unsatisfactory evidence --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

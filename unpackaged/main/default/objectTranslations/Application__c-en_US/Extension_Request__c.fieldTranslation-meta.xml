@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Add a link to any written request for an extension --></help>
+        <label><!-- Extension Request --></label>
+        <name>Extension_Request__c</name>
+    </CustomFieldTranslation>

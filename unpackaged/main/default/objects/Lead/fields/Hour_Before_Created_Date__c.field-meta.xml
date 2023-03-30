@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Hour_Before_Created_Date__c</fullName>
+    <externalId>false</externalId>
+    <formula>CreatedDate - MINUTE(TIMEVALUE(&quot;00:59:57.000&quot;))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Hour Before Created Date</label>
+    <required>false</required>
+    <type>DateTime</type>
+</CustomField>

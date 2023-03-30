@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Species_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Species Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Dairy Cattle</fullName>
+                <default>false</default>
+                <label>Dairy Cattle</label>
+            </value>
+            <value>
+                <fullName>Laying Hen</fullName>
+                <default>false</default>
+                <label>Laying Hen</label>
+            </value>
+            <value>
+                <fullName>Pigs</fullName>
+                <default>false</default>
+                <label>Pigs</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

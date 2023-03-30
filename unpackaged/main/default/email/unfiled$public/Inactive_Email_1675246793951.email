@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initialscale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <style type="text/css">@media screen and (max-width: 480px) {slot[style] {margin-right: 0 !important;}.columnDiv {margin-right: 0 !important;}}@media screen and (min-width: 480px) {slot[style] {margin-bottom: 0 !important;}.columnDiv {margin-bottom: 0 !important;}}</style>
+  <style type="text/css">@media screen and (max-width: 480px) {.contentbuilderBaseColumnRow .columnCell {display:inline-block;width:100%}}</style>
+  <style type="text/css">.contentpageDefaultEmailTemplatePageTemplate .contentRoot {width: 600px;}@media only screen and (max-width: 480px) {.contentpageDefaultEmailTemplatePageTemplate .contentRoot {width: 320px;}}</style>
+ </head>
+ <body>
+  <table class="contentpageDefaultEmailTemplatePageTemplate" style="background-color: #E9EAEC;" role="presentation" id="contentpage_emailTemplateBodyContent" width="100%" cellpadding="0" cellspacing="0">
+   <tbody>
+    <tr>
+     <td width="100%" align="center">
+      <table class="contentRoot" style="background-color: #FFFFFF;" role="presentation" width="600" cellpadding="0" cellspacing="0">
+       <tbody>
+        <tr>
+         <td style="padding-top: 10px; padding-bottom: 10px; padding-left: 10px; padding-right: 10px;">
+          <table class="contentbuilderBaseColumnRow" style="background-color:;" role="presentation" width="100%" cellpadding="0" cellspacing="0">
+           <tbody>
+            <tr valign="top">
+             <td width="100%" class="columnCell" style="vertical-align: top;display: inline-block">
+              <table style="width: 100%; border-collapse: collapse; word-break:break-word;">
+               <tbody>
+                <tr>
+                 <td>
+                  <table style="width:100%; border-collapse: collapse; word-break:break-word;" id="contentRegion" role="presentation" cellspacing="0" cellpadding="0" locked="0">
+                   <tbody>
+                    <tr>
+                     <td align="Center"><img style="width: 100%; display: block; border: none; max-width: 100%;" src="{[devName:RSPCA_Assured_Inactive_header]}" alt="" width="600" /></td>
+                    </tr>
+                   </tbody>
+                  </table></td>
+                </tr>
+               </tbody>
+              </table></td>
+            </tr>
+           </tbody>
+          </table>
+          <table class="contentbuilderBaseColumnRow" style="background-color:;" role="presentation" width="100%" cellpadding="0" cellspacing="0">
+           <tbody>
+            <tr valign="top">
+             <td width="100%" class="columnCell" style="vertical-align: top;display: inline-block">
+              <table style="width: 100%; border-collapse: collapse; word-break:break-word;">
+               <tbody>
+                <tr>
+                 <td>
+                  <table style="width: 100%; border-collapse: collapse; word-break: break-word; font-size: 14px" id="contentRegion" role="presentation" cellspacing="0" cellpadding="0" locked="0">
+                   <tbody>
+                    <tr>
+                     <td style="font-family: Arial, Helvetica, sans-serif;"><p>Dear&nbsp;{{{Recipient.FirstName}}}&nbsp; {{{Recipient.LastName}}}</p> &nbsp; <p><strong>Farm name:&nbsp;</strong><span style="color:#0000ff;"><strong>{{{Account.Name}}}</strong></span></p><p><strong>Registration:</strong><span style="color:#0000ff;"><strong>{{{Account.Membership_Number__c}}}</strong></span></p><p><strong>Certificate status: INACTIVE</strong></p><p><strong>Date effective from: </strong><span style="color:#e74c3c;">(MST to add inactive effective date)</span></p> &nbsp; <p>We are writing to you as we have been informed that your site is within an extended break in livestock production. In consequence of this, we will not be able to carry out an on-site assessment as it will not be possible to confirm your full compliance with the RSPCA Welfare standards. Our records show an assessment will need to take place before the end of your current certificate, due to conclude on&nbsp;<span style="color:#e74c3c;">{{{Account.Membership_Expiry_Date__c}}}</span></p> We will be classifying your certificate as inactive, effective from the above effective date. This status means that your certificate has not been validated by an assessment.<br /> &nbsp;<br /> In order for your certificate to be reinstated as current (active), you will need to let us know when you have returned to livestock production, enabling an assessment to take place. However, should your current certificate expire before you return to livestock production, we will cancel your membership in consequence.&nbsp; In this respect, you will need to reapply as a new applicant to the scheme.<br /> &nbsp;<br /> Please be aware that whilst your certificate is deemed as inactive, no product arising from this site can be associated with RSPCA Assured identity.&nbsp;&nbsp; <p>Should you have any queries regarding the above, please email us at <strong><a href="mailto:help@rspcaassured.org.uk"><span style="color:#000000;">help@rspcaassured.org.uk</span></a></strong> &nbsp;or call 01403 286170.</p><p>Kind regards,</p><p><span style="color:#e74c3c;">{{{Account.Account_Manager__c}}}</span></p> &nbsp; <p>Membership Services Team</p><p>RSPCA Assured</p></td>
+                    </tr>
+                   </tbody>
+                  </table></td>
+                </tr>
+               </tbody>
+              </table></td>
+            </tr>
+           </tbody>
+          </table></td>
+        </tr>
+       </tbody>
+      </table></td>
+    </tr>
+   </tbody>
+  </table>
+ </body>
+</html>

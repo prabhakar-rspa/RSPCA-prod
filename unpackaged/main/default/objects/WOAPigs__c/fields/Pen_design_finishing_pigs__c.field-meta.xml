@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Pen_design_finishing_pigs__c</fullName>
+    <externalId>false</externalId>
+    <label>Pen design finishing pigs</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>N/A</fullName>
+                <default>false</default>
+                <label>N/A</label>
+            </value>
+            <value>
+                <fullName>Pen - solid floor (scrape)</fullName>
+                <default>false</default>
+                <label>Pen - solid floor (scrape)</label>
+            </value>
+            <value>
+                <fullName>Pen - part slatted floor</fullName>
+                <default>false</default>
+                <label>Pen - part slatted floor</label>
+            </value>
+            <value>
+                <fullName>Straw yard</fullName>
+                <default>false</default>
+                <label>Straw yard</label>
+            </value>
+            <value>
+                <fullName>Outdoor arcs (and/or) tents</fullName>
+                <default>false</default>
+                <label>Outdoor arcs (and/or) tents</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other (specify)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

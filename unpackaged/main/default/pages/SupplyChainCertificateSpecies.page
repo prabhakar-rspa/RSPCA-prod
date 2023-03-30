@@ -1,0 +1,157 @@
+<apex:page controller="CertificatesPerSpeciesController" standardStylesheets="false" renderAs="pdf" showHeader="false" applyBodyTag="false" applyHtmlTag="false">
+<head>
+    <style>
+        /* add margin and size to our page */
+        @Page {
+            /* add page's header and footer */
+            @top-center { 
+                content: element(header); 
+            }
+            @bottom-left { 
+                content: element(footer);
+            }
+            /* Page Size */
+            size: 8.27in 11.69in; /* A4 width and height */
+            /* margin */
+            margin-left: 0;
+            margin-right: 0;
+            margin-top: 0;
+            margin-bottom:385px;
+            
+            /* padding */
+            padding-top:140px;
+
+        }
+
+        /* sets the header as the matching element */
+        div.header { 
+            position: running(header); 
+
+        }
+        /* sets the footer as the matching element */
+        div.footer { 
+            position: running(footer); 
+
+
+
+            /* font style */ 
+            text-align: left;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            mso-height-rule: exactly;
+            line-height: 20px;
+            color: #000000;
+
+        }
+
+        div.content{
+            margin-left: 35px;
+            margin-right: 35px;
+            padding-right: 35.5px;
+            
+
+
+        }
+        div.content-bottom{
+            
+        }
+
+        .s1 {
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 22pt;
+            text-align: center;
+        }
+    </style>
+
+</head>
+ <!-- Header Section -->
+ <div class="header">
+    <table cellspacing="0" cellpadding="0" border="0" align="center" bgcolor="#ffffff" width="100%">
+        <tr>
+            <td width="100%" bgcolor="#ffffff" style="padding: 0px 0px 0px 0px; "><apex:image url="{!URLFOR($Resource.Certificate_Images, 'images/Certificate-header.png')}" width="100%"/> </td>
+        </tr>
+    </table>
+
+</div>
+
+
+<!-- Footer Section -->
+<div class="footer" name="footer">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" >
+        <tr>
+            <td></td>
+            <td style="width: 30px">&nbsp;</td>
+            <td style="padding: 0px 0px 0px 0px; text-align: left; font-family: Arial, sans-serif; font-size: 14px; mso-height-rule: exactly; line-height:350px; color: #000000;">
+            <p style="text-align: left; font-size: 14px; width:35%; "><span style="text-align: left"></span><img src="{!URLFOR($Resource.Certificate_Images, 'images/Certificate-badge.png')}" width="180" height="190" alt=""/></p>
+             <td style="width: 50px">&nbsp;</td>
+             <td style="padding: 0px 0px 0px 0px; text-align: center;">
+                <p style="text-align: center; font-size: 18px;"> Signature for and on behalf of the Company </p>
+
+              <p style="text-align:center; font-size: 14px;"><span style="text-align: center"></span><img src="{!URLFOR($Resource.Certificate_Images, 'images/Mike_Baker_Signature.png')}" width="120" height="80" alt=""/></p> <br/> <br/> 
+                   <p style="text-align: center; font-size: 12px; line-height: 1.6"> This certificate is personal, is not assignable and remains the property of RSPCA Assured <br/>
+                        To check its validity telephone 01403 286170 or write to<br/>
+                        RSPCA Assured, Wilberforce Way, Southwater, Horsham, West Sussex, RH13 9RS </p> <br/>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tbody>
+                    
+                    <tr >                     
+                        <td width="56%" valign="bottom" style="border-top:0.5pt solid #0058a5;"><p style="text-align: left; font-size: 14px; line-height: 1.2; color: #0058a5;">Dedicated to farm animal welfare</p>
+                        <p style="text-align: left; font-size: 10px; line-height:1.2">RSPCA Assured, Wilberforce Way, Southwater, Horsham, West Sussex, RH13 9RS<br/>
+                        t: 01403 286170   e: help@rspcaassured.org.uk  www.berspcaassured.org.uk</p></td>
+                        <td width="" valign="bottom" style="border-top:0.5pt solid #0058a5;"><p style="text-align: left; font-size: 9px; line-height:1.5">Company No. 2723670. VAT Reg No. 602 7676 42<br/>
+                        Charity Registered in England &amp; Wales 10539879 and Scotland SC038199<br/>
+                        Registered Office: Freedom Food Limited, Wilberforce Way, <br/>
+                        Southwater, Horsham, West Sussex, RH13 9RS</p></td>
+                    </tr>
+                    </tbody>
+                </table></td> </td>
+            <td style="width: 35px">&nbsp;</td>
+        </tr>
+
+        <tr>
+        <td colspan="3" style="height: 60px">&nbsp;</td>
+        </tr>
+
+    </table>
+
+</div>
+
+<!-- Content Section -->
+<div class="content">
+    <table  width="100%" border="0" cellspacing="0" cellpadding="0" >
+        <tr>
+            <td style="width: 50px">&nbsp;</td>
+            <td style="padding: 0px 0px 0px 0px; text-align: left; font-family: Arial, sans-serif; font-size: 14px; mso-height-rule: exactly; line-height: 20px; color: #000000;">
+                <div style="height: 560px; overflow: hidden;">
+                    <p style="text-align: center; font-size: 16px; font-weight: bold;">Registration No {!currentRecord.Membership_Number__c}</p>
+                    <p style="text-align: center; font-size: 14px;">This is to certify that</p>
+                    <div class="s1"><strong>{!currentRecord.Name}</strong></div>
+                    <p style="text-align: center; font-size: 14px;">{!currentRecord.BillingStreet}, {!currentRecord.BillingCity}, {!IF(NOT(ISBLANK(currentRecord.County__c)), currentRecord.County__c & ',', '' )} {!currentRecord.BillingPostalcode}</p>
+                    <p style="text-align: center; font-size: 14px;">is hereby authorised for a period of one year from the date hereof to use the Trade Mark,
+                        an exact copy of which appears at the top of this Certificate, in relation to the following</p>
+                    <!-- Units List -->
+                    <div>
+                        <apex:repeat value="{!supplyChainUnits}" var="t" id="supplyChain">
+                            <p style="text-align: center; font-size: 22px; font-weight: bold;">{!t.Name} {!t.Production__c}</p>
+                        </apex:repeat>
+                    </div>
+                    <div class="content-bottom">
+                        <p style="text-align: center; font-size: 14px;">has satisfied the certification requirements of the RSPCA Assured scheme<br/>
+                            and is approved in accordance with the RSPCA Assured Chain of Custody Audit Standards<br/> </p>
+                     <!--   as an Authorised Category A User may use the approved RSPCA Assured Certification Marks. --> 
+                        <p style="text-align: center; font-size: 14px;">The certificate is valid <br/>
+                        <strong>From {!startDate} to {!endDate} </strong></p>
+                        <p style="text-align: center; font-size: 12px;"><br/>It is the reponsibility of the holder to inform all customers of certified products of any changes in certification status.
+                        It is the reponsibility of customers purchasing certified products to verify the certification status with RSPCA Assured    
+                        </p>
+                    </div>
+                </div>
+                
+            </td>
+        </tr> 
+    </table>
+ 
+</div>
+</apex:page>

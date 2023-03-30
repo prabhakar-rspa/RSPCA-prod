@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Base --></label>
+        <name>Base__c</name>
+        <picklistValues>
+            <masterLabel>Deep bedded</masterLabel>
+            <translation><!-- Deep bedded --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mats</masterLabel>
+            <translation><!-- Mats --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mattresses</masterLabel>
+            <translation><!-- Mattresses --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

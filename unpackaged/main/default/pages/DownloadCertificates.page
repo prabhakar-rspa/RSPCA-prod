@@ -1,0 +1,70 @@
+<apex:page showHeader="false" standardController="Account" extensions="DownloadCertificatesController" lightningStylesheets="true">
+  <head>
+    <style>
+      div.content {
+        /* font style */ 
+        text-align: left;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        mso-height-rule: exactly;
+        line-height: 20px;
+        color: #000000;
+      }
+      div.certificate-section {
+        padding: 5px;
+      }
+
+    </style>
+  </head>
+
+  <!-- Content -->
+  <div class="content">
+    <div class="certificate-section" style="{!IF(hasSupplyChainCertificate, 'display:block', 'display:none')}">
+      <strong>Supply Chain Certificate</strong><br/>
+      File is being downloaded. If it doesn't download, <a href="{!supplyChainCertificateURL}" id="supplyChainCertificate" target="_blank" download="{!currentRecord.Membership_Number__c} {!currentRecord.Name} Certificate.pdf" onload="auto_download();">click here</a> to download file.
+    </div>
+  <!--
+    <div class="certificate-section" style="{!IF(hasTroutCertificate, 'display:block', 'display:none')}">
+      <strong>Trout Certificate</strong><br/>
+      File is being downloaded. If it doesn't download, <a href="{!troutCertificateURL}" id="troutCertificate" target="_blank" download="{!currentRecord.Membership_Number__c} {!currentRecord.Name} Certificate.pdf" onload="auto_download();">click here</a> to download file.
+    </div>
+  -->
+  
+    <div class="certificate-section" style="{!IF(hasSCICertificate, 'display:block', 'display:none')}">
+      <strong>SCI Certificate</strong><br/>
+      File is being downloaded. If it doesn't download, <a href="{!sciCertificate}" id="sciCertificate" target="_blank" download="{!currentRecord.Membership_Number__c} {!currentRecord.Name} Certificate.pdf" onload="auto_download();">click here</a> to download file.
+    </div>
+
+    <!-- render this div only if there are no certifications available to download -->
+    <div class="certificate-section" style="{!IF(hasSupplyChainCertificate || hasTroutCertificate || hasSCICertificate, 'display:none', 'display:block')}">
+      <strong>No certifications available for download.</strong><br/>
+    </div>
+  </div> 
+
+  <!-- Script to controll the auto download of certificates -->
+  <script>
+    function auto_download(){
+      var hasSupplyChain = {!hasSupplyChainCertificate};
+      //var hasTrout = {!hasTroutCertificate};
+      var hasSCI = {!hasSCICertificate};
+      //alert('hasSupplyChain: ' + hasSupplyChain);
+      //alert('hasTrout: ' + hasTrout);
+      //alert('hasNSFUKAS: ' + hasNSFUKAS);
+      if(hasSupplyChain){
+        document.getElementById('supplyChainCertificate').click();
+      }
+      /*
+      if(hasTrout){
+        document.getElementById('troutCertificate').click();
+      }
+      */
+      if(hasSCI){
+        document.getElementById('sciCertificate').click();
+      }
+
+    };
+    
+    //trigger auto-download
+    window.setTimeout(auto_download, 10);
+  </script>
+</apex:page>

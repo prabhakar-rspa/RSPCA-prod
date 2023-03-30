@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Non_compliance__c</fullName>
+    <description>Description of the non-compliance and required rectification.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Description of the non-compliance and required rectification.</inlineHelpText>
+    <label>Non-compliance</label>
+    <length>32768</length>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>4</visibleLines>
+</CustomField>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Dry_sows_or_Finishing_pigs__c</fullName>
+    <externalId>false</externalId>
+    <label>Dry sows or Finishing pigs</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Dry sows</fullName>
+                <default>false</default>
+                <label>Dry sows</label>
+            </value>
+            <value>
+                <fullName>Finishing pigs</fullName>
+                <default>false</default>
+                <label>Finishing pigs</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

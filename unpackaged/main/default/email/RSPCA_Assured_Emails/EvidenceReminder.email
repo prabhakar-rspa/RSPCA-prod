@@ -1,0 +1,5 @@
+<messaging:emailTemplate subject="Evidence Reminder" recipientType="Contact" relatedToType="Application__c">
+<messaging:htmlEmailBody >
+    <c:EvidenceReminder appId="{!relatedTo.Id}" />
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Selected sanctions appear here in text format --></help>
+        <label><!-- Selected Sanctions --></label>
+        <name>Selected_Sanctions__c</name>
+    </CustomFieldTranslation>

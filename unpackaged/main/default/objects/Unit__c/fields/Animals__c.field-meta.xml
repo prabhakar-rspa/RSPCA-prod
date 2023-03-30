@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Animals__c</fullName>
+    <externalId>false</externalId>
+    <label>Animals</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Business__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetName>Animals</valueSetName>
+        <valueSettings>
+            <controllingFieldValue>Abattoir</controllingFieldValue>
+            <controllingFieldValue>Haulier</controllingFieldValue>
+            <controllingFieldValue>Producer</controllingFieldValue>
+            <valueName>Beef Cattle</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Abattoir</controllingFieldValue>
+            <controllingFieldValue>Catching</controllingFieldValue>
+            <controllingFieldValue>Haulier</controllingFieldValue>
+            <controllingFieldValue>Producer</controllingFieldValue>
+            <valueName>Chickens</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Abattoir</controllingFieldValue>
+            <controllingFieldValue>Haulier</controllingFieldValue>
+            <controllingFieldValue>Producer</controllingFieldValue>
+            <valueName>Dairy Cattle</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Abattoir</controllingFieldValue>
+            <controllingFieldValue>Catching</controllingFieldValue>
+            <controllingFieldValue>Haulier</controllingFieldValue>
+            <controllingFieldValue>Producer</controllingFieldValue>
+            <valueName>Ducks</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Abattoir</controllingFieldValue>
+            <controllingFieldValue>Catching</controllingFieldValue>
+            <controllingFieldValue>Haulier</controllingFieldValue>
+            <controllingFieldValue>Producer</controllingFieldValue>
+            <valueName>Laying Hens</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Abattoir</controllingFieldValue>
+            <controllingFieldValue>Haulier</controllingFieldValue>
+            <controllingFieldValue>Producer</controllingFieldValue>
+            <valueName>Pigs</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Abattoir</controllingFieldValue>
+            <controllingFieldValue>Hatchery</controllingFieldValue>
+            <controllingFieldValue>Haulier</controllingFieldValue>
+            <controllingFieldValue>Producer</controllingFieldValue>
+            <valueName>Salmon</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Abattoir</controllingFieldValue>
+            <controllingFieldValue>Haulier</controllingFieldValue>
+            <controllingFieldValue>Producer</controllingFieldValue>
+            <valueName>Sheep</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Abattoir</controllingFieldValue>
+            <controllingFieldValue>Hatchery</controllingFieldValue>
+            <controllingFieldValue>Haulier</controllingFieldValue>
+            <controllingFieldValue>Producer</controllingFieldValue>
+            <valueName>Trout</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Abattoir</controllingFieldValue>
+            <controllingFieldValue>Catching</controllingFieldValue>
+            <controllingFieldValue>Haulier</controllingFieldValue>
+            <controllingFieldValue>Producer</controllingFieldValue>
+            <valueName>Turkeys</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Abattoir</controllingFieldValue>
+            <controllingFieldValue>Haulier</controllingFieldValue>
+            <controllingFieldValue>Producer</controllingFieldValue>
+            <valueName>Veal Calves</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Catching</controllingFieldValue>
+            <controllingFieldValue>Haulier</controllingFieldValue>
+            <controllingFieldValue>Producer</controllingFieldValue>
+            <valueName>Pullets</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cleaner Fish</controllingFieldValue>
+            <valueName>Lumpfish</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cleaner Fish</controllingFieldValue>
+            <valueName>Wrasse</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Hatchery</controllingFieldValue>
+            <controllingFieldValue>Haulier</controllingFieldValue>
+            <valueName>Ducklings</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Hatchery</controllingFieldValue>
+            <controllingFieldValue>Haulier</controllingFieldValue>
+            <valueName>Laying Hen Chicks</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Hatchery</controllingFieldValue>
+            <controllingFieldValue>Haulier</controllingFieldValue>
+            <valueName>Meat Chicken Chicks</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Hatchery</controllingFieldValue>
+            <controllingFieldValue>Haulier</controllingFieldValue>
+            <valueName>Turkey Poults</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

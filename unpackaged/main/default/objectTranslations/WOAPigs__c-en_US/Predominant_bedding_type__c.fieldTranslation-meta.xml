@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Predominant bedding type --></label>
+        <name>Predominant_bedding_type__c</name>
+        <picklistValues>
+            <masterLabel>Other (specify)</masterLabel>
+            <translation><!-- Other (specify) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shredded paper</masterLabel>
+            <translation><!-- Shredded paper --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Straw</masterLabel>
+            <translation><!-- Straw --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wood shavings</masterLabel>
+            <translation><!-- Wood shavings --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Woodchip</masterLabel>
+            <translation><!-- Woodchip --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

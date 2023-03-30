@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Other object in pen --></label>
+        <name>Other_object_in_pen__c</name>
+    </CustomFieldTranslation>

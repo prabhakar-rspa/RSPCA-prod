@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- This field must be populated in order to mark an Additional Visit as complete. --></help>
+        <label><!-- Allocated Assessor --></label>
+        <lookupFilter>
+            <errorMessage><!-- You can only select an assessor user to be allocated for this application. --></errorMessage>
+        </lookupFilter>
+        <name>Assessor__c</name>
+        <relationshipLabel><!-- Applications (Allocated Assessor) --></relationshipLabel>
+    </CustomFieldTranslation>

@@ -1,0 +1,5 @@
+<messaging:emailTemplate subject="Membership Renew Date Lapsed" recipientType="Contact" relatedToType="Account">
+<messaging:htmlEmailBody >
+<c:RenewDateLapsed accId="{!relatedTo.Id}"></c:RenewDateLapsed>
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

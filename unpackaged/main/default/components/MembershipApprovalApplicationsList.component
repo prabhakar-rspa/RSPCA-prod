@@ -1,0 +1,27 @@
+<apex:component controller="NotificationsComponentController" access="global">
+    <table cellspacing="0" cellpadding="1" border="2" bordercolor="#ffffff" width="100%" valign="top" style="border: 2px solid white;">
+        <!-- Enquires Columns -->
+        <tr>
+            <td width="15%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px;"><strong><span style="margin: 5px;">Application Number</span></strong></td>
+            <td width="15%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px;"><strong><span style="margin: 5px;">Membership No. (if applicable)</span></strong></td>
+            <td width="15%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px;"><strong><span style="margin: 5px;">Contact</span></strong></td>
+            <td width="15%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px;"><strong><span style="margin: 5px;">Site</span></strong></td>
+            <td width="20%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px;"><strong><span style="margin: 5px;">Industry</span></strong></td>
+            <td width="15%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px;"><strong><span style="margin: 5px;">County</span></strong></td>
+            <td width="15%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px;"><strong><span style="margin: 5px;">Membership Expiry Date</span></strong></td>
+        </tr>
+        <!-- Enquiries Rows -->
+        <apex:repeat value="{!ApprovalApplicationsOffice}" var="a"> 
+            <tr>                
+                <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px;"><span style="margin: 5px;"><a href="{!sfdcBaseURL}/{!a.Id}">{!a.Name}</a></span></td>
+                <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px;"><span style="margin: 5px;">{!a.Membership_Number__c}</span></td>
+                <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px;"><span style="margin: 5px;">{!a.Applicant_Full_Name__c}</span></td>
+                <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px;"><span style="margin: 5px;">{!a.Site_Name__c}</span></td>
+                <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px;"><span style="margin: 5px;">{!a.Site__r.Company_Industry__c}</span></td>
+                <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px;"><span style="margin: 5px;">{!a.Site__r.County__c}</span></td>
+                <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px;"><span style="margin: 5px;">{!LPAD(TEXT(DAY(a.Membership_Expiry_Date__c)),2,'0')}/{!LPAD(TEXT(MONTH(a.Membership_Expiry_Date__c)),2,'0')}/{!TEXT(YEAR(a.Membership_Expiry_Date__c))}</span></td>
+            </tr>
+            
+        </apex:repeat>
+    </table>
+</apex:component>

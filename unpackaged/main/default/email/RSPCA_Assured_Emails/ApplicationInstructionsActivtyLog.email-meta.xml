@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Application Instructions Email Template Using HTML for logging email sent on record.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>ApplicationInstructionsActivtyLog</name>
+    <style>none</style>
+    <subject>Applying for membership</subject>
+    <textOnly>Application Instructions
+
+Dear {!Contact.Salutation} {!Contact.FirstName} {!Contact.LastName}
+
+RSPCA Assured scheme membership
+
+Thank you for your interest in becoming a member of RSPCA Assured.
+
+You can continue your application with three easy steps:
+
+Read the relevant standards and check that you meet them
+
+
+Read the RSPCA Assured membership agreement, including SCI scheme regulations
+
+Complete our   online application form   and then pay online or by BACS
+
+
+You will need your Defra/CPH, EC Registration, BRC or SALSA numbers as applicable. You will also need the RSPCA Assured membership numbers of relevant suppliers.
+
+
+Apply
+
+
+Our information booklet will tell everything you need to know about your assessment and becoming a member of RSPCA Assured.
+
+If you have any questions please don’t hesitate to contact our member services team on 01403 800141 – or email help@rspcaassured.org.uk – and one of the team will be happy to help.
+
+Yours sincerely
+
+Membership services
+RSPCA Assured</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

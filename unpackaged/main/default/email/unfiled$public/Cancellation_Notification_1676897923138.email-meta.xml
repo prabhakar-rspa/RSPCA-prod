@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Cancellation Notification</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Cancellation Notification</name>
+    <pageDevName>Cancellation_Notification</pageDevName>
+    <relatedEntityType>Account</relatedEntityType>
+    <style>none</style>
+    <subject>Cancellation Notification</subject>
+    <textOnly>Dear {{{Recipient.FirstName}}} {{{Recipient.LastName}}}
+
+Farm name:{{{Account.Name}}}
+
+Registration: {{{Account.Membership_Number__c}}}
+
+Certificate status: CANCELLED
+
+Further to your telephone conversation with (assessor name) / Further to your email regarding your RSPCA Assured membership, I can confirm that this has now been cancelled.
+
+Please be aware this means that you can no longer sell your produce as RSPCA Assured. Please could we remind you to remove the RSPCA Assured name and mark from your communications and notify your customers accordingly. 
+
+If you have any questions regarding your membership cancellation or would like to enquire about reapplying in the future, please email us at help@rspcaassured.org.uk &lt; mailto:help@rspcaassured.org.uk &gt; or call 01403 286170.
+
+Kind regards,
+
+{{{Account.Account_Manager__c}}}
+
+Membership Services Team
+
+RSPCA Assured</textOnly>
+    <type>custom</type>
+    <uiType>SFX</uiType>
+</EmailTemplate>

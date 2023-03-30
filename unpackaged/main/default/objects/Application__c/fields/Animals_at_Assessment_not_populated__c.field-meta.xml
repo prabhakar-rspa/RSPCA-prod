@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Animals_at_Assessment_not_populated__c</fullName>
+    <externalId>false</externalId>
+    <label>Animals at Assessment not populated</label>
+    <summaryFilterItems>
+        <field>Application_Unit__c.Animals_At_Assessment__c</field>
+        <operation>equals</operation>
+        <value></value>
+    </summaryFilterItems>
+    <summaryForeignKey>Application_Unit__c.Application__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

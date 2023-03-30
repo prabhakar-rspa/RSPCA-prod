@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Tail_lengths__c</fullName>
+    <externalId>false</externalId>
+    <label>Tail lengths</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>All undocked</fullName>
+                <default>false</default>
+                <label>All undocked</label>
+            </value>
+            <value>
+                <fullName>Docked (short)</fullName>
+                <default>false</default>
+                <label>Docked (short)</label>
+            </value>
+            <value>
+                <fullName>Docked (long)</fullName>
+                <default>false</default>
+                <label>Docked (long)</label>
+            </value>
+            <value>
+                <fullName>Mixed (short docked/long docked)</fullName>
+                <default>false</default>
+                <label>Mixed (short docked/long docked)</label>
+            </value>
+            <value>
+                <fullName>Mixed (undocked/docked)</fullName>
+                <default>false</default>
+                <label>Mixed (undocked/docked)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

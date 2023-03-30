@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SRM_PP_HoldReason__c</fullName>
+    <description>Reason the record status has been put on hold</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Reason the record status has been put on hold</inlineHelpText>
+    <label>On Hold Reason</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Donor opted for payment holiday</fullName>
+                <default>false</default>
+                <label>Donor opted for payment holiday</label>
+            </value>
+            <value>
+                <fullName>Changed funding priorities</fullName>
+                <default>false</default>
+                <label>Changed funding priorities</label>
+            </value>
+            <value>
+                <fullName>Internal delays</fullName>
+                <default>false</default>
+                <label>Internal delays</label>
+            </value>
+            <value>
+                <fullName>Right contact not yet identified</fullName>
+                <default>false</default>
+                <label>Right contact not yet identified</label>
+            </value>
+            <value>
+                <fullName>Rephase - Timing no longer right</fullName>
+                <default>false</default>
+                <label>Rephase - Timing no longer right</label>
+            </value>
+            <value>
+                <fullName>Rephase - Changed funding capacity</fullName>
+                <default>false</default>
+                <label>Rephase - Changed funding capacity</label>
+            </value>
+            <value>
+                <fullName>Rephase - Proposal amends required</fullName>
+                <default>false</default>
+                <label>Rephase - Proposal amends required</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

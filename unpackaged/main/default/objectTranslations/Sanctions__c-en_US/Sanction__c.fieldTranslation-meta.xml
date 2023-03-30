@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Sanction --></label>
+        <name>Sanction__c</name>
+        <picklistValues>
+            <masterLabel>Additional unannounced inspections</masterLabel>
+            <translation><!-- Additional unannounced inspections --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Conditional application</masterLabel>
+            <translation><!-- Conditional application --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Conditional renewal</masterLabel>
+            <translation><!-- Conditional renewal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Formal warning</masterLabel>
+            <translation><!-- Formal warning --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Informal advice</masterLabel>
+            <translation><!-- Informal advice --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Permanent withdrawal</masterLabel>
+            <translation><!-- Permanent withdrawal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Report to authorities</masterLabel>
+            <translation><!-- Report to authorities --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Special measures</masterLabel>
+            <translation><!-- Special measures --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Temporary withdrawal</masterLabel>
+            <translation><!-- Temporary withdrawal --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

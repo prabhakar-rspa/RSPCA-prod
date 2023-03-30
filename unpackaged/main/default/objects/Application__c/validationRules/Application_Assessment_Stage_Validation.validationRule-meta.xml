@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Application_Assessment_Stage_Validation</fullName>
+    <active>true</active>
+    <description>Cannot move past assessment stage if the necessary fields are not populated for an application.</description>
+    <errorConditionFormula>IF(
+				/* If the application record type is applications */
+				RecordType.DeveloperName = &#39;Applications&#39;,
+				IF(
+								AND(
+												TEXT(Stage__c) = &#39;Compliance&#39;,
+												OR(
+																ISBLANK(Assessment_Checklist__c),
+												    ISBLANK(Assessment_Report__c)
+												)
+								),
+								true,
+								false
+				),
+				false
+)</errorConditionFormula>
+    <errorMessage>Please populate the Assessment Checklist link and Assessment Report Link before progressing from Assessment Stage.</errorMessage>
+</ValidationRule>

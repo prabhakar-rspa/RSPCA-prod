@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Roles__c</fullName>
+    <externalId>false</externalId>
+    <label>Roles</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Administration Contact</fullName>
+                <default>false</default>
+                <label>Administration Contact</label>
+            </value>
+            <value>
+                <fullName>Agricultural/Technical Contact</fullName>
+                <default>false</default>
+                <label>Agricultural/Technical Contact</label>
+            </value>
+            <value>
+                <fullName>Artwork Contact</fullName>
+                <default>false</default>
+                <label>Artwork Contact</label>
+            </value>
+            <value>
+                <fullName>Assessments Contact</fullName>
+                <default>false</default>
+                <label>Assessments Contact</label>
+            </value>
+            <value>
+                <fullName>Certification Contact</fullName>
+                <default>false</default>
+                <label>Certification Contact</label>
+            </value>
+            <value>
+                <fullName>Compliance Contact</fullName>
+                <default>false</default>
+                <label>Compliance Contact</label>
+            </value>
+            <value>
+                <fullName>Membership Fee Contact</fullName>
+                <default>false</default>
+                <label>Membership Fee Contact</label>
+            </value>
+            <value>
+                <fullName>Licence Fee Contact</fullName>
+                <default>false</default>
+                <label>Licence Fee Contact</label>
+            </value>
+            <value>
+                <fullName>Traceability Contact</fullName>
+                <default>false</default>
+                <label>Traceability Contact</label>
+            </value>
+            <value>
+                <fullName>Payments Contact</fullName>
+                <default>false</default>
+                <label>Payments Contact</label>
+            </value>
+            <value>
+                <fullName>Partnerships Commercial Contact</fullName>
+                <default>false</default>
+                <label>Partnerships Commercial Contact</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

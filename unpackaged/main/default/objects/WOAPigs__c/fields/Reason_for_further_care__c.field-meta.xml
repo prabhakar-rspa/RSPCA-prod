@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reason_for_further_care__c</fullName>
+    <externalId>false</externalId>
+    <label>Reason for further care</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Lameness</fullName>
+                <default>false</default>
+                <label>Lameness</label>
+            </value>
+            <value>
+                <fullName>Severe tail biting</fullName>
+                <default>false</default>
+                <label>Severe tail biting</label>
+            </value>
+            <value>
+                <fullName>Traumatic injury</fullName>
+                <default>false</default>
+                <label>Traumatic injury</label>
+            </value>
+            <value>
+                <fullName>Umbilical hernia</fullName>
+                <default>false</default>
+                <label>Umbilical hernia</label>
+            </value>
+            <value>
+                <fullName>Rectal prolapse</fullName>
+                <default>false</default>
+                <label>Rectal prolapse</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other (specify)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

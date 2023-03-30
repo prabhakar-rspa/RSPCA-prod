@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Additional_Visit_Complete__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+AND(
+NOT(ISPICKVAL(Visit_Type__c, &quot;&quot;)),
+NOT(ISBLANK(Visit_Deadline__c)),
+				
+NOT(ISPICKVAL(Reason_for_Visit__c, &quot;&quot;)),
+			
+			
+NOT(ISBLANK(Check__c)),
+NOT(ISBLANK(				 Allocated_Inspector__c )),
+				
+			
+				
+NOT(ISBLANK(Site__c)),
+				
+			
+NOT(ISBLANK(Report__c)),
+NOT(ISBLANK(Membership_Number__c))),
+&#39;Yes&#39;,
+&#39;No&#39;
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Additional Visit Complete</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

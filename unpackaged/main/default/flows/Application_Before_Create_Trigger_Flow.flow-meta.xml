@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>54.0</apiVersion>
+    <decisions>
+        <name>Is_Pricebook_Id_Populated</name>
+        <label>Is Pricebook Id Populated?</label>
+        <locationX>182</locationX>
+        <locationY>647</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Pricebook_Id_is_not_populated</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Pricebook_Id__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Pricebook_Id_with_Membership_Pricebook</targetReference>
+            </connector>
+            <label>Pricebook Id is not populated</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Previous_Assessment_Date</name>
+        <label>Previous Assessment Date</label>
+        <locationX>182</locationX>
+        <locationY>311</locationY>
+        <defaultConnector>
+            <targetReference>Is_Pricebook_Id_Populated</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Exists</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Site__r.Previous_Assessment_Date__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Previous_Assessment_Date</targetReference>
+            </connector>
+            <label>Exists</label>
+        </rules>
+    </decisions>
+    <description>Flow that handles automations for Applications before record is inserted.</description>
+    <interviewLabel>Application Before Create Trigger Flow {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Application Before Create Trigger Flow</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Previous_Assessment_Date</name>
+        <label>Update Previous Assessment Date</label>
+        <locationX>50</locationX>
+        <locationY>431</locationY>
+        <connector>
+            <targetReference>Is_Pricebook_Id_Populated</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Previous_Assessment_Date__c</field>
+            <value>
+                <elementReference>$Record.Site__r.Previous_Assessment_Date__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>Update Pricebook Id with Membership Pricebook from Custom Setting.</description>
+        <name>Update_Pricebook_Id_with_Membership_Pricebook</name>
+        <label>Update Pricebook Id with Membership Pricebook</label>
+        <locationX>50</locationX>
+        <locationY>767</locationY>
+        <inputAssignments>
+            <field>Pricebook_Id__c</field>
+            <value>
+                <elementReference>$Setup.Membership_Pricebook__c.Price_Book_Id__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Previous_Assessment_Date</targetReference>
+        </connector>
+        <object>Application__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

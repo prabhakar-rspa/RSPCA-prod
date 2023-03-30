@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>X2_Week_Renewal_Reminders_Site_Queue</fullName>
+    <columns>ACCOUNT.ACCOUNT_NUMBER</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>Membership_Number__c</columns>
+    <columns>ACCOUNT.SITE</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>ACCOUNT.TYPE</columns>
+    <columns>Status__c</columns>
+    <columns>Record_Type_Name__c</columns>
+    <columns>ACCOUNT.RECORDTYPE</columns>
+    <columns>CREATEDBY_USER.ALIAS</columns>
+    <columns>Renewal_Date__c</columns>
+    <columns>Membership_Expiry_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>MEMBER</value>
+    </filters>
+    <filters>
+        <field>Renewal_Date__c</field>
+        <operation>equals</operation>
+        <value>NEXT_N_DAYS:5</value>
+    </filters>
+    <filters>
+        <field>Final_Renewal_Reminder_Sent__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <filters>
+        <field>Primary_Contact__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <filters>
+        <field>Apply_Common_Renewal_Membership_Date__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>ACCOUNT.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Account.Site</value>
+    </filters>
+    <label>2 Week Renewal Reminders Site Queue</label>
+</ListView>

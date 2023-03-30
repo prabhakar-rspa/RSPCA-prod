@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Further_Info_field_empty_visit_complete</fullName>
+    <active>true</active>
+    <description>If the  Further Information field is blank, the visit can not move to the Complete stage.</description>
+    <errorConditionFormula>AND(
+				ISPICKVAL(Stage__c, &quot;Complete&quot;),
+RecordType.DeveloperName = &#39;Additional_Visit&#39;,
+
+ISBLANK(
+ Further_Information__c
+))</errorConditionFormula>
+    <errorDisplayField>Further_Information__c</errorDisplayField>
+    <errorMessage>You must provide further information in order to mark this visit as complete.</errorMessage>
+</ValidationRule>

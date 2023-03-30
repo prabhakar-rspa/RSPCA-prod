@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Retailer__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Check this box if this account is an organisation involved in food retail including supermarkets, restaurants, caterers and wholesalers.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Check this box if this account is an organisation involved in food retail including supermarkets, restaurants, caterers and wholesalers.</inlineHelpText>
+    <label>Retailer</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Final Evidence Reminder - to be sent one week before the evidence deadline</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Final Evidence Reminder</name>
+    <style>none</style>
+    <subject>Final Evidence Reminder</subject>
+    <textOnly>Dear {!Application__c.Applicant_Full_Name__c} &lt;br&gt;
+
+  Don’t forget, you must submit your corrective actions and evidence by {!Application__c.Evidence_Deadline__c}.  If we don’t receive your corrective actions and evidence on time your membership will lapse and you may have to reapply. 
+
+
+  If you have any questions please feel free to contact our membership services team on 01403 286170 or help@rspcaassured.org.uk. 
+
+
+Yours sincerely 
+Membership services 
+RSPCA Assured</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

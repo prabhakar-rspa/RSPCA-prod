@@ -1,0 +1,9 @@
+Creator: {!Application__c.CreatedBy}
+
+{!Application__c.Visit_Type__c}
+
+Visit Deadline: {!Application__c.Visit_Deadline__c}
+
+Site: {!Application__c.Site_Name__c}
+
+Click on the following link to access the record: {!Application__c.Link}

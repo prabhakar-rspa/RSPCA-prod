@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Must_populate_other_outcome_reason</fullName>
+    <active>true</active>
+    <description>If Other is selected from Outcome of Visit, a text area must be populated</description>
+    <errorConditionFormula>ISPICKVAL(Outcome_of_Visit__c, &quot;Other&quot;) 
+&amp;&amp; ISBLANK( Other_Outcome_of_Visit__c )</errorConditionFormula>
+    <errorDisplayField>Other_Outcome_of_Visit__c</errorDisplayField>
+    <errorMessage>Please specify what the outcome of the visit was.</errorMessage>
+</ValidationRule>

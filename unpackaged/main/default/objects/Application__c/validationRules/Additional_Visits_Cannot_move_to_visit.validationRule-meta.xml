@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Additional_Visits_Cannot_move_to_visit</fullName>
+    <active>false</active>
+    <description>Ensures the relevant fields are populated before the user moves the stage from Schedule to Visit.</description>
+    <errorConditionFormula>/* If the application record type is Additional Visit */
+RecordType.DeveloperName = &#39;Additional_Visit&#39;
+&amp;&amp;
+ CreatedDate  &lt;&gt;  LastModifiedDate 
+	&amp;&amp;  
+ISPICKVAL(Stage__c, &quot;Visit&quot;) 
+&amp;&amp;
+
+	ISPICKVAL(Visit_Type__c, &quot;&quot;) ||
+	ISPICKVAL(Reason_for_Visit__c, &quot;&quot;) ||
+	ISBLANK(Allocated_Inspector__c) ||
+ISBLANK(Check__c) ||
+				ISBLANK(Visit_Deadline__c)</errorConditionFormula>
+    <errorMessage>You need to fill out the key fields in order to move onto the Visit stage. Please review the Guidance for Success.</errorMessage>
+</ValidationRule>

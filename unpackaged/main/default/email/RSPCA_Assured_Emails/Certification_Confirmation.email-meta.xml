@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email sent to member when the reach certification stage of their application.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Certification Confirmation</name>
+    <style>none</style>
+    <subject>Certification Confirmation</subject>
+    <textOnly>Dear [Name] [Surname]
+
+Certification confirmation
+
+We are pleased to confirm that [Membership Number] [Site], [Postcode] has now been certified from [date] to [date].
+
+Your Certificate will be sent to you via email by the Membership Services Team in a moment.
+
+In the meantime, if you have any questions please feel free to contact our membership services team on 01403 800141 or help@rspcaassured.org.uk
+
+Yours sincerely
+
+Membership services
+RSPCA Assured</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

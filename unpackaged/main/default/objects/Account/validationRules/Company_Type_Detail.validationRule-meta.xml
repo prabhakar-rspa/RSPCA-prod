@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Company_Type_Detail</fullName>
+    <active>true</active>
+    <description>If Company Type is populated, Company Type Detail should also be populated</description>
+    <errorConditionFormula>ISPICKVAL(Company_Type_Detail__c, &quot;&quot;) &amp;&amp;
+ NOT(ISPICKVAL(Company_Type__c, &quot;&quot;)) &amp;&amp;
+					( RecordType.DeveloperName = &quot;Site&quot; || 
+						 RecordType.DeveloperName = &quot;Head_Office&quot;)</errorConditionFormula>
+    <errorDisplayField>Company_Type_Detail__c</errorDisplayField>
+    <errorMessage>Please populate this field.</errorMessage>
+</ValidationRule>

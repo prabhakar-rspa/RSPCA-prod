@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Visit_type_field_empty_visit_complet</fullName>
+    <active>true</active>
+    <description>If the Visit Type field is blank, the visit can not move to the Complete stage.</description>
+    <errorConditionFormula>AND(
+				ISPICKVAL(Stage__c, &quot;Complete&quot;),
+RecordType.DeveloperName = &#39;Additional_Visit&#39;,
+
+ISPICKVAL(Visit_Type__c, &quot;&quot;)
+)</errorConditionFormula>
+    <errorDisplayField>Visit_Type__c</errorDisplayField>
+    <errorMessage>You must provide the visit type in order to mark it as complete.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Cubicles</fullName>
+        <default>false</default>
+        <label>Cubicles</label>
+    </customValue>
+    <customValue>
+        <fullName>Incubation</fullName>
+        <default>false</default>
+        <label>Incubation</label>
+    </customValue>
+    <customValue>
+        <fullName>Incubation and Tank</fullName>
+        <default>false</default>
+        <label>Incubation and Tank</label>
+    </customValue>
+    <customValue>
+        <fullName>Loch</fullName>
+        <default>false</default>
+        <label>Loch</label>
+    </customValue>
+    <customValue>
+        <fullName>Loose yard</fullName>
+        <default>false</default>
+        <label>Loose yard</label>
+    </customValue>
+    <customValue>
+        <fullName>Mobile</fullName>
+        <default>false</default>
+        <label>Mobile</label>
+    </customValue>
+    <customValue>
+        <fullName>Static</fullName>
+        <default>false</default>
+        <label>Static</label>
+    </customValue>
+    <customValue>
+        <fullName>Straw yard</fullName>
+        <default>false</default>
+        <label>Straw yard</label>
+    </customValue>
+    <customValue>
+        <fullName>Tank</fullName>
+        <default>false</default>
+        <label>Tank</label>
+    </customValue>
+    <customValue>
+        <fullName>TBC</fullName>
+        <default>false</default>
+        <label>TBC</label>
+    </customValue>
+    <masterLabel>House Type</masterLabel>
+    <sorted>true</sorted>
+</GlobalValueSet>

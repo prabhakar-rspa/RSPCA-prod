@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Other_Reason_for_rejection</fullName>
+    <active>true</active>
+    <description>Other reason for rejection must be provided if other is selected from the picklist.</description>
+    <errorConditionFormula>AND(
+				ISPICKVAL(Reason_for_rejection__c,&#39;Other&#39;),
+				ISBLANK(Other_rejection_reason__c)
+				)</errorConditionFormula>
+    <errorDisplayField>Other_rejection_reason__c</errorDisplayField>
+    <errorMessage>Please provide other reason for rejection.</errorMessage>
+</ValidationRule>

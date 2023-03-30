@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Predominant reason continuous --></label>
+        <name>Predominant_reason_continuous__c</name>
+    </CustomFieldTranslation>

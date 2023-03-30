@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Additional_Visits</fullName>
+    <columns>NAME</columns>
+    <columns>Membership_Number__c</columns>
+    <columns>Application_Type__c</columns>
+    <columns>Assessor__c</columns>
+    <columns>Extension_Deadline__c</columns>
+    <columns>Extension_Granted_By__c</columns>
+    <columns>Extension_Granted__c</columns>
+    <columns>CREATEDBY_USER</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Application__c.Additional_Visit</value>
+    </filters>
+    <label>Additional Visits</label>
+    <sharedTo>
+        <group>Membership_Services</group>
+    </sharedTo>
+</ListView>

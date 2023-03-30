@@ -1,0 +1,4 @@
+Hello {!User.Name},
+
+A Certificate Extension has been rejected for the {!Account.Name} Account.
+{!Account.Link}

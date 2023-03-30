@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Generate_Head_Office_Number__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>When this checkbox is ticked (automated process), and the head office number field is empty, a new head office number will be generated.</description>
+    <externalId>false</externalId>
+    <label>Generate Head Office Number</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

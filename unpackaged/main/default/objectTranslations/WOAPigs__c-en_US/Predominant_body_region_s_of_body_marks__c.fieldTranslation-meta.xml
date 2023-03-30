@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Predominant body region(s) of body marks --></label>
+        <name>Predominant_body_region_s_of_body_marks__c</name>
+        <picklistValues>
+            <masterLabel>Flank</masterLabel>
+            <translation><!-- Flank --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>General</masterLabel>
+            <translation><!-- General --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Head and ear</masterLabel>
+            <translation><!-- Head and ear --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hindquarters</masterLabel>
+            <translation><!-- Hindquarters --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Legs</masterLabel>
+            <translation><!-- Legs --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shoulder</masterLabel>
+            <translation><!-- Shoulder --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

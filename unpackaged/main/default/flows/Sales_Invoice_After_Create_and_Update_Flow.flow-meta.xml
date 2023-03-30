@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>54.0</apiVersion>
+    <assignments>
+        <name>Add_apps_to_Update_To_collection</name>
+        <label>Add apps to Update To collection</label>
+        <locationX>1282</locationX>
+        <locationY>1295</locationY>
+        <assignmentItems>
+            <assignToReference>BulkAppsToUpdate</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_Through_Bulk_Apps</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Through_Bulk_Apps</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Change_Paid_Value_to_True_On_Application</name>
+        <label>Change Paid Value to True On Application</label>
+        <locationX>50</locationX>
+        <locationY>1055</locationY>
+        <assignmentItems>
+            <assignToReference>Query_the_Application.Paid__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_the_application_record_to_save</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Update_Paid_to_True</name>
+        <label>Update Paid to True</label>
+        <locationX>1282</locationX>
+        <locationY>1175</locationY>
+        <assignmentItems>
+            <assignToReference>Loop_Through_Bulk_Apps.Paid__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Add_apps_to_Update_To_collection</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>App_Not_Paid</name>
+        <label>App Not Paid</label>
+        <locationX>1414</locationX>
+        <locationY>1055</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Not_Paid</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Loop_Through_Bulk_Apps.Paid__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Paid_to_True</targetReference>
+            </connector>
+            <label>Not Paid</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_for_opportunity</name>
+        <label>Check for opportunity</label>
+        <locationX>1518</locationX>
+        <locationY>455</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Opportunity_Exists</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.ia_crm__Opportunity__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Invoice_for_Individual_or_Head_Office</targetReference>
+            </connector>
+            <label>Opportunity Exists</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_if_application_is_not_paid_already</name>
+        <label>Check if application is not paid already</label>
+        <locationX>182</locationX>
+        <locationY>935</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Application_not_paid</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Query_the_Application.Paid__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Change_Paid_Value_to_True_On_Application</targetReference>
+            </connector>
+            <label>Application not paid</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_if_Application_is_retrieved</name>
+        <label>Check if Application is retrieved</label>
+        <locationX>380</locationX>
+        <locationY>815</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Application_retrieved</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Query_the_Application</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Check_if_application_is_not_paid_already</targetReference>
+            </connector>
+            <label>Application retrieved</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_if_Applications_are_retrieved</name>
+        <label>Check if Applications are retrieved</label>
+        <locationX>1326</locationX>
+        <locationY>815</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Applications_Retrieved</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Bulk_Renewal_Applications</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Loop_Through_Bulk_Apps</targetReference>
+            </connector>
+            <label>Applications Retrieved</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_if_Invoice_is_Paid</name>
+        <label>Check if Invoice is Paid</label>
+        <locationX>1884</locationX>
+        <locationY>335</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>No_amount_due</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.ia_crm__Amount_Due__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <numberValue>0.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Check_for_opportunity</targetReference>
+            </connector>
+            <label>No amount due</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Invoice_for_Individual_or_Head_Office</name>
+        <label>Invoice for Individual or Head Office</label>
+        <locationX>1051</locationX>
+        <locationY>575</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Individual_Invoice</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.ia_crm__Opportunity__r.Application__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.ia_crm__Opportunity__r.Bulk_Renewal__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Query_the_Application</targetReference>
+            </connector>
+            <label>Individual Invoice</label>
+        </rules>
+        <rules>
+            <name>Head_Office_Invoice</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.ia_crm__Opportunity__r.Bulk_Renewal__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.ia_crm__Opportunity__r.Application__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Bulk_Renewal_Applications</targetReference>
+            </connector>
+            <label>Head Office Invoice</label>
+        </rules>
+    </decisions>
+    <interviewLabel>Sales Invoice Create and Update Flow {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Sales Invoice After Create and Update Flow</label>
+    <loops>
+        <name>Loop_Through_Bulk_Apps</name>
+        <label>Loop Through Bulk Apps</label>
+        <locationX>1194</locationX>
+        <locationY>935</locationY>
+        <collectionReference>Get_Bulk_Renewal_Applications</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>App_Not_Paid</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Update_Bulk_Apps</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Bulk_Renewal_Applications</name>
+        <label>Get Bulk Renewal Applications</label>
+        <locationX>1326</locationX>
+        <locationY>695</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Check_if_Applications_are_retrieved</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Bulk_Renewal__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.ia_crm__Opportunity__r.Bulk_Renewal__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Application__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Query_the_Application</name>
+        <label>Query the Application</label>
+        <locationX>380</locationX>
+        <locationY>695</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Check_if_Application_is_retrieved</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.ia_crm__Opportunity__r.Application__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Application__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_Bulk_Apps</name>
+        <label>Update Bulk Apps</label>
+        <locationX>1194</locationX>
+        <locationY>1607</locationY>
+        <inputReference>BulkAppsToUpdate</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_the_application_record_to_save</name>
+        <label>Update the application record to save</label>
+        <locationX>50</locationX>
+        <locationY>1175</locationY>
+        <inputReference>Query_the_Application</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>1758</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Check_if_Invoice_is_Paid</targetReference>
+        </connector>
+        <object>ia_crm__Sales_Invoice__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Draft</status>
+    <variables>
+        <name>BulkAppsToUpdate</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Application__c</objectType>
+    </variables>
+</Flow>

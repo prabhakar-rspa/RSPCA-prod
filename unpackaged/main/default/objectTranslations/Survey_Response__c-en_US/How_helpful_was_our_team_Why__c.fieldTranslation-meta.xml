@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- How helpful was our team? - Why? --></help>
+        <label><!-- How helpful was our team? - Why? --></label>
+        <name>How_helpful_was_our_team_Why__c</name>
+    </CustomFieldTranslation>

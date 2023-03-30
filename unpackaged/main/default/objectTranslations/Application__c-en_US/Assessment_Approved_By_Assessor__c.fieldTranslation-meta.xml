@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Technical review - are you satisfied you have completed and submitted all applicable documentation (see documentation below)? --></help>
+        <label><!-- Assessment Approved By (Assessor) --></label>
+        <name>Assessment_Approved_By_Assessor__c</name>
+        <relationshipLabel><!-- Applications (Assessment Approved By (Assessor)) --></relationshipLabel>
+    </CustomFieldTranslation>

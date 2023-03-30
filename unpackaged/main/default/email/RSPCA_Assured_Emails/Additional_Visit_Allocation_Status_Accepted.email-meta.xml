@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Sent to the allocated assessor notifying them of an additional visit</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Additional Visit Allocation Status Accepted</name>
+    <style>none</style>
+    <subject>You have a new additional visit</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

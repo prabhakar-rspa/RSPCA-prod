@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- How happy are you with RSPCAAssured overall? 1 = VERY UNHAPPY. 5 = VERY HAPPY. --></help>
+        <label><!-- Overall Happiness With RSPCA Assured --></label>
+        <name>Overall_Happiness_With_RSPCA_Assured__c</name>
+    </CustomFieldTranslation>

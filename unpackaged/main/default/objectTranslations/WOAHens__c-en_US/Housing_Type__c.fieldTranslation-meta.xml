@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Housing Type --></label>
+        <name>Housing_Type__c</name>
+        <picklistValues>
+            <masterLabel>flat-deck</masterLabel>
+            <translation><!-- flat-deck --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>multi-tier</masterLabel>
+            <translation><!-- multi-tier --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

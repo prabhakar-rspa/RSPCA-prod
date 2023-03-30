@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Average mortality prev 2 batch no euth --></label>
+        <name>Average_mortality_prev_2_batch_no_euth__c</name>
+    </CustomFieldTranslation>

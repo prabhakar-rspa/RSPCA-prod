@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SRM_PP_ClosedReason__c</fullName>
+    <description>Reason the record status has been closed</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Reason the record status has been closed</inlineHelpText>
+    <label>Closed Reason</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Established supplier</fullName>
+                <default>false</default>
+                <label>Established Supplier</label>
+            </value>
+            <value>
+                <fullName>Volume Availability</fullName>
+                <default>false</default>
+                <label>Volume Availability</label>
+            </value>
+            <value>
+                <fullName>Species Availability</fullName>
+                <default>false</default>
+                <label>Species Availability</label>
+            </value>
+            <value>
+                <fullName>Cost</fullName>
+                <default>false</default>
+                <label>Cost</label>
+            </value>
+            <value>
+                <fullName>Conflicting Priorities</fullName>
+                <default>false</default>
+                <label>Conflicting Priorities</label>
+            </value>
+            <value>
+                <fullName>Other certification</fullName>
+                <default>false</default>
+                <label>Other Certification</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Connection broken</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Connection broken</label>
+            </value>
+            <value>
+                <fullName>Contact deceased</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Contact deceased</label>
+            </value>
+            <value>
+                <fullName>No further financial support</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>No further financial support</label>
+            </value>
+            <value>
+                <fullName>Organisation dissolved</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Organisation dissolved</label>
+            </value>
+            <value>
+                <fullName>Prospect disqualified</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Prospect disqualified</label>
+            </value>
+            <value>
+                <fullName>Prospect disqualified - pass to other team</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Prospect disqualified - pass to other team</label>
+            </value>
+            <value>
+                <fullName>RSPCA approach unsuccessful</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>RSPCA approach unsuccessful</label>
+            </value>
+            <value>
+                <fullName>Request do not contact</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Request do not contact</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

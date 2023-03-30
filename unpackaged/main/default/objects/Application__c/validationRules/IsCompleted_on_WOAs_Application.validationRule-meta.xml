@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IsCompleted_on_WOAs_Application</fullName>
+    <active>true</active>
+    <description>IsCompleted on WOAs must be checked for all WOAs before moving to &#39;Compliance&#39; and &#39;Certification&#39; stage.</description>
+    <errorConditionFormula>AND( RecordType.DeveloperName=&#39;Applications&#39;, 
+ OR( 
+     TEXT(Stage__c)=&#39;Compliance&#39;, 
+     TEXT(Stage__c)=&#39;Certification&#39;
+   ),
+     IsCompleted_on_WOAs__c &gt;0 
+   )</errorConditionFormula>
+    <errorMessage>All WOAs must be completed before moving to Compliance stage.</errorMessage>
+</ValidationRule>

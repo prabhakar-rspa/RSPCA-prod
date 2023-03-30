@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Site_Number_Validation</fullName>
+    <active>true</active>
+    <description>Input must be an integer value.</description>
+    <errorConditionFormula>IF(NOT(ISBLANK( Site_Number__c )),NOT(ISNUMBER( Site_Number__c )), false)</errorConditionFormula>
+    <errorDisplayField>Site_Number__c</errorDisplayField>
+    <errorMessage>Site Number field can only contain numbers.</errorMessage>
+</ValidationRule>

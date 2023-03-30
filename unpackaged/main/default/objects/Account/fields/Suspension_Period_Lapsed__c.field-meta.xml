@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Suspension_Period_Lapsed__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Ticking this box wipes all suspension information from this Site&#39;s record. Please only tick if you are certain the suspension period is over.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Ticking this box wipes all suspension information from this Site&#39;s record. Please only tick if you are certain the suspension period is over.</inlineHelpText>
+    <label>Suspension Period Lapsed</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Reason for further care --></label>
+        <name>Reason_for_further_care__c</name>
+        <picklistValues>
+            <masterLabel>Lameness</masterLabel>
+            <translation><!-- Lameness --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other (specify)</masterLabel>
+            <translation><!-- Other (specify) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rectal prolapse</masterLabel>
+            <translation><!-- Rectal prolapse --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Severe tail biting</masterLabel>
+            <translation><!-- Severe tail biting --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Traumatic injury</masterLabel>
+            <translation><!-- Traumatic injury --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Umbilical hernia</masterLabel>
+            <translation><!-- Umbilical hernia --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

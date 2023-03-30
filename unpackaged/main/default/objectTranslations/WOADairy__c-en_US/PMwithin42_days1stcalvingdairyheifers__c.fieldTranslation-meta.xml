@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- PMwithin42 days-1stcalving(dairyheifers) --></label>
+        <name>PMwithin42_days1stcalvingdairyheifers__c</name>
+    </CustomFieldTranslation>

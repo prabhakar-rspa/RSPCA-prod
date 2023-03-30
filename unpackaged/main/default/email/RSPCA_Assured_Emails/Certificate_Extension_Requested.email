@@ -1,0 +1,4 @@
+Hello {!User.Name} ,
+
+A Certificate Extension has been requested for the {!Account.Name} Account.
+{!Account.Link}

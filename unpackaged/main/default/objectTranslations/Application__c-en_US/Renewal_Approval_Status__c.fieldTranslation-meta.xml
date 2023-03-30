@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- This picklist is automatically updated based on the status of approval. --></help>
+        <label><!-- Current Approval Stage --></label>
+        <name>Renewal_Approval_Status__c</name>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending Assessor Approval</masterLabel>
+            <translation><!-- Pending Assessor Approval --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending Certifier Approval</masterLabel>
+            <translation><!-- Pending Certifier Approval --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending Office Approval</masterLabel>
+            <translation><!-- Pending Office Approval --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

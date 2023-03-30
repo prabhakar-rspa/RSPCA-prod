@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Agreement_Mandatory</fullName>
+    <active>true</active>
+    <description>Agreement Mandatory</description>
+    <errorConditionFormula>AND(
+					No_Offences__c = true,  
+					Agreement__c = false
+	)</errorConditionFormula>
+    <errorDisplayField>Agreement__c</errorDisplayField>
+    <errorMessage>You must agree to the terms of the membership agreement.</errorMessage>
+</ValidationRule>

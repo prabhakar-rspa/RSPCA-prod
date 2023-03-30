@@ -1,0 +1,5 @@
+<messaging:emailTemplate subject="Extension Granted" recipientType="Contact" relatedToType="Application__c">
+<messaging:htmlEmailBody >
+<c:ExtensionGranted appId="{!relatedTo.Id}" />
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

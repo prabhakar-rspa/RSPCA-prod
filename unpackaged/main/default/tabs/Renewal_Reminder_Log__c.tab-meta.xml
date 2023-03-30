@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customObject>true</customObject>
+    <description>Recorded logs of renewal reminder email notifications. This records whether the renewal reminders were completed or failed.</description>
+    <motif>Custom67: Gears</motif>
+</CustomTab>

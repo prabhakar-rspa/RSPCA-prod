@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Species Type --></label>
+        <name>Species_Type__c</name>
+        <picklistValues>
+            <masterLabel>Dairy Cattle</masterLabel>
+            <translation><!-- Dairy Cattle --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Laying Hen</masterLabel>
+            <translation><!-- Laying Hen --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pigs</masterLabel>
+            <translation><!-- Pigs --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

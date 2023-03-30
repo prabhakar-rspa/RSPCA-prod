@@ -1,0 +1,36 @@
+<apex:component controller="RenewalPriceChecker" access="global">
+  <apex:attribute name="accountId" type="id" description="Id of the account" assignTo="{!accId}" access="global"/>
+
+  <div style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; margin-left:25px;">
+      <span><Strong>GROUP NAME: </Strong>{!groupName}</span>
+  </div>
+  <br/>
+  <br/>
+  <table cellspacing="0" cellpadding="1" border="2" bordercolor="#ffffff" width="100%" valign="top" style="border: 2px solid white;">
+    
+    <!-- Line Item Columns -->
+    <tr>
+        <td width="20%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 12px; color: #000000; border: 2px solid white;"><strong><span style="margin: 5px;">Member</span></strong></td>
+        <td width="14%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 12px; color: #000000; border: 2px solid white;"><strong><span style="margin: 5px;">Membership Expiry</span></strong></td>
+        <td width="15%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 12px; color: #000000; border: 2px solid white;"><strong><span style="margin: 5px;">Reg No:</span></strong></td>
+        <td width="36%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 12px; color: #000000; border: 2px solid white;"><strong><span style="margin: 5px;">Unit Name</span></strong></td>
+        <td width="15%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 12px; color: #000000; border: 2px solid white;"><strong><span style="margin: 5px;">Amount Due</span></strong></td>
+    </tr>
+    <!-- Line item Rows -->
+    <apex:repeat value="{!RenewalPriceLineForHeadOffice}" var="li"> 
+        <tr>                
+            <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 12px; color: #000000; border: 2px solid white;"><span style="margin: 5px;">{!li.member}</span></td>
+            <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 12px; color: #000000; border: 2px solid white;"><span style="margin: 5px;">{!li.expiryDate}</span></td>
+            <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 12px; color: #000000; border: 2px solid white;"><span style="margin: 5px;">{!li.membershipNumber}</span></td>
+            <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 12px; color: #000000; border: 2px solid white;"><span style="margin: 5px;">{!li.unitName}</span></td>
+            <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 12px; color: #000000; border: 2px solid white;"><span style="margin: 5px;">£ {!ROUND(li.amountDue,2)}</span></td>
+        </tr>
+    </apex:repeat>
+    
+    <!-- Table footer (Total Section) -->
+  <tr>
+      <td colspan="4" valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 12px; color: #000000; text-align: right; font-weight: bold; border: 2px solid white;"><span style="margin: 5px;">Total</span></td>
+    <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 12px; color: #000000; border: 2px solid white;"><strong><span style="margin: 5px;">£ {!ROUND(totalAmount,2)}</span></strong></td>
+  </tr>
+</table>
+</apex:component>

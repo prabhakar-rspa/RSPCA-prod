@@ -1,0 +1,182 @@
+<template>
+  <div
+    id="containerDiv"
+    class="slds-border_right slds-border_left tableScroll"
+    style="overflow: initial"
+  >
+    <div id="tableViewInnerDiv" class="slds-table_edit_container">
+      <table
+        class="slds-table slds-table_bordered slds-table_edit slds-table--col-bordered"
+        style="width: 100%"
+      >
+        <thead>
+          <tr class="slds-text-title_caps">
+            <th class="slds-is-resizable dv-dynamic-width" scope="col">
+              <div class="">
+                <a class="slds-th__action slds-text-link--reset">
+                  <span class="slds-truncate"
+                    >Housing Type
+                    <abbr class="slds-required" title="required">* </abbr></span
+                  >
+                </a>
+              </div>
+            </th>
+            <th class="slds-is-resizable dv-dynamic-width" scope="col">
+              <div class="">
+                <a class="slds-th__action slds-text-link--reset">
+                  <span class="slds-truncate">Base
+                    <template if:true={showReqSign}>
+                    <abbr class="slds-required" title="required">* </abbr>
+                  </template>
+                  
+                  </span>
+                </a>
+              </div>
+            </th>
+            <th class="slds-is-resizable dv-dynamic-width" scope="col">
+              <div class="">
+                <a class="slds-th__action slds-text-link--reset">
+                  <span class="slds-truncate"
+                    >Bedding
+                    <abbr class="slds-required" title="required">* </abbr></span
+                  >
+                </a>
+              </div>
+            </th>
+            <th
+              class="slds-is-resizable dv-dynamic-width"
+              scope="col"
+              style="width: 10rem"
+            >
+              <div class=""></div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <template for:each={_records} for:item="record" for:index="index">
+            <tr key={record.index} data-index={index} style="width: 10rem">
+              <td class="slds-cell-wrap" style="overflow: initial">
+                <lightning-combobox
+                  class="validate"
+                  name="Housing_Type__c"
+                  data-fieldname="Housing_Type__c"
+                  label="Housing Type"
+                  data-index={index}
+                  variant="label-hidden"
+                  value={record.Housing_Type__c}
+                  placeholder="Select Housing Type"
+                  options={housingTypePicklistValues}
+                  onchange={handleChange}
+                  required="true"
+                  disabled={disableAll}
+                ></lightning-combobox>
+              </td>
+              <td class="slds-cell-wrap" style="overflow: initial">
+                <template if:false={record.disableBaseOptions}>
+                <div style="display: inline-block">
+                  <div>
+                    <lightning-radio-group
+                      class="validate"
+                      name={record.baseFieldName}
+                      label="Base"
+                      data-fieldname="Base__c"
+                      data-index={index}
+                      variant="label-hidden"
+                      options={basePicklistValues}
+                      value={record.Base__c}
+                      type="button"
+                      onchange={handleChange}
+                      required="true"
+                      disabled={disableAll}
+                      
+                    >
+                    </lightning-radio-group>
+                  </div>
+                  <div
+                    if:true={record.showBaseNotes}
+                    class="slds-p-top_xx-small"
+                  >
+                    <lightning-input
+                      class="validate"
+                      name="Base_Other_Text__c"
+                      value={record.Base_Other_Text__c}
+                      data-fieldname="Base_Other_Text__c"
+                      data-index={index}
+                      variant="label-hidden"
+                      onchange={handleChange}
+                      placeholder="other base - please specify"
+                      required="true"
+                      disabled={disableAll}
+                      
+                    ></lightning-input>
+                  </div>
+                </div>
+                </template>
+              </td>
+              <td class="slds-cell-wrap" style="overflow: initial">
+                <div style="display: inline-block">
+                  <div>
+                    <lightning-radio-group
+                      class="validate"
+                      name={record.beddingFieldName}
+                      label="Bedding"
+                      data-index={index}
+                      data-fieldname="Bedding__c"
+                      variant="label-hidden"
+                      options={beddingPicklistValues}
+                      value={record.Bedding__c}
+                      type="button"
+                      onchange={handleChange}
+                      required="true"
+                      disabled={disableAll}
+                    >
+                    </lightning-radio-group>
+                  </div>
+                  <div
+                    if:true={record.showBeddingNotes}
+                    class="slds-p-top_xx-small"
+                  >
+                    <lightning-input
+                      class="validate"
+                      name="Bedding_Other_Text__c"
+                      value={record.Bedding_Other_Text__c}
+                      data-index={index}
+                      data-fieldname="Bedding_Other_Text__c"
+                      variant="label-hidden"
+                      onchange={handleChange}
+                      placeholder="other bedding - please specify"
+                      required="true"
+                      disabled={disableAll}
+                    ></lightning-input>
+                  </div>
+                </div>
+              </td>
+              <td class="slds-cell-edit slds-no-print" style="width: 5%">
+                <div class="slds-truncate slds-cell-edit" if:false={disableAll}>
+                  <lightning-icon
+                    icon-name="action:delete"
+                    size="x-small"
+                    data-index={index}
+                    data-id={record.Id}
+                    alternative-text="Delete"
+                    title="Delete"
+                    onclick={removeRow}
+                  ></lightning-icon>
+                </div>
+              </td>
+            </tr>
+          </template>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="slds-p-top_small" if:false={disableAll}>
+    <lightning-button label={addButtonLabel} onclick={addRow}></lightning-button>
+  </div>
+  <div if:true={isLoading}>
+    <lightning-spinner
+      alternative-text="Loading"
+      size="medium"
+    ></lightning-spinner>
+  </div>
+</template>

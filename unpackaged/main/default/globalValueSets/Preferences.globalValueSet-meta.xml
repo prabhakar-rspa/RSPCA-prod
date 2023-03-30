@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Email</fullName>
+        <default>false</default>
+        <label>Email</label>
+    </customValue>
+    <customValue>
+        <fullName>Post</fullName>
+        <default>false</default>
+        <label>Post</label>
+    </customValue>
+    <customValue>
+        <fullName>Telephone</fullName>
+        <default>false</default>
+        <label>Telephone</label>
+    </customValue>
+    <customValue>
+        <fullName>Text/SMS Message</fullName>
+        <default>false</default>
+        <label>Text/SMS Message</label>
+    </customValue>
+    <masterLabel>Preferences</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

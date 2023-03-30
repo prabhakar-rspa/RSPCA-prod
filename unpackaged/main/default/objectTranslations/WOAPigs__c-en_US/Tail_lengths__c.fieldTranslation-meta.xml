@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Tail lengths --></label>
+        <name>Tail_lengths__c</name>
+        <picklistValues>
+            <masterLabel>All undocked</masterLabel>
+            <translation><!-- All undocked --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Docked (long)</masterLabel>
+            <translation><!-- Docked (long) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Docked (short)</masterLabel>
+            <translation><!-- Docked (short) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mixed (short docked/long docked)</masterLabel>
+            <translation><!-- Mixed (short docked/long docked) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mixed (undocked/docked)</masterLabel>
+            <translation><!-- Mixed (undocked/docked) --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

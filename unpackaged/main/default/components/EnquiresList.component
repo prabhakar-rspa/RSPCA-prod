@@ -1,0 +1,21 @@
+<apex:component controller="NotificationsComponentController" access="global">
+    <table cellspacing="0" cellpadding="1" border="2" bordercolor="#ffffff" width="100%" valign="top" style="border: 2px solid white;">
+        <!-- Enquires Columns -->
+        <tr>
+            <td width="25%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px;"><strong><span style="margin: 5px;">Contact</span></strong></td>
+            <td width="25%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px;"><strong><span style="margin: 5px;">Company</span></strong></td>
+            <td width="30%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px;"><strong><span style="margin: 5px;">Industry</span></strong></td>
+            <td width="20%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px;"><strong><span style="margin: 5px;">Created Date</span></strong></td>
+        </tr>
+        <!-- Enquiries Rows -->
+        <apex:repeat value="{!Enquires}" var="e"> 
+            <tr>                
+                <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px;"><span style="margin: 5px;"><a href="{!sfdcBaseURL}/{!e.Id}">{!e.Name}</a></span></td>
+                <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px;"><span style="margin: 5px;">{!e.Company}</span></td>
+                <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px;"><span style="margin: 5px;">{!e.Company_Industry__c}</span></td>
+                <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white; padding: 2px;"><span style="margin: 5px;">{!LPAD(TEXT(DAY(DATEVALUE(e.CreatedDate))),2,'0')}/{!LPAD(TEXT(MONTH(DATEVALUE(e.CreatedDate))),2,'0')}/{!TEXT(YEAR(DATEVALUE(e.CreatedDate)))}</span></td>
+            </tr>
+            
+        </apex:repeat>
+    </table>
+</apex:component>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Animals_at_Assessment_Application</fullName>
+    <active>true</active>
+    <description>Animals at assessment must be populated for all units before moving to &#39;Compliance&#39; stage.</description>
+    <errorConditionFormula>AND( RecordType.DeveloperName = &#39;Applications&#39;,
+				 OR(
+									TEXT(Stage__c ) = &#39;Compliance&#39;,
+									TEXT(Stage__c ) = &#39;Certification&#39;
+					),
+				 Animals_at_Assessment_not_populated__c  &gt; 0
+			)</errorConditionFormula>
+    <errorMessage>Animals at assessment must be populated for all units before moving to &#39;Compliance&#39; stage.</errorMessage>
+</ValidationRule>

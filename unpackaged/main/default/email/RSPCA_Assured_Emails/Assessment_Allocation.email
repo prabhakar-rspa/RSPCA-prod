@@ -1,0 +1,13 @@
+Hi {!Application__c.Assessor__c},
+
+You have been allocated the following assessment:
+
+{!Application__c.Site_Name__c}
+{!Application__c.Assessment_Deadline__c}
+{!Application__c.Link}
+
+If you are unable to fulfil this assessment please contact your line manager as soon as possible.
+
+Thank you
+
+Salesforce

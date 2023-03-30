@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The 8 digit RSPCA Assured membership number of the supplier. --></help>
+        <label><!-- Supplier Membership --></label>
+        <name>Supplier_Membership__c</name>
+    </CustomFieldTranslation>

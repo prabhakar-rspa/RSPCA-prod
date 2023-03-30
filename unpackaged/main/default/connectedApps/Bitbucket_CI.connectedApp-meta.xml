@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>shahed.miah@pracedo.com</contactEmail>
+    <label>Bitbucket CI</label>
+    <logoUrl>https://rspcaassured--c.documentforce.com/servlet/servlet.ImageServer?id=0152p000007wNuU&amp;oid=00D1t000000rBVS</logoUrl>
+    <oauthConfig>
+        <callbackUrl>http://localhost:1717/OauthRedirect</callbackUrl>
+        <certificate>MIICljCCAX4CCQCHRfydeZkXMzANBgkqhkiG9w0BAQsFADANMQswCQYDVQQGEwJVSzAeFw0yMzAzMDExMzA1MDlaFw0yNDAyMjkxMzA1MDlaMA0xCzAJBgNVBAYTAlVLMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxf2oU0jyPAVNerYqeJ82+eVPWC9C7robHCF4CPbk0/eIalyVE4T4Tem/qyiC32X8u69X/T0yc+JUoZzzSOBFDtRA6Rn9vrO+Ch64AWGgpE5P6njlqFBBBamaVjffxi3NbdecjaON5uG5yN/5McnxRkJTlKjwcJ4P3OIpO+WHbGY+fYGeG4T6G9yz9dYwooePjoqRvVPCetp0fcKuIIgT/8T0E5ib9tnWXWMDoMY6ab14q9QCbFfv+G3aFytRLCsQBqmIdoZJtoJ1NHboN2thliXMtS4pAWX+xd24TL+jkjTh/DFfL2C+v+KrNiImQp4BUzoIuEX5dDtVsqsYq84IewIDAQABMA0GCSqGSIb3DQEBCwUAA4IBAQBWUENlygJAxHDIsbtsDSNHNuBmcx4mTclE+srYepMVb3EUSkq1aQ81EKs7b6v/ddZdzKuw1Ox1aHzpy8yIfUKVZliAX4DrFY/OkfbGAYVouf0RoesYZtT8ruhvvEAX+dGq9ZuLu5jUZPm8MsAx7EJHc4PsMJ1y1D0Rsuti5q6o3Njz6aLfJAAGsZRXCT1t/osLtXyjCc07EbvXKXgcRe27dFZcZTuhk3DvTf8OGjT/iLm39tsatXHuVh5W/Tf8q9J/xv0HwvwwIu4cTgGQ3GHdMvRxURpmXMGQU1CUx4s+Yp+cwFef+sm3SmKT++hLhKLrUKVw/Pj8L51A7QpTtCqh</certificate>
+        <consumerKey>3MVG9fTLmJ60pJ5J5aFLcP8Kj5ltQjt95Alg4raUB.y_SBnYQLZG0fBElr2Nl4oBPyS3rzdt0j_yEnLpr1Z6x</consumerKey>
+        <isAdminApproved>true</isAdminApproved>
+        <isConsumerSecretOptional>false</isConsumerSecretOptional>
+        <isIntrospectAllTokens>false</isIntrospectAllTokens>
+        <isSecretRequiredForRefreshToken>true</isSecretRequiredForRefreshToken>
+        <scopes>Api</scopes>
+        <scopes>Web</scopes>
+        <scopes>RefreshToken</scopes>
+    </oauthConfig>
+    <oauthPolicy>
+        <ipRelaxation>ENFORCE</ipRelaxation>
+        <refreshTokenPolicy>infinite</refreshTokenPolicy>
+    </oauthPolicy>
+    <permissionSetName>Bitbucket CI</permissionSetName>
+</ConnectedApp>

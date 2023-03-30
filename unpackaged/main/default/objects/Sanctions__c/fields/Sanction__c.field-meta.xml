@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sanction__c</fullName>
+    <externalId>false</externalId>
+    <label>Sanction</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Informal advice</fullName>
+                <default>false</default>
+                <label>Informal advice</label>
+            </value>
+            <value>
+                <fullName>Formal warning</fullName>
+                <default>false</default>
+                <label>Formal warning</label>
+            </value>
+            <value>
+                <fullName>Additional unannounced inspections</fullName>
+                <default>false</default>
+                <label>Additional unannounced inspections</label>
+            </value>
+            <value>
+                <fullName>Conditional renewal</fullName>
+                <default>false</default>
+                <label>Conditional renewal</label>
+            </value>
+            <value>
+                <fullName>Conditional application</fullName>
+                <default>false</default>
+                <label>Conditional application</label>
+            </value>
+            <value>
+                <fullName>Temporary withdrawal</fullName>
+                <default>false</default>
+                <label>Temporary withdrawal</label>
+            </value>
+            <value>
+                <fullName>Permanent withdrawal</fullName>
+                <default>false</default>
+                <label>Permanent withdrawal</label>
+            </value>
+            <value>
+                <fullName>Report to authorities</fullName>
+                <default>false</default>
+                <label>Report to authorities</label>
+            </value>
+            <value>
+                <fullName>Special measures</fullName>
+                <default>false</default>
+                <label>Special measures</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

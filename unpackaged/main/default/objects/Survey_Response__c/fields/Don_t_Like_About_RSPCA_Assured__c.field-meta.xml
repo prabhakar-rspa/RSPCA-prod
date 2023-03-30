@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Don_t_Like_About_RSPCA_Assured__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>What don&#39;t you like about RSPCAAssured?</inlineHelpText>
+    <label>Don&#39;t Like About RSPCA Assured</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>RSPCA welfare standards</fullName>
+                <default>false</default>
+                <label>RSPCA welfare standards</label>
+            </value>
+            <value>
+                <fullName>Cost of membership</fullName>
+                <default>false</default>
+                <label>Cost of membership</label>
+            </value>
+            <value>
+                <fullName>Cost of licence fees</fullName>
+                <default>false</default>
+                <label>Cost of licence fees</label>
+            </value>
+            <value>
+                <fullName>Convenience or flexibility of booking an assessment</fullName>
+                <default>false</default>
+                <label>Convenience or flexibility of booking an assessment</label>
+            </value>
+            <value>
+                <fullName>Promotional support received</fullName>
+                <default>false</default>
+                <label>Promotional support received</label>
+            </value>
+            <value>
+                <fullName>Service provided by the member services team</fullName>
+                <default>false</default>
+                <label>Service provided by the member services team</label>
+            </value>
+            <value>
+                <fullName>Service provided by assessors</fullName>
+                <default>false</default>
+                <label>Service provided by assessors</label>
+            </value>
+            <value>
+                <fullName>Speed and/or ease of service</fullName>
+                <default>false</default>
+                <label>Speed and/or ease of service</label>
+            </value>
+            <value>
+                <fullName>Communications</fullName>
+                <default>false</default>
+                <label>Communications</label>
+            </value>
+            <value>
+                <fullName>Other (please specify)</fullName>
+                <default>false</default>
+                <label>Other (please specify)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

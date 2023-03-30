@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Dry sows or Finishing pigs --></label>
+        <name>Dry_sows_or_Finishing_pigs__c</name>
+        <picklistValues>
+            <masterLabel>Dry sows</masterLabel>
+            <translation><!-- Dry sows --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Finishing pigs</masterLabel>
+            <translation><!-- Finishing pigs --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

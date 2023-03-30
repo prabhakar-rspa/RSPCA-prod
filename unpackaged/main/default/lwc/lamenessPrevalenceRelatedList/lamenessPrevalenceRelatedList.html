@@ -1,0 +1,483 @@
+<template>
+  <div
+    id="containerDiv"
+    class="slds-border_right slds-border_left tableScroll"
+    style="overflow: initial"
+  >
+    <div if:true={isLoading} style="position: relative">
+      <lightning-spinner
+        alternative-text="Loading"
+        size="medium"
+      ></lightning-spinner>
+    </div>
+    <div id="tableViewInnerDiv" class="slds-table_edit_container">
+      <table
+        class="slds-table slds-table_bordered slds-table_edit slds-table--col-bordered"
+        style="width: 100%"
+      >
+        <thead></thead>
+        <tbody>
+          <tr class="slds-text-title_caps">
+            <td
+              class="slds-is-resizable dv-dynamic-width"
+              scope="col"
+              rowspan="2"
+            >
+              <div class="">
+                <a class="slds-th__action slds-text-link--reset">
+                  <span class="slds-truncate"> </span>
+                </a>
+              </div>
+            </td>
+            <td
+              class="slds-is-resizable dv-dynamic-width"
+              scope="col"
+              colspan="2"
+            >
+              <div class="slds-align_absolute-center">
+                <a class="slds-th__action slds-text-link--reset">
+                  <span class="slds-truncate">Scoring #1 </span>
+                </a>
+              </div>
+            </td>
+            <td
+              class="slds-is-resizable dv-dynamic-width"
+              scope="col"
+              colspan="2"
+            >
+              <div class="slds-align_absolute-center">
+                <a class="slds-th__action slds-text-link--reset">
+                  <span class="slds-truncate">Scoring #2 </span>
+                </a>
+              </div>
+            </td>
+            <td
+              class="slds-is-resizable dv-dynamic-width"
+              scope="col"
+              colspan="2"
+            >
+              <div class="slds-align_absolute-center">
+                <a class="slds-th__action slds-text-link--reset">
+                  <span class="slds-truncate">Scoring #3 </span>
+                </a>
+              </div>
+            </td>
+            <td
+              class="slds-is-resizable dv-dynamic-width"
+              scope="col"
+              colspan="2"
+            >
+              <div class="slds-align_absolute-center">
+                <a class="slds-th__action slds-text-link--reset">
+                  <span class="slds-truncate">Scoring #4 </span>
+                </a>
+              </div>
+            </td>
+            <td
+              class="slds-is-resizable dv-dynamic-width"
+              scope="col"
+              rowspan="2"
+            >
+              <div class="slds-align_absolute-center">
+                <a class="slds-th__action slds-text-link--reset">
+                  <span class="slds-truncate"
+                    >Average % <br />across <br />the 4 scorings
+                  </span>
+                </a>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td
+              class="slds-is-resizable dv-dynamic-width slds-border_left"
+              scope="col"
+            >
+              <div class="slds-align_absolute-center">
+                <a class="slds-th__action slds-text-link--reset">
+                  <span class="slds-truncate">No </span>
+                </a>
+              </div>
+            </td>
+            <td class="slds-is-resizable dv-dynamic-width" scope="col">
+              <div class="slds-align_absolute-center">
+                <a class="slds-th__action slds-text-link--reset">
+                  <span class="slds-truncate">% </span>
+                </a>
+              </div>
+            </td>
+            <td class="slds-is-resizable dv-dynamic-width" scope="col">
+              <div class="slds-align_absolute-center">
+                <a class="slds-th__action slds-text-link--reset">
+                  <span class="slds-truncate">No </span>
+                </a>
+              </div>
+            </td>
+            <td class="slds-is-resizable dv-dynamic-width" scope="col">
+              <div class="slds-align_absolute-center">
+                <a class="slds-th__action slds-text-link--reset">
+                  <span class="slds-truncate">% </span>
+                </a>
+              </div>
+            </td>
+            <td class="slds-is-resizable dv-dynamic-width" scope="col">
+              <div class="slds-align_absolute-center">
+                <a class="slds-th__action slds-text-link--reset">
+                  <span class="slds-truncate">No </span>
+                </a>
+              </div>
+            </td>
+            <td class="slds-is-resizable dv-dynamic-width" scope="col">
+              <div class="slds-align_absolute-center">
+                <a class="slds-th__action slds-text-link--reset">
+                  <span class="slds-truncate">% </span>
+                </a>
+              </div>
+            </td>
+            <td class="slds-is-resizable dv-dynamic-width" scope="col">
+              <div class="slds-align_absolute-center">
+                <a class="slds-th__action slds-text-link--reset">
+                  <span class="slds-truncate">No </span>
+                </a>
+              </div>
+            </td>
+            <td class="slds-is-resizable dv-dynamic-width" scope="col">
+              <div class="slds-align_absolute-center">
+                <a class="slds-th__action slds-text-link--reset">
+                  <span class="slds-truncate">% </span>
+                </a>
+              </div>
+            </td>
+          </tr>
+          <tr style="width: 10rem">
+            <td class="slds-cell-wrap">Score 2 cows</td>
+            <td class="slds-cell-wrap">
+              <lightning-input
+                name="No_Of_Score_2_cows__c"
+                value={record1.No_Of_Score_2_cows__c}
+                data-fieldname="No_Of_Score_2_cows__c"
+                type="number"
+                data-index="1"
+                variant="label-hidden"
+                onchange={handleChange}
+                disabled={disableAll}
+              ></lightning-input>
+            </td>
+            <td class="slds-cell-wrap">
+              <lightning-input
+                name="Percentage_Of_Score_2_cows__c"
+                value={record1.Percentage_Of_Score_2_cows__c}
+                data-fieldname="Percentage_Of_Score_2_cows__c"
+                type="number"
+                data-index="1"
+                variant="label-hidden"
+                onchange={handleChange}
+                disabled={disableAll}
+                step="0.01"
+              ></lightning-input>
+            </td>
+            <td class="slds-cell-wrap">
+              <lightning-input
+                name="No_Of_Score_2_cows__c"
+                value={record2.No_Of_Score_2_cows__c}
+                data-fieldname="No_Of_Score_2_cows__c"
+                type="number"
+                data-index="2"
+                variant="label-hidden"
+                onchange={handleChange}
+                disabled={disableAll}
+              ></lightning-input>
+            </td>
+            <td class="slds-cell-wrap">
+              <lightning-input
+                name="Percentage_Of_Score_2_cows__c"
+                value={record2.Percentage_Of_Score_2_cows__c}
+                data-fieldname="Percentage_Of_Score_2_cows__c"
+                type="number"
+                data-index="2"
+                variant="label-hidden"
+                onchange={handleChange}
+                disabled={disableAll}
+                step="0.01"
+              ></lightning-input>
+            </td>
+            <td class="slds-cell-wrap">
+              <lightning-input
+                name="No_Of_Score_2_cows__c"
+                value={record3.No_Of_Score_2_cows__c}
+                data-fieldname="No_Of_Score_2_cows__c"
+                type="number"
+                data-index="3"
+                variant="label-hidden"
+                onchange={handleChange}
+                disabled={disableAll}
+              ></lightning-input>
+            </td>
+            <td class="slds-cell-wrap">
+              <lightning-input
+                name="Percentage_Of_Score_2_cows__c"
+                value={record3.Percentage_Of_Score_2_cows__c}
+                data-fieldname="Percentage_Of_Score_2_cows__c"
+                type="number"
+                data-index="3"
+                variant="label-hidden"
+                onchange={handleChange}
+                disabled={disableAll}
+                step="0.01"
+              ></lightning-input>
+            </td>
+            <td class="slds-cell-wrap">
+              <lightning-input
+                name="No_Of_Score_2_cows__c"
+                value={record4.No_Of_Score_2_cows__c}
+                data-fieldname="No_Of_Score_2_cows__c"
+                type="number"
+                data-index="4"
+                variant="label-hidden"
+                onchange={handleChange}
+                disabled={disableAll}
+              ></lightning-input>
+            </td>
+            <td class="slds-cell-wrap">
+              <lightning-input
+                name="Percentage_Of_Score_2_cows__c"
+                value={record4.Percentage_Of_Score_2_cows__c}
+                data-fieldname="Percentage_Of_Score_2_cows__c"
+                type="number"
+                data-index="4"
+                variant="label-hidden"
+                onchange={handleChange}
+                disabled={disableAll}
+                step="0.01"
+              ></lightning-input>
+            </td>
+            <td class="slds-cell-wrap">
+              <lightning-input
+                name="averageOfScore2Cows"
+                value={averageOfScore2Cows}
+                disabled="true"
+                type="number"
+                variant="label-hidden"
+              ></lightning-input>
+            </td>
+          </tr>
+          <tr data-index={index} style="width: 10rem">
+            <td class="slds-cell-wrap">Score 3 cows</td>
+
+            <td class="slds-cell-wrap">
+              <lightning-input
+                name="No_Of_Score_2_cows__c"
+                value={record1.No_Of_Score_3_cows__c}
+                data-fieldname="No_Of_Score_3_cows__c"
+                type="number"
+                data-index="1"
+                variant="label-hidden"
+                onchange={handleChange}
+                disabled={disableAll}
+              ></lightning-input>
+            </td>
+            <td class="slds-cell-wrap">
+              <lightning-input
+                name="Percentage_Of_Score_3_cows__c"
+                value={record1.Percentage_Of_Score_3_cows__c}
+                data-fieldname="Percentage_Of_Score_3_cows__c"
+                type="number"
+                data-index="1"
+                variant="label-hidden"
+                onchange={handleChange}
+                disabled={disableAll}
+                step="0.01"
+              ></lightning-input>
+            </td>
+            <td class="slds-cell-wrap">
+              <lightning-input
+                name="No_Of_Score_2_cows__c"
+                value={record2.No_Of_Score_3_cows__c}
+                data-fieldname="No_Of_Score_3_cows__c"
+                type="number"
+                data-index="2"
+                variant="label-hidden"
+                onchange={handleChange}
+                disabled={disableAll}
+              ></lightning-input>
+            </td>
+            <td class="slds-cell-wrap">
+              <lightning-input
+                name="Percentage_Of_Score_3_cows__c"
+                value={record2.Percentage_Of_Score_3_cows__c}
+                data-fieldname="Percentage_Of_Score_3_cows__c"
+                type="number"
+                data-index="2"
+                variant="label-hidden"
+                onchange={handleChange}
+                disabled={disableAll}
+                step="0.01"
+              ></lightning-input>
+            </td>
+            <td class="slds-cell-wrap">
+              <lightning-input
+                name="No_Of_Score_3_cows__c"
+                value={record3.No_Of_Score_3_cows__c}
+                data-fieldname="No_Of_Score_3_cows__c"
+                type="number"
+                data-index="3"
+                variant="label-hidden"
+                onchange={handleChange}
+                disabled={disableAll}
+              ></lightning-input>
+            </td>
+            <td class="slds-cell-wrap">
+              <lightning-input
+                name="Percentage_Of_Score_3_cows__c"
+                value={record3.Percentage_Of_Score_3_cows__c}
+                data-fieldname="Percentage_Of_Score_3_cows__c"
+                type="number"
+                data-index="3"
+                variant="label-hidden"
+                onchange={handleChange}
+                disabled={disableAll}
+                step="0.01"
+              ></lightning-input>
+            </td>
+            <td class="slds-cell-wrap">
+              <lightning-input
+                name="No_Of_Score_3_cows__c"
+                value={record4.No_Of_Score_3_cows__c}
+                data-fieldname="No_Of_Score_3_cows__c"
+                type="number"
+                data-index="4"
+                variant="label-hidden"
+                onchange={handleChange}
+                disabled={disableAll}
+              ></lightning-input>
+            </td>
+            <td class="slds-cell-wrap">
+              <lightning-input
+                name="Percentage_Of_Score_3_cows__c"
+                value={record4.Percentage_Of_Score_3_cows__c}
+                data-fieldname="Percentage_Of_Score_3_cows__c"
+                type="number"
+                data-index="4"
+                variant="label-hidden"
+                onchange={handleChange}
+                disabled={disableAll}
+                step="0.01"
+              ></lightning-input>
+            </td>
+            <td class="slds-cell-wrap">
+              <lightning-input
+                name="averageOfScore3Cows"
+                value={averageOfScore3Cows}
+                disabled="true"
+                type="number"
+                variant="label-hidden"
+              ></lightning-input>
+            </td>
+          </tr>
+          <tr data-index={index} style="width: 10rem">
+            <td class="slds-cell-wrap">Total no. cows scored</td>
+            <td colspan="2" class="slds-cell-wrap">
+              <lightning-input
+                name="Total_no_cows_scored__c"
+                value={record1.Total_no_cows_scored__c}
+                data-fieldname="Total_no_cows_scored__c"
+                type="number"
+                data-index="1"
+                variant="label-hidden"
+                onchange={handleChange}
+                disabled={disableAll}
+              ></lightning-input>
+            </td>
+            <td colspan="2" class="slds-cell-wrap">
+              <lightning-input
+                name="Total_no_cows_scored__c"
+                value={record2.Total_no_cows_scored__c}
+                data-fieldname="Total_no_cows_scored__c"
+                type="number"
+                data-index="2"
+                variant="label-hidden"
+                onchange={handleChange}
+                disabled={disableAll}
+              ></lightning-input>
+            </td>
+            <td colspan="2" class="slds-cell-wrap">
+              <lightning-input
+                name="Total_no_cows_scored__c"
+                value={record3.Total_no_cows_scored__c}
+                data-fieldname="Total_no_cows_scored__c"
+                type="number"
+                data-index="3"
+                variant="label-hidden"
+                onchange={handleChange}
+                disabled={disableAll}
+              ></lightning-input>
+            </td>
+            <td colspan="2" class="slds-cell-wrap">
+              <lightning-input
+                name="Total_no_cows_scored__c"
+                value={record4.Total_no_cows_scored__c}
+                data-fieldname="Total_no_cows_scored__c"
+                type="number"
+                data-index="4"
+                variant="label-hidden"
+                onchange={handleChange}
+                disabled={disableAll}
+              ></lightning-input>
+            </td>
+            <td rowspan="2" class="slds-cell-wrap"></td>
+          </tr>
+          <tr data-index={index} style="width: 10rem">
+            <td class="slds-cell-wrap">Date of scoring</td>
+            <td colspan="2" class="slds-cell-wrap">
+              <lightning-input
+                name="Date_of_scoring__c"
+                value={record1.Date_of_scoring__c}
+                data-fieldname="Date_of_scoring__c"
+                type="date"
+                data-index="1"
+                variant="label-hidden"
+                onchange={handleChange}
+                disabled={disableAll}
+              ></lightning-input>
+            </td>
+            <td colspan="2" class="slds-cell-wrap">
+              <lightning-input
+                name="Date_of_scoring__c"
+                value={record2.Date_of_scoring__c}
+                data-fieldname="Date_of_scoring__c"
+                type="date"
+                data-index="2"
+                variant="label-hidden"
+                onchange={handleChange}
+                disabled={disableAll}
+              ></lightning-input>
+            </td>
+            <td colspan="2" class="slds-cell-wrap">
+              <lightning-input
+                name="Date_of_scoring__c"
+                value={record3.Date_of_scoring__c}
+                data-fieldname="Date_of_scoring__c"
+                type="date"
+                data-index="3"
+                variant="label-hidden"
+                onchange={handleChange}
+                disabled={disableAll}
+              ></lightning-input>
+            </td>
+            <td colspan="2" class="slds-cell-wrap">
+              <lightning-input
+                name="Date_of_scoring__c"
+                value={record4.Date_of_scoring__c}
+                data-fieldname="Date_of_scoring__c"
+                type="date"
+                data-index="4"
+                variant="label-hidden"
+                onchange={handleChange}
+                disabled={disableAll}
+              ></lightning-input>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</template>

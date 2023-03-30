@@ -1,0 +1,5 @@
+<messaging:emailTemplate subject="Your Certificates" recipientType="Contact" relatedToType="Account">
+<messaging:htmlEmailBody >
+<c:YourCertificates accId="{!relatedTo.Id}"/>
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

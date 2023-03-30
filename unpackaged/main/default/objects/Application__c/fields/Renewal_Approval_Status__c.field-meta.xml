@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Renewal_Approval_Status__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>This picklist is automatically updated based on the status of approval.</inlineHelpText>
+    <label>Current Approval Stage</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Approved</fullName>
+                <default>false</default>
+                <label>Approved</label>
+            </value>
+            <value>
+                <fullName>Pending Office Approval</fullName>
+                <default>false</default>
+                <label>Pending Office Approval</label>
+            </value>
+            <value>
+                <fullName>Pending Assessor Approval</fullName>
+                <default>false</default>
+                <label>Pending Assessor Approval</label>
+            </value>
+            <value>
+                <fullName>Pending Certifier Approval</fullName>
+                <default>false</default>
+                <label>Pending Certifier Approval</label>
+            </value>
+            <value>
+                <fullName>Assessor Approved</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Assessor Approved</label>
+            </value>
+            <value>
+                <fullName>Office Approved</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Office Approved</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

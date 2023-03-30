@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Description of the non-compliance and required rectification. --></help>
+        <label><!-- Non-compliance --></label>
+        <name>Non_compliance__c</name>
+    </CustomFieldTranslation>

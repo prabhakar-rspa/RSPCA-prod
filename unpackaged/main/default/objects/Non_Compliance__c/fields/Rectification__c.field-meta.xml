@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Rectification__c</fullName>
+    <description>Complete by the member via communities by clicking on the link in the email with their assessment report; they cannot submit their evidence unless the member has entered something in this field.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Please explain what you have done to correct the non-compliance.</inlineHelpText>
+    <label>Rectification</label>
+    <length>32768</length>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>4</visibleLines>
+</CustomField>

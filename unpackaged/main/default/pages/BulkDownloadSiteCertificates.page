@@ -1,0 +1,224 @@
+<apex:page showHeader="false" standardController="Account" extensions="BulkDownloadSiteCertificatesController" lightningStylesheets="true">
+    <apex:slds />
+    <apex:includeLightning />
+    <head>
+        <style>
+            div.content {
+            /* font style */ 
+            text-align: left;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            mso-height-rule: exactly;
+            line-height: 20px;
+            color: #000000;
+            }
+            div.certificate-section {
+            padding: 5px;
+            }
+            
+        </style>
+    </head>
+    
+    <!-- Content -->
+    <div class="content">
+        <div style="{!IF(!showSpinner, 'display:none', 'display:block')}">
+            <div id="spinner" style="position:fixed;" class="slds-spinner_container">
+                <div class="slds-spinner--brand slds-spinner slds-spinner--medium" role="alert">
+                    <span class="slds-assistive-text">Loading</span>
+                    <div class="slds-spinner__dot-a"></div>
+                    <div class="slds-spinner__dot-b"></div>
+                </div>
+            </div> 
+        </div>
+        <div class="certificate-section" style="{!IF(hasSiteCertificates, 'display:block', 'display:none')}">
+            <strong>All Certificates available for sites are displayed below</strong><br/><br/>
+            <p>To download certificates per species, expand the sites and download individual.</p>
+            
+            <br/>
+            <button class="slds-button slds-button_brand" onclick="showAll('{!siteCertificateList}');">Expand All</button>
+            <button class="slds-button slds-button_brand" onclick="hideAll('{!siteCertificateList}');">Collapse All</button>
+                        
+            <table cellspacing="0" cellpadding="1" border="2" bordercolor="#ffffff" width="100%" valign="top" style="border: 2px solid white;">
+                
+                <!-- Line Item Columns -->
+                <tr>
+                    <td align="center" width="5%" valign="top" style="font-family: Arial, sans-serif; font-size: 14px;  
+                                                                      color: #000000; border: 2px solid white;"> 
+                    </td>
+                    <td align="center"  width="20%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px;  color: #000000; border: 2px solid white;text-align:center;"><strong><span style="margin: 5px;">Site Name</span></strong></td>
+                    <td align="center"  width="15%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;text-align:center;"><strong><span style="margin: 5px;">Membership Number</span></strong></td>
+                    <td align="center"  width="15%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;text-align:center;"><strong><span style="margin: 5px;">Species</span></strong></td>
+                    
+                    <td align="center" width="20%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;text-align:center;"><strong><span style="margin: 5px;">Supply Chain Certificate</span></strong></td>
+                    <td align="center" width="20%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;text-align:center;"><strong><span style="margin: 5px;">SCI Certificate</span></strong></td>
+                </tr>
+                <!-- Line item Rows -->
+                <apex:repeat value="{!siteCertificateList}" var="sc"> 
+                    <tr>  
+                        <td align="center" valign="top"  style="text-align:center;font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;">
+                            <span class="slds-icon_container slds-current-color slds-icon-utility-chevronright open" id="open-{!sc.siteRecordId}" 
+                                onclick="show('{!sc.siteRecordId}');">
+                                    <a class="slds-align_absolute-center" style="font-family: Arial, sans-serif; font-size: 13px; border: 2px solid white;" href="" target="_blank">EXPAND</a>
+                                <span class="slds-assistive-text">Account</span>
+                            </span>
+                            <span class="slds-icon_container slds-current-color slds-icon-utility-chevrondown hide" id="hide-{!sc.siteRecordId}" style="display:none;" onclick="show('{!sc.siteRecordId}');">
+                                <a class="slds-align_absolute-center" style="font-family: Arial, sans-serif; font-size: 13px; border: 2px solid white;" href="" target="_blank">COLLAPSE</a>
+                                <span class="slds-assistive-text">Account</span>
+                            </span>
+                        </td>             
+                        <td valign="top" align="center" bgcolor="#F3F3F3"  style="text-align:center;font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><span style="margin: 5px;">{!sc.siteName}</span></td>
+                        <td valign="top" align="center" bgcolor="#F3F3F3"  style="text-align:center;font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><span style="margin: 5px;">{!sc.membershipNumber}</span></td>
+                        <td valign="top" align="center" bgcolor="#F3F3F3"  style="text-align:center;font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><span style="margin: 5px;"></span></td>
+                        
+                        <td align="center" valign="top" bgcolor="#F3F3F3"  style="text-align:center;font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;">
+                            <span style="margin: 5px;">
+                                <a style="{!IF(sc.hasSupplyChainCertificate, 'display:block','display:none')}" 
+                                   href="" 
+                                   onclick="downloadAllSupplyChain('{!sc.siteRecordId}');"
+                                   id="supplyChainCertificate" target="_blank" download="{!sc.membershipNumber} {!sc.siteName} Certificate.pdf">Download All</a>
+                                {!IF(sc.hasSupplyChainCertificate, null,'Not Available')}
+                            </span>
+                        </td>
+                        <td align="center" valign="top" bgcolor="#F3F3F3"  style="text-align:center;font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;">
+                            <span style="margin: 5px;">
+                                <a style="{!IF(sc.hasNSFUKASCertificate, 'display:block','display:none')}" 
+                                   href="" 
+                                   onclick="downloadAllSCI('{!sc.siteRecordId}');"
+                                   id="supplyChainCertificate" target="_blank" download="{!sc.membershipNumber} {!sc.siteName} Certificate.pdf">Download All</a>
+                                {!IF(sc.hasNSFUKASCertificate, null,'Not Available')}
+                            </span>
+                        </td>
+                    </tr>
+                    <apex:outputPanel rendered="{!!sc.hasUnitCertificates}">
+                        <tr class="child-{!sc.siteRecordId} childrow" style="display:none">     
+                            <td></td>                     
+                            <td colspan="5" bgcolor="#F3F3F3" align="center" style="text-align:center;">No data available</td>
+                    	</tr>
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel rendered="{!sc.hasUnitCertificates}">
+                        <apex:repeat value="{!sc.unitCertificates}" var="unit"> 
+                            <tr class="child-{!sc.siteRecordId} childrow" style="display:none">
+                                <td ></td><td  ></td><td  ></td>
+                                <td align="center" valign="top" bgcolor="#F3F3F3"  style="text-align:center;font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><span style="margin: 5px;">{!unit.species}</span></td>
+                                <td align="center" valign="top" bgcolor="#F3F3F3"  style="text-align:center;font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;">
+                                    <span style="margin: 5px;">
+                                        <apex:outputPanel rendered="{!!unit.hasSupplyChainCertificate}">
+                                            Not Available
+                                        </apex:outputPanel>
+                                         <apex:outputPanel rendered="{!unit.hasSupplyChainCertificate}">
+                                             <a class="supply-chain-certificate-{!sc.siteRecordId}"  
+                                           style="{!IF(unit.hasSupplyChainCertificate, 'display:block','display:none')}" 
+                                           href="{!unit.supplyChainCertificateURL}" id="supplyChainCertificate" 
+                                           target="_blank" download="{!sc.membershipNumber} {!sc.siteName} {!unit.species} Certificate.pdf">
+                                            Download Individual
+                                        </a>
+                                        </apex:outputPanel>
+                                    </span>
+                                </td>
+                                <td align="center" valign="top" bgcolor="#F3F3F3"  style="text-align:center;font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;">
+                                    <span style="margin: 5px;">
+                                        <apex:outputPanel rendered="{!!unit.hasNSFUKASCertificate}">
+                                            Not Available
+                                        </apex:outputPanel>
+                                         <apex:outputPanel rendered="{!unit.hasNSFUKASCertificate}">
+                                            <a class="sci-certificate-{!sc.siteRecordId}" style="{!IF(unit.hasNSFUKASCertificate, 'display:block','display:none')}" href="{!unit.nsfUkasCertificateUrl}" id="supplyChainCertificate" target="_blank" download="{!sc.membershipNumber} {!sc.siteName} {!unit.species} Certificate.pdf">
+                                                Download Individual
+                                            </a>
+                                        </apex:outputPanel>
+                                    </span>
+                                </td>
+                            </tr>
+                        </apex:repeat>
+                    </apex:outputPanel>
+                    
+                </apex:repeat>
+            </table>
+        </div>
+        
+        
+        <!-- render this div only if there are no certifications available to download -->
+        <div class="certificate-section" style="{!IF(hasSiteCertificates, 'display:none', 'display:block')}">
+            <strong>No certifications available for download.</strong><br/>
+        </div>
+        
+        
+        
+    </div> 
+    <script>
+    function show(obj) {
+        let elements = document.querySelectorAll('.child-'+obj);
+        if(elements && elements.length>0){
+            elements.forEach(element => {
+                if(element.style.display == 'none'){
+                element.style.display = 'table-row';
+                document.getElementById('hide-'+obj).style.display = 'block';
+                document.getElementById('open-'+obj).style.display = 'none';
+            }else{
+				element.style.display = 'none'; 
+                document.getElementById('hide-'+obj).style.display = 'none';
+            	document.getElementById('open-'+obj).style.display = 'block';
+        }
+    });
+    }
+    
+    }
+    function showAll() {
+        console.log('===showAll====');
+        let elements = document.querySelectorAll('.childrow');
+        if(elements && elements.length>0){
+            console.log('===elements.length====', elements.length);
+            elements.forEach(element => { 
+                element.style.display = 'table-row'; 
+    		});
+    	}
+
+        let hideChildExpand = document.querySelectorAll('.hide');
+        hideChildExpand.forEach(element => { 
+                element.style.display = 'block';
+    	});
+
+        let showChildExpand = document.querySelectorAll('.open');
+        showChildExpand.forEach(element => { 
+                element.style.display = 'none';
+    	});
+    }
+	
+	function hideAll() {
+                console.log('===hideAll====');
+        let elements = document.querySelectorAll('.childrow');
+        if(elements && elements.length>0){
+            console.log('===elements.length====', elements.length);
+            elements.forEach(element => { 
+                element.style.display = 'none';
+    		});
+    	}
+
+        let hideChildExpand = document.querySelectorAll('.hide');
+        hideChildExpand.forEach(element => { 
+                element.style.display = 'none';
+    	});
+
+        let showChildExpand = document.querySelectorAll('.open');
+        showChildExpand.forEach(element => { 
+                element.style.display = 'block';
+    	});
+    }
+                
+    function downloadAllSCI(recordId){
+        downloadAll('sci-certificate-'+ recordId);
+        
+    }
+    function downloadAllSupplyChain(recordId){
+        downloadAll('supply-chain-certificate-'+ recordId);
+    }
+    function downloadAll(linkId){
+        let Links = document.querySelectorAll('.'+linkId);
+        if(Links){
+            Links.forEach(link=>{
+                link.click();
+            });
+        }
+	}
+    </script>
+</apex:page>

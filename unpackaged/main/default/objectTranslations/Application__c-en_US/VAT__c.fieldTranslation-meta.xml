@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- If Head Office billing country is the United Kingdom, then the VAT is 20%. Otherwise, VAT is 0%. --></help>
+        <label><!-- VAT --></label>
+        <name>VAT__c</name>
+    </CustomFieldTranslation>

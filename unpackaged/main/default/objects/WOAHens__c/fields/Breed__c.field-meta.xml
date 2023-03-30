@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Breed__c</fullName>
+    <externalId>false</externalId>
+    <label>Breed</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Amberlink / Silverlink</fullName>
+                <default>false</default>
+                <label>Amberlink / Silverlink</label>
+            </value>
+            <value>
+                <fullName>Bovans Brown (previously Goldline)</fullName>
+                <default>false</default>
+                <label>Bovans Brown (previously Goldline)</label>
+            </value>
+            <value>
+                <fullName>British Blacktail</fullName>
+                <default>false</default>
+                <label>British Blacktail</label>
+            </value>
+            <value>
+                <fullName>Clarence Court Burford Brown</fullName>
+                <default>false</default>
+                <label>Clarence Court Burford Brown</label>
+            </value>
+            <value>
+                <fullName>Clarence Court Cotswold Legbars</fullName>
+                <default>false</default>
+                <label>Clarence Court Cotswold Legbars</label>
+            </value>
+            <value>
+                <fullName>Dekalb White</fullName>
+                <default>false</default>
+                <label>Dekalb White</label>
+            </value>
+            <value>
+                <fullName>Dual Purpose Breeds</fullName>
+                <default>false</default>
+                <label>Dual Purpose Breeds</label>
+            </value>
+            <value>
+                <fullName>H&amp;N Brown Nick</fullName>
+                <default>false</default>
+                <label>H&amp;N Brown Nick</label>
+            </value>
+            <value>
+                <fullName>Hyline Brown</fullName>
+                <default>false</default>
+                <label>Hyline Brown</label>
+            </value>
+            <value>
+                <fullName>Hyline Brown Plus</fullName>
+                <default>false</default>
+                <label>Hyline Brown Plus</label>
+            </value>
+            <value>
+                <fullName>Hyline Silverbrown</fullName>
+                <default>false</default>
+                <label>Hyline Silverbrown</label>
+            </value>
+            <value>
+                <fullName>Isa Brown</fullName>
+                <default>false</default>
+                <label>Isa Brown</label>
+            </value>
+            <value>
+                <fullName>Lohmann Brown Classic</fullName>
+                <default>false</default>
+                <label>Lohmann Brown Classic</label>
+            </value>
+            <value>
+                <fullName>Lohmann Brown Lite</fullName>
+                <default>false</default>
+                <label>Lohmann Brown Lite</label>
+            </value>
+            <value>
+                <fullName>Lohmann Silver</fullName>
+                <default>false</default>
+                <label>Lohmann Silver</label>
+            </value>
+            <value>
+                <fullName>Lohmann White Breed / LSL / LSL Lite</fullName>
+                <default>false</default>
+                <label>Lohmann White Breed / LSL / LSL Lite</label>
+            </value>
+            <value>
+                <fullName>Novogen Brown</fullName>
+                <default>false</default>
+                <label>Novogen Brown</label>
+            </value>
+            <value>
+                <fullName>Shaver Brown</fullName>
+                <default>false</default>
+                <label>Shaver Brown</label>
+            </value>
+            <value>
+                <fullName>Warren</fullName>
+                <default>false</default>
+                <label>Warren</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>not recorded</fullName>
+                <default>false</default>
+                <label>not recorded</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

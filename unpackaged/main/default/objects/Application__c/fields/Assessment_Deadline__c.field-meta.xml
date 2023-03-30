@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Assessment_Deadline__c</fullName>
+    <description>Auto-populated with date 3 months from the date of application, or 10 months from the date of renewal.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The date by which the assessment must have been completed</inlineHelpText>
+    <label>Assessment Deadline</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

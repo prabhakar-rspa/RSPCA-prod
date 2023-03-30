@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Paid_renewal_applications</fullName>
+    <booleanFilter>1 AND 2 AND 3 AND (4 OR 9) AND ((5 AND 6) OR (7 AND 8))</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Membership_Number__c</columns>
+    <columns>Site__c</columns>
+    <columns>Site_Status__c</columns>
+    <columns>Application_Type__c</columns>
+    <columns>Stage__c</columns>
+    <columns>Renewal_Stage__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Site_Status__c</field>
+        <operation>equals</operation>
+        <value>MEMBER</value>
+    </filters>
+    <filters>
+        <field>Paid__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Cancel_Application__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>Assessment_Report__c</field>
+        <operation>equals</operation>
+    </filters>
+    <filters>
+        <field>Application_Type__c</field>
+        <operation>equals</operation>
+        <value>Transfer,Renewal</value>
+    </filters>
+    <filters>
+        <field>Renewal_Stage__c</field>
+        <operation>notEqual</operation>
+        <value>Assessment</value>
+    </filters>
+    <filters>
+        <field>Application_Type__c</field>
+        <operation>equals</operation>
+        <value>New,Update</value>
+    </filters>
+    <filters>
+        <field>Stage__c</field>
+        <operation>notEqual</operation>
+        <value>Assessment</value>
+    </filters>
+    <filters>
+        <field>Assessment_Checklist__c</field>
+        <operation>equals</operation>
+    </filters>
+    <label>Paid applications to be assessed</label>
+</ListView>

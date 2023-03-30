@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Number of tail bitten --></label>
+        <name>Number_of_tail_bitten__c</name>
+    </CustomFieldTranslation>

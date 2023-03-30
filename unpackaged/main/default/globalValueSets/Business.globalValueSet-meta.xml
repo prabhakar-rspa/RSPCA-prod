@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Abattoir</fullName>
+        <default>false</default>
+        <label>Abattoir</label>
+    </customValue>
+    <customValue>
+        <fullName>Catching</fullName>
+        <default>false</default>
+        <label>Catching</label>
+    </customValue>
+    <customValue>
+        <fullName>Cleaner Fish</fullName>
+        <default>false</default>
+        <label>Cleaner Fish</label>
+    </customValue>
+    <customValue>
+        <fullName>Hatchery</fullName>
+        <default>false</default>
+        <label>Hatchery</label>
+    </customValue>
+    <customValue>
+        <fullName>Haulier</fullName>
+        <default>false</default>
+        <label>Haulier</label>
+    </customValue>
+    <customValue>
+        <fullName>Producer</fullName>
+        <default>false</default>
+        <label>Producer</label>
+    </customValue>
+    <customValue>
+        <fullName>Supply Chain</fullName>
+        <default>false</default>
+        <label>Supply Chain</label>
+    </customValue>
+    <masterLabel>Business</masterLabel>
+    <sorted>true</sorted>
+</GlobalValueSet>

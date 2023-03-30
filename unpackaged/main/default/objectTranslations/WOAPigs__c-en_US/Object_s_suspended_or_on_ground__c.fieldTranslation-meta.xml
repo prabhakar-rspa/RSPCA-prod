@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Object(s) suspended or on ground --></label>
+        <name>Object_s_suspended_or_on_ground__c</name>
+        <picklistValues>
+            <masterLabel>Combination</masterLabel>
+            <translation><!-- Combination --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ground</masterLabel>
+            <translation><!-- Ground --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Suspended</masterLabel>
+            <translation><!-- Suspended --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

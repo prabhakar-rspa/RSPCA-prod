@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VAT_Registration_Number__c</fullName>
+    <description>VAT Registration Number from head office.</description>
+    <externalId>false</externalId>
+    <formula>Head_Office__r.VAT_Registration_Number__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>VAT Registration Number from head office.</inlineHelpText>
+    <label>VAT Registration Number</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

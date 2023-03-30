@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>House_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>House Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Animals__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetName>House_Type</valueSetName>
+        <valueSettings>
+            <controllingFieldValue>Turkeys</controllingFieldValue>
+            <controllingFieldValue>Chickens</controllingFieldValue>
+            <controllingFieldValue>Ducks</controllingFieldValue>
+            <valueName>Mobile</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Turkeys</controllingFieldValue>
+            <controllingFieldValue>Chickens</controllingFieldValue>
+            <controllingFieldValue>Ducks</controllingFieldValue>
+            <valueName>Static</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dairy Cattle</controllingFieldValue>
+            <valueName>Cubicles</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dairy Cattle</controllingFieldValue>
+            <valueName>Loose yard</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dairy Cattle</controllingFieldValue>
+            <valueName>Straw yard</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Salmon</controllingFieldValue>
+            <controllingFieldValue>Trout</controllingFieldValue>
+            <valueName>Incubation</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Salmon</controllingFieldValue>
+            <controllingFieldValue>Trout</controllingFieldValue>
+            <valueName>Incubation and Tank</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Salmon</controllingFieldValue>
+            <controllingFieldValue>Trout</controllingFieldValue>
+            <valueName>Loch</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Salmon</controllingFieldValue>
+            <controllingFieldValue>Trout</controllingFieldValue>
+            <valueName>Tank</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Salmon</controllingFieldValue>
+            <controllingFieldValue>Trout</controllingFieldValue>
+            <valueName>TBC</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

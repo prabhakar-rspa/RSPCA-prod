@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Certification review - are you satisfied the assessor has correctly completed and submitted all applicable documentation (see documentation below)?&apos; --></help>
+        <label><!-- Assessment Approved By (Certifier) --></label>
+        <name>Assessment_Approved_By_Certifier__c</name>
+        <relationshipLabel><!-- Applications (Assessment Approved By (Certifier)) --></relationshipLabel>
+    </CustomFieldTranslation>

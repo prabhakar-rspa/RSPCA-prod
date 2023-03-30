@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- I confirm that I do not have any previous convictions or pending prosecutions relating to any offence involving the care, handling, transport, slaughter or sale of animals or produce. --></help>
+        <label><!-- No Offences --></label>
+        <name>No_Offences__c</name>
+    </CustomFieldTranslation>

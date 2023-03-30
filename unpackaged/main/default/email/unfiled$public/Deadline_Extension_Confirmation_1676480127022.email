@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initialscale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <style type="text/css">@media screen and (max-width: 480px) {slot[style] {margin-right: 0 !important;}.columnDiv {margin-right: 0 !important;}}@media screen and (min-width: 480px) {slot[style] {margin-bottom: 0 !important;}.columnDiv {margin-bottom: 0 !important;}}</style>
+  <style type="text/css">@media screen and (max-width: 480px) {.contentbuilderBaseColumnRow .columnCell {display:inline-block;width:100%}}</style>
+  <style type="text/css">.contentpageDefaultEmailTemplatePageTemplate .contentRoot {width: 600px;}@media only screen and (max-width: 480px) {.contentpageDefaultEmailTemplatePageTemplate .contentRoot {width: 320px;}}</style>
+ </head>
+ <body>
+  <table class="contentpageDefaultEmailTemplatePageTemplate" style="background-color: #E9EAEC;" role="presentation" id="contentpage_emailTemplateBodyContent" width="100%" cellpadding="0" cellspacing="0">
+   <tbody>
+    <tr>
+     <td width="100%" align="center">
+      <table class="contentRoot" style="background-color: #FFFFFF;" role="presentation" width="600" cellpadding="0" cellspacing="0">
+       <tbody>
+        <tr>
+         <td style="padding-top: 10px; padding-bottom: 10px; padding-left: 10px; padding-right: 10px;">
+          <table class="contentbuilderBaseColumnRow" style="background-color:;" role="presentation" width="100%" cellpadding="0" cellspacing="0">
+           <tbody>
+            <tr valign="top">
+             <td width="100%" class="columnCell" style="vertical-align: top;display: inline-block; float:left">
+              <table cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse; word-break:break-word;">
+               <tbody>
+                <tr>
+                 <td>
+                  <table style="width:100%; border-collapse: collapse; word-break:break-word;" id="contentRegion" role="presentation" cellspacing="0" cellpadding="0" locked="0">
+                   <tbody>
+                    <tr>
+                     <td align="Center"><img style="width: 100%; display: block; border: none; max-width: 100%;" src="{[devName:RSPCA_Assured_Deadline_Ext_header]}" alt="" width="600" /></td>
+                    </tr>
+                   </tbody>
+                  </table></td>
+                </tr>
+               </tbody>
+              </table></td>
+            </tr>
+           </tbody>
+          </table>
+          <table class="contentbuilderBaseColumnRow" style="background-color:;" role="presentation" width="100%" cellpadding="0" cellspacing="0">
+           <tbody>
+            <tr valign="top">
+             <td width="100%" class="columnCell" style="vertical-align: top;display: inline-block; float:left">
+              <table cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse; word-break:break-word;">
+               <tbody>
+                <tr>
+                 <td>
+                  <table style="width: 100%; border-collapse: collapse; word-break: break-word; font-size: 14px" id="contentRegion" role="presentation" cellspacing="0" cellpadding="0" locked="0">
+                   <tbody>
+                    <tr>
+                     <td style="font-family: Arial, Helvetica, sans-serif;"><p style="line-height:1.2"><br /><br /><br /><span style="font-size:10.5pt; font-variant:normal; white-space:pre-wrap"><span style="font-family:Arial"><span style="color:#000000"><span style="font-weight:400"><span style="font-style:normal"><span style="text-decoration:none">Dear {{{Recipient.FirstName}}} {{{Recipient.LastName}}}</span></span></span></span></span></span></p><p style="line-height:1.7999999999999998"><span style="font-size:10.5pt; font-variant:normal; white-space:pre-wrap"><span style="font-family:Arial"><span style="color:#000000"><span style="font-weight:700"><span style="font-style:normal"><span style="text-decoration:none">Farm name:</span></span></span></span><span style="color:#0000ff"><span style="font-weight:700"><span style="font-style:normal"><span style="text-decoration:none">{{{Account.Site}}}</span></span></span></span></span></span></p><p style="line-height:1.7999999999999998"><span style="font-size:10.5pt; font-variant:normal; white-space:pre-wrap"><span style="font-family:Arial"><span style="color:#000000"><span style="font-weight:700"><span style="font-style:normal"><span style="text-decoration:none">Registration: </span></span></span></span></span></span><span style="font-size:10.5pt; font-variant:normal; white-space:pre-wrap"><span style="font-family:Arial"><span style="color:#0000ff"><span style="font-weight:700"><span style="font-style:normal"><span style="text-decoration:none">[Membership Number]</span></span></span></span></span></span></p><p style="line-height:1.2; text-align:justify"><span style="font-size:10.5pt; font-variant:normal; white-space:pre-wrap"><span style="font-family:Arial"><span style="color:#c00000"><span style="font-weight:700"><span style="font-style:normal"><span style="text-decoration:none">Extension to deadline granted – New date: (MST to add date granted)</span></span></span></span></span></span></p><p style="line-height:1.2; text-align:justify"><span style="font-size:10.5pt; font-variant:normal; white-space:pre-wrap"><span style="font-family:Arial"><span style="color:#000000"><span style="font-weight:400"><span style="font-style:normal"><span style="text-decoration:none">Following review of information received, the Scheme Manager has asked us to write to you.</span></span></span></span></span></span></p><p style="line-height:1.2; text-align:justify"><span style="font-size:10.5pt; font-variant:normal; white-space:pre-wrap"><span style="font-family:Arial"><span style="color:#000000"><span style="font-weight:400"><span style="font-style:normal"><span style="text-decoration:none">As you are aware the 28 day requirement to respond to non-compliance is normally final.&nbsp; However, owing to exceptional circumstances the Certification Body has agreed on this occasion to extend the deadline date as above, for submission of corrective action and supporting objective evidence to the following non-compliance:</span></span></span></span></span></span></p>
+                      <div style="list-style-type:disc">
+                       &nbsp;
+                      </div>
+                      <ul>
+                       <li aria-level="1" style="list-style-type:disc"><span style="font-size:10.5pt; font-variant:normal; white-space:pre-wrap"><span style="font-family:Arial"><span style="color:#000000"><span style="font-weight:700"><span style="font-style:normal"><span style="text-decoration:none">Standard Ref: </span></span></span></span></span></span><span style="font-size:10.5pt; font-variant:normal; white-space:pre-wrap"><span style="font-family:Arial"><span style="color:#ff0000"><span style="font-weight:700"><span style="font-style:normal"><span style="text-decoration:none">(MST to add standard ref)</span></span></span></span></span></span></li>
+                      </ul> &nbsp;<br /><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 10.5pt; white-space: pre-wrap; text-align: justify;">Please note that under scheme rules you are required to notify us that work has been completed and provide evidence of this before the new deadline date expires.&nbsp; This is to ensure all paperwork can be processed and approved by the Scheme Manager within the timeframe.&nbsp; We should advise that failure to meet the new deadline will result in a nullified application or withdrawal of certificates.&nbsp;&nbsp;</span><br /><br /><span style="font-size: 10.5pt; font-variant-numeric: normal; font-variant-east-asian: normal; white-space: pre-wrap;"><span style="font-family:Arial"><span style="color:#000000">Please forward all correspondence to us at </span></span></span><span style="font-size: 10.5pt; font-variant-numeric: normal; font-variant-east-asian: normal; white-space: pre-wrap;"><span style="font-family:Arial"><span style="color:#000000"><span style="font-weight:700">help@rspcaassured.org.uk</span></span></span></span>&nbsp; <p style="line-height:1.2; text-align:justify"><span style="font-size:10.5pt; font-variant:normal; white-space:pre-wrap"><span style="font-family:Arial"><span style="color:#000000"><span style="font-weight:400"><span style="font-style:normal"><span style="text-decoration:none">We thank you in advance for your cooperation.</span></span></span></span></span></span></p><p style="line-height:1.38"><span style="font-size:10pt; font-variant:normal; white-space:pre-wrap"><span style="font-family:Arial"><span style="color:#000000"><span style="font-weight:400"><span style="font-style:normal"><span style="text-decoration:none">Kind regards,</span></span></span></span></span></span></p> &nbsp; <p style="line-height:1.38"><span style="font-size:10pt; font-variant:normal; white-space:pre-wrap"><span style="font-family:Arial"><span style="color:#ff0000"><span style="font-weight:400"><span style="font-style:normal"><span style="text-decoration:none">{{{Account.Account_Manager__c}}}</span></span></span></span></span></span></p><p style="line-height:1.38"><span style="font-size:10pt; font-variant:normal; white-space:pre-wrap"><span style="font-family:Arial"><span style="color:#000000"><span style="font-weight:400"><span style="font-style:normal"><span style="text-decoration:none">Membership Services Team</span></span></span></span></span></span><br /><span style="font-size:10pt; font-variant:normal; white-space:pre-wrap"><span style="font-family:Arial"><span style="color:#000000"><span style="font-weight:400"><span style="font-style:normal"><span style="text-decoration:none">RSPCA Assured</span></span></span></span></span></span></p><br /> &nbsp;</td>
+                    </tr>
+                   </tbody>
+                  </table></td>
+                </tr>
+               </tbody>
+              </table></td>
+            </tr>
+           </tbody>
+          </table></td>
+        </tr>
+       </tbody>
+      </table></td>
+    </tr>
+   </tbody>
+  </table>
+ </body>
+</html>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Production__c</fullName>
+    <externalId>false</externalId>
+    <label>Production</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Business__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetName>Production</valueSetName>
+        <valueSettings>
+            <controllingFieldValue>Abattoir</controllingFieldValue>
+            <valueName>Abattoir</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Catching</controllingFieldValue>
+            <valueName>Catching Team</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cleaner Fish</controllingFieldValue>
+            <valueName>Cleaner Fish</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Hatchery</controllingFieldValue>
+            <valueName>Hatchery</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Hatchery</controllingFieldValue>
+            <valueName>Hatchery (On Grower)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Hatchery</controllingFieldValue>
+            <valueName>Hatchery (Ova)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Haulier</controllingFieldValue>
+            <valueName>Haulier</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Supply Chain</controllingFieldValue>
+            <valueName>Brand/Marketing</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Supply Chain</controllingFieldValue>
+            <valueName>Distributor</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Supply Chain</controllingFieldValue>
+            <valueName>Packer</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Supply Chain</controllingFieldValue>
+            <valueName>Processor</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Supply Chain</controllingFieldValue>
+            <valueName>Processor/Packer</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Supply Chain</controllingFieldValue>
+            <valueName>Retailer</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Supply Chain</controllingFieldValue>
+            <valueName>Wholesaler</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Producer</controllingFieldValue>
+            <valueName>Breeding</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Producer</controllingFieldValue>
+            <valueName>Brood</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Producer</controllingFieldValue>
+            <valueName>Calves</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Producer</controllingFieldValue>
+            <valueName>Dry Cows</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Producer</controllingFieldValue>
+            <valueName>Finishing</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Producer</controllingFieldValue>
+            <valueName>Flat deck (one-storey)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Producer</controllingFieldValue>
+            <valueName>Flat deck (two storey)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Producer</controllingFieldValue>
+            <valueName>Flat deck with Veranda</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Producer</controllingFieldValue>
+            <valueName>Freshwater</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Producer</controllingFieldValue>
+            <valueName>Gilts</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Producer</controllingFieldValue>
+            <valueName>Grazing</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Producer</controllingFieldValue>
+            <valueName>Heifers</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Producer</controllingFieldValue>
+            <valueName>Multi-tier (one-storey)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Producer</controllingFieldValue>
+            <valueName>Multi-tier (two-storey)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Producer</controllingFieldValue>
+            <valueName>Multi-tier with Veranda</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Producer</controllingFieldValue>
+            <valueName>Producer</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Producer</controllingFieldValue>
+            <valueName>Rearing</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Producer</controllingFieldValue>
+            <valueName>Seawater</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Producer</controllingFieldValue>
+            <valueName>Suckler</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Producer</controllingFieldValue>
+            <valueName>Breeding to rearing</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Producer</controllingFieldValue>
+            <valueName>Breeding to finishing</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Producer</controllingFieldValue>
+            <valueName>Rearing to finishing</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Producer</controllingFieldValue>
+            <valueName>Aviary Rearing</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

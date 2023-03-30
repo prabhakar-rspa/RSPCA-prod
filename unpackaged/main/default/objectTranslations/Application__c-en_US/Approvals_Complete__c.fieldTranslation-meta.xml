@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Returns &apos;Yes&apos; if all approvals are complete for this application and &apos;No&apos; if they are not all complete. --></help>
+        <label><!-- Approvals Complete --></label>
+        <name>Approvals_Complete__c</name>
+    </CustomFieldTranslation>

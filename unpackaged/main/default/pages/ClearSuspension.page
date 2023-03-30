@@ -1,0 +1,2 @@
+<apex:page standardController="Account" extensions="ClearSuspensionCntrl" action="{!createSuspensionHistory}">
+</apex:page>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type_of_assessment__c</fullName>
+    <externalId>false</externalId>
+    <label>Type of assessment</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>On-site visit - full access to sheds</fullName>
+                <default>false</default>
+                <label>On-site visit - full access to sheds</label>
+            </value>
+            <value>
+                <fullName>On-site visit - sheds not walked</fullName>
+                <default>false</default>
+                <label>On-site visit - sheds not walked</label>
+            </value>
+            <value>
+                <fullName>DTA</fullName>
+                <default>false</default>
+                <label>DTA</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

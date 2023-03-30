@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SRM_PP_NodDiscovery__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+ISBLANK(SRM_PP_EngagementDate__c),
+TODAY() - SRM_PP_DiscoveryDate__c,
+SRM_PP_EngagementDate__c - SRM_PP_DiscoveryDate__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Days in Cultivation / Discovery Stage</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

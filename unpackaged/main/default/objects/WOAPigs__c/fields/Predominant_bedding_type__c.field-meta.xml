@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Predominant_bedding_type__c</fullName>
+    <externalId>false</externalId>
+    <label>Predominant bedding type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Straw</fullName>
+                <default>false</default>
+                <label>Straw</label>
+            </value>
+            <value>
+                <fullName>Wood shavings</fullName>
+                <default>false</default>
+                <label>Wood shavings</label>
+            </value>
+            <value>
+                <fullName>Woodchip</fullName>
+                <default>false</default>
+                <label>Woodchip</label>
+            </value>
+            <value>
+                <fullName>Shredded paper</fullName>
+                <default>false</default>
+                <label>Shredded paper</label>
+            </value>
+            <value>
+                <fullName>Other (specify)</fullName>
+                <default>false</default>
+                <label>Other (specify)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

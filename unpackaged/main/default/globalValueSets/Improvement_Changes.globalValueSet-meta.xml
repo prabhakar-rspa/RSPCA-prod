@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>House enrichment</fullName>
+        <default>false</default>
+        <label>House enrichment</label>
+    </customValue>
+    <customValue>
+        <fullName>Health</fullName>
+        <default>false</default>
+        <label>Health</label>
+    </customValue>
+    <customValue>
+        <fullName>Stock source</fullName>
+        <default>false</default>
+        <label>Stock source</label>
+    </customValue>
+    <customValue>
+        <fullName>Feed and water</fullName>
+        <default>false</default>
+        <label>Feed and water</label>
+    </customValue>
+    <customValue>
+        <fullName>Management</fullName>
+        <default>false</default>
+        <label>Management</label>
+    </customValue>
+    <customValue>
+        <fullName>Outdoor environment</fullName>
+        <default>false</default>
+        <label>Outdoor environment</label>
+    </customValue>
+    <customValue>
+        <fullName>Indoor environment</fullName>
+        <default>false</default>
+        <label>Indoor environment</label>
+    </customValue>
+    <masterLabel>Improvement Changes</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

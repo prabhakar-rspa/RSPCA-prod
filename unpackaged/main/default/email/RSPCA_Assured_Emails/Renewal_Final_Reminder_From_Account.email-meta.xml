@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Final Reminder for Renewals</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Renewal Final Reminder From Account</name>
+    <style>none</style>
+    <subject>Final Renewal Reminder</subject>
+    <textOnly>EmailTemplate-Responsive
+
+Dear {!Account.Primary_Contact_Salutation__c} {!Account.Primary_Contact_Full_Name__c}
+
+Final reminder
+
+Time is running out. Your current membership certificate expires on {!TEXT(DAY(Account.Membership_Expiry_Date__c))} {!CASE(MONTH(Account.Membership_Expiry_Date__c), 1, &quot;January&quot;, 2, &quot;February&quot;, 3, &quot;March&quot;, 4, &quot;April&quot;, 5, &quot;May&quot;, 6, &quot;June&quot;, 7, &quot;July&quot;, 8, &quot;August&quot;, 9, &quot;September&quot;, 10, &quot;October&quot;, 11, &quot;November&quot;, 12, &quot;December&quot;, &quot;None&quot;)} {!TEXT(YEAR(Account.Membership_Expiry_Date__c))}.
+
+To renew your membership, simply click on the following link to confirm your details, agree to the terms and conditions, and pay:
+
+
+Renew
+
+
+Once you’ve renewed and paid, your new certificate will be available on your member portal as soon as your current certificate expires.
+
+If we do not receive payment by {!TEXT(DAY(Account.Membership_Expiry_Date__c))} {!CASE(MONTH(Account.Membership_Expiry_Date__c), 1, &quot;January&quot;, 2, &quot;February&quot;, 3, &quot;March&quot;, 4, &quot;April&quot;, 5, &quot;May&quot;, 6, &quot;June&quot;, 7, &quot;July&quot;, 8, &quot;August&quot;, 9, &quot;September&quot;, 10, &quot;October&quot;, 11, &quot;November&quot;, 12, &quot;December&quot;, &quot;None&quot;)} {!TEXT(YEAR(Account.Membership_Expiry_Date__c))}, your membership will expire and unfortunately you will have to reapply.
+
+Your assessor will contact you during your new membership period to arrange your next assessment.
+
+If you have any questions please refer to our ‘renewing your membership’ fact sheet. Alternatively, you can contact our member services team on 01403 800141 or help@rspcaassured.org.uk.
+
+Yours sincerely
+
+Membership services
+RSPCA Assured
+
+
+
+For your reference:
+
+
+RSPCA welfare standards
+RSPCA Assured renewing your membership fact sheet
+RSPCA Assured membership agreement (including SCI scheme regulations)</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

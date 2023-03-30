@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Visit Type --></label>
+        <name>Visit_Type__c</name>
+        <picklistValues>
+            <masterLabel>RSPCA Assured</masterLabel>
+            <translation><!-- RSPCA Assured --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RSPCA Monitoring</masterLabel>
+            <translation><!-- RSPCA Monitoring --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

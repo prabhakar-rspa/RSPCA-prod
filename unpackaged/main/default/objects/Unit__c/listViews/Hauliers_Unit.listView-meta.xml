@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Hauliers_Unit</fullName>
+    <booleanFilter>1 AND 2</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Business__c</columns>
+    <columns>Production__c</columns>
+    <columns>Animals__c</columns>
+    <columns>Rearing_System__c</columns>
+    <columns>Status__c</columns>
+    <columns>Vehicle_Registration__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Business__c</field>
+        <operation>equals</operation>
+        <value>Haulier</value>
+    </filters>
+    <filters>
+        <field>Vehicle_Registration__c</field>
+        <operation>contains</operation>
+    </filters>
+    <label>Hauliers Unit</label>
+    <sharedTo>
+        <group>Membership_Services</group>
+    </sharedTo>
+</ListView>

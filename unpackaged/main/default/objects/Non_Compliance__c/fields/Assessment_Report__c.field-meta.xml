@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Assessment_Report__c</fullName>
+    <externalId>false</externalId>
+    <label>Assessment Report</label>
+    <referenceTo>Assessment_Report__c</referenceTo>
+    <relationshipLabel>Non-Compliances</relationshipLabel>
+    <relationshipName>Non_Compliances</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Transferred_Account__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Checkbox is ticked from the transfer process if the account is currently historic due transfers.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Checkbox is ticked from the transfer process if the account is currently historic due transfers.</inlineHelpText>
+    <label>Transferred Account</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

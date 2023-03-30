@@ -1,0 +1,5 @@
+<messaging:emailTemplate subject="Invoice" recipientType="Contact" relatedToType="Bulk_Renewal__c">
+<messaging:htmlEmailBody >
+    <c:InvoiceEmail renewalId="{!relatedTo.Id}"/>
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

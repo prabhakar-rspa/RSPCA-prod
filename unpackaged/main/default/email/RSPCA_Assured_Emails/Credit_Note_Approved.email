@@ -1,0 +1,12 @@
+**************NEW CREDIT NOTE APPROVED**************
+
+The following credit note has been approved. Please review the information below and click on the link to navigate to Salesforce to view full details.
+
+Credit Note Number: {!Credit_Note__c.Name}
+Membership Number: {!Credit_Note__c.Membership_Number__c}
+Invoice Number: {!Credit_Note__c.Invoice_Number__c}
+Amount inc VAT: {!Credit_Note__c.Amount_Inc_VAT__c}
+
+Comments: {!ApprovalRequest.Comments}
+
+{!Credit_Note__c.Link}

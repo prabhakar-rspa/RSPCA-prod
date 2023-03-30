@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Provide_Suspension_Reason</fullName>
+    <active>true</active>
+    <description>If Status = SUSPENDED, a reason must be provided.</description>
+    <errorConditionFormula>AND(
+ISPICKVAL(Reason_For_Suspension_Picklist__c, &#39;&#39;), 
+				Request_for_Suspension__c = TRUE)</errorConditionFormula>
+    <errorDisplayField>Reason_For_Suspension_Picklist__c</errorDisplayField>
+    <errorMessage>Please provide a reason for this site&#39;s suspension. If the reason is not a value on this picklist, please use the &#39;Other Reason for Suspension&#39; field.</errorMessage>
+</ValidationRule>

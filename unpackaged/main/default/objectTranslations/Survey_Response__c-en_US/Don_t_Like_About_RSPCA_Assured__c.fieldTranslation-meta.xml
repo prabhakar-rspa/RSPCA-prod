@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- What don&apos;t you like about RSPCAAssured? --></help>
+        <label><!-- Don&apos;t Like About RSPCA Assured --></label>
+        <name>Don_t_Like_About_RSPCA_Assured__c</name>
+        <picklistValues>
+            <masterLabel>Communications</masterLabel>
+            <translation><!-- Communications --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Convenience or flexibility of booking an assessment</masterLabel>
+            <translation><!-- Convenience or flexibility of booking an assessment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cost of licence fees</masterLabel>
+            <translation><!-- Cost of licence fees --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cost of membership</masterLabel>
+            <translation><!-- Cost of membership --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other (please specify)</masterLabel>
+            <translation><!-- Other (please specify) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Promotional support received</masterLabel>
+            <translation><!-- Promotional support received --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RSPCA welfare standards</masterLabel>
+            <translation><!-- RSPCA welfare standards --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Service provided by assessors</masterLabel>
+            <translation><!-- Service provided by assessors --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Service provided by the member services team</masterLabel>
+            <translation><!-- Service provided by the member services team --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Speed and/or ease of service</masterLabel>
+            <translation><!-- Speed and/or ease of service --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

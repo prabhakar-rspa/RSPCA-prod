@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product__c</fullName>
+    <externalId>false</externalId>
+    <label>Product</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Beef</fullName>
+                <default>false</default>
+                <label>Beef</label>
+            </value>
+            <value>
+                <fullName>Chicken</fullName>
+                <default>false</default>
+                <label>Chicken</label>
+            </value>
+            <value>
+                <fullName>Dairy</fullName>
+                <default>false</default>
+                <label>Dairy</label>
+            </value>
+            <value>
+                <fullName>Eggs</fullName>
+                <default>false</default>
+                <label>Eggs</label>
+            </value>
+            <value>
+                <fullName>Lamb</fullName>
+                <default>false</default>
+                <label>Lamb</label>
+            </value>
+            <value>
+                <fullName>Pork</fullName>
+                <default>false</default>
+                <label>Pork</label>
+            </value>
+            <value>
+                <fullName>Salmon</fullName>
+                <default>false</default>
+                <label>Salmon</label>
+            </value>
+            <value>
+                <fullName>Salmon &amp; Trout</fullName>
+                <default>false</default>
+                <label>Salmon &amp; Trout</label>
+            </value>
+            <value>
+                <fullName>Trout</fullName>
+                <default>false</default>
+                <label>Trout</label>
+            </value>
+            <value>
+                <fullName>Turkey</fullName>
+                <default>false</default>
+                <label>Turkey</label>
+            </value>
+            <value>
+                <fullName>Veal</fullName>
+                <default>false</default>
+                <label>Veal</label>
+            </value>
+            <value>
+                <fullName>Value Added</fullName>
+                <default>false</default>
+                <label>Value Added</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>6</visibleLines>
+</CustomField>

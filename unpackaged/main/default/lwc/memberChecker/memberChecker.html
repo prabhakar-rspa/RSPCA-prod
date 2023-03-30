@@ -1,0 +1,28 @@
+<template>
+    <lightning-card>
+        <div class="slds-align_absolute-center">
+            <template if:true={showSearch}>
+                <div class="search">
+                <input type="text" data-id="mem-number" class="searchTerm" placeholder="Please insert the Membeship Number here">
+                <button class="searchButton" onclick={handleSearch}>
+                        <lightning-icon icon-name="utility:search" size="small" variant="inverse" 
+                        class="slds-align_absolute-center">
+                        </lightning-icon>
+                </button>
+                </div>
+            </template>
+
+            <template if:false={showSearch}>   
+                <div class="slds-grid slds-grid_vertical"> 
+                    <div class="slds-col">          
+                        <lightning-input type="text" label="Status" read-only="true" value={status}></lightning-input>
+                    </div>    
+                    <div class="slds-col">
+                        <button type="button"  class="backButton slds-p-top_xx-small slds-p-bottom_xx-small slds-p-left_x-large slds-p-right_x-large" 
+                        onclick={handleBack}>Back to search</button>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

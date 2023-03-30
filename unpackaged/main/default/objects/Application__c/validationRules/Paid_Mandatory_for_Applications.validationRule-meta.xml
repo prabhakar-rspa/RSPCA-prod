@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Paid_Mandatory_for_Applications</fullName>
+    <active>true</active>
+    <description>Application must be paid for in order to move to the next stage.</description>
+    <errorConditionFormula>AND(
+					RecordType.DeveloperName = &#39;Applications&#39;,
+					Paid__c = false,
+					NOT(ISPICKVAL(Stage__c, &#39;Application&#39;))
+					)</errorConditionFormula>
+    <errorDisplayField>Paid__c</errorDisplayField>
+    <errorMessage>Application must be paid in order to progress to the next stage.</errorMessage>
+</ValidationRule>

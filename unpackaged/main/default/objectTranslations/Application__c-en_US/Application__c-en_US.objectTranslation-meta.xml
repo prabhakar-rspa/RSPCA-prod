@@ -1,0 +1,577 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Application</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Applications</value>
+    </caseValues>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Additional Visit Layout</layout>
+        <sections>
+            <label><!-- Approvals --></label>
+            <section>Approvals</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Documentation --></label>
+            <section>Documentation</section>
+        </sections>
+        <sections>
+            <label><!-- Payment --></label>
+            <section>Payment</section>
+        </sections>
+        <sections>
+            <label><!-- Visit --></label>
+            <section>Visit</section>
+        </sections>
+        <sections>
+            <label><!-- Visit Outcome --></label>
+            <section>Visit Outcome</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Application Layout</layout>
+        <sections>
+            <label><!-- Application Approval --></label>
+            <section>Application Approval</section>
+        </sections>
+        <sections>
+            <label><!-- Assessment Approval --></label>
+            <section>Assessment Approval</section>
+        </sections>
+        <sections>
+            <label><!-- Assessment Information --></label>
+            <section>Assessment Information</section>
+        </sections>
+        <sections>
+            <label><!-- Company Information --></label>
+            <section>Company Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Documentation --></label>
+            <section>Documentation</section>
+        </sections>
+        <sections>
+            <label><!-- Evidence Approval --></label>
+            <section>Evidence Approval</section>
+        </sections>
+        <sections>
+            <label><!-- Extension Deadline --></label>
+            <section>Extension Deadline</section>
+        </sections>
+        <sections>
+            <label><!-- Legal Information --></label>
+            <section>Legal Information</section>
+        </sections>
+        <sections>
+            <label><!-- Membership Information --></label>
+            <section>Membership Information</section>
+        </sections>
+        <sections>
+            <label><!-- Payment Information --></label>
+            <section>Payment Information</section>
+        </sections>
+        <sections>
+            <label><!-- Rejection Information --></label>
+            <section>Rejection Information</section>
+        </sections>
+        <sections>
+            <label><!-- Site Information --></label>
+            <section>Site Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Community Application</layout>
+        <sections>
+            <label><!-- Company Information --></label>
+            <section>Company Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Legal Information --></label>
+            <section>Legal Information</section>
+        </sections>
+        <sections>
+            <label><!-- Membership Information --></label>
+            <section>Membership Information</section>
+        </sections>
+        <sections>
+            <label><!-- Payment Information --></label>
+            <section>Payment Information</section>
+        </sections>
+        <sections>
+            <label><!-- Site Information --></label>
+            <section>Site Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Community Renewal</layout>
+        <sections>
+            <label><!-- Company Information --></label>
+            <section>Company Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Legal Information --></label>
+            <section>Legal Information</section>
+        </sections>
+        <sections>
+            <label><!-- Membership Information --></label>
+            <section>Membership Information</section>
+        </sections>
+        <sections>
+            <label><!-- Payment Information --></label>
+            <section>Payment Information</section>
+        </sections>
+        <sections>
+            <label><!-- Site Information --></label>
+            <section>Site Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Other Layout</layout>
+        <sections>
+            <label><!-- Company Information --></label>
+            <section>Company Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Head Office Information --></label>
+            <section>Head Office Information</section>
+        </sections>
+        <sections>
+            <label><!-- Membership Information --></label>
+            <section>Membership Information</section>
+        </sections>
+        <sections>
+            <label><!-- Payment Information --></label>
+            <section>Payment Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Renewal Layout</layout>
+        <sections>
+            <label><!-- Application Approval --></label>
+            <section>Application Approval</section>
+        </sections>
+        <sections>
+            <label><!-- Assessment Approval --></label>
+            <section>Assessment Approval</section>
+        </sections>
+        <sections>
+            <label><!-- Assessment Information --></label>
+            <section>Assessment Information</section>
+        </sections>
+        <sections>
+            <label><!-- Company Information --></label>
+            <section>Company Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Documentation --></label>
+            <section>Documentation</section>
+        </sections>
+        <sections>
+            <label><!-- Evidence Approval --></label>
+            <section>Evidence Approval</section>
+        </sections>
+        <sections>
+            <label><!-- Extension Deadline --></label>
+            <section>Extension Deadline</section>
+        </sections>
+        <sections>
+            <label><!-- Legal Information --></label>
+            <section>Legal Information</section>
+        </sections>
+        <sections>
+            <label><!-- Membership Information --></label>
+            <section>Membership Information</section>
+        </sections>
+        <sections>
+            <label><!-- Payment Information --></label>
+            <section>Payment Information</section>
+        </sections>
+        <sections>
+            <label><!-- Rejection Information --></label>
+            <section>Rejection Information</section>
+        </sections>
+        <sections>
+            <label><!-- Site Information --></label>
+            <section>Site Information</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Add Product Line --></label>
+        <name>Add_Product_Line</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Create Credit Note --></label>
+        <name>Create_Credit_Note</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Download Invoice --></label>
+        <name>Download_Invoice</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- New Assessment Report --></label>
+        <name>NewAssessmentReport</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- New Assessment Checklist --></label>
+        <name>New_Assessment_Checklist</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Send Invoice --></label>
+        <name>Send_Invoice</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Update Payment --></label>
+        <name>Update_Payment</name>
+    </quickActions>
+    <recordTypes>
+        <description><!-- Used to record the additional visit process for a site under sanction --></description>
+        <label><!-- Additional Visit --></label>
+        <name>Additional_Visit</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- For new applications. --></description>
+        <label><!-- Applications --></label>
+        <name>Applications</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Other Application Type. --></description>
+        <label><!-- Other --></label>
+        <name>Other</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- For renewal applications --></description>
+        <label><!-- Renewal --></label>
+        <name>Renewal</name>
+    </recordTypes>
+    <startsWith>Vowel</startsWith>
+    <validationRules>
+        <errorMessage><!-- You need to fill out the key fields in order to move onto the Visit stage. Please review the Guidance for Success. --></errorMessage>
+        <name>Additional_Visits_Cannot_move_to_visit</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must agree to the terms of the membership agreement. --></errorMessage>
+        <name>Agreement_Mandatory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The allocated inspector has rejected this allocation. Please choose a new assessor. --></errorMessage>
+        <name>Allocation_rejected</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The allocated inspector is still pending. The status must be approved to progress to the next stage. --></errorMessage>
+        <name>Allocation_still_pending</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Animals at assessment must be populated for all units before moving to &apos;Compliance&apos; stage. --></errorMessage>
+        <name>Animals_at_Assessment_Application</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Animals at assessment must be populated for all units before moving to &apos;Compliance&apos; stage. --></errorMessage>
+        <name>Animals_at_Assessment_Renewal</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please populate the Assessment Checklist link and Assessment Report Link before progressing from Assessment Stage. --></errorMessage>
+        <name>Application_Assessment_Stage_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Assessment Date cannot exceed the deadline date. --></errorMessage>
+        <name>Assessment_Date_Cannot_Exceed_Deadline</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Assessor must be allocated and allocation must be accepted in order to schedule an assessment date. --></errorMessage>
+        <name>Assessor_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must enter what needs to be checked in order to mark this visit as complete. --></errorMessage>
+        <name>Check_field_empty_visit_complete</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Rating fields must be populated for all checklists before moving to &apos;Compliance&apos; stage. --></errorMessage>
+        <name>Checklist_Rating_Application</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Rating fields must be populated for all checklists before moving to &apos;Compliance&apos; stage. --></errorMessage>
+        <name>Checklist_Rating_Renewal</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Desktop Assessment field must be populated before moving to &apos;Review&apos; stage. --></errorMessage>
+        <name>DTA_AdditionalVisit</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Desktop Assessment field must be populated before moving to &apos;Compliance&apos; stage. --></errorMessage>
+        <name>DTA_Application</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Desktop Assessment field must be populated before moving to &apos;Compliance&apos; stage. --></errorMessage>
+        <name>DTA_Renewal</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- If extension is granted, reason for extension must be provided. --></errorMessage>
+        <name>Extension_reason_must_be_provided</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must populate All fields with Help Text icons must be populated to mark this Additional Visit as complete. Please review. --></errorMessage>
+        <name>Fields_to_complete_Additional_Visit</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must provide further information in order to mark this visit as complete. --></errorMessage>
+        <name>Further_Info_field_empty_visit_complete</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- An Allocated Inspector must be populated in order to mark this visit as complete. --></errorMessage>
+        <name>Inspector_allocated_to_complete_visit</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- All WOAs must be completed before moving to Compliance stage. --></errorMessage>
+        <name>IsCompleted_on_WOAs_Application</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- IsCompleted checkbox must be checked for all WOAs before moving to Compliance stage. --></errorMessage>
+        <name>IsCompleted_on_WOAs_Renewal</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must ensure this Site has an Account Manager. --></errorMessage>
+        <name>MustHaveAccountManager</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please specify what the outcome of the visit was. --></errorMessage>
+        <name>Must_populate_other_outcome_reason</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- A report must be provided in order to mark this visit as complete. --></errorMessage>
+        <name>Must_populate_report_field</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot approve this status without providing a reason. Please ensure a reason has been selected from the related Site record. --></errorMessage>
+        <name>Need_Status_Reason_to_Check_Box</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Cannot move to certification without having overall approval. --></errorMessage>
+        <name>New_Application_Approval_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must confirm that do not have any previous convictions or pending prosecutions. --></errorMessage>
+        <name>No_Offences_Mandatory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please provide other reason for rejection. --></errorMessage>
+        <name>Other_Reason_for_rejection</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Application must be paid in order to progress to the next stage. --></errorMessage>
+        <name>Paid_Mandatory_for_Applications</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Renewal must be paid in order to progress to the next stage. --></errorMessage>
+        <name>Paid_Mandatory_for_Renewals</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This Application Type field value is not valid for Other Application creation --></errorMessage>
+        <name>RecordType_ApplicationType_Restrictions</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please populate the Assessment Checklist link and Assessment Report Link before progressing from Assessment Stage. --></errorMessage>
+        <name>Renewal_Assessment_Stage_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must provide a deadline for this visit in order to mark it as complete. --></errorMessage>
+        <name>Visit_deadline_field_empty_visit_complet</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must provide a reason for this visit in order to mark it as complete. --></errorMessage>
+        <name>Visit_reason_field_empty_visit_complet</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must provide the visit type in order to mark it as complete. --></errorMessage>
+        <name>Visit_type_field_empty_visit_complet</name>
+    </validationRules>
+</CustomObjectTranslation>

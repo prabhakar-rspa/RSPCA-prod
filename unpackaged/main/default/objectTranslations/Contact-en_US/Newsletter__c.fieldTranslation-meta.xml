@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Check this box if the member would like to receive our newsletter --></help>
+        <label><!-- Newsletter --></label>
+        <name>Newsletter__c</name>
+    </CustomFieldTranslation>

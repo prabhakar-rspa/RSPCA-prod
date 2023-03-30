@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Head_Office_Number_Min_Length</fullName>
+    <active>true</active>
+    <description>Head Office Number Minimum Length must be 4 characters long.</description>
+    <errorConditionFormula>IF(NOT(ISBLANK( Head_Office_Number__c )),LEN( Head_Office_Number__c )  &lt;&gt; 4, false)</errorConditionFormula>
+    <errorDisplayField>Head_Office_Number__c</errorDisplayField>
+    <errorMessage>Head Office Number must be 4 characters long.</errorMessage>
+</ValidationRule>

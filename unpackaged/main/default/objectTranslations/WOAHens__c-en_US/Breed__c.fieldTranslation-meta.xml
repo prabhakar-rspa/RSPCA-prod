@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Breed --></label>
+        <name>Breed__c</name>
+        <picklistValues>
+            <masterLabel>Amberlink / Silverlink</masterLabel>
+            <translation><!-- Amberlink / Silverlink --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bovans Brown (previously Goldline)</masterLabel>
+            <translation><!-- Bovans Brown (previously Goldline) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>British Blacktail</masterLabel>
+            <translation><!-- British Blacktail --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Clarence Court Burford Brown</masterLabel>
+            <translation><!-- Clarence Court Burford Brown --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Clarence Court Cotswold Legbars</masterLabel>
+            <translation><!-- Clarence Court Cotswold Legbars --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dekalb White</masterLabel>
+            <translation><!-- Dekalb White --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dual Purpose Breeds</masterLabel>
+            <translation><!-- Dual Purpose Breeds --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>H&amp;N Brown Nick</masterLabel>
+            <translation><!-- H&amp;N Brown Nick --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hyline Brown</masterLabel>
+            <translation><!-- Hyline Brown --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hyline Brown Plus</masterLabel>
+            <translation><!-- Hyline Brown Plus --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hyline Silverbrown</masterLabel>
+            <translation><!-- Hyline Silverbrown --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Isa Brown</masterLabel>
+            <translation><!-- Isa Brown --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lohmann Brown Classic</masterLabel>
+            <translation><!-- Lohmann Brown Classic --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lohmann Brown Lite</masterLabel>
+            <translation><!-- Lohmann Brown Lite --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lohmann Silver</masterLabel>
+            <translation><!-- Lohmann Silver --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lohmann White Breed / LSL / LSL Lite</masterLabel>
+            <translation><!-- Lohmann White Breed / LSL / LSL Lite --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Novogen Brown</masterLabel>
+            <translation><!-- Novogen Brown --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shaver Brown</masterLabel>
+            <translation><!-- Shaver Brown --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Warren</masterLabel>
+            <translation><!-- Warren --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>not recorded</masterLabel>
+            <translation><!-- not recorded --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>
