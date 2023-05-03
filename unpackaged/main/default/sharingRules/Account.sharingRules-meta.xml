@@ -12,7 +12,7 @@
         <sharedTo>
             <group>Cooke_Aquaculture</group>
         </sharedTo>
-        <booleanFilter>1 OR 2 OR 3</booleanFilter>
+        <booleanFilter>1 OR 2 OR 3 OR 4 OR 5</booleanFilter>
         <criteriaItems>
             <field>Membership_Number_Text__c</field>
             <operation>startsWith</operation>
@@ -27,6 +27,66 @@
             <field>Membership_Number_Text__c</field>
             <operation>startsWith</operation>
             <value>2956.</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Head_Office_Number__c</field>
+            <operation>startsWith</operation>
+            <value>2956</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Head_Office_Number__c</field>
+            <operation>startsWith</operation>
+            <value>3505</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Daisy_Bank</fullName>
+        <accessLevel>Read</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Read</contactAccessLevel>
+            <opportunityAccessLevel>None</opportunityAccessLevel>
+        </accountSettings>
+        <label>Daisy Bank</label>
+        <sharedTo>
+            <group>Daisy_Bank</group>
+        </sharedTo>
+        <booleanFilter>1 OR 2 OR 3 OR 4 OR 5 OR 6 OR 7</booleanFilter>
+        <criteriaItems>
+            <field>Membership_Number_Text__c</field>
+            <operation>startsWith</operation>
+            <value>4032.</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Membership_Number_Text__c</field>
+            <operation>startsWith</operation>
+            <value>4517.</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Membership_Number_Text__c</field>
+            <operation>startsWith</operation>
+            <value>4686.</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Membership_Number_Text__c</field>
+            <operation>startsWith</operation>
+            <value>3132.</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Head_Office_Number__c</field>
+            <operation>startsWith</operation>
+            <value>4517</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Head_Office_Number__c</field>
+            <operation>startsWith</operation>
+            <value>4686</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Head_Office_Number__c</field>
+            <operation>startsWith</operation>
+            <value>3132</value>
         </criteriaItems>
         <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
     </sharingCriteriaRules>
@@ -43,7 +103,7 @@
         <sharedTo>
             <group>Duncan_Farms</group>
         </sharedTo>
-        <booleanFilter>1 OR 2</booleanFilter>
+        <booleanFilter>1 OR 2 OR 3</booleanFilter>
         <criteriaItems>
             <field>Membership_Number_Text__c</field>
             <operation>startsWith</operation>
@@ -53,6 +113,11 @@
             <field>Membership_Number_Text__c</field>
             <operation>startsWith</operation>
             <value>4729.</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Head_Office_Number__c</field>
+            <operation>startsWith</operation>
+            <value>4729</value>
         </criteriaItems>
         <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
     </sharingCriteriaRules>
@@ -68,7 +133,7 @@
         <sharedTo>
             <group>Hook_2_Sisters</group>
         </sharedTo>
-        <booleanFilter>1 OR 2</booleanFilter>
+        <booleanFilter>1 OR 2 OR 3</booleanFilter>
         <criteriaItems>
             <field>Membership_Number_Text__c</field>
             <operation>startsWith</operation>
@@ -78,6 +143,11 @@
             <field>Membership_Number_Text__c</field>
             <operation>startsWith</operation>
             <value>1780.</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Head_Office_Number__c</field>
+            <operation>startsWith</operation>
+            <value>1780</value>
         </criteriaItems>
         <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
     </sharingCriteriaRules>
@@ -102,11 +172,6 @@
         <criteriaItems>
             <field>Membership_Number_Text__c</field>
             <operation>startsWith</operation>
-            <value>4620.</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Membership_Number_Text__c</field>
-            <operation>startsWith</operation>
             <value>3436.</value>
         </criteriaItems>
         <criteriaItems>
@@ -117,17 +182,22 @@
         <criteriaItems>
             <field>Membership_Number_Text__c</field>
             <operation>startsWith</operation>
-            <value>4833.</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Membership_Number_Text__c</field>
-            <operation>startsWith</operation>
             <value>4232.</value>
         </criteriaItems>
         <criteriaItems>
             <field>Membership_Number_Text__c</field>
             <operation>startsWith</operation>
             <value>4664.</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Membership_Number_Text__c</field>
+            <operation>startsWith</operation>
+            <value>4833</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Membership_Number_Text__c</field>
+            <operation>startsWith</operation>
+            <value>3436</value>
         </criteriaItems>
         <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
     </sharingCriteriaRules>
@@ -143,21 +213,31 @@
         <sharedTo>
             <group>Moy_Park</group>
         </sharedTo>
-        <booleanFilter>1 OR 2 OR 3</booleanFilter>
+        <booleanFilter>1 OR 2 OR 3 OR 4 OR 5</booleanFilter>
         <criteriaItems>
             <field>Membership_Number_Text__c</field>
             <operation>startsWith</operation>
-            <value>4419</value>
+            <value>4419.</value>
         </criteriaItems>
         <criteriaItems>
             <field>Membership_Number_Text__c</field>
             <operation>startsWith</operation>
-            <value>4430</value>
+            <value>4430.</value>
         </criteriaItems>
         <criteriaItems>
             <field>Membership_Number_Text__c</field>
             <operation>startsWith</operation>
             <value>4438.</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Head_Office_Number__c</field>
+            <operation>startsWith</operation>
+            <value>4430</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Head_Office_Number__c</field>
+            <operation>startsWith</operation>
+            <value>4438</value>
         </criteriaItems>
         <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
     </sharingCriteriaRules>
@@ -173,7 +253,7 @@
         <sharedTo>
             <group>Noble_Foods_Group</group>
         </sharedTo>
-        <booleanFilter>1 OR 2 OR 3 OR 4</booleanFilter>
+        <booleanFilter>1 OR 2 OR 3 OR 4 OR 5 OR 6 OR 7</booleanFilter>
         <criteriaItems>
             <field>Membership_Number_Text__c</field>
             <operation>startsWith</operation>
@@ -194,6 +274,21 @@
             <operation>startsWith</operation>
             <value>1975.</value>
         </criteriaItems>
+        <criteriaItems>
+            <field>Head_Office_Number__c</field>
+            <operation>startsWith</operation>
+            <value>0002</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Head_Office_Number__c</field>
+            <operation>startsWith</operation>
+            <value>0022</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Head_Office_Number__c</field>
+            <operation>startsWith</operation>
+            <value>1975</value>
+        </criteriaItems>
         <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
@@ -208,7 +303,7 @@
         <sharedTo>
             <group>Skea</group>
         </sharedTo>
-        <booleanFilter>1 OR 2</booleanFilter>
+        <booleanFilter>1 OR 2 OR 3</booleanFilter>
         <criteriaItems>
             <field>Membership_Number_Text__c</field>
             <operation>startsWith</operation>
@@ -216,6 +311,11 @@
         </criteriaItems>
         <criteriaItems>
             <field>Membership_Number_Text__c</field>
+            <operation>startsWith</operation>
+            <value>3105.</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Head_Office_Number__c</field>
             <operation>startsWith</operation>
             <value>3105</value>
         </criteriaItems>
@@ -233,7 +333,7 @@
         <sharedTo>
             <group>Tan_ydderwen</group>
         </sharedTo>
-        <booleanFilter>1 OR 2</booleanFilter>
+        <booleanFilter>1 OR 2 OR 3</booleanFilter>
         <criteriaItems>
             <field>Membership_Number_Text__c</field>
             <operation>startsWith</operation>
@@ -241,6 +341,11 @@
         </criteriaItems>
         <criteriaItems>
             <field>Membership_Number_Text__c</field>
+            <operation>startsWith</operation>
+            <value>4940.</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Head_Office_Number__c</field>
             <operation>startsWith</operation>
             <value>4940.</value>
         </criteriaItems>
@@ -259,7 +364,7 @@
         <sharedTo>
             <group>cmagriculture</group>
         </sharedTo>
-        <booleanFilter>1 OR 2 OR 3</booleanFilter>
+        <booleanFilter>1 OR 2 OR 3 OR 4 OR 5</booleanFilter>
         <criteriaItems>
             <field>Membership_Number_Text__c</field>
             <operation>startsWith</operation>
@@ -274,6 +379,16 @@
             <field>Membership_Number_Text__c</field>
             <operation>startsWith</operation>
             <value>4811.</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Head_Office_Number__c</field>
+            <operation>startsWith</operation>
+            <value>0898</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Head_Office_Number__c</field>
+            <operation>startsWith</operation>
+            <value>4422</value>
         </criteriaItems>
         <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
     </sharingCriteriaRules>

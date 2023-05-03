@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ia_crm__Source_Entity__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Source Entity</label>
+    <referenceTo>ia_crm__Intacct_Entity__c</referenceTo>
+    <relationshipLabel>Intacct Journal Entries (Source Entity)</relationshipLabel>
+    <relationshipName>Intacct_Journal_Entries1</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

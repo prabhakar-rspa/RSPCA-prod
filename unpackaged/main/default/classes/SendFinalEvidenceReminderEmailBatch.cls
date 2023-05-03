@@ -12,24 +12,26 @@ public class SendFinalEvidenceReminderEmailBatch implements Database.Batchable<s
         for(Application__c app : evdAppList){
             appIdSet.add(app.Id);
         }*/
-        String query = 'SELECT Id, Head_Office__c, Head_Office__r.Primary_Contact__c,Head_Office__r.Primary_Contact__r.Email, Final_Evidence_Email_Sent__c FROM Application__c WHERE Head_Office__r.Primary_Contact__r.Email != null AND Assessment_Date__c = :before21Days AND Final_Evidence_Email_Sent__c = false AND Evidence__c = NULL';
+        String query = 'SELECT Id, Membership_Number__c,Head_Office__c, Head_Office__r.Primary_Contact__c,Head_Office__r.Primary_Contact__r.Email, Final_Evidence_Email_Sent__c,Assessment_Date__c FROM Application__c WHERE Head_Office__r.Primary_Contact__r.Email != null AND Assessment_Date__c = :before21Days AND Final_Evidence_Email_Sent__c = false AND Evidence__c = NULL';
         return Database.getQueryLocator(query);
     }
 
     public void execute(Database.BatchableContext bc, List<Application__c> appList){
-        EmailTemplate emailTemplate = [SELECT ID FROM EmailTemplate WHERE Name = 'FinalEvidenceReminder'];
+        OrgWideEmailAddress[] owea = [select Id from OrgWideEmailAddress where Address = 'help@rspcaassured.org.uk'];
+        EmailTemplate emailTemplate = [SELECT ID FROM EmailTemplate WHERE Name = 'Evidence Reminder'];
         List<Application__c> appUpdateList = new List<Application__c>();
         for(Application__c app : appList){
             Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
             message.setTargetObjectId(app.Head_Office__r.Primary_Contact__c); 
-            message.setSenderDisplayName('RSPCA Assured'); 
+            //message.setSenderDisplayName('RSPCA Assured'); 
             message.setReplyTo('help@rspcaassured.org.uk');
+            message.setOrgWideEmailAddressId(owea.get(0).Id);
             message.setUseSignature(false); 
             message.setBccSender(false); 
             message.setSaveAsActivity(true);
             message.setTemplateID(emailTemplate.Id); 
             message.setWhatId(app.Id);
-            message.toAddresses = new String[] {app.Head_Office__r.Primary_Contact__r.Email};
+            message.toAddresses = new String[] {app.Head_Office__r.Primary_Contact__r.Email};//
                 Messaging.SingleEmailMessage[] messages = new List<Messaging.SingleEmailMessage> {message};
                     Messaging.SendEmailResult[] results = Messaging.sendEmail(messages);
             if (results[0].success){

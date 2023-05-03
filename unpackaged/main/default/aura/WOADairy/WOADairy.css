@@ -1,0 +1,9 @@
+.THIS .hiddenComponent{
+    display: none;
+}
+.THIS .thinSolidDivider{
+    height: 2px; 
+    width: 100%; 
+    background: #bbb; 
+    border-radius: 2px;
+}

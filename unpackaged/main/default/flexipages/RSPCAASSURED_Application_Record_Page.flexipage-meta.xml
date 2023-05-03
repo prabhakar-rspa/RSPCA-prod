@@ -10,7 +10,7 @@
                             <value>Application__c.Add_Product_Line</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>Application__c.Send_Invoice</value>
+                            <value>Application__c.Send_Multiple_Invoices</value>
                         </valueListItems>
                         <valueListItems>
                             <value>Application__c.Update_Payment</value>
@@ -25,19 +25,10 @@
                             <value>Global.NewTask</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>Global.NewEvent</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>Global.LogACall</value>
-                        </valueListItems>
-                        <valueListItems>
                             <value>Edit</value>
                         </valueListItems>
                         <valueListItems>
                             <value>Application__c.Download_Invoice</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>Clone</value>
                         </valueListItems>
                         <valueListItems>
                             <value>Delete</value>
@@ -99,6 +90,10 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentInstanceProperties>
+                    <name>showLegacyActivityComposer</name>
+                    <value>false</value>
+                </componentInstanceProperties>
                 <componentName>runtime_sales_activities:activityPanel</componentName>
                 <identifier>runtime_sales_activities_activityPanel</identifier>
             </componentInstance>

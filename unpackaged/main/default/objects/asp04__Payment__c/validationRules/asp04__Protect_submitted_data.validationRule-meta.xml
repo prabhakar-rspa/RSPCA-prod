@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>asp04__Protect_submitted_data</fullName>
+    <active>true</active>
+    <description>Stop changes to the dates, amounts and payment route when the Status indicates that data has been sent to Asperato but no response has been recieved yet.</description>
+    <errorConditionFormula>AND( 
+ISPICKVAL(PRIORVALUE(asp04__Payment_Stage__c),&#39;Submitted for collection&#39;), 
+OR(ISCHANGED(asp04__Amount__c) , ISCHANGED(asp04__Due_Date__c) ,  ISCHANGED(asp04__Payment_Route_Selected__c)),
+ISPICKVAL(asp04__Payment_Stage__c, &#39;Submitted for collection&#39;)  
+)</errorConditionFormula>
+    <errorMessage>You can&#39;t change the Amount, Due Date or the Payment Route Selected while Asperato is processing the payment</errorMessage>
+</ValidationRule>

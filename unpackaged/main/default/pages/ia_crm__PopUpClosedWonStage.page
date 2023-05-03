@@ -1,0 +1,8 @@
+<apex:page standardController="Opportunity">
+  <script type="text/javascript">
+        alert("{!Opportunity.RecordType.DeveloperName}");
+        if("{!Opportunity.StageName}" === "Closed Won" && "{!Opportunity.RecordType.DeveloperName}" == "OrderEntry") {
+            window.open("/apex/ia_crm__DataSyncronization?action=CREATE_SALES_INVOICE&recordId={!Opportunity.Id}&objectType=Opportunity", "_blank");
+        }
+    </script>
+</apex:page>

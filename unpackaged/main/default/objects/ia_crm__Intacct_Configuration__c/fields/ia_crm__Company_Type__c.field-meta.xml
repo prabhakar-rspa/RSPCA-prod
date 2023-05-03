@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ia_crm__Company_Type__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Company Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Single</fullName>
+                <default>false</default>
+                <label>Single</label>
+            </value>
+            <value>
+                <fullName>Shared</fullName>
+                <default>false</default>
+                <label>Shared</label>
+            </value>
+            <value>
+                <fullName>Distributed</fullName>
+                <default>false</default>
+                <label>Distributed</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Entity Type --></label>
+        <name>ia_crm__Entity_Type__c</name>
+        <picklistValues>
+            <masterLabel>Entity</masterLabel>
+            <translation><!-- Entity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Location</masterLabel>
+            <translation><!-- Location --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Top level</masterLabel>
+            <translation><!-- Top level --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

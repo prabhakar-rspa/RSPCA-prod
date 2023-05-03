@@ -1,0 +1,191 @@
+<apex:page controller="ia_crm.SObjectController" sidebar="false" showheader="{!isSync}">
+    <apex:includescript value="{!URLFOR($Resource.ia_crm__Intacct, '/js/jQuery.min.js')}" />
+    <script language="JavaScript" type="text/javascript">
+
+       function closePopupAndRefreshOpp() {
+            window.opener.location.href="/{!JSENCODE(recordId)}";
+            window.top.close();
+       }
+       window.history.forward();
+
+        function preventBack()
+        {
+            window.history.forward(1);
+        }
+    </script>
+    <style>
+        .myCustomMessage .message {
+            background: none !important;
+            border: none !important;
+            background-image: none !important;
+        }
+
+        .msgIcon {
+            Display: none;
+        }
+        .slds-theme--info {
+            background-color: #54698d !important;
+        }
+    </style>
+    <apex:slds />
+    <div class="slds" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <apex:form >
+            <apex:actionfunction name="loading" action="{!doIntacctCall}" rerender="form" status="fetchStatus" />
+            <apex:actionfunction name="dialogConfirmAction" action="{!dialogConfirm}" rerender="form" status="fetchStatus" />
+            
+            <apex:actionstatus id="pageSpinner">
+                <apex:facet name="start">
+                    <div class="slds-spinner_container">
+                        <div role="status" class="slds-spinner slds-spinner--brand slds-spinner--medium">
+                            <span class="slds-assistive-text">{!$Label.Loading}</span>
+                            <div class="slds-spinner__dot-a"></div>
+                            <div class="slds-spinner__dot-b"></div>
+                        </div>
+                    </div>
+                </apex:facet>
+            </apex:actionstatus>
+            <apex:outputpanel id="form">
+                <div style="min-height: 600px;">
+                    <apex:outputpanel rendered="{!IF(pageStatus == 'SUCCESS', true, false)}" styleclass="myCustomMessage">
+                        <figure>
+                            <apex:image id="theImage" value="{!URLFOR($Resource.ia_crm__Intacct,'images/success.png')}" style="margin: auto;display: block; padding-top: 100px;" />
+                        </figure>
+                        <div style="text-align: center;">
+                            <apex:outputtext value="{!$Label.ia_crm__Sync_Successful}" style="font-size: 250%;" />
+                        </div>
+                    </apex:outputpanel>
+                    <apex:outputpanel rendered="{!IF(pageStatus == 'ERROR', true, false)}" styleclass="myCustomMessage">
+                        <figure>
+                            <apex:image id="errorImage" value="{!URLFOR($Resource.ia_crm__Intacct,'images/error.png')}" style="margin: auto; display: block; padding-top: 100px;" />
+                        </figure>
+                        <div style="text-align: center;">
+                            <apex:outputtext value="{!$Label.ia_crm__Sync_Error}" style="font-size: 250%;" />
+                        </div>
+                    </apex:outputpanel>
+                    <apex:outputpanel rendered="{!IF(pageStatus == 'ERROR', true, false)}" styleclass="myCustomMessage">
+                        <p>
+                            <div class="demo-only">
+                                <div class="slds-has-dividers_around-space slds-align_absolute-center">
+                                    <div class="slds-item " style="width: 550px;">
+                                        <article class="slds-tile slds-tile_board">
+                                            <apex:pagemessages id="xx" escape="false" />
+                                            <script type="text/javascript">
+                                                $('.noindent').css("list-style-type", "disc");
+                                            </script>
+                                            <div class="slds-tile__detail">
+                                                <span class="slds-icon_container slds-tile_board__icon" title="description of icon when needed">
+                                                    <svg class="slds-icon slds-icon-text-error slds-icon_x-small" aria-hidden="true">
+                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#error')}" />
+                                                    </svg>
+                                                    <span class="slds-assistive-text">Warning Icon</span>
+                                                </span>
+                                            </div>
+                                        </article>
+                                    </div>
+                                </div>
+                            </div>
+                        </p>
+                    </apex:outputpanel>
+                    <apex:outputpanel layout="none" rendered="{!IF(pageStatus == 'ERROR' || pageStatus == 'SUCCESS', true, false)}">
+                        <div style="text-align: center;">
+                            <apex:commandbutton rendered="{!OR(isSync, OR($User.UIThemeDisplayed == 'Theme4d', $User.UIThemeDisplayed == 'Theme4t'))}" action="{!'/' + syncRecordId}" style="margin-top: 20px;" value="{!$Label.ia_crm__Back_to_record}" styleclass="slds-button slds-button--neutral" />
+                            <apex:commandbutton rendered="{!AND(NOT(isSync), $User.UIThemeDisplayed == 'Theme3')}" style="margin-top: 20px;" value="{!$Label.ia_crm__Close}" styleclass="slds-button slds-button--neutral" onclick="closeWindow();"/>
+                            <script type="text/javascript">
+                                //closeWindow()
+                            </script>
+                        </div>
+                    </apex:outputpanel>
+                    <apex:actionstatus id="fetchStatus">
+                        <apex:facet name="start">
+                            <apex:outputpanel >
+                                <apex:outputpanel rendered="{!isSync}">
+                                    <figure>
+                                        <apex:image value="{!URLFOR($Resource.ia_crm__Intacct,'images/imageSync.gif')}" style="margin: auto; display: block; padding-top: 100px;width: 165px;" />
+                                    </figure>
+                                    <div style="text-align: center;">
+                                        <apex:outputtext value="{!$Label.ia_crm__Synchronizing}" style="font-size: 250%;" />
+                                    </div>
+                                </apex:outputpanel>
+                                <apex:outputpanel rendered="{!NOT(isSync)}">
+                                    <table width="100%" height="100%" Style="margin-top:39px;">
+                                        <tr>
+                                            <td width="100%" height="100%" style="text-align: center" valign="top" align="center">
+                                                <apex:image value="{!URLFOR($Resource.ia_crm__Intacct,'images/newclock_slow.gif')}" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="100%" height="100%" style="text-align: center" valign="top" align="center">
+                                                <b Style="font-family: Verdana, Arial, sans-serif; font-weight: bold; font-size: 10px;">{!$Label.Please_wait_while_Intacct}</b>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </apex:outputpanel>
+                            </apex:outputpanel>
+                        </apex:facet>
+                    </apex:actionstatus>
+                </div>
+
+                <apex:outputpanel id="dialog">
+                    <apex:outputpanel rendered="{!IF(showDialog==true,'true','false')}">
+                        <div role="dialog" tabindex="-1" aria-labelledby="header43" class="slds-modal slds-fade-in-open">
+                            <div class="slds-modal__container">
+                                <div class="slds-modal__header slds-theme--info slds-theme--alert-texture">
+                                    <h2 id="header43" class="slds-text-heading--medium">{!$Label.Please_confirm}</h2>
+                                </div>
+                                <div class="slds-modal__content slds-p-around--medium">
+                                    <p style="{!if(showDialogOETransactionPicklist, 'width: 80%;margin: auto;', '')}"><apex:outputtext value="{!dialogMessage}" escape="false" /></p>
+                                    <apex:outputpanel rendered="{!showDialogOETransactionPicklist}">
+                                        <div class="slds-form-element__control {!IF(len(intacctTransactionErrorMessage) > 0,'slds-has-error' , '' )}" style="min-height: 40px; margin-top: 30px;">
+                                        <!--<div style="min-height: 40px; margin-top: 30px;">-->
+                                            <div class="slds-select_container" style="width: 30%;margin: auto;">
+                                                <apex:selectlist value="{!selectedOETransaction}" multiselect="false" size="1" styleclass="slds-select">
+                                                    <apex:selectoptions value="{!allOETransactions}" />
+                                                </apex:selectlist>
+                                            </div>
+                                            <apex:outputpanel layout="none" rendered="{!len(intacctTransactionErrorMessage) > 0}">
+                                                <div Style="margin: auto; width: 50%; margin-top: 10px;">
+                                                    <apex:outputpanel styleclass="errorMsg" style="margin-left: 16px;">
+                                                        {!intacctTransactionErrorMessage}
+                                                    </apex:outputpanel>
+                                                </div>
+                                            </apex:outputpanel>
+                                        </div>
+                                    </apex:outputpanel>
+                                    <apex:outputpanel rendered="{!showDialogContinue}">
+                                        <p>{!$Label.ia_crm__Do_you_want_to_continue}</p>
+                                    </apex:outputpanel>
+                                </div>
+                                <div class="slds-modal__footer">
+                                    <apex:commandbutton styleclass="slds-button slds-button--brand" value="{!$Label.ia_crm__Yes}" action="{!checkClosedDialogAction}" status="pageSpinner" oncomplete="closeDialog();" rerender="dialog, checkCloseDialog" />
+                                    <apex:commandbutton styleclass="slds-button slds-button--neutral" value="{!$Label.ia_crm__No}" action="{!'/' + syncRecordId}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-backdrop slds-backdrop--open"></div>
+                    </apex:outputpanel>
+                </apex:outputpanel>
+
+            </apex:outputpanel>
+        </apex:form>
+    </div>
+    <apex:outputpanel id="checkCloseDialog">
+        <script type="text/javascript">
+            function closeDialog() {
+                var canBeClsoed = {!showDialog};
+                
+                if(canBeClsoed === false) {
+                    dialogConfirmAction();
+                }
+            }
+                            </script>
+    </apex:outputpanel>
+    <script type="text/javascript">
+        $( document ).ready(function() {
+            preventBack();
+            loading();
+        });
+        function closeWindow() {
+            window.top.close();
+        }
+    </script>
+</apex:page>

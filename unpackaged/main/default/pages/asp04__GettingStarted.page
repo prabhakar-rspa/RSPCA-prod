@@ -1,0 +1,676 @@
+<apex:page controller="asp04.AsperatoSetupVFController" lightningStyleSheets="true">
+<apex:slds />
+
+<style>
+.hidden {
+    display: none;
+}
+
+.big {
+    font-size: 12pt;
+    font-weight: bold;
+}
+
+.warning {
+    color: darkorange;
+}
+
+.warning::before {
+    content: "⚠";
+    padding-right: 10px;
+}
+
+.supportsection {
+
+}
+
+.success {
+    font-size: 1.5em;
+    color: green;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.success::before {
+    content: "✓";
+    padding-right: 10px;
+}
+
+.spinner {
+    margin-left: 200px;
+}
+
+.pspconnections {
+  display:inline-block; 
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.pspconnections .pspcon {
+  font-size: 10pt;
+  margin-bottom: 5px;
+}
+
+.pspconnections .pspconcurblock {
+  padding: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #EFEFEF;
+  min-width: 500px;
+}
+
+.pspconnections .pspconcurheading {
+  font-weight: bold;
+  font-size: 16pt;
+}
+
+.pspconnections .pspconmode {
+  margin-right: 5px;
+  font-weight: bold;
+}
+
+.psp-connecting:before {
+    content: "...";
+    font-weight: bold;
+    float: left;
+    margin-right: 10px;
+}
+
+.psp-connected:before {
+    content: "✓";
+    color: darkgreen;
+    font-weight: bold;
+    float: left;
+    margin-right: 10px;
+}
+
+.psp-not-connected:before {
+    content: "✘";
+    color: darkred;
+    font-weight: bold;
+    float: left;
+    margin-right: 10px;
+}
+
+.pspconnectiondialog-label {
+    display: block;
+}
+
+.pspconnectiondialog-inputsection {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.pspconnectiondialog-label.required::before {
+    content: "* ";
+    color: red;
+}
+</style>
+
+<script>
+    function checkPSPStatus(cur, mode, pspgroup) {
+      Visualforce.remoting.Manager.invokeAction(
+          '{!$RemoteAction.AsperatoSetupVFController.getConnectionStatus}',
+          cur, mode, pspgroup,
+          function(result, event){
+            if (event.status) {
+              var pspconele = document.getElementById("pspcon-" + cur + "-" + mode + "-" + pspgroup);
+              pspconele.classList.remove("psp-connecting");
+              if(result) {
+                pspconele.classList.add("psp-connected");
+              }
+              else {
+                pspconele.classList.add("psp-not-connected");
+              }
+            } else if (event.type === 'exception') {
+              console.log(event.message + " - " + event.where);
+            } else {
+              console.log(event.message);
+            }
+          }
+      );
+    }
+
+    var sfConnectRedir = function(redir){
+      alert("For security reasons, we now require you to re-authenticate and authorize the Asperato app. Please login to Salesforce to continue.");
+      window.location.href = redir
+    };
+
+    window.onload = function() {
+      if("{!configSetupStatus}"=="dis") {
+        document.getElementById("distext").classList.remove("hidden");
+      }
+      else if("{!configSetupStatus}"=="nosf") {
+        document.getElementById("nosftext").classList.remove("hidden");
+      }
+      else if("{!configSetupStatus}"=="nocon") {
+        document.getElementById("inactivetext").classList.remove("hidden");
+      }
+      else if("{!configSetupStatus}"=="con") {
+        document.getElementById("activetext").classList.remove("hidden");
+      }
+      else if("{!configSetupStatus}"=="nokey") {
+        document.getElementById("nokeytext").classList.remove("hidden");
+      }
+      var pspcons = JSON.parse('{!PSPConnections}');
+
+      Object.keys(pspcons).forEach(function(key) {
+        var pspconcurdiv = document.createElement("article");
+        pspconcurdiv.classList.add("pspconcurblock");
+        pspconcurdiv.classList.add("slds-tile");
+        var pspconcurheading = document.createElement("div");
+        pspconcurheading.innerHTML = key;
+        pspconcurheading.classList.add("slds-tile__title");
+        pspconcurheading.classList.add("slds-tile__title");
+        pspconcurdiv.appendChild(pspconcurheading);
+
+        var arrayLength = pspcons[key].length;
+        for (var i = 0; i < arrayLength; i++) {
+          var pspcondiv = document.createElement("div");
+          pspcondiv.setAttribute("id", "pspcon-" + key + "-" + pspcons[key][i].mode + "-{!merchantGroup}");
+          pspcondiv.classList.add("slds-tile__detail");
+          pspcondiv.classList.add("pspcon");
+          pspcondiv.classList.add("psp-connecting");
+          var pspcondescdiv = document.createElement("div");
+          var pspconmodespan = document.createElement("span");
+          pspconmodespan.innerHTML = pspcons[key][i].mode;
+          pspconmodespan.classList.add("pspconmode");
+          var pspcondescspan = document.createElement("span");
+          pspcondescspan.classList.add("pspcondesc");
+          var pspdesc = pspcons[key][i].type.name;
+          if(pspcons[key][i].sandbox) {
+            pspdesc += " (test) - "
+          }
+          else {
+            pspdesc += " (live) - "
+          }
+          pspdesc += pspcons[key][i].description;
+          pspcondescspan.innerHTML = pspdesc;
+          pspcondescdiv.appendChild(pspconmodespan);
+          pspcondescdiv.appendChild(pspcondescspan);
+          pspcondiv.appendChild(pspcondescdiv);
+          pspconcurdiv.appendChild(pspcondiv);
+          checkPSPStatus(key, pspcons[key][i].mode, "{!merchantGroup}");
+        }
+
+        document.getElementById("pspconnections").appendChild(pspconcurdiv);
+      });
+      checkLive();
+    };
+
+    function checkLive() {
+      Visualforce.remoting.Manager.invokeAction(
+          '{!$RemoteAction.AsperatoSetupVFController.isLive}',
+          function(result, event){
+            if (event.status) {
+              if(result) {
+                document.getElementById("sandboxliveindicator").classList.remove("hidden");
+              }
+              else {
+                document.getElementById("sandboxliveindicator").classList.add("hidden");
+              }
+            } else if (event.type === 'exception') {
+              console.log(event.message + " - " + event.where);
+            } else {
+              console.log(event.message);
+            }
+          }
+      );
+    }
+
+    function resetConnectionDialog() {
+      document.getElementById("pspconnectiondialog-currency").selectedIndex = 0;
+      document.getElementById("pspconnectiondialog-mode").selectedIndex = 0;
+      resetNewPSP();
+    }
+
+    function showConnectionDialog() {
+      resetConnectionDialog();
+      document.getElementById("pspConnectionDialog").classList.remove("hidden");
+    }
+
+    function hideConnectionDialog() {
+      document.getElementById("pspConnectionDialog").classList.add("hidden");
+    }
+
+    function getAuthDataAsList() {
+      var ret = [];
+      var idx = 0;
+      while(document.getElementById("authVal-" + idx)) {
+        ret.push(document.getElementById("authVal-" + idx).value);
+        idx++;
+      }
+      return ret;
+    }
+
+    function saveSelectedPSP() {
+      var cur = document.getElementById("pspconnectiondialog-currency").value;
+      var mode = document.getElementById("pspconnectiondialog-mode").value;
+      var psptype = document.getElementById("pspconnectiondialog-psp").value;
+      var sandbox = document.querySelector('input[name="pspsandbox"]:checked').value;
+      var authData = getAuthDataAsList();
+      var description = document.getElementById("pspconnectiondialog-description").value;
+      var pspGroup = "Default";
+
+      Visualforce.remoting.Manager.invokeAction(
+          '{!$RemoteAction.AsperatoSetupVFController.updateConnection}',
+          cur,
+          mode,
+          psptype,
+          sandbox,
+          authData,
+          description,
+          pspGroup,
+          function(result, event){
+            if (event.status) {
+              if(result.oauth) {
+                console.log(result.oauth);
+                if(!window.open(decodeVal(result.oauth), true)) {
+                  alert("Please disable your pop-up blocker on this site to connect with GoCardless.");
+                }
+              }
+              else {
+                window.location.reload(true);
+              }
+            } else if (event.type === 'exception') {
+              console.log(event.message + " - " + event.where);
+            } else {
+              console.log(event.message);
+            }
+          }
+      );
+
+      hideConnectionDialog();
+    }
+
+    function decodeVal(encoded) {
+      var elem = document.createElement('textarea');
+      elem.innerHTML = encoded;
+      return elem.value;
+    }
+
+    function resetNewAuth() {
+      document.getElementById("pspconnectiondialog-authsection").innerHTML = "";
+      checkDialogValidity();
+    }
+
+    function appendNewAuth(labelText, authIdx) {
+      var root = document.createElement("div");
+      root.classList.add("pspconnectiondialog-inputsection");
+      var lab = document.createElement("label");
+      lab.classList.add("pspconnectiondialog-label");
+      lab.classList.add("required");
+      lab.innerHTML = labelText + ":";
+      var inp = document.createElement("input");
+      inp.classList.add("pspconnectiondialog-description");
+      inp.setAttribute("id", "authVal-" + authIdx);
+      inp.oninput = checkDialogValidity;
+      root.appendChild(lab);
+      root.appendChild(inp);
+      document.getElementById("pspconnectiondialog-authsection").appendChild(root);
+      checkDialogValidity();
+    }
+
+    function resetNewPSP() {
+      resetNewAuth();
+      document.getElementById("pspconnectiondialog-psp").options.length = 0;
+      document.getElementById("pspconnectiondialog-description").value = "";
+      checkDialogValidity();
+    }
+
+    function pspSelected() {
+      resetNewAuth();
+      document.getElementById("pspconnectiondialog-submit").disabled = "disabled";
+      Visualforce.remoting.Manager.invokeAction(
+        '{!$RemoteAction.AsperatoSetupVFController.getAuthLabelsForPsp}',
+        document.getElementById("pspconnectiondialog-psp").value,
+        function(result, event){
+          if (event.status) {
+            if(result) {
+              var resultLength = result.length;
+              for (var i = 0; i < resultLength; i++) {
+                appendNewAuth(result[i], i);
+              }
+            }
+            checkDialogValidity();
+          } else if (event.type === 'exception') {
+            console.log(event.message + " - " + event.where);
+          } else {
+            console.log(event.message);
+          }
+        }
+      );
+    }
+
+    function checkDialogValidity() {
+      var valid = true;
+      if(!document.getElementById("pspconnectiondialog-currency").value) valid = false;
+      if(!document.getElementById("pspconnectiondialog-mode").value) valid = false;
+      if(document.getElementById("pspconnectiondialog-currency").value=="-") valid = false;
+      if(document.getElementById("pspconnectiondialog-mode").value=="-") valid = false;
+      if(!document.getElementById("pspconnectiondialog-psp").value) valid = false;
+      var idx = 0;
+      while(document.getElementById("authVal-" + idx)) {
+        if(!document.getElementById("authVal-" + idx).value) valid = false;
+        idx++;
+      }
+      if(valid) {
+        document.getElementById("pspconnectiondialog-submit").disabled = "";
+      }
+      else {
+        document.getElementById("pspconnectiondialog-submit").disabled = "disabled";
+      }
+    }
+
+    function modeSelected() {
+      resetNewPSP();
+      checkDialogValidity();
+      Visualforce.remoting.Manager.invokeAction(
+        '{!$RemoteAction.AsperatoSetupVFController.getTypesForMode}',
+        document.getElementById("pspconnectiondialog-mode").value,
+        function(result, event){
+          if (event.status) {
+            var resultLength = result.length;
+            if(resultLength>0) {
+              var opt = document.createElement("option");
+              opt.text = "Select PSP";
+              opt.value = "";
+              document.getElementById("pspconnectiondialog-psp").add(opt);
+            }
+            for (var i = 0; i < resultLength; i++) {
+              var opt = document.createElement("option");
+              opt.text = result[i].name;
+              opt.value = result[i].psptype;
+              document.getElementById("pspconnectiondialog-psp").add(opt);
+            }
+            checkDialogValidity();
+          } else if (event.type === 'exception') {
+            console.log(event.message + " - " + event.where);
+          } else {
+            console.log(event.message);
+          }
+        }
+      );
+    }
+</script>
+
+<!-- PSP connection dialog -->
+<div id="pspConnectionDialog" class="hidden">
+  <section role="dialog" tabindex="-1" aria-modal="true" class="slds-modal slds-fade-in-open">
+    <div class="slds-modal__container">
+      <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+        <div class="pspconnectiondialog-inputsection">
+          <label class="pspconnectiondialog-label required">Currency:</label>
+          <select id="pspconnectiondialog-currency" onchange="checkDialogValidity();">
+            <option value="-">Select currency</option>
+            <option value="GBP">British Pound (GBP)</option>
+            <option value="USD">U.S. Dollar (USD)</option>
+            <option value="EUR">Euro (EUR)</option>
+            <option value="AED">UAE Dirham (AED)</option>
+            <option value="AFN">Afghanistan Afghani (AFN)</option>
+            <option value="ALL">Albanian Lek (ALL)</option>
+            <option value="AMD">Armenian Dram (AMD)</option>
+            <option value="ANG">Neth Antilles Guilder (ANG)</option>
+            <option value="AOA">Angola Kwanza (AOA)</option>
+            <option value="ARS">Argentine Peso (ARS)</option>
+            <option value="AUD">Australian Dollar (AUD)</option>
+            <option value="AWG">Aruba Florin (AWG)</option>
+            <option value="AZN">Azerbaijanian New Manat (AZN)</option>
+            <option value="BAM">Convertible Marks (BAM)</option>
+            <option value="BBD">Barbados Dollar (BBD)</option>
+            <option value="BDT">Bangladesh Taka (BDT)</option>
+            <option value="BGN">Bulgaria Lev (BGN)</option>
+            <option value="BHD">Bahraini Dinar (BHD)</option>
+            <option value="BIF">Burundi Franc (BIF)</option>
+            <option value="BMD">Bermuda Dollar (BMD)</option>
+            <option value="BND">Brunei Dollar (BND)</option>
+            <option value="BOB">Bolivian Boliviano (BOB)</option>
+            <option value="BOV">Bolivia Mvdol (BOV)</option>
+            <option value="BRB">Brazilian Cruzeiro (BRB)</option>
+            <option value="BRL">Brazilian Real (BRL)</option>
+            <option value="BSD">Bahamian Dollar (BSD)</option>
+            <option value="BTN">Bhutan Ngultrum (BTN)</option>
+            <option value="BWP">Botswana Pula (BWP)</option>
+            <option value="BYN">Belarussian Ruble (BYN)</option>
+            <option value="BZD">Belize Dollar (BZD)</option>
+            <option value="CAD">Canadian Dollar (CAD)</option>
+            <option value="CDF">Franc Congolais (CDF)</option>
+            <option value="CHF">Swiss Franc (CHF)</option>
+            <option value="CLF">Unidades de fomento (CLF)</option>
+            <option value="CLP">Chilean Peso (CLP)</option>
+            <option value="CNY">Chinese Yuan (CNY)</option>
+            <option value="COP">Colombian Peso (COP)</option>
+            <option value="CRC">Costa Rica Colon (CRC)</option>
+            <option value="CUP">Cuban Peso (CUP)</option>
+            <option value="CVE">Cape Verde Escudo (CVE)</option>
+            <option value="CZK">Czech Koruna (CZK)</option>
+            <option value="DJF">Dijibouti Franc (DJF)</option>
+            <option value="DKK">Danish Krone (DKK)</option>
+            <option value="DOP">Dominican Peso (DOP)</option>
+            <option value="DZD">Algerian Dinar (DZD)</option>
+            <option value="EEK">Estonian Kroon (EEK)</option>
+            <option value="EGP">Egyptian Pound (EGP)</option>
+            <option value="ERN">Eritrea Nakfa (ERN)</option>
+            <option value="ETB">Ethiopian Birr (ETB)</option>
+            <option value="FJD">Fiji Dollar (FJD)</option>
+            <option value="FKP">Falkland Islands Pound (FKP)</option>
+            <option value="GEL">Georgia Lari (GEL)</option>
+            <option value="GHS">Ghanian Cedi (GHS)</option>
+            <option value="GIP">Gibraltar Pound (GIP)</option>
+            <option value="GMD">Gambian Dalasi (GMD)</option>
+            <option value="GNF">Guinea Franc (GNF)</option>
+            <option value="GTQ">Guatemala Quetzal (GTQ)</option>
+            <option value="GYD">Guyana Dollar (GYD)</option>
+            <option value="HKD">Hong Kong Dollar (HKD)</option>
+            <option value="HNL">Honduras Lempira (HNL)</option>
+            <option value="HRK">Croatian Kuna (HRK)</option>
+            <option value="HTG">Haiti Gourde (HTG)</option>
+            <option value="HUF">Hungarian Forint (HUF)</option>
+            <option value="IDR">Indonesian Rupiah (IDR)</option>
+            <option value="ILS">Israeli Shekel (ILS)</option>
+            <option value="INR">Indian Rupee (INR)</option>
+            <option value="IQD">Iraqi Dinar (IQD)</option>
+            <option value="IRR">Iranian Rial (IRR)</option>
+            <option value="ISK">Iceland Krona (ISK)</option>
+            <option value="JMD">Jamaican Dollar (JMD)</option>
+            <option value="JOD">Jordanian Dinar (JOD)</option>
+            <option value="JPY">Japanese Yen (JPY)</option>
+            <option value="KES">Kenyan Shilling (KES)</option>
+            <option value="KGS">Kyrgyzstan Som (KGS)</option>
+            <option value="KHR">Cambodia Riel (KHR)</option>
+            <option value="KMF">Comoros Franc (KMF)</option>
+            <option value="KPW">North Korean Won (KPW)</option>
+            <option value="KRW">Korean Won (KRW)</option>
+            <option value="KWD">Kuwaiti Dinar (KWD)</option>
+            <option value="KYD">Cayman Islands Dollar (KYD)</option>
+            <option value="KZT">Kazakhstan Tenge (KZT)</option>
+            <option value="LAK">Lao Kip (LAK)</option>
+            <option value="LBP">Lebanese Pound (LBP)</option>
+            <option value="LKR">Sri Lanka Rupee (LKR)</option>
+            <option value="LRD">Liberian Dollar (LRD)</option>
+            <option value="LSL">Lesotho Loti (LSL)</option>
+            <option value="LYD">Libyan Dinar (LYD)</option>
+            <option value="MAD">Moroccan Dirham (MAD)</option>
+            <option value="MDL">Moldovan Leu (MDL)</option>
+            <option value="MGA">Malagasy Ariary (MGA)</option>
+            <option value="MKD">Macedonian Denar (MKD)</option>
+            <option value="MMK">Myanmar Kyat (MMK)</option>
+            <option value="MNT">Mongolian Tugrik (MNT)</option>
+            <option value="MOP">Macau Pataca (MOP)</option>
+            <option value="MRU">Mauritania Ouguiya (MRU)</option>
+            <option value="MUR">Mauritius Rupee (MUR)</option>
+            <option value="MVR">Maldives Rufiyaa (MVR)</option>
+            <option value="MWK">Malawi Kwacha (MWK)</option>
+            <option value="MXN">Mexican Peso (MXN)</option>
+            <option value="MXV">Mexican Unidad de Inversion (UDI) (MXV)</option>
+            <option value="MYR">Malaysian Ringgit (MYR)</option>
+            <option value="MZN">Mozambique New Metical (MZN)</option>
+            <option value="NAD">Namibian Dollar (NAD)</option>
+            <option value="NGN">Nigerian Naira (NGN)</option>
+            <option value="NIO">Nicaragua Cordoba (NIO)</option>
+            <option value="NOK">Norwegian Krone (NOK)</option>
+            <option value="NPR">Nepalese Rupee (NPR)</option>
+            <option value="NZD">New Zealand Dollar (NZD)</option>
+            <option value="OMR">Omani Rial (OMR)</option>
+            <option value="PAB">Panama Balboa (PAB)</option>
+            <option value="PEN">Peruvian Sol (PEN)</option>
+            <option value="PGK">Papua New Guinea Kina (PGK)</option>
+            <option value="PHP">Philippine Peso (PHP)</option>
+            <option value="PKR">Pakistani Rupee (PKR)</option>
+            <option value="PLN">Polish Zloty (PLN)</option>
+            <option value="PYG">Paraguayan Guarani (PYG)</option>
+            <option value="QAR">Qatar Rial (QAR)</option>
+            <option value="RON">Romanian Leu (RON)</option>
+            <option value="RSD">Serbian Dinar (RSD)</option>
+            <option value="RUB">Russian Rouble (RUB)</option>
+            <option value="RWF">Rwanda Franc (RWF)</option>
+            <option value="SAR">Saudi Arabian Riyal (SAR)</option>
+            <option value="SBD">Solomon Islands Dollar (SBD)</option>
+            <option value="SCR">Seychelles Rupee (SCR)</option>
+            <option value="SDG">Sudanese Pound (SDG)</option>
+            <option value="SEK">Swedish Krona (SEK)</option>
+            <option value="SGD">Singapore Dollar (SGD)</option>
+            <option value="SHP">St Helena Pound (SHP)</option>
+            <option value="SLL">Sierra Leone Leone (SLL)</option>
+            <option value="SOS">Somali Shilling (SOS)</option>
+            <option value="SRD">Surinam Dollar (SRD)</option>
+            <option value="SSP">South Sudan Pound (SSP)</option>
+            <option value="STD">Sao Tome Dobra (STD)</option>
+            <option value="SYP">Syrian Pound (SYP)</option>
+            <option value="SZL">Swaziland Lilageni (SZL)</option>
+            <option value="THB">Thai Baht (THB)</option>
+            <option value="TJS">Tajik Somoni (TJS)</option>
+            <option value="TMT">Turkmenistan New Manat (TMT)</option>
+            <option value="TND">Tunisian Dinar (TND)</option>
+            <option value="TOP">Tonga Pa'anga (TOP)</option>
+            <option value="TRY">Turkish Lira (TRY)</option>
+            <option value="TTD">Trinidad&amp;Tobago Dollar (TTD)</option>
+            <option value="TWD">Taiwan Dollar (TWD)</option>
+            <option value="TZS">Tanzanian Shilling (TZS)</option>
+            <option value="UAH">Ukraine Hryvnia (UAH)</option>
+            <option value="UGX">Ugandan Shilling (UGX)</option>
+            <option value="UYU">Uruguayan New Peso (UYU)</option>
+            <option value="UZS">Uzbekistan Sum (UZS)</option>
+            <option value="VEF">Venezuelan Bolivar Fuerte (VEF)</option>
+            <option value="VES">Venezuelan Bolivar Soberano (VES)</option>
+            <option value="VND">Vietnam Dong (VND)</option>
+            <option value="VUV">Vanuatu Vatu (VUV)</option>
+            <option value="WST">Samoa Tala (WST)</option>
+            <option value="XAF">CFA Franc (BEAC) (XAF)</option>
+            <option value="XCD">East Caribbean Dollar (XCD)</option>
+            <option value="XOF">CFA Franc (BCEAO) (XOF)</option>
+            <option value="XPF">Pacific Franc (XPF)</option>
+            <option value="YER">Yemen Riyal (YER)</option>
+            <option value="ZAR">South African Rand (ZAR)</option>
+            <option value="ZMK">Zambian Kwacha (ZMK)</option>
+            <option value="ZWL">Zimbabwe Dollar (ZWL)</option>
+          </select>
+        </div>
+
+        <div class="pspconnectiondialog-inputsection">
+          <label class="pspconnectiondialog-label required">Mode:</label>
+          <select id="pspconnectiondialog-mode" onchange="modeSelected();">
+            <option id="mode-default" value="-">Select mode</option>
+            <option value="ECOM">ECOM (Credit / debit card)</option>
+            <option value="MOTO">MOTO (Credit / debit card)</option>
+            <option value="DD">Direct Debit</option>
+            <option value="EC">eCheck</option>
+            <option value="WALT">Paypal</option>
+          </select>
+        </div>
+
+        <div class="pspconnectiondialog-inputsection">
+          <label class="pspconnectiondialog-label required">PSP:</label>
+          <select id="pspconnectiondialog-psp" onchange="pspSelected();">
+          </select>
+        </div>
+
+        <div class="pspconnectiondialog-inputsection">
+          <label class="pspconnectiondialog-label">Description:</label>
+          <input id="pspconnectiondialog-description">
+          </input>
+        </div>
+
+        <div id="pspconnectiondialog-authsection"></div>
+
+        <fieldset class="slds-form-element slds-m-top_small hidden" id="sandboxliveindicator">
+            <div class="slds-form-element__control">
+                <div class="slds-radio_button-group">
+                    <span class="slds-button slds-radio_button">
+                        <input type="radio" name="pspsandbox" id="pspsandbox" checked="checked" value="true" />
+                        <label class="slds-radio_button__label" for="pspsandbox">
+                            <span class="slds-radio_faux">Sandbox</span>
+                        </label>
+                    </span>
+                    <span class="slds-button slds-radio_button">
+                        <input type="radio" name="pspsandbox" id="psplive" value="false" />
+                        <label class="slds-radio_button__label" for="psplive">
+                            <span class="slds-radio_faux">Live</span>
+                        </label>
+                    </span>
+                </div>
+            </div>
+        </fieldset>
+
+      </div>
+      <footer class="slds-modal__footer">
+        <button onclick="hideConnectionDialog();" class="slds-button slds-button_neutral">Cancel</button>
+        <button id="pspconnectiondialog-submit" onclick="saveSelectedPSP();" class="slds-button slds-button_brand" disabled="disabled">Create PSP connection</button>
+      </footer>
+    </div>
+  </section>
+  <div class="slds-backdrop slds-backdrop_open"></div>
+</div>
+<!-- End PSP connection dialog -->
+
+<apex:form >
+    <div class="panel">
+      <div class="hidden" id="activetext">
+        <div class="success">Congratulations! Your configuration is set up.</div>
+        <div>You can now start processing payments!</div>
+        <div class="slds-m-bottom_x-small">Your configuration ID is {!customerID}.</div>
+        <button onclick="showConnectionDialog();" type="button">Add new PSP connection</button>
+      </div>
+      <div class="hidden" id="nokeytext">
+        <div class="big">It looks like you've upgraded from an older version of Asperato ONE!</div>
+        <div>Newer versions of Asperato ONE enable you to manage your PSP connections directly from Salesforce. If you'd like to take advantage of this functionality, please email support@asperato.com and we'll get you setup.</div>
+        <div>Your configuration ID is {!customerID}.</div>
+      </div>
+      <div class="hidden error" id="nosftext">
+        <div>You still need to connect your Salesforce account to use Asperato ONE.</div>
+        <apex:commandButton action="{!getSFConnectionLink}"
+              oncomplete="sfConnectRedir('{!createConfigReturnVal}'); "
+              value="Connect Salesforce"/>
+      </div>
+      <div class="hidden error" id="distext">
+        <div>
+            You've configured your live connection, but it's currently disabled - contact
+            support@asperato.com to get it switched on!
+        </div>
+        <div>Your configuration ID is {!customerID}.</div>
+      </div>
+      <div class="hidden error" id="inactivetext">
+        <div class="slds-m-bottom_x-small">Your configuration is not yet set up.</div>
+        <apex:commandButton action="{!createConfigAuto}"
+              oncomplete="sfConnectRedir('{!createConfigReturnVal}');"
+              onclick="this.disabled=true;"
+              value="Setup configuration"/>
+      </div>
+
+      <div id="pspconnections" class="pspconnections">
+
+      </div>
+
+      <div id="supportsection" class="supportsection">
+        <div><strong>Need to talk?</strong> Contact us - <a href="mailto:support@asperato.com">support@asperato.com</a></div>
+      </div>
+
+      <apex:actionFunction action="{!createConfigAuto}" name="createConfig">
+      </apex:actionFunction>
+    </div>
+</apex:form>
+
+
+</apex:page>

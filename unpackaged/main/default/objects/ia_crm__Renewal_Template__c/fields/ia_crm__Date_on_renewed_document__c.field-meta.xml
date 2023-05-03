@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ia_crm__Date_on_renewed_document__c</fullName>
+    <deprecated>false</deprecated>
+    <description>This field shows how the system determines the Transaction date on the sales transaction created by the renewal.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This field shows how the system determines the Transaction date on the sales transaction created by the renewal.</inlineHelpText>
+    <label>Date on renewed document</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Calculated date</fullName>
+                <default>false</default>
+                <label>Calculated date</label>
+            </value>
+            <value>
+                <fullName>Contract end date + 1</fullName>
+                <default>false</default>
+                <label>Contract end date + 1</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

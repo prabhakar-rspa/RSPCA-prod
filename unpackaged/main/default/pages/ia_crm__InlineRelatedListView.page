@@ -1,0 +1,166 @@
+<apex:page showHeader="false" applyHtmlTag="false" applybodytag="false" doctype="html-5.0" action="{!init}" standardController="Contract" extensions="ia_crm.InlineRelatedListController">
+    <apex:stylesheet value="{!URLFOR($Resource.ia_crm__Intacct, '/assets/styles/salesforce-lightning-design-system-vf.css')}" />
+   	<apex:includescript value="{!URLFOR($Resource.ia_crm__Intacct, '/js/jQuery.min.js')}" />
+    <apex:includescript value="{!URLFOR($Resource.ia_crm__Intacct, '/js/IntacctConfiguration.js')}" />
+    <apex:slds />
+    <div class="slds">
+	    <apex:form id="formPage">
+	  		<apex:inputHidden value="{!orderDirection}" id="orderHidden" />
+    		<apex:inputHidden value="{!activeColumn}" id="activeColHidden" />
+			<div class="slds-modal__content">
+		   		<apex:actionFunction name="initFunction" action="{!init}" rerender="dataTable, buttonsPanel" status="fetchStatus" />
+		   		<apex:actionFunction name="updateTable" action="{!updateTableRows}" rerender="dataTable">
+       				<apex:param name="nameOfColumn" assignTo="{!columnName}" value=""/>
+       			</apex:actionFunction>
+		       
+		       <apex:outputPanel rendered="{!sizeOfElements > 0}">
+		            <apex:outputPanel id="dataTable">
+		            	<apex:outputPanel >
+				            <table id="mainTableDiv" aria-multiselectable="true" class="slds-table slds-table_bordered slds-table_fixed-layout" role="grid">
+				              <thead>
+				                <tr class="slds-line-height_reset slds-cell-shrink" style="padding-bottom:3px;">
+				                  <th class="slds-text slds-cell-shrink" scope="col" style="{!IF(!isLightningExperience,'','display:none;')} width: 26px !important;">
+			                       	<div>
+				                        <label>
+				                          <span class="slds-truncate"><b>{!$Label.Action}</b></span>
+				                        </label>
+				                      </div>
+			                  	  </th>
+				                   <apex:repeat value="{!ordoredRecIds}" var="relatedRow" rows="1">
+				                   	  <apex:repeat value="{!recordsTemp}" var="row">
+					                   	  <th aria-label="{!relatedRow}" scope="col" class="slds-is-resizable slds-is-sortable slds-cell-shrink" >
+					                   	  	 <a class="slds-th__action slds-text-link_reset" href="javascript:hideSVG('{!row}'); updateTable('{!row}');" role="button" tabindex="0">
+										      	<span class="slds-truncate" title="{!relatedRecordsMap[relatedRow][row].objectType}"><b>{!relatedRecordsMap[relatedRow][row].objectType}</b></span>
+									            <apex:outputPanel rendered="{!showAllRows}">
+										            <span class="slds-icon_container slds-icon-utility-arrowup" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+										              <svg class="slds-icon slds-icon-text-default slds-is-sortable__icon SVGOrder" aria-hidden="true" id="svgUp{!row}" style="{!IF((orderDirection=='ASC' && columnName==row),'display:inline;','display:none;')}">
+										                <use xlink:href="{!URLFOR($Resource.Intacct, '/assets/icons/utility-sprite/svg/symbols.svg#arrowup')}"></use>
+										              </svg>
+										               <svg class="slds-icon slds-icon-text-default slds-is-sortable__icon SVGOrder" aria-hidden="true" id="svgDown{!row}" style="{!IF((orderDirection=='DESC' && columnName==row),'display:inline;','display:none;')}">
+										                <use xlink:href="{!URLFOR($Resource.Intacct, '/assets/icons/utility-sprite/svg/symbols.svg#arrowdown')}"></use>
+										              </svg>
+									             	</span>
+								             	</apex:outputPanel>
+									        </a> 
+					                      </th>
+				                      </apex:repeat>
+				                   </apex:repeat>
+				                </tr>
+				              </thead>
+				              <tbody>
+				                <apex:repeat value="{!ordoredRecIds}" var="salesInvId">
+				                  <tr aria-selected="false" class="slds-hint-parent">
+				               		<td role="gridcell" class="slds-cell-shrink" style="{!IF(!isLightningExperience,'','display:none;')}">
+			               				<div class="slds-truncate" title="{!$Label.Action}"><a target="_blank" href="/{!salesInvId}/e?retURL={!recordId}" style="color:#0070d2;">{!$Label.Edit}</a> | <a target="_blank" href="{!URLFOR($Action.Sales_Invoice__c.delete, salesInvId)}" onclick="return window.confirm('{!$Label.Are_you_sure}');" style="color:#0070d2;">{!$Label.Del}</a></div>
+			              		    </td>
+			                    	<apex:repeat value="{!recordsTemp}" var="row">
+			                      		<td role="gridcell" class="slds-cell-shrink">
+			                      			<apex:outputPanel rendered="{!relatedRecordsMap[salesInvId][row].objectId != null}">
+			                      				<div class="slds-truncate" title="{!relatedRecordsMap[salesInvId][row].objectId}"><a target="_blank" href="/{!relatedRecordsMap[salesInvId][row].objectId}" style="{!IF(isLightningExperience,'color:#0070d2;', 'text-decoration: underline;')}">{!relatedRecordsMap[salesInvId][row].objectName}</a></div>
+			                      			</apex:outputPanel>
+			                      			<apex:outputPanel rendered="{!relatedRecordsMap[salesInvId][row].objectId == null}">
+			                      				<div class="slds-truncate" title="{!relatedRecordsMap[salesInvId][row].objectId}">{!relatedRecordsMap[salesInvId][row].objectName}</div>
+			                      			</apex:outputPanel>
+			                      		</td>
+		                      		</apex:repeat>
+				 
+				                  </tr>
+				                </apex:repeat>
+				              </tbody>
+				            </table>
+				            <apex:outputPanel style="text-align:left;" layout="block" id="buttonsPanel">
+				              <apex:outputPanel rendered = "{!(allRecordsNumber > noOfRecordsPerPage) && !showAllRows}">
+				              	<!-- 
+				              	<apex:outputPanel rendered="{!!isLightningExperience}">
+				              		<apex:commandButton value="Show {!noOfRows} more" styleClass="slds-button slds-button_neutral" rerender="dataTable" action="{!next}" disabled="{!NOT(hasNext)}"
+				                	status="fetchStatus" />
+				             	</apex:outputPanel>&nbsp;
+				             	 -->
+				             	 <apex:outputPanel rendered="{!!isLightningExperience}">
+				                 	<div style="padding-left: 10px; padding-top: 5px;"><apex:outputLink value="{!showAllURL}" id="GoToLink" target="_blank">{!$Label.ia_crm__Go_to_list} ({!allRecordsNumber})</apex:outputLink></div>
+				               	 </apex:outputPanel>
+				               	 <apex:outputPanel rendered="{!isLightningExperience}">
+				                 	<div style="text-align:center;"><apex:outputLink style="color:#0070d2;" value="{!showAllURL}" id="viewAllLink" target="_blank">{!$Label.ia_crm__View_All}</apex:outputLink></div>
+				               	 </apex:outputPanel>
+				               </apex:outputPanel>
+				         		<apex:outputPanel style="padding-top: 5px; text-align:center;" layout="block" id="paginationPanel" rendered="{!showAllRows}">
+						              <apex:commandButton value="First" styleClass="slds-button slds-button_neutral" reRender="dataTable, buttonsPanel" action="{!first}" disabled="{!NOT(hasPrevious)}"
+						                status="fetchStatus" />
+						              <apex:commandButton value="{!$Label.ia_crm__Previous}" styleClass="slds-button slds-button_neutral" rerender="dataTable, buttonsPanel" action="{!previous}"
+						                disabled="{!NOT(hasPrevious)}" status="fetchStatus" />&nbsp;{!$Label.Page} {!pageNumber} {!$Label.of} {!totalPages}&nbsp;/&nbsp;{!allRecordsNumber} {!$Label.records}&nbsp;
+						              <apex:commandButton value="{!$Label.ia_crm__Next}" styleClass="slds-button slds-button_neutral" rerender="dataTable, buttonsPanel" action="{!next}" disabled="{!NOT(hasNext)}"
+						                status="fetchStatus" />
+						              <apex:commandButton value="{!$Label.ia_crm__Last}" styleClass="slds-button slds-button_neutral" rerender="dataTable, buttonsPanel" action="{!last}" disabled="{!NOT(hasNext)}"
+						                status="fetchStatus" />
+						              <apex:commandButton value="{!$Label.ia_crm__Close}" styleClass="slds-button slds-button_neutral" onclick="window.close();" />
+					            </apex:outputPanel>
+				            </apex:outputPanel>
+		            	</apex:outputPanel>
+					</apex:outputPanel>
+				</apex:outputPanel>
+	    	</div>
+	    </apex:form>
+    </div>
+    <style>
+    	.slds .slds-table tr > th:first-child,
+		.slds .slds-table tr > td:first-child {
+			padding:0px;
+  			padding-left: 10px;
+  			padding-bottom: 0px;
+  			max-width: 26px !important;
+  			padding-right: 56px !important;
+		}
+		.slds caption, .slds th, .slds td {
+			text-align: left;
+    		white-space: initial; !important;
+		}
+		.slds .slds-truncate {
+			white-space: initial; !important;
+		}
+		.slds:not(html), .slds body {
+    		font-size: 12px;!important;
+    	}
+    	.slds .slds-table .slds-cell-shrink {
+    		width: 0px;!important;
+    	}
+    	.slds .slds-table th, .slds .slds-table td {
+    		padding:0px; !important;
+    		font-family: Arial,Helvetica,sans-serif; !important;
+    	}
+    	.slds a {
+    		color:black; !important;
+    	}
+    	.slds .slds-icon {
+    		width: 10px;!important;
+    	}
+    	th {
+    		height:22px;
+    	}
+    </style>
+    <script>
+	$(document).ready(function () {
+      document.getElementById("{!$Component.formPage.orderHidden}").value = 'ASC';
+    });
+    function hideSVG(colName) {
+	  	if(document.getElementById("{!$Component.formPage.orderHidden}").value == "DESC") {
+	    	document.getElementById("svgUp"+colName).style.display = "inline";
+	    	document.getElementById("svgDown"+colName).style.display = "none";
+	    	document.getElementById("{!$Component.formPage.orderHidden}").value = "ASC";
+	    	
+	  	} else {
+	    	document.getElementById("svgUp"+colName).style.display = "none";
+	    	document.getElementById("svgDown"+colName).style.display = "inline";
+	    	document.getElementById("{!$Component.formPage.orderHidden}").value = "DESC";
+		}
+		toggle(colName);
+	}
+	function toggle(colName){
+	    var elements = document.getElementsByClassName('SVGOrder')
+	    for (var i = 0; i < elements.length; i++){
+	        if(elements[i].id != 'svgUp'+colName && elements[i].id != 'svgDown'+colName) { 
+	        	elements[i].style.display = 'none';
+	        }
+	    }
+	}
+    </script>
+</apex:page>

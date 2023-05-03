@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ia_crm__Organization_Type__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Store the value of the organization type.</description>
+    <externalId>false</externalId>
+    <label>Organization Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Single-entity</fullName>
+                <default>false</default>
+                <label>Single-entity</label>
+            </value>
+            <value>
+                <fullName>Single-entity, multi-currency</fullName>
+                <default>false</default>
+                <label>Single-entity, multi-currency</label>
+            </value>
+            <value>
+                <fullName>Multi-entity shared</fullName>
+                <default>false</default>
+                <label>Multi-entity shared</label>
+            </value>
+            <value>
+                <fullName>Multi-entity shared, multi-currency</fullName>
+                <default>false</default>
+                <label>Multi-entity shared, multi-currency</label>
+            </value>
+            <value>
+                <fullName>M-Console</fullName>
+                <default>false</default>
+                <label>M-Console</label>
+            </value>
+            <value>
+                <fullName>M-Console, multi-currency</fullName>
+                <default>false</default>
+                <label>M-Console, multi-currency</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

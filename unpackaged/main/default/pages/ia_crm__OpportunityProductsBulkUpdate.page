@@ -1,0 +1,445 @@
+<apex:page controller="ia_crm.OpportunityProductsBulkUpdateController" title="{!$Label.ia_crm__Opportunity_Product_Bulk_Update}" applyBodyTag="false" docType="html-5.0" >
+    <apex:stylesheet value="{!URLFOR($Resource.ia_crm__Intacct, '/assets/styles/salesforce-lightning-design-system-vf.css')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.ia_crm__Intacct, '/js/jQuery.min.js')}"/>
+    
+    <style>
+        .myCustomMessage .message {
+            background: none !important;
+            border: none !important;
+            background-image: none !important;
+        }
+
+        .msgIcon {
+            Display: none;
+        }
+    </style>
+
+    <div class="slds">
+        <apex:form >
+        <apex:outputpanel id="errorPanel">
+            <apex:outputpanel rendered="{!AND(hasError, hasError2)}">
+                <div class="slds-notify slds-notify--alert slds-theme--error slds-theme--alert-texture">
+                     <apex:messages />
+                 </div>
+            </apex:outputpanel>
+            <apex:outputpanel rendered="{!AND(hasError, NOT(hasError2))}">
+                <apex:outputpanel styleclass="myCustomMessage">
+                    <figure>
+                        <apex:image id="errorImage" value="{!URLFOR($Resource.ia_crm__Intacct,'images/error.png')}" style="margin: auto; display: block; padding-top: 100px;" />
+                    </figure>
+                    <div style="text-align: center;">
+                        <apex:outputtext value="{!$Label.ia_crm__Operation_failed}" style="font-size: 200%;" />
+                    </div>
+                </apex:outputpanel>
+                <apex:outputpanel styleclass="myCustomMessage">
+                    <p>
+                        <div class="demo-only">
+                            <div class="slds-has-dividers_around-space slds-align_absolute-center">
+                                <div class="slds-item" style="width: 550px; border: 1px solid #d8dde6; border-radius: .25rem; margin: auto; ">
+                                    <article class="slds-tile slds-tile_board">
+                                        <apex:pagemessages id="xx" />
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
+                    </p>
+                </apex:outputpanel>
+                <apex:outputpanel >
+                    <div style="text-align: center;">
+                        <apex:outputlink value="{!'/' + opportunityId}" style="margin-top: 20px;" styleclass="slds-button slds-button--neutral">{!$Label.ia_crm__Back_to_record}</apex:outputlink>
+                    </div>
+                </apex:outputpanel>
+                </apex:outputpanel>
+            </apex:outputpanel>
+         <apex:actionStatus id="fetchStatus" >
+            <apex:facet name="start" >
+                <div class="slds-spinner_container">
+                    <div role="status" class="slds-spinner slds-spinner--medium slds-spinner--brand">
+                        <span class="slds-assistive-text">{!$Label.Loading}</span>
+                        <div class="slds-spinner__dot-a"></div>
+                        <div class="slds-spinner__dot-b"></div>
+                    </div>
+                </div>
+            </apex:facet>
+        </apex:actionStatus>
+        
+        <apex:outputPanel id="dialogPanel">
+            <apex:outputPanel rendered="{!IF(showDialog==true,'true','false')}">
+                <div role="dialog" tabindex="-1" aria-labelledby="header43" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <div class="slds-modal__header slds-theme--info slds-theme--alert-texture">
+                            <h2 id="header43" class="slds-text-heading--medium">{!$Label.Update_result}</h2>
+                        </div>
+                        <div class="slds-modal__content slds-p-around--medium">
+                            <p>{!$Label.Number_of_successfully_updated} {!numberOfUpdateRecords}</p>
+                            <p>{!$Label.Number_of_failed_records} {!failedRecords.size}</p>
+                            <ul>
+                                <apex:repeat value="{!failedRecords}" var="err">
+                                    <a target="_blank" href="/{!err.recordId}" style="margin-left: -40px;">{!err.recordName}</a>
+                                    <ul>
+                                        <apex:repeat value="{!err.errors}" var="e">
+                                            <li>
+                                                - {!e}
+                                            </li>
+                                        </apex:repeat>
+                                    </ul>
+                                </apex:repeat>
+                            </ul>
+                        </div>
+                        <div class="slds-modal__footer">
+                            <apex:outputlink value="{!'/' + opportunityId}" styleclass="slds-button slds-button--brand" style="margin-right: 10px;">{!$Label.ia_crm__Go_to_Opportunity}</apex:outputlink>
+                            <apex:commandButton styleClass="slds-button slds-button--neutral" value="{!$Label.ia_crm__Continue_updating}" rerender="dialogPanel, productsPanel" action="{!continueUpdate}" status="fetchStatus" onComplete="uncheckAllRecords();"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-backdrop slds-backdrop--open"></div>
+            </apex:outputPanel>
+        </apex:outputPanel>
+        <apex:outputpanel id="PanelX" rendered="{!!hasError}">
+        <apex:actionRegion >
+        
+        <div class="slds-page-header defaultingTable " role="banner" >
+            <table>
+                <tr>
+                    <td style="width:240px;">
+                        <div class="slds-form-element" style="width: 95%;">
+                            <label class="slds-form-element__label" for="input-01">{!$Label.Defaulting_type}</label>
+                            <div class="slds-form-element__control">
+                                <div class="slds-select_container">
+                                    <apex:selectList value="{!selectedDefaultType}" multiselect="false" size="1" styleClass="slds-select" >
+                                        <apex:actionSupport event="onchange" action="{!refresh}" rerender="defaultingPanel, defaultingTypeDescriptionPanel" status="fetchStatus" oncomplete="removeDependentLookup();"/>
+                                        <apex:selectOptions value="{!defaultTypeOptions}"/>
+                                    </apex:selectList>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td style="width:auto">
+                        <!-- <c:InfoTooltip infoText="{!defaultingTypeDescription[selectedDefaultType]}" /> -->
+                        <apex:outputPanel id="defaultingTypeDescriptionPanel" styleClass="slds-dropdown-trigger" style="top: 20px;">
+                            <a class="rowActionsPlaceHolder slds-button slds-button--icon-x-medium" aria-haspopup="true" title="" href="javascript:void(0);" data-aura-rendered-by="1191:0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <span class="slds-icon_container slds-icon-utility-down" data-aura-rendered-by="1194:0"><span data-aura-rendered-by="1197:0">
+                                    <svg class="slds-button__icon" aria-hidden="true">
+                                        <use xlink:href="{!URLFOR($Resource.Intacct, '/assets/icons/utility-sprite/svg/symbols.svg#info')}"></use>
+                                    </svg>
+                                </span>
+                                <span class="slds-assistive-text" data-aura-rendered-by="1199:0">{!$Label.Help}</span></span>
+                            </a>
+                            <div class="slds-dropdown slds-dropdown--left slds-dropdown--actions slds-dropdown--menu slds-nubbin--bottom-right slds-theme--info" role="dialog" style="text-align: left; width: 20rem; left: -17.4rem; top: -{!IF(len(defaultingTypeDescription[selectedDefaultType])<82,'42',
+                                IF(len(defaultingTypeDescription[selectedDefaultType])>82,'126',
+                                IF(len(defaultingTypeDescription[selectedDefaultType])>126,'168','150')))}px; line-height:1;">
+                                <div class="slds-popover__body" id="dialog-body-id-263">{!defaultingTypeDescription[selectedDefaultType]}</div>
+                            </div>
+                        </apex:outputPanel>
+                    </td>
+                </tr>
+            </table>
+            
+            <apex:outputPanel id="defaultingPanel">
+            <div>
+                <div style="color: #54698d;margin-bottom: -30px;padding-right: 65px;" align="center" >{!$Label.Defaulting_fields}</div>
+            </div>
+            <hr/>
+            <apex:variable var="fielSetNumber" value="{!0}" />
+            <table style="margin-top: -20px;">
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <apex:repeat value="{!defaultingLine}" var="c">
+                        <apex:repeat value="{!lineDefaultingFields}" var="FieldLable">
+                            <td style="width: 25%;">
+                                <c:OpportunityLineDescribe styleCls="defaultingInput defaulting-{!fielSetNumber}" onChangeEvnt="showEnforceCheckbox('{!fielSetNumber}', '{!$ObjectType['OpportunityLineItem'].fields[FieldLable].Type}')" 
+                                SObject="{!defaultingLine[0]}" Field="{!FieldLable}" fieldtype="{!$ObjectType['OpportunityLineItem'].fields[FieldLable].Type}" isRequired="false" isOutput="false" additionalHelp="{!defaultingTypeDescription[selectedDefaultType+FieldLable]}"/>
+                                <div class="slds-form-element enforceValue-{!fielSetNumber}" style="{!IF(lineDefaultingFields[FieldLable].isVisible, '', 'display:none')}">
+                                    <label class="slds-checkbox">
+                                        <apex:inputCheckbox value="{!lineDefaultingFields[FieldLable].enforceValue}" />
+                                        <span class="slds-checkbox--faux"></span>
+                                        <span class="slds-form-element__label">{!$Label.Enforce_value}</span>
+                                    </label>
+                                </div>
+                            </td>
+                            <apex:variable var="fielSetNumber" value="{!fielSetNumber + 1}" />
+                            <apex:outputtext value="{!IF(MOD(fielSetNumber, 4) == 0, '<tr>', '')}" escape="false" />
+                        </apex:repeat>
+                    </apex:repeat>
+                </tr>
+            </table>
+            </apex:outputPanel>
+        </div>
+        <div id="searchLayoutDialogBackground" class="slds-backdrop"></div>
+        
+        
+        <table>
+                <tr>
+                    <td>
+                    <div style="width:200px;padding-left: 12px;">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="input-01">{!$Label.Items_per_page}</label>
+                            <div class="slds-form-element__control">
+                                <div class="slds-select_container">
+                                    <apex:selectList value="{!list_size}" multiselect="false" size="1" styleClass="slds-select" id="input-01" >
+                                        <apex:actionSupport event="onchange" action="{!refresh}" rerender="productsPanel" status="fetchStatus"/>
+                                        <apex:selectOptions value="{!ListSize}"/>
+                                    </apex:selectList>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </td>
+                    <td>
+                    <div style="text-align: center;margin-top: 28px;">
+                        <apex:commandButton value="{!$Label.ia_crm__Update_records}" action="{!updateLines}" status="fetchStatus" rerender="dialogPanel, errorPanel" styleClass="slds-button slds-button--brand defaultingTable"/>
+                        <apex:outputlink value="{!'/' + opportunityId}" styleclass="slds-button slds-button--neutral">{!$Label.ia_crm__Cancel}</apex:outputlink>
+                    </div>
+                    </td>
+                    <td>
+                    <div id="customizeButton" style="padding-right: 20px;" class="slds-picklist slds-dropdown-trigger--click" aria-expanded="true">
+                        <input type="button" Id="showFieldsDialog" class="slds-button slds-button--neutral" value="{!$Label.Customize_table_columns}" style="float: right;margin-top: 28px;" />
+                    </div>
+                    </td>
+                   
+                </tr>
+          </table>
+        
+           
+            <br/>
+            <div class="slds-card">
+                <apex:outputPanel id="productsPanel">
+                <table class="slds-table slds-table--bordered" id="datatable">
+                    <thead>
+                    <tr class="slds-text-heading--label">
+                        <th class="slds-cell-shrink">
+                            <apex:outputPanel layout="block" styleClass="slds-form-element">
+                                <label class="slds-checkbox" for="parentCheck">
+                                    <input type="checkbox" id="parentCheck" />
+                                    <span class="slds-checkbox--faux"></span>
+                                    <span class="slds-form-element__label"></span>
+                                </label>
+                            </apex:outputPanel>
+                            <script>
+                            	document.getElementById("parentCheck").onclick = function() {selectaAllChild()};
+                            </script>
+                        </th>
+                        <apex:variable var="count" value="{!1}"/>
+                        <apex:repeat value="{!fieldsToDisplay}" var="fieldKey">
+                            <apex:repeat value="{!fieldsToDisplay[fieldKey]}" var="col" >
+                                <th scope="col">
+                                    <div class="slds-truncate">{!fieldsToDisplay[fieldKey][col]}</div>
+                                </th>
+                         </apex:repeat>
+                         </apex:repeat>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      <apex:repeat value="{!products}" var="prod" >
+                          <tr>
+                              <td class="slds-cell-shrink" data-label="Select Row">
+                                  <apex:outputPanel layout="block" styleClass="slds-form-element">
+                                      <label class="slds-checkbox" for="{!$Component.checkBox}">
+                                          <apex:inputCheckbox id="checkBox" value="{!prod.isChecked}" styleClass="childCheck" />
+                                          <span class="slds-checkbox--faux"></span>
+                                          <span class="slds-form-element__label"></span>
+                                          <script>
+                                              document.getElementById("{!$Component.checkBox}").onclick = function() {selectParent()};
+                                          </script>
+                                      </label>
+                                  </apex:outputPanel>
+                              </td>
+                              <apex:repeat value="{!fieldsToDisplay}" var="fieldKey">
+                                  <apex:repeat value="{!fieldsToDisplay[fieldKey]}" var="col" >
+                                      <td>
+                                          <apex:outputPanel rendered="{!col == 'name'}">
+                                              <a target="_blank" href="/{!prod.pricebookEntry.Id}" style="text-decoration: none;">{!prod.pricebookEntry[col]}</a>
+                                          </apex:outputPanel>
+                                          <apex:outputPanel rendered="{!col != 'name'}">
+                                              <apex:outputField value="{!prod.pricebookEntry[col]}"/>
+                                          </apex:outputPanel>
+                                      </td>
+                                  </apex:repeat>
+                              </apex:repeat>
+                          </tr>
+                      </apex:repeat>
+                  </tbody>
+                </table>
+                 <div class="slds-card__footer slds-grid slds-grid--vertical-align-end">
+                    <div class="slds-grid--vertical-align-end" style="width: 100%;" >
+                        <label class="slds-form-element__label" for="input-01" style="float:left;">{!$Label.Showing_Page} {!pageNumber} {!$Label.of} {!totalPages}</label>
+                    </div>
+                    <div class="slds-col slds-size--2-of-2">
+                        <div class="" role="group" style="float:right;">
+                            <apex:commandButton status="fetchStatus" disabled="{!disablePrevious}" oncomplete="selectParent()" action="{!firstPage}" rerender="productsPanel" value="{!$Label.ia_crm__First}" title="{!$Label.ia_crm__First_Page}" styleClass="slds-button slds-button--brand"/>
+                            <apex:commandButton status="fetchStatus" disabled="{!disablePrevious}" oncomplete="selectParent()" action="{!previousPage}" rerender="productsPanel" value="{!$Label.ia_crm__Previous}" title="{!$Label.ia_crm__Previous_Page}" styleClass="slds-button slds-button--brand"/>
+                            <apex:commandButton status="fetchStatus" disabled="{!disableNext}" oncomplete="selectParent()" action="{!nextPage}" rerender="productsPanel" value="{!$Label.ia_crm__Next}" title="{!$Label.ia_crm__Next_Page}" styleClass="slds-button slds-button--brand"/>
+                            <apex:commandButton status="fetchStatus" disabled="{!disableNext}" oncomplete="selectParent()" action="{!lastPage}" rerender="productsPanel" value="{!$Label.ia_crm__Last}" title="{!$Label.ia_crm__Last_Page}" styleClass="slds-button slds-button--brand"/>
+                        </div>
+                    </div>
+                </div>
+                </apex:outputPanel>
+            </div>
+            </apex:actionRegion>
+            </apex:outputPanel>
+            <!--<apex:outputpanel id="PanelX2" rendered="{!hasError2}">
+                <div style="text-align: center;padding-right: 115px;">
+                        <apex:commandbutton action="{!redirectToParent}" style="position: absolute;margin-top: 20px;" value="Back to record" styleclass="slds-button slds-button--neutral" />
+                    </div>
+            </apex:outputPanel>-->
+            <div id="searchLayoutDialog" role="dialog" tabindex="-1" aria-labelledby="header43" class="slds-modal">
+                <div class="slds-modal__container">
+                    <div class="slds-modal__header slds-theme--info slds-theme--alert-texture">
+                        <h2 id="header43" class="slds-text-heading--medium">{!$Label.Edit_Search_Layout}</h2>
+                    </div>
+                    <div class="slds-modal__content slds-p-around--medium">
+                        <c:MultiselectPicklist leftLabel="{!$Label.ia_crm__Available_Fields}"
+                                             leftOption="{!allOpportunityProductFields}"
+                                             rightLabel="{!$Label.ia_crm__Selected_Fields}"
+                                             rightOption="{!selectedOpportunityProductFields}"
+                                             size="11"
+                                             showUpDownButtons="true"
+                                             width="250px" 
+                                             rightListCustomClass="rightListAvailable"
+                                             leftListCustomClass="rightListSelected"/>
+                        <div class="errorMessage" style="color: #d74c3b;display:none"/>
+                    </div>
+                <div class="slds-modal__footer">
+                    <input type="button" id="cancelButtonFieldLayout" class="slds-button slds-button--neutral" value="{!$Label.Cancel}" />
+                    <apex:commandButton style="display:none;" value="{!$Label.ia_crm__Save}" action="{!savePageColumns}" StyleClass="slds-button slds-button--brand saveLayoutFields"/>
+                    <input type="button" id="saveButtonFieldLayout" value="{!$Label.ia_crm__Save}" class="slds-button slds-button--brand" />
+                </div>
+            </div>
+        </div>
+        <div id="searchLayoutDialogBackground" class="slds-backdrop"></div>
+        
+        </apex:form>
+    </div>
+    <script>
+     	$(window).load(function () {//needed for dependent lookups, needs to be on load event.
+			removeDependentLookup();
+	    });   
+	     
+        $( document ).ready(function() {
+            selectParent();
+            removeDependentLookup();
+        });
+		
+		function removeDependentLookup() {
+	        $(".lookupInput").attr("readonly", false);
+	        $(".lookupInput").show();
+	        $( ".closeIcon" ).remove();
+	        $( ".emptyDependentLookup" ).remove();
+        }
+        
+        document.getElementById("showFieldsDialog").onclick = function() {showHideSearchDialog()};
+        document.getElementById("cancelButtonFieldLayout").onclick = function() {showHideSearchDialog()};
+        document.getElementById("saveButtonFieldLayout").onclick = function() {validateList()};
+        //document.getElementById("parentCheck").onclick = function() {selectaAllChild()};
+        var childs = document.getElementsByClassName("childCheck");
+
+        /*
+        for (var i = 0; i < childs.length; i++) {
+            childs[i].onclick = function() {selectParent()};
+        }
+		*/
+		
+        function showHideSearchDialog() {
+            if($("#searchLayoutDialog").hasClass("slds-fade-in-open")) {
+                $("#searchLayoutDialog").removeClass("slds-fade-in-open");
+                $("#searchLayoutDialogBackground").removeClass("slds-backdrop--open");
+            } else {
+                $("#searchLayoutDialog").addClass("slds-fade-in-open");
+                $("#searchLayoutDialogBackground").addClass("slds-backdrop--open");
+            }
+        }
+
+        function validateList() {
+            var isProductName = false;
+            var ary = [];
+            $(".rightListAvailable option").each(function () {
+                ary.push($(this).val());
+            });
+            if(ary.length > 10) {
+                $(".errorMessage").show();
+                $(".errorMessage").html("<strong>Error: </strong>{!$Label.No_more_than_10_fields}");
+                return false;
+            } else {
+                $(".errorMessage").hide();
+                $(".errorMessage").html("");
+            }
+            if(ary.length < 1) {
+                $(".errorMessage").show();
+                $(".errorMessage").html("<strong>Error: </strong>{!$Label.Selected_Fields_list_cannot_be_empty}");
+                return false;
+            } else {
+                $(".errorMessage").hide();
+                $(".errorMessage").html("");
+            }
+            for(var i=0;i<ary.length;i++) {
+                if(ary[i] == 'name') {
+                    isProductName = true;
+                }
+            }
+            if(!isProductName || ary[0] != 'name') {
+                $(".errorMessage").show();
+                $(".errorMessage").html("<strong>Error: </strong>{!$Label.Opportunity_Product_Name_cannot_be_removed}");
+                return false;
+            } else {
+                $(".errorMessage").hide();
+                $(".errorMessage").html("");
+            }
+            $(".saveLayoutFields").click();
+        }
+
+    var isOneSelected = false;
+
+    function selectParent() {
+        if($('input.childCheck[type=checkbox]').length > 0) {
+            if ($('input.childCheck[type=checkbox]:not(:checked)').length){
+                $("#parentCheck").removeAttr('checked');
+                selectAllCheckbox = false;
+            } else {
+                $("#parentCheck").prop('checked',true);
+                selectAllCheckbox = true;
+            }
+        }
+    }
+
+    function selectaAllChild() {
+        if($('#parentCheck').is(':checked')) {
+           $(".childCheck").prop('checked', true);
+           selectAllCheckbox = true;
+           $(".defaultingTable").show();
+        } else {
+           $(".childCheck").prop('checked', false);
+           selectAllCheckbox = false;
+        }
+    }
+
+    function uncheckAllRecords() {
+    $("#parentCheck").prop('checked', false);
+        $(".childCheck").prop('checked', false);
+      	removeDependentLookup();
+    }
+
+    function showEnforceCheckbox(rowNumber, fieldType) {
+        if(fieldType == 'boolean') {
+        	return;
+        }
+        if(fieldType == 'multipicklist') {
+            if($(".defaulting-" + rowNumber).val() != null) {
+                $(".enforceValue-" + rowNumber).hide();
+            } else {
+                $(".enforceValue-" + rowNumber).show();
+            }
+        } else {
+            if($(".defaulting-" + rowNumber).val() == '') {
+                $(".enforceValue-" + rowNumber).show();
+            } else {
+                $(".enforceValue-" + rowNumber).hide();
+            }
+        }
+    }
+    </script>
+</apex:page>

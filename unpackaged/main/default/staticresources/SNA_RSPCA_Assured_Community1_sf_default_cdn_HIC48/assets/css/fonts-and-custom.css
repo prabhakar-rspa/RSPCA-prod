@@ -1,0 +1,128 @@
+/* iPads (portrait and landscape) ----------- */
+@media only screen
+    and (min-device-width : 768px)
+    and (max-device-width : 1024px) {
+        div.logoImage{
+            margin-top:30px;
+        }
+}
+/* iPad Pro (portrait and landscape) ----------- */
+@media only screen
+    and (min-device-width : 1024px)
+    and (max-device-width : 1366px) {
+        div.logoImage{
+            margin-top:30px;
+        }
+}
+@media only screen and (max-device-width: 600px) and (orientation : portrait){
+    .logoImage{
+        margin-top:0;
+    }
+}
+@media only screen and (min-width: 1025px) and (orientation : landscape) {
+    .logoImage{
+        margin-top:30px;
+    }
+} 
+
+.themeBottomBorder{
+    background: none;
+}
+.themeHeader{
+    height:60px;
+}
+
+.community-footer{
+    background:#0058a5;
+    height: 120px;
+}
+.footer-links{
+    color:#ffffff;
+    padding-bottom:10px;
+    padding-top:10px;
+    text-align:center;
+
+}
+.news-link{
+    color:#ffffff !important;
+    padding-right:5px;
+    padding-left:5px
+}
+.help-link{
+    color:#ffffff !important;
+    padding-right:5px;
+    padding-left:5px
+}
+.privacy-link{
+    color:#ffffff !important;
+    padding-right:5px;
+    padding-left:5px
+}
+.footer{
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+.inverseTextColor {
+    color: #0058a5 !important;
+}
+
+/* hide path expand button in application */
+button.slds-button.slds-button.slds-button_icon.slds-button_icon-border-filled.slds-path__trigger.uiButton{
+    display: none;
+}
+/* hide path expand content in application */
+div.slds-path__content.slds-is-expanded{
+    display: none;
+}
+/* hide path mark stage as complete button in application */
+div.slds-grid.slds-path__action.runtime_sales_pathassistantPathAssistantHeader{
+    display: none;
+}
+
+/* hide list view changer from home page */
+div.triggerLink.slds-button.slds-button--reset.slds-type-focus.slds-truncate.forceListViewPicker{
+    display: none;
+}
+div.listTitleContainer.uiBlock{
+    pointer-events: none !important;
+    cursor: default !important;
+}
+lightning-icon.filterSelectorIcon.slds-button__icon.slds-icon-utility-switch.slds-icon_container.forceIcon{
+    display: none;
+}
+
+/* make applications title bigger in the record list table on the home page */
+span.slds-var-p-right_x-small.uiOutputText.forceBreadCrumbItem{
+    font-size: 20px;
+    color: black;
+}
+
+/* hide list cog icon in the home page */
+div.test-listViewSettingsMenu.slds-m-left_xx-small.forceListViewSettingsMenu{
+    display: none;
+}
+
+/* hide list view chart button in the home page */
+lightning-button-icon-stateful.listViewManagerHeaderButton.chartButton{
+    display: none;
+}
+
+/* hide the list view filter button */
+lightning-button-icon-stateful.listViewManagerHeaderButton.filterButton{
+    display: none;
+}
+
+/*hide follow button */
+.slds-button.slds-button--neutral.not-selected.slds-not-selected {
+    display:none
+}
+
+.slds-button.slds-button--neutral.is-selected.slds-is-selected {
+    display:none
+}
+
+div.slds-col--padded.comm-content-footer.comm-layout-column{
+    padding-top: 120px !important; 
+}
+:root { --dxp-c-section-columns-max-width: 1170px; }

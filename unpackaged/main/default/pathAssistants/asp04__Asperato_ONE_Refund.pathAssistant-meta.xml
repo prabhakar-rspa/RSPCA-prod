@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PathAssistant xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <entityName>asp04__Refund__c</entityName>
+    <fieldName>asp04__Refund_Stage__c</fieldName>
+    <masterLabel>Asperato ONE Refund</masterLabel>
+    <pathAssistantSteps>
+        <fieldNames>asp04__Refund_Stage_Description__c</fieldNames>
+        <fieldNames>asp04__Error_Code__c</fieldNames>
+        <fieldNames>asp04__Direct_Debit_Error_Code__c</fieldNames>
+        <info>&lt;p&gt;This refund has failed. See error code and stage description for further details.&lt;/p&gt;</info>
+        <picklistValueName>Failed</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>Name</fieldNames>
+        <fieldNames>asp04__Refund_Stage_Description__c</fieldNames>
+        <info>&lt;p&gt;A processing record should not be edited. It will be updated automatically wit the outcome of the refund attempt.&lt;/p&gt;</info>
+        <picklistValueName>Processing</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>asp04__Refund_Stage__c</fieldNames>
+        <fieldNames>asp04__Refund_Stage_Description__c</fieldNames>
+        <info>&lt;p&gt;Successfully refunded to the customer.&lt;/p&gt;</info>
+        <picklistValueName>Refunded to customer</picklistValueName>
+    </pathAssistantSteps>
+    <recordTypeName>__MASTER__</recordTypeName>
+</PathAssistant>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentName>asp04:ConfigStatus</componentName>
+                <identifier>ConfigStatus</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>asp04:SFStatus</componentName>
+                <identifier>SFStatus</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>asp04:support</componentName>
+                <identifier>support</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>column1</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>allowDelete</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentName>asp04:PSPStatus</componentName>
+                <identifier>PSPStatus</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>column2</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <masterLabel>Getting Started</masterLabel>
+    <template>
+        <name>flexipage:appHomeTemplateTwoColumns</name>
+    </template>
+    <type>AppPage</type>
+</FlexiPage>

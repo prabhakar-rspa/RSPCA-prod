@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ia_crm__Parent_Task__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Parent Task</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>ia_crm__Task__c.ia_crm__Project__c</field>
+            <operation>equals</operation>
+            <valueField>$Source.ia_crm__Project__c</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>ia_crm__Task__c</referenceTo>
+    <relationshipLabel>Tasks</relationshipLabel>
+    <relationshipName>Tasks</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

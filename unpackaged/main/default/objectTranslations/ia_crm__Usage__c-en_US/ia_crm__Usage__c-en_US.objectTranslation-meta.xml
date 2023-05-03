@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Usage Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Sync Back Section --></label>
+            <section>Sync Back Section</section>
+        </sections>
+        <sections>
+            <label><!-- Validation Errors --></label>
+            <section>Validation Errors</section>
+        </sections>
+    </layouts>
+    <webLinks>
+        <label><!-- Sync_to_Intacct --></label>
+        <name>ia_crm__Sync_to_Intacct</name>
+    </webLinks>
+</CustomObjectTranslation>

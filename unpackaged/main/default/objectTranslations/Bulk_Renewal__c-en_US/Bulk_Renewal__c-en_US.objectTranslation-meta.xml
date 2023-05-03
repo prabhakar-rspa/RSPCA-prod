@@ -8,20 +8,6 @@
         <plural>true</plural>
         <value>Bulk Renewals</value>
     </caseValues>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <layouts>
         <layout>Bulk Renewal Layout</layout>
         <sections>
@@ -30,8 +16,31 @@
         </sections>
     </layouts>
     <quickActions>
+        <label><!-- Download Invoice --></label>
+        <name>Download_Invoice</name>
+    </quickActions>
+    <quickActions>
         <label><!-- Send Invoice --></label>
         <name>Send_Invoice</name>
     </quickActions>
+    <quickActions>
+        <label><!-- Send Multiple Invoices --></label>
+        <name>Send_Multiple_Invoices</name>
+    </quickActions>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

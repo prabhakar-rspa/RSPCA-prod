@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ia_crm__Recognition_method__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Recognition method</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Straight line</fullName>
+                <default>false</default>
+                <label>Straight line</label>
+            </value>
+            <value>
+                <fullName>Straight-line, prorate exact days</fullName>
+                <default>false</default>
+                <label>Straight-line, prorate exact days</label>
+            </value>
+            <value>
+                <fullName>Straight-line, percent allocation</fullName>
+                <default>false</default>
+                <label>Straight-line, percent allocation</label>
+            </value>
+            <value>
+                <fullName>Exact days per period, prorate days</fullName>
+                <default>false</default>
+                <label>Exact days per period, prorate days</label>
+            </value>
+            <value>
+                <fullName>Percent completed</fullName>
+                <default>false</default>
+                <label>Percent completed</label>
+            </value>
+            <value>
+                <fullName>Milestone</fullName>
+                <default>false</default>
+                <label>Milestone</label>
+            </value>
+            <value>
+                <fullName>Custom</fullName>
+                <default>false</default>
+                <label>Custom</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

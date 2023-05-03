@@ -1,0 +1,6 @@
+<apex:page lightningStylesheets="true" showHeader="false" applyHtmlTag="false" applybodytag="false" doctype="html-5.0" action="{!init}" standardController="Account" extensions="ia_crm.ContractValidationDataController" >
+    <apex:form >
+        <c:ContractValidationData validationStatus="{!validationStatus}" 
+                                  recordId="{!recordId}" />
+    </apex:form>
+</apex:page>

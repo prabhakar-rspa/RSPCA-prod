@@ -1,0 +1,383 @@
+<apex:page controller="ia_crm.IntacctConfigurationController" action="{!getSettings}" sidebar="false" doctype="html-5.0" standardstylesheets="false" applybodytag="true" title="Intacct Configuration">
+    <apex:stylesheet value="{!URLFOR($Resource.ia_crm__Intacct, '/assets/styles/salesforce-lightning-design-system-vf.css')}" />
+    <apex:includescript value="{!URLFOR($Resource.ia_crm__Intacct, '/js/jQuery.min.js')}" />
+    <apex:includescript value="{!URLFOR($Resource.ia_crm__Intacct, '/js/IntacctConfiguration.js')}" />
+    <apex:includeLightning />
+    <apex:slds />
+    
+    <div class="slds configLayout">
+        <apex:form >
+            <apex:actionstatus id="fetchStatus">
+                <apex:facet name="start">
+                    <div class="slds-spinner_container">
+                        <div role="status" class="slds-spinner slds-spinner--brand slds-spinner--medium">
+                            <span class="slds-assistive-text">{!$Label.Loading}</span>
+                            <div class="slds-spinner__dot-a"></div>
+                            <div class="slds-spinner__dot-b"></div>
+                        </div>
+                    </div>
+                </apex:facet>
+            </apex:actionstatus>
+            <apex:outputpanel rendered="{!configuration == null}">
+                <div role="alertdialog" tabindex="-1" aria-labelledby="prompt-heading-id" aria-describedby="prompt-message-wrapper" class="slds-modal slds-fade-in-open slds-modal--prompt">
+                    <div class="slds-modal__container">
+                        <div class="slds-modal__header slds-theme--error slds-theme--alert-texture">
+                            <button class="slds-button slds-modal__close slds-button--icon-inverse" title="{!$Label.Close}">
+                                <span class="slds-assistive-text">{!$Label.Close}</span>
+                            </button>
+                            <h2 class="slds-text-heading--medium" id="prompt-heading-id">{!dialogTitle}</h2>
+                        </div>
+                        <div class="slds-modal__content slds-p-around--medium">
+                            <p>{!pageMessage}</p>
+                        </div>
+                        <div class="slds-modal__footer slds-theme--default">
+                            <apex:commandbutton action="{!cancel}" value="{!$Label.ia_crm__Ok}" styleclass="slds-button slds-button--neutral" />
+                            <apex:outputpanel rendered="{!showClearSubscriptionButton}" style="padding-left: 15px;">
+                                <apex:commandbutton action="{!deleteOrgConfiguration}" value="{!$Label.ia_crm__Clear_Subscription_Data}" styleclass="slds-button slds-button--neutral" />
+                            </apex:outputpanel>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-backdrop slds-backdrop--open"></div>
+            </apex:outputpanel>
+            <apex:actionfunction name="clearErrors" action="{!clearErrorMessages}" reRender="errorContainer"/>
+            <apex:outputPanel id="warningPanel">
+                <apex:outputPanel rendered="{!len(CheckApexJobInfo) > 0}">
+                    <div  class="slds-box slds-theme_warning">
+                        <span class="slds-icon_container slds-icon-utility-warning slds-m-right_small slds-no-flex slds-align-top" title="Warning">
+                            <svg class="slds-button__icon" aria-hidden="true" width="500" height="300">                            
+                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Resource.Intacct, '/assets/icons/utility-sprite/svg/symbols.svg#warning')}" />
+                            </svg>
+                          </span>
+                        <apex:outputtext value="{!CheckApexJobInfo}" escape="false" />
+                        <div>
+                            <apex:commandbutton action="{!rescheduleJobs}" value="{!$Label.ia_crm__Reschedule_jobs_with_current_user}" styleclass="slds-button slds-button--neutral" status="fetchStatus" reRender="warningPanel"/>
+                        </div>
+                    </div>
+                </apex:outputPanel>
+            </apex:outputPanel>
+            <apex:outputpanel id="errorContainer">
+                <apex:messages style="text-align: center; color: white; background-color: #c23934; padding: 1rem; border-radius: .25rem; border: 1px solid #d8dde6;"/>
+                <apex:outputpanel rendered="{!saveEvent == 'success'}">
+                    <div id="displayPageMessages" style="text-align: center;" class="slds-box slds-theme--success">
+                        <apex:outputtext value="{!pageMessage}" escape="false" />
+                    </div>
+                    <script>
+                        setTimeout(function() {
+                            if($( "#displayPageMessages" ).hasClass( "slds-theme--success" )) {
+                                $('#displayPageMessages').fadeOut();
+                                clearErrors();
+                            }
+                        }, 3000 );
+                    </script>
+                </apex:outputpanel>
+            </apex:outputpanel>
+            <apex:outputpanel id="container" rendered="{!configuration != null || showDeleteConfigDialog}">
+
+                <div class="slds-tabs--scoped">
+                    <apex:outputpanel id="tabContainer">
+                        <ul class="slds-tabs--scoped__nav" role="tablist">
+                            <apex:outputpanel >
+                                <li id="tab1" class="slds-tabs--scoped__item slds-text-heading--label slds-active" title="{!$Label.Main_Settings}" role="presentation">
+                                    <a href="#" id="firstTab" class="slds-tabs--scoped__link slds-active">{!$Label.Main_Settings}</a>
+                                </li>
+                            </apex:outputpanel>
+                            <apex:outputpanel rendered="{!configuration.ia_crm__Enable_Intacct_Salesforce_sync__c}">
+                                <li id="tab2" class="slds-tabs--scoped__item slds-text-heading--label" title="{!$Label.Intacct_Synchronization}" role="presentation">
+                                    <a href="#" id="secondTab" class="slds-tabs--scoped__link slds-active">{!$Label.Intacct_Synchronization}</a>
+                                </li>
+                            </apex:outputpanel>
+                            <apex:outputpanel rendered="{!AND(configuration.ia_crm__Enable_Intacct_Salesforce_sync__c, configuration.ia_crm__Contracts_enable_sync__c)}">
+                                <li id="tab3" class="slds-tabs--scoped__item slds-text-heading--label" title="{!$Label.Renewals}" role="presentation">
+                                    <a href="#" id="thirdTab" class="slds-tabs--scoped__link slds-active">{!$Label.Renewals}</a>
+                                </li>
+                            </apex:outputpanel>
+                            <apex:outputpanel rendered="{!configuration.ia_crm__Enable_Intacct_Salesforce_sync__c}">
+                                <li id="tab4" class="slds-tabs--scoped__item slds-text-heading--label" title="{!$Label.Custom_Mappings}" role="presentation">
+                                    <a href="#" id="forthTab" class="slds-tabs--scoped__link slds-active">{!$Label.Custom_Mappings}</a>
+                                </li>
+                            </apex:outputpanel>
+                            <apex:outputpanel rendered="{!configuration.ia_crm__Enable_Intacct_Salesforce_sync__c}">
+                                <li id="tab5" class="slds-tabs--scoped__item slds-text-heading--label" title="{!$Label.Customize_Validations}" role="presentation">
+                                    <a href="#" id="fifthTab" class="slds-tabs--scoped__link slds-active">{!$Label.Customize_Validations}</a>
+                                </li>
+                            </apex:outputpanel>
+                            <apex:outputpanel rendered="{!configuration.ia_crm__Enable_Intacct_Salesforce_sync__c}">
+                                <li id="tab6" class="slds-tabs--scoped__item slds-text-heading--label" title="{!$Label.Release_Notes}" role="presentation">
+                                    <a href="#" id="sixthTab" class="slds-tabs--scoped__link slds-active">{!$Label.Release_Notes}</a>
+                                </li>
+                            </apex:outputpanel>
+                        </ul>
+                    </apex:outputpanel>
+                    
+                    <div id="tab-scoped-1" class="slds-tabs--scoped__content slds-show" role="tabpanel" aria-labelledby="tab-scoped-1__item">
+                        <c:MainSettings configuration="{!configuration}" iscustomerportalenabled="{!isCustomerPortalEnabled}" isportalenabled="{!IsPortalEnabled}" />
+                    </div>
+                    <div id="tab-scoped-2" class="slds-tabs--scoped__content slds-hide" role="tabpanel" aria-labelledby="tab-scoped-2__item">
+                         <c:SynchSettings id="syncSettingsComponent" configuration="{!configuration}"
+                                         transactiondefinition="{!TransactionDefinition}"
+                                         opportunitystageerrormessage="{!opportunityStageErrorMessage}"
+                                         contractstatuserrormessage="{!contractStatusErrorMessage}"
+                                         contractstatusoptions="{!contractStatusOptions}"
+                                         syncOnlyOnceOptions="{!syncOnlyOnceOptions}"
+                                         
+                                         
+                                         
+                                         
+                                         opportunityAddOnRecordTypes="{!opportunityAddOnRecordTypes}"
+                                         
+                                         
+                                         
+                                         showAccountSFDCandIntacctMappingAction="{!showAccountSFDCandIntacctMappingAction}" 
+                                         hideSFDCandIntacctMappingAction="{!hideSFDCandIntacctMappingAction}"
+                                         
+                                         showContactSFDCandIntacctMappingAction="{!showContactSFDCandIntacctMappingAction}"
+                                         
+                                         showContractSFDCandIntacctMappingAction="{!showContractSFDCandIntacctMappingAction}"
+                                         
+                                         showProductSFDCandIntacctMappingAction="{!showProductSFDCandIntacctMappingAction}"
+                                         
+                                         showCPricebookSFDCandIntacctMappingAction="{!showCPricebookSFDCandIntacctMappingAction}"
+                                         
+                                         showOEPricebookSFDCandIntacctMappingAction="{!showOEPricebookSFDCandIntacctMappingAction}"
+                                         
+                                         showOpportunityProductSFDCandIntacctMappingAction="{!showOpportunityProductSFDCandIntacctMappingAction}"
+                                         
+                                         showOETransactionSFDCandIntacctMappingAction="{!showOETransactionSFDCandIntacctMappingAction}"
+                                         showOETransactionLineSFDCandIntacctMappingAction="{!showOETransactionLineSFDCandIntacctMappingAction}"
+                                         intacctSFDCOETransactionNames="{!intacctSFDCOETransactionNames}"
+                                         intacctSFDCOETransactionLineNames="{!intacctSFDCOETransactionLineNames}"
+                                         oeTransactionName="{!oeTransactionName}"
+                                         opportunitystageoptions="{!opportunityStageOptions}"
+                                         
+                                         
+                                         hasContractPricebookSFDCAndIntacctMapping="{!hasContractPricebookSFDCAndIntacctMapping}"
+                                         hasOEPricebookSFDCAndIntacctMapping="{!hasOEPricebookSFDCAndIntacctMapping}"
+                                         hasOppProductSFDCAndIntacctMapping="{!hasOppProductSFDCAndIntacctMapping}"
+                                         hasOETransactionsSFDCAndIntacctMapping="{!hasOETransactionsSFDCAndIntacctMapping}"
+                                         hasOETransactionsLineSFDCAndIntacctMapping="{!hasOETransactionsLineSFDCAndIntacctMapping}"
+                                         showJournalSFDCandIntacctMappingAction="{!showJournalSFDCandIntacctMappingAction}"
+                                         showProjectSFDCandIntacctMappingAction="{!showProjectSFDCandIntacctMappingAction}"
+                                         showTaskSFDCandIntacctMappingAction="{!showTaskSFDCandIntacctMappingAction}"
+                                         
+                                         showJournalEntryLineSFDCandIntacctMappingAction="{!showJournalEntryLineSFDCandIntacctMappingAction}"
+                                         JournalMappingMap="{!JournalMappingMap}"
+                                         showJournalMappingPopup="{!showJournalMappingPopup}"
+                                         hidemappingpopups="{!hideMappingPopups}"
+                                         selectedJurnalMappingObjectName="{!selectedJurnalMappingObjectName}"
+                                         showJournalMappingAction="{!showJournalMappingAction}"
+                                         showJournalMappingDeletePopupDialog="{!showJournalMappingDeletePopupDialog}"
+                                         deleteJournalMappingDialogAction="{!deleteJournalMappingDialogAction}"
+                                         closeDeleteMapBulkRecord="{!closeDeleteMapBulkRecord}"
+                                         confirmDeleteJournalEntryMappingAction="{!confirmDeleteJournalEntryMappingAction}" 
+                                         showJournalEntryLineValidation="{!showJournalEntryLineValidation}"
+                                         showJournalEntryLineValidationAction="{!showJournalEntryLineValidationAction}"
+                                         hideValidationDialogAction="{!hideValidationDialogAction}"
+                                         hasJournalEntryCreationJob="{!hasJournalEntryCreationJob}"
+                                         hasJournalEntrySyncJob="{!hasJournalEntrySyncJob}"
+                                         showCreateJournalEntryPopupDialog="{!showCreateJournalEntryPopupDialog}"
+                                         showSyncJournalEntryPopupDialog="{!showSyncJournalEntryPopupDialog}"
+                                         showCreateJournalEntryAction="{!showCreateJournalEntryAction}"
+                                         showSyncJournalEntrygAction="{!showSyncJournalEntrygAction}"
+                                         showDeleteCreateJournalEntryPopupDialog="{!showDeleteCreateJournalEntryPopupDialog}"
+                                         showDeleteSyncJournalEntryPopupDialog="{!showDeleteSyncJournalEntryPopupDialog}"
+                                         showDeleteCreateJournalEntryAction="{!showDeleteCreateJournalEntryAction}"
+                                         showDeleteSyncJournalEntrygAction="{!showDeleteSyncJournalEntrygAction}"
+                                         confirmDeleteCreateJEJob="{!confirmDeleteCreateJEJob}"
+                                         confirmDeleteSyncJEJob="{!confirmDeleteSyncJEJob}"
+
+                                         SFDCAndIntacctObjectName="{!SFDCAndIntacctObjectName}"
+                                         SFDCAndIntacctHeader="{!SFDCAndIntacctHeader}"
+                                         showSFDCandIntacctMapping="{!showSFDCandIntacctMapping}"
+                                         showCreateUddFieldsPopupDialog="{!showCreateUddFieldsPopupDialog}"
+                                         showCreateUddFieldsAction="{!showCreateUddFieldsAction}"
+                                         isJeMappingOld="{!isJeMappingOld}"
+                                         addOpportunityProductNewPage="{!addOpportunityProductNewPage}" 
+                                         JEMappingNewPage="{!JEMappingNewPage}" 
+                                         saveTriggerSettings="{!saveTriggerSettings}"
+                                         saveJETriggerSettings="{!saveJETriggerSettings}" />
+                    </div>
+                    <div id="tab-scoped-3" class="slds-tabs--scoped__content slds-hide" role="tabpanel" aria-labelledby="tab-scoped-3__item">
+                        <c:RenewalConfigurations configuration="{!configuration}"
+                                                 opportunityRenewalRecordTypes="{!opportunityRenewalRecordTypes}"
+                                                 renewalscheduletime="{!RenewalScheduleTime}"
+                                                 showopportunitymapping="{!showOpportunityMapping}"
+                                                 showopportunitymappingpopup="{!showOpportunityMappingPopup}"
+                                                 showoppprodmapping="{!showOppProdMapping}"
+                                                 showoppprodmappingpopup="{!showOppProdMappingPopup}"
+                                                 showcontractmappingpopup="{!showContractMappingPopup}"
+                                                 showcontractmapping="{!showContractMapping}"
+                                                 hidemappingpopups="{!hideMappingPopups}"
+                                                 opportunitystageoptions="{!opportunityStageOptions}" />
+                    </div>
+                    <div id="tab-scoped-4" class="slds-tabs--scoped__content slds-hide" role="tabpanel" aria-labelledby="tab-scoped-4__item">
+                        <c:CustomMappings configuration="{!configuration}"
+                                          showCustomMappingsTabDialog="{!showCustomMappingsTabDialog}"
+                                          showCustomMappingsTabDialogAction="{!showCustomMappingsTabDialogAction}"
+                                          hidemappingpopups="{!hideMappingPopups}"
+                                          lstoppprodbulkdefaults="{!lstOppProdBulkDefaults}"
+                                          namecustummapp="{!nameCustumMapp}"
+                                          deletemapbulkrecord="{!deleteMapBulkRecord}"
+                                          showOppoProdDefaultingDeletePopupDialog="{!showOppoProdDefaultingDeletePopupDialog}"
+                                          confirmDeleteMapBulkdelete="{!confirmDeleteMapBulkdelete}"
+                                          closeDeleteMapBulkRecord="{!closeDeleteMapBulkRecord}"
+                                          addLineProfileFieldsNameMap="{!addLineProfileFieldsNameMap}"
+                                          selectedAddLineProfileId="{!selectedAddLineProfileId}"
+                                          deleteAddLineProfile="{!deleteAddLineProfile}"
+                                          showAddLineProfileDeletePopupDialog="{!showAddLineProfileDeletePopupDialog}"
+                                          confirmDeleteAddLineAction="{!confirmDeleteAddLineAction}" />
+                    </div>
+                    <div id="tab-scoped-5" class="slds-tabs--scoped__content slds-hide" role="tabpanel" aria-labelledby="tab-scoped-5__item">
+                        <c:ValidationsSettings configuration="{!configuration}"
+                                               showAccountValidation="{!showAccountValidation}"
+                                               showAccountValidationAction="{!showAccountValidationAction}"
+                                               showContractValidation="{!showContractValidation}"
+                                               showContractValidationAction="{!showContractValidationAction}"
+                                               showUsageValidation="{!showUsageValidation}"
+                                               showUsageValidationAction="{!showUsageValidationAction}"
+                                               showOpportunityValidation="{!showOpportunityValidation}"
+                                               showOpportunityValidationAction="{!showOpportunityValidationAction}"
+                                               showOpportunityProductValidation="{!showOpportunityProductValidation}"
+                                               showOpportunityProductValidationAction="{!showOpportunityProductValidationAction}"
+                                               showJournalEntryLineValidation="{!showJournalEntryLineValidation}"
+                                               showJournalEntryLineValidationAction="{!showJournalEntryLineValidationAction}"
+                                               
+                                               hideValidationDialogAction="{!hideValidationDialogAction}"/>
+                    </div>
+                    <div id="tab-scoped-6" class="slds-tabs--scoped__content slds-hide" role="tabpanel" aria-labelledby="tab-scoped-6__item">
+                        <c:ReleaseNotes releaseNotesUrl="{!releaseNotesUrl}"
+                                        remoteSiteSettings="{!remoteSiteSettings}"/>
+                    </div>
+                    
+                    <div class="slds-grid slds-grid--vertical-align-center slds-grid--align-center" style="margin-top: 15px;">
+                        <apex:commandbutton action="{!beforeSaveActions}" onComplete="bringToTop();" rerender="RunScheduleDialog, errorContainer, runScheduleErrorMessage" value="{!$Label.ia_crm__Save}" status="fetchStatus" styleclass="slds-button slds-button_brand" disabled="{!NOT(configuration.ia_crm__Enable_Intacct_Salesforce_sync__c)}" />
+                        <apex:commandbutton action="{!cancel}" value="{!$Label.ia_crm__Cancel}" styleclass="slds-button slds-button--neutral" immediate="true" />
+                        <apex:outputpanel rendered="{!isSandbox}" style="padding-left: 4px;">
+                            <apex:commandbutton action="{!deleteOrgConfiguration}" disabled="{!showClearSubscriptionButton}" value="{!$Label.ia_crm__Clear_Subscription_Data}" styleclass="slds-button slds-button--neutral" />
+                        </apex:outputpanel>
+                    </div>
+                </div>
+                <apex:outputpanel id="deleteConfigDialog">
+                    <apex:outputpanel rendered="{!showDeleteConfigDialog}">
+                        <div role="alertdialog" tabindex="-1" aria-labelledby="prompt-heading-id" aria-describedby="prompt-message-wrapper" class="slds-modal slds-fade-in-open slds-modal--prompt">
+                            <div class="slds-modal__container">
+                                <div class="slds-modal__header slds-theme--error slds-theme--alert-texture">
+                                    <button class="slds-button slds-modal__close slds-button--icon-inverse" title="{!$Label.Close}">
+                                        <span class="slds-assistive-text">{!$Label.Close}</span>
+                                    </button>
+                                    <h2 class="slds-text-heading--medium" id="prompt-heading-id">{!$Label.ia_crm__Clear_Subscription_Data}</h2>
+                                </div>
+                                <div class="slds-modal__content slds-p-around--medium">
+                                    <p>{!$Label.Cancellation_deletes}</p>
+                                </div>
+                                <div class="slds-modal__footer slds-theme--default">
+                                    <apex:commandbutton action="{!confirmDeleteOrgConfiguration}" value="{!$Label.ia_crm__Yes}" status="fetchStatus" styleclass="slds-button slds-button--brand" />
+                                    <apex:commandbutton action="{!declineDeleteOrgConfiguration}" value="{!$Label.ia_crm__No}" rerender="deleteConfigDialog" styleclass="slds-button slds-button--neutral" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-backdrop slds-backdrop--open"></div>
+                    </apex:outputpanel>
+                </apex:outputpanel>
+                <apex:outputpanel id="RunScheduleDialog">
+                    <apex:outputpanel layout="block" rendered="{!showRunScheduleBialog}">
+                        <div role="alertdialog" tabindex="-1" aria-labelledby="prompt-heading-id" aria-describedby="prompt-message-wrapper" class="slds-modal slds-fade-in-open slds-modal--prompt runScheduleDialog">
+                            <div class="slds-modal__container">
+                                <div class="slds-modal__header slds-theme--error slds-theme--alert-texture">
+                                    <button class="slds-button slds-modal__close slds-button--icon-inverse" title="{!$Label.Close}">
+                                        <span class="slds-assistive-text">{!$Label.Close}</span>
+                                    </button>
+                                    <h2 class="slds-text-heading--medium" id="prompt-heading-id">{!$Label.Run_Scheduled_Jobs_With_user_not_selected}</h2>
+                                </div>
+                                <div class="slds-modal__content slds-p-around--medium">
+                                    <p>{!$Label.No_user_selected_to_run}</p>
+                                </div>
+                                <div class="slds-modal__footer slds-theme--default">
+                                    <apex:commandbutton action="{!saveSettings}" onComplete="bringToTop();" rerender="RunScheduleDialog, errorContainer, tabsPanelContainer" value="{!$Label.ia_crm__Yes}" styleclass="slds-button slds-button--brand" />
+                                    <apex:commandbutton action="{!cancelRunScheduleDialog}" oncomplete="returnToMainTab();" rerender="RunScheduleDialog, errorContainer" value="{!$Label.ia_crm__No}" styleclass="slds-button slds-button--neutral" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-backdrop slds-backdrop--open runScheduleDialogBackground"></div>
+                    </apex:outputpanel>
+                </apex:outputpanel>
+            </apex:outputpanel>
+        </apex:form>
+    </div>
+    <script>
+        var firstTab = document.getElementById("firstTab");//.onclick = function() {switchTab('1')};
+        if(firstTab != null) {
+            firstTab.onclick = function() {switchTab('1')};
+        }
+
+        var secondTab = document.getElementById("secondTab");
+        if(secondTab != null) {
+            secondTab.onclick = function() {switchTab('2')};
+        }
+
+        var thirdTab = document.getElementById("thirdTab");
+        if(thirdTab != null) {
+            thirdTab.onclick = function() {switchTab('3')};
+        }
+
+        var forthTab = document.getElementById("forthTab");
+        if(forthTab != null) {
+            forthTab.onclick = function() {switchTab('4')};
+        }
+
+        var fifthTab = document.getElementById("fifthTab");
+        if(fifthTab != null) {
+            fifthTab.onclick = function() {switchTab('5')};
+        }
+
+        var sixthTab = document.getElementById("sixthTab");
+        if(sixthTab != null) {
+            sixthTab.onclick = function() {switchTab('6')};
+        }
+        function bringToTop() {
+            $('html, body').animate({ scrollTop: 0 }, "slow");
+        }
+    </script>
+    <style>
+        table {
+            
+            /*border: solid #d8dde6 1px;*/
+            display: table;
+            border-collapse: separate;
+            border-spacing: 2px;
+        }
+        
+        .displayData table, .displayData th, .displayData td {
+            height: 50px;
+            vertical-align: middle !important;
+            text-align: center !important;
+            border: 1px solid #ccc;
+        }
+        
+        .configLayout {
+            max-width: 1200px;
+            min-width: 750px;
+            margin: auto;
+        }
+        
+        .assigne-button {
+            bottom: 8px;
+        }
+        
+        .slds-tabs--scoped__content {
+            background-color: #ffffff !important;
+        }
+        .slds-active {
+            color: #0070d2 !important;
+        }
+        .slds-tabs--scoped__link {
+            color: #54698d !important;
+        }
+        .slds-theme--info {
+            background-color: #54698d !important;
+        }
+        .errorMsg {
+            color: #ea001e;
+        }
+    </style>
+</apex:page>

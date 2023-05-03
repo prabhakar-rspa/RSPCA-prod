@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ia_crm__Intacct_Entity_Id__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>IF(ISNULL(ia_crm__Created_at_Entity__c), &#39;&#39;,
+IF( ISPICKVAL( ia_crm__Created_at_Entity__r.ia_crm__Entity_Type__c , &#39;Entity&#39;), ia_crm__Created_at_Entity__r.ia_crm__Intacct_Entity_ID__c , ia_crm__Created_at_Entity__r.ia_crm__Top_Entity__r.ia_crm__Intacct_Entity_ID__c))</formula>
+    <label>Intacct Entity Id</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,116 @@
+<apex:page showHeader="false" sidebar="false" controller="ia_crm.ContractValidationDataController" action="{!init}" title="{!popupTitle}">
+    <apex:stylesheet value="{!URLFOR($Resource.ia_crm__Intacct, '/assets/styles/salesforce-lightning-design-system-vf.css')}" />
+    <apex:slds />
+    <style>
+        .myCustomMessage .message {
+            background: none !important;
+            border: none !important;
+            background-image: none !important;
+        }
+
+        .msgIcon {
+            Display: none;
+        }
+        a {
+            color: rgb(0, 95, 178) !important;
+        }
+        input:focus, input:active {
+            border: none;
+        }
+    </style>
+    
+    <div class="slds">
+        <apex:actionstatus id="fetchStatus">
+            <apex:facet name="start">
+                <div class="slds-spinner_container">
+                    <div role="status" class="slds-spinner slds-spinner--medium slds-spinner--brand">
+                        <span class="slds-assistive-text">{!$Label.Loading}</span>
+                        <div class="slds-spinner__dot-a"></div>
+                        <div class="slds-spinner__dot-b"></div>
+                    </div>
+                </div>
+            </apex:facet>
+        </apex:actionstatus>
+        <apex:form >
+            <apex:outputpanel id="mainPanel">
+            <div style="min-height: 400px;">
+                    <apex:outputpanel styleclass="myCustomMessage" rendered="{!NOT(hasPageErrors)}">
+                        <figure>
+                            <apex:image id="theImage" value="{!URLFOR($Resource.ia_crm__Intacct,'images/success.png')}" style="margin: auto;display: block;" />
+                        </figure>
+                        <div style="text-align: center;">
+                            <apex:outputtext value="{!$Label.ia_crm__Record_is_ready_for_Intacct_Sync}" style="font-size: 250%;" />
+                        </div>
+                    </apex:outputpanel>
+                
+                    <apex:outputpanel styleclass="myCustomMessage" rendered="{!hasPageErrors}">
+                        <p>
+                            <div class="demo-only">
+                                <div class="slds-has-dividers_around-space slds-align_absolute-center">
+                                    <div class="slds-item " style="width: auto; max-width: 650px; margin-top: 15px;">
+                                        <article class="slds-tile slds-tile_board">
+                                            <div Style="display: flex;">
+                                                <div>
+                                                    <figure>
+                                                        <apex:outputpanel styleclass="myCustomMessage" rendered="{!validationStatus == 'Error'}">
+                                                            <apex:image id="errorImage2" value="{!URLFOR($Resource.ia_crm__Intacct,'images/error.jpg')}" style="margin: auto; display: block; width: 50px;" />
+                                                        </apex:outputpanel>
+                                                        <apex:outputpanel styleclass="myCustomMessage" rendered="{!validationStatus == 'Warning'}">
+                                                            <apex:image id="warningImage2" value="{!URLFOR($Resource.ia_crm__Intacct,'images/warning.jpg')}" style="margin: auto; display: block; width: 50px;" />
+                                                        </apex:outputpanel>
+                                                    </figure>
+                                                </div>
+                                                <div Style="margin-left: -20px;">
+                                                    <apex:pagemessages escape="false" />
+                                                
+                                                    <apex:outputpanel rendered="{!hasPageErrors}">
+                                                        <div style="text-align: center;">
+                                                            <apex:commandbutton title="Refresh" rerender="mainPanel" styleclass="refreshBtn slds-button slds-m-left--xx-small slds-button--icon-border" style="background-image:url({!URLFOR($Resource.ia_crm__Intacct, '/assets/icons/utility/refresh_60.png')});right: 10px; background-size: 22px 22px;background-color: transparent;background-position: 5px 5px;height: 36px;width: 36px;background-repeat: no-repeat; border: none;" />
+                                                         </div>
+                                                    </apex:outputpanel>
+                                                </div>
+                                            </div>
+                                            <!--<div class="slds-tile__detail">
+                                                <span class="slds-icon_container slds-tile_board__icon" title="description of icon when needed">
+                                                    <svg class="slds-icon slds-icon-text-error slds-icon_x-small" aria-hidden="true">
+                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#error')}" />
+                                                    </svg>
+                                                    <span class="slds-assistive-text">Warning Icon</span>
+                                                </span>
+                                            </div>-->
+                                        </article>
+                                    </div>
+                                </div>
+                            </div>
+                        </p>
+                    </apex:outputpanel>
+                <apex:outputpanel layout="none" >
+                    <div style="text-align: center;">
+                        <apex:commandLink style="margin-top: 20px;" value="Close window" styleclass="btnClose slds-button slds-button--neutral" />
+                    </div>
+                </apex:outputpanel>
+            </div>
+            </apex:outputpanel>
+        </apex:form>
+    </div>
+    <script>
+        var refreshBtn = document.getElementsByClassName("refreshBtn")[0];
+
+        if(refreshBtn != null) {
+            refreshBtn.onclick = function() {refresh()};
+        }
+
+        var btnClose = document.getElementsByClassName("btnClose")[0];
+
+        if(btnClose != null) {
+            btnClose.onclick = function() {closeWindow()};
+        }
+
+        function closeWindow() {
+            window.top.close();
+        }
+        function refresh() {
+            location.reload();
+        }
+    </script>
+</apex:page>

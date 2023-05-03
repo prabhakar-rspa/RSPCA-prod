@@ -1,0 +1,79 @@
+<aura:component
+  implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId,force:lightningQuickActionWithoutHeader" access="global"
+>
+    <aura:attribute name="disabled" type="Boolean" default="false" />
+    <aura:attribute name="saved" type="Boolean" default="false" />
+    <aura:attribute name="showSpinner" type="Boolean" default="true" />
+    <aura:attribute name="recordTypeId" type="String" />
+
+    <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_medium" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1">
+        <!-- Modal Container-->
+        <div class="slds-modal__container">
+            <aura:if isTrue="{!!v.saved}">
+                <lightning:recordEditForm
+                    onload="{!c.handleLoad}"
+                    onsubmit="{!c.handleSubmit}"
+                    onsuccess="{!c.handleSuccess}"
+                    recordId="{!v.recordId}"
+                    objectApiName="Application__c">
+
+                    <!-- the messages component is for error messages -->
+                    <lightning:messages />
+
+                    <!-- Modal Header -->
+                    <header class="slds-modal__header">
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+                            Membership Fees Paid?
+                        </h2>
+                    </header>
+                    
+                    <!-- Modal Body -->
+                    <div class="slds-modal__content slds-p-around_medium slds-is-relative" id="modal-content-id-1">
+                        <!-- Adds a spinner when loading -->
+                        <aura:if isTrue="{!v.showSpinner}">
+                            <div class="slds-spinner_container">
+                                <lightning:spinner alternativeText="Loading" size="medium" />
+                            </div>
+                        </aura:if>
+
+                        <!-- read only fields -->
+                        <lightning:inputField fieldName="Payment_Method__c" disabled="true"/>
+                        <lightning:inputField fieldName="Total_Amount_Inc_VAT__c" disabled="true"/>
+                        
+                        <!-- paid checkbox field -->
+                        <div class="paidSection"> 
+                            <p>Check the paid checkbox if the fees have been paid</p>
+                            <lightning:inputField fieldName="Paid__c" />
+                        </div>
+                    </div>
+
+                    <!-- Modal Footer -->
+                    <footer class="slds-modal__footer">
+                        <!-- Footer buttons -->
+                        <button onclick="{!c.handleCancel}" class="slds-button slds-button_neutral">Cancel</button>
+                        <lightning:button
+                            disabled="{!v.disabled}"
+                            variant="brand"
+                            type="submit"
+                            name="save"
+                            label="Save"/>
+                    </footer>
+                </lightning:recordEditForm>
+            </aura:if>
+        </div>
+    </section>
+    <!-- Styling to remove padding from the lightning quick action launch -->
+    <aura:html tag="style">
+        .cuf-content { 
+            padding: 0 0rem !important; 
+        } 
+        .slds-p-around--medium {
+            padding: 0rem !important; 
+        }
+        .slds-modal__content{
+            overflow-y:hidden !important;
+            height:unset !important;
+            max-height:unset !important;
+        }
+    </aura:html>
+</aura:component>

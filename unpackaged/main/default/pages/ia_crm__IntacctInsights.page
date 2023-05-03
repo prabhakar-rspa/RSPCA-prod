@@ -1,0 +1,94 @@
+<apex:page standardController="Contract" showHeader="false" applyHtmlTag="false">
+    <apex:stylesheet value="{!URLFOR($Resource.ia_crm__Intacct, '/assets/styles/salesforce-lightning-design-system-vf.css')}" />
+    <script>
+        var dataArray = new Array();
+        dataArray.push({'data':{!IF(ISNULL(contract.ia_crm__Total_Billed__c), 0, contract.ia_crm__Total_Billed__c)},'name':'{!$ObjectType.Contract.fields.ia_crm__Total_Billed__c.Label}'});
+        dataArray.push({'data':{!IF(ISNULL(contract.ia_crm__Total_Outstanding__c), 0, contract.ia_crm__Total_Outstanding__c)},'name':'{!$ObjectType.Contract.fields.ia_crm__Total_Outstanding__c.Label}'});
+        dataArray.push({'data':{!IF(ISNULL(contract.ia_crm__Total_Received__c), 0, contract.ia_crm__Total_Received__c)},'name':'{!$ObjectType.Contract.fields.ia_crm__Total_Received__c.Label}'});
+    </script>
+    <style>
+        .slds [hidden], .slds template {
+           display: block;
+        }
+</style>
+    <div class="slds">
+        <apex:form >
+            <apex:pageBlock rendered="{!$User.UIThemeDisplayed != 'Theme4d' && $User.UIThemeDisplayed != 'Theme4t'}" mode="maindetail">
+                <apex:pageBlockSection >
+                    <apex:outputField value="{!contract.ia_crm__Contract_Total__c}"
+                        label="{!$ObjectType.Contract.fields.ia_crm__Contract_Total__c.Label}" />
+                    <apex:outputField value="{!contract.ia_crm__Total_Billed__c}"
+                        label="{!$ObjectType.Contract.fields.ia_crm__Total_Billed__c.Label}" />
+                    <apex:outputField value="{!contract.ia_crm__Total_Outstanding__c}"
+                        label="{!$ObjectType.Contract.fields.ia_crm__Total_Outstanding__c.Label}" />
+                    <apex:outputField value="{!contract.ia_crm__Total_Received__c}"
+                        label="{!$ObjectType.Contract.fields.ia_crm__Total_Received__c.Label}" />
+                    <apex:pageBlockSectionItem rendered="{!OR(NOT(ISNULL(contract.ia_crm__Contract_Total__c)), NOT(ISNULL(contract.ia_crm__Total_Billed__c)), NOT(ISNULL(contract.ia_crm__Total_Received__c)))}">
+                        <apex:outputText value="{!$Label.ia_crm__Billing_Overview}" />
+                        <apex:outputPanel style="padding:50px">
+                            <apex:chart data="dataArray" height="180px" width="300px"
+                                animate="false">
+                                <apex:pieSeries dataField="data">
+                                    <apex:chartLabel display="none" />
+                                    <apex:chartTips height="20" width="120" />
+                                </apex:pieSeries>
+                                <apex:legend position="right" />
+                            </apex:chart>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+                </apex:pageBlockSection>
+            </apex:pageBlock>
+            <div class="slds-tree__item">
+                <apex:outputPanel rendered="{!$User.UIThemeDisplayed == 'Theme4d' || $User.UIThemeDisplayed == 'Theme4t'}" style="width:100%">
+                    <div class="slds-grid slds-wrap slds-grid--pull-padded">
+                        <div class="slds-form-element slds-size--1-of-2">
+                            <label class="slds-form-element__label" for="text-input-01">{!$ObjectType.Contract.fields.ia_crm__Contract_Total__c.Label}</label>
+                            <div class="slds-form-element__control">
+                                <apex:outputField value="{!contract.ia_crm__Contract_Total__c}"
+                                    styleClass="slds-input" />
+                            </div>
+                        </div>
+                        <div class="slds-form-element slds-size--1-of-2">
+                            <label class="slds-form-element__label" for="text-input-01">{!$ObjectType.Contract.fields.ia_crm__Total_Billed__c.Label}</label>
+                            <div class="slds-form-element__control">
+                                <apex:outputField value="{!contract.ia_crm__Total_Billed__c}"
+                                    styleClass="slds-input" />
+                            </div>
+                        </div>
+                        <div class="slds-form-element slds-size--1-of-2">
+                            <label class="slds-form-element__label" for="text-input-01">{!$ObjectType.Contract.fields.ia_crm__Total_Outstanding__c.Label}</label>
+                            <div class="slds-form-element__control">
+                                <apex:outputField value="{!contract.ia_crm__Total_Outstanding__c}"
+                                    styleClass="slds-input" />
+
+                            </div>
+                        </div>
+                        <div class="slds-form-element slds-size--1-of-2">
+                            <label class="slds-form-element__label" for="text-input-01">{!$ObjectType.Contract.fields.ia_crm__Total_Received__c.Label}</label>
+                            <div class="slds-form-element__control">
+                                <apex:outputField value="{!contract.ia_crm__Total_Received__c}"
+                                    styleClass="slds-input" />
+
+                            </div>
+                        </div>
+                        <apex:outputPanel rendered="{!OR(NOT(ISNULL(contract.ia_crm__Contract_Total__c)), NOT(ISNULL(contract.ia_crm__Total_Billed__c)), NOT(ISNULL(contract.ia_crm__Total_Received__c)))}">
+                            <div class="slds-form-element  slds-size--1-of-1">
+                                <label class="slds-form-element__label" for="chart">{!$Label.ia_crm__Billing_Overview}</label>
+                                <apex:outputPanel id="chart">
+                                    <apex:chart data="dataArray" height="180px" width="300px"
+                                        animate="false">
+                                        <apex:pieSeries dataField="data">
+                                            <apex:chartLabel display="none" />
+                                            <apex:chartTips height="20" width="120" />
+                                        </apex:pieSeries>
+                                        <apex:legend position="right" />
+                                    </apex:chart>
+                                </apex:outputPanel>
+                            </div>
+                        </apex:outputPanel>
+                    </div>
+                </apex:outputPanel>
+            </div>
+        </apex:form>
+    </div>
+</apex:page>

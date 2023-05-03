@@ -10,6 +10,11 @@
     <columns>Start_Date__c</columns>
     <columns>End_Date__c</columns>
     <filterScope>Everything</filterScope>
+    <filters>
+        <field>CREATED_DATE</field>
+        <operation>greaterOrEqual</operation>
+        <value>10/5/2022 12:00 AM</value>
+    </filters>
     <label>All</label>
     <sharedTo>
         <group>Membership_Services</group>

@@ -62,6 +62,11 @@
                 <label>Payments Contact</label>
             </value>
             <value>
+                <fullName>Invoice Contact</fullName>
+                <default>false</default>
+                <label>Invoice Contact</label>
+            </value>
+            <value>
                 <fullName>Partnerships Commercial Contact</fullName>
                 <default>false</default>
                 <label>Partnerships Commercial Contact</label>

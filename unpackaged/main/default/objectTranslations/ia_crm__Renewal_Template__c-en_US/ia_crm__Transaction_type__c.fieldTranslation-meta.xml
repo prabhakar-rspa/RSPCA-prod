@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Transaction type --></label>
+        <name>ia_crm__Transaction_type__c</name>
+        <picklistValues>
+            <masterLabel>Contracts</masterLabel>
+            <translation><!-- Contracts --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sales transaction</masterLabel>
+            <translation><!-- Sales transaction --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

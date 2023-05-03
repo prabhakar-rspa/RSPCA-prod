@@ -1,0 +1,127 @@
+<apex:page controller="ia_crm.CreateJournalEntryController" action="{!initializeProcess}" doctype="html-5.0"  sidebar="false">
+    <apex:includescript value="{!URLFOR($Resource.ia_crm__Intacct, '/js/jQuery.min.js')}" />
+    <style>
+        .myCustomMessage .message {
+            background: none !important;
+            border: none !important;
+            background-image: none !important;
+        }
+        .msgIcon {
+            Display: none;
+        }
+    </style>
+
+    <apex:slds />
+    
+    <apex:form > 
+        <apex:actionstatus id="fetchStatus">
+            <apex:facet name="start">
+                <div class="slds-spinner_container">
+                    <div role="status" class="slds-spinner slds-spinner--brand slds-spinner--medium">
+                        <span class="slds-assistive-text">{!$Label.Loading}</span>
+                        <div class="slds-spinner__dot-a"></div>
+                        <div class="slds-spinner__dot-b"></div>
+                    </div>
+                </div>
+            </apex:facet>
+        </apex:actionstatus>
+
+        <apex:outputpanel id="mainPanel">
+            <div style="min-height: 380px;">
+                <apex:outputpanel rendered="{!isSuccess && NOT(showDialog)}" styleclass="myCustomMessage">
+                    <figure>
+                        <apex:image id="theImage" value="{!URLFOR($Resource.ia_crm__Intacct,'images/success.png')}" style="margin: auto;display: block; padding-top: 50px;" />
+                    </figure>
+                    <div style="text-align: center;">
+                        <apex:outputtext value="{!$Label.ia_crm__Journal_Entry_Record_was_successfully_created}" style="font-size: 250%;" />
+                    </div>
+                </apex:outputpanel>
+                <apex:outputpanel rendered="{!NOT(isSuccess) && NOT(showDialog)}" styleclass="myCustomMessage">
+                    <figure>
+                        <apex:image id="errorImage" value="{!URLFOR($Resource.ia_crm__Intacct,'images/error.png')}" style="margin: auto; display: block; padding-top: 10px;" />
+                    </figure>
+                    <div style="text-align: center;">
+                        <apex:outputtext value="{!$Label.ia_crm__Failed_to_create_Journal_Entry}" style="font-size: 250%;" />
+                    </div>
+                </apex:outputpanel>
+                
+                
+                <apex:outputpanel rendered="{!LEN(pageErrorMessages) > 0}" styleclass="myCustomMessage">
+                    <p>
+                        <div class="demo-only">
+                            <div class="slds-has-dividers_around-space slds-align_absolute-center">
+                                <div class="slds-item " style="width: 550px;">
+                                    <article class="slds-tile slds-tile_board">
+                                        <div class="message errorM3">
+                                            <div class="messageText">
+                                                <span style="color:#cc0000">
+                                                    <h4>{!$Label.ia_crm__Error}:</h4>
+                                                </span>
+                                                <apex:outputText value="{!pageErrorMessages}" escape="false" />
+                                            </div>
+                                        </div>
+                                        <script type="text/javascript">
+                                            $('.noindent').css("list-style-type", "disc");
+                                        </script>
+                                        <div class="slds-tile__detail">
+                                            <span class="slds-icon_container slds-tile_board__icon" title="description of icon when needed">
+                                                <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#error')}" />
+                                                </svg>
+                                                <span class="slds-assistive-text">Warning Icon</span>
+                                            </span>
+                                        </div>
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
+                    </p>
+                </apex:outputpanel>
+
+                <apex:outputpanel rendered="{!NOT(showDialog)}">
+                    <div class="slds-has-dividers_around-space slds-align_absolute-center">
+                     
+                        <div style="padding-top: 10px; padding-bottom: 20px; float: left;">
+                            <apex:commandbutton styleclass="slds-button slds-button--neutral" value="{!$Label.ia_crm__Back_to_record}" action="{!redirectToSourceRecord}"/>
+                        </div>
+                        <apex:outputpanel rendered="{!isSuccess}">
+                            <div style="padding-top: 10px; padding-bottom: 20px; margin-left: 40px;">
+                                <apex:commandlink styleclass="slds-button slds-button--neutral" action="{!redirectToJournalEntryRecord}" value="{!$Label.ia_crm__Go_to_Journal_Entry}" target="_blank" />
+                            </div>
+                        </apex:outputpanel>
+                    </div>
+                </apex:outputpanel>
+            </div>
+            <apex:outputpanel rendered="{!showDialog}">
+                <div role="dialog" tabindex="-1" aria-labelledby="header43" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <div class="slds-modal__header slds-theme--alert-texture" style="background-color: rgba(84,105,141,.95);">
+                            <h2 id="header43" class="slds-text-heading--medium" style="color: white;">{!$Label.Please_confirm}</h2>
+                        </div>
+                        <div class="slds-modal__content slds-p-around--medium">
+                            <div class="slds-modal__content slds-p-around--medium">
+                                    <p style="text-align: center;">{!$Label.There_are_multiple_mappings}</p>
+                            </div>
+                            <div class="slds-select_container" style="width: 300px; margin: auto; width: 50%;">
+                                <apex:selectList value="{!selectedMapping}" multiselect="false" size="1" styleClass="slds-select">
+                                    <apex:selectOptions value="{!mappingOptions}"/>
+                                </apex:selectList>
+                            </div>
+                        </div>
+                        <div class="slds-modal__footer">
+                            <apex:commandbutton styleclass="slds-button slds-button--brand" status="fetchStatus" value="{!$Label.ia_crm__Yes}" action="{!confirmedDialogOption}" rerender="mainPanel" />
+                            <apex:commandbutton styleclass="slds-button slds-button--neutral" value="{!$Label.ia_crm__No}" action="{!redirectToSourceRecord}"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-backdrop slds-backdrop--open" style="background: rgba(177, 177, 177, 0.6);"></div>
+            </apex:outputpanel>
+
+        </apex:outputpanel>
+    </apex:form>
+    <!--<script>
+        function closeWindow() {
+            window.close();
+        }
+    </script>-->
+</apex:page>

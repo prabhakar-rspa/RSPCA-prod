@@ -1,0 +1,370 @@
+<aura:component controller="CreateCreditNoteController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickActionWithoutHeader" access="global">
+    
+    <!-- Attributes -->
+    <aura:attribute name="today" type="Date"/>
+    <aura:attribute name="application" type="Application__c"/>
+    <aura:attribute name="invoice" type="Opportunity"/>
+    <aura:attribute name="invoiceLineItems" type="List"/>
+    <aura:attribute name="headOfficeBillingCountry" type="String"/>
+    <aura:attribute name="lineItemsExist" type="Boolean" default="false"/>
+    <aura:attribute name="creditNoteLines" type="List"/>
+    <aura:attribute name="creditReason" type="String"/>
+    <aura:attribute name="creditReasonOptions" type="List" default="[
+        {'label': 'Cancellation', 'value': 'Cancellation'},
+        {'label': 'Invoice Error', 'value': 'Invoice Error'},
+        {'label': 'Other', 'value': 'Other'}
+    ]"/>
+    <aura:attribute name="purchaseOrder" type="String"/>
+    <aura:attribute name="creditNoteDetails" type="String"/>
+
+    <aura:attribute name="creditNote" type="Opportunity"/>
+
+    <!-- IsLoading boolean -->
+    <aura:attribute name="isLoading" type="boolean" default="true" />
+
+    <!-- Steps check -->
+    <aura:attribute name="currentStep" type="string" default="1" />
+    <aura:attribute name="step1" type="boolean" default="true" />
+    <aura:attribute name="step2" type="boolean" default="false" />
+    <aura:attribute name="step3" type="boolean" default="false" />
+    <aura:attribute name="hasError" type="boolean" default="false" />
+    
+    <!-- Initialise the component -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    <!-- Start of Header -->
+    <div class="modal-header slds-modal__header slds-size_1-of-1">
+        <h4 class="title slds-text-heading_medium">Generate Credit Note</h4>
+    </div>
+    <!-- End of Header -->
+    
+    <!-- Start of Body -->
+    <div class="slds-modal__content slds-var-p-around_x-small">
+        <aura:if isTrue="{!v.isLoading}">
+            
+            <lightning:spinner alternativeText="Loading" size="medium" />
+            
+            <aura:set attribute="else">
+
+            
+                <aura:if isTrue="{!v.lineItemsExist == false}">
+                    <ui:message title="Information" severity="info" closable="false">
+                        This invoice has no line items to credit.
+                    </ui:message>
+                    <aura:set attribute="else">
+                        
+                        <!-- Step 1 -->
+                        <aura:if isTrue="{!v.step1}">
+                            <!-- Application Tile -->
+                            <lightning:tile class="slds-var-p-around_medium customTileStyle" label="{!v.invoice.Invoice_Number__c}">
+                                <aura:set attribute="media">
+                                    <lightning:icon iconName="standard:opportunity"/>
+                                </aura:set>
+                                <dl class="slds-dl_horizontal">
+                                    <dt class="slds-dl_horizontal__label">
+                                        <p class="slds-truncate" title="Amount (excluding VAT)">Amount (excluding VAT):</p>
+                                    </dt>
+                                    <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                                        <p class="slds-truncate" title="{!v.invoice.Amount}">
+                                            <lightning:formattedNumber value="{!v.invoice.Amount}" style="currency" currencyCode="GBP"/>
+                                        </p>
+                                    </dd>
+                                    <dt class="slds-dl_horizontal__label">
+                                        <p class="slds-truncate" title="VAT">VAT:</p>
+                                    </dt>
+                                    <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                                        <p class="slds-truncate" title="{!v.invoice.VAT__c}">
+                                            <lightning:formattedNumber value="{!v.invoice.VAT__c}" style="currency" currencyCode="GBP"/>
+                                        </p>
+                                    </dd>
+                                    <dt class="slds-dl_horizontal__label">
+                                        <p class="slds-truncate" title="Total Amount Inc VAT">Total Amount Inc VAT:</p>
+                                    </dt>
+                                    <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                                        <p class="slds-truncate" title="{!v.invoice.Amount_Inc_VAT__c}">
+                                            <lightning:formattedNumber value="{!v.invoice.Amount_Inc_VAT__c}" style="currency" currencyCode="GBP"/>
+                                        </p>
+                                    </dd>
+                                </dl>
+                            </lightning:tile>
+
+                            <!-- App Line Items -->
+                            <ui:scrollerWrapper class="scrollerSize">
+                                <table class="slds-table slds-table_cell-buffer slds-var-p-around_small">
+                                    <thead>
+                                        <tr class="slds-line-height_reset">
+                                            <th class="" scope="col">
+                                                <ui:inputCheckbox aura:id="selectAllCheckbox" change="{!c.handleSelectAll}"/>
+                                                <label class="slds-checkbox__label" for="selectAllCheckbox" id="check-select-all-label">
+                                                    <span class="slds-form-element__label slds-assistive-text">Select All</span>
+                                                </label>
+                                            </th>
+                                             <th class="" scope="col">
+                                                <div class="slds-truncate" title="Application Number">Application Number</div>
+                                            </th>
+                                            <th class="" scope="col">
+                                                <div class="slds-truncate" title="Product">Product</div>
+                                            </th>
+                                            <th class="" scope="col">
+                                                <div class="slds-truncate" title="Quantity">Quantity</div>
+                                            </th>
+                                            <th class="" scope="col">
+                                                <div class="slds-truncate" title="List Price Exc VAT">List Price Exc VAT</div>
+                                            </th>
+                                            <th class="" scope="col">
+                                                <div class="slds-truncate" title="Subtotal Exc VAT">Subtotal Exc VAT</div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <aura:iteration items="{!v.invoiceLineItems}" var="item">
+                                            <tr class="slds-hint-parent">
+                                                <td>
+                                                    <ui:inputCheckbox aura:id="lineItemCheckbox" text="{!item.Id}"/>
+                                                </td>
+                                                <td data-label="Application Number">
+                                                    <div class="slds-truncate" title="Application Number">{!item.Opportunity.Application__r.Name}</div>
+                                                </td>
+                                                <td data-label="Invoice Date">
+                                                    <div class="slds-truncate" title="Product">{!item.Product2.Name}</div>
+                                                </td>
+                                                <td data-label="Quantity">
+                                                    <div class="slds-truncate" title="Quantity">{!item.Quantity}</div>
+                                                </td>
+                                                <td data-label="List Price Exc VAT">
+                                                    <div class="slds-truncate" title="List Price Exc VAT">
+                                                        <lightning:formattedNumber value="{!item.UnitPrice}" style="currency" currencyCode="GBP"/>
+                                                    </div>
+                                                </td>
+                                                <td data-label="Subtotal Exc VAT">
+                                                    <div class="slds-truncate" title="Subtotal Exc VAT">
+                                                        <lightning:formattedNumber value="{!item.TotalPrice}" style="currency" currencyCode="GBP"/>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </aura:iteration>
+                                    </tbody>
+                                </table>
+                            </ui:scrollerWrapper>
+                        </aura:if>
+                        
+                        <!-- Step 2 -->
+                        <aura:if isTrue="{!v.step2}">
+                            <!-- Credit Note Tile -->
+                            <lightning:tile class="slds-var-p-around_medium">
+                                <aura:set attribute="media">
+                                    <lightning:icon iconName="custom:custom16"/>
+                                </aura:set>
+                                <dl class="slds-dl_horizontal">
+                                    <dt class="slds-dl_horizontal__label">
+                                        <p class="slds-truncate" title="Head Office Billing Country">Billing Country:</p>
+                                    </dt>
+                                    <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                                        <p class="slds-truncate" title="{!v.headOfficeBillingCountry}">
+                                            {!v.headOfficeBillingCountry}
+                                        </p>
+                                    </dd>
+                                    <dt class="slds-dl_horizontal__label">
+                                        <p class="slds-truncate" title="Membership Number">Membership Number:</p>
+                                    </dt>
+                                    <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                                        <p class="slds-truncate" title="{!v.invoice.Application__r.Membership_Number__c}">
+                                            {!v.invoice.Application__r.Membership_Number__c}
+                                        </p>
+                                    </dd>
+                                    <dt class="slds-dl_horizontal__label">
+                                        <p class="slds-truncate" title="FF Code">FF Code:</p>
+                                    </dt>
+                                    <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                                        <p class="slds-truncate" title="{!v.invoice.Account.Sage_Intacct_Customer_Number__c}">
+                                            {!v.invoice.Account.Sage_Intacct_Customer_Number__c}
+                                        </p>                                    
+                                    </dd>
+                                    <dt class="slds-dl_horizontal__label">
+                                        <p class="slds-truncate" title="Tax Point Date">Tax Point Date:</p>
+                                    </dt>
+                                    <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                                        <lightning:input type="date" name="TaxPointDate" disabled="true" value="{!v.today}" />
+                                    </dd>
+                                    <dt class="slds-dl_horizontal__label">
+                                        <p title="Purchase Order">Purchase Order (if applicable):</p>
+                                    </dt>
+                                    <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                                        <lightning:input name="Purchase Order" value="{!v.purchaseOrder}" />
+                                    </dd>
+                                    <dt class="slds-dl_horizontal__label">
+                                        <p class="slds-truncate" title="Credit Reason">Credit Reason:</p>
+                                    </dt>
+                                    <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                                        <lightning:combobox aura:id="field" name="creditReason" required="true" value="{!v.creditReason}" placeholder="Select reason" options="{!v.creditReasonOptions}" />
+                                    </dd>
+                                    <dt class="slds-dl_horizontal__label">
+                                        <p class="slds-truncate" title="Credit Note Details">Credit Note Details:</p>
+                                    </dt>
+                                    <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                                        <lightning:textarea name="creditNoteDetails" value="{!v.creditNoteDetails}" />
+                                    </dd>
+                                </dl>
+                            </lightning:tile>
+                            <ui:scrollerWrapper class="scrollerSize">
+                                <table class="slds-table slds-table_cell-buffer slds-var-p-around_small">
+                                    <thead>
+                                        <tr class="slds-line-height_reset">
+                                            <th class="" scope="col">
+                                                <div class="slds-truncate" title="Product Name">Product Name</div>
+                                            </th>
+                                            <th class="" scope="col">
+                                                <div class="slds-truncate" title="Quantity">Quantity</div>
+                                            </th>
+                                            <th class="" scope="col">
+                                                <div class="slds-truncate" title="Credit Amount">Credit Amount</div>
+                                            </th>
+                                            <th class="" scope="col">
+                                                <div class="slds-truncate" title="Subtotal">Subtotal</div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <aura:iteration items="{!v.creditNoteLines}" var="item">
+                                            <tr class="slds-hint-parent">
+                                                <td data-label="Product Name">
+                                                    <div class="slds-truncate" title="Product Name">{!item.productName}</div>
+                                                </td>
+                                                <td data-label="Quantity">
+                                                    <div class="slds-truncate" title="Quantity">
+                                                        <lightning:input aura:id="field" type="number" name="quantity" required="true" value="{!item.quantity}"  max="{!item.maxQuantity}" />
+                                                    </div>
+                                                </td>
+                                                <td data-label="List Price Exc VAT">
+                                                    <div class="slds-truncate" title="Credit Amount">
+                                                        <lightning:input aura:id="field" type="number" name="listprice" required="true"  value="{!item.listPrice}" max="{!item.maxListPrice}" formatter="currency" step="0.01"/>
+                                                    </div>
+                                                </td>
+                                                <td data-label="Subtotal Exc VAT">
+                                                    <div class="slds-truncate" title="Subtotal">
+                                                        <lightning:formattedNumber value="{!item.listPrice * item.quantity}" style="currency" currencyCode="GBP"/>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </aura:iteration>
+                                    </tbody>
+                                </table>
+                            </ui:scrollerWrapper>
+                        </aura:if>
+                        
+                        <!-- Step 3 -->
+                        <aura:if isTrue="{!v.step3}">
+                            <lightning:tile class="slds-var-p-around_medium" label="{!v.creditNote.Credit_Note_Number__c}" href="{!'/' + v.creditNote.Id }">
+                                <aura:set attribute="media">
+                                    <lightning:icon iconName="custom:custom16"/>
+                                </aura:set>
+                                <dl class="slds-dl_horizontal">
+                                    <dt class="slds-dl_horizontal__label">
+                                        <p class="slds-truncate" title="Credit Reason">Credit Reason:</p>
+                                    </dt>
+                                    <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                                        <p class="slds-truncate" title="{!v.creditNote.Credit_Reason__c}">{!v.creditNote.Credit_Reason__c}</p>
+                                    </dd>
+                                    <dt class="slds-dl_horizontal__label">
+                                        <p class="slds-truncate" title="Amount Exc. VAT">Amount Exc. VAT:</p>
+                                    </dt>
+                                    <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                                        <p class="slds-truncate" title="{!v.creditNote.Amount}">
+                                            <lightning:formattedNumber value="{!v.creditNote.Amount}" style="currency" currencyCode="GBP" minimumFractionDigits="2"/>
+                                        </p>
+                                    </dd>
+                                    <dt class="slds-dl_horizontal__label">
+                                        <p class="slds-truncate" title="VAT">VAT:</p>
+                                    </dt>
+                                    <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                                        <p class="slds-truncate" title="{!v.creditNote.VAT__c}">
+                                            <lightning:formattedNumber value="{!v.creditNote.VAT__c}" style="currency" currencyCode="GBP" minimumFractionDigits="2"/>
+                                        </p>
+                                    </dd>
+                                    <dt class="slds-dl_horizontal__label">
+                                        <p class="slds-truncate" title="Amount Inc. VAT">Amount Inc. VAT:</p>
+                                    </dt>
+                                    <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                                        <p class="slds-truncate" title="{!v.creditNote.Amount_Inc_VAT__c}">
+                                            <lightning:formattedNumber value="{!v.creditNote.Amount_Inc_VAT__c}" style="currency" currencyCode="GBP" minimumFractionDigits="2"/>
+                                        </p>
+                                    </dd>
+                                </dl>
+                            </lightning:tile>
+                        </aura:if>
+                    </aura:set>
+                </aura:if>
+            </aura:set>
+        </aura:if>
+        
+    </div>
+    <!-- End of Body -->
+    
+    <!-- Start of Footer -->
+    <div class="modal-footer slds-modal__footer slds-grid slds-grid_align-spread">
+        <!-- Cancel Button -->
+        <aura:if isTrue="{!v.step1}">
+            <lightning:button variant="Neutral" class="slds-button" label="Cancel" onclick="{!c.handleExit}"/>
+        </aura:if>
+
+        <!-- Progress Indicator Start -->
+        <lightning:progressIndicator currentStep="{!v.currentStep}" type="base" hasError="{!v.hasError}" variant="base">
+            <lightning:progressStep label="Select lines to credit" value="1" />
+            <lightning:progressStep label="Configure credit lines" value="2" />
+            <lightning:progressStep label="Complete" value="3" />
+        </lightning:progressIndicator>
+        <!-- Progress Indicator End -->
+        
+        <!-- Only show these buttons if any application line items are loaded -->
+        <aura:if isTrue="{!v.lineItemsExist == true}">
+
+            <!-- Previous Button --> <!-- Do not show previous button on step 1 and step 3 -->
+            <aura:if isTrue="{!and(!v.step1, !v.step3)}"> 
+                <lightning:button title="Previous" label="Previous" onclick="{!c.handlePrevious}" />
+            </aura:if>
+
+            <!-- Next Button --> <!-- Only display this button on step 1 -->
+            <aura:if isTrue="{!v.step1}">  
+                <aura:if isTrue="{!v.isLoading == false}">
+                    <lightning:button title="Next" label="Next" onclick="{!c.handleNext}" />
+                </aura:if>
+            </aura:if>
+
+            <!-- Save Button --> <!-- Only show this button in step 2 -->
+            <aura:if isTrue="{!v.step2}">
+                <aura:if isTrue="{!v.isLoading == false}">
+                    <lightning:button variant="Brand" class="slds-button" label="Save" onclick="{!c.handleSave}"/>
+                </aura:if>
+            </aura:if>
+            
+        </aura:if>
+            
+    </div>
+    <!-- End of Footer -->
+    
+    
+    <aura:html tag="style">
+        .slds-p-around--medium {
+            padding: 0rem !important;
+        }
+        .slds-modal__content{
+            overflow-y:hidden !important;
+            height:unset !important;
+            max-height:unset !important;
+        }
+        .slds-spinner_container{ 
+            position:inherit !important; 
+            width: 80px !important;
+            display: inline-block !important;
+            height: 80px !important;
+        }
+        .cuf-content {
+            padding: 0 0rem !important;
+        }
+        @media (min-width: 48em){
+            .slds-modal__container {
+                width: 80% !important;
+            }
+        }
+    </aura:html>
+</aura:component>

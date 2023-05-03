@@ -5,7 +5,27 @@ public class PaymentReminderController {
     public Id userId{get;set;}
     public Id applicationId{get;set;}
     public Date evidenceReminderDate{get;set;}
-
+    public Bulk_Renewal__c Bulk_Renewal{get;set;}
+    public PaymentReminderController(){
+        bulkRenewalId = ApexPages.currentPage().getParameters().get('id');
+        if(bulkRenewalId != null){
+            Bulk_Renewal = [SELECT Id, Name,Custom_Invoice_Message__c, Applicant_Full_Name__c, Invoice_Date__c, Payment_Reference__c, Payment_Due_Date__c,
+                                       Total_Amount_Inc_VAT__c, Head_Office__r.Name, Head_Office__r.BillingStreet,
+                                       Head_Office__r.BillingCity, Head_Office__r.BillingState, Head_Office__r.BillingCountry,
+                                       Head_Office__r.BillingPostalCode, Sage_Invoice__r.Invoice_Number__c, PO_Number__c FROM Bulk_Renewal__c WHERE Id =: bulkRenewalId];
+        }
+    }
+    public PaymentReminderController(ApexPages.StandardController controller){
+        bulkRenewalId = ApexPages.currentPage().getParameters().get('id');
+        if(bulkRenewalId != null){
+            Bulk_Renewal = [SELECT Id, Name,Custom_Invoice_Message__c, Applicant_Full_Name__c, Invoice_Date__c, Payment_Reference__c, Payment_Due_Date__c,
+                                       Total_Amount_Inc_VAT__c, Head_Office__r.Name, Head_Office__r.BillingStreet,
+                                       Head_Office__r.BillingCity, Head_Office__r.BillingState, Head_Office__r.BillingCountry,
+                                       Head_Office__r.BillingPostalCode, Sage_Invoice__r.Invoice_Number__c, PO_Number__c FROM Bulk_Renewal__c WHERE Id =: bulkRenewalId];
+        }
+        //Apexpages.currentPage().getHeaders().put('content-disposition', 'attachment; filename='+Bulk_Renewal.Name+'.pdf');
+        
+    }
     /** Getting Head Office details **/
     public Account getHeadOffice(){
         Account HeadOffice = [SELECT Id, Name, Primary_Contact_Full_Name__c, Primary_Contact__c FROM Account WHERE Id =: accountId];
@@ -41,7 +61,7 @@ public class PaymentReminderController {
 
     /** Getting Renewal Applications linked with the Bulk Renewal record **/
     public List<Application__c> getRenewalApplications(){
-        List<Application__c> RenewalApplications = [SELECT Id, Name, Site_Name__c, Membership_Number__c, Amount_Ex_VAT__c, 
+        List<Application__c> RenewalApplications = [SELECT Id, Name,Head_Office__r.BillingCountry, Site_Name__c, Membership_Number__c, Amount_Ex_VAT__c, 
                                                     VAT__c, Total_Amount_Inc_VAT__c FROM Application__c 
                                                     WHERE Bulk_Renewal__c =: bulkRenewalId];
         return RenewalApplications;

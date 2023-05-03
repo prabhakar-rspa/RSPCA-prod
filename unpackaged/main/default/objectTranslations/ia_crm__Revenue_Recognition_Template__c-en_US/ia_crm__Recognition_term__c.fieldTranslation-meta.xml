@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Recognition term --></label>
+        <name>ia_crm__Recognition_term__c</name>
+        <picklistValues>
+            <masterLabel>Contract term</masterLabel>
+            <translation><!-- Contract term --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fixed period</masterLabel>
+            <translation><!-- Fixed period --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

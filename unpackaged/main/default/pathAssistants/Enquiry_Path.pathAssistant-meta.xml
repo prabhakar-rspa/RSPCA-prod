@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PathAssistant xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <entityName>Lead</entityName>
+    <fieldName>Status</fieldName>
+    <masterLabel>Enquiry Path</masterLabel>
+    <pathAssistantSteps>
+        <fieldNames>Name</fieldNames>
+        <fieldNames>Email</fieldNames>
+        <fieldNames>Phone</fieldNames>
+        <fieldNames>MobilePhone</fieldNames>
+        <info>&lt;p&gt;&lt;b&gt;Tasks to complete&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;&lt;span style=&quot;font-family: Arial; font-size: 10pt;&quot;&gt;Check we have a name, email and standards.&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-family: Arial; font-size: 10pt;&quot;&gt;Contact the enquirer if anything is missing or incorrect.&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-family: Arial; font-size: 10pt;&quot;&gt;Click &amp;#39;Mark Status as Complete&amp;#39; when you&amp;#39;re finished.&lt;/span&gt;&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b style=&quot;font-family: Arial; font-size: 10pt;&quot;&gt;Note: &lt;/b&gt;&lt;span style=&quot;font-family: Arial; font-size: 10pt;&quot;&gt;Application email will be sent automatically&lt;/span&gt;&lt;/p&gt;</info>
+        <picklistValueName>Review</picklistValueName>
+    </pathAssistantSteps>
+    <recordTypeName>__MASTER__</recordTypeName>
+</PathAssistant>

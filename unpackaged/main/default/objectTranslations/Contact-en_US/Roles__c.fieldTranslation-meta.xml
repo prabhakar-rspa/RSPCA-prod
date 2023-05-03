@@ -27,6 +27,10 @@
             <translation><!-- Compliance Contact --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Invoice Contact</masterLabel>
+            <translation><!-- Invoice Contact --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Licence Fee Contact</masterLabel>
             <translation><!-- Licence Fee Contact --></translation>
         </picklistValues>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ia_crm__SB_Department__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>SB Department</label>
+    <referenceTo>ia_crm__Department__c</referenceTo>
+    <relationshipLabel>Intacct Journal Entry Lines (SB Department)</relationshipLabel>
+    <relationshipName>Intacct_Journal_Entry_Lines1</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Application Invoice Email</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Application Invoice Email</name>
+    <style>none</style>
+    <subject>Invoice For membership number: {!Application__c.Membership_Number__c}</subject>
+    <textOnly>Dear Member
+
+Please find the attached Invoice for {!Application__c.Membership_Number__c}
+
+{!Application__c.Custom_Invoice_Message__c}
+
+If you have any queries relating to this invoice please get in touch with us.
+
+Yours sincerely
+
+RSPCA Assured Team
+
+
+
+Useful Contacts:
+
+Membership Services Enquiries:
+
+Tel: 01403 286170  Email: help@rspcaassured.org.uk
+
+Levy Enquiries:
+
+Tel: 01403 286926  Email: licence@rspcaassured.org.uk
+
+For your reference:
+
+RSPCA welfare standards
+RSPCA Assured membership agreement (including SCI scheme regulations)</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

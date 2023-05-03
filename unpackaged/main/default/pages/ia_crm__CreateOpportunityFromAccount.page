@@ -1,0 +1,129 @@
+<!--
+  File:        CreateOpportunityFromAccount.page
+  Project:     Intacct
+  Date:        October 13, 2016
+  Created By:  Teodora Ionita
+  *************************************************************************
+  Description: Build url and redirect to the create opportunity page
+  *************************************************************************
+  History:
+-->
+<apex:page standardcontroller="Account" extensions="ia_crm.CreateOpportunityFromAccount"  >
+    <apex:includescript value="{!URLFOR($Resource.ia_crm__Intacct, '/js/jQuery.min.js')}" />
+    <style>
+        .myCustomMessage .message {
+            background: none !important;
+            border: none !important;
+            background-image: none !important;
+        }
+        .slds-theme--info {
+            background-color: #54698d !important;
+        }
+        .msgIcon {
+            Display: none;
+        }
+    </style>
+    <apex:slds />
+    <div class="slds" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <apex:form >
+            <apex:actionStatus id="fetchStatus" >
+                <apex:facet name="start" >
+                    <div class="slds-spinner_container">
+                        <div role="status" class="slds-spinner slds-spinner--medium slds-spinner--brand">
+                            <span class="slds-assistive-text">{!$Label.Loading}</span>
+                            <div class="slds-spinner__dot-a"></div>
+                            <div class="slds-spinner__dot-b"></div>
+                        </div>
+                    </div>
+                </apex:facet>
+            </apex:actionStatus>
+            <apex:actionfunction name="loading" action="{!redirectToOpportunity}" oncomplete="javascript:openPage('{!isValid}', '{!urlParam}');" rerender="test" status="fetchStatus" />
+            <apex:outputpanel id="test">
+            <apex:outputtext rendered="{!IF(pageStatus == 'ERROR', true, false)}">
+                <apex:outputpanel styleclass="myCustomMessage">
+                    <figure>
+                        <apex:image id="errorImage" value="{!URLFOR($Resource.ia_crm__Intacct,'images/error.png')}" style="margin: auto; display: block; padding-top: 100px;" />
+                    </figure>
+                    <div style="text-align: center;">
+                        <apex:outputtext value="{!$Label.ia_crm__Failed_to_create_Opportunity}" style="font-size: 200%;" />
+                    </div>
+                </apex:outputpanel>
+                <apex:outputpanel styleclass="myCustomMessage">
+                    <p>
+                        <div class="demo-only">
+                            <div class="slds-has-dividers_around-space slds-align_absolute-center">
+                                <div class="slds-item " style="width: 550px;">
+                                    <article class="slds-tile slds-tile_board">
+                                        <apex:pagemessages id="xx" />
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
+                    </p>
+                </apex:outputpanel>
+                <apex:outputpanel >
+                    <div style="text-align: center;">
+                        <apex:commandbutton action="{!'/' + accId}" style="margin-top: 20px;" value="{!$Label.ia_crm__Back_to_record}" styleclass="slds-button slds-button--neutral" />
+                    </div>
+                </apex:outputpanel>
+            </apex:outputtext>
+            
+            <apex:outputpanel rendered="{!IF(displayPopup==true,'true','false')}">
+                <div role="dialog" tabindex="-1" aria-labelledby="header43" class="slds-modal slds-fade-in-open">
+                    <!--<div id="spinnerContainer" style="display:none">
+                        <div class="slds-form--compound">
+                            <div class="slds-spinner_container" >
+                                <div class="slds-spinner slds-spinner--brand slds-spinner--medium" aria-hidden="false" role="alert">
+                                    <div class="slds-spinner__dot-a"></div>
+                                    <div class="slds-spinner__dot-b"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
+                    <div class="slds-modal__container">
+                        <div class="slds-modal__header slds-theme--info slds-theme--alert-texture">
+                            <h2 id="header43" class="slds-text-heading--medium">{!$Label.Please_select_a_Record_Type}</h2>
+                        </div>
+                        <div class="slds-modal__content slds-p-around--medium" style="min-height: 66px;">
+                            <p style="text-align: center;">{!$Label.Multiple_Contract_record_types}</p>
+                        </div>
+                        <div class="slds-modal__content slds-p-around--medium" style="min-height: 66px;">
+                            <apex:outputpanel id="recordTypePanel">
+                                <div class="slds-select_container" style="width: 30%;margin: auto;">
+                                    <apex:selectlist value="{!opportunityRecordType}" multiselect="false" size="1" styleclass="slds-select">
+                                        <apex:selectoptions value="{!recordTypesOptions}" />
+                                    </apex:selectlist>
+                                </div>
+
+                            </apex:outputpanel>
+                        </div>
+                        <div class="slds-modal__footer">
+                            <apex:commandbutton styleclass="slds-button slds-button--brand" status="fetchStatus" rerender="recordTypePanel" value="{!$Label.ia_crm__Ok}" action="{!confirmDialog}" oncomplete="javascript:openPage('{!isValid}', '{!urlParam}');" />
+                            <apex:commandbutton styleclass="slds-button slds-button--neutral" value="{!$Label.ia_crm__Cancel}" action="{!cancel}" />
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-backdrop slds-backdrop--open"></div>
+            </apex:outputpanel>
+            </apex:outputpanel>
+        </apex:form>
+        
+        <script language="JavaScript" type="text/javascript">
+            $( document ).ready(function() {
+                loading();
+            });
+            /*function showSpinner() {
+                console.log('showSpinner');
+                $("#spinnerContainer").show();
+            }*/
+            function openPage(isValid, urlParam) {
+                if(isValid == 'true'){
+                    window.top.location.href = urlParam ;
+                }
+            }
+        </script>
+        <!--<apex:outputpanel layout="none" rendered="{!$User.UIThemeDisplayed == 'Theme4d' || $User.UIThemeDisplayed == 'Theme4t'}">
+            <apex:outputlink value="{!'/' + account.Id}" styleclass="slds-text-link">Back to record</apex:outputlink>
+        </apex:outputpanel>-->
+    </div>
+</apex:page>

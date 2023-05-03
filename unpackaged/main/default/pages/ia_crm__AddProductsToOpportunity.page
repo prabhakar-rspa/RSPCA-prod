@@ -1,0 +1,975 @@
+<apex:page controller="ia_crm.AddProductController" title="{!$Label.ia_crm__Product_Selection_for}: {!currentOpportunity.Name}" applybodytag="false" doctype="html-5.0" action="{!initializePageData}">
+    <apex:stylesheet value="{!URLFOR($Resource.ia_crm__Intacct, '/assets/styles/salesforce-lightning-design-system-vf.css')}" />
+    <apex:includescript value="{!URLFOR($Resource.ia_crm__Intacct, '/js/jQuery.min.js')}" />
+    <apex:outputPanel rendered="{!isOldPage}">
+        <script type="text/javascript">
+            var rowNumber = {!noOfRecords}; 
+
+        </script>
+        <apex:includescript value="{!URLFOR($Resource.ia_crm__Intacct, '/js/AddProductsToOpportunity.js')}" />
+        <style>
+            .picklistArrowRight, .picklistArrowLeft {
+                height: 20px !important;
+                width: 25px !important;
+            }
+
+            .picklistArrowRight {
+                background: transparent url("/assets/icons/utility-sprite/svg/symbols.svg#right") no-repear scroll 0 0;
+            }
+
+            .picklistArrowLeft {
+                background: transparent url("/assets/icons/utility-sprite/svg/symbols.svg#left") no-repear scroll 0 0;
+            }
+
+            .myCustomMessage .message {
+                background: none !important;
+                border: none !important;
+                background-image: none !important;
+            }
+
+            .msgIcon {
+                Display: none;
+            }
+
+            .disabledAmount {
+                pointer-events: none;
+                opacity: 0.4;
+            }
+        </style>
+        <div class="slds">
+            <div id="spinnerContainer" style="display:none">
+                <div class="slds-form--compound">
+                    <div class="slds-spinner_container" >
+                        <div class="slds-spinner slds-spinner--brand slds-spinner--medium" aria-hidden="false" role="alert">
+                            <div class="slds-spinner__dot-a"></div>
+                            <div class="slds-spinner__dot-b"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <apex:form id="formPanel">
+                <apex:actionfunction name="calculateAmountAction" action="{!calculateAmount}" status="fetchStatus" rerender="amountPanelCustom">
+                    <apex:param name="lineNr" value="" assignto="{!lineNr}" />
+                </apex:actionfunction>
+                <apex:actionfunction name="calculateRateAction" action="{!calculateRate}" status="fetchStatus" rerender="unitpricePanelCustom">
+                    <apex:param name="lineNr" value="" assignto="{!lineNr}" />
+                </apex:actionfunction>
+                
+                <apex:actionfunction name="checkLineAsRenewalAction" action="{!checkLineAsRenewal}" status="fetchStatus" 
+                rerender="renewPanel, startDatePanel, resetUsageQtyPanel, rBillingTempPanel, quantityPtePanel, billingStartDatePanel, billingEndDatePanel, billingTemplatePanel, 
+                        intacctLocationContract, departmentPanel, usageQtyPananel, ratePanel, multiplierPanel, discountPanel, amountPanel,
+                        renewedCtrPanel, contractProfilePanel, intacctLocationPanel, oeDeptPanel, OEFieldSetPanel, OEProfilePanel,
+                        descriptionPanel, oeSStartDatePanel, oeSEndDatePanel, oeUnitPricePanel, oeQtyPanel, fieldSets">
+                    <apex:param name="lineNr" value="" assignto="{!lineNr}" />
+                    <apex:param name="selectedField" value="" assignto="{!selectedField}" />
+                    <apex:param name="selectedFieldType" value="" assignto="{!selectedFieldType}" />
+                </apex:actionfunction>
+                
+                
+                <apex:actionstatus id="fetchStatus">
+                    <apex:facet name="start">
+                        <div class="slds-spinner_container">
+                            <div role="status" class="slds-spinner slds-spinner--brand slds-spinner--medium">
+                                <span class="slds-assistive-text">{!$Label.Loading}</span>
+                                <div class="slds-spinner__dot-a"></div>
+                                <div class="slds-spinner__dot-b"></div>
+                            </div>
+                        </div>
+                    </apex:facet>
+                </apex:actionstatus>
+                <apex:outputpanel rendered="{!pageError}" >
+                    <div class="slds-notify slds-notify--alert slds-theme--error slds-theme--alert-texture" role="alert" id="TypeMessage">
+                        <apex:messages />
+                    </div>
+                </apex:outputpanel>
+                <apex:outputpanel rendered="{!AND(NOT(isEdit), disableButtons != 'disabledInput', pageError != true)}">
+                    <div class="slds-section__title">
+                        {!$Label.ia_crm__Add_Products_to}:{!currentOpportunity.Name}
+                    </div>
+                    <div class="slds-text-align--left">
+                        {!$Label.ia_crm__Add_products_to_this_opportunity_from} <b>{!currentOpportunity.Pricebook2.Name}</b> {!$Label.ia_crm__price_book}.
+                    </div>
+                </apex:outputpanel>
+                <apex:outputpanel rendered="{!AND(isEdit, disableButtons != 'disabledInput')}">
+                    <div class="slds-section__title">
+                        {!$Label.ia_crm__Edit_Products_for}: {!currentOpportunity.Name}
+                    </div>
+                    <div class="slds-text-align--left">
+                        {!$Label.ia_crm__Edit_Products_Label}
+                    </div>
+                </apex:outputpanel>
+                <br />
+                
+                <div class="slds-grid slds-grid--vertical-align-center slds-grid--align-center">
+                    <apex:commandbutton action="{!save}" value="{!$Label.ia_crm__Save}" id="saveProductsBtn" styleclass="slds-button slds-button--neutral {!disableButtons}"  />
+                    <apex:commandbutton action="{!saveAndMore}" value="{!$Label.ia_crm__Save_More}" id="saveAndMoreProductsBtn" styleclass="slds-button slds-button--neutral {!disableButtons}" rendered="{!IF(isEdit == true, false, true)}" />
+                    <apex:commandbutton action="{!saveAsDraft}" value="{!$Label.ia_crm__Save_as_draft}" styleclass="slds-button slds-button--neutral {!disableButtons}" rendered="{!IF(isEdit == true, false, true)}" />
+                    <apex:commandbutton action="{!cancel}" value="{!$Label.ia_crm__Cancel}" styleclass="slds-button slds-button--neutral" immediate="true" html-formnovalidate="formnovalidate" />
+                    <script>
+                        document.getElementById("{!$Component.saveProductsBtn}").onclick = function() {showSpinner()};
+                        document.getElementById("{!$Component.saveAndMoreProductsBtn}").onclick = function() {showSpinner()};
+                    </script>
+                </div>
+                <br />
+                <apex:variable var="cnt" value="{!0}" id="varCnt"/>
+                
+                <apex:repeat value="{!oppLineItems}" var="line">
+                    <div role="application" >
+                        <ul class="slds-tree" role="tree" aria-labelledby="treeheading">
+                            <li id="tree0-node1" role="treeitem" aria-level="1"
+                                aria-expanded="false">
+                                <div class="slds-tree__item" style="display: inline-block; width: 100%;">
+                                    <a class="slds-button slds-m-right--x-small" style="display: inline-flex;" aria-controls="tree0-node1" onclick="expandLine('inlinetablesec{!cnt}', 'chevronright{!cnt}')">
+                                        <p id="chevronright{!cnt}" class="chevron inlinetablesec{!cnt}">
+                                            <apex:outputtext escape="false" value="{!IF((!isEdit && focusedRow == oppLineItems[line].PricebookEntry.Product2.Id) || (isEdit && focusedRow == oppLineItems[line].Id), '&#9660;', '&#9658;')}" />
+                                        </p>
+                                        {!oppLineItems[line].PricebookEntry.Product2.Name}
+                                    </a>
+                                </div>
+                                <ul class="{!IF((!isEdit && focusedRow == oppLineItems[line].PricebookEntry.Product2.Id) || (isEdit && focusedRow == oppLineItems[line].Id), 'slds-is-expanded', 'slds-is-collapsed')}"
+                                    role="group" aria-labelledby="tree0-node1__label"
+                                    id="inlinetablesec{!cnt}">
+                                    <!-- Contracts -->
+                                    <apex:outputpanel rendered="{!And(isContract,NOT(isCustomProfileMappingContracts))}" id="customMapping">
+                                        <li id="tree0-node1-0" role="treeitem" aria-level="2">
+                                            
+                                            <div class="slds-tree__item">
+                                                <table>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>
+                                                                <label class="slds-form-element__label" for="text-input-01"> <b style="font-size: 16px;">{!$Label.Contract}</b></label>
+                                                            </th>
+                                                            
+                                                        </tr>
+                                                        <tr>
+                                                            <th colspan="4"><hr style="width: 93%; margin-top: 0px; margin-bottom: 10px;" /></th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="width: 25%;">
+                                                                <apex:outputpanel layout="none">
+                                                                    <div class="slds-form-element">
+                                                                        <label class="slds-form-element__label">{!$ObjectType.OpportunityLineItem.Fields.ia_crm__Change_Type__c.Label}</label>
+                                                                        <div class="slds-form-element__control" style="width:70%">
+                                                                            <div class="slds-select_container">
+                                                                                <apex:inputfield styleclass="slds-select" value="{!oppLineItems[line].Change_Type__c}" />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </apex:outputpanel>
+                                                            </td>
+                                                            <td style="width: 25%;">
+                                                                <apex:outputpanel layout="block" styleclass="slds-form-element" id="startDatePanel">
+                                                                    <div class="slds-form-element__control" style="width: 70%;display:inline-table;">
+                                                                        <label class="slds-form-element__label" for="txtDatetime">
+                                                                            <span class="slds-required">*</span>{!$ObjectType.OpportunityLineItem.Fields.ia_crm__Start_Date__c.Label}
+                                                                        </label>
+                                                                        <apex:inputfield value="{!oppLineItems[line].Start_Date__c}" styleclass="slds-input" required="false"></apex:inputfield>
+                                                                    </div>
+                                                                    <span style="position:relative;top: 33px;"><c:InfoTooltip infotext="{!$ObjectType.OpportunityLineItem.fields.ia_crm__Start_Date__c.inlineHelpText}" /></span>
+                                                                </apex:outputpanel>
+                                                            </td>
+                                                            <td style="width: 25%;">
+                                                                <apex:outputpanel layout="block" styleclass="slds-form-element" id="endDatePanel">
+                                                                    <div class="slds-form-element__control" style="width: 70%;display:inline-table;">
+                                                                        <label class="slds-form-element__label" for="txtDatetime">
+                                                                            <span class="slds-required">*</span>{!$ObjectType.OpportunityLineItem.Fields.ia_crm__End_Date__c.Label}
+                                                                        </label>
+                                                                        <apex:inputfield value="{!oppLineItems[line].End_Date__c}" styleclass="slds-input" required="false"></apex:inputfield>
+                                                                    </div>
+                                                                    <span style="position:relative;top: 33px;"><c:InfoTooltip infotext="{!$ObjectType.OpportunityLineItem.fields.ia_crm__End_Date__c.inlineHelpText}" /></span>
+                                                                </apex:outputpanel>
+                                                            </td>
+                                                            <td style="width: 25%;">
+                                                                <apex:outputpanel layout="block" styleclass="slds-form-element" style="margin-top: 27px;" id="renewPanel">
+                                                                    <label class="slds-checkbox">
+                                                                        <apex:inputfield value="{!oppLineItems[line].Renew__c}" styleclass="renew-{!cnt}" required="false" style="width:70%" onclick="hideOrShowRenewalBillingTemplate('{!cnt}');" />
+                                                                        <span class="slds-checkbox--faux"></span> <span class="slds-form-element__label">{!$ObjectType.OpportunityLineItem.Fields.Renew__c.Label}</span>
+                                                                    </label>
+                                                                </apex:outputpanel>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>
+                                                                <label class="slds-form-element__label" for="text-input-01"> <b style="font-size: 16px;">{!$Label.Billing}</b></label>
+                                                            </th>
+                                                            
+                                                        </tr>
+                                                        <tr>
+                                                            <th colspan="4"><hr style="width: 93%; margin-top: 0px; margin-bottom: 10px;" /></th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <apex:outputpanel layout="block" styleclass="slds-form-element" style="width:70%" id="billingMethodPanel">
+                                                                    <div class="slds-form-element">
+                                                                        <label class="slds-form-element__label" for="selPicklist">{!$ObjectType.OpportunityLineItem.Fields.ia_crm__Billing_Method__c.Label}</label>
+                                                                        <div class="slds-form-element__control">
+                                                                            <div class="slds-select_container"> 
+                                                                                <apex:inputfield value="{!oppLineItems[line].Billing_Method__c}" styleclass="slds-select removeNoneValue billingMethod{!cnt}" required="false">
+                                                                                    <apex:actionsupport event="onchange" action="{!calculateRate}" onsubmit="viewBillingMethod('{!cnt}');" rerender="ratePanel, amountPanel">
+                                                                                        <apex:param name="lineNr" value="{!line}" assignto="{!lineNr}" />
+                                                                                    </apex:actionsupport>
+                                                                                </apex:inputfield>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </apex:outputpanel>
+                                                                <span class="quantityBased{!cnt}">
+                                                                    <apex:outputpanel id="quantityBasedPricebookWarning" rendered="{!AND(currentOpportunity.ContractId != null, contractPricebook == null)}">
+                                                                        <p><img src="/img/msg_icons/warning16.png" />Your must add Pricebook on Contract record.</p>
+                                                                    </apex:outputpanel>
+                                                                </span>
+                                                            </td>
+                                                            <td class="flatFixedAmount{!cnt}">
+                                                                <apex:outputpanel layout="block" styleclass="slds-form-element" style="width:70%" id="contractSaveCancelPanel">
+                                                                    <div class="slds-form-element">
+                                                                        <label class="slds-form-element__label" for="selPicklist">{!$ObjectType.OpportunityLineItem.Fields.ia_crm__Contract_Line_Save_Cancel_He__c.Label}</label>
+                                                                        <div class="slds-form-element__control">
+                                                                            <div class="slds-select_container">
+                                                                                <apex:inputfield value="{!oppLineItems[line].Contract_Line_Save_Cancel_He__c}" styleclass="slds-select removeNoneValue fixedAmount{!cnt}" required="true" onchange="viewFixedAmount('{!cnt}');" />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </apex:outputpanel>
+                                                            </td>
+                                                            <td class="prorate{!cnt}">
+                                                                <apex:outputpanel layout="block" styleclass="slds-form-element" style="margin-top: 27px;">
+                                                                    <label class="slds-checkbox">
+                                                                        <apex:inputfield value="{!oppLineItems[line].Prorate__c}" styleclass="renew-{!cnt}" required="false" style="width:70%" />
+                                                                        <span class="slds-checkbox--faux"></span> <span class="slds-form-element__label">{!$ObjectType.OpportunityLineItem.Fields.Prorate__c.Label}</span>
+                                                                    </label>
+                                                                </apex:outputpanel>
+                                                            </td>
+                                                            <td class="billingFrequency{!cnt}">
+                                                                <apex:outputpanel layout="block" styleclass="slds-form-element" style="width:70%">
+                                                                    <div class="slds-form-element">
+                                                                        <label class="slds-form-element__label" for="selPicklist">{!$ObjectType.OpportunityLineItem.Fields.ia_crm__Billing_frequency__c.Label}</label>
+                                                                        <div class="slds-form-element__control">
+                                                                            <div class="slds-select_container">
+                                                                                <apex:inputfield value="{!oppLineItems[line].Billing_frequency__c}" styleclass="slds-select removeNoneValue fixedAmount{!cnt}" />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </apex:outputpanel>
+                                                            </td>
+
+                                                            <!--<td class="quantityBased{!cnt} quantityType{!cnt} quantityTypeCommitted{!cnt}">
+                                                                <apex:outputpanel layout="block" styleclass="slds-form-element" style="width:70%" id="resetUsageQtyPanel">
+                                                                    <div class="slds-form-element">
+                                                                        <label class="slds-form-element__label" for="selPicklist">{!$ObjectType.OpportunityLineItem.Fields.ia_crm__Reset_Usage_Quantity__c.Label}</label>
+                                                                        <div class="slds-form-element__control">
+                                                                            <div class="slds-select_container">
+                                                                                <apex:inputfield value="{!oppLineItems[line].Reset_Usage_Quantity__c}" styleclass="slds-select removeNoneValue" />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </apex:outputpanel>
+                                                            </td>
+                                                            <td class="quantityBased{!cnt} quantityType{!cnt} quantityTypeCommitted{!cnt}">
+                                                                <apex:outputpanel layout="block" styleclass="slds-form-element" style="margin-top: 27px;" id="usageQtyPanel">
+                                                                    <label class="slds-checkbox">
+                                                                        <apex:inputfield value="{!oppLineItems[line].Usage_Quantity_Recurs__c}" required="false" style="width:70%"></apex:inputfield>
+                                                                        <span class="slds-checkbox--faux"></span> <span class="slds-form-element__label">{!$ObjectType.OpportunityLineItem.Fields.Usage_Quantity_Recurs__c.Label}</span>
+                                                                    </label>
+                                                                </apex:outputpanel>
+                                                            </td>-->
+                                                        </tr>
+                                                    <!-- <apex:actionregion > -->
+                                                        <tr>
+                                                            <td class="quantityBased{!cnt}">
+                                                                <apex:outputpanel layout="block" styleclass="slds-form-element" style="width:70%" id="quantityTypePanel">
+                                                                    <div class="slds-form-element">
+                                                                        <label class="slds-form-element__label" for="selPicklist">{!$ObjectType.OpportunityLineItem.Fields.ia_crm__Quantity_Type__c.Label}</label>
+                                                                        <div class="slds-form-element__control">
+                                                                            <div class="slds-select_container"> 
+                                                                                <apex:inputfield value="{!oppLineItems[line].Quantity_Type__c}" styleclass="slds-select removeNoneValue quantityTypeField{!cnt}" required="false" >
+                                                                                    <apex:actionsupport event="onchange" onsubmit="viewQuantityType('{!cnt}');" action="{!calculateRate}" rerender="ratePanel, amountPanel" >
+                                                                                        <apex:param name="lineNr" value="{!line}" assignto="{!lineNr}" />
+                                                                                    </apex:actionsupport>
+                                                                                </apex:inputfield>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </apex:outputpanel>
+                                                            </td>
+                                                            <td class="quantityBased{!cnt} quantityType{!cnt} quantityTypeCommitted{!cnt}">
+                                                                <apex:outputpanel layout="block" styleclass="slds-form-element" style="width:70%" id="resetUsageQtyPanel">
+                                                                    <div class="slds-form-element">
+                                                                        <label class="slds-form-element__label" for="selPicklist">{!$ObjectType.OpportunityLineItem.Fields.ia_crm__Reset_Usage_Quantity__c.Label}</label>
+                                                                        <div class="slds-form-element__control">
+                                                                            <div class="slds-select_container">
+                                                                                <apex:inputfield value="{!oppLineItems[line].Reset_Usage_Quantity__c}" styleclass="slds-select removeNoneValue" />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </apex:outputpanel>
+                                                            </td>
+                                                            <td class="quantityBased{!cnt} quantityType{!cnt} quantityTypeCommitted{!cnt}">
+                                                                <apex:outputpanel layout="block" styleclass="slds-form-element" style="margin-top: 27px;" id="usageQtyPanel">
+                                                                    <label class="slds-checkbox">
+                                                                        <apex:inputfield value="{!oppLineItems[line].Usage_Quantity_Recurs__c}" required="false" style="width:70%"></apex:inputfield>
+                                                                        <span class="slds-checkbox--faux"></span> <span class="slds-form-element__label">{!$ObjectType.OpportunityLineItem.Fields.Usage_Quantity_Recurs__c.Label}</span>
+                                                                    </label>
+                                                                </apex:outputpanel>
+                                                            </td>
+                                                            <td class="quantityBased{!cnt} quantityTypeShow{!cnt}">
+                                                                <apex:outputpanel layout="block" styleclass="slds-form-element" style="width:70%" id="OnContractEndDate">
+                                                                    <div class="slds-form-element">
+                                                                        <label class="slds-form-element__label" for="selPicklist">{!$ObjectType.OpportunityLineItem.Fields.ia_crm__On_Contract_End_Date__c.Label}</label>
+                                                                        <div class="slds-form-element__control">
+                                                                            <div class="slds-select_container"> 
+                                                                                <apex:inputfield value="{!oppLineItems[line].On_Contract_End_Date__c}" styleclass="slds-select removeNoneValue" required="false" />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </apex:outputpanel>
+                                                            </td>
+                                                            <td class="quantityBased{!cnt} quantityTypeShow{!cnt}">
+                                                                <apex:outputpanel layout="block" styleclass="slds-form-element" style="width:70%" id="IfUsageExceedsTheCommittedQuantity">
+                                                                    <div class="slds-form-element">
+                                                                        <label class="slds-form-element__label" for="selPicklist">{!$ObjectType.OpportunityLineItem.Fields.ia_crm__If_Usage_Exceeds_The_Committed_Quantity__c.Label}</label>
+                                                                        <div class="slds-form-element__control">
+                                                                            <div class="slds-select_container"> 
+                                                                                <apex:inputfield value="{!oppLineItems[line].If_Usage_Exceeds_The_Committed_Quantity__c}" styleclass="slds-select removeNoneValue" required="false" />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </apex:outputpanel>
+                                                            </td>
+                                                            <!--<td class="quantityBased{!cnt}">
+
+                                                            </td-->
+                                                        </tr>
+                                                        
+                                                            <tr>
+                                                                <td class="fixedPrice{!cnt} billingTemplate{!cnt}">
+                                                                    <apex:outputpanel layout="block" styleclass="slds-lookup" html-data-select="single" html-data-scope="single" html-data-typeahead="true" id="billingTemplatePanel">
+                                                                        <div class="slds-form-element" style="width: 70%;">
+                                                                            <label class="slds-form-element__label">
+                                                                                <span class="slds-required">*</span>{!$ObjectType.OpportunityLineItem.Fields.ia_crm__Billing_Template__c.Label}
+                                                                            </label>
+                                                                            <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
+                                                                                <apex:inputfield id="billTemplate" value="{!oppLineItems[line].Billing_Template__c}" styleclass="slds-input lookupInput" style="visibility:hidden;" required="false" />
+                                                                            </div>
+                                                                        </div>
+                                                                        <script>
+                                                                            var lkInput = document.getElementById('{!$Component.billTemplate}');
+                                                                            
+                                                                            lkInput.style.visibility = "";
+                                                                            var lkSpan = lkInput.parentElement;
+                                                                            var lkLink = lkSpan.querySelector("a");
+                                                                            lkLink.style.visibility = "";
+                                                                            lkLink.style.cursor = "default";
+                                                                            lkLink.className = "";
+                                                                            lkLink.innerHTML = "<svg style=\"cursor: pointer;\" xmlns=\"http://www.w3.org/2000/svg\" class=\"slds-input__icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><path d=\"M 22.9 20.9 l -6.2 -6.1 c 1.3 -1.8 1.9 -4 1.6 -6.4 c -0.6 -3.9 -3.8 -7.1 -7.8 -7.4 C 5 0.4 0.4 5 1 10.5 c 0.3 4 3.5 7.3 7.4 7.8 c 2.4 0.3 4.6 -0.3 6.4 -1.5 l 6.1 6.1 c 0.3 0.3 0.7 0.3 1 0 l 0.9 -1 c 0.3 -0.3 0.3 -0.7 0.1 -1 Z M 3.7 9.6 c 0 -3.2 2.7 -5.9 5.9 -5.9 s 6 2.7 6 5.9 s -2.7 6 -6 6 s -5.9 -2.6 -5.9 -6 Z\" /></svg>";
+                                                                        </script>
+                                                                    </apex:outputpanel>
+                                                                </td>
+                                                                <td class="fixedPrice{!cnt} billingTemplate{!cnt}">
+                                                                    <apex:outputpanel layout="block" styleclass="slds-form-element" id="billingStartDatePanel">
+                                                                        <div class="slds-form-element__control" style="width: 70%;display:inline-table;">
+                                                                            <label class="slds-form-element__label" for="txtDatetime">
+                                                                                <span class="slds-required"></span>{!$ObjectType.OpportunityLineItem.Fields.Billing_Start_Date__c.Label}
+                                                                            </label>
+                                                                            <apex:inputfield value="{!oppLineItems[line].Billing_Start_Date__c}" styleclass="slds-input" />
+                                                                        </div>
+                                                                        <span style="position:relative;top: 33px;"><c:InfoTooltip infotext="{!$ObjectType.OpportunityLineItem.fields.ia_crm__Billing_Start_Date__c.inlineHelpText}" /></span>
+                                                                    </apex:outputpanel>
+                                                                </td>
+                                                                <td class="fixedPrice{!cnt} billingTemplate{!cnt}">
+                                                                    <apex:outputpanel layout="block" styleclass="slds-form-element" id="billingEndDatePanel">
+                                                                        <label class="slds-form-element__label" for="txtDatetime">
+                                                                            <span class="slds-required"></span>{!$ObjectType.OpportunityLineItem.Fields.Billing_End_Date__c.Label}
+                                                                        </label>
+                                                                        <div class="slds-form-element__control" style="width: 70%">
+                                                                            <apex:inputfield value="{!oppLineItems[line].Billing_End_Date__c}" styleclass="slds-input" />
+                                                                        </div>
+                                                                    </apex:outputpanel>
+                                                                </td>
+                                                                <td class="billingTemplate{!cnt}">
+                                                                    <apex:outputpanel layout="block" styleclass="slds-lookup renewalBillingTemplate-{!cnt}" html-data-select="single" html-data-scope="single" html-data-typeahead="true" id="rBillingTempPanel">
+                                                                        <div class="slds-form-element" style="width: 70%;">
+                                                                            <label class="slds-form-element__label">
+                                                                                {!$ObjectType.OpportunityLineItem.Fields.ia_crm__Renewal_BillingTemplate__c.Label}
+                                                                            </label>
+                                                                            <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
+                                                                                <apex:inputfield id="rBTemplateLookup" value="{!oppLineItems[line].Renewal_BillingTemplate__c}" styleclass="slds-input lookupInput" style="visibility:hidden;" required="false" />
+                                                                            </div>
+                                                                        </div>
+                                                                        <script>
+                                                                            var lkInput = document.getElementById('{!$Component.rBTemplateLookup}');
+                                                                            
+                                                                            lkInput.style.visibility = "";
+                                                                            var lkSpan = lkInput.parentElement;
+                                                                            var lkLink = lkSpan.querySelector("a");
+                                                                            lkLink.style.visibility = "";
+                                                                            lkLink.style.cursor = "default";
+                                                                            lkLink.className = "";
+                                                                            lkLink.innerHTML = "<svg style=\"cursor: pointer;\" xmlns=\"http://www.w3.org/2000/svg\" class=\"slds-input__icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><path d=\"M 22.9 20.9 l -6.2 -6.1 c 1.3 -1.8 1.9 -4 1.6 -6.4 c -0.6 -3.9 -3.8 -7.1 -7.8 -7.4 C 5 0.4 0.4 5 1 10.5 c 0.3 4 3.5 7.3 7.4 7.8 c 2.4 0.3 4.6 -0.3 6.4 -1.5 l 6.1 6.1 c 0.3 0.3 0.7 0.3 1 0 l 0.9 -1 c 0.3 -0.3 0.3 -0.7 0.1 -1 Z M 3.7 9.6 c 0 -3.2 2.7 -5.9 5.9 -5.9 s 6 2.7 6 5.9 s -2.7 6 -6 6 s -5.9 -2.6 -5.9 -6 Z\" /></svg>";
+                                                                        </script>
+                                                                    </apex:outputpanel>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="fixedPrice{!cnt}">
+                                                                <th>
+                                                                    <label class="slds-form-element__label" for="text-input-01"> <b>{!$Label.Flat_Fixed_amount}</b></label>
+                                                                </th>
+                                                                <th colspan="4"></th>
+                                                            </tr>
+                                                            <!-- <apex:actionRegion > -->
+                                                            <!--<tr class="fixedPrice{!cnt} quantityTypeShow{!cnt}">-->
+                                                            <tr>
+                                                                <td class="fixedPrice{!cnt} quantityTypeShow{!cnt}">
+                                                                    <apex:outputpanel id="quantityPanel" layout="block" styleclass="slds-form-element">
+                                                                        <label class="slds-form-element__label" for="txtInput">
+                                                                            <span class="slds-required">*</span>{!$ObjectType.OpportunityLineItem.Fields.Quantity.Label}
+                                                                        </label>
+                                                                        <div class="slds-form-element__control" style="width: 70%">
+                                                                            <apex:inputfield value="{!oppLineItems[line].Quantity}" styleclass="slds-input amount-quantity{!cnt}" required="false">
+                                                                                <apex:actionsupport event="onchange" rerender="amountPanel, quantityPanel" status="fetchStatus" action="{!calculateAmount}">
+                                                                                    <apex:param name="lineNr" value="{!line}" assignto="{!lineNr}" />
+                                                                                </apex:actionsupport>
+                                                                            </apex:inputfield>
+                                                                        </div>
+                                                                    </apex:outputpanel>
+                                                                </td>
+                                                                <td class="fixedPrice{!cnt} quantityTypeShow{!cnt}">
+                                                                    <apex:outputpanel id="ratePanel" layout="block" styleclass="slds-form-element">
+                                                                        <label class="slds-form-element__label" for="txtInput">
+                                                                            <span class="slds-required">*</span>{!$Label.ia_crm__Rate}
+                                                                        </label>
+                                                                        <div class="slds-form-element__control" style="width: 70%">
+                                                                            <apex:inputfield value="{!oppLineItems[line].UnitPrice}" styleclass="slds-input amount-rate{!cnt}" required="false">
+                                                                                <apex:actionsupport event="onchange" rerender="amountPanel, ratePanel" status="fetchStatus" action="{!calculateAmount}">
+                                                                                    <apex:param name="lineNr" value="{!line}" assignto="{!lineNr}" />
+                                                                                </apex:actionsupport>
+                                                                            </apex:inputfield>
+                                                                        </div>
+                                                                    </apex:outputpanel>
+                                                                </td>
+                                                                <td class="fixedPrice{!cnt} quantityTypeShow{!cnt} quantityTypeVariable{!cnt}">
+                                                                    <apex:outputpanel id="multiplierPanel" layout="block" styleclass="slds-form-element">
+                                                                        <label class="slds-form-element__label" for="txtInput">{!$ObjectType.OpportunityLineItem.Fields.ia_crm__Multiplier__c.Label}</label>
+                                                                        <div class="slds-form-element__control">
+                                                                            <apex:inputfield value="{!oppLineItems[line].Multiplier__c}" styleclass="slds-input amount-multiplier{!cnt}" required="false" style="width:70%">
+                                                                                <apex:actionsupport event="onchange" rerender="amountPanel, multiplierPanel" status="fetchStatus" action="{!calculateAmount}">
+                                                                                    <apex:param name="lineNr" value="{!line}" assignto="{!lineNr}" />
+                                                                                </apex:actionsupport>
+                                                                            </apex:inputfield>
+                                                                        </div>
+                                                                    </apex:outputpanel>
+                                                                </td>
+                                                                <td class="fixedPrice{!cnt} quantityTypeShow{!cnt} quantityTypeVariable{!cnt}">
+                                                                    <apex:outputpanel id="discountPanel" layout="block" styleclass="slds-form-element">
+                                                                        <label class="slds-form-element__label" for="txtInput">{!$ObjectType.OpportunityLineItem.Fields.Discount.Label}</label>
+                                                                        <div class="slds-form-element__control">
+                                                                            <apex:inputfield value="{!oppLineItems[line].Discount}" styleclass="slds-input amount-discount{!cnt}" required="false" style="width:70%">
+                                                                                <apex:actionsupport event="onchange" rerender="amountPanel, discountPanel" status="fetchStatus" action="{!calculateAmount}">
+                                                                                    <apex:param name="lineNr" value="{!line}" assignto="{!lineNr}" />
+                                                                                </apex:actionsupport>
+                                                                            </apex:inputfield>
+                                                                        </div>
+                                                                    </apex:outputpanel>
+                                                                </td>
+                                                            </tr>
+                                                            <!-- </apex:actionRegion> -->
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="slds-form-element ">
+                                                                        <!--<label class="slds-form-element__label slds-required" for="text-input-01">
+                                                                            <span class="slds-required">*</span>OR Enter amount Base flat/fixed amount
+                                                                        </label>-->
+                                                                        <label class="slds-form-element__label slds-required" for="text-input-01">
+                                                                            <span class="slds-required" id="amountLabel{!cnt}"></span>
+                                                                        </label>
+                                                                        <div class="slds-form-element__control base-amount{!cnt}"> 
+                                                                            <apex:outputpanel id="amountPanel">
+                                                                                <!--<apex:actionRegion >-->
+                                                                                <apex:inputfield value="{!oppLineItems[line].Amount__c}" id="amountField" styleClass="slds-input amount" style="width:70%" required="false">
+                                                                                    <apex:actionsupport event="onchange" rerender="ratePanel, amountPanel" status="fetchStatus" action="{!calculateRate}">
+                                                                                        <apex:param name="lineNr" value="{!line}" assignto="{!lineNr}" />
+                                                                                    </apex:actionsupport>
+                                                                                </apex:inputfield>
+                                                                                <!-- </apex:actionRegion>-->
+                                                                            </apex:outputpanel>
+                                                                        </div>
+                                                                        <div class="slds-form-element__control base-amountEmptyField{!cnt}">
+                                                                            <input type="text" value="0.00" class="slds-input" disabled="true" style="width:70%"/>
+                                                                        </div>
+                                                                        <!--<input type="text" value="0.00" class="slds-input base-amountEmptyField{!cnt}" disabled="true" style="width:70%" />-->
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <!---<apex:outputpanel id="intacctLocationContract" layout="block" styleclass="slds-lookup" html-data-select="single" html-data-scope="single" html-data-typeahead="true">
+                                                                        <div class="slds-form-element" style="width: 70%;">
+                                                                            <label class="slds-form-element__label">
+                                                                                <apex:outputpanel rendered="{!NOT(isSingleEntityOrg)}"><span class="slds-required">*</span></apex:outputpanel>{!$ObjectType.OpportunityLineItem.Fields.Intacct_Location__c.Label}
+                                                                            </label>
+                                                                            <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
+                                                                                <apex:inputfield id="lookup" value="{!oppLineItems[line].Intacct_Location__c}" onChange="checkRenewal({!line}, 'reference', '{!$Label.ia_crm__Package_Prefix}' + 'intacct_location__c')" styleclass="slds-input lookupInput" style="visibility:hidden;" required="false" />
+                                                                            </div>
+                                                                        </div>
+                                                                        <script>
+                                                                            var lkInput = document.getElementById('{!$Component.lookup}');
+                                                                            
+                                                                            lkInput.style.visibility = "";
+                                                                            var lkSpan = lkInput.parentElement;
+                                                                            var lkLink = lkSpan.querySelector("a");
+                                                                            lkLink.style.visibility = "";
+                                                                            lkLink.style.cursor = "default";
+                                                                            lkLink.className = "";
+                                                                            lkLink.innerHTML = "<svg style=\"cursor: pointer;\" xmlns=\"http://www.w3.org/2000/svg\" class=\"slds-input__icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><path d=\"M 22.9 20.9 l -6.2 -6.1 c 1.3 -1.8 1.9 -4 1.6 -6.4 c -0.6 -3.9 -3.8 -7.1 -7.8 -7.4 C 5 0.4 0.4 5 1 10.5 c 0.3 4 3.5 7.3 7.4 7.8 c 2.4 0.3 4.6 -0.3 6.4 -1.5 l 6.1 6.1 c 0.3 0.3 0.7 0.3 1 0 l 0.9 -1 c 0.3 -0.3 0.3 -0.7 0.1 -1 Z M 3.7 9.6 c 0 -3.2 2.7 -5.9 5.9 -5.9 s 6 2.7 6 5.9 s -2.7 6 -6 6 s -5.9 -2.6 -5.9 -6 Z\" /></svg>";
+                                                                        </script>
+                                                                    </apex:outputpanel>-->
+                                                                </td>
+                                                                <td>
+                                                                    <!--<apex:outputpanel layout="block" styleclass="slds-lookup" html-data-select="single" html-data-scope="single" html-data-typeahead="true" id="departmentPanel">
+                                                                        <div class="slds-form-element" style="width: 70%;">
+                                                                            <label class="slds-form-element__label">{!$ObjectType.OpportunityLineItem.Fields.ia_crm__Department__c.Label}</label>
+                                                                            <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
+                                                                                <apex:inputfield id="depLookup" value="{!oppLineItems[line].Department__c}" onChange="checkRenewal({!line}, 'reference', '{!$Label.ia_crm__Package_Prefix}' + 'department__c')" styleclass="slds-input lookupInput" style="visibility:hidden;" required="false" />
+                                                                            </div>
+                                                                        </div>
+                                                                        <script>
+                                                                            var lkInput = document.getElementById('{!$Component.depLookup}');
+                                                                            
+                                                                            lkInput.style.visibility = "";
+                                                                            var lkSpan = lkInput.parentElement;
+                                                                            var lkLink = lkSpan.querySelector("a");
+                                                                            lkLink.style.visibility = "";
+                                                                            lkLink.style.cursor = "default";
+                                                                            lkLink.className = "";
+                                                                            lkLink.innerHTML = "<svg style=\"cursor: pointer;\" xmlns=\"http://www.w3.org/2000/svg\" class=\"slds-input__icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><path d=\"M 22.9 20.9 l -6.2 -6.1 c 1.3 -1.8 1.9 -4 1.6 -6.4 c -0.6 -3.9 -3.8 -7.1 -7.8 -7.4 C 5 0.4 0.4 5 1 10.5 c 0.3 4 3.5 7.3 7.4 7.8 c 2.4 0.3 4.6 -0.3 6.4 -1.5 l 6.1 6.1 c 0.3 0.3 0.7 0.3 1 0 l 0.9 -1 c 0.3 -0.3 0.3 -0.7 0.1 -1 Z M 3.7 9.6 c 0 -3.2 2.7 -5.9 5.9 -5.9 s 6 2.7 6 5.9 s -2.7 6 -6 6 s -5.9 -2.6 -5.9 -6 Z\" /></svg>";
+                                                                        </script>
+                                                                    </apex:outputpanel>-->
+                                                                </td>
+                                                                <td>
+                                                                    <apex:outputpanel rendered="{!isRenewedContract}" id="renewedCtrPanel">
+                                                                        <apex:outputpanel layout="block" styleclass="slds-lookup" html-data-select="single" html-data-scope="single" html-data-typeahead="true">
+                                                                            <div class="slds-form-element" style="width: 70%;">
+                                                                                <label class="slds-form-element__label">{!$ObjectType.OpportunityLineItem.Fields.ia_crm__Intacct_Contract_Line__c.Label}</label>
+                                                                                <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
+                                                                                    <apex:inputfield id="contractLine" value="{!oppLineItems[line].Intacct_Contract_Line__c}" styleclass="slds-input lookupInput" style="visibility:hidden;" required="false" />
+                                                                                </div>
+                                                                            </div>
+                                                                            <script>
+                                                                                var lkInput = document.getElementById('{!$Component.contractLine}');
+                                                                                
+                                                                                lkInput.style.visibility = "";
+                                                                                var lkSpan = lkInput.parentElement;
+                                                                                var lkLink = lkSpan.querySelector("a");
+                                                                                lkLink.style.visibility = "";
+                                                                                lkLink.style.cursor = "default";
+                                                                                lkLink.className = "";
+                                                                                lkLink.innerHTML = "<svg style=\"cursor: pointer;\" xmlns=\"http://www.w3.org/2000/svg\" class=\"slds-input__icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><path d=\"M 22.9 20.9 l -6.2 -6.1 c 1.3 -1.8 1.9 -4 1.6 -6.4 c -0.6 -3.9 -3.8 -7.1 -7.8 -7.4 C 5 0.4 0.4 5 1 10.5 c 0.3 4 3.5 7.3 7.4 7.8 c 2.4 0.3 4.6 -0.3 6.4 -1.5 l 6.1 6.1 c 0.3 0.3 0.7 0.3 1 0 l 0.9 -1 c 0.3 -0.3 0.3 -0.7 0.1 -1 Z M 3.7 9.6 c 0 -3.2 2.7 -5.9 5.9 -5.9 s 6 2.7 6 5.9 s -2.7 6 -6 6 s -5.9 -2.6 -5.9 -6 Z\" /></svg>";
+                                                                            </script>
+                                                                        </apex:outputpanel>
+                                                                    </apex:outputpanel>
+                                                                </td>
+                                                            </tr>
+                                                    <!-- </apex:actionregion> -->  
+                                                        <apex:variable var="fielSetNumber" value="{!0}" />
+                                                        
+                                                        <tr>
+                                                            <th>
+                                                                <label class="slds-form-element__label" for="text-input-01"> <b style="font-size: 16px;">{!$Label.Dimensions_Other_Fields}</b></label>
+                                                            </th>
+                                                        </tr>
+                                                        <tr>
+                                                            <th colspan="4"><hr style="width: 93%; margin-top: 0px; margin-bottom: 10px;" /></th>
+                                                        </tr>
+
+
+                                                        <tr>
+                                                            <td>
+                                                                <apex:outputpanel id="intacctLocationContract" layout="block" styleclass="slds-lookup" html-data-select="single" html-data-scope="single" html-data-typeahead="true">
+                                                                    <div class="slds-form-element" style="width: 70%;">
+                                                                        <label class="slds-form-element__label">
+                                                                            <apex:outputpanel rendered="{!NOT(isSingleEntityOrg)}"><span class="slds-required">*</span></apex:outputpanel>{!$ObjectType.OpportunityLineItem.Fields.ia_crm__Intacct_Location__c.Label}
+                                                                        </label>
+                                                                        <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
+                                                                            <apex:inputfield id="lookup" value="{!oppLineItems[line].Intacct_Location__c}" onChange="checkRenewal({!line}, 'reference', '{!$Label.ia_crm__Package_Prefix}' + 'intacct_location__c')" styleclass="slds-input lookupInput" style="visibility:hidden;" required="false" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <script>
+                                                                        var lkInput = document.getElementById('{!$Component.lookup}');
+                                                                            
+                                                                        lkInput.style.visibility = "";
+                                                                        var lkSpan = lkInput.parentElement;
+                                                                        var lkLink = lkSpan.querySelector("a");
+                                                                        lkLink.style.visibility = "";
+                                                                        lkLink.style.cursor = "default";
+                                                                        lkLink.className = "";
+                                                                        lkLink.innerHTML = "<svg style=\"cursor: pointer;\" xmlns=\"http://www.w3.org/2000/svg\" class=\"slds-input__icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><path d=\"M 22.9 20.9 l -6.2 -6.1 c 1.3 -1.8 1.9 -4 1.6 -6.4 c -0.6 -3.9 -3.8 -7.1 -7.8 -7.4 C 5 0.4 0.4 5 1 10.5 c 0.3 4 3.5 7.3 7.4 7.8 c 2.4 0.3 4.6 -0.3 6.4 -1.5 l 6.1 6.1 c 0.3 0.3 0.7 0.3 1 0 l 0.9 -1 c 0.3 -0.3 0.3 -0.7 0.1 -1 Z M 3.7 9.6 c 0 -3.2 2.7 -5.9 5.9 -5.9 s 6 2.7 6 5.9 s -2.7 6 -6 6 s -5.9 -2.6 -5.9 -6 Z\" /></svg>";
+                                                                    </script>
+                                                                </apex:outputpanel>
+                                                            </td>
+                                                            <td>
+                                                                    <apex:outputpanel layout="block" styleclass="slds-lookup" html-data-select="single" html-data-scope="single" html-data-typeahead="true" id="departmentPanel">
+                                                                        <div class="slds-form-element" style="width: 70%;">
+                                                                            <label class="slds-form-element__label">{!$ObjectType.OpportunityLineItem.Fields.ia_crm__Department__c.Label}</label>
+                                                                            <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
+                                                                                <apex:inputfield id="depLookup" value="{!oppLineItems[line].Department__c}" onChange="checkRenewal({!line}, 'reference', '{!$Label.ia_crm__Package_Prefix}' + 'department__c')" styleclass="slds-input lookupInput" style="visibility:hidden;" required="false" />
+                                                                            </div>
+                                                                        </div>
+                                                                        <script>
+                                                                            var lkInput = document.getElementById('{!$Component.depLookup}');
+                                                                            
+                                                                            lkInput.style.visibility = "";
+                                                                            var lkSpan = lkInput.parentElement;
+                                                                            var lkLink = lkSpan.querySelector("a");
+                                                                            lkLink.style.visibility = "";
+                                                                            lkLink.style.cursor = "default";
+                                                                            lkLink.className = "";
+                                                                            lkLink.innerHTML = "<svg style=\"cursor: pointer;\" xmlns=\"http://www.w3.org/2000/svg\" class=\"slds-input__icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><path d=\"M 22.9 20.9 l -6.2 -6.1 c 1.3 -1.8 1.9 -4 1.6 -6.4 c -0.6 -3.9 -3.8 -7.1 -7.8 -7.4 C 5 0.4 0.4 5 1 10.5 c 0.3 4 3.5 7.3 7.4 7.8 c 2.4 0.3 4.6 -0.3 6.4 -1.5 l 6.1 6.1 c 0.3 0.3 0.7 0.3 1 0 l 0.9 -1 c 0.3 -0.3 0.3 -0.7 0.1 -1 Z M 3.7 9.6 c 0 -3.2 2.7 -5.9 5.9 -5.9 s 6 2.7 6 5.9 s -2.7 6 -6 6 s -5.9 -2.6 -5.9 -6 Z\" /></svg>";
+                                                                        </script>
+                                                                    </apex:outputpanel>
+                                                                </td>
+                                                            <apex:repeat value="{!lineFieldSetField}" var="f" id="fieldSets">
+                                                                <apex:outputtext value="{!IF(MOD(fielSetNumber, 4) == 0, '</tr>', '')}" escape="false" />
+                                                                <td>
+                                                                    <c:OpportunityLineDescribe sobject="{!oppLineItems[line]}" onChangeEvnt="checkRenewal({!line}, '{!f.type}', '{!f.fieldPath}')" field="{!f.fieldPath}" fieldtype="{!f.type}" isrequired="{!OR(f.required, f.dbrequired)}" isedit="{!isEdit}" />
+                                                                </td>
+                                                                <apex:variable var="fielSetNumber" value="{!fielSetNumber + 1}" />
+                                                                <apex:outputtext value="{!IF(MOD(fielSetNumber, 4) == 0, '<tr>', '')}" escape="false" />
+                                                            </apex:repeat>
+                                                        </tr>
+                <tr>
+                    <td colspan="4">
+                        <apex:outputpanel rendered="{!cnt < noOfSelectedRecords - 1}">
+                            <hr style="width: 93%;margin-top: 20px; margin-bottom: 10px; " />
+                        </apex:outputpanel>
+                    </td>
+                </tr>
+                </tbody>
+                </table>
+                
+                <br />
+        </div>
+        </li>
+        </apex:outputPanel>
+        <apex:outputpanel rendered="{!And(isContract,isCustomProfileMappingContracts)}" id="contractPanel">
+            <li id="tree0-node1-0" role="treeitem" aria-level="2">
+                <div class="slds-tree__item">
+                    <table>
+                        <tr>
+                            <apex:variable var="oeFielSetNumber1" value="{!0}" />
+                            <apex:repeat value="{!fieldsToDisplayByProfile['Contracts']}" var="FieldLable" id="contractProfilePanel">
+                                <apex:outputtext value="{!IF(MOD(oeFielSetNumber1, 4) == 0, '</tr>', '')}" escape="false" /> 
+                                <apex:outputpanel rendered="{!AND(FieldLable != 'quantity', FieldLable != 'unitprice', FieldLable != $Label.ia_crm__Package_Prefix + 'amount__c', FieldLable != 'discount', FieldLable != $Label.ia_crm__Package_Prefix + 'multiplier__c')}">
+                                    <td style="width: 25%;">
+                                        <c:OpportunityLineDescribe sobject="{!oppLineItems[line]}" onChangeEvnt="checkRenewal({!line}, '{!$ObjectType['OpportunityLineItem'].fields[FieldLable].Type}', '{!FieldLable}')" field="{!FieldLable}" fieldtype="{!$ObjectType['OpportunityLineItem'].fields[FieldLable].Type}" isrequired="false" isedit="{!isEdit}" />
+                                    </td>
+                                    </apex:outputpanel>
+
+                                    <apex:outputpanel rendered="{!FieldLable == 'quantity'}">
+                                        <td style="width: 25%;">
+                                            <apex:outputpanel id="quantityPanelCustom" layout="block" styleclass="slds-form-element">
+                                                <label class="slds-form-element__label">{!$ObjectType['OpportunityLineItem'].fields[FieldLable].Label}</label>
+                                                <div class="slds-form-element__control">
+                                                    <apex:inputfield value="{!oppLineItems[line][FieldLable]}" styleclass="slds-input" required="false" style="width:70%">
+                                                        <apex:actionsupport event="onchange" rerender="quantityPanelCustom" oncomplete="calculateAmountAction('{!line}');" />
+                                                    </apex:inputfield>
+                                                </div>
+                                            </apex:outputpanel>
+                                        </td>
+                                    </apex:outputpanel>
+                                    <apex:outputpanel rendered="{!FieldLable == 'unitprice'}">
+                                        <td style="width: 25%;">
+                                            <apex:outputpanel id="unitpricePanelCustom" layout="block" styleclass="slds-form-element">
+                                                <label class="slds-form-element__label">Rate</label>
+                                                <div class="slds-form-element__control">
+                                                    <apex:inputfield value="{!oppLineItems[line][FieldLable]}" styleclass="slds-input" required="false" style="width:70%">
+                                                        <apex:actionsupport event="onchange" rerender="unitpricePanelCustom" oncomplete="calculateAmountAction('{!line}');" />
+                                                    </apex:inputfield>
+                                                </div>
+                                            </apex:outputpanel>
+                                        </td>
+                                    </apex:outputpanel>
+                                    <apex:outputpanel rendered="{!FieldLable ==$Label.ia_crm__Package_Prefix + 'multiplier__c'}">
+                                        <td style="width: 25%;">
+                                            <apex:outputpanel id="multiplierPanelCustom" layout="block" styleclass="slds-form-element">
+                                                <label class="slds-form-element__label">{!$ObjectType['OpportunityLineItem'].fields[FieldLable].Label}</label>
+                                                <div class="slds-form-element__control">
+                                                    <apex:inputfield value="{!oppLineItems[line][FieldLable]}" styleclass="slds-input" required="false" style="width:70%">
+                                                        <apex:actionsupport event="onchange" rerender="multiplierPanelCustom" oncomplete="calculateAmountAction('{!line}');" />
+                                                    </apex:inputfield>
+                                                </div>
+                                            </apex:outputpanel>
+                                        </td>
+                                    </apex:outputpanel>
+                                    <apex:outputpanel rendered="{!FieldLable == 'discount'}">
+                                        <td style="width: 25%;">
+                                            <apex:outputpanel id="discountPanelCustom" layout="block" styleclass="slds-form-element">
+                                                <label class="slds-form-element__label">{!$ObjectType['OpportunityLineItem'].fields[FieldLable].Label}</label>
+                                                <div class="slds-form-element__control">
+                                                    <apex:inputfield value="{!oppLineItems[line][FieldLable]}" styleclass="slds-input" required="false" style="width:70%">
+                                                        <apex:actionsupport event="onchange" rerender="discountPanelCustom" oncomplete="calculateAmountAction('{!line}');" />
+                                                    </apex:inputfield>
+                                                </div>
+                                            </apex:outputpanel>
+                                        </td>
+                                    </apex:outputpanel>
+                                    <apex:outputpanel rendered="{!FieldLable == $Label.ia_crm__Package_Prefix + 'amount__c'}" styleclass="slds-form-element">
+                                        <td style="width: 25%;">
+                                            <apex:outputpanel id="amountPanelCustom" layout="block">
+                                                <label class="slds-form-element__label">{!$ObjectType['OpportunityLineItem'].fields[FieldLable].Label}</label>
+                                                <div class="slds-form-element__control">
+                                                    <apex:inputfield value="{!oppLineItems[line][FieldLable]}" styleclass="slds-input" required="false" style="width:70%">
+                                                        <apex:actionsupport event="onchange" rerender="amountPanelCustom" oncomplete="calculateRateAction('{!line}');" />
+                                                    </apex:inputfield>
+                                                </div>
+                                            </apex:outputpanel>
+                                        </td>
+                                    </apex:outputpanel>
+                                    <apex:variable var="oeFielSetNumber1" value="{!oeFielSetNumber1+1}" />
+                                    <apex:outputtext value="{!IF(MOD(oeFielSetNumber1, 4) == 0, '<tr>', '')}" escape="false" />
+                                </apex:repeat>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <apex:outputpanel rendered="{!cnt < noOfSelectedRecords - 1}">
+                                    <hr style="width: 93%;margin-top: 20px; margin-bottom: 10px; " />
+                                </apex:outputpanel>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </li>
+        </apex:outputpanel>
+        <!-- Contracts -->
+        <!-- OE -->
+        <apex:outputpanel rendered="{!And(NOT(isContract),NOT(isCustomProfileMappingOE))}" id="OEPanel">
+            <li id="tree0-node1-0" role="treeitem" aria-level="2">
+                <div class="slds-tree__item">
+                    <table>
+                        <tr style="width: 25%;">
+                            <td>
+                                <apex:outputpanel layout="block" styleclass="slds-form-element" id="oeQtyPanel">
+                                    <div class="slds-form-element" style="width: 70%;">
+                                        <label class="slds-form-element__label">
+                                            <span class="slds-required">*</span>{!$ObjectType.OpportunityLineItem.Fields.Quantity.Label}
+                                        </label>
+                                        <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
+                                            <apex:inputfield value="{!oppLineItems[line].Quantity}" styleclass="slds-input" required="false" />
+                                        </div>
+                                    </div>
+                                </apex:outputpanel>
+                            </td>
+                            <td style="width: 25%;">
+                                <apex:outputpanel id="oeUnitPricePanel" layout="block" styleclass="slds-form-element">
+                                    <label class="slds-form-element__label" for="txtInput">
+                                        <span class="slds-required">*</span>Sales Price
+                                    </label>
+                                    <div class="slds-form-element__control" style="width: 70%">
+                                        <apex:inputfield value="{!oppLineItems[line].UnitPrice}" styleclass="slds-input" required="false">
+                                            <apex:actionsupport event="onchange" rerender="oeUnitPricePanel" />
+                                        </apex:inputfield>
+                                    </div>
+                                </apex:outputpanel>
+                            </td>
+                            <td style="width: 25%;">
+                                <apex:outputpanel layout="block" styleclass="slds-form-element" id="oeSStartDatePanel">
+                                    <label class="slds-form-element__label" for="txtStartDatetime">{!$Label.ia_crm__Service_Start_Date}</label>
+                                    <div class="slds-form-element__control" style="width: 70%">
+                                        <apex:inputfield id="txtStartDatetime" value="{!oppLineItems[line].ServiceDate}" styleclass="slds-input" required="false" />
+                                    </div>
+                                </apex:outputpanel>
+                            </td>
+                            <td style="width: 25%;">
+                                <apex:outputpanel layout="block" styleclass="slds-form-element" id="oeSEndDatePanel">
+                                    <label class="slds-form-element__label" for="txtEndDatetime">{!$ObjectType.OpportunityLineItem.Fields.ia_crm__Service_End_Date__c.Label}</label>
+                                    <div class="slds-form-element__control" style="width: 70%">
+                                        <apex:inputfield id="txtEndDatetime" value="{!oppLineItems[line].Service_End_Date__c}" styleclass="slds-input" required="false" />
+                                    </div>
+                                </apex:outputpanel>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <apex:outputpanel layout="block" id="descriptionPanel">
+                                    <div class="slds-form-element" style="width: 70%;">
+                                        <label class="slds-form-element__label">{!$ObjectType.OpportunityLineItem.Fields.Description.Label}</label>
+                                        <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
+                                            <apex:inputfield value="{!oppLineItems[line].Description}" styleclass="slds-input" required="false" />
+                                        </div>
+                                    </div>
+                                </apex:outputpanel>
+                            </td>
+                            <td>
+                                <apex:outputpanel layout="block" styleclass="slds-lookup" html-data-select="single" html-data-scope="single" html-data-typeahead="true" id="intacctLocationPanel">
+                                    <div class="slds-form-element" style="width: 70%;">
+                                        <label class="slds-form-element__label">
+                                            <apex:outputpanel rendered="{!NOT(isSingleEntityOrg)}"><span class="slds-required">*</span></apex:outputpanel>{!$ObjectType.OpportunityLineItem.Fields.ia_crm__Intacct_Location__c.Label}
+                                        </label>
+                                        <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
+                                            <apex:inputfield id="intacctLocOE" value="{!oppLineItems[line].Intacct_Location__c}" onChange="checkRenewal({!line}, 'reference', '{!$Label.ia_crm__Package_Prefix}' + 'intacct_location__c')" styleclass="slds-input lookupInput" style="visibility:hidden;" required="false" />
+                                        </div>
+                                    </div>
+                                    <script>
+                                        var lkInput = document.getElementById('{!$Component.intacctLocOE}');
+                                        
+                                        lkInput.style.visibility = "";
+                                        var lkSpan = lkInput.parentElement;
+                                        var lkLink = lkSpan.querySelector("a");
+                                        lkLink.style.visibility = "";
+                                        lkLink.style.cursor = "default";
+                                        lkLink.className = "";
+                                        lkLink.innerHTML = "<svg style=\"cursor: pointer;\" xmlns=\"http://www.w3.org/2000/svg\" class=\"slds-input__icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><path d=\"M 22.9 20.9 l -6.2 -6.1 c 1.3 -1.8 1.9 -4 1.6 -6.4 c -0.6 -3.9 -3.8 -7.1 -7.8 -7.4 C 5 0.4 0.4 5 1 10.5 c 0.3 4 3.5 7.3 7.4 7.8 c 2.4 0.3 4.6 -0.3 6.4 -1.5 l 6.1 6.1 c 0.3 0.3 0.7 0.3 1 0 l 0.9 -1 c 0.3 -0.3 0.3 -0.7 0.1 -1 Z M 3.7 9.6 c 0 -3.2 2.7 -5.9 5.9 -5.9 s 6 2.7 6 5.9 s -2.7 6 -6 6 s -5.9 -2.6 -5.9 -6 Z\" /></svg>";
+                                    </script>
+                                </apex:outputpanel>
+                            </td>
+                            <td>
+                                <apex:outputpanel layout="block" styleclass="slds-lookup" html-data-select="single" html-data-scope="single" html-data-typeahead="true" id="oeDeptPanel">
+                                    <div class="slds-form-element" style="width: 70%;">
+                                        <label class="slds-form-element__label">{!$ObjectType.OpportunityLineItem.Fields.ia_crm__Department__c.Label}</label>
+                                        <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
+                                            <apex:inputfield id="depOE" value="{!oppLineItems[line].Department__c}" onChange="checkRenewal({!line}, 'reference', '{!$Label.ia_crm__Package_Prefix}' + 'department__c')" styleclass="slds-input lookupInput" style="visibility:hidden;" required="false" />
+                                        </div>
+                                    </div>
+                                    <script>
+                                        var lkInput = document.getElementById('{!$Component.depOE}');
+                                        
+                                        lkInput.style.visibility = "";
+                                        var lkSpan = lkInput.parentElement;
+                                        var lkLink = lkSpan.querySelector("a");
+                                        lkLink.style.visibility = "";
+                                        lkLink.style.cursor = "default";
+                                        lkLink.className = "";
+                                        lkLink.innerHTML = "<svg style=\"cursor: pointer;\" xmlns=\"http://www.w3.org/2000/svg\" class=\"slds-input__icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><path d=\"M 22.9 20.9 l -6.2 -6.1 c 1.3 -1.8 1.9 -4 1.6 -6.4 c -0.6 -3.9 -3.8 -7.1 -7.8 -7.4 C 5 0.4 0.4 5 1 10.5 c 0.3 4 3.5 7.3 7.4 7.8 c 2.4 0.3 4.6 -0.3 6.4 -1.5 l 6.1 6.1 c 0.3 0.3 0.7 0.3 1 0 l 0.9 -1 c 0.3 -0.3 0.3 -0.7 0.1 -1 Z M 3.7 9.6 c 0 -3.2 2.7 -5.9 5.9 -5.9 s 6 2.7 6 5.9 s -2.7 6 -6 6 s -5.9 -2.6 -5.9 -6 Z\" /></svg>";
+                                    </script>
+                                </apex:outputpanel>
+                            </td>
+                            <apex:variable var="oeFielSetNumber" value="{!3}" />
+                            <apex:repeat value="{!lineFieldSetField}" var="f" id="OEFieldSetPanel">
+                                <apex:outputtext value="{!IF(MOD(oeFielSetNumber, 4) == 0, '</tr>', '')}" escape="false" />
+                                    <td style="width: 25%;">
+                                        <c:OpportunityLineDescribe sobject="{!oppLineItems[line]}" onChangeEvnt="checkRenewal({!line}, '{!f.type}', '{!f.fieldPath}')" field="{!f.fieldPath}" fieldtype="{!f.type}" isrequired="{!OR(f.required, f.dbrequired)}" label="{!IF(f.fieldPath == 'ServiceDate', 'Service Start Date', null)}" isedit="{!isEdit}" />
+                                    </td>
+                                    <apex:variable var="oeFielSetNumber" value="{!oeFielSetNumber+1}" />
+                                <apex:outputtext value="{!IF(MOD(oeFielSetNumber, 4) == 0, '<tr>', '')}" escape="false" />
+                            </apex:repeat>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <apex:outputpanel rendered="{!cnt < noOfSelectedRecords - 1}">
+                                    <hr style="width: 93%;margin-top: 20px; margin-bottom: 10px; " />
+                                </apex:outputpanel>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </li>
+        </apex:outputpanel>
+        <apex:outputpanel rendered="{!And(NOT(isContract),isCustomProfileMappingOE)}">
+            <li id="tree0-node1-0" role="treeitem" aria-level="2">
+                <div class="slds-tree__item">
+                    <table>
+                        <tr>
+                            <apex:variable var="oeFielSetNumber1" value="{!0}" />
+                            <apex:repeat value="{!fieldsToDisplayByProfile['OE']}" var="FieldLable" id="OEProfilePanel">
+                                <apex:outputtext value="{!IF(MOD(oeFielSetNumber1, 4) == 0, '</tr>', '')}" escape="false" />
+                                    <td style="width: 25%;">
+                                        <c:OpportunityLineDescribe sobject="{!oppLineItems[line]}" onChangeEvnt="checkRenewal({!line}, '{!$ObjectType['OpportunityLineItem'].fields[FieldLable].Type}', '{!FieldLable}')" field="{!FieldLable}" fieldtype="{!$ObjectType['OpportunityLineItem'].fields[FieldLable].Type}" isrequired="false" isedit="{!isEdit}" />
+                                    </td>
+                                    <apex:variable var="oeFielSetNumber1" value="{!oeFielSetNumber1+1}" />
+                                <apex:outputtext value="{!IF(MOD(oeFielSetNumber1, 4) == 0, '<tr>', '')}" escape="false" />
+                            </apex:repeat>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <apex:outputpanel rendered="{!cnt < noOfSelectedRecords - 1}">
+                                    <hr style="width: 93%;margin-top: 20px; margin-bottom: 10px; " />
+                                </apex:outputpanel>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </li>
+        </apex:outputpanel>
+        <!-- OE -->
+        </ul>
+        </li>
+        </ul>
+        </div>
+        <apex:variable var="cnt" value="{!cnt+1}" />
+        </apex:repeat>
+        </apex:form>
+        </div>
+        <script type="text/javascript">
+
+        $(window).load(function () {//needed for dependent lookups, needs to be on load event.
+            $(".lookupInput").attr("readonly", false);
+            $(".lookupInput").show();
+            $( ".closeIcon" ).remove();
+            $( ".emptyDependentLookup" ).remove();
+        });
+        
+        function showSpinner() {
+            $("#spinnerContainer").show();
+        }
+        var datePickerLexWrapper;
+        if (datePickerLexWrapper == null) {
+            datePickerLexWrapper = document.createElement('div');
+            datePickerLexWrapper.className = 'slds';
+            datePickerLexWrapper.id = 'datePicker_slds_wrapper';
+            document.addEventListener("DOMContentLoaded", function(event) {
+                var dtp = document.getElementById('datePicker');
+                if (dtp != null) {
+                    var dtpParent = dtp.parentElement;
+                    dtpParent.appendChild(datePickerLexWrapper);
+                    datePickerLexWrapper.appendChild(dtp);
+                }
+            });
+        }
+        var lkInput = document.getElementsByClassName("lookupInput");
+        for (var i = 0; i < lkInput.length; i++) {
+            lkInput[i].style.visibility = "";
+            var lkSpan = lkInput[i].parentElement;
+            var lkLink = lkSpan.querySelector("a");
+            lkLink.style.visibility = "";
+            lkLink.style.cursor = "default";
+            lkLink.className = "";
+            lkLink.innerHTML = "<svg style=\"cursor: pointer;\" xmlns=\"http://www.w3.org/2000/svg\" class=\"slds-input__icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><path d=\"M 22.9 20.9 l -6.2 -6.1 c 1.3 -1.8 1.9 -4 1.6 -6.4 c -0.6 -3.9 -3.8 -7.1 -7.8 -7.4 C 5 0.4 0.4 5 1 10.5 c 0.3 4 3.5 7.3 7.4 7.8 c 2.4 0.3 4.6 -0.3 6.4 -1.5 l 6.1 6.1 c 0.3 0.3 0.7 0.3 1 0 l 0.9 -1 c 0.3 -0.3 0.3 -0.7 0.1 -1 Z M 3.7 9.6 c 0 -3.2 2.7 -5.9 5.9 -5.9 s 6 2.7 6 5.9 s -2.7 6 -6 6 s -5.9 -2.6 -5.9 -6 Z\" /></svg>";
+        }
+        
+        function checkRenewal(lineNr, fieldType, fieldPath){
+            if(fieldType == 'boolean' || fieldType == 'reference') {
+                checkLineAsRenewalAction(lineNr, fieldPath, fieldType);
+            }
+        }
+        </script>
+    </apex:outputPanel>
+
+    <apex:outputPanel rendered="{!!isOldPage}">
+        <apex:includeLightning />
+        <apex:slds />
+        <div id="LightningComponentid" style="min-height: 639px;"/>
+        <script>
+            window.onload = function(){
+                const queryString = window.location.search;
+                const urlParams = new URLSearchParams(queryString);
+                var recordId = urlParams.get('oppId');
+                var lineId = urlParams.get('id');
+                var pageAction = urlParams.get('pageAction');
+                showDialog(recordId, lineId, pageAction);  
+            };
+            function showDialog(recordId, lineId, pageAction) {
+                $Lightning.use("ia_crm:IntacctConfigurationApp", function() {
+                    $Lightning.createComponent("ia_crm:addProduct",
+                    {
+                        recordId: recordId,
+                        lineId: lineId,
+                        pageAction: pageAction
+                    },
+                    "LightningComponentid",
+                    function(cmp) {
+                        console.log('LWC Componenet added in VF page');
+
+                    });
+                });
+            }
+            </script>
+        </apex:outputPanel>
+</apex:page>

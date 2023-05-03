@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Application__c.Site_Name__c</field>
+    </columns>
+    <columns>
+        <field>Account.Membership_Number__c</field>
+    </columns>
+    <columns>
+        <field>Application__c.Visit_Type__c</field>
+    </columns>
+    <columns>
+        <field>Application__c.Stage__c</field>
+    </columns>
+    <columns>
+        <field>Application__c.Reason_for_Visit__c</field>
+    </columns>
+    <columns>
+        <field>Application__c.Visit_Deadline__c</field>
+    </columns>
+    <columns>
+        <field>Application__c.Add_Visit_Approved_By_Office__c</field>
+    </columns>
+    <columns>
+        <field>Application__c.Add_Visit_Approved_By_Certifier__c</field>
+    </columns>
+    <description>Includes all sites with additional visits required</description>
+    <format>Summary</format>
+    <groupingsDown>
+        <field>Application__c.Assessment_Date__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Additional visits-MST</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>AccountCustomEntity$Application__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>DUE_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

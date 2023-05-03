@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ia_crm__Intacct_Journal__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Intacct Journal</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>ia_crm__Intacct_Journal__c.ia_crm__Status__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </filterItems>
+        <isOptional>true</isOptional>
+    </lookupFilter>
+    <referenceTo>ia_crm__Intacct_Journal__c</referenceTo>
+    <relationshipLabel>Intacct Journal Entries (Intacct Journal)</relationshipLabel>
+    <relationshipName>IntacctJournals</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

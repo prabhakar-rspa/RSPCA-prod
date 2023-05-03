@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ia_crm__Start_date_of_renewed_contract__c</fullName>
+    <deprecated>false</deprecated>
+    <description>This field shows how the system determines the line item Start date on the sales transaction created by the renewal.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This field shows how the system determines the line item Start date on the sales transaction created by the renewal.</inlineHelpText>
+    <label>Start date of renewed contract</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Same as Document Date</fullName>
+                <default>false</default>
+                <label>Same as Document Date</label>
+            </value>
+            <value>
+                <fullName>With Inherited Offset from Parent</fullName>
+                <default>false</default>
+                <label>With Inherited Offset from Parent</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

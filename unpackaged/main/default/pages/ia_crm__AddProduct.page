@@ -1,0 +1,390 @@
+<apex:page controller="ia_crm.AddProductController" title="{!$Label.ia_crm__Product_Selection_for} {!currentOpportunity.Name}" standardstylesheets="false" applybodytag="false" doctype="html-5.0" action="{!initializePageData}">
+    <apex:stylesheet value="{!URLFOR($Resource.ia_crm__Intacct, '/assets/styles/salesforce-lightning-design-system-vf.css')}" />
+    <apex:includescript value="{!URLFOR($Resource.ia_crm__Intacct, '/js/jQuery.min.js')}" />
+    <apex:includescript value="{!URLFOR($Resource.ia_crm__Intacct, '/js/angular.min.js')}" />
+    <apex:includescript value="{!URLFOR($Resource.ia_crm__Intacct, '/js/AddProduct.js')}" />
+    
+    <apex:outputPanel rendered="{!isOldPage}">
+        <div class="slds" id="mainWrap" ng-app="AddProduct" ng-controller="AddProductCtrl" ng-init="GetFieldAggregate();">
+            <div class="slds-notify slds-notify--alert slds-theme--error slds-theme--alert-texture" role="alert" id="TypeMessage">
+                <button class="slds-button slds-button--icon-inverse slds-notify__close">
+                    <span class="slds-assistive-text">"{!$Label.Close}"</span>
+                </button>
+                <span class="slds-assistive-text">"{!$Label.Error}"</span>
+                <h2 id="ErrorMessage"><apex:messages styleclass="slds-notify slds-notify--alert slds-theme--error slds-theme--alert-texture" /></h2>
+            </div>
+
+            <div id="spinnerContainer" style="display:none">
+                <div class="slds-form--compound">
+                    <div class="slds-spinner_container" >
+                        <div class="slds-spinner slds-spinner--brand slds-spinner--medium" aria-hidden="false" role="alert">
+                            <div class="slds-spinner__dot-a"></div>
+                            <div class="slds-spinner__dot-b"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-section__title">{!$Label.ia_crm__Product_Selection_for} {!currentOpportunity.Name}</div>
+            <fieldset class="slds-form--compound" ng-show="true">
+                <div class="slds-text-align--left">{!$Label.Enter_your_keyword}</div>
+                <div class="slds-page-header" role="banner">
+                    <fieldset class="slds-form--compound">
+                        <div ng-repeat="Filter in Filters">
+                            <div class="slds-grid slds-wrap slds-grid--pull-padded">
+                                <div ng-show="showRemoveFilterButton">
+                                    <label class="slds-form-element__label" for="select-12"></label>
+                                    <div class="slds-form-element__control" ng-bind="Filter.LineNr" style="margin-top: 15px;" />
+                                </div>
+                                <div class="slds-col--padded slds-size--1-of-2 slds-medium-size--3-of-12 slds-large-size--3-of-12">
+                                    <div class="slds-form-element__row">
+                                        <div class="slds-form-element ">
+                                            <label class="slds-form-element__label" for="select-11">{!$Label.Field}</label> <!-- {{Filter}} -->
+                                            <div class="slds-form-element__control">
+                                                <div class="slds-select_container">
+                                                    <select id="select-01" class="slds-select {!disableButtons}" ng-model="Filter.Field"
+                                                            ng-options="opt as opt.sfdcLabel for opt in AllFieldAggregate"
+                                                            ng-change="switchOperator(Filter)"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-col--padded slds-size--1-of-1 slds-medium-size--1-of-12 slds-large-size--1-of-12">
+                                    <div class="slds-form-element__row">
+                                        <div class="slds-form-element ">
+                                            <label class="slds-form-element__label" for="select-12">{!$Label.Operator}</label>
+                                            <div class="slds-form-element__control">
+                                                <div class="slds-select_container">
+                                                    <select id="select-01" class="slds-select {!disableButtons}" ng-model="Filter.Operator">
+                                                        <option value="NONE">--NONE--</option>
+                                                        <option ng-repeat="opt in Filter.OperatorOptions" value="{{opt.value}}">{{opt.value}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-col--padded slds-size--1-of-2 slds-medium-size--3-of-12 slds-large-size--3-of-12">
+                                    <div class="slds-form-element__row">
+                                        <div class="slds-form-element s">
+                                            <label class="slds-form-element__label" for="input-02">{!$Label.Value}</label>
+                                            <input id="input-02" class="slds-input {!disableButtons}" ng-model="Filter.Value" type="text" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="slds-form-element__label" for="select-12"></label>
+                                    <div class="slds-form-element__control" style="margin-top: 8px;margin-left: -15px;" ng-show="showRemoveFilterButton">
+                                        <button class="slds-button slds-button--icon" ng-click="removeFilter(Filter.Id)" style="box-shadow: none;">
+                                            <svg class="slds-button__icon" aria-hidden="true">
+                                                <span class="slds-icon_container null slds-icon__svg--default" data-reactid="2705"><svg xmlns="http://www.w3.org/2000/svg" class="slds-icon slds-icon-text-default" aria-hidden="true" viewBox="0 0 40 40" data-reactid="2706"><path d="M 21 4.6 h -5.8 V 2.8 c 0 -1 -0.8 -1.9 -1.8 -1.9 h -2.8 c -1 0 -1.8 0.9 -1.8 1.9 v 1.8 H 3 c -0.4 0 -0.7 0.3 -0.7 0.7 v 1.4 c 0 0.4 0.3 0.7 0.7 0.7 h 18 c 0.4 0 0.7 -0.3 0.7 -0.7 V 5.3 c 0 -0.4 -0.3 -0.7 -0.7 -0.7 Z M 10.6 3.2 c 0 -0.2 0.2 -0.4 0.5 -0.4 h 1.8 c 0.3 0 0.5 0.2 0.5 0.4 v 1.4 h -2.8 V 3.2 Z m 8.6 6 H 4.8 c -0.3 0 -0.6 0.4 -0.6 0.7 v 10.9 c 0 1.3 1 2.3 2.3 2.3 h 11 c 1.3 0 2.3 -1 2.3 -2.3 V 9.9 c 0 -0.3 -0.3 -0.7 -0.6 -0.7 Z m -8.6 10.2 c 0 0.3 -0.2 0.4 -0.4 0.4 h -1 c -0.2 0 -0.4 -0.1 -0.4 -0.4 v -6.5 c 0 -0.3 0.2 -0.4 0.4 -0.4 h 1 c 0.2 0 0.4 0.1 0.4 0.4 v 6.5 Z m 4.6 0 c 0 0.3 -0.2 0.4 -0.4 0.4 h -1 c -0.2 0 -0.4 -0.1 -0.4 -0.4 v -6.5 c 0 -0.3 0.2 -0.4 0.4 -0.4 h 1 c 0.2 0 0.4 0.1 0.4 0.4 v 6.5 Z" /></svg></span>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="slds-button {!disableButtons}" ng-click="AddFilter()" style="box-shadow: none;">{!$Label.Add_filter}</button>
+                        <button class="slds-button slds-button--neutral {!disableButtons}" onclick="search()" id="searchBtn">{!$Label.Search}</button>
+                        
+                        <div style="margin-top: 30px;">
+                            <label class="slds-form-element__label" for="inputLogicFilter" ng-show="showRemoveFilterButton">{!$Label.Filter_Logic}</label>
+                            <input id="inputLogicFilter" class="slds-input {!disableButtons}" ng-show="showRemoveFilterButton" type="text" style="width: 235px;" />
+                            <span ng-show="showRemoveFilterButton"><c:InfoTooltip infotext="{!$Label.ia_crm__Create_conditions_using_ANDs}" /></span>
+                            <apex:outputpanel id="filterLogicError">
+                                <apex:outputpanel rendered="{!LEN(filterLogicErrorMessage)>0}">
+                                    <div class="errorMsg">
+                                        <strong>{!$Label.ia_crm__Error}:</strong>
+                                        {!filterLogicErrorMessage}
+                                    </div>
+                                </apex:outputpanel>
+                            </apex:outputpanel>
+                        </div>
+                        <div style="margin-top: 0px; text-align: center;">
+                            <apex:outputpanel id="dateError">
+                                <apex:outputpanel rendered="{!LEN(dateErrorMessage)>0}">
+                                    <div class="errorMsg">
+                                        <strong>{!$Label.ia_crm__Error}:</strong>
+                                        {!dateErrorMessage}
+                                    </div>
+                                </apex:outputpanel>
+                            </apex:outputpanel>
+                        </div>
+                    </fieldset>
+                </div>
+                <br />
+                <div id="customizeButton" class="slds-picklist slds-dropdown-trigger--click" aria-expanded="true">
+                    <button class="slds-button slds-button--neutral" style="float: right;margin-top: 33px;" id="showHideSearchDialogLink" onclick="showHideSearchDialog()" aria-haspopup="true">
+                        <span class="slds-truncate">{!$Label.Customize_table_columns}</span>
+                    </button>
+                </div>
+                <apex:form id="pb" style="slds-form-element">
+                    <apex:actionfunction action="{!saveItemsPerPage}" name="updateItemPage" rerender="" status="fetchStatus" oncomplete="search(); " />
+                    <div class="slds-card__header slds-grid slds-grid--vertical-align-end">
+                        <div class="slds-col slds-size--1-of-3">
+                            <div style="width:200px">
+                                <div class="slds-form-element">
+                                    <label class="slds-form-element__label" for="input01">{!$Label.ia_crm__Items_per_page}</label>
+                                    <div class="slds-form-element__control">
+                                        <div class="slds-select_container">
+                                            <apex:selectlist value="{!selectedListSize}" multiselect="false" size="1" styleclass="slds-select {!disableButtons}" id="input01" disabled="{!disableButtons}">
+                                                <apex:selectoptions value="{!ListSize}" />
+                                            </apex:selectlist>
+                                            <script>
+                                                document.getElementById("{!$Component.input01}").onchange = function() {
+                                                    updateItemPage();
+                                                };
+                                            </script>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-size--1-of-3">
+                            <apex:actionfunction name="applyFilters" status="fetchStatus" action="{!applyFilters}" rerender="productsPanel, dateError, filterLogicError" />
+
+                            <div class="slds-grid slds-grid--vertical-align-center slds-grid--align-center">
+                                <apex:commandbutton action="{!selectProducts}" id="selectBtn" status="fetchStatus" value="{!$Label.ia_crm__Select}" styleclass="slds-button slds-button--neutral {!disableButtons}" disabled="{!disableButtons}" />
+                                <apex:commandbutton action="{!cancel}" value="{!$Label.ia_crm__Cancel}" styleclass="slds-button slds-button--neutral" />
+                                <script>
+                                    document.getElementById("{!$Component.selectBtn}").onclick = function() {showSpinner()};
+                                </script>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-size--1-of-3"></div>
+                    </div>
+                    <br />
+
+                    <div class="slds-card">
+                        <apex:actionstatus id="fetchStatus">
+                            <apex:facet name="start">
+                                <div class="slds-spinner_container">
+                                    <div role="status" class="slds-spinner slds-spinner--medium slds-spinner_brand">
+                                        <span class="slds-assistive-text">{!$Label.Loading}</span>
+                                        <div class="slds-spinner__dot-a"></div>
+                                        <div class="slds-spinner__dot-b"></div>
+                                    </div>
+                                </div>
+                            </apex:facet>
+                        </apex:actionstatus>
+                        <apex:outputpanel id="productsPanel">
+                            <table class="slds-table slds-table--bordered" id="datatable">
+                                <thead>
+                                    <tr class="slds-text-heading--label">
+                                        <th class="slds-cell-shrink">
+                                            <apex:outputpanel layout="block" styleclass="slds-form-element">
+                                                <label class="slds-checkbox" for="parentCheck">
+                                                    <input type="checkbox" id="parentCheck" />
+                                                    <span class="slds-checkbox--faux"></span>
+                                                    <span class="slds-form-element__label"></span>
+                                                </label>
+                                            </apex:outputpanel>
+                                            <script>
+                                                document.getElementById("parentCheck").onclick = function() {selectaAllChild()};
+                                            </script>
+                                        </th>
+                                        <apex:variable var="count" value="{!1}" />
+                                        <apex:repeat value="{!fieldsToDisplay}" var="fieldKey">
+                                            <apex:repeat value="{!fieldsToDisplay[fieldKey]}" var="col">
+                                                <th scope="col">
+                                                    <div class="slds-truncate">{!fieldsToDisplay[fieldKey][col]}</div>
+                                                </th>
+                                            </apex:repeat>
+                                        </apex:repeat>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <apex:repeat value="{!ProductList}" var="prod">
+                                        <tr>
+                                            <td class="slds-cell-shrink" data-label="Select Row">
+                                                <apex:outputpanel layout="block" styleclass="slds-form-element">
+                                                    <label class="slds-checkbox" for="{!$Component.checkBox}">
+                                                        <apex:inputcheckbox id="checkBox" value="{!prod.isChecked}" styleclass="childCheck" />
+                                                        <span class="slds-checkbox--faux"></span>
+                                                        <span class="slds-form-element__label"></span>
+                                                        <script>
+                                                            document.getElementById("{!$Component.checkBox}").onclick = function() {selectParent()};
+                                                        </script>
+                                                    </label>
+                                                </apex:outputpanel>
+                                            </td>
+                                            <apex:repeat value="{!fieldsToDisplay}" var="fieldKey">
+                                                <apex:repeat value="{!fieldsToDisplay[fieldKey]}" var="col">
+                                                    <td>
+                                                        <apex:outputpanel rendered="{!fieldsToDisplay[fieldKey][col] == $Label.ia_crm__Product_Name_Product}">
+                                                            <a target="_blank" href="/{!prod.pricebookEntry.Product2.Id}" style="text-decoration: none;">{!prod.pricebookEntry[col]}</a>
+                                                        </apex:outputpanel>
+                                                        <apex:outputpanel rendered="{!fieldsToDisplay[fieldKey][col] != $Label.ia_crm__Product_Name_Product}">
+                                                            <apex:outputfield value="{!prod.pricebookEntry[col]}" />
+                                                        </apex:outputpanel>
+                                                    </td>
+                                                </apex:repeat>
+                                            </apex:repeat>
+                                        </tr>
+                                    </apex:repeat>
+                                </tbody>
+                            </table>
+                            <div class="slds-card__footer slds-grid slds-grid--vertical-align-end">
+                                <div class="slds-grid--vertical-align-end" style="width: 100%;">
+                                    <label class="slds-form-element__label" for="input-01" style="float:left;">{!$Label.ia_crm__Showing} {!IF(noOfRecords != 0, (setCon.pageNumber * size) + 1 - size, 0)} {!$Label.ia_crm__to} {!IF((setCon.pageNumber * size) > noOfRecords, noOfRecords,(setCon.pageNumber * size))} {!$Label.ia_crm__of} {!noOfRecords} {!$Label.ia_crm__records}</label>
+                                    <apex:outputpanel rendered="{!isContract}">
+                                        <div style="float:left;clear:left;">
+                                            <p><img src="/img/msg_icons/info16.png" /><label class="slds-text-title" style="padding-left:10px;color: #54698d;font-size: 12px;">{!$Label.Only_Non_inventory_items_are_displayed}</label></p>
+                                        </div>
+                                    </apex:outputpanel>
+                                    <apex:outputpanel rendered="{!hasOver5000Records}">
+                                        <div style="float:left;clear:left;">
+                                            <p><img src="/img/msg_icons/warning16.png" style="width: 15px;" /><label class="slds-text-title" style="padding-left:10px;color: #54698d;font-size: 12px;">{!$Label.Only_the_first_5000}</label></p>
+                                        </div>
+                                    </apex:outputpanel>
+                                    <apex:outputpanel rendered="{!isMultiCurrencyOrganization}">
+                                        <div style="float:left;clear:left;">
+                                            <p><img src="/img/msg_icons/warning16.png" /><label class="slds-text-title" style="padding-left:10px;color: #54698d;font-size: 12px;">{!$Label.Only_items_with_the_same_currency}</label></p>
+                                        </div>
+                                    </apex:outputpanel>
+                                </div>
+                                <div class="slds-col slds-size--2-of-2">
+                                    <div class="" role="group" style="float:right;">
+                                        <apex:commandbutton status="fetchStatus" rerender="productsPanel" value="{!$Label.ia_crm__First}" oncomplete="selectParent();" action="{!firstPage}" disabled="{!!setCon.hasPrevious}" title="First Page" styleclass="slds-button slds-button--brand" />
+                                        <apex:commandbutton status="fetchStatus" rerender="productsPanel" value="{!$Label.ia_crm__Previous}" oncomplete="selectParent();" action="{!previousPage}" disabled="{!!setCon.hasPrevious}" title="Previous Page" styleclass="slds-button slds-button--brand" />
+                                        <apex:commandbutton status="fetchStatus" rerender="productsPanel" value="{!$Label.ia_crm__Next}" oncomplete="selectParent();" action="{!nextPage}" disabled="{!!setCon.hasNext}" title="Next Page" styleclass="slds-button slds-button--brand" />
+                                        <apex:commandbutton status="fetchStatus" rerender="productsPanel" value="{!$Label.ia_crm__Last}" oncomplete="selectParent();" action="{!lastPage}" disabled="{!!setCon.hasNext}" title="Last Page" styleclass="slds-button slds-button--brand" />
+                                    </div>
+                                </div>
+                            </div>
+                        </apex:outputpanel>
+                    </div>
+                    <hr />
+                    <div style="display:none">
+                        <apex:inputtext id="inputFilterJSON" value="{!filterJSON}" /> 
+                        <apex:inputtext id="opportunityId" value="{!opportunityId}" />
+                        <apex:inputtext id="pricebookId" value="{!pricebookId}" />
+                        <apex:inputtext id="filterLogic" value="{!filterLogic}" />
+                    </div>
+                    <div id="searchLayoutDialog" role="dialog" tabindex="-1" aria-labelledby="header43" class="slds-modal">
+                        <div class="slds-modal__container">
+                            <div class="slds-modal__header slds-theme--info slds-theme--alert-texture">
+                                <h2 id="header43" class="slds-text-heading--medium">{!$Label.Edit_Search_Layout}</h2>
+                            </div>
+                            <div class="slds-modal__content slds-p-around--medium">
+                                <c:MultiselectPicklist leftlabel="{!$Label.ia_crm__Available_Fields}"
+                                                    leftoption="{!allPricebookEntryFields}"
+                                                    rightlabel="{!$Label.ia_crm__Selected_Fields}"
+                                                    rightoption="{!selectedPricebookEntryFields}"
+                                                    size="11"
+                                                    showupdownbuttons="true"
+                                                    width="250px"
+                                                    rightlistcustomclass="rightListAvailable"
+                                                    leftlistcustomclass="rightListSelected" />
+                                <div class="errorMessage" style="color: #d74c3b;display:none" />
+                            </div>
+                            <div class="slds-modal__footer">
+                                <input type="button" id="cancelButtonFieldLayout" class="slds-button slds-button--neutral" value="{!$Label.ia_crm__Cancel}" onclick="showHideSearchDialog()"/>
+                                <apex:commandbutton style="display:none;" value="{!$Label.ia_crm__Save}" action="{!savePageColumns}" styleclass="slds-button slds-button--brand saveLayoutFields" />
+                                <input type="button" value="{!$Label.ia_crm__Save}" id="saveDialogBtn" onclick="validateList()" class="slds-button slds-button--brand" />
+                            </div>
+                        </div>
+                    </div>
+                    <div id="searchLayoutDialogBackground" class="slds-backdrop"></div>
+                </apex:form>
+                <input id="hiddenFilters" type="hidden" class="hiddenFilters" value="{{Filters}}" />
+                <input id="oppID" type="hidden" class="oppID" value="{!opportunityId}" />
+                <input id="pricebookId" type="hidden" class="pricebookId" value="{!pricebookId}" />
+            </fieldset>
+        </div>
+    </apex:outputPanel>
+    <apex:outputPanel rendered="{!!isOldPage}">
+        <apex:includeLightning />
+        <apex:slds />
+        <div id="LightningComponentid" style="min-height: 639px;"/>
+    </apex:outputPanel>
+    <script>
+        window.onload = function(){
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            var recordId = urlParams.get('recordId');
+            var lineId = urlParams.get('lineId');
+            var pageAction = urlParams.get('pageAction');
+            if('{!!isOldPage}' == 'true'){
+                showDialog(recordId, lineId, pageAction);  
+            }
+        };
+        function showDialog(recordId, lineId, pageAction) {
+            $Lightning.use("ia_crm:IntacctConfigurationApp", function() {
+                $Lightning.createComponent("ia_crm:addProduct",
+                {
+                    recordId: recordId,
+                    lineId: lineId,
+                    pageAction: pageAction
+                },
+                "LightningComponentid",
+                function(cmp) {
+                    console.log('LWC Componenet added in VF page');
+
+                });
+            });
+        }
+
+        //document.getElementById("searchBtn").onclick = function() {search()};
+
+        //document.getElementById("saveDialogBtn").onclick = function() {validateList()};
+        //document.getElementById("cancelButtonFieldLayout").onclick = function() {showHideSearchDialog()};
+        //document.getElementById("showHideSearchDialogLink").onclick = function() {showHideSearchDialog()};
+
+        var prefix = '{!$Label.ia_crm__Package_Prefix}';
+        var selectAllCheckbox = false;
+        function showHideSearchDialog() {
+            if($("#searchLayoutDialog").hasClass("slds-fade-in-open")) {
+                $("#searchLayoutDialog").removeClass("slds-fade-in-open");
+                $("#searchLayoutDialogBackground").removeClass("slds-backdrop--open");
+            } else {
+                $("#searchLayoutDialog").addClass("slds-fade-in-open");
+                $("#searchLayoutDialogBackground").addClass("slds-backdrop--open");
+            }
+        }
+
+        function showSpinner() {
+            $("#spinnerContainer").show();
+        }
+
+        function validateList() {
+            var isProductName = false;
+            var ary = [];
+            $(".rightListAvailable option").each(function () {
+                ary.push($(this).val());
+            });
+            if(ary.length > 10) {
+                $(".errorMessage").show();
+                $(".errorMessage").html("<strong>{!$Label.ia_crm__Error}: </strong> {!$Label.ia_crm__No_more_than_10_fields}");
+                return false;
+            } else {
+                $(".errorMessage").hide();
+                $(".errorMessage").html("");
+            }
+            if(ary.length < 1) {
+                $(".errorMessage").show();
+                $(".errorMessage").html("<strong>{!$Label.ia_crm__Error}: </strong> {!$Label.ia_crm__Selected_Fields_list_cannot_be_empty}");
+                return false;
+            } else {
+                $(".errorMessage").hide();
+                $(".errorMessage").html("");
+            }
+            for(var i=0;i<ary.length;i++) {
+                if(ary[i] == 'product2.name') {
+                    isProductName = true;
+                }
+            }
+            if(!isProductName || ary[0] != 'product2.name') {
+                $(".errorMessage").show();
+                $(".errorMessage").html("<strong>{!$Label.ia_crm__Error}: </strong>{!$Label.ia_crm__Product_Name_cannot_be_removed}");
+                return false;
+            } else {
+                $(".errorMessage").hide();
+                $(".errorMessage").html("");
+            }
+            $(".saveLayoutFields").click();
+        }
+
+
+    </script>
+</apex:page>

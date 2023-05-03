@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>asp04__Due_for_payment</fullName>
+    <columns>NAME</columns>
+    <columns>asp04__Due_Date__c</columns>
+    <columns>asp04__Amount__c</columns>
+    <columns>asp04__Frequency__c</columns>
+    <columns>asp04__Payment_Route_Selected__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>asp04__Payment_Stage__c</field>
+        <operation>equals</operation>
+        <value>Awaiting submission</value>
+    </filters>
+    <label>Due for payment</label>
+</ListView>

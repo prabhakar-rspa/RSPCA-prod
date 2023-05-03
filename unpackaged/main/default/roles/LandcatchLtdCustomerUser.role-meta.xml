@@ -2,9 +2,9 @@
 <Role xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseAccessLevel>None</caseAccessLevel>
     <contactAccessLevel>Edit</contactAccessLevel>
-    <description>Landcatch Ltd Customer User</description>
+    <description>Landcatch Natural Selection Ltd Customer User</description>
     <mayForecastManagerShare>false</mayForecastManagerShare>
-    <name>Landcatch Ltd Customer User</name>
+    <name>Landcatch Natural Selection Ltd Customer User</name>
     <opportunityAccessLevel>None</opportunityAccessLevel>
     <parentRole>Assessors</parentRole>
 </Role>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- For Standard/Direct business leave the field blank.
+For Reseller business, populate this with Reseller Account. The field gets defaulted on the Opportunities when creating them from the &apos;Create Contract Opportunity&apos; or &apos;Create Sales Opportunity&apos; buttons. --></help>
+        <label><!-- Bill to Account --></label>
+        <name>ia_crm__Bill_to_Account__c</name>
+        <relationshipLabel><!-- Accounts --></relationshipLabel>
+    </CustomFieldTranslation>

@@ -1,0 +1,101 @@
+<apex:page controller="ia_crm.ContractRenewalController">
+    <apex:includescript value="{!URLFOR($Resource.ia_crm__Intacct, '/js/jQuery.min.js')}" />
+    
+    <script language="JavaScript" type="text/javascript">
+        $(document).ready(function() {
+            initRenewal();
+        });
+        /*var btn = document.getElementsByClassName("dialogYesbtn");
+        if(btn.length > 0) {
+            btn[0].onclick = function() {hideConfirmDialog()};
+        }*/
+        //document.getElementById("{!$Component.dialogYesbtn}").onclick = function() {hideConfirmDialog()};
+        function hideConfirmDialog() {
+            $(".warningDialogPanel").hide();
+            return true;
+        }
+    </script>
+    <style>
+        .myCustomMessage .message {
+            background: none !important;
+            border: none !important;
+            background-image: none !important;
+        }
+        .slds-theme--info {
+            background-color: #54698d !important;
+        }
+        .msgIcon {
+            Display: none;
+        }
+    </style>
+    <apex:slds />
+    <div class="slds" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <apex:form >
+            <apex:actionfunction name="initRenewal" action="{!initializeData}" rerender="mainPanel" status="renewalStatus" />
+
+            <apex:outputpanel id="mainPanel">
+                <div style="min-height: 600px;">
+                    <apex:outputpanel rendered="{!hasError}">
+                        <apex:outputpanel styleclass="myCustomMessage">
+                            <figure>
+                                <apex:image id="errorImage" value="{!URLFOR($Resource.ia_crm__Intacct,'images/error.png')}" style="margin: auto; display: block; padding-top: 100px;" />
+                            </figure>
+                            <div style="text-align: center;">
+                                <apex:outputtext value="{!$Label.ia_crm__Failed_to_create_Renewal_Opportunity}" style="font-size: 200%;" />
+                            </div>
+                        </apex:outputpanel>
+                        <apex:outputpanel styleclass="myCustomMessage">
+                            <p>
+                                <div class="demo-only">
+                                    <div class="slds-has-dividers_around-space slds-align_absolute-center">
+                                        <div class="slds-item " style="width: 550px;">
+                                            <article class="slds-tile slds-tile_board">
+                                                <apex:pagemessages id="xx" escape="false"/>
+                                            </article>
+                                        </div>
+                                    </div>
+                                </div>
+                            </p>
+                        </apex:outputpanel>
+                        <apex:outputpanel >
+                            <div style="text-align: center;">
+                                <apex:outputlink value="{!'/' + initialRecordId}" style="margin-top: 20px;" styleclass="slds-button slds-button--neutral">{!$Label.ia_crm__Back_to_record}</apex:outputlink>
+                            </div>
+                        </apex:outputpanel>
+                    </apex:outputpanel>
+                    <apex:actionstatus id="renewalStatus">
+                        <apex:facet name="start">
+                            <apex:outputpanel >
+                                <figure>
+                                    <apex:image value="{!URLFOR($Resource.ia_crm__Intacct,'images/imageSync.gif')}" style="margin: auto; display: block; padding-top: 100px;width: 165px;" />
+                                </figure>
+                                <div style="text-align: center;">
+                                    <apex:outputtext value="{!$Label.ia_crm__Processing}" style="font-size: 250%;" />
+                                </div>
+                            </apex:outputpanel>
+                        </apex:facet>
+                    </apex:actionstatus>
+                    <apex:outputpanel styleClass="warningDialogPanel" rendered="{!IF(AND(LEN(warningMessages) != 0, NOT(hasError)), true, false)}">
+                        <div role="dialog" tabindex="-1" aria-labelledby="header43" class="slds-modal slds-fade-in-open">
+                            <div class="slds-modal__container">
+                                <div class="slds-modal__header slds-theme--info slds-theme--alert-texture">
+                                    <h2 id="header43" class="slds-text-heading--medium">{!$Label.Please_confirm}</h2>
+                                </div>
+                                <div class="slds-modal__content slds-p-around--medium">
+                                    <p>{!warningMessages}</p>
+                                    <br />
+                                    <p>{!$Label.Do_you_want_to_create_the_Renewal_Contract}</p>
+                                </div>
+                                <div class="slds-modal__footer">
+                                    <apex:commandbutton styleclass="slds-button slds-button--brand" onclick="hideConfirmDialog();" value="{!$Label.ia_crm__Yes}" action="{!dialogConfirm}" rerender="mainPanel" status="renewalStatus" />
+                                    <apex:commandbutton styleclass="slds-button slds-button--neutral" value="{!$Label.ia_crm__No}" action="{!returnToRecord}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-backdrop slds-backdrop--open"></div>
+                    </apex:outputpanel>
+                </div>
+            </apex:outputpanel>
+        </apex:form>
+    </div>
+</apex:page>

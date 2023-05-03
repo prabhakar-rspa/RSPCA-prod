@@ -1,0 +1,41 @@
+<apex:page controller="ia_crm.AddProductController" standardStylesheets="false" applyBodyTag="false" docType="html-5.0">
+    <apex:stylesheet value="{!URLFOR($Resource.ia_crm__Intacct, '/assets/styles/salesforce-lightning-design-system-vf.css')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.ia_crm__Intacct, '/js/jQuery.min.js')}"/>
+    <div class="slds">
+        <apex:outputText value="" rendered="{!IF(pageError==true,'true','false')}">  
+            <div class="slds-notify slds-notify--alert slds-theme--error slds-theme--alert-texture" role="alert" id="TypeMessage">
+                <apex:messages />
+            </div>
+        </apex:outputText>
+        <apex:form >
+        <div class="slds-section__title">{!$Label.Choose_Price_Book_for}: {!currentOpportunity.Name}</div>
+        <fieldset class="slds-form--compound">
+            <div class="slds-text-align--left">{!$Label.Select_a_price_book_for_this_opportunity}</div>
+        </fieldset>
+        <div class="slds-page-header" role="banner">
+           
+           <div class="slds-section__title">{!$Label.Choose_Price_Book_for}: {!currentOpportunity.Name}</div> 
+           <div class="slds-picklist slds-dropdown-trigger slds-dropdown-trigger--click center">
+               <label class="slds-form-element__label">{!$Label.ia_crm__price_book}:</label>
+               <!--<apex:selectList value="{!selectedPricebook}" multiselect="false" size="1" styleClass="slds-button slds-button--neutral slds-picklist__label">-->
+               <div class="slds-form-element__control">
+                    <div class="slds-select_container">
+                        <apex:selectList value="{!selectedPricebook}" multiselect="false" size="1" styleClass="slds-select" style="width:200px;">
+                            <apex:selectOptions value="{!pricebookOptions}"/>
+                        </apex:selectList>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-grid slds-grid--vertical-align-center slds-grid--align-center">
+                    <apex:commandButton action="{!saveSelectedPricebook}" value="{!$Label.ia_crm__Save}" styleClass="slds-button slds-button--neutral"/>
+                    <apex:commandButton action="{!cancelChoosePricebook}" value="{!$Label.ia_crm__Cancel}" styleClass="slds-button slds-button--neutral" />
+            </div>
+        </div>
+        </apex:form>
+    </div>
+    <style type="text/css">
+        .center {
+            margin-top: 35px;
+        }
+    </style>
+</apex:page>

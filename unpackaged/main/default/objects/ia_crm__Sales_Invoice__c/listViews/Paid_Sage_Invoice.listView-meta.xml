@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Paid_Sage_Invoice</fullName>
+    <columns>NAME</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>ia_crm__Payment_Status__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>ia_crm__Payment_Status__c</field>
+        <operation>equals</operation>
+        <value>Paid</value>
+    </filters>
+    <label>Paid Sage Invoice</label>
+</ListView>

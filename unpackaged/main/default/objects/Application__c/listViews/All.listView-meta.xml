@@ -4,15 +4,19 @@
     <columns>NAME</columns>
     <columns>Membership_Number__c</columns>
     <columns>Application_Type__c</columns>
-    <columns>CREATEDBY_USER</columns>
-    <columns>UPDATEDBY_USER</columns>
+    <columns>Renewal_Stage__c</columns>
     <columns>Status__c</columns>
     <columns>Head_Office__c</columns>
     <columns>Site__c</columns>
     <columns>Paid__c</columns>
-    <columns>Renewal_Stage__c</columns>
-    <columns>Stage__c</columns>
-    <columns>CREATED_DATE</columns>
+    <columns>Assessor_Full_Name__c</columns>
+    <columns>Assessment_Date__c</columns>
+    <columns>Assessment_Deadline__c</columns>
     <filterScope>Everything</filterScope>
+    <filters>
+        <field>Assessor_Full_Name__c</field>
+        <operation>contains</operation>
+        <value>Sue</value>
+    </filters>
     <label>All</label>
 </ListView>

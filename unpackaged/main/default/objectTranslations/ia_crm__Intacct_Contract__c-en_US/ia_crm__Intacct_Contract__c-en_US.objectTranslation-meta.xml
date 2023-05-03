@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Intacct Contract Layout</layout>
+        <sections>
+            <label><!-- Bill to/Ship to Information --></label>
+            <section>Bill to/Ship to Information</section>
+        </sections>
+        <sections>
+            <label><!-- Currency --></label>
+            <section>Currency</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dimensions --></label>
+            <section>Dimensions</section>
+        </sections>
+        <sections>
+            <label><!-- Renewal --></label>
+            <section>Renewal</section>
+        </sections>
+    </layouts>
+    <webLinks>
+        <label><!-- Create_Renewal_Opportunity --></label>
+        <name>ia_crm__Create_Renewal_Opportunity</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Create_SFDC_Contract --></label>
+        <name>ia_crm__Create_SFDC_Contract</name>
+    </webLinks>
+</CustomObjectTranslation>

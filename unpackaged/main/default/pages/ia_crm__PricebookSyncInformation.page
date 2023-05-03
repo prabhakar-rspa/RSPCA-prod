@@ -1,0 +1,14 @@
+<apex:page standardController="Pricebook2" extensions="ia_crm.SObjectController">
+    <apex:form >
+        <apex:outputField value="{!pricebook2.ia_crm__Synced_With_Intacct_Date__c}" rendered="false"/>
+        <!--<c:SyncInformation objectName="Pricebook"
+                           actionName=""
+                           objectType="{!objectType}"
+                           actionType="{!actionType}" 
+                           status="{!pricebook2.Intacct_Sync_Status_Image__c}"
+                           syncDate="{!dateFormatted}"
+                           syncErrors="{!pricebook2.Intacct_Sync_Errors__c}" 
+                           doIntacctCall="{!doIntacctCall}"
+                           showSyncButton="false" />-->
+    </apex:form>
+</apex:page>

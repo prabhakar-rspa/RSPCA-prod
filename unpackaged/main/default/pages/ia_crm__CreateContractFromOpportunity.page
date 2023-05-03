@@ -1,0 +1,87 @@
+<!--
+  File:        CreateContractFromOpportunity.page
+  Project:     Intacct
+  Date:        November 17, 2016
+  Created By:  Nae Alexandru
+  *************************************************************************
+  Description: Build url and redirect to the create opportunity page
+  *************************************************************************
+  History:
+-->
+<apex:page standardcontroller="Opportunity" extensions="ia_crm.CreateContractFromOpportunity" action="{!backToOpportunity}">
+    <apex:includescript value="{!URLFOR($Resource.ia_crm__Intacct, '/js/jQuery.min.js')}" />
+    <style>
+        .myCustomMessage .message {
+            background: none !important;
+            border: none !important;
+            background-image: none !important;
+        }
+
+        .msgIcon {
+            Display: none;
+        }
+    </style>
+    <apex:slds />
+    <div class="slds">
+        <apex:form >
+            <apex:outputpanel rendered="{!showDialog}">
+                <div role="alertdialog" tabindex="-1" aria-labelledby="prompt-heading-id" aria-describedby="prompt-message-wrapper" class="slds-modal slds-fade-in-open slds-modal--prompt">
+                    <div class="slds-modal__container">
+                        <div class="slds-modal__header slds-theme--error slds-theme--alert-texture">
+                            <button class="slds-button slds-modal__close slds-button--icon-inverse" title="Close">
+                                <span class="slds-assistive-text">{!$Label.Close}</span>
+                            </button>
+                            <h2 class="slds-text-heading--medium" id="prompt-heading-id">{!$Label.Please_confirm} </h2>
+                        </div>
+                        <div class="slds-modal__content slds-p-around--medium">
+                            <p><apex:outputText escape="false" value="{!dialogMessage}"/></p>
+                        </div>
+                        <div class="slds-modal__footer slds-theme--default">
+                            <apex:commandbutton action="{!confirmDialog}" value="{!$Label.ia_crm__Yes}" styleclass="slds-button slds-button--brand" />
+                            <apex:commandbutton action="{!redirectToRecord}" value="{!$Label.ia_crm__No}" styleclass="slds-button slds-button--neutral" />
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-backdrop slds-backdrop--open"></div>
+            </apex:outputpanel>
+
+            <apex:outputtext rendered="{!IF(pageStatus == 'ERROR', true, false)}">
+                <apex:outputpanel styleclass="myCustomMessage">
+                    <figure>
+                        <apex:image id="errorImage" value="{!URLFOR($Resource.ia_crm__Intacct,'images/error.png')}" style="margin: auto; display: block; padding-top: 100px;" />
+                    </figure>
+                    <div style="text-align: center;">
+                        <apex:outputpanel rendered="{!hasError}">
+                            <apex:outputtext value="{!$Label.ia_crm__Create_Contract_operation_failed}" style="font-size: 200%;" />
+                        </apex:outputpanel>
+                    </div>
+                </apex:outputpanel>
+                <apex:outputpanel styleclass="myCustomMessage">
+                    <p>
+                        <div class="demo-only">
+                            <div class="slds-has-dividers_around-space slds-align_absolute-center">
+                                <div class="slds-item " style="width: 550px;">
+                                    <article class="slds-tile slds-tile_board">
+                                        <apex:outputpanel rendered="{!conToAdd.Id != null}">
+                                            {!$Label.The} &nbsp;<apex:outputlink value="{!'/' + conToAdd.Id}" styleclass="slds-text-link">{!$Label.ia_crm__Contract}</apex:outputlink>&nbsp; {!$Label.got_created_successfully}
+                                            {!$Label.You_can_manually_associate}&nbsp;
+                                            <apex:outputlink value="{!'/' + conToAdd.Id}" styleclass="slds-text-link">{!conToAdd.ContractNumber}</apex:outputlink>
+                                        </apex:outputpanel>
+                                        <apex:outputpanel rendered="{!hasError}">
+                                            <apex:pagemessages escape="false"/>
+                                        </apex:outputpanel>
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
+                    </p>
+                </apex:outputpanel>
+                <apex:outputpanel >
+                    <div style="text-align: center;">
+                        <apex:commandbutton action="{!'/' + Opportunity.Id}" style="margin-top: 20px;" value="{!$Label.ia_crm__Back_to_record}" styleclass="slds-button slds-button--neutral" />
+                    </div>
+                </apex:outputpanel>
+            </apex:outputtext>
+        </apex:form>
+    </div>
+</apex:page>

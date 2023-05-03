@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Use this field to see the type of sales transaction the system will create upon renewal. --></help>
+        <label><!-- Sales transaction type --></label>
+        <name>ia_crm__Sales_transaction_type__c</name>
+        <picklistValues>
+            <masterLabel>Sales Credit Memo</masterLabel>
+            <translation><!-- Sales Credit Memo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sales Invoice</masterLabel>
+            <translation><!-- Sales Invoice --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sales Order</masterLabel>
+            <translation><!-- Sales Order --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sales Quote</masterLabel>
+            <translation><!-- Sales Quote --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sales Return</masterLabel>
+            <translation><!-- Sales Return --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shipper</masterLabel>
+            <translation><!-- Shipper --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

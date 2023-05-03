@@ -105,6 +105,16 @@ SUBSTITUTE(SUBSTITUTE(Phone, &quot; &quot;, &quot;&quot;), LEFT( SUBSTITUTE(Phon
         <protected>false</protected>
         <reevaluateOnChange>false</reevaluateOnChange>
     </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ia_crm__Set_Reseller_Type</fullName>
+        <field>ia_crm__Reseller_Type__c</field>
+        <formula>$Setup.ia_crm__Reseller_Types__c.ia_crm__Types__c</formula>
+        <name>Set Reseller Type</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
     <rules>
         <fullName>AccountPhoneFormatRule</fullName>
         <actions>
@@ -142,6 +152,16 @@ SUBSTITUTE(SUBSTITUTE(Phone, &quot; &quot;, &quot;&quot;), LEFT( SUBSTITUTE(Phon
         <active>true</active>
         <description>Auto-populate membership number in the text field so that it is searchable.</description>
         <formula>Membership_Number_Text__c  &lt;&gt;  Membership_Number__c</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>ia_crm__Set Reseller Type</fullName>
+        <actions>
+            <name>ia_crm__Set_Reseller_Type</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>If(And(ia_crm__Reseller_Type__c &lt;&gt; $Setup.ia_crm__Reseller_Types__c.ia_crm__Types__c),true,false)</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
 </Workflow>

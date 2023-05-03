@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The number of Days before or after the source contract end date that the system should create the sales transaction. --></help>
+        <label><!-- When create sales transaction(Days) --></label>
+        <name>ia_crm__When_create_sales_transaction__c</name>
+    </CustomFieldTranslation>

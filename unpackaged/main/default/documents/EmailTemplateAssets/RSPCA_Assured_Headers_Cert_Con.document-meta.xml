@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Header image for the certification confirmation email template.</description>
+    <internalUseOnly>false</internalUseOnly>
+    <keywords>Email, Template, Certification</keywords>
+    <name>RSPCA-Assured-Headers-Cert-Con</name>
+    <public>true</public>
+</Document>

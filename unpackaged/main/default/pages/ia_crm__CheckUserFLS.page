@@ -1,0 +1,102 @@
+<apex:page controller="ia_crm.CheckUserFLSController" title="Check Field Accessibility">
+    <apex:stylesheet value="{!URLFOR($Resource.ia_crm__Intacct, '/assets/styles/salesforce-lightning-design-system-vf.css')}" />
+    
+    <div class="slds">
+        <apex:actionStatus id="fetchStatus" >
+            <apex:facet name="start" >
+                <div class="slds-spinner_container">
+                    <div role="status" class="slds-spinner slds-spinner--medium slds-spinner--brand">
+                        <span class="slds-assistive-text">{!$Label.Loading}</span>
+                        <div class="slds-spinner__dot-a"></div>
+                        <div class="slds-spinner__dot-b"></div>
+                    </div>
+                </div>
+            </apex:facet>
+        </apex:actionStatus>
+        <fieldset class="slds-form--compound">
+            <apex:form >
+            <apex:outputpanel id="tablePanel" >
+            <table style="border:solid #d8dde6 1px; display: table;">
+                <tr >
+                    <td colspan="2" style="vertical-align: middle !important; text-align:center !important;">
+                        {!$Label.On_this_page_you_will_be_able_to_check}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="vertical-align: middle !important; text-align:center !important;">
+                        <div class="slds-form-element__control" style="width: 40%;display:inline-table;margin-top: 20px;">
+                            <label class="slds-form-element__label" >{!$Label.Your_username}</label>
+                            <div class="slds-form-element" style="width:100%;">
+                                <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
+                                    <apex:outputText value="{!formatedUsername}" />
+                                </div>
+                            </div>
+                            <apex:outputPanel id="fielErrorPanel">
+                                <apex:outputPanel rendered="{!fieldErrorMessages.size > 0}" styleClass="errorMsg">
+                                    <ul>
+                                        <apex:repeat value="{!fieldErrorMessages}" var="errMessage">
+                                            <li><strong>Error: </strong>{!errMessage}</li>
+                                        </apex:repeat>
+                                        <li>{!$Label.ia_crm__CONTACT_SYSTEM_ADMIN}</li>
+                                    </ul>
+                                </apex:outputPanel>
+                                <apex:outputPanel rendered="{!userHasAllTheRights}" >
+                                    <div style="margin-top: 20px;height: 20px;">
+                                    <div class="inline" style="margin: 1px 5px 0px 5px;">
+                                        <apex:image id="theImage" value="/img/msg_icons/confirm16.png" width="20" height="20" />
+                                    </div>
+                                    <div >
+                                        <apex:outputText value="{!$Label.ia_crm__Your_user_has_all_necessary_rights}" />
+                                    </div>
+                                    </div>
+                                </apex:outputPanel>
+                            </apex:outputPanel>
+                            <div style="margin-top: 30px; margin-bottom: 20px;">
+                                <apex:commandButton value="{!$Label.ia_crm__Check_FLS}" status="fetchStatus" action="{!checkUserFls}" rerender="tablePanel" styleClass="slds-button slds-button--neutral"/>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <!-- <apex:outputpanel id="errorPanel" >
+                <apex:outputpanel rendered="{!hasErrors}"> -->
+                <apex:repeat value="{!objectsFieldErros}" var="objKey">
+                    <tr>
+                        <td style="width: 10%;vertical-align: middle !important; text-align:center !important; border: 1px solid #ccc;">
+                            <apex:outputText value="{!objKey}" />
+                        </td>
+                        <td style="width: 90%; border: 1px solid #ccc;">
+                            <table>
+                            <tr>
+                            <apex:variable var="count" value="{!1}"/>
+                             <apex:repeat value="{!objectsFieldErros[objKey]}" var="errMessage">
+                                
+                                <td style="height: 25px;width: 30%;">
+                                    <apex:outputPanel rendered="{!IF(errMessage == 'null', false, true)}" >
+                                        <div class="inline" style="margin: 1px 5px 0px 5px;">
+                                            <apex:image id="theImage" value="/img/msg_icons/error16.png" width="20" height="20" />
+                                        </div>
+                                        <div class="inline">
+                                            <apex:outputText value="{!errMessage}" />
+                                        </div>
+                                    </apex:outputPanel>
+                                </td>
+                                
+                                <apex:outputtext value="{!IF(MOD(count, 3) == 0, '<tr>', '')}" escape="false" />
+                                <apex:variable var="count" value="{!count + 1}"/>
+                             </apex:repeat>
+                             </tr>
+                             </table>
+                        </td>
+                    </tr>
+                </apex:repeat>
+                
+            </table>
+            </apex:outputpanel>
+            </apex:form>
+        </fieldset>
+    </div>
+    <style>
+        div.inline { float:left; }
+        .clearBoth { clear:both; }
+    </style>
+</apex:page>

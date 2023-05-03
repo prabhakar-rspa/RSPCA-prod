@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ia_crm__Inherit_products_from_parent_sales_oppor__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>Indicates whether the system should populate the new opportunity with the same products (items) that existed in the original opportunity.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Indicates whether the system should populate the new opportunity with the same products (items) that existed in the original opportunity.</inlineHelpText>
+    <label>Inherit products from parent sales oppor</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

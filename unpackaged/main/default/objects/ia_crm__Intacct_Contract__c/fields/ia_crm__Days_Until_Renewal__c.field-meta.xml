@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ia_crm__Days_Until_Renewal__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>IF( AND(ia_crm__Renew__c, ia_crm__Renewal_Template2__r.ia_crm__Create_Opportunity_from_Salesforce__c ) , 
+If( ISPICKVAL( ia_crm__Renewal_Template2__r.ia_crm__When__c , &#39;Before&#39;), 
+ia_crm__End_Date__c-Today() - if(ISBLANK(ia_crm__Renewal_Template2__r.ia_crm__Number_of_days__c),0,ia_crm__Renewal_Template2__r.ia_crm__Number_of_days__c) , 
+ia_crm__End_Date__c-Today() + if(ISBLANK(ia_crm__Renewal_Template2__r.ia_crm__Number_of_days__c),0,ia_crm__Renewal_Template2__r.ia_crm__Number_of_days__c) ), null)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Days Until Renewal</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

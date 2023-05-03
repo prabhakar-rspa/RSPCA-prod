@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- This field shows how the system determines the Transaction date on the sales transaction created by the renewal. --></help>
+        <label><!-- Date on renewed document --></label>
+        <name>ia_crm__Date_on_renewed_document__c</name>
+        <picklistValues>
+            <masterLabel>Calculated date</masterLabel>
+            <translation><!-- Calculated date --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Contract end date + 1</masterLabel>
+            <translation><!-- Contract end date + 1 --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

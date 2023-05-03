@@ -1,0 +1,375 @@
+<aura:component controller="WOAHenController">
+
+    <aura:attribute name="woaLayingHen" type="object"/>
+    <aura:attribute name="woaSummaryRecord" type="object"/>
+    <aura:attribute name="dynamicDisableField" type="boolean" default="true"/>
+    <aura:attribute name="flockSizeValue" type="Integer" default="0"/>
+
+    <aura:attribute name="woaCompleteToggle" type="boolean" default="false"/>
+
+    <!-- Picklist field values -->
+    <aura:attribute name="reasonsForNonCompletionValues" type="List" />
+    <c:LightningPicklist sObjectName="WOAHens__c" fieldName="Reason_for_not_completing__c" picklistValuesCombobox="{!v.reasonsForNonCompletionValues}" hiddenValues="['not old enough','multiple FF licence holder - more than one WOA generated for visit']"/>
+
+    <aura:attribute name="breedValues" type="List" />
+    <c:LightningPicklist sObjectName="WOAHens__c" fieldName="Breed__c" picklistValuesCombobox="{!v.breedValues}" />
+	
+    <aura:attribute name="typeOfAssessment" type="List" />
+    <c:LightningPicklist sObjectName="WOAHens__c" fieldName="Type_of_assessment__c" picklistValuesCombobox="{!v.typeOfAssessment}" />
+    
+    <aura:attribute name="featherlossScoresCarriedOutBy" type="List" />
+    <c:LightningPicklist sObjectName="WOAHens__c" fieldName="Featherloss_Scores_Carried_Out_By__c" picklistValuesCombobox="{!v.featherlossScoresCarriedOutBy}" />
+    
+
+    <aura:attribute name="productionType" type="List" />
+    <c:LightningPicklist sObjectName="WOAHens__c" fieldName="Production_Type__c" picklistValuesCombobox="{!v.productionType}" />
+
+    <aura:attribute name="housingType" type="List" />
+    <c:LightningPicklist sObjectName="WOAHens__c" fieldName="Housing_Type__c" picklistValuesCombobox="{!v.housingType}" />
+
+    <aura:attribute name="perchiing" type="List" />
+    <c:LightningPicklist sObjectName="WOAHens__c" fieldName="Perching__c" picklistValuesCombobox="{!v.perchiing}" />
+
+    <aura:attribute name="rearingHousingType" type="List" />
+    <c:LightningPicklist sObjectName="WOAHens__c" fieldName="Rearing_Housing_Type__c" picklistValuesCombobox="{!v.rearingHousingType}" />
+
+    <aura:attribute name="rangeStockingDensity" type="List" />
+    <c:LightningPicklist sObjectName="WOAHens__c" fieldName="Range_Stocking_Density__c" picklistValuesCombobox="{!v.rangeStockingDensity}" />
+
+    <aura:attribute name="enrichmentOptions" type="List" />
+    <aura:attribute name="enrichmentSelectedValues" type="List" default="[]"/>
+    <c:LightningPicklist sObjectName="WOAHens__c" fieldName="Enrichment__c" picklistValuesCombobox="{!v.enrichmentOptions}" />
+
+    <aura:attribute name="aggressiveBehaviourObserved" type="List" />
+    <c:LightningPicklist sObjectName="WOAHens__c" fieldName="Agressive_behaviour_observed__c" picklistValuesCombobox="{!v.aggressiveBehaviourObserved}" />
+
+    <aura:attribute name="featherPeckingObserved" type="List" />
+    <c:LightningPicklist sObjectName="WOAHens__c" fieldName="Feather_pecking_observed__c" picklistValuesCombobox="{!v.featherPeckingObserved}" />
+
+    <aura:attribute name="beakTrimminig" type="List" />
+    <c:LightningPicklist sObjectName="WOAHens__c" fieldName="Beak_trimming__c" picklistValuesCombobox="{!v.beakTrimminig}" />
+
+    <aura:attribute name="flightiness" type="List" />
+    <c:LightningPicklist sObjectName="WOAHens__c" fieldName="Flightiness__c" picklistValuesCombobox="{!v.flightiness}" />
+
+    <aura:attribute name="improvementMadeLast12Months" type="List" />
+    <aura:attribute name="improvementMadeSelectedValues" type="List" default="[]"/>
+    <c:LightningPicklist sObjectName="WOAHens__c" fieldName="ImprovementMadeLast12Months__c" picklistValuesCombobox="{!v.improvementMadeLast12Months}" />
+
+    <aura:attribute name="improvementPlannedNext12Months" type="List" />
+    <aura:attribute name="improvementPlannedSelectedValues" type="List" default="[]"/>
+    <c:LightningPicklist sObjectName="WOAHens__c" fieldName="ImprovementPlannedNext12Months__c" picklistValuesCombobox="{!v.improvementPlannedNext12Months}" />
+
+    <aura:attribute name="wantsAdvice" type="List" />
+    <c:LightningPicklist sObjectName="WOAHens__c" fieldName="Wants_advice__c" picklistValuesCombobox="{!v.wantsAdvice}" />
+
+    <!-- Initialise the component -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <!-- Methods -->
+    <aura:method name="additionalValidations" action="{!c.additionalValidations}" access="PUBLIC"></aura:method>
+    <aura:method name="saveLayingHens" action="{!c.saveLayingHens}" access="PUBLIC"></aura:method>
+
+    <div class="c-container">
+        <aura:if isTrue="{!v.woaSummaryRecord.CompletingWOA__c == 'Yes'}">
+			
+            <!-- Type of Assessment Section -->
+            <lightning:combobox aura:id="typeOfAssessment" name="typeOfAssessment" label="Type Of Assessment" value="{!v.woaLayingHen.Type_of_assessment__c}" options="{! v.typeOfAssessment }" required="true" disabled="{!v.dynamicDisableField}"/>
+            
+            <!-- solid line -->
+            <div class="slds-var-p-vertical_small">
+                <div class="solidDivider"></div>                
+            </div>    
+            <!-- New Unit Section -->
+            <lightning:input aura:id="field" type="checkbox" label="New unit (no certificate in last 12 months)" name="newUnit" checked="{!v.woaLayingHen.New_Unit__c}" disabled="{!v.dynamicDisableField}"/>
+
+            <!-- solid line -->
+            <div class="slds-var-p-vertical_small">
+                <div class="solidDivider"></div>                
+            </div>
+
+            <!-- Numbers Section -->
+            <div>
+                <div class="page-section page-header">
+                    <h2 class="slds-text-heading_small">Numbers</h2>
+                </div>
+                <lightning:input aura:id="field" type="number" name="flockage" label="Age of assessed flock (weeks)" placeholder="0" value="{!v.woaLayingHen.Flock_Age__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                <lightning:input aura:id="field" type="number" name="flocksize" label="Size of assessed flock (placed)" placeholder="0" value="{!v.woaLayingHen.Flock_Size__c}" required="true" disabled="{!v.dynamicDisableField}" onchange="{!c.handleFlockSizeChange}"/>
+                <lightning:input aura:id="field" type="number" name="totalBirdsOnFarm" label="Total birds placed on farm" min="{!v.flockSizeValue}" placeholder="0" value="{!v.woaLayingHen.Total_Birds_On_Farm__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+            </div>
+
+            <!-- solid line divider -->
+            <div class="slds-var-p-vertical_small">
+                <div class="solidDivider"></div>                
+            </div>
+
+            <!-- Breed Section -->
+            <div>
+                <div class="page-section page-header">
+                    <h2 class="slds-text-heading_small">Breed</h2>
+                </div>
+                <lightning:combobox aura:id="field" name="breed" label="Breed" value="{!v.woaLayingHen.Breed__c}" options="{! v.breedValues }" required="true" disabled="{!v.dynamicDisableField}"/>
+                <lightning:input aura:id="field" name="otherBreed" label="Other (specify)" value="{!v.woaLayingHen.Other_Breed__c}" disabled="{!v.dynamicDisableField}"/>
+            </div>
+
+            <!-- solid line divider -->
+            <div class="slds-var-p-vertical_small">
+                <div class="solidDivider"></div>                
+            </div>
+
+            <!-- Unit Detail -->
+            <div>
+                <div class="page-section page-header">
+                    <h2 class="slds-text-heading_small">Unit Detail</h2>
+                </div>
+                <lightning:combobox aura:id="field" name="productionTyoe" label="Production Type" value="{!v.woaLayingHen.Production_Type__c}" options="{! v.productionType }" required="true" disabled="{!v.dynamicDisableField}"/>
+                <lightning:combobox aura:id="field" name="housingType" label="Housing Type" value="{!v.woaLayingHen.Housing_Type__c}" options="{! v.housingType }" required="true" disabled="{!v.dynamicDisableField}"/>
+                <!-- thin line divider -->
+                <div class="slds-var-p-vertical_small">
+                    <div class="thinSolidDivider"></div>                
+                </div>
+                <lightning:radioGroup aura:id="field" name="perching" label="Perching" value="{!v.woaLayingHen.Perching__c}" options="{! v.perchiing }"  type="radio" required="true" disabled="{!v.dynamicDisableField}"/>
+                <br/>
+                <lightning:input aura:id="field" type="checkbox" label="Scottish, Irish or Northern Irish farm" name="scotIrishNIFarms" checked="{!v.woaLayingHen.Scottish_Irish_or_Northern_Irish_Farms__c}" disabled="{!v.dynamicDisableField}"/>
+                <!-- thin line divider -->
+                <div class="slds-var-p-vertical_small">
+                    <div class="thinSolidDivider"></div>                
+                </div>
+                <lightning:combobox aura:id="field" name="rearingHousingType" label="Rearing Housing Type" value="{!v.woaLayingHen.Rearing_Housing_Type__c}" options="{! v.rearingHousingType }" required="true" disabled="{!v.dynamicDisableField}"/>
+                <br/>
+                <lightning:input aura:id="field" type="checkbox" label="NC raised - litter into multi-tier" name="ncRaisedLitterIntoMulti" checked="{!v.woaLayingHen.NC_Raised_Litter_Into_Multi_tier__c}" disabled="{!v.dynamicDisableField}"/>
+                <!-- thin line divider -->
+                <div class="slds-var-p-vertical_small">
+                    <div class="thinSolidDivider"></div>                
+                </div>
+                <lightning:combobox aura:id="field" name="rangeStockingDensity" label="Range stocking density" value="{!v.woaLayingHen.Range_Stocking_Density__c}" options="{! v.rangeStockingDensity }" required="true" disabled="{!v.dynamicDisableField}"/>
+                <!-- thin line divider -->
+                <div class="slds-var-p-vertical_small">
+                    <div class="thinSolidDivider"></div>                
+                </div>
+                <lightning:dualListbox aura:id="field" name="enrichment" label= "Enrichment" sourceLabel="Available" selectedLabel="Selected" value="{!v.enrichmentSelectedValues}" options="{!v.enrichmentOptions}" onchange="{! c.handleEnrichmentChange }" required="true" disabled="{!v.dynamicDisableField}"/>
+                <br/>
+                <lightning:input aura:id="field" type="checkbox" label="NC raised - no destructible enrichment" name="ncRaisedNoDestructible" checked="{!v.woaLayingHen.NC_raised_no_destructible_enrichment__c}" disabled="{!v.dynamicDisableField}"/>
+            </div>
+
+            <!-- solid line divider -->
+            <div class="slds-var-p-vertical_small">
+                <div class="solidDivider"></div>                
+            </div>
+
+            <!-- feather loss Section -->
+            <div>
+                <div class="page-section page-header">
+                    <h2 class="slds-text-heading_small">Feather Loss</h2>
+                </div>
+                <lightning:input aura:id="field" type="number" name="hnflScore0" label="Head &amp; Neck feather loss: Score 0" placeholder="0" value="{!v.woaLayingHen.Head_Neck_feather_loss_Score_0__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                <lightning:input aura:id="field" type="number" name="hnflScore1" label="Head &amp; Neck feather loss: Score 1" placeholder="0" value="{!v.woaLayingHen.Head_Neck_feather_loss_Score_1__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                <lightning:input aura:id="field" type="number" name="hnflScore2" label="Head &amp; Neck feather loss: Score 2" placeholder="0" value="{!v.woaLayingHen.Head_Neck_feather_loss_Score_2__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                <!-- thin line divider -->
+                <div class="slds-var-p-vertical_small">
+                    <div class="thinSolidDivider"></div>                
+                </div>
+                <lightning:input aura:id="field" type="number" name="bvflScore0" label="Back &amp; Vent feather loss: Score 0" placeholder="0" value="{!v.woaLayingHen.Back_Vent_feather_loss_Score_0__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                <lightning:input aura:id="field" type="number" name="bvflScore1" label="Back &amp; Vent feather loss: Score 1" placeholder="0" value="{!v.woaLayingHen.Back_Vent_feather_loss_Score_1__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                <lightning:input aura:id="field" type="number" name="bvflScore2" label="Back &amp; Vent feather loss: Score 2" placeholder="0" value="{!v.woaLayingHen.Back_Vent_feather_loss_Score_2__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                <div class="slds-var-p-vertical_small">
+                    <div class="thinSolidDivider"></div>                
+                </div>
+                <lightning:combobox aura:id="featherlossScoresCarriedOutBy" name="featherlossScoresCarriedOutBy" label="Were the featherloss scores carried out by the assessor or the most recent scores recorded by member?" value="{!v.woaLayingHen.Featherloss_Scores_Carried_Out_By__c}" options="{! v.featherlossScoresCarriedOutBy }" required="true" disabled="{!v.dynamicDisableField}"/>
+                <aura:if isTrue="{!v.woaLayingHen.Featherloss_Scores_Carried_Out_By__c == 'Member'}">
+                    <lightning:input aura:id="recentMemberFeatherScoresDate" type="date" name="recentMemberFeatherScoresDate" label="Date of most recent member feather scores" value="{!v.woaLayingHen.Recent_Member_Feather_Scores_Date__c}" required="true"  disabled="{!v.dynamicDisableField}"/>
+                </aura:if>
+            </div>
+
+            <!-- solid line divider -->
+            <div class="slds-var-p-vertical_small">
+                <div class="solidDivider"></div>                
+            </div>
+
+            <!-- Dirtiness Section -->
+            <div>
+                <div class="page-section page-header">
+                    <h2 class="slds-text-heading_small">Dirtiness</h2>
+                </div>
+                <lightning:input aura:id="field" type="number" name="dirtinessScore0" label="Dirtiness Score 0" placeholder="0" value="{!v.woaLayingHen.Dirtiness_Score_0__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                <lightning:input aura:id="field" type="number" name="dirtinessScore1" label="Dirtiness Score 1" placeholder="0" value="{!v.woaLayingHen.Dirtiness_Score_1__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                <lightning:input aura:id="field" type="number" name="dirtinessScore2" label="Dirtiness Score 2" placeholder="0" value="{!v.woaLayingHen.Dirtiness_Score_2__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+            </div>
+
+            <!-- solid line divider -->
+            <div class="slds-var-p-vertical_small">
+                <div class="solidDivider"></div>                
+            </div>
+
+            <!-- solid line divider -->
+            <div class="slds-var-p-vertical_small">
+                <div class="solidDivider"></div>                
+            </div>
+
+            <!-- Agressive Behaviours Section -->
+            <div>
+                <div class="page-section page-header">
+                    <h2 class="slds-text-heading_small">Agressive Behaviours</h2>
+                </div>
+                <lightning:input aura:id="field" type="number" name="Antagonistic_incidents_observed_or_Heard" label="Number of antagonistic incidents observed or heard" placeholder="0" value="{!v.woaLayingHen.Antagonistic_incidents_observed_or_Heard__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                <lightning:radioGroup aura:id="field" name="Agressive_behaviour_observed" label="Agressive behaviour observed" options="{! v.aggressiveBehaviourObserved }" value="{!v.woaLayingHen.Agressive_behaviour_observed__c}" type="button" disabled="{!v.dynamicDisableField}"/>
+                <lightning:radioGroup aura:id="field" name="Feather_pecking_observed" label="Feather pecking observed" options="{! v.featherPeckingObserved }" value="{!v.woaLayingHen.Feather_pecking_observed__c}" type="button" disabled="{!v.dynamicDisableField}"/>
+            </div>
+
+            <!-- solid line divider -->
+            <div class="slds-var-p-vertical_small">
+                <div class="solidDivider"></div>                
+            </div>
+
+            <!-- Beak Trimming Section -->
+            <div>
+                <div class="page-section page-header">
+                    <h2 class="slds-text-heading_small">Beak Trimming</h2>
+                </div>
+                <lightning:combobox aura:id="field" name="beakTrimming" label="Beak Trimming" value="{!v.woaLayingHen.Beak_trimming__c}" options="{! v.beakTrimminig }" required="true" disabled="{!v.dynamicDisableField}"/>
+                <lightning:input aura:id="field" type="number" name="severelyBeakTrimmed" label="Number of severely beak trimmed birds" placeholder="0" value="{!v.woaLayingHen.Severely_beak_trimmed__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+            </div>
+
+            <!-- solid line divider -->
+            <div class="slds-var-p-vertical_small">
+                <div class="solidDivider"></div>                
+            </div>
+
+            <!-- Flightiness Section -->
+            <div>
+                <div class="page-section page-header">
+                    <h2 class="slds-text-heading_small">Flightiness</h2>
+                </div>
+                <lightning:combobox aura:id="field" name="flightiness" label="Flightiness" value="{!v.woaLayingHen.Flightiness__c}" options="{! v.flightiness }" required="true" disabled="{!v.dynamicDisableField}"/>
+            </div>
+
+            <!-- solid line divider -->
+            <div class="slds-var-p-vertical_small">
+                <div class="solidDivider"></div>                
+            </div>
+
+            <!-- Further Care section-->
+            <div>
+                <div class="page-section page-header">
+                    <h2 class="slds-text-heading_small">Further Care</h2>
+                </div>
+                <lightning:input aura:id="field" type="number" name="requireFurtherCare" label="Number of hens requiring further care" placeholder="0" value="{!v.woaLayingHen.Hens_Requiring_Further_Care__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                <lightning:textarea aura:id="field" name="Sick_injured_birds_comments" label="Further care comments" value="{!v.woaLayingHen.Sick_injured_birds_comments__c}"  maxlength="1000" messageWhenTooLong="A maximum of 1000 characters are allowed." disabled="{!v.dynamicDisableField}" />
+            </div>
+
+            <!-- solid line divider -->
+            <div class="slds-var-p-vertical_small">
+                <div class="solidDivider"></div>                
+            </div>
+
+            <!-- Litter condition Section -->
+            <div>
+                <div class="page-section page-header">
+                    <h2 class="slds-text-heading_small">Litter Condition</h2>
+                </div>
+                <lightning:input aura:id="field" type="number" name="litterConditionScore" label="Litter condition score (1-7)" placeholder="0" value="{!v.woaLayingHen.Litter_condition_score_1_7__c}" max="7" min="1" required="true" disabled="{!v.dynamicDisableField}"/>
+                <lightning:textarea aura:id="field" name="litterConditionComments" label="Litter condition comments" value="{!v.woaLayingHen.Litter_condition_comments__c}"  maxlength="1000" messageWhenTooLong="A maximum of 1000 characters are allowed." disabled="{!v.dynamicDisableField}" />
+            </div>
+
+             <!-- Mortality section-->
+             <div>
+                <div class="page-section page-header">
+                    <h2 class="slds-text-heading_small">Mortality</h2>
+                </div>
+                <lightning:input aura:id="field" type="number" name="Mortality_to_date" label="% mortality to date" placeholder="0" step="0.01" max="100" value="{!v.woaLayingHen.Mortality_to_date__c}" disabled="{!v.dynamicDisableField}"/>
+                <lightning:input aura:id="field" name="Mortality_to_date_reasons" label="Mortality to date reasons" value="{!v.woaLayingHen.Mortality_to_date_reasons__c}" maxlength="255" disabled="{!v.dynamicDisableField}"/>
+                <!-- thin line divider -->
+                <div class="slds-var-p-vertical_small">
+                    <div class="thinSolidDivider"></div>                
+                </div>
+                <lightning:input aura:id="field" type="number" name="Mortality_to_40_weeks" label="% mortality to 40 weeks" placeholder="0" step="0.01" max="100" value="{!v.woaLayingHen.Mortality_to_40_weeks__c}" disabled="{!v.dynamicDisableField}"/>
+                <lightning:input aura:id="field" type="checkbox" label="Less than 40 weeks" name="Mortality_Less_than_40_weeks" checked="{!v.woaLayingHen.Mortality_Less_than_40_weeks__c}" disabled="{!v.dynamicDisableField}"/>
+                <lightning:input aura:id="field" name="Mortality_to_40_weeks_reasons" label="Mortality to 40 weeks reasons" value="{!v.woaLayingHen.Mortality_to_40_weeks_reasons__c}" maxlength="255" disabled="{!v.dynamicDisableField}"/>
+                <!-- thin line divider -->
+                <div class="slds-var-p-vertical_small">
+                    <div class="thinSolidDivider"></div>                
+                </div>
+                <lightning:input aura:id="field" type="number" name="Mortality_to_previous_flock" label="% mortality of previous flock" placeholder="0" step="0.01" max="100" value="{!v.woaLayingHen.Mortality_to_previous_flock__c}" disabled="{!v.dynamicDisableField}"/>
+                <lightning:input aura:id="field" type="checkbox" label="No previous flock" name="Mortality_No_Previous_Flock" checked="{!v.woaLayingHen.Mortality_No_Previous_Flock__c}" disabled="{!v.dynamicDisableField}"/>
+                <lightning:input aura:id="field" type="checkbox" label="No previous flock mortality records" name="No_previous_flock_mortality_records" checked="{!v.woaLayingHen.No_previous_flock_mortality_records__c}" disabled="{!v.dynamicDisableField}"/>
+                <lightning:input aura:id="field" name="Previous_flock_mortality_reasons" label="Previous flock mortality reasons" value="{!v.woaLayingHen.Previous_flock_mortality_reasons__c}" maxlength="255" disabled="{!v.dynamicDisableField}"/>
+            </div>
+
+            <!-- solid line divider -->
+            <div class="slds-var-p-vertical_small">
+                <div class="solidDivider"></div>                
+            </div>
+
+            <!-- Changes section-->
+            <div>
+                <div class="page-section page-header">
+                    <h2 class="slds-text-heading_small">Changes</h2>
+                </div>
+                <!--lightning:dualListbox aura:id="field" name="ImprovementMadeLast12Months" label= "Improvements made in last 12 months" sourceLabel="Available" selectedLabel="Selected" value="{!v.improvementMadeSelectedValues}" options="{!v.improvementMadeLast12Months}" onchange="{! c.handleImprovementsMadeChange }" disabled="{!v.dynamicDisableField}"/-->
+                <lightning:textarea aura:id="field" name="ImprovementMadeDetailsLast12Months" label="What changes to improve welfare have been made in the last 12 months?" value="{!v.woaLayingHen.ImprovementMadeDetailsLast12Months__c}"  maxlength="32768" messageWhenTooLong="A maximum of 32768 characters are allowed." required="true" disabled="{!v.dynamicDisableField}" />
+                <!--lightning:dualListbox aura:id="field" name="ImprovementPlannedNext12Months" label= "Improvements planned for next 12 months" sourceLabel="Available" selectedLabel="Selected" value="{!v.improvementPlannedSelectedValues}" options="{!v.improvementPlannedNext12Months}" onchange="{! c.handleImprovementsPlannedChange }" disabled="{!v.dynamicDisableField}"/-->
+                <lightning:textarea aura:id="field" name="ImprovementPlannedDetailsNext12Months__c" label="What changes to improve welfare are planned for the next 12 months?" value="{!v.woaLayingHen.ImprovementPlannedDetailsNext12Months__c}"  maxlength="32768" messageWhenTooLong="A maximum of 32768 characters are allowed." required="true" disabled="{!v.dynamicDisableField}" />
+            </div>
+
+            <!-- solid line divider -->
+            <div class="slds-var-p-vertical_small">
+                <div class="solidDivider"></div>                
+            </div>
+
+            <!-- General Comments section-->
+            <div>
+                <div class="page-section page-header">
+                    <h2 class="slds-text-heading_small">General Comments</h2>
+                </div>
+                <lightning:textarea aura:id="field" name="Comments__c" label="Comments" value="{!v.woaLayingHen.Comments__c}"  maxlength="32768" messageWhenTooLong="A maximum of 32768 characters are allowed." disabled="{!v.dynamicDisableField}" />
+                <lightning:textarea aura:id="field" name="Any_Responsive_Action_to_be_Taken" label="Any Responsive Action to be Taken?" value="{!v.woaLayingHen.Any_Responsive_Action_to_be_Taken__c}"  maxlength="32768" messageWhenTooLong="A maximum of 32768 characters are allowed." disabled="{!v.dynamicDisableField}" />
+            </div>
+
+            <!-- solid line divider -->
+            <div class="slds-var-p-vertical_small">
+                <div class="solidDivider"></div>                
+            </div>
+
+            <!-- Advice section-->
+            <div>
+                <div class="page-section page-header">
+                    <h2 class="slds-text-heading_small">Advice</h2>
+                </div>
+                <lightning:radioGroup aura:id="field" name="Wants_advice" label="Wants advice" options="{! v.wantsAdvice }" value="{!v.woaLayingHen.Wants_advice__c}" type="button" disabled="{!v.dynamicDisableField}"/>
+                <lightning:textarea aura:id="field" name="Preferred_contact_details" label="Preferred contact details" value="{!v.woaLayingHen.Preferred_contact_details__c}"  maxlength="32768" messageWhenTooLong="A maximum of 32768 characters are allowed." disabled="{!v.dynamicDisableField}" />
+            </div>
+
+            <!-- solid line divider -->
+            <div class="slds-var-p-vertical_small">
+                <div class="solidDivider"></div>                
+            </div>
+
+            <!-- Submit WOA section-->
+            <div>
+                <lightning:input type="toggle" label="Activate toggle and click 'Save' to submit WOA" name="completeWOA" checked="{!v.woaCompleteToggle}" messageToggleActive="Submit WOA" messageToggleInactive="WOA not submitted" disabled="{!v.dynamicDisableField}"/>
+            </div>
+
+        </aura:if>
+
+        <!-- Non Completion Section -->
+        <aura:if isTrue="{!v.woaSummaryRecord.CompletingWOA__c == 'No'}">
+            <lightning:combobox aura:id="field" name="reasonForNonCompletion" label="Reason for non-completion of WOA?" value="{!v.woaLayingHen.Reason_for_not_completing__c}" options="{! v.reasonsForNonCompletionValues }" required="true" disabled="{!v.dynamicDisableField}"/>
+            <!--Hidden field as atleast 2 fields is required for validation -->
+            <lightning:input aura:id="field" label="hiddenValidationField" value="" class="hiddenComponent"/>
+            <aura:if isTrue="{!v.woaLayingHen.Reason_for_not_completing__c == 'other'}">
+                <lightning:textarea aura:id="field" name="otherNonCompletionReason" value="{!v.woaLayingHen.Other_non_completion_reason__c}" placeholder="Enter other reason" label="If other, please specify" maxlength="1000" messageWhenTooLong="A maximum of 1000 characters are allowed."  disabled="{!v.dynamicDisableField}" />
+            </aura:if>
+            <!-- solid line divider -->
+            <div class="slds-var-p-vertical_small">
+                <div class="solidDivider"></div>                
+            </div>
+
+            <!-- Submit WOA section-->
+            <div>
+                <lightning:input type="toggle" label="Activate toggle and click 'Save' to submit WOA" name="completeWOA" checked="{!v.woaCompleteToggle}" messageToggleActive="Submit WOA" messageToggleInactive="WOA not submitted" disabled="{!v.dynamicDisableField}"/>
+            </div>
+        </aura:if>
+        
+    </div>
+
+</aura:component>

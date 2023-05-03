@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <fieldSets>
+        <label><!-- Sales Invoices FieldSet --></label>
+        <name>ia_crm__Sales_Invoices_FieldSet</name>
+    </fieldSets>
+    <layouts>
+        <layout>Sales Invoice Layout</layout>
+        <sections>
+            <label><!-- Bill to/Ship to Information --></label>
+            <section>Bill to/Ship to Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Payment Summary --></label>
+            <section>Payment Summary</section>
+        </sections>
+    </layouts>
+    <webLinks>
+        <label><!-- Delete_Sales_Invoice --></label>
+        <name>ia_crm__Delete_Sales_Invoice</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Print_Sales_Invoice --></label>
+        <name>ia_crm__Print_Sales_Invoice</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- View_Sales_Invoice --></label>
+        <name>ia_crm__View_Sales_Invoice</name>
+    </webLinks>
+</CustomObjectTranslation>

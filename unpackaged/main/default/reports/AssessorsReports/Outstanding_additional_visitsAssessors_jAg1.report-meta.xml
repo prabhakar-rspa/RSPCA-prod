@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Application__c$Name</field>
+    </columns>
+    <columns>
+        <field>Application__c$Visit_Deadline__c</field>
+    </columns>
+    <columns>
+        <field>Application__c$Site__c</field>
+    </columns>
+    <columns>
+        <field>Application__c$Site_Postcode__c</field>
+    </columns>
+    <columns>
+        <field>Application__c$Visit_Type__c</field>
+    </columns>
+    <filter>
+        <booleanFilter>1 AND 2</booleanFilter>
+        <criteriaItems>
+            <column>Application__c$RecordType</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Application__c.Additional_Visit</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Application__c$Report__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>contains</operator>
+            <value></value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Application__c$Assessor__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Outstanding additional visits Assessors</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Applications_with_Assessments__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Application__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

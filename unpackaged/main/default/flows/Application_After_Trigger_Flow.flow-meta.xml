@@ -1,27 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>57.0</apiVersion>
+    <assignments>
+        <name>Add_application</name>
+        <label>Add application</label>
+        <locationX>138</locationX>
+        <locationY>935</locationY>
+        <assignmentItems>
+            <assignToReference>ApplicationsToUpdate</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Iterate_Applications</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Iterate_Applications</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Increment_Index</name>
+        <label>Increment Index</label>
+        <locationX>138</locationX>
+        <locationY>815</locationY>
+        <assignmentItems>
+            <assignToReference>index</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Add_application</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Previous_Assessment_Deadline_Date</name>
+        <label>Set Previous Assessment &amp; Deadline Date</label>
+        <locationX>138</locationX>
+        <locationY>695</locationY>
+        <assignmentItems>
+            <assignToReference>Iterate_Applications.Previous_Assessment_Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Assessment_Date__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Iterate_Applications.Assessment_Deadline__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>deadlineDate</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Increment_Index</targetReference>
+        </connector>
+    </assignments>
     <decisions>
-        <name>Assessment_Date_Changed</name>
-        <label>Assessment Date Changed</label>
+        <name>Renewal_Assessment_Date_Changed</name>
+        <label>Renewal Assessment Date Changed</label>
         <locationX>182</locationX>
         <locationY>335</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Changed</name>
-            <conditionLogic>and</conditionLogic>
+            <conditionLogic>(1 OR 4) AND 2 AND 3</conditionLogic>
             <conditions>
                 <leftValueReference>$Record.Assessment_Date__c</leftValueReference>
                 <operator>IsChanged</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>$Record.Site__c</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -35,18 +83,44 @@
                 <leftValueReference>$Record.RecordType.DeveloperName</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Applications</stringValue>
+                    <stringValue>Renewal</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Update_Other_Open_Applications</targetReference>
+                <targetReference>Get_Other_Open_Application</targetReference>
             </connector>
             <label>Changed</label>
         </rules>
     </decisions>
     <environments>Default</environments>
+    <formulas>
+        <name>deadlineDate</name>
+        <dataType>Date</dataType>
+        <expression>ADDMONTHS({!$Record.Assessment_Date__c},(({!index}) * 14))</expression>
+    </formulas>
     <interviewLabel>Application After Trigger Flow {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Application After Trigger Flow</label>
+    <loops>
+        <name>Iterate_Applications</name>
+        <label>Iterate Applications</label>
+        <locationX>50</locationX>
+        <locationY>575</locationY>
+        <collectionReference>Get_Other_Open_Application</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Set_Previous_Assessment_Deadline_Date</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Update_Other_Open_Renewal_Applications</targetReference>
+        </noMoreValuesConnector>
+    </loops>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -66,17 +140,21 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
-    <recordUpdates>
-        <name>Update_Other_Open_Applications</name>
-        <label>Update Other Open Applications</label>
+    <recordLookups>
+        <name>Get_Other_Open_Application</name>
+        <label>Get Other Open Application</label>
         <locationX>50</locationX>
         <locationY>455</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Iterate_Applications</targetReference>
+        </connector>
         <filterLogic>and</filterLogic>
         <filters>
-            <field>Stage__c</field>
-            <operator>NotEqualTo</operator>
+            <field>RecordTypeId</field>
+            <operator>EqualTo</operator>
             <value>
-                <stringValue>Compliance</stringValue>
+                <elementReference>$Record.RecordTypeId</elementReference>
             </value>
         </filters>
         <filters>
@@ -86,23 +164,69 @@
                 <elementReference>$Record.Site__c</elementReference>
             </value>
         </filters>
-        <inputAssignments>
-            <field>Previous_Assessment_Date__c</field>
+        <filters>
+            <field>Calculated_Stage__c</field>
+            <operator>NotEqualTo</operator>
             <value>
-                <elementReference>$Record.Assessment_Date__c</elementReference>
+                <stringValue>Compliance</stringValue>
             </value>
-        </inputAssignments>
+        </filters>
+        <filters>
+            <field>Id</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
         <object>Application__c</object>
+        <sortField>Name</sortField>
+        <sortOrder>Asc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_Other_Open_Renewal_Applications</name>
+        <label>Update Other Open Renewal Applications</label>
+        <locationX>50</locationX>
+        <locationY>1151</locationY>
+        <inputReference>ApplicationsToUpdate</inputReference>
     </recordUpdates>
     <start>
         <locationX>56</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Assessment_Date_Changed</targetReference>
+            <targetReference>Renewal_Assessment_Date_Changed</targetReference>
         </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Site__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
         <object>Application__c</object>
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
+    <variables>
+        <name>ApplicationsToUpdate</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Application__c</objectType>
+    </variables>
+    <variables>
+        <name>index</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+        <value>
+            <numberValue>1.0</numberValue>
+        </value>
+    </variables>
 </Flow>

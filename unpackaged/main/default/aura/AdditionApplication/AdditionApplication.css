@@ -1,0 +1,63 @@
+.THIS lightning-input.hiddenComponent.slds-form-element{
+    display: none;
+}
+.THIS .slds-progress{
+    max-width: 60%;
+}
+
+.THIS .membershipAgreementLink{
+    color: #0058a5;
+}
+
+@media (max-height: 800px){
+    .THIS .addUnitScroll {
+    	height: 300px;
+	}
+}
+
+@media (min-height: 900px){
+    .THIS .addUnitScroll {
+    	height: 600px;
+	}
+}
+
+.THIS .text-align-right {
+    text-align: right;
+}
+.THIS article.slds-card{
+    border: 1px solid rgb(221, 219, 218) !important;
+
+}
+.THIS .newUnitForm {
+    /*padding-bottom: 15em !important;*/
+    height: 95%;
+}
+
+.THIS .updateUnitForm{
+    padding-bottom: 10em !important;
+}
+
+.THIS .cardPaymentForm{
+    padding-bottom: 5em !important;
+    height: 100%;
+}
+
+.THIS div.scrollable.addUnitScroll.uiScrollerWrapper{
+    text-align: center;
+}
+
+.THIS .labelWithTooltip{
+    max-width: calc(100% - 2.50rem);
+}
+
+.THIS .referenceHelpMessage{
+    color: red;
+}
+
+.THIS div.container.activeState{
+    height: 100% !important;
+}
+
+.THIS div.baseDefault.forceChatterBasePublisher.forceChatterLightningComponent{
+    height: 100% !important;
+}

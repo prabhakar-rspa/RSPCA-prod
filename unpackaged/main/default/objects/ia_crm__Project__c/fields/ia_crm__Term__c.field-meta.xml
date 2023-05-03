@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ia_crm__Term__c</fullName>
+    <deprecated>false</deprecated>
+    <description>This is a standard field in Accounts Receivable in Intacct, the picklist values must match exactly the name of the terms available in Intacct to map.</description>
+    <externalId>false</externalId>
+    <label>Term</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Net 30</fullName>
+                <default>false</default>
+                <label>Net 30</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Renewal Template Layout</layout>
+        <sections>
+            <label><!-- Contracts Renewal Options --></label>
+            <section>Contracts Renewal Options</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Notification --></label>
+            <section>Notification</section>
+        </sections>
+        <sections>
+            <label><!-- Order Entry --></label>
+            <section>Order Entry</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

@@ -257,6 +257,89 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>objectAPIName</name>
+                    <value>Bulk_Renewal__c</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>parentField</name>
+                    <value>Head_Office__c</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>parentObjectIdField</name>
+                    <value>Id</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListName</name>
+                    <value>Bulk_Renewal</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>showHeader</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>showMenuAction</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>showRefreshButton</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sort</name>
+                    <value>CreatedDate DESC</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>title</name>
+                    <value>Bulk Renewals</value>
+                </componentInstanceProperties>
+                <componentName>CMTD:EnhancedRelatedList</componentName>
+                <identifier>CMTD_EnhancedRelatedList4</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Record_Type_Name__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Head Office</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>defaultNumberofRecordsToDisplay</name>
+                    <value>4</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>defaultRecordType</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>displayType</name>
+                    <value>List</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>filter</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>hideOnNoRecord</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>iconName</name>
+                    <value>standard:case</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>layoutType</name>
+                    <value>1 Column</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>maxNumberofRecordsToDisplay</name>
+                    <value>50</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>newRecord</name>
+                    <value>Standard</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>objectAPIName</name>
                     <value>Account</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
@@ -629,6 +712,13 @@
                 </componentInstanceProperties>
                 <componentName>CMTD:EnhancedRelatedList</componentName>
                 <identifier>CMTD_EnhancedRelatedList3</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.RecordType.DeveloperName}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Site</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <itemInstances>

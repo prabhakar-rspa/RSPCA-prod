@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ia_crm__All</fullName>
+    <columns>NAME</columns>
+    <columns>ia_crm__Intacct_Id__c</columns>
+    <columns>ia_crm__Type__c</columns>
+    <columns>ia_crm__Intacct_Entity__c</columns>
+    <columns>ia_crm__Hidden__c</columns>
+    <columns>CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <label>All</label>
+</ListView>

@@ -1,0 +1,9 @@
+<apex:page standardController="Contact" recordSetVar="contacts" tabStyle="Contact" extensions="ia_crm.SObjectController">
+    <c:SyncInformationModal showDialog="{!showDialog}"
+                           dialogTitle="{!dialogTitle}"
+                           dialogMessage="{!dialogMessage}"
+                           showOkButton="{!showOkButton}"
+                           isVfCall="{!isVfCall}"
+                           backToListView="{!backToListView}"
+                           syncSelectedRecords="{!syncSelectedRecords}" />
+</apex:page>

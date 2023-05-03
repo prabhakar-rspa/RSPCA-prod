@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>asp04__Handler_Name__c</fullName>
+    <deprecated>false</deprecated>
+    <description>The name of the class which should handle the service requests</description>
+    <externalId>false</externalId>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <inlineHelpText>The name of the class which should handle the service requests</inlineHelpText>
+    <label>Handler Name</label>
+    <length>50</length>
+    <required>true</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

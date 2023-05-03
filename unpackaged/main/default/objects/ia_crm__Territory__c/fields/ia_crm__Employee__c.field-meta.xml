@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ia_crm__Employee__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Manager</label>
+    <lookupFilter>
+        <active>false</active>
+        <filterItems>
+            <field>ia_crm__Employees__c.ia_crm__Hidden__c</field>
+            <operation>notEqual</operation>
+            <value>True</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>ia_crm__Employees__c</referenceTo>
+    <relationshipLabel>Territories</relationshipLabel>
+    <relationshipName>Territories</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

@@ -1,123 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <layouts>
         <layout>Certification Body Layout</layout>
         <sections>
@@ -185,6 +67,29 @@
         <sections>
             <label><!-- Suspensions --></label>
             <section>Suspensions</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Intacct Template</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Intacct Fields --></label>
+            <section>Intacct Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Intacct Synchronization --></label>
+            <section>Intacct Synchronization</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
         </sections>
     </layouts>
     <layouts>
@@ -323,6 +228,10 @@
         <label><!-- Update --></label>
         <name>Update</name>
     </quickActions>
+    <quickActions>
+        <label><!-- Create Contract Opportunty --></label>
+        <name>ia_crm__Create_Contract_Opportunty</name>
+    </quickActions>
     <recordTypes>
         <description><!-- Organisations involved in the auditing of food and farming businesses. --></description>
         <label><!-- Certification Body --></label>
@@ -423,4 +332,193 @@
         <label><!-- New_Application --></label>
         <name>New_Application</name>
     </webLinks>
+    <webLinks>
+        <label><!-- Billing --></label>
+        <name>ia_crm__Billing</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Create_Contract_Opportunity --></label>
+        <name>ia_crm__Create_Contract_Opportunity</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Create_Sales_Opportunity --></label>
+        <name>ia_crm__Create_Sales_Opportunity</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Customer_Aging --></label>
+        <name>ia_crm__Customer_Aging</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Customer_Ledger --></label>
+        <name>ia_crm__Customer_Ledger</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Order_Analysis --></label>
+        <name>ia_crm__Order_Analysis</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Override_Intacct_Subscription --></label>
+        <name>ia_crm__Override_Intacct_Subscription</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Sales_Analysis --></label>
+        <name>ia_crm__Sales_Analysis</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Shipment_History --></label>
+        <name>ia_crm__Shipment_History</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Sync_Selected_Records --></label>
+        <name>ia_crm__Sync_Selected_Records</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Sync_to_Intacct --></label>
+        <name>ia_crm__Sync_to_Intacct</name>
+    </webLinks>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 </CustomObjectTranslation>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Other Sales Document Layout</layout>
+        <sections>
+            <label><!-- Bill to/Ship to Information --></label>
+            <section>Bill to/Ship to Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <webLinks>
+        <label><!-- Delete_Other_Sales_Document --></label>
+        <name>ia_crm__Delete_Other_Sales_Document</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Print_Other_Sales_Document --></label>
+        <name>ia_crm__Print_Other_Sales_Document</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- View_Other_Sales_Document --></label>
+        <name>ia_crm__View_Other_Sales_Document</name>
+    </webLinks>
+</CustomObjectTranslation>

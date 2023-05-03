@@ -1,0 +1,6 @@
+<apex:page showHeader="false" applyHtmlTag="false" lightningStylesheets="true" applybodytag="false" doctype="html-5.0" action="{!getPageErrors}" standardController="ia_crm__Intacct_Journal_Entry__c" extensions="ia_crm.ValidationJournalEntryHelper">
+    <apex:form >
+        <c:JournalEntryValidationData validationStatus="{!validationStatus}" 
+                                  recordId="{!recordId}" />
+    </apex:form>
+</apex:page>

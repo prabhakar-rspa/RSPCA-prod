@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ia_crm__Contracts_not_renewed</fullName>
+    <columns>NAME</columns>
+    <columns>ia_crm__Contract_ID__c</columns>
+    <columns>ia_crm__SF_Renewal_Contract_Id__c</columns>
+    <columns>ia_crm__Days_Until_Renewal__c</columns>
+    <columns>ia_crm__Is_Renewal_Processed__c</columns>
+    <columns>ia_crm__Renewal_Errors__c</columns>
+    <columns>ia_crm__Renewal_Template__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>ia_crm__Days_Until_Renewal__c</field>
+        <operation>lessOrEqual</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>ia_crm__Is_Renewal_Processed__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>ia_crm__SF_Renewal_Contract_Id__c</field>
+        <operation>equals</operation>
+    </filters>
+    <label>Contracts not renewed</label>
+</ListView>

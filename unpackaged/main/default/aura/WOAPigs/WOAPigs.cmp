@@ -1,0 +1,671 @@
+<aura:component controller="WOAPigsController">
+    <aura:attribute name="woaPigs" type="object"/>
+    <aura:attribute name="woaSummaryRecord" type="object"/>
+    <aura:attribute name="dynamicDisableField" type="boolean" default="true"/>
+    <aura:attribute name="woaCompleteToggle" type="boolean" default="false"/>
+
+    <aura:attribute name="bodyMarksError" type="String" />
+    <aura:attribute name="manureError" type="String" />
+    <aura:attribute name="legSwellingError" type="String" />
+    <aura:attribute name="skinConditionError" type="String" />
+    <aura:attribute name="shoulderLesionsError" type="String" />
+    <aura:attribute name="vulvaLesionsError" type="String" />
+    <aura:attribute name="tailLesionsError" type="String" />
+    <aura:attribute name="bodyConditionError" type="String" />
+
+    <aura:method name="validate" action="{!c.validateFields}" />
+    <!-- Picklist field values -->
+    
+    <aura:attribute name="anySowsNoseRinged" type="List" />
+    <c:LightningPicklist sObjectName="WOAPigs__c" fieldName="Were_there_any_sows_nose_ringed__c" picklistValuesCombobox="{!v.anySowsNoseRinged}" />
+
+    <aura:attribute name="reasonsForNonCompletionValues" type="List" />
+    <c:LightningPicklist sObjectName="WOAPigs__c" fieldName="Reason_for_non_completion_of_WOA__c" picklistValuesCombobox="{!v.reasonsForNonCompletionValues}" hiddenValues="['recently mixed','recently treated','not correct weight','multiple FF licence holder - more than one WOA generated for visit']"/>
+
+    <aura:attribute name="drySowsOrFinishing" type="List" />
+    <c:LightningPicklist sObjectName="WOAPigs__c" fieldName="Dry_sows_or_Finishing_pigs__c" picklistValuesCombobox="{!v.drySowsOrFinishing}" />
+    <!--aura:attribute name="unitType" type="List" />
+    <c:LightningPicklist sObjectName="WOAPigs__c" fieldName="Unit_Type__c" picklistValuesCombobox="{!v.unitType}" /-->
+
+    <aura:attribute name="predominantBeddingType" type="List" />
+    <c:LightningPicklist sObjectName="WOAPigs__c" fieldName="Predominant_bedding_type__c" picklistValuesCombobox="{!v.predominantBeddingType}" />
+
+    <aura:attribute name="breedingRearingFinishingOptions" type="List" />
+    <aura:attribute name="breedingRearingFinishinSelected" type="List" default="[]"/>
+    <c:LightningPicklist sObjectName="WOAPigs__c" fieldName="Breeding_Rearing_Finishing__c" picklistValuesCombobox="{!v.breedingRearingFinishingOptions}" />
+
+    <aura:attribute name="continuousOrBatch" type="List" />
+    <c:LightningPicklist sObjectName="WOAPigs__c" fieldName="Continuous_or_batch__c" picklistValuesCombobox="{!v.continuousOrBatch}" />
+
+    <aura:attribute name="predominantSubstrate" type="List" />
+    <c:LightningPicklist sObjectName="WOAPigs__c" fieldName="Predominant_substrate__c" picklistValuesCombobox="{!v.predominantSubstrate}" />
+    
+    <aura:attribute name="objectInPen" type="List" />
+    <c:LightningPicklist sObjectName="WOAPigs__c" fieldName="Object_in_pen__c" picklistValuesCombobox="{!v.objectInPen}" />
+
+    <aura:attribute name="objectSuspendedOrGround" type="List" />
+    <c:LightningPicklist sObjectName="WOAPigs__c" fieldName="Object_s_suspended_or_on_ground__c" picklistValuesCombobox="{!v.objectSuspendedOrGround}" />
+
+    <aura:attribute name="tailLengths" type="List" />
+    <c:LightningPicklist sObjectName="WOAPigs__c" fieldName="Tail_lengths__c" picklistValuesCombobox="{!v.tailLengths}" />
+
+    <aura:attribute name="earBittenPresent" type="List" />
+    <c:LightningPicklist sObjectName="WOAPigs__c" fieldName="Ear_Bitten_Pigs_Present__c" picklistValuesCombobox="{!v.earBittenPresent}" />
+
+    <aura:attribute name="flankBittenPresent" type="List" />
+    <c:LightningPicklist sObjectName="WOAPigs__c" fieldName="Flank_bitten_pigs_present__c" picklistValuesCombobox="{!v.flankBittenPresent}" />
+
+    <aura:attribute name="furtherCareReasons" type="List" />
+    <aura:attribute name="furtherCareSelected" type="List" default="[]"/>
+    <c:LightningPicklist sObjectName="WOAPigs__c" fieldName="Reason_for_further_care__c" picklistValuesCombobox="{!v.furtherCareReasons}" />
+
+    <aura:attribute name="predominantBodyRegionsList" type="List" />
+    <aura:attribute name="predominantBodyRegionSelected" type="List" default="[]"/>
+    <c:LightningPicklist sObjectName="WOAPigs__c" fieldName="Predominant_body_region_s_of_body_marks__c" picklistValuesCombobox="{!v.predominantBodyRegionsList}" />
+
+    <aura:attribute name="improvementsMadeList" type="List" />
+    <aura:attribute name="improvementsMadeSelected" type="List" default="[]"/>
+    <c:LightningPicklist sObjectName="WOAPigs__c" fieldName="Improvements_made_in_last_12_month__c" picklistValuesCombobox="{!v.improvementsMadeList}" />
+
+    <aura:attribute name="improvementsPlannedList" type="List" />
+    <aura:attribute name="improvementsPlannedSelected" type="List" default="[]"/>
+    <c:LightningPicklist sObjectName="WOAPigs__c" fieldName="Improvements_planned_for_next_12_months__c" picklistValuesCombobox="{!v.improvementsPlannedList}" />
+
+    <aura:attribute name="wantsAdvice" type="List" />
+    <c:LightningPicklist sObjectName="WOAPigs__c" fieldName="Wants_advice__c" picklistValuesCombobox="{!v.wantsAdvice}" />
+
+    <aura:attribute name="sexedOrUnsexed" type="List" />
+    <c:LightningPicklist sObjectName="WOAPigs__c" fieldName="Are_pens_sexed_or_unsexed__c" picklistValuesCombobox="{!v.sexedOrUnsexed}" />
+
+    <aura:attribute name="unitTypeDrySows" type="List" />
+    <c:LightningPicklist sObjectName="WOAPigs__c" fieldName="Unit_Type_dry_sows__c" picklistValuesCombobox="{!v.unitTypeDrySows}" />
+
+    <aura:attribute name="unitTypeFinishingPigs" type="List" />
+    <c:LightningPicklist sObjectName="WOAPigs__c" fieldName="Unit_type_Finishing_Pigs__c" picklistValuesCombobox="{!v.unitTypeFinishingPigs}" />
+    
+    <aura:attribute name="penDesignDrySows" type="List" />
+    <aura:attribute name="penDesignDrySowsSelected" type="List" default="[]"/>
+    <c:LightningPicklist sObjectName="WOAPigs__c" fieldName="Pen_design_dry_sows__c" picklistValuesCombobox="{!v.penDesignDrySows}" />
+
+    <aura:attribute name="penDesignFinishing" type="List" />
+    <aura:attribute name="penDesignFinishingSelected" type="List" default="[]"/>
+    <c:LightningPicklist sObjectName="WOAPigs__c" fieldName="Pen_design_finishing_pigs__c" picklistValuesCombobox="{!v.penDesignFinishing}" hiddenValues="['N/A']"/>
+    
+     <!-- Initialise the component -->
+     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+     <!-- Methods -->
+     <!--<aura:method name="additionalValidations" action="{!c.additionalValidations}" access="PUBLIC"></aura:method>-->
+     <aura:method name="savePigs" action="{!c.savePigs}" access="PUBLIC"></aura:method>
+
+     <div class="c-container">
+        <!-- Dry sows or finishing pigs -->
+        <aura:if isTrue="{!v.woaSummaryRecord.CompletingWOA__c == 'No'}">
+            <lightning:dualListbox aura:id="field" name="Breeding_Rearing_Finishing" label= "Unit Type" sourceLabel="Available" selectedLabel="Selected" value="{!v.breedingRearingFinishinSelected}" options="{!v.breedingRearingFinishingOptions}" onchange="{! c.handleBreedingRearingFinishingChange }" required="true" disabled="{!v.dynamicDisableField}"/>
+        </aura:if>
+
+        <lightning:combobox aura:id="field" name="drySowsOrFinishing" label="Dry sows or Finishing pigs" value="{!v.woaPigs.Dry_sows_or_Finishing_pigs__c}" options="{! v.drySowsOrFinishing }" required="true" disabled="{!v.dynamicDisableField}"/>
+        <!-- solid line -->
+        <div class="slds-var-p-vertical_small">
+            <div class="solidDivider"></div>                
+        </div>
+
+        <aura:if isTrue="{!v.woaSummaryRecord.CompletingWOA__c == 'Yes'}">
+            <!-- New Unit Section -->
+            <lightning:input aura:id="field" type="checkbox" label="New unit (no certificate in last 12 months)" name="newUnit" checked="{!v.woaPigs.New_unit__c}" disabled="{!v.dynamicDisableField}"/>
+            <lightning:input aura:id="field" type="checkbox" label="Membership transfer (in past 12 months)" name="transfer" checked="{!v.woaPigs.Membership_transfer__c}" disabled="{!v.dynamicDisableField}"/>
+
+
+            <!-- solid line -->
+            <div class="slds-var-p-vertical_small">
+                <div class="solidDivider"></div>                
+            </div>
+
+            <!-- Unit type Section -->
+            <div>
+                <div class="page-section page-header">
+                    <h2 class="slds-text-heading_small">Unit type</h2>
+                </div>
+                <lightning:dualListbox aura:id="field" name="Breeding_Rearing_Finishing" label= "Breeding/Rearing/Finishing" sourceLabel="Available" selectedLabel="Selected" value="{!v.breedingRearingFinishinSelected}" options="{!v.breedingRearingFinishingOptions}" onchange="{! c.handleBreedingRearingFinishingChange }" required="true" disabled="{!v.dynamicDisableField}"/>
+                <aura:if isTrue="{!v.woaPigs.Dry_sows_or_Finishing_pigs__c == 'Dry sows'}">
+                    <lightning:combobox aura:id="field"  label="Are dry sows continuous or batch" value="{!v.woaPigs.Continuous_or_batch__c}" options="{! v.continuousOrBatch }" required="true" disabled="{!v.dynamicDisableField}"/>
+
+                </aura:if>
+                <aura:if isTrue="{!v.woaPigs.Dry_sows_or_Finishing_pigs__c == 'Finishing pigs'}">
+                    <lightning:combobox aura:id="field"  label="Are finishing pigs continuous or batch" value="{!v.woaPigs.Continuous_or_batch__c}" options="{! v.continuousOrBatch }" required="true" disabled="{!v.dynamicDisableField}"/>
+                    <lightning:combobox aura:id="field"  label="Are pens sexed or unsexed" value="{!v.woaPigs.Are_pens_sexed_or_unsexed__c}" options="{! v.sexedOrUnsexed }" required="true" disabled="{!v.dynamicDisableField}"/>
+                </aura:if>
+            </div>
+
+            <!-- solid line divider -->
+            <div class="slds-var-p-vertical_small">
+                <div class="solidDivider"></div>                
+            </div>
+
+            <!-- Numbers Section -->
+            <div>
+                <div class="page-section page-header">
+                    <h2 class="slds-text-heading_small">Numbers</h2>
+                </div>
+                <lightning:input aura:id="field" type="number" name="Total number of pigs on farm" label="Total number of pigs on farm" placeholder="0" value="{!v.woaPigs.Total_number_of_pigs_on_farm__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                <aura:if isTrue="{!v.woaPigs.Dry_sows_or_Finishing_pigs__c == 'Dry sows'}">
+                    <lightning:input aura:id="field" type="number" name="Total number of dry sows on farm" label="Total number of dry sows on farm" placeholder="0" value="{!v.woaPigs.Total_number_of_dry_sows_on_farm__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                </aura:if>
+                <!--lightning:input aura:id="field" type="number" name="Total number of finishing pigs on farm" label="Total number of finishing pigs on farm" placeholder="0" value="{!v.woaPigs.Total_number_of_finishing_pigs_on_farm__c}" required="true" disabled="{!v.dynamicDisableField}"/-->
+
+                
+                <aura:if isTrue="{!v.woaPigs.Dry_sows_or_Finishing_pigs__c == 'Finishing pigs'}">
+                    <lightning:input aura:id="field" type="number" name="Total number of finishing pigs on farm" label="Total number of finishing pigs on farm" placeholder="0" value="{!v.woaPigs.Total_number_of_finishing_pigs_on_farm__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                </aura:if>
+                <lightning:input aura:id="field" type="checkbox" label="Pigs treated (as batch) within the past 7 days" name="Pigs treated (as batch) within the past 7 days" checked="{!v.woaPigs.Pigs_treated_as_batch_within_the_past__c}" disabled="{!v.dynamicDisableField}"/>
+                <lightning:input aura:id="field" type="checkbox" label="Pigs mixed (inc. drawn) within past 7 days" name="Pigs mixed (inc. drawn) within past 7 days" checked="{!v.woaPigs.Pigs_mixed_inc_drawn_within_past_7_da__c}" disabled="{!v.dynamicDisableField}"/>
+            </div>
+
+            <!-- solid line divider -->
+            <div class="slds-var-p-vertical_small">
+                <div class="solidDivider"></div>                
+            </div>
+
+            <!-- Housing type Section -->
+            <div>
+                <div class="page-section page-header">
+                    <h2 class="slds-text-heading_small">Housing type</h2>
+                </div>
+                <aura:if isTrue="{!v.woaPigs.Dry_sows_or_Finishing_pigs__c == 'Dry sows'}">
+                    <lightning:combobox aura:id="field" label="Unit type" value="{!v.woaPigs.Unit_Type_dry_sows__c}" options="{! v.unitTypeDrySows }" required="true" disabled="{!v.dynamicDisableField}"/>
+                    <lightning:dualListbox aura:id="field" label="Pen design" sourceLabel="Available" selectedLabel="Selected" value="{!v.penDesignDrySowsSelected}" options="{!v.penDesignDrySows}" onchange="{! c.handlePenDesignDrySowsChange }" required="true" disabled="{!v.dynamicDisableField}"/>
+                </aura:if>
+                <aura:if isTrue="{!v.woaPigs.Dry_sows_or_Finishing_pigs__c == 'Finishing pigs'}">
+                    <lightning:combobox aura:id="field" label="Unit type" value="{!v.woaPigs.Unit_type_Finishing_Pigs__c}" options="{! v.unitTypeFinishingPigs }" required="true" disabled="{!v.dynamicDisableField}"/>
+                    <lightning:dualListbox aura:id="field" label="Pen design" sourceLabel="Available" selectedLabel="Selected" value="{!v.penDesignFinishingSelected}" required="true" options="{!v.penDesignFinishing}" onchange="{! c.handlePenDesignFinishingChange }" disabled="{!v.dynamicDisableField}"/>
+                </aura:if>
+                <lightning:input aura:id="field" name="Other (specify)" label="Other pen design" value="{!v.woaPigs.Other_pen_design__c}" maxlength="255" disabled="{!v.dynamicDisableField}"/>
+            </div>
+
+            <!-- solid line divider -->
+            <div class="slds-var-p-vertical_small">
+                <div class="solidDivider"></div>                
+            </div>
+
+            <!-- Bedding Section -->
+            <div>
+                <div class="page-section page-header">
+                    <h2 class="slds-text-heading_small">Bedding</h2>
+                </div>
+                <lightning:combobox aura:id="field" name="Predominant bedding type" label="Predominant bedding type" value="{!v.woaPigs.Predominant_bedding_type__c}" options="{! v.predominantBeddingType }" required="true" disabled="{!v.dynamicDisableField}"/>
+                <lightning:input aura:id="field" name="Other_bedding_type" label="Other bedding type" value="{!v.woaPigs.Other_bedding_type__c}" maxlength="255" disabled="{!v.dynamicDisableField}"/>
+            </div>
+
+            <!-- solid line divider -->
+            <div class="slds-var-p-vertical_small">
+                <div class="solidDivider"></div>                
+            </div>
+
+            
+            <aura:if isTrue="{!v.woaPigs.Dry_sows_or_Finishing_pigs__c == 'Dry sows'}">
+                <!-- Mortality for dry sows -->
+                <div>
+                    <div class="page-section page-header">
+                        <h2 class="slds-text-heading_small">Mortality</h2>
+                    </div>
+                    <lightning:input required="true" aura:id="field" type="number"  label="% mortality in last 12 months (not including euthanased)" placeholder="0.0" max="100" step="0.01" value="{!v.woaPigs.Percentage_mortality_in_dry_sows__c}"  disabled="{!v.dynamicDisableField}"/>
+                    <lightning:input aura:id="field" type="checkbox" label="No pig mortality"  checked="{!v.woaPigs.No_pig_mortality_in_dry_sows__c}" disabled="{!v.dynamicDisableField}"/>
+                    <lightning:input required="true" aura:id="field" type="number"  label="% euthanased in last 12 months" placeholder="0.0" max="100" step="0.01" value="{!v.woaPigs.Percentage_euthanased_in_dry_sows__c}"  disabled="{!v.dynamicDisableField}"/>
+                    <lightning:input aura:id="field" type="checkbox" label="No pigs euthanased"  checked="{!v.woaPigs.No_pig_euthanased_in_dry_sows__c}" disabled="{!v.dynamicDisableField}"/>
+                    <lightning:textarea required="true" aura:id="field"  label="Predominant mortality reason in last 12 months" value="{!v.woaPigs.Predominant_reason_dry_sows__c}"  maxlength="32768" messageWhenTooLong="A maximum of 32768 characters are allowed." disabled="{!v.dynamicDisableField}" />
+                </div>
+
+                <!-- solid line divider -->
+                <div class="slds-var-p-vertical_small">
+                    <div class="solidDivider"></div>                
+                </div>
+            </aura:if>
+
+            <aura:if isTrue="{!v.woaPigs.Dry_sows_or_Finishing_pigs__c == 'Finishing pigs'}">
+                <aura:if isTrue="{!v.woaPigs.Continuous_or_batch__c == 'Continuous'}">
+                    <!-- Mortality - continuous production (finishing)-->
+                    <div>
+                        <div class="page-section page-header">
+                            <h2 class="slds-text-heading_small">Mortality - continuous production</h2>
+                        </div>
+                        <lightning:input required="true" aura:id="field" type="number"  label="Percentage mortality in last 12 months (not including euthanased)" placeholder="0.0" max="100" step="0.01" value="{!v.woaPigs.Percentage_mortality_in_continuous__c}"  disabled="{!v.dynamicDisableField}"/>
+                        <lightning:input aura:id="field" type="checkbox" label="No pig mortality in last 12 months"  checked="{!v.woaPigs.No_pig_mortality_in_continuous__c}" disabled="{!v.dynamicDisableField}"/>
+                        <lightning:input required="true" aura:id="field" type="number"  label="Percentage euthanased in last 12 months" placeholder="0.0" max="100" step="0.01" value="{!v.woaPigs.Percentage_euthanased_mortalitycontinous__c}"  disabled="{!v.dynamicDisableField}"/>
+                        <lightning:input aura:id="field" type="checkbox" label="No pig euthanased in last 12 months"  checked="{!v.woaPigs.No_pig_euthanased_in_continuous__c}" disabled="{!v.dynamicDisableField}"/>
+                        <lightning:textarea required="true" aura:id="field"  label="Predominant mortality reason in last 12 months" value="{!v.woaPigs.Predominant_reason_continuous__c}"  maxlength="32768" messageWhenTooLong="A maximum of 32768 characters are allowed." disabled="{!v.dynamicDisableField}" />
+                    </div>
+                </aura:if>
+
+                <aura:if isTrue="{!v.woaPigs.Continuous_or_batch__c == 'Batch'}">
+                    <!-- Mortality - continuous production (finishing)-->
+                    <div>
+                        <div class="page-section page-header">
+                            <h2 class="slds-text-heading_small">Mortality - batch production</h2>
+                        </div>
+                        <lightning:input required="true" aura:id="field" type="number"  label="Percentage mortality in current batch (not including euthanased)" placeholder="0.0" max="100" step="0.01" value="{!v.woaPigs.Percentage_mortality_not_including_euth__c}"  disabled="{!v.dynamicDisableField}"/>
+                        <lightning:input aura:id="field" type="checkbox" label="No pig mortality in current batch"  checked="{!v.woaPigs.No_pig_mortality__c}" disabled="{!v.dynamicDisableField}"/>
+                        <lightning:input required="true" aura:id="field" type="number"  label="Percentage euthanased in current batch" placeholder="0.0" max="100" step="0.01" value="{!v.woaPigs.Percentage_euthanased_mortality__c}"  disabled="{!v.dynamicDisableField}"/>
+                        <lightning:input aura:id="field" type="checkbox" label="No pig euthanased in current batch"  checked="{!v.woaPigs.No_pig_euthanased__c}" disabled="{!v.dynamicDisableField}"/>
+                        <lightning:textarea required="true" aura:id="field"  label="Predominant mortality reason in current batch" value="{!v.woaPigs.Predominant_reason__c}"  maxlength="32768" messageWhenTooLong="A maximum of 32768 characters are allowed." disabled="{!v.dynamicDisableField}" />
+
+                        <lightning:input required="true" aura:id="field" type="number"  label="Average percentage mortality in previous two batches (not including euthanased)" placeholder="0.0" max="100" step="0.01" value="{!v.woaPigs.Average_mortality_prev_2_batch_no_euth__c}"  disabled="{!v.dynamicDisableField}"/>
+                        <lightning:input required="true" aura:id="field" type="number"  label="Average percentage euthanased in previous two batches" placeholder="0.0" max="100" step="0.01" value="{!v.woaPigs.Average_mortality_prev_2_batch__c}"  disabled="{!v.dynamicDisableField}"/>
+                        <lightning:textarea required="true" aura:id="field"  label="Predominant mortality reason in previous two batches" value="{!v.woaPigs.Predominant_mort_reason_prev_2_batch__c}"  maxlength="32768" messageWhenTooLong="A maximum of 32768 characters are allowed." disabled="{!v.dynamicDisableField}" />
+
+                    </div>
+                </aura:if>
+                
+
+                <!-- solid line divider -->
+                <div class="slds-var-p-vertical_small">
+                    <div class="solidDivider"></div>                
+                </div>
+
+                <!-- Weights -->
+                <div>
+                    <div class="page-section page-header">
+                        <h2 class="slds-text-heading_small">Weights</h2>
+                    </div>
+                    <lightning:input aura:id="field" type="date" label="Batch start date" value="{!v.woaPigs.Batch_start_date__c}"  disabled="{!v.dynamicDisableField}"/>
+                    <lightning:input aura:id="field" type="number"  label="Start age (weeks)" placeholder="0"  value="{!v.woaPigs.Start_age__c}"  disabled="{!v.dynamicDisableField}"/>
+                    <lightning:input aura:id="field" type="number"  label="Start weight (kg)" placeholder="0"  value="{!v.woaPigs.Start_weight__c}"  disabled="{!v.dynamicDisableField}"/>
+                    <lightning:input aura:id="field" type="number"  label="End weight (kg)" placeholder="0"  value="{!v.woaPigs.End_weight__c}"  disabled="{!v.dynamicDisableField}"/>
+
+                </div>
+
+                <!-- solid line divider -->
+                <div class="slds-var-p-vertical_small">
+                    <div class="solidDivider"></div>                
+                </div>
+            </aura:if>
+
+            <!-- Pig numbers Section -->
+            <div>
+                <div class="page-section page-header">
+                    <h2 class="slds-text-heading_small">Pig numbers</h2>
+                </div>
+                <!--aura:if isTrue="{!v.woaPigs.Dry_sows_or_Finishing_pigs__c == 'Finishing pigs'}">
+                    <lightning:input aura:id="field" type="number"  label="Number of pens with pigs 30 - 50kg" placeholder="0" value="{!v.woaPigs.Number_of_pens_with_pigs_30_50kg__c}"  required="true" disabled="{!v.dynamicDisableField}"/>
+                </aura:if-->
+                <lightning:input aura:id="field" type="number" name="Total number of pigs in pens 1 - 5" label="Total number of pigs in pens 1 - 5" placeholder="0" value="{!v.woaPigs.Total_number_of_pigs_in_pens_1_5__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                <lightning:input aura:id="field" type="number" name="Number of pigs assessed in pens 1 - 5" label="Number of pigs assessed in pens 1 - 5" placeholder="0" value="{!v.woaPigs.Number_of_pigs_assessed_in_pens_1_5__c}"  required="true" disabled="{!v.dynamicDisableField}" onchange="{!c.handleNumberOfPigChange}"/>
+
+            </div>
+
+            <!-- solid line divider -->
+            <div class="slds-var-p-vertical_small">
+                <div class="solidDivider"></div>                
+            </div>
+
+            <!-- Pen enrichment Section -->
+            <div>
+                <div class="page-section page-header">
+                    <h2 class="slds-text-heading_small">Pen enrichment</h2>
+                </div>
+                <lightning:combobox aura:id="field" name="Predominant substrate" label="Predominant substrate" value="{!v.woaPigs.Predominant_substrate__c}" options="{! v.predominantSubstrate }" required="true" disabled="{!v.dynamicDisableField}"/>
+                <lightning:input aura:id="field" name="otherSubstrate" label="Other substrate" value="{!v.woaPigs.Other_substrate__c}" maxlength="255" disabled="{!v.dynamicDisableField}"/>
+                <lightning:combobox aura:id="field" name="Object in pen" label="Object in pen" value="{!v.woaPigs.Object_in_pen__c}" options="{! v.objectInPen }" required="true" disabled="{!v.dynamicDisableField}"/>
+                <lightning:input aura:id="field" name="Other_object_in_pen" label="Other object in pen" value="{!v.woaPigs.Other_object_in_pen__c}" maxlength="255" disabled="{!v.dynamicDisableField}"/>
+                <lightning:input aura:id="field" type="number" name="Average_number_of_objects_per_pen" label="Average number of objects per pen (assessed in pens 1-5)" placeholder="0" step="0.01" value="{!v.woaPigs.Average_number_of_objects_per_pen__c}" required="true" disabled="{!v.dynamicDisableField}"/>                
+                <lightning:combobox aura:id="field" name="Object(s) suspended or on ground" label="Object(s) suspended or on ground" value="{!v.woaPigs.Object_s_suspended_or_on_ground__c}" options="{! v.objectSuspendedOrGround }" disabled="{!v.dynamicDisableField}"/>
+                <lightning:input aura:id="field" type="number" name="Number_of_pigs_manipulating_enrichmen" label="Number of pigs manipulating enrichment (assessed in pens 1 - 5)" placeholder="0" value="{!v.woaPigs.Number_of_pigs_manipulating_enrichmen__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                <lightning:input aura:id="field" type="number" name="pigs_manipulating_other_than_enrichment" label="Number of pigs manipulating something other than enrichment (assessed in pens 1 - 5)" placeholder="0" value="{!v.woaPigs.pigs_manipulating_other_than_enrichment__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                <aura:if isTrue="{!v.woaPigs.Dry_sows_or_Finishing_pigs__c == 'Dry sows'}">
+                    <lightning:input aura:id="field" type="number" name="Number_of_pigs_stone_chewing" label="Number of pigs stone chewing (assessed in pens 1 - 5)" placeholder="0" value="{!v.woaPigs.Number_of_pigs_stone_chewing__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                </aura:if>
+
+            </div>
+
+            <!-- solid line divider -->
+            <div class="slds-var-p-vertical_small">
+                <div class="solidDivider"></div>                
+            </div>
+
+            <!-- Tail docking Section -->
+            <div>
+                <div class="page-section page-header">
+                    <h2 class="slds-text-heading_small">Tail docking</h2>
+                </div>
+                <lightning:radioGroup aura:id="field" name="tailLengths" label="Tail lengths" value="{!v.woaPigs.Tail_lengths__c}" options="{! v.tailLengths }"  type="radio" required="true" disabled="{!v.dynamicDisableField}"/>
+            </div>
+
+            <!-- solid line divider -->
+            <div class="slds-var-p-vertical_small">
+                <div class="solidDivider"></div>                
+            </div>
+
+            <aura:if isTrue="{!v.woaPigs.Dry_sows_or_Finishing_pigs__c == 'Dry sows'}">
+                <!-- Nose ringing -->
+                <div>
+                    <div class="page-section page-header">
+                        <h2 class="slds-text-heading_small">Nose ringing</h2>
+                    </div>
+                    <lightning:radioGroup aura:id="field" name="Were there any sows nose ringed?" label="Were there any sows nose ringed?" value="{!v.woaPigs.Were_there_any_sows_nose_ringed__c}" options="{! v.anySowsNoseRinged }"  type="button" required="true" disabled="{!v.dynamicDisableField}"/>
+                </div>
+
+                <!-- solid line divider -->
+                <div class="slds-var-p-vertical_small">
+                    <div class="solidDivider"></div>                
+                </div>
+            </aura:if>
+
+            <!-- Ear biting Section -->
+            <div>
+                <div class="page-section page-header">
+                    <h2 class="slds-text-heading_small">Ear biting</h2>
+                </div>
+                <lightning:radioGroup aura:id="field" name="earBitten" label="Were any ear bitten pigs present?" options="{! v.earBittenPresent }" value="{!v.woaPigs.Ear_Bitten_Pigs_Present__c}" type="button" required="true" disabled="{!v.dynamicDisableField}"/>
+            </div>
+
+            <!-- solid line divider -->
+            <div class="slds-var-p-vertical_small">
+                <div class="solidDivider"></div>                
+            </div>
+
+            <!-- Flank biting Section -->
+            <div>
+                <div class="page-section page-header">
+                    <h2 class="slds-text-heading_small">Flank biting</h2>
+                </div>
+                <lightning:radioGroup aura:id="field" name="flankBitten" label="Were any flank bitten pigs present?" options="{! v.flankBittenPresent }" value="{!v.woaPigs.Flank_bitten_pigs_present__c}" type="button" required="true" disabled="{!v.dynamicDisableField}"/>
+            </div>
+
+            <!-- solid line divider -->
+            <div class="slds-var-p-vertical_small">
+                <div class="solidDivider"></div>                
+            </div>
+
+            <!-- Further care -->
+            <div>
+                <div class="page-section page-header">
+                    <h2 class="slds-text-heading_small">Further care</h2>
+                </div>
+                <lightning:input aura:id="field" type="number" name="Pigs_needing_further_care" label="Total number of pigs needing further care" placeholder="0" value="{!v.woaPigs.Pigs_needing_further_care__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                <lightning:dualListbox aura:id="field" name="Reason_for_further_care" label= "Reasons for further care" sourceLabel="Available" selectedLabel="Selected" value="{!v.furtherCareSelected}" options="{!v.furtherCareReasons}" onchange="{! c.handleFurtherCareReasonsChange }" disabled="{!v.dynamicDisableField}"/>
+                <lightning:input aura:id="field" name="otherFurtherCare" label="Other reasons for further care" value="{!v.woaPigs.Further_care_other__c}" maxlength="255" disabled="{!v.dynamicDisableField}"/>
+            </div>
+
+            <!-- solid line divider -->
+            <div class="slds-var-p-vertical_small">
+                <div class="solidDivider"></div>                
+            </div>
+
+            <!-- Hospital Pens -->
+            <div>
+                <div class="page-section page-header">
+                    <h2 class="slds-text-heading_small">Hospital pens</h2>
+                </div>
+                <lightning:input aura:id="field" type="number" name="Number of lame pigs" label="Number of lame pigs" placeholder="0" value="{!v.woaPigs.Number_of_lame_pigs_hospital_pen__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                <lightning:input aura:id="field" type="number" name="Number of skin conditions" label="Number with skin conditions" placeholder="0" value="{!v.woaPigs.Number_of_skin_conditions__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                <aura:if isTrue="{!v.woaPigs.Dry_sows_or_Finishing_pigs__c == 'Dry sows'}">
+                    <lightning:input aura:id="field" type="number" name="Number of leg swellings" label="Number with leg swellings" placeholder="0" value="{!v.woaPigs.Number_of_leg_swellings__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                    <lightning:input aura:id="field" type="number" name="Number of thin pigs" label="Number of thin pigs" placeholder="0" value="{!v.woaPigs.Number_of_thin_pigs__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                    <lightning:input aura:id="field" type="number" name="Number of shoulder lesions" label="Number with shoulder lesions" placeholder="0" value="{!v.woaPigs.Number_of_shoulder_lesions__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                </aura:if>
+                <lightning:input aura:id="field" type="number" name="Number of body wounds" label="Number with body wounds" placeholder="0" value="{!v.woaPigs.Number_of_body_wounds__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                <aura:if isTrue="{!v.woaPigs.Dry_sows_or_Finishing_pigs__c == 'Dry sows'}">
+                    <lightning:input aura:id="field" type="number" name="Number of vulva lesions" label="Number with vulva lesions" placeholder="0" value="{!v.woaPigs.Number_of_vulva_lesions__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                </aura:if>
+                <lightning:input aura:id="field" type="number" name="Number of tail bitten pigs" label="Number of tail bitten pigs" placeholder="0" value="{!v.woaPigs.Number_of_tail_bitten__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                <lightning:input aura:id="field" type="number" name="Number of traumatic injury" label="Number with traumatic injury" placeholder="0" value="{!v.woaPigs.Number_of_traumatic_injury__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                <aura:if isTrue="{!v.woaPigs.Dry_sows_or_Finishing_pigs__c == 'Dry sows'}">
+                    <lightning:input aura:id="field" type="number" name="Number of uterine/vaginal prolapse" label="Number with uterine/vaginal prolapse" placeholder="0" value="{!v.woaPigs.Number_of_uterine_vaginal_prolapse__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                </aura:if>
+                <aura:if isTrue="{!v.woaPigs.Dry_sows_or_Finishing_pigs__c == 'Finishing pigs'}">
+                    <lightning:input aura:id="field" type="number" name="Number of umbilical hernia" label="Number with umbilical hernia" placeholder="0" value="{!v.woaPigs.Number_of_umbilical_hernia__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                </aura:if>
+
+                <lightning:input aura:id="field" type="number" name="Number of rectal prolapse" label="Number with rectal prolapse" placeholder="0" value="{!v.woaPigs.Number_of_rectal_prolapse__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                <aura:if isTrue="{!v.woaPigs.Dry_sows_or_Finishing_pigs__c == 'Finishing pigs'}">
+                    <lightning:input aura:id="field" type="number" name="Number of smalls" label="Number of smalls" placeholder="0" value="{!v.woaPigs.Number_of_smalls__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                </aura:if>
+
+                <lightning:input aura:id="field" type="number" name="Number other" label="Number other" placeholder="0" value="{!v.woaPigs.Number_other_hospital_pens__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                <lightning:input aura:id="field" name="Specify other" label="Specify other" value="{!v.woaPigs.Specify_other_hospital_pens__c}" maxlength="255" disabled="{!v.dynamicDisableField}"/>
+            </div>
+
+            <!-- solid line divider -->
+            <div class="slds-var-p-vertical_small">
+                <div class="solidDivider"></div>                
+            </div>
+
+            <!-- Body marks-->
+            <div>
+                <div class="page-section page-header">
+                    <h2 class="slds-text-heading_small">Body marks</h2>
+                </div>
+                <lightning:input aura:id="field" type="number" label="Number with body marks - Score 0" placeholder="0" value="{!v.woaPigs.Number_of_body_marks_Score_0__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                <lightning:input aura:id="field" type="number" label="Number with body marks - Score 1" placeholder="0" value="{!v.woaPigs.Number_of_body_marks_Score_1__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                <lightning:input aura:id="field" type="number" label="Number with body marks - Score 2" placeholder="0" value="{!v.woaPigs.Number_of_body_marks_Score_2__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                <lightning:input aura:id="field" type="number" label="Too dirty to assess" placeholder="0" value="{!v.woaPigs.Too_dirty_to_assess_body_mark__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                <lightning:dualListbox aura:id="field"  label= "Predominant body region(s) of body marks" sourceLabel="Available" selectedLabel="Selected" value="{!v.predominantBodyRegionSelected}" options="{!v.predominantBodyRegionsList}" onchange="{! c.handlePredominantBodyRegionsBodyMarkChange }" disabled="{!v.dynamicDisableField}"/>
+                
+            </div>
+            <aura:if isTrue="{!!empty(v.bodyMarksError)}">
+                <div class="slds-text-color_error slds-form-element__help">{!v.bodyMarksError}</div>
+            </aura:if>
+            <!-- solid line divider -->
+            <div class="slds-var-p-vertical_small">
+                <div class="solidDivider"></div>                
+            </div>
+
+            <aura:if isTrue="{!v.woaPigs.Dry_sows_or_Finishing_pigs__c == 'Dry sows'}">
+                <!-- Shoulder lesions -->
+                <div>
+                    <div class="page-section page-header">
+                        <h2 class="slds-text-heading_small">Shoulder lesions</h2>
+                    </div>
+                    <lightning:input aura:id="field" type="number" label="Number with shoulder lesions - Score 0" placeholder="0" value="{!v.woaPigs.Number_with_shoulder_lesions_Score_0__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                    <lightning:input aura:id="field" type="number" label="Number with shoulder lesions - Score 1" placeholder="0" value="{!v.woaPigs.Number_with_shoulder_lesions_Score_1__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                    <lightning:input aura:id="field" type="number" label="Number with shoulder lesions - Score 2" placeholder="0" value="{!v.woaPigs.Number_with_shoulder_lesions_Score_2__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                    <lightning:input aura:id="field" type="number" label="Too dirty to assess" placeholder="0" value="{!v.woaPigs.Too_dirty_to_assess_shoulder_lesions__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                    
+                </div>
+                <aura:if isTrue="{!!empty(v.shoulderLesionsError)}">
+                    <div class="slds-text-color_error slds-form-element__help">{!v.shoulderLesionsError}</div>
+                    </aura:if>
+                <!-- solid line divider -->
+                <div class="slds-var-p-vertical_small">
+                    <div class="solidDivider"></div>                
+                </div>
+
+                <!-- Vulva lesions -->
+                <div>
+                    <div class="page-section page-header">
+                        <h2 class="slds-text-heading_small">Vulva lesions</h2>
+                    </div>
+                    <lightning:input aura:id="field" type="number" label="Number with vulva lesion - Score 0" placeholder="0" value="{!v.woaPigs.Number_with_vulva_lesion_Score_0__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                    <lightning:input aura:id="field" type="number" label="Number with vulva lesion - Score 1" placeholder="0" value="{!v.woaPigs.Number_with_vulva_lesion_Score_1__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                    <lightning:input aura:id="field" type="number" label="Number with vulva lesion - Score 2" placeholder="0" value="{!v.woaPigs.Number_with_vulva_lesion_Score_2__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                    <lightning:input aura:id="field" type="number" label="Too dirty to assess" placeholder="0" value="{!v.woaPigs.Too_dirty_to_assess_vulva_lesions__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                    
+                </div>
+                <aura:if isTrue="{!!empty(v.vulvaLesionsError)}">
+                    <div class="slds-text-color_error slds-form-element__help">{!v.vulvaLesionsError}</div>
+                    </aura:if>
+                <!-- solid line divider -->
+                <div class="slds-var-p-vertical_small">
+                    <div class="solidDivider"></div>                
+                </div>
+            </aura:if>
+
+            <!-- Manure on body -->
+            <div>
+                <div class="page-section page-header">
+                    <h2 class="slds-text-heading_small">Manure on body</h2>
+                </div>
+                <lightning:input aura:id="field" type="number" label="Number with manure - Score 0" placeholder="0" value="{!v.woaPigs.Number_with_manure_Score_0__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                <lightning:input aura:id="field" type="number" label="Number with manure - Score 1" placeholder="0" value="{!v.woaPigs.Number_with_manure_Score_1__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                <lightning:input aura:id="field" type="number" label="Number with manure - Score 2" placeholder="0" value="{!v.woaPigs.Number_with_manure_Score_2__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                <lightning:input aura:id="field" type="number" label="Too dirty to assess" placeholder="0" value="{!v.woaPigs.Too_dirty_to_assess_Manure__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                
+            </div>
+            <aura:if isTrue="{!!empty(v.manureError)}">
+                <div class="slds-text-color_error slds-form-element__help">{!v.manureError}</div>
+            </aura:if>
+            <!-- solid line divider -->
+            <div class="slds-var-p-vertical_small">
+                <div class="solidDivider"></div>                
+            </div>
+
+            <!-- Leg swellings -->
+            <div>
+                <div class="page-section page-header">
+                    <h2 class="slds-text-heading_small">Leg swellings</h2>
+                </div>
+                <lightning:input aura:id="field" type="number" label="Number with leg swelling- Score 0" placeholder="0" value="{!v.woaPigs.Number_with_leg_swelling_Score_0__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                <lightning:input aura:id="field" type="number" label="Number with leg swelling- Score 1" placeholder="0" value="{!v.woaPigs.Number_with_leg_swelling_Score_1__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                <lightning:input aura:id="field" type="number" label="Number with leg swelling- Score 2" placeholder="0" value="{!v.woaPigs.Number_with_leg_swelling_Score_2__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                
+            </div>
+            <aura:if isTrue="{!!empty(v.legSwellingError)}">
+                <div class="slds-text-color_error slds-form-element__help">{!v.legSwellingError}</div>
+            </aura:if>
+            <!-- solid line divider -->
+            <div class="slds-var-p-vertical_small">
+                <div class="solidDivider"></div>                
+            </div>
+            
+            <aura:if isTrue="{!v.woaPigs.Dry_sows_or_Finishing_pigs__c == 'Finishing pigs'}">
+                 <!-- Leg swellings -->
+                <div>
+                    <div class="page-section page-header">
+                        <h2 class="slds-text-heading_small">Tail lesions</h2>
+                    </div>
+                    <lightning:input aura:id="field" type="number" label="Number with tail lesion - Score 0" placeholder="0" value="{!v.woaPigs.Number_of_tail_lesion_Score_0__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                    <lightning:input aura:id="field" type="number" label="Number with tail lesion - Score 1" placeholder="0" value="{!v.woaPigs.Number_of_tail_lesion_Score_1__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                    <lightning:input aura:id="field" type="number" label="Number with tail lesion - Score 2" placeholder="0" value="{!v.woaPigs.Number_of_tail_lesion_Score_2__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                    <lightning:input aura:id="field" type="number" label="Too dirty to assess" placeholder="0" value="{!v.woaPigs.Too_dirty_to_assess_Tail_lesions__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                    
+                </div>
+                <aura:if isTrue="{!!empty(v.tailLesionsError)}">
+                    <div class="slds-text-color_error slds-form-element__help">{!v.tailLesionsError}</div>
+                </aura:if>
+                <!-- solid line divider -->
+                <div class="slds-var-p-vertical_small">
+                    <div class="solidDivider"></div>                
+                </div>
+            </aura:if>
+
+            <!-- Skin conditions -->
+            <div>
+                <div class="page-section page-header">
+                    <h2 class="slds-text-heading_small">Skin condition</h2>
+                </div>
+                <lightning:input aura:id="field" type="number" label="Number with skin condition - Score 0" placeholder="0" value="{!v.woaPigs.Number_with_skin_condition_Score_0__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                <lightning:input aura:id="field" type="number" label="Number with skin condition - Score 1" placeholder="0" value="{!v.woaPigs.Number_with_skin_condition_Score_1__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                <lightning:input aura:id="field" type="number" label="Number with skin condition - Score 2" placeholder="0" value="{!v.woaPigs.Number_with_skin_condition_Score_2__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                <lightning:input aura:id="field" type="number" label="Too dirty to assess" placeholder="0" value="{!v.woaPigs.Too_dirty_to_assess_skin_condition__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                
+            </div>
+            <aura:if isTrue="{!!empty(v.skinConditionError)}">
+                <div class="slds-text-color_error slds-form-element__help">{!v.skinConditionError}</div>
+            </aura:if>
+            <!-- solid line divider -->
+            <div class="slds-var-p-vertical_small">
+                <div class="solidDivider"></div>                
+            </div>
+
+            <!-- Lameness -->
+            <div>
+                <div class="page-section page-header">
+                    <h2 class="slds-text-heading_small">Lameness</h2>
+                </div>
+                <lightning:input aura:id="field" type="number" label="Number of lame pigs" placeholder="0" value="{!v.woaPigs.Number_of_lame_pigs_lameness__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+            </div>
+
+            <!-- solid line divider -->
+            <div class="slds-var-p-vertical_small">
+                <div class="solidDivider"></div>                
+            </div>
+
+            <aura:if isTrue="{!v.woaPigs.Dry_sows_or_Finishing_pigs__c == 'Dry sows'}">
+                <!-- Body condition -->
+                <div>
+                    <div class="page-section page-header">
+                        <h2 class="slds-text-heading_small">Body condition</h2>
+                    </div>
+                    <lightning:input aura:id="field" type="number" label="Number with body condition - Thin" placeholder="0" value="{!v.woaPigs.Number_with_body_condition_Thin__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                    <lightning:input aura:id="field" type="number" label="Number with body condition - Moderate" placeholder="0" value="{!v.woaPigs.Number_with_body_condition_Moderate__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                    <lightning:input aura:id="field" type="number" label="Number with body condition - Fat" placeholder="0" value="{!v.woaPigs.Number_with_body_condition_Fat__c}" required="true" disabled="{!v.dynamicDisableField}"/>
+                    
+                </div>
+                <aura:if isTrue="{!!empty(v.bodyConditionError)}">
+                    <div class="slds-text-color_error slds-form-element__help">{!v.bodyConditionError}</div>
+                </aura:if>
+                <!-- solid line divider -->
+                <div class="slds-var-p-vertical_small">
+                    <div class="solidDivider"></div>                
+                </div>
+            </aura:if>
+
+            <!-- Changes -->
+            <div>
+                <div class="page-section page-header">
+                    <h2 class="slds-text-heading_small">Changes</h2>
+                </div>
+                <!--lightning:dualListbox aura:id="field" label= "Improvements made in last 12 months" sourceLabel="Available" selectedLabel="Selected" value="{!v.improvementsMadeSelected}" options="{!v.improvementsMadeList}" onchange="{! c.handleImprovementsMadeChange }" disabled="{!v.dynamicDisableField}"/-->
+                <lightning:textarea aura:id="field"  label="What changes to improve welfare have been made in the last 12 months?" value="{!v.woaPigs.Detail_of_improvements_in_last12_months__c}"  maxlength="32768" messageWhenTooLong="A maximum of 32768 characters are allowed." required="true" disabled="{!v.dynamicDisableField}" />
+                <!--lightning:dualListbox aura:id="field" label= "Improvements planned for next 12 month" sourceLabel="Available" selectedLabel="Selected" value="{!v.improvementsPlannedSelected}" options="{!v.improvementsPlannedList}" onchange="{! c.handleImprovementsPlannedChange }" disabled="{!v.dynamicDisableField}"/-->
+                <lightning:textarea aura:id="field"  label="What changes to improve welfare are planned for the next 12 months?" value="{!v.woaPigs.Details_Improvement_Planned_next_12_mont__c}"  maxlength="32768" messageWhenTooLong="A maximum of 32768 characters are allowed." required="true" disabled="{!v.dynamicDisableField}" />
+
+            </div>
+
+            <!-- solid line divider -->
+            <div class="slds-var-p-vertical_small">
+                <div class="solidDivider"></div>                
+            </div>
+
+            <!-- General Comments -->
+            <div>
+                <div class="page-section page-header">
+                    <h2 class="slds-text-heading_small">General comments</h2>
+                </div>
+                <lightning:textarea aura:id="field"  label="Comments" value="{!v.woaPigs.Comments__c}"  maxlength="32768" messageWhenTooLong="A maximum of 32768 characters are allowed." disabled="{!v.dynamicDisableField}" />
+                <lightning:textarea aura:id="field"  label="Any Responsive Action to be Taken?" value="{!v.woaPigs.Any_Responsive_Action_to_be_Taken__c}"  maxlength="32768" messageWhenTooLong="A maximum of 32768 characters are allowed." disabled="{!v.dynamicDisableField}" />
+            </div>
+
+            <!-- solid line divider -->
+            <div class="slds-var-p-vertical_small">
+                <div class="solidDivider"></div>                
+            </div>
+
+            <!-- Advice -->
+            <div>
+                <div class="page-section page-header">
+                    <h2 class="slds-text-heading_small">Advice</h2>
+                </div>
+                <lightning:radioGroup aura:id="field" name="wantAdvice" label="Wants advice" options="{! v.wantsAdvice }" value="{!v.woaPigs.Wants_advice__c}" type="button" disabled="{!v.dynamicDisableField}"/>
+                <lightning:textarea aura:id="field"  label="Preferred contact details" value="{!v.woaPigs.Preferred_contact_details__c}"  maxlength="32768" messageWhenTooLong="A maximum of 32768 characters are allowed." disabled="{!v.dynamicDisableField}" />
+            </div>
+
+
+            <!-- solid line divider -->
+            <div class="slds-var-p-vertical_small">
+                <div class="solidDivider"></div>                
+            </div>
+
+            <!-- Submit WOA section-->
+            <div>
+                <lightning:input type="toggle" label="Activate toggle and click 'Save' to submit WOA" name="completeWOA" checked="{!v.woaCompleteToggle}" messageToggleActive="Submit WOA" messageToggleInactive="WOA not submitted" disabled="{!v.dynamicDisableField}"/>
+            </div>
+        </aura:if>
+        <!-- Non Completion Section -->
+        <aura:if isTrue="{!v.woaSummaryRecord.CompletingWOA__c == 'No'}">
+            <lightning:combobox aura:id="field" name="reasonForNonCompletion" label="Reason for non-completion of WOA?" value="{!v.woaPigs.Reason_for_non_completion_of_WOA__c}" options="{! v.reasonsForNonCompletionValues }" required="true" disabled="{!v.dynamicDisableField}"/>
+            <!--Hidden field as atleast 2 fields is required for validation -->
+            <lightning:input aura:id="field" label="hiddenValidationField" value="" class="hiddenComponent"/>
+            <aura:if isTrue="{!v.woaPigs.Reason_for_non_completion_of_WOA__c == 'other'}">
+                <lightning:textarea aura:id="field" name="otherNonCompletionReason" value="{!v.woaPigs.Other_non_completion_reason__c}" placeholder="Enter other reason" label="If other, please specify" maxlength="1000" messageWhenTooLong="A maximum of 1000 characters are allowed."  disabled="{!v.dynamicDisableField}" />
+            </aura:if>
+            <div class="slds-var-p-vertical_small">
+                <div class="solidDivider"></div>                
+            </div>
+            <!-- Submit WOA section-->
+            <div>
+                <lightning:input type="toggle" label="Activate toggle and click 'Save' to submit WOA" name="completeWOA" checked="{!v.woaCompleteToggle}" messageToggleActive="Submit WOA" messageToggleInactive="WOA not submitted" disabled="{!v.dynamicDisableField}"/>
+            </div>
+        </aura:if>
+    </div>
+ 
+</aura:component>

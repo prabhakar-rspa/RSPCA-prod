@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>SITE</field>
+    </columns>
+    <columns>
+        <field>Account.Membership_Expiry_Date__c</field>
+    </columns>
+    <columns>
+        <field>Derogation_Exception__c.Standard_number__c</field>
+    </columns>
+    <columns>
+        <field>Derogation_Exception__c.Start_Date__c</field>
+    </columns>
+    <columns>
+        <field>Derogation_Exception__c.Granted_by__c</field>
+    </columns>
+    <columns>
+        <field>Derogation_Exception__c.Granted_Date__c</field>
+    </columns>
+    <columns>
+        <field>Derogation_Exception__c.Derogation_Exception__c</field>
+    </columns>
+    <description>Includes sites with a derogation or exception</description>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Derogation_Exception__c.Stage__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <field>Derogation_Exception__c.End_Date__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Derogations and Exceptions-MST</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>AccountCustomEntity$Derogation_Exception__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>DUE_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

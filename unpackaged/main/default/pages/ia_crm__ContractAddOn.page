@@ -1,0 +1,161 @@
+<apex:page standardController="Contract" extensions="ia_crm.AddOnController" >
+    <!--<apex:stylesheet value="{!URLFOR($Resource.Intacct, '/assets/styles/salesforce-lightning-design-system-vf.min.css')}"/> action="{!checkCreateAddOnOpportunity}" rendered="pageForm"-->
+    <apex:includeScript value="{!URLFOR($Resource.ia_crm__Intacct, '/js/jQuery.min.js')}"/>
+    <style>
+        .myCustomMessage .message {
+            background: none !important;
+            border: none !important;
+            background-image: none !important;
+        }
+        .msgIcon {
+            Display: none;
+        }
+        .slds-theme--info {
+            background-color: #54698d !important;
+        }
+    </style>
+    <apex:slds />
+    <div class="slds" Style="min-height: 400px;">
+        <apex:form id="mainForm">
+            <apex:actionfunction name="checkCreateAddOnOpportunityFunction" action="{!checkCreateAddOnOpportunity}" rerender="mainForm" status="fetchStatus" oncomplete="checkStatus();" />
+            <apex:actionfunction name="syncSFDCContractFuction" action="{!syncSfdcContract}" rerender="mainForm" status="fetchStatus" />
+            <!--<apex:actionfunction name="closeDialogFunction" action="{!closeDialog}" rerender="mainForm" status="fetchStatus" oncomplete="confirmDialogFunction();" />-->
+            <apex:actionfunction name="confirmDialogFunction" action="{!confirmDialog}" rerender="mainForm" status="fetchStatus" oncomplete="checkStatus();" />
+
+            <apex:actionstatus id="fetchStatus">
+                <apex:facet name="start">
+                    <div class="slds-spinner_container">
+                        <div role="status" class="slds-spinner slds-spinner--brand slds-spinner--medium">
+                            <span class="slds-assistive-text">{!$Label.Loading}</span>
+                            <div class="slds-spinner__dot-a"></div>
+                            <div class="slds-spinner__dot-b"></div>
+                        </div>
+                    </div>
+                </apex:facet>
+            </apex:actionstatus>
+            
+            <apex:outputtext rendered="{!IF(pageStatus == 'ERROR', true, false)}">
+                <apex:outputpanel styleclass="myCustomMessage">
+                    <figure>
+                        <apex:image id="errorImage" value="{!URLFOR($Resource.ia_crm__Intacct,'images/error.png')}" style="margin: auto; display: block; padding-top: 100px;" />
+                    </figure>
+                    <div style="text-align: center;">
+                        <apex:outputtext value="{!errorMessagetitle}" style="font-size: 200%;" />
+                    </div>
+                </apex:outputpanel>
+                <apex:outputpanel styleclass="myCustomMessage">
+                    <p>
+                        <div class="demo-only">
+                            <div class="slds-has-dividers_around-space slds-align_absolute-center">
+                                <div class="slds-item " style="width: 550px;">
+                                    <article class="slds-tile slds-tile_board">
+                                        <apex:outputText value="{!pageErrorMessage}" escape="false"/>
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
+                    </p>
+                </apex:outputpanel>
+                <apex:outputpanel >
+                    <div style="text-align: center;">
+                        <apex:commandbutton action="{!cancel}" style="margin-top: 20px;" value="Back to record" styleclass="slds-button slds-button--neutral" />
+                    </div>
+                </apex:outputpanel>
+            </apex:outputtext>
+            <apex:outputPanel rendered="{!IF(displayPopup==true,'true','false')}">
+                <div role="dialog" tabindex="-1" aria-labelledby="header43" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <apex:outputpanel rendered="{!NOT(displayRecordTypePicklist)}">
+                            <div class="slds-modal__header slds-theme--info slds-theme--alert-texture">
+                                <h2 id="header43" class="slds-text-heading--medium">{!$Label.Please_confirm}</h2>
+                            </div>
+                            <div class="slds-modal__content slds-p-around--medium" Style="text-align: center">
+                                <p>{!dialogMessage}</p>
+                                <apex:outputpanel rendered="{!displayContractCheckboxes}">
+                                    <div Style="margin-top: 30px;">
+                                        <label class="slds-checkbox" for="{!$Component.checkBoxActivate}">
+                                            <apex:inputcheckbox id="checkBoxActivate" value="{!activateContract}" onclick="checkIfActivateCheckboxIsUnChecked();" />
+                                            <span class="slds-checkbox--faux"></span>
+                                            <span class="slds-form-element__label">{!$Label.Activate_Contract}</span>
+                                        </label>
+                                        <label class="slds-checkbox" for="">
+                                            <apex:inputcheckbox id="checkBoxSync" value="{!syncContract}" onclick="checkIfSyncCheckboxIsChecked();" />
+                                            <span class="slds-checkbox--faux"></span>
+                                            <span class="slds-form-element__label">{!$Label.Sync_Contract}</span>
+                                        </label>
+                                    </div>
+                                    <script>
+                                        function checkIfActivateCheckboxIsUnChecked() {
+                                            var checkBox = document.getElementById("{!$Component.checkBoxActivate}");
+                                            
+                                            if(!checkBox.checked) {
+                                                document.getElementById("{!$Component.checkBoxSync}").checked = false;
+                                            }
+                                        }
+                                        function checkIfSyncCheckboxIsChecked() {
+                                            var checkBox = document.getElementById("{!$Component.checkBoxSync}");
+                                            
+                                            if(checkBox.checked ) {
+                                                document.getElementById("{!$Component.checkBoxActivate}").checked = true;
+                                            }
+                                        }
+                                    </script>
+                                </apex:outputpanel>
+                            </div>
+                            <div class="slds-modal__footer">
+                                <apex:commandButton styleClass="slds-button slds-button--brand" value="Yes" action="{!closeDialog}" status="fetchStatus" rerender="mainForm" oncomplete="confirmDialogFunction();"/>
+                                <apex:commandButton styleClass="slds-button slds-button--neutral" value="No" action="{!cancel}" />
+                            </div>
+                        </apex:outputpanel>
+                        <apex:outputpanel rendered="{!displayRecordTypePicklist}">
+                            <div class="slds-modal__header slds-theme--info slds-theme--alert-texture">
+                                <h2 id="header43" class="slds-text-heading--medium">{!$Label.Please_select_a_Record_Type}</h2>
+                            </div>
+                            <div class="slds-modal__content slds-p-around--medium">
+                                <p style="text-align: center;">{!$Label.Opportunities_with_different_Record_Types_were_found}</p>
+                            </div>
+                            <div class="slds-modal__content slds-p-around--medium">
+                                <apex:outputpanel id="recordTypePanel">
+                                    <div Style="margin: auto; width: 50%;">
+                                        <div class="slds-select_container">
+                                            <apex:selectList value="{!selectedAddOnRecordType}" multiselect="false" size="1" styleClass="slds-select">
+                                                <apex:selectOptions value="{!opportunityRecordTypes}"/>
+                                            </apex:selectList>
+                                        </div>
+                                        <apex:outputPanel rendered="{!LEN(recordTypeErrorMessage) > 0}">
+                                            <div class="errorMsg">
+                                                <strong>{!$Label.ia_crm__Error}:</strong>
+                                                {!recordTypeErrorMessage}
+                                            </div>
+                                        </apex:outputPanel>
+                                    </div>
+                                </apex:outputpanel>
+                            </div>
+                            <div class="slds-modal__footer">
+                                <apex:commandButton styleClass="slds-button slds-button--brand" rerender="recordTypePanel" value="{!$Label.ia_crm__Ok}" action="{!createAddOnOpportunity}" status="fetchStatus" />
+                                <apex:commandButton styleClass="slds-button slds-button--neutral" value="{!$Label.ia_crm__Cancel}" action="{!cancel}" />
+                            </div>
+                        </apex:outputpanel>
+                    </div>
+                </div>
+                <div class="slds-backdrop slds-backdrop--open"></div>
+            </apex:outputPanel>
+            <apex:outputpanel >
+                <script type="text/javascript">
+                    function checkStatus() {
+                        var status = '{!JSENCODE(runStatus)}';
+
+                        if(status == 'SYNC') {
+                            syncSFDCContractFuction();
+                        }
+                    }
+                </script>
+            </apex:outputpanel>
+        </apex:form>
+    </div>
+    <script type="text/javascript">
+        $( document ).ready(function() {
+            checkCreateAddOnOpportunityFunction();
+        });
+    </script>
+</apex:page>

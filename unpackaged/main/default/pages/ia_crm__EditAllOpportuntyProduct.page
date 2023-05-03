@@ -1,0 +1,1 @@
+<apex:page standardController="Opportunity" extensions="ia_crm.AddProductController" action="{!redirectToEditAllOpportunityProducts}"/>
