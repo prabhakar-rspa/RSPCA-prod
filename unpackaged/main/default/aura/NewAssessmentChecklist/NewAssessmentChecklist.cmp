@@ -49,9 +49,17 @@
                                     >
                             </td>
                             <td>
-                                <div class="slds-truncate" title="{!item.Species__c}"
-                                     >{!item.Species__c}</div
+                                <aura:if isTrue="{!!empty(item.Animals_List__c)}">
+                                    <div class="slds-cell-wrap" title="{!item.Animals_List__c}"
+                                    >{!item.Animals_List__c}</div
+                                   >
+                                   <aura:set attribute="else">
+                                        <div class="slds-truncate" title="{!item.Species__c}"
+                                        >{!item.Species__c}</div
                                     >
+                                   </aura:set>
+                                </aura:if>
+                                
                             </td>
                         </tr>
                     </aura:iteration> 

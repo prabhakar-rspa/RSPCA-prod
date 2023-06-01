@@ -213,11 +213,13 @@
                       <p>You can continue your application with three easy steps:</p>
                       <ol>
                         <li>Read the relevant standards and check that you meet them<br/>
-                          
-                          <ul>
+                       <br/> <a href="https://business.rspcaassured.org.uk/resources-for-farmers/welfare-standards/" target="_blank" style="color: #000000; text-decoration: underline;" target="_blank">RSPCA welfare standards</a><br> <br/>
+                     
+                     <!--     <ul>
                                 <c:EnquiryStandardsList lid="{!relatedTo.ConvertedLeadID__c}"/><br/>
-                         </ul>
+                         </ul> -->
                   </li>
+
 
                   <li>Read the <strong><a href="https://business.rspcaassured.org.uk/resources-for-farmers/membership-agreement/"  style="color: #000000; text-decoration: underline;" target="_blank">RSPCA Assured membership agreement</a></strong>, including SCI scheme regulations<br/>
                       <br/>
@@ -235,7 +237,7 @@
               </tr>
           </table><br/>
 
-          <p>Our <a href="https://business.rspcaassured.org.uk/media/a4wfjjzb/rspcaassured_a4information_280622.pdf" style="color: #000000; text-decoration: underline;" target="_blank"><strong>information booklet</strong></a> will tell everything you need to know about your assessment and becoming a member of RSPCA Assured.</p>
+          <p>Our <a href="https://business.rspcaassured.org.uk/resources-for-farmers/becoming-an-rspca-assured-member-and-renewing-your-membership/" style="color: #000000; text-decoration: underline;" target="_blank"><strong>RSPCA Assured Member Information</strong></a> will tell everything you need to know about your assessment and becoming a member of RSPCA Assured.</p>
           <p>If you have any questions please don’t hesitate to contact our member services team on 01403 286170– or email <a href="mailto:help@rspcaassured.org.uk" style="color: #000000; text-decoration: underline;">help@rspcaassured.org.uk</a> – and one of the team will be happy to help.               </p>
           <p>Yours sincerely</p>
           <p><span style="font-weight: bold">Membership services<br/>

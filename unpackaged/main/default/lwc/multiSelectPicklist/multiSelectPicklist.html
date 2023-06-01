@@ -1,0 +1,80 @@
+<template>
+    <div
+       class="slds-form-element"
+       style="position:relative;"
+       onmouseenter={handleMouseEnter}
+       onmouseleave={handleMouseLeave}
+       >
+       <label class="slds-form-element__label" if:true={isRequired}>
+       <abbr class="slds-required" title="required">* </abbr></label>
+       <div class="slds-form-element__control">
+          <div class="slds-combobox_container">
+             <div class="slds-combobox">
+                <div
+                   class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right"
+                   >
+                   <div class="slds-form-element__control">
+                      <input
+                         type="text"
+                         onclick={showList}
+                         value={selectedvaluelength}
+                         class="slds-input slds-combobox__input selectinput successinput"
+                         onblur={hideList}
+                         readonly
+                         />
+                      <span
+                         class="slds-icon_container slds-icon-utility-down slds-input__icon slds-input__icon_right"
+                         >
+                         <svg
+                            class="slds-icon slds-icon slds-icon_x-small slds-icon-text-default"
+                            >
+                            <use
+                               xlink:href="/apexpages/slds/latest/assets/icons/utility-sprite/svg/symbols.svg#down"
+                               ></use>
+                         </svg>
+                      </span>
+                   </div>
+                </div>
+                <div class="optionList slds-hide slds-dropdown slds-dropdown_fluid" role="listbox" style="position:absolute;top:31px;">
+                   <ul
+                      class="scrollbar slds-listbox slds-listbox_vertical"
+                      style="max-height: 150px;overflow-y: scroll;"
+                      >
+                      <template for:each={optionslist} for:item="opt" for:index="index">
+                         <li
+                            role="presentation"
+                            key={opt.value}
+                            data-target-id={index}
+                            class="slds-listbox__item"
+                            onclick={selectOption}
+                            >
+                            <span
+                               data-id="listbox-option-unique-id-01"
+                               class="slds-media slds-listbox__option slds-listbox__option_plain slds-media_small slds-media_center slds-is-selected"
+                               role="option"
+                               >
+                               <span class="slds-media__figure">
+                                  <template if:true={opt.selected}>
+                                     <lightning-icon
+                                        icon-name="utility:check"
+                                        size="x-small"
+                                        ></lightning-icon>
+                                  </template>
+                               </span>
+                               <span class="slds-media__body" data-index={index}>
+                               <span class="slds-truncate" title={opt.label}>
+                               <span class="slds-assistive-text">Current Selection:</span>
+                               {opt.label}</span
+                                  >
+                               </span>
+                            </span>
+                         </li>
+                      </template>
+                   </ul>
+                </div>
+             </div>
+          </div>
+       </div>
+       <div class="slds-form-element__help errorMsg" if:false={valid}>Complete this field.</div>
+    </div>
+  </template>

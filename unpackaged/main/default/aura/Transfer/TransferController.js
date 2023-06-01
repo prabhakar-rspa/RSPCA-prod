@@ -30,7 +30,13 @@
             })
         );
     },
-
+    handleChange:function(component,event,helper){
+        let primaryContact = component.get("v.primaryContact");
+        var fullname = component.get('v.primaryContact.FirstName') + ' ' + component.get('v.primaryContact.LastName');
+        component.set('v.fullname', fullname);
+        component.set('v.NewApplicationFields.Applicant_Contact__c', component.get('v.primaryContact.Id'));
+        component.set('v.NewApplicationFields.Signatory_Contact__c', component.get('v.primaryContact.Id'));
+    },
     handleNext: function (component, event, helper) {
         var allValid = helper.validateFields(component);
         console.log(allValid);
@@ -96,7 +102,7 @@
                 setTimeout(function() {
                     if(cmp.get('v.transferType') == 'Group'){
                         console.log('Query Term ==> ' +  queryTerm);
-                        helper.getHeadOffice(cmp, queryTerm);
+                        helper.getHeadOffice(cmp,evt, helper, queryTerm);
                         if(cmp.get('v.transferToObject') !== undefined){
                             cmp.set('v.isSearching', false);
                         }

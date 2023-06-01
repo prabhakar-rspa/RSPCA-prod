@@ -9,7 +9,7 @@ public class PaymentReminderController {
     public PaymentReminderController(){
         bulkRenewalId = ApexPages.currentPage().getParameters().get('id');
         if(bulkRenewalId != null){
-            Bulk_Renewal = [SELECT Id, Name,Custom_Invoice_Message__c, Applicant_Full_Name__c, Invoice_Date__c, Payment_Reference__c, Payment_Due_Date__c,
+            Bulk_Renewal = [SELECT Id, Name,Total_Amount__c,VAT__c,Custom_Invoice_Message__c, Applicant_Full_Name__c, Invoice_Date__c, Payment_Reference__c, Payment_Due_Date__c,
                                        Total_Amount_Inc_VAT__c, Head_Office__r.Name, Head_Office__r.BillingStreet,
                                        Head_Office__r.BillingCity, Head_Office__r.BillingState, Head_Office__r.BillingCountry,
                                        Head_Office__r.BillingPostalCode, Sage_Invoice__r.Invoice_Number__c, PO_Number__c FROM Bulk_Renewal__c WHERE Id =: bulkRenewalId];
@@ -18,7 +18,7 @@ public class PaymentReminderController {
     public PaymentReminderController(ApexPages.StandardController controller){
         bulkRenewalId = ApexPages.currentPage().getParameters().get('id');
         if(bulkRenewalId != null){
-            Bulk_Renewal = [SELECT Id, Name,Custom_Invoice_Message__c, Applicant_Full_Name__c, Invoice_Date__c, Payment_Reference__c, Payment_Due_Date__c,
+            Bulk_Renewal = [SELECT Id, Name,Total_Amount__c,VAT__c,Custom_Invoice_Message__c, Applicant_Full_Name__c, Invoice_Date__c, Payment_Reference__c, Payment_Due_Date__c,
                                        Total_Amount_Inc_VAT__c, Head_Office__r.Name, Head_Office__r.BillingStreet,
                                        Head_Office__r.BillingCity, Head_Office__r.BillingState, Head_Office__r.BillingCountry,
                                        Head_Office__r.BillingPostalCode, Sage_Invoice__r.Invoice_Number__c, PO_Number__c FROM Bulk_Renewal__c WHERE Id =: bulkRenewalId];
@@ -97,6 +97,27 @@ public class PaymentReminderController {
                                               WHERE Id IN:siteIds];
                                   
         return RenewalReminderSites;
+    }
+    public Date getMembershipExpiryDate(){
+        Date reminderDate = Date.today();
+        x2WeekRenewalReminderTestDate__c testDateSetting = x2WeekRenewalReminderTestDate__c.getOrgDefaults();
+        if(testDateSetting.Use_Test_Date_Data__c == true && testDateSetting.Test_Date__c != null){
+            reminderDate = testDateSetting.Test_Date__c;
+        }
+        Set<String> siteIds = new Set<String>();
+        List<Renewal_Price_Report__c> renewalSites = [SELECT Id, Site__c FROM Renewal_Price_Report__c 
+                                                            WHERE Site__r.Renewal_Reminder_Ready__c = true 
+                                                            AND Site__r.ParentId =:accountId 
+                                                            AND Site__r.Status__c ='Member'];
+        for(Renewal_Price_Report__c rpr : renewalSites){
+            siteIds.add(rpr.Site__c);
+        }
+        List<Account> TwoWeekRenewalReminderSites = [SELECT Id, Name, Membership_Expiry_Date__c FROM Account 
+                                                     WHERE Id IN:siteIds];
+        if(TwoWeekRenewalReminderSites.size() >0){
+            return TwoWeekRenewalReminderSites[0].Membership_Expiry_Date__c;
+        }
+        return null;
     }
 
     /** Getting Sites expiring in 2 weeks for the Head Office - 2 Week Renewal Reminder **/

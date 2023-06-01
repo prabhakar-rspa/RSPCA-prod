@@ -5,7 +5,7 @@
     <label>Cancellation Reason</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
-    <trackHistory>false</trackHistory>
+    <trackHistory>true</trackHistory>
     <type>Picklist</type>
     <valueSet>
         <controllingField>Status__c</controllingField>

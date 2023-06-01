@@ -67,9 +67,9 @@ public with sharing class CertificatesPerSpeciesController {
         //List<Unit__c> unitList = [SELECT Id, Name, Account__c, Business__c, Description__c, Animals__c, Production__c, Rearing_System__c, Status__c, Vehicle_Registration__c, Own_Transport__c FROM Unit__c WHERE Account__c =:currentRecord.Id AND Status__c = 'Certified' AND Business__c IN:businessSet AND Animals__c != 'Trout'];
         List<Unit__c> unitList = new List<Unit__c>();
         if(String.isNotBlank(species)){
-            unitList = [SELECT Id, Name, Account__c, Business__c, Description__c, Animals__c, Production__c, Rearing_System__c, Status__c, Vehicle_Registration__c,Vehicle_Type__c, Own_Transport__c FROM Unit__c WHERE Account__c =:currentRecord.Id AND Status__c = 'Certified' AND Business__c IN:businessSet AND Animals__c =:species];
+            unitList = [SELECT Id,Animals_List__c, Name, Account__c, Business__c, Description__c, Animals__c, Production__c, Rearing_System__c, Status__c, Vehicle_Registration__c,Vehicle_Type__c, Own_Transport__c FROM Unit__c WHERE Account__c =:currentRecord.Id AND Status__c = 'Certified' AND Business__c IN:businessSet AND (Animals__c =:species OR Animals_List__c INCLUDES ( :species))];
         }else{
-            unitList = [SELECT Id, Name, Account__c, Business__c, Description__c, Animals__c, Production__c, Rearing_System__c, Status__c, Vehicle_Registration__c,Vehicle_Type__c, Own_Transport__c FROM Unit__c WHERE Account__c =:currentRecord.Id AND Status__c = 'Certified' AND Business__c IN:businessSet];
+            unitList = [SELECT Id,Animals_List__c, Name, Account__c, Business__c, Description__c, Animals__c, Production__c, Rearing_System__c, Status__c, Vehicle_Registration__c,Vehicle_Type__c, Own_Transport__c FROM Unit__c WHERE Account__c =:currentRecord.Id AND Status__c = 'Certified' AND Business__c IN:businessSet];
         }
         return unitList;
     }

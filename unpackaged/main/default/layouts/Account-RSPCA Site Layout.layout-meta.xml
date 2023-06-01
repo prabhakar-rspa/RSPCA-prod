@@ -203,7 +203,7 @@
                 <field>Needs_an_Assessment__c</field>
             </layoutItems>
         </layoutColumns>
-        <layoutColumns/>
+        <layoutColumns />
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>
@@ -489,9 +489,9 @@
         <detailHeading>true</detailHeading>
         <editHeading>false</editHeading>
         <label>Custom Links</label>
-        <layoutColumns/>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
+        <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
     <platformActionList>
@@ -600,6 +600,7 @@
         <fields>CONTACT.TITLE</fields>
         <fields>CONTACT.EMAIL</fields>
         <fields>CONTACT.PHONE1</fields>
+        <fields>Roles__c</fields>
         <relatedList>RelatedContactList</relatedList>
     </relatedLists>
     <relatedLists>
@@ -635,6 +636,7 @@
         <fields>NAME</fields>
         <fields>Business__c</fields>
         <fields>Animals__c</fields>
+        <fields>Animals_List__c</fields>
         <fields>Number_of_Animals__c</fields>
         <fields>Rearing_System__c</fields>
         <fields>Status__c</fields>

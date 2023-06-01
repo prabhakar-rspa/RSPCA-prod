@@ -1,0 +1,13 @@
+.selectinput {
+    padding-left: 5px;
+    text-align: center;
+  }
+  .errorinput {
+    border: 2px solid rgb(234, 0, 30) !important;
+  }
+  .successinput {
+    box-shadow: 0 0 2px;
+  }
+  .errorMsg{
+    color: rgb(234, 0, 30);
+  }

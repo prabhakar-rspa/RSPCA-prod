@@ -35,7 +35,7 @@
             <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px;  color: #000000; border: 2px solid white;">&nbsp;</td>
             <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;">&nbsp;</td>
             <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;">&nbsp;</td>
-            <td colspan="2" valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; text-align: right; border: 2px solid white;"><span style="margin: 5px;">Net Price</span></td>
+            <td colspan="2" valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; text-align: right; border: 2px solid white;"><span style="margin: 5px;">Net Amount</span></td>
             <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;text-align:right;"><span style="margin: 5px;">
                 <apex:outputText value="{0, number, 00.00}">
                     <apex:param value="{!NetAmount}" />

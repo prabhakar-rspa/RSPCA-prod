@@ -95,7 +95,7 @@ public class RenewalPriceChecker extends AppUnitHelper{
                     vehicleType = null;
                 }
                 //find product with matching fields
-                Product2 unitProduct = AppUnitHelper.getProduct(u.Business__c, u.Animals__c, u.Production__c, vehicleType);
+                Product2 unitProduct = AppUnitHelper.getProduct(u.Business__c, u.Animals__c, u.Production__c, vehicleType,u.Animals_List__c);
                 if(unitProduct != null){
                     if(unitProduct.Pricing_Method__c == 'Per Site'){
                         findPerSiteUnitPricing(u, unitProduct);
@@ -126,7 +126,7 @@ public class RenewalPriceChecker extends AppUnitHelper{
                 }
             }
         }
-
+        system.debug('====pigProduction.size()==='+pigProduction.size());
         if(site.Pig_Discount_Eligibility__c){
             LineItem item = new LineItem();
             if(pigProduction.size() == 1){
@@ -220,7 +220,7 @@ public class RenewalPriceChecker extends AppUnitHelper{
         lineItems = productNameToLineItem.values();
     }
 
-    private void findDynamicQuantityPricing(Unit__c unit, Product2 unitProduct){
+    public void findDynamicQuantityPricing(Unit__c unit, Product2 unitProduct){
         Product2 dynamicQuantityProduct = getDynamicQuantityProduct(unitProduct);
         //if the number of animals is less than or equal to the quantity threshold
         if(unit.Number_of_Animals__c <= unitProduct.Quantity_Threshold__c){
@@ -239,13 +239,17 @@ public class RenewalPriceChecker extends AppUnitHelper{
             lineItems.add(item);
         }else{
             LineItem item = new LineItem();
-            item.lineDescription = dynamicQuantityProduct.Name;
-            item.priceExVAT = getPriceForProduct(dynamicQuantityProduct.Id);
+            if(dynamicQuantityProduct != null){
+                item.lineDescription = dynamicQuantityProduct.Name;
+            	item.priceExVAT = getPriceForProduct(dynamicQuantityProduct.Id);
+                item.subtotal = item.priceExVAT * item.quantity;
+            }
+            
             item.animalOrIngrediants = unit.Animals__c;
             item.numberOfAnimals = unit.Number_of_Animals__c;
             item.quantity = 1;
-            item.subtotal = item.priceExVAT * item.quantity;
-            if(site.Parent.BillingCountry == 'United Kingdom'){
+            
+            if(site.Parent.BillingCountry == 'United Kingdom' && item.subtotal != null){
                 item.vat = item.subtotal * 0.2;
             }
             item.production = unit.Production__c;
@@ -254,7 +258,7 @@ public class RenewalPriceChecker extends AppUnitHelper{
         }
     }
 
-    private void findAdditionalQuantityPricing(Unit__c unit, Product2 unitProduct){
+    public void findAdditionalQuantityPricing(Unit__c unit, Product2 unitProduct){
         Map<String, LineItem> productNameToLineItem = new Map<String, LineItem>();
         for(LineItem li : lineItems){
             productNameToLineItem.put(li.lineDescription, li);
@@ -316,13 +320,16 @@ public class RenewalPriceChecker extends AppUnitHelper{
             }else { // If line item does exist on application, then Additional quantity price is applied
                 if((unitProduct.Family == 'Vehicle') && (!unit.Own_Transport__c) ){
                     LineItem item = new LineItem();
-                    item.lineDescription = additionalQuantityProduct.Name;
-                    item.priceExVAT = getPriceForProduct(additionalQuantityProduct.Id);
+                    item.quantity = 1;
+                    if(additionalQuantityProduct != null){
+                        item.lineDescription = additionalQuantityProduct.Name;
+                    	item.priceExVAT = getPriceForProduct(additionalQuantityProduct.Id);
+                        item.subtotal = item.priceExVAT * item.quantity;
+                    }
                     item.animalOrIngrediants = unit.Animals__c;
                     item.numberOfAnimals = unit.Number_of_Animals__c;
-                    item.quantity = 1;
-                    item.subtotal = item.priceExVAT * item.quantity;
-                    if(site.Parent.BillingCountry == 'United Kingdom'){
+                    
+                    if(site.Parent.BillingCountry == 'United Kingdom' && item.subtotal != null){
                         item.vat = item.subtotal * 0.2;
                     }
                     item.production = unit.Production__c;
@@ -331,13 +338,15 @@ public class RenewalPriceChecker extends AppUnitHelper{
                 }
                 if((unitProduct.Family == 'Vehicle') && (unit.Own_Transport__c) ){
                     LineItem item = new LineItem();
-                    item.lineDescription = additionalQuantityProduct.Name;
+                    item.quantity = 1;
+                    if(additionalQuantityProduct != null){
+                    	item.lineDescription = additionalQuantityProduct.Name;
+                        item.subtotal = item.priceExVAT * item.quantity;
+                    }
                     item.priceExVAT = 0;
                     item.animalOrIngrediants = unit.Animals__c;
                     item.numberOfAnimals = unit.Number_of_Animals__c;
-                    item.quantity = 1;
-                    item.subtotal = item.priceExVAT * item.quantity;
-                    if(site.Parent.BillingCountry == 'United Kingdom'){
+                    if(site.Parent.BillingCountry == 'United Kingdom' && item.subtotal != null){
                         item.vat = item.subtotal * 0.2;
                     }
                     item.production = unit.Production__c;
@@ -346,13 +355,17 @@ public class RenewalPriceChecker extends AppUnitHelper{
                 }
                 if((!unit.Own_Catching__c) && (unitProduct.Business__c =='Catching') ){
                     LineItem item = new LineItem();
-                    item.lineDescription = additionalQuantityProduct.Name;
-                    item.priceExVAT = getPriceForProduct(additionalQuantityProduct.Id);
+                    if(additionalQuantityProduct != null){
+                        item.lineDescription = additionalQuantityProduct.Name;
+                    	item.priceExVAT = getPriceForProduct(additionalQuantityProduct.Id);
+                        item.subtotal = item.priceExVAT * item.quantity;
+                    }
+                    
                     item.animalOrIngrediants = unit.Animals__c;
                     item.numberOfAnimals = unit.Number_of_Animals__c;
                     item.quantity = 1;
-                    item.subtotal = item.priceExVAT * item.quantity;
-                    if(site.Parent.BillingCountry == 'United Kingdom'){
+                    
+                    if(site.Parent.BillingCountry == 'United Kingdom' && item.subtotal != null){
                         item.vat = item.subtotal * 0.2;
                     }
                     item.production = unit.Production__c;
@@ -409,13 +422,15 @@ public class RenewalPriceChecker extends AppUnitHelper{
 
                     // Line 2
                     LineItem item2 = new LineItem();
-                    item2.lineDescription = additionalQuantityProduct.Name;
-                    item2.priceExVAT = getPriceForProduct(additionalQuantityProduct.Id);
+                    item2.quantity = q-1;
+                    if(additionalQuantityProduct != null){
+                        item2.lineDescription = additionalQuantityProduct.Name;
+                    	item2.priceExVAT = getPriceForProduct(additionalQuantityProduct.Id);
+                        item2.subtotal = item2.priceExVAT * item2.quantity;
+                    }
                     item2.animalOrIngrediants = unit.Animals__c;
                     item2.numberOfAnimals = existingNumberOfAnimals - unitProduct.Quantity_Threshold__c;
-                    item2.quantity = q-1;
-                    item2.subtotal = item2.priceExVAT * item2.quantity;
-                    if(site.Parent.BillingCountry == 'United Kingdom'){
+                    if(site.Parent.BillingCountry == 'United Kingdom' && item2.subtotal != null){
                         item2.vat = item2.subtotal * 0.2;
                     }
                     item2.production = unit.Production__c;
@@ -465,7 +480,11 @@ public class RenewalPriceChecker extends AppUnitHelper{
             if((String)ar.get('animalOrIngrediants') != null){
                 animalsOrIngrediants = (String)ar.get('animalOrIngrediants');
             }
-            rpul.unitName = animalsOrIngrediants +' '+ (String)ar.get('production');
+            if(animalsOrIngrediants != 'List'){
+                rpul.unitName = animalsOrIngrediants +' '+ (String)ar.get('production');
+            }else{
+                rpul.unitName = (String)ar.get('production');
+            }
             if((Double)ar.get('numberOfAnimals') > 0){
                 rpul.unitName =  rpul.unitName + ' (Qty: ' + Math.round((Double)ar.get('numberOfAnimals')) +')' ;
             }
@@ -516,7 +535,11 @@ public class RenewalPriceChecker extends AppUnitHelper{
             if((String)ar.get('animalOrIngrediants') != null){
                 animalsOrIngrediants = (String)ar.get('animalOrIngrediants');
             }
-            rpul.unitName = animalsOrIngrediants +' '+ (String)ar.get('production');
+            if(animalsOrIngrediants != 'List'){
+                rpul.unitName = animalsOrIngrediants +' '+ (String)ar.get('production');
+            }else{
+                rpul.unitName = (String)ar.get('production');
+            }
             if((Double)ar.get('numberOfAnimals') > 0){
                 rpul.unitName =  rpul.unitName + ' (Qty: ' + Math.round((Double)ar.get('numberOfAnimals')) +')' ;
             }
@@ -535,7 +558,7 @@ public class RenewalPriceChecker extends AppUnitHelper{
 
     public void createRenewalPriceReport(String accountId){
         site = [SELECT Id, Parent.BillingCountry, Membership_Expiry_Date__c, Pig_Discount_Eligibility__c, Create_Renewal_Price_Report__c FROM Account WHERE ID =:accountId];
-        List<Unit__c> unitsRecords = [SELECT Id, Name, Account__c, Animals__c, Business__c, Chassis_Number__c, Description__c, House_Type__c, Ingredients__c, Order_Sizes__c, Own_Catching__c, Own_Transport__c, Production__c, Rearing_System__c, Status__c, Vehicle_Registration__c, Vehicle_Type__c, Number_of_Animals__c FROM Unit__c WHERE Account__c =:accountId AND Status__c = 'Certified'];
+        List<Unit__c> unitsRecords = [SELECT Id, Name, Account__c, Animals__c, Business__c, Chassis_Number__c, Description__c, House_Type__c, Ingredients__c, Order_Sizes__c, Own_Catching__c, Own_Transport__c, Production__c, Rearing_System__c, Status__c, Vehicle_Registration__c, Vehicle_Type__c, Number_of_Animals__c,Animals_List__c FROM Unit__c WHERE Account__c =:accountId AND Status__c = 'Certified'];
         getRenewalPriceForUnits(unitsRecords);
         if(!lineItems.isEmpty()){
             Renewal_Price_Report__c rpr = new Renewal_Price_Report__c();
@@ -556,7 +579,11 @@ public class RenewalPriceChecker extends AppUnitHelper{
                 if(li.vat != null){
                     rpl.VAT__c = li.vat;
                 }
-                rpl.Total_Inc_VAT__c = rpl.Subtotal__c + rpl.VAT__c;
+                if(rpl.Subtotal__c != null){
+                	rpl.Total_Inc_VAT__c = rpl.Subtotal__c + rpl.VAT__c;
+                }else{
+                	rpl.Total_Inc_VAT__c = rpl.VAT__c;
+                }
                 rpl.Production__c = li.production;
                 rpl.UnitId__c = li.unitId;
                 rplList.add(rpl);

@@ -45,81 +45,6 @@
         <default>false</default>
         <visible>false</visible>
     </applicationVisibilities>
-    <applicationVisibilities>
-        <application>standard__AllTabSet</application>
-        <default>true</default>
-        <visible>false</visible>
-    </applicationVisibilities>
-    <applicationVisibilities>
-        <application>standard__AppLauncher</application>
-        <default>false</default>
-        <visible>false</visible>
-    </applicationVisibilities>
-    <applicationVisibilities>
-        <application>standard__Chatter</application>
-        <default>false</default>
-        <visible>true</visible>
-    </applicationVisibilities>
-    <applicationVisibilities>
-        <application>standard__Community</application>
-        <default>false</default>
-        <visible>false</visible>
-    </applicationVisibilities>
-    <applicationVisibilities>
-        <application>standard__LightningBolt</application>
-        <default>false</default>
-        <visible>false</visible>
-    </applicationVisibilities>
-    <applicationVisibilities>
-        <application>standard__LightningInstrumentation</application>
-        <default>false</default>
-        <visible>false</visible>
-    </applicationVisibilities>
-    <applicationVisibilities>
-        <application>standard__LightningSales</application>
-        <default>false</default>
-        <visible>false</visible>
-    </applicationVisibilities>
-    <applicationVisibilities>
-        <application>standard__LightningSalesConsole</application>
-        <default>false</default>
-        <visible>false</visible>
-    </applicationVisibilities>
-    <applicationVisibilities>
-        <application>standard__Marketing</application>
-        <default>false</default>
-        <visible>false</visible>
-    </applicationVisibilities>
-    <applicationVisibilities>
-        <application>standard__OnlineSales</application>
-        <default>false</default>
-        <visible>true</visible>
-    </applicationVisibilities>
-    <applicationVisibilities>
-        <application>standard__Platform</application>
-        <default>false</default>
-        <visible>false</visible>
-    </applicationVisibilities>
-    <applicationVisibilities>
-        <application>standard__Sales</application>
-        <default>false</default>
-        <visible>false</visible>
-    </applicationVisibilities>
-    <applicationVisibilities>
-        <application>standard__SalesforceCMS</application>
-        <default>false</default>
-        <visible>false</visible>
-    </applicationVisibilities>
-    <applicationVisibilities>
-        <application>standard__Service</application>
-        <default>false</default>
-        <visible>false</visible>
-    </applicationVisibilities>
-    <applicationVisibilities>
-        <application>standard__ServiceConsole</application>
-        <default>false</default>
-        <visible>false</visible>
-    </applicationVisibilities>
     <custom>false</custom>
     <fieldPermissions>
         <editable>true</editable>
@@ -408,11 +333,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Account.ia_crm__Bill_to_Account__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Account.ia_crm__Bill_to_Contact__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -538,6 +458,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Application_Unit__c.List_of_Animals__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Application__c.Add_Visit_Approval_Date_Office__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -599,6 +524,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Application__c.Approved_for_Renewal__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Application__c.Assessment_Required__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -682,6 +612,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Application__c.Evidence_Received_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Application__c.Evidence_Reminder_Date__c</field>
         <readable>true</readable>
@@ -759,6 +694,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Application__c.Pricebook_Id__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Application__c.Re_visit_Fee_required__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -867,43 +807,58 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Assessment_Report__c.Assessment_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Assessments__c.Animals_List__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Bulk_Renewal__c.Custom_Invoice_Message__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
+        <readable>false</readable>
         <field>CMTD__EnhancedRelatedList__mdt.CMTD__Colour__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
+        <readable>false</readable>
         <field>CMTD__EnhancedRelatedList__mdt.CMTD__Field_API_Name__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
+        <readable>false</readable>
         <field>CMTD__EnhancedRelatedList__mdt.CMTD__Header__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
+        <readable>false</readable>
         <field>CMTD__EnhancedRelatedList__mdt.CMTD__Inactive__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
+        <readable>false</readable>
         <field>CMTD__EnhancedRelatedList__mdt.CMTD__Order__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
+        <readable>false</readable>
         <field>CMTD__EnhancedRelatedList__mdt.CMTD__Target_API_Name__c</field>
-        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <readable>false</readable>
+        <field>CMTD__EnhancedRelatedList__mdt.CMTD__UI_Type_Override__c</field>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>CMTD__EnhancedRelatedList__mdt.CMTD__UI_Type_Override__c</field>
+        <field>Checklist_Template__c.Animals_List__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1244,11 +1199,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Opportunity.ia_crm__Bill_to_Account__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Opportunity.ia_crm__Bill_to__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1744,6 +1694,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Product2.ia_crm__Unit_Of_Measure__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Survey_Response__c.Full_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Unit__c.Animals_List__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2329,6 +2289,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Suspension_History__c.Reason_For_Suspension__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>WOADairy__c.Average_Percentage_Of_Score_2_cows__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>WOADairy__c.Average_Percentage_Of_Score_3_cows__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3451,14 +3421,6 @@
         <layout>Mobility_Scoring__c-Mobility Scoring Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Opportunity-ia_crm__Intacct Template - Contract</layout>
-        <recordType>Opportunity.ia_crm__Contract</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Opportunity-ia_crm__Intacct Template - Order Entry</layout>
-        <recordType>Opportunity.ia_crm__OrderEntry</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>Pricebook2-ia_crm__Price Book Layout</layout>
         <recordType>Pricebook2.ia_crm__Billing_Pricelist</recordType>
     </layoutAssignments>
@@ -4215,23 +4177,23 @@
         <name>ViewHelpLink</name>
     </userPermissions>
     <classAccesses>
+        <enabled>false</enabled>
         <apexClass>CMTD__ERL_RTSelector_CC</apexClass>
-        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <enabled>false</enabled>
         <apexClass>CMTD__ERL_RTSelector_Test</apexClass>
-        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <enabled>false</enabled>
         <apexClass>CMTD__EnhancedRelatedList_CC</apexClass>
-        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <enabled>false</enabled>
         <apexClass>CMTD__EnhancedRelatedList_Test</apexClass>
-        <enabled>true</enabled>
     </classAccesses>
     <customMetadataTypeAccesses>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
         <name>CMTD__EnhancedRelatedList__mdt</name>
     </customMetadataTypeAccesses>
 </Profile>

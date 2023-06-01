@@ -349,7 +349,7 @@
                                                         <!-- Line Item Columns -->
                                                         <tr>
                                                             <td width="30%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px;  color: #000000; border: 2px solid white;"><strong><span style="margin: 5px;">Item</span></strong></td>
-                                                            <td width="15%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;text-align:right;"><strong><span style="margin: 5px;">Price</span></strong></td>
+                                                            <td width="15%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;text-align:right;"><strong><span style="margin: 5px;">Net Amount</span></strong></td>
                                                             <!--td width="15%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;text-align:right;"><strong><span style="margin: 5px;">Discount</span></strong></td-->
                                                             <td width="15%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;text-align:right;"><strong><span style="margin: 5px;">VAT%</span></strong></td>
                                                             <td width="15%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;text-align:right;"><strong><span style="margin: 5px;">Total</span></strong></td>
@@ -367,34 +367,60 @@
                                                                 <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;text-align:right;">
                                                                     <span style="margin: 5px;">
                                                                        <!-- {!li.VAT__c}-->
-                                                                        <apex:outputText rendered="{!li.Head_Office__r.BillingCountry == 'United Kingdom'}">20%</apex:outputText>
-                                                                        <apex:outputText rendered="{!li.Head_Office__r.BillingCountry != 'United Kingdom'}">0%</apex:outputText>
+                                                                        <apex:outputText rendered="{!li.Head_Office__r.BillingCountry == 'United Kingdom'}">20</apex:outputText>
+                                                                        <apex:outputText rendered="{!li.Head_Office__r.BillingCountry != 'United Kingdom'}">0</apex:outputText>
 
                                                                     </span>
                                                                 </td>
-                                                                <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;text-align:right;"><span style="margin: 5px;">{!li.Total_Amount_Inc_VAT__c}</span></td>
+                                                                <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;text-align:right;">
+                                                                    <span style="margin: 5px;">
+                                                                        <apex:outputText value="{0, number, 00.00}">
+                                                                            <apex:param value="{!li.Total_Amount_Inc_VAT__c}" />
+                                                                        </apex:outputText> 
+                                                                    </span>
+                                                                </td>
                                                             </tr>   
                                                         </apex:repeat>
                                                         
                                                         <!-- Table footer (Total Section) -->
-                                                        <!--tr>
+                                                        <tr>
                                                             <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px;  color: #000000; border: 2px solid white;">&nbsp;</td>
                                                             <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;">&nbsp;</td>
-                                                            <!-/-td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;">&nbsp;</td-/->
-                                                            <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; text-align: right; border: 2px solid white;"><span style="margin: 5px;">Net Amount</span></td>
-                                                            <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><span style="margin: 5px;"></span></td>
+                                                            <!--td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;">&nbsp;</td-->
+                                                            <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; text-align: right; border: 2px solid white;font-weight: bold"><span style="margin: 5px;">Net Amount</span></td>
+                                                            <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;text-align:right;">
+                                                                <span style="margin: 5px;">
+                                                                    <apex:outputText value="{0, number, 00.00}">
+                                                                        <apex:param value="{!Bulk_Renewal.Total_Amount__c}" />
+                                                                    </apex:outputText> 
+                                                                </span>
+                                                            </td>
                                                         </tr>
                                                         <tr>
-                                                            <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px;  color: #000000; border: 2px solid white;"><strong><span style="margin: 5px;"><!-/-VAT Rate-/-></span></strong></td>
+                                                            <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px;  color: #000000; border: 2px solid white;"><strong><span style="margin: 5px;"><!--VAT Rate--></span></strong></td>
                                                             <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;">&nbsp;</td>
-                                                            <!-/-td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;">&nbsp;</td-/->
-                                                            <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; text-align: right; border: 2px solid white;"><span style="margin: 5px;">VAT Amount</span></td>
-                                                            <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><span style="margin: 5px;"></span></td>
-                                                        </tr-->
+                                                            <!--td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;">&nbsp;</td-->
+                                                            <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; text-align: right; border: 2px solid white;font-weight: bold"><span style="margin: 5px;">VAT Amount</span></td>
+                                                            <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;text-align:right;">
+                                                                <span style="margin: 5px;">
+                                                                    <apex:outputText value="{0, number, 00.00}">
+                                                                        <apex:param value="{!Bulk_Renewal.VAT__c}" />
+                                                                    </apex:outputText> 
+                                                                </span>
+                                                            </td>
+                                                        </tr>
                                                         <tr>
                                                             <td colspan="2" valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><span style="margin: 5px;"><!--Standard 20.00% (20.00%)--></span></td>
                                                             <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; text-align: right; font-weight: bold; border: 2px solid white;"><span style="margin: 5px;">Total</span></td>
-                                                            <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;text-align:right;"><strong><span style="margin: 5px;">{!Bulk_Renewal.Total_Amount_Inc_VAT__c}</span></strong></td>
+                                                            <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;text-align:right;">
+                                                                <strong>
+                                                                    <span style="margin: 5px;">
+                                                                        <apex:outputText value="{0, number, 00.00}">
+                                                                            <apex:param value="{!Bulk_Renewal.Total_Amount_Inc_VAT__c}" />
+                                                                        </apex:outputText> 
+                                                                    </span>
+                                                                </strong>
+                                                            </td>
                                                         </tr>
                                                     </table>
                                                     <table cellspacing="0" cellpadding="1" border="2" bordercolor="#ffffff" width="100%" valign="top" style="border: 2px solid white;">

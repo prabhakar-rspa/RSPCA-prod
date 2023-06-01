@@ -25,7 +25,7 @@ public class AppUnitTriggerHandler extends AppUnitHelper{
         Set<String> pricebookIds = new Set<String>();
 
         Map<Id, Application__c> appMap = new Map<Id, Application__c>();
-        for(Application__c app : [SELECT Id, RecordTypeId, Site__c, Head_Office__r.BillingCountry, Existing_Member__c, Application_Type__c, Update_Type__c, Pricebook_Id__c, Site__r.Pig_Discount_Eligibility__c FROM Application__c WHERE Id =:appId]){
+        for(Application__c app : [SELECT Id,Assessment_Required__c,Re_visit_Fee_required__c, RecordTypeId, Site__c, Head_Office__r.BillingCountry, Existing_Member__c, Application_Type__c, Update_Type__c, Pricebook_Id__c, Site__r.Pig_Discount_Eligibility__c FROM Application__c WHERE Id =:appId]){
             appMap.put(app.Id, app);
             siteIds.add(app.Site__c);
             pricebookIds.add(app.Pricebook_Id__c);
@@ -35,6 +35,7 @@ public class AppUnitTriggerHandler extends AppUnitHelper{
 
         // get units for the application units created
         Map<Id, Unit__c> unitMap = getUnitsForCreatedAppUnit(unitId);
+        system.debug('unitMap >>'+ unitMap);
 
         // method to get list of all products
         getProductList();
@@ -78,10 +79,14 @@ public class AppUnitTriggerHandler extends AppUnitHelper{
         unit added, add the correct line item with the correct price which is defined in
         the product record.
         ***********************************************************************************/ 
+        system.debug('newUnits >>'+ newUnits);
         for(Application_Unit__c u:newUnits){
             if(u.Application__c != null && u.Unit__c != null){
                 Application__c app = appMap.get(u.Application__c);
+                system.debug('u.Unit__c >>'+ u.Unit__c);
+                system.debug('unitMap.get(u.Unit__c) >>'+ unitMap.get(u.Unit__c));
                 Unit__c unitAdded = unitMap.get(u.Unit__c);
+                system.debug('unitAdded >>'+ unitAdded);
                 /*********************************************************************************
                 Products    : Supply Chain
                 Description : Checks to see if the business picklist value is supply chain. If it
@@ -140,7 +145,7 @@ public class AppUnitTriggerHandler extends AppUnitHelper{
                     }
 
                     //find product with matching fields
-                    Product2 unitProduct = AppUnitHelper.getProduct(unitAdded.Business__c,unitAdded.Animals__c,unitAdded.Production__c, vehicleType);
+                    Product2 unitProduct = AppUnitHelper.getProduct(unitAdded.Business__c,unitAdded.Animals__c,unitAdded.Production__c, vehicleType,unitAdded.Animals_List__c);
                     system.debug('Unit Product ==> ' + unitProduct);
                     Boolean existingLineItem;
                     //if product is found, check to see if this is already existing on line item
@@ -182,7 +187,7 @@ public class AppUnitTriggerHandler extends AppUnitHelper{
                                 AppUnitHelper.allExistingLines.add(appli);
                             }
                             // pig discount
-                            if(unitAdded.Animals__c == 'Pigs'){
+                            if(unitAdded.Animals__c == 'Pigs' && !app.Re_visit_Fee_required__c){
                                 Set<Id> certifiedPigBreedingFinishingRearingIds = new Set<Id>();
                                 for(Unit__c pigUnits : AppUnitHelper.getPigBreedingRearingFinishingUnitCount(app.Site__c)){
                                     certifiedPigBreedingFinishingRearingIds.add(pigUnits.Id);

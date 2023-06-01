@@ -9,10 +9,42 @@
             component.set('v.step3', false);
 
         } else if (cs == 2) {
-            component.set('v.step1', false);
-            // Active Step
-            component.set('v.step2', true);
-            component.set('v.step3', false);
+            if(component.get("v.transferToObject") && component.get('v.transferType') == 'Group'){
+                component.set('v.isLoading', true);
+                var action = component.get("c.getPrimaryContact");
+                action.setParams({ "accId": component.get("v.transferToObject").Id });
+                action.setCallback(this, function (response) {
+                    var state = response.getState();
+                    if (state === "SUCCESS") {
+                        let primaryContact = response.getReturnValue();
+                        console.log('primaryContact::::',primaryContact);
+                        if(primaryContact && primaryContact.Id){
+                            //component.set("v.primaryContact", response.getReturnValue());
+                            //var fullname = component.get('v.primaryContact.FirstName') + ' ' + component.get('v.primaryContact.LastName');
+                            component.set('v.fullname', primaryContact.Name);
+                            component.set('v.NewApplicationFields.Applicant_Contact__c', primaryContact.Id);
+                            component.set('v.NewApplicationFields.Signatory_Contact__c', primaryContact.Id);
+                        }
+                        component.set('v.isLoading', false);
+                        component.set('v.step1', false);
+                        // Active Step
+                        component.set('v.step2', true);
+                        component.set('v.step3', false);
+
+                    } else {
+                        console.log('Problem getting contact, response state: ' + state);
+                        alert('No primary contact found for this account. Please ensure that there is a primary contact available for this site.');
+                        component.set('v.isLoading', false);
+                    }
+                });
+                $A.enqueueAction(action);
+            }else{
+                component.set('v.step1', false);
+                // Active Step
+                component.set('v.step2', true);
+                component.set('v.step3', false);
+            }
+            
 
         } else if (cs == 3) {
             component.set('v.step1', false);
@@ -22,7 +54,20 @@
 
         }
     },
-
+    getPrimaryContact : function(component,event,helper){
+        var action = component.get("c.getPrimaryContact");
+        action.setParams({ "accId": component.get("v.transferToObject").Id });
+        action.setCallback(this, function (response) {
+            var state = response.getState();
+            if (state === "SUCCESS") {
+                let primaryContact = response.getReturnValue();
+                if(primaryContact && primaryContact.Id){
+                    component.set('v.transferToObject.PrimaryContact', primaryContact.Name);
+                }
+            }
+        });
+        $A.enqueueAction(action);
+    },
     validateFields: function (component) {
         var fields = component.find('field');
         console.log('Fields found: ' + fields);
@@ -60,7 +105,7 @@
         $A.enqueueAction(action);
     },
 
-    getHeadOffice: function (component, headOfficeNumber) {
+    getHeadOffice: function (component,evt, helper, headOfficeNumber) {
         console.log('Record Id ==> '+ component.get('v.recordId'));
         console.log('Membership Number ==> '+ headOfficeNumber);
         var action = component.get("c.getHeadOffice");
@@ -72,7 +117,7 @@
             var state = response.getState();
             if (state === "SUCCESS") {
                 component.set('v.transferToObject', response.getReturnValue());
-                
+                helper.getPrimaryContact(component,evt, helper);
             } else {
                 console.log('Problem getting contact, response state: ' + state);
                 alert('No account found.');

@@ -2,9 +2,9 @@
 <Role xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseAccessLevel>None</caseAccessLevel>
     <contactAccessLevel>Edit</contactAccessLevel>
-    <description>Warrendale Poultry Ltd Customer User</description>
+    <description>Warrendale Poultry Ltd (4616) Customer User</description>
     <mayForecastManagerShare>false</mayForecastManagerShare>
-    <name>Warrendale Poultry Ltd Customer User</name>
+    <name>Warrendale Poultry Ltd (4616) Customer User</name>
     <opportunityAccessLevel>None</opportunityAccessLevel>
     <parentRole>Assessors</parentRole>
 </Role>

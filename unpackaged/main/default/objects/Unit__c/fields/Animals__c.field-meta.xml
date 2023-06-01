@@ -4,6 +4,7 @@
     <externalId>false</externalId>
     <label>Animals</label>
     <required>false</required>
+    <trackHistory>true</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>
@@ -81,6 +82,13 @@
             <controllingFieldValue>Haulier</controllingFieldValue>
             <controllingFieldValue>Producer</controllingFieldValue>
             <valueName>Veal Calves</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Abattoir</controllingFieldValue>
+            <controllingFieldValue>Catching</controllingFieldValue>
+            <controllingFieldValue>Hatchery</controllingFieldValue>
+            <controllingFieldValue>Haulier</controllingFieldValue>
+            <valueName>List</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Catching</controllingFieldValue>

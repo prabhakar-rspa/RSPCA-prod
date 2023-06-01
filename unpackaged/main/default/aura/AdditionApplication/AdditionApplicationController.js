@@ -67,7 +67,8 @@
             }
             helper.stepsHandler(component, event);
         } else {
-            alert('Please update the invalid form entries and try again.');
+            //alert('Please update the invalid form entries and try again.');
+            helper.showMessage('error','Error!','Please update the invalid form entries and try again.');
             component.set('v.hasError', true);
         }
         
@@ -98,7 +99,8 @@
             }
             
         } else {
-            alert('Please update the invalid form entries and try again.');
+            //alert('Please update the invalid form entries and try again.');
+            helper.showMessage('error','Error!','Please update the invalid form entries and try again.');
             component.set('v.hasError', true);
         }
         
@@ -129,5 +131,42 @@
         navEvt.fire();
         
     },
-    
+    handleBussinessChange: function(component,event,helper){
+        let bussiness = event.getSource().get('v.value');
+        console.log('bussiness:::'+bussiness);
+        console.log('event::::',event);
+        let name = event.getSource().get('v.name');
+        
+        /*if(bussiness != 'Abattoir' && bussiness != 'Catching' && bussiness != 'Hatchery' && bussiness != 'Haulier'){
+            name = name.replace('bussiness','');
+            let unitList = component.get('v.unitList');
+            unitList[name]['Animals_List__c'] ='';
+            component.set('v.unitList',unitList);
+            console.log('value::',unitList[index]);
+        }*/
+        if(bussiness && name){
+            name = name.replace('business','');
+            console.log('name:::'+name);
+            let unitList = component.get('v.unitList');
+            console.log('value::',unitList[name]);
+            unitList[name]['Animals_List__c'] = '';
+            if(bussiness == 'Abattoir' || bussiness == 'Catching' || bussiness == 'Hatchery' || bussiness == 'Haulier'){
+                unitList[name]['Animals__c'] = 'List';
+            }else{
+                unitList[name]['Animals__c'] = '';
+            }
+            component.set('v.unitList',unitList);
+        }
+    },
+    handleAnimalSelection :  function(component,event,helper){
+        
+        let params = event.getParams();
+        let unitList = component.get('v.unitList');
+        if(params.index >=0 && params.fieldName){
+            unitList[params.index][params.fieldName] = params.selectedoptions.join(';');
+            component.set('v.unitList',unitList);
+        }
+        
+        
+    }
 })

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Sage 50 Customer A/C --></label>
+        <name>Sage_50_Customer_A_C__c</name>
+    </CustomFieldTranslation>

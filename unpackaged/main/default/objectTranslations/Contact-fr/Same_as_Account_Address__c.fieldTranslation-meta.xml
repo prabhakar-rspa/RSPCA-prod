@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Tick this box if the address for this contact is the same as the address for the account it is directly related to. --></help>
+        <label><!-- Same as Account Address --></label>
+        <name>Same_as_Account_Address__c</name>
+    </CustomFieldTranslation>

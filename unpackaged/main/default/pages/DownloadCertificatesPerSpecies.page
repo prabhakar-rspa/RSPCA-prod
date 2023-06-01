@@ -53,7 +53,7 @@
                       <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><span style="margin: 5px;">Supply Chain</span></td>
                       <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;">
                           <span style="margin: 5px;">
-                              <a href="{!(supplyChainCertificateURL+'species=' + sc.Animals__c)}" class="supply-chain-certificate" target="_blank" download="{!currentRecord.Membership_Number__c} {!currentRecord.Name} {!sc.Animals__c} Certificate.pdf" onload="auto_download();">Download</a>
+                              <a href="{!(supplyChainCertificateURL+'species=' + sc.Animals__c)}" class="supply-chain-certificate" target="_blank" download="{!currentRecord.Membership_Number__c} {!currentRecord.Name} {!sc.Animals__c} Certificate.pdf" onload="auto_download();" onclick="attach(this);">Download</a>
                           </span>
                       </td>
                   </tr>
@@ -95,7 +95,7 @@
                   <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><span style="margin: 5px;">{!sc.Animals__c}</span></td>
                   <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;">
                       <span style="margin: 5px;">
-                          <a href="{!(sciCertificate+'species=' + sc.Animals__c)}" class="sci-certificate" target="_blank" download="{!currentRecord.Membership_Number__c} {!currentRecord.Name} {!sc.Animals__c} Certificate.pdf" onload="auto_download();">Download</a>
+                          <a href="{!(sciCertificate+'species=' + sc.Animals__c)}" class="sci-certificate" target="_blank" download="{!currentRecord.Membership_Number__c} {!currentRecord.Name} {!sc.Animals__c} Certificate.pdf" onload="auto_download();" onclick="attach(this);">Download</a>
                       </span>
                   </td>
               </tr>
@@ -112,7 +112,12 @@
       <strong>No certifications available for download.</strong><br/>
     </div>
   </div> 
-
+	<apex:form >
+        <apex:actionFunction action="{!attachPDF}" name="attachPDF" rerender="none">
+            <apex:param name="imageURL" assignTo="{!imageURL}" value="" />
+            <apex:param name="pdfName" assignTo="{!pdfName}" value="" />
+        </apex:actionFunction>
+    </apex:form>
   <!-- Script to controll the auto download of certificates -->
   <script>
     function downloadAllSCI(){
@@ -130,8 +135,12 @@
             });
         }
     }
-    function auto_download(){
-      var hasSupplyChain = {!hasSupplyChainCertificate};
+    function attach(event){
+      console.log('event:::',event);
+       attachPDF(event.href,event.download);
+    }
+    function auto_download(event){
+       var hasSupplyChain = {!hasSupplyChainCertificate};
       //var hasTrout = {!hasTroutCertificate};
       var hasSCI = {!hasSCICertificate};
       //alert('hasSupplyChain: ' + hasSupplyChain);

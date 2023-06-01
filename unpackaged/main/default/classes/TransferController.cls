@@ -6,7 +6,16 @@ global without sharing class TransferController {
         System.debug(acc);
         return acc;
     }
-
+    @auraEnabled
+    public static Contact getPrimaryContact(String accId){
+        List<AccountContactRelation> acRelations = [SELECT Id,ContactId FROM AccountContactRelation WHERE AccountId=:accId AND Contact.Primary_Contact__c =true];
+        if(acRelations != null && acRelations.size()>0){
+            Contact primaryContact = [SELECT Id,Name,FirstName,LastName FROM Contact WHERE Id=:acRelations[0].ContactId];
+        	return primaryContact;
+        }else{
+            return null;
+        }
+    }
     // This method gets the Contact from the community users record or from the Site's primary contact
     @AuraEnabled
     public static Contact fetchCustomerContact(String siteId){

@@ -14,7 +14,9 @@
                 component.set('v.isLoading', false);
             } else {
                 console.log('Problem getting contact, response state: ' + state);
-                alert('No primary contact found for this site. Please ensure that there is a primary contact available for this site.');
+                //alert('No primary contact found for this site. Please ensure that there is a primary contact available for this site.');
+                this.showMessage('error','Error!','No primary contact found for this site. Please ensure that there is a primary contact available for this site.');
+
                 component.set('v.isLoading', false);
             }
         });
@@ -90,7 +92,18 @@
                 inputCmp.showHelpMessageIfInvalid();
                 return validSoFar && inputCmp.get('v.validity').valid;
             }, true);
-            return allValid;
+            var multiValid = true;
+            let multiFields = component.find('multiField');
+            if(Array.isArray(multiFields)){
+                multiFields.forEach(multiField=>{
+                    if(!multiField.isValid()){
+                        multiValid = false;
+                    }
+                });
+            }else if(multiFields){
+                multiValid = multiFields.isValid();
+            }
+            return allValid && multiValid;
         } else {
             return true;
         }
@@ -103,11 +116,15 @@
         for (var i = 0; i < unitList.length; i++) {
             if (unitList[i].Name == undefined) {
                 isValid = false;
-                alert('Unit Number cannot be blank on row number ' + (i + 1));
+                //alert('Unit Number cannot be blank on row number ' + (i + 1));
+                this.showMessage('error','Error!','Unit Number cannot be blank on row number ' + (i + 1));
+
             }
             if (unitList[i].Business__c == '') {
                 isValid = false;
-                alert('Business value cannot be blank on row number ' + (i + 1));
+                //alert('Business value cannot be blank on row number ' + (i + 1));
+                this.showMessage('error','Error!','Business value cannot be blank on row number ' + (i + 1));
+
             }
         }
         return isValid;
@@ -139,13 +156,17 @@
         var action = component.get("c.createAppWithUnits");
         action.setParams({
             "app": component.get("v.NewApplicationFields") ,
-            "units": component.get("v.unitList")
+            "units": component.get("v.unitList"),
+            "assessmentRequired":component.get('v.assessmentRequired'),
+            "createRevisitFee":component.get('v.assessmentNeeded')
         });
         action.setCallback(this, function(response) {
             var state = response.getState();
             if (state === "SUCCESS") {
                 
-                alert('Unit records saved successfully');
+                //alert('Unit records saved successfully');
+                this.showMessage('success','Success!','Unit records saved successfully');
+
                 component.set('v.submitResponse', response.getReturnValue());
                 component.set('v.currentStep', '4');
                 component.set('v.step1', false);
@@ -174,7 +195,8 @@
             var state = response.getState();
             if (state === "SUCCESS") {
                 
-                alert('Unit records saved successfully');
+                //alert('Unit records saved successfully');
+                this.showMessage('success','Success!','Unit records saved successfully');
                 component.set('v.submitResponse', response.getReturnValue());
                 component.set('v.currentStep', '4');
                 component.set('v.step1', false);
@@ -188,5 +210,16 @@
             }
         }); 
         $A.enqueueAction(action);
+    },
+    showMessage : function(type,title,message){
+        console.log('type::',type);
+        var toastEvent = $A.get("e.force:showToast");
+        toastEvent.setParams({
+            "type":type,
+            "title": title,
+            "message": message,
+            "mode": 'sticky'
+        });
+        toastEvent.fire();
     }
 })

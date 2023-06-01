@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Rolls up the number of open transfer applications for this site. --></help>
+        <label><!-- Open Transfer Applications --></label>
+        <name>Open_Transfer_Applications__c</name>
+    </CustomFieldTranslation>

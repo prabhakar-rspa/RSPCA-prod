@@ -42,6 +42,11 @@
     <aura:attribute name="haulierAnimals" type="List"  default="['Chickens', 'Beef Cattle', 'Dairy Cattle', 'Ducks', 'Laying Hen Chicks', 'Laying Hens', 'Meat Chicken Chicks', 'Pigs', 'Pullets','Salmon', 'Sheep', 'Trout', 'Turkey Poults', 'Turkeys', 'Veal Calves']"/>
     <aura:attribute name="producerAnimals" type="List" default="['Chickens', 'Beef Cattle', 'Dairy Cattle', 'Ducks', 'Laying Hens', 'Pigs', 'Salmon', 'Sheep', 'Trout', 'Turkeys', 'Veal Calves', 'Pullets']" />
 
+
+    <aura:attribute name="abattoirAnimalsOptions" type="List"  default="[{'label':'Beef Cattle','value':'Beef Cattle'},{'label':'Chickens','value':'Chickens'},{'label':'Dairy Cattle','value':'Dairy Cattle'},{'label':'Ducks','value':'Ducks'},{'label':'Laying Hens','value':'Laying Hens'},{'label':'Pigs','value':'Pigs'},{'label':'Salmon','value':'Salmon'},{'label':'Sheep','value':'Sheep'},{'label':'Trout','value':'Trout'},{'label':'Turkeys','value':'Turkeys'},{'label':'Veal Calves','value':'Veal Calves'}]"/>
+    <aura:attribute name="catchingAnimalsOptions" type="List"  default="[{'label':'Chickens','value':'Chickens'},{'label':'Ducks','value':'Ducks'},{'label':'Laying Hens','value':'Laying Hens'},{'label':'Turkeys','value':'Turkeys'}]"/>
+    <aura:attribute name="hatcheryAnimalsOptions" type="List"  default="[{'label':'Ducklings','value':'Ducklings'},{'label':'Laying Hen Chicks','value':'Laying Hen Chicks'},{'label':'Meat Chicken Chicks','value':'Meat Chicken Chicks'},{'label':'Salmon','value':'Salmon'},{'label':'Trout','value':'Trout'},{'label':'Turkey Poults','value':'Turkey Poults'}]"/>
+    <aura:attribute name="haulierAnimalsOptions" type="List"  default="[{'label':'Beef Cattle','value':'Beef Cattle'},{'label':'Chickens','value':'Chickens'},{'label':'Dairy Cattle','value':'Dairy Cattle'},{'label':'Ducks','value':'Ducks'},{'label':'Laying Hen Chicks','value':'Laying Hen Chicks'},{'label':'Laying Hens','value':'Laying Hens'},{'label':'Meat Chicken Chicks','value':'Meat Chicken Chicks'},{'label':'Pigs','value':'Pigs'},{'label':'Pullets','value':'Pullets'},{'label':'Salmon','value':'Salmon'},{'label':'Sheep','value':'Sheep'},{'label':'Trout','value':'Trout'},{'label':'Turkey Poults','value':'Turkey Poults'},{'label':'Turkeys','value':'Turkeys'},{'label':'Veal Calves','value':'Veal Calves'}]"/>
     <!-- Production Dependant values -->
     <aura:attribute name="abattoirProduction" type="List" default="['Abattoir']" />
     <aura:attribute name="catchingProduction" type="List" default="['Catching Team']" />
@@ -102,6 +107,9 @@
     <aura:attribute name="newUnit" type="boolean" default="false" />
     <aura:attribute name="extension" type="boolean" default="false" />
 
+    <aura:attribute name="assessmentRequired" type="boolean" default="false" />
+    <aura:attribute name="assessmentNeeded" type="boolean" default="false" />
+
     <!-- Initialise the component -->
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
 
@@ -151,6 +159,7 @@
                                     </aura:iteration>
                                 </lightning:select>
                             </div>
+                            
                         </div>
                         <aura:set attribute="else">
                             <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error" role="alert">
@@ -175,6 +184,18 @@
         <aura:if isTrue="{!v.step2}">
             <!-- New Units -->
             <aura:if isTrue="{!v.newUnit}">
+                <div class="slds-form-element slds-form-element_horizontal">
+                    <label class="slds-form-element__label">
+                        Assessment Required
+                    </label>
+                    <lightning:input type="checkbox" checked="{!v.assessmentRequired}"/>
+                </div>
+                <div class="slds-form-element slds-form-element_horizontal">
+                    <label class="slds-form-element__label">
+                        Re-visit Fee required
+                    </label>
+                    <lightning:input type="checkbox" checked="{!v.assessmentNeeded}"/>
+                </div>
                 <div class="slds-form newUnitForm">
                     <h3 class="slds-section__title slds-theme_shade">
                         Add units
@@ -239,7 +260,7 @@
                                                 <div class="slds-form-element slds-form-element_horizontal slds-is-editing">
                                                     <label class="slds-form-element__label">Business</label>
                                                     <!-- Business Controlling field -->
-                                                    <lightning:select aura:id="field" name="{!'business' + index}" value="{!u.Business__c}" required="true"  >
+                                                    <lightning:select aura:id="field" name="{!'business' + index}" value="{!u.Business__c}" required="true" onchange="{!c.handleBussinessChange}">
                                                         <option label="Please select..."></option>
                                                         <aura:iteration items="{!v.businessPicklist}" var="item">
                                                             <option value="{!item.value}">{!item}</option>
@@ -252,6 +273,22 @@
                                         
                                         <!-- Unit Field Row 2 -->
                                         <div class="slds-form__row">
+                                            <aura:if isTrue="{!(u.Business__c == 'Abattoir' || u.Business__c == 'Catching' || u.Business__c == 'Hatchery' || u.Business__c == 'Haulier')}">
+                                                <div class="slds-form__item" role="listitem">
+                                                    <div class="slds-form-element slds-form-element_horizontal slds-is-editing">
+                                                        <div class="labelWithTooltip">
+                                                            <label class="slds-form-element__label">
+                                                                Animals
+                                                            </label>
+                                                        </div>
+                                                        <lightning:select aura:id="field" value="{!u.Animals__c}" disabled="true">
+                                                            <option value="List">List</option>
+                                                        </lightning:select>
+                                                    </div>
+                                                </div>
+                                                
+                                            </aura:if>
+
                                             <div class="slds-form__item" role="listitem">
                                                 <div class="slds-form-element slds-form-element_horizontal slds-is-editing">
                                                     <aura:if isTrue="{!u.Business__c == 'Supply Chain'}">
@@ -265,7 +302,12 @@
                                                         <aura:set attribute="else">
                                                             <div class="labelWithTooltip">
                                                             	<label class="slds-form-element__label">
-                                                                	Animals
+                                                                    <aura:if isTrue="{!OR(u.Business__c == 'Abattoir',u.Business__c == 'Catching',u.Business__c == 'Hatchery',u.Business__c == 'Haulier')}">
+                                                                        List of Animals
+                                                                        <aura:set attribute="else">
+                                                                            Animals
+                                                                        </aura:set>
+                                                                    </aura:if>
                                                             	</label>
                                                                 <lightning:helptext content="If you process more than one species, please select the main species you process."/>
                                                             </div>
@@ -275,21 +317,45 @@
                                                     <!-- Animals Dependant Values -->
                                                     <aura:if isTrue="{!u.Business__c == 'Abattoir'}">
                                                         <!-- Abattoir animal values -->
-                                                        <lightning:select aura:id="field" value="{!u.Animals__c}" required="true" disabled="false">
+                                                        <!--lightning:select aura:id="field" value="{!u.Animals__c}" required="true" disabled="false">
                                                             <option label="Please select..."></option>
                                                             <aura:iteration items="{!v.abattoirAnimals}" var="item">
                                                                 <option value="{!item.value}">{!item}</option>
                                                             </aura:iteration>
-                                                        </lightning:select>
+                                                        </lightning:select-->
+                                                        <div>
+                                                            <c:multiSelectPicklist
+                                                            aura:id="multiField"
+                                                            onselecting="{!c.handleAnimalSelection}" 
+                                                            optionslist="{!v.abattoirAnimalsOptions}" 
+                                                            fieldName="Animals_List__c"
+                                                            isRequired="true"
+                                                            label="Animals"
+                                                            index="{!index}"
+                                                            selectedValues="{!u.Animals_List__c}"
+                                                        />
+                                                        </div>
+                                                        
                                                     </aura:if>
                                                     <aura:if isTrue="{!u.Business__c == 'Catching'}">
                                                         <!-- Catching animal values -->
-                                                        <lightning:select  aura:id="field"  value="{!u.Animals__c}" required="true" disabled="false">
+                                                        <!--lightning:select  aura:id="field"  value="{!u.Animals__c}" required="true" disabled="false">
                                                             <option label="Please select..."></option>
                                                             <aura:iteration items="{!v.catchingAnimals}" var="item">
                                                                 <option value="{!item.value}">{!item}</option>
                                                             </aura:iteration>
-                                                        </lightning:select>
+                                                        </lightning:select-->
+                                                        <c:multiSelectPicklist
+                                                            aura:id="multiField"
+                                                            onselecting="{!c.handleAnimalSelection}" 
+                                                            optionslist="{!v.catchingAnimalsOptions}" 
+                                                            fieldName="Animals_List__c"
+                                                            isRequired="true"
+                                                            label="Animals"
+                                                            index="{!index}"
+                                                            selectedValues="{!u.Animals_List__c}"
+                                                        />
+
                                                     </aura:if>
                                                     <aura:if isTrue="{!u.Business__c == 'Cleaner Fish'}">
                                                         <!-- Cleaner Fish animal values -->
@@ -302,21 +368,42 @@
                                                     </aura:if>
                                                     <aura:if isTrue="{!u.Business__c == 'Hatchery'}">
                                                         <!-- Hatchery animal values -->
-                                                        <lightning:select  aura:id="field"  value="{!u.Animals__c}" required="true" disabled="false">
+                                                        <!--lightning:select  aura:id="field"  value="{!u.Animals__c}" required="true" disabled="false">
                                                             <option label="Please select..."></option>
                                                             <aura:iteration items="{!v.hatcheryAnimals}" var="item">
                                                                 <option value="{!item.value}">{!item}</option>
                                                             </aura:iteration>
-                                                        </lightning:select>
+                                                        </lightning:select-->
+                                                        <c:multiSelectPicklist
+                                                        aura:id="multiField"
+                                                            onselecting="{!c.handleAnimalSelection}" 
+                                                            optionslist="{!v.hatcheryAnimalsOptions}" 
+                                                            fieldName="Animals_List__c"
+                                                            isRequired="true"
+                                                            label="Animals"
+                                                            index="{!index}"
+                                                            selectedValues="{!u.Animals_List__c}"
+                                                        />
                                                     </aura:if>
                                                     <aura:if isTrue="{!u.Business__c == 'Haulier'}">
                                                         <!-- Haulier animal values -->
-                                                        <lightning:select  aura:id="field"  value="{!u.Animals__c}" required="true" disabled="false">
+                                                        <!--lightning:select  aura:id="field"  value="{!u.Animals__c}" required="true" disabled="false">
                                                             <option label="Please select..."></option>
                                                             <aura:iteration items="{!v.haulierAnimals}" var="item">
                                                                 <option value="{!item.value}">{!item}</option>
                                                             </aura:iteration>
-                                                        </lightning:select>
+                                                        </lightning:select-->
+                                                        <c:multiSelectPicklist
+                                                        aura:id="multiField"
+                                                            onselecting="{!c.handleAnimalSelection}" 
+                                                            optionslist="{!v.haulierAnimalsOptions}" 
+                                                            fieldName="Animals_List__c"
+                                                            isRequired="true"
+                                                            label="Animals"
+                                                            index="{!index}"
+                                                            selectedValues="{!u.Animals_List__c}"
+                                                        />
+
                                                     </aura:if>
                                                     <aura:if isTrue="{!u.Business__c == 'Producer'}">
                                                         <!-- Producer animal values -->
@@ -781,7 +868,6 @@
                             </article>
                         </aura:iteration>
                     </ui:scrollerWrapper>
-
                     
                 </div>
                 

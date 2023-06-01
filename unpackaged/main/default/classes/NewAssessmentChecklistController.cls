@@ -3,16 +3,27 @@ public class NewAssessmentChecklistController {
     @AuraEnabled
     public static List<Checklist_Template__c> getChecklistTemplates(String appId){
         // Query Application Units on this application
-        List<Application_Unit__c> appUnitList = [SELECT Id, Application__c, Animals__c FROM Application_Unit__c WHERE Application__c =:appId AND Animals__c != null];
+        List<Application_Unit__c> appUnitList = [SELECT Id, Application__c, Animals__c,Unit__r.Animals_List__c FROM Application_Unit__c WHERE Application__c =:appId AND (Animals__c != null OR Unit__r.Animals_List__c != null)];
         
         // Use a set to store the animals in a unique list
         Set<String> animalSet = new Set<String>();
+        List<String> animalsList = new List<String>();
         for(Application_Unit__c au : appUnitList ){
-            animalSet.add(au.Animals__c);
+            if(au.Animals__c != null && au.Animals__c != 'List'){
+                animalSet.add(au.Animals__c);
+            }
+            if(au.Unit__r.Animals_List__c != null){
+                List<String> animals = au.Unit__r.Animals_List__c.split(';');
+                animalsList.addAll(animals);
+            }
         }
-        
-        List<Checklist_Template__c> templates = [SELECT Id, Name, Species__c FROM Checklist_Template__c WHERE Status__c = 'Active' AND Species__c IN :animalSet ];
-        
+        String animals = '\''+String.join(animalsList, '\',\'')+'\'';
+        SYSTEM.DEBUG('animals:::'+animals);
+        SYSTEM.DEBUG('animalSet:::'+animalSet);
+        String query = 'SELECT Id, Name, Species__c,Animals_List__c FROM Checklist_Template__c WHERE Status__c = \'Active\' AND (Species__c IN :animalSet OR (Animals_List__c INCLUDES ('+animals+') AND Animals_List__c != NULL))';
+        List<Checklist_Template__c> templates = database.query(query);
+        system.debug('query::'+query);
+        //templates = database.query(query);
         if(templates.size() > 0){
             return templates;
         }else{
@@ -25,7 +36,7 @@ public class NewAssessmentChecklistController {
     public static void createAssessmentChecklist(String appId, List<String> checklistIds){
         if(checklistIds != null & checklistIds.size() > 0 && appId != null){
             // Query the Checklist Template
-            Map<Id, Checklist_Template__c> checklistTemplateMap = new Map<Id, Checklist_Template__c>([SELECT Id, Name, Species__c, Type__c FROM Checklist_Template__c WHERE Id IN:checklistIds]);
+            Map<Id, Checklist_Template__c> checklistTemplateMap = new Map<Id, Checklist_Template__c>([SELECT Id, Name, Species__c, Type__c,Animals_List__c FROM Checklist_Template__c WHERE Id IN:checklistIds]);
             
 			// Query the checklist template standards            
             List<Checklist_Template_Standard__c> templateStandards = [SELECT Id,Name , Checklist_Template__c, Checklist_Template_Section__c ,Checklist_Template_Section__r.Name, Checklist_Template_Section__r.Order__c, Checklist_Template_Subsection__c, Checklist_Template_Subsection__r.Name, Checklist_Template_Subsection__r.Order__c, Standard_Order__c, ContentVersion_URL__c , Default_Compliant_Value__c ,Default_Comments_Action__c , Guidance_Notes__c , Summary__c   FROM Checklist_Template_Standard__c WHERE Checklist_Template__c IN:checklistIds];
@@ -55,6 +66,9 @@ public class NewAssessmentChecklistController {
                         ass.Checklist_Type__c = 'Welfare Standard Checklist';
                     }else if(template.Type__c == 'Welfare Outcome Checklist'){
                         ass.Checklist_Type__c = 'Welfare Outcome Assessment Checklist';
+                    }
+                    if(template.Animals_List__c != null){
+                        ass.Animals_List__c = template.Animals_List__c;
                     }
                     ass.Animals__c = template.Species__c;
                     checklistIdToAssessmentList.put(checkId, ass);

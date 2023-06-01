@@ -75,10 +75,19 @@
     var mobilityScoringDeletedRecords = [];
     if (lamenessPrevalenceCmp) {
       lamenessPrevalenceRecords = lamenessPrevalenceCmp.getRecords();
+      let average = lamenessPrevalenceCmp.getAverage();
+      let woaDairy = component.get("v.woaDairy")
       console.log(
         "lamenessPrevalence dmlRecords:::",
         lamenessPrevalenceRecords
       );
+      woaDairy.Average_Percentage_Of_Score_2_cows__c = average.averageOfScore2Cows;
+      woaDairy.Average_Percentage_Of_Score_3_cows__c = average.averageOfScore3Cows;
+      console.log(
+        "woaDairy dmlRecords:::",
+        woaDairy
+      );
+      component.set("v.woaDairy",woaDairy);
     }
 
     var action = component.get("c.saveWOADairy");

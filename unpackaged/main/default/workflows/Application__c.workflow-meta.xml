@@ -246,7 +246,7 @@
     <fieldUpdates>
         <fullName>Update_Certificate_Issue_Date</fullName>
         <field>Certificate_Issue_Date__c</field>
-        <formula>Date_Certified__c</formula>
+        <formula>DATE(YEAR(TODAY()), MONTH(TODAY()),1)</formula>
         <name>Update Certificate Issue Date</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>

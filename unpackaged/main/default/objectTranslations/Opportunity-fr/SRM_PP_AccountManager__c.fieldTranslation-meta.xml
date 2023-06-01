@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Who the account manager is for the supporter --></help>
+        <label><!-- Partnerships Account Manager --></label>
+        <name>SRM_PP_AccountManager__c</name>
+        <relationshipLabel><!-- Opportunities (Partnerships Account Manager) --></relationshipLabel>
+    </CustomFieldTranslation>

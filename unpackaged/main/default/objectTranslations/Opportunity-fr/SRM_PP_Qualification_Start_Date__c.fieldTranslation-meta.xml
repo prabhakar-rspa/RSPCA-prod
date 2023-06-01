@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Qualification Start Date --></label>
+        <name>SRM_PP_Qualification_Start_Date__c</name>
+    </CustomFieldTranslation>

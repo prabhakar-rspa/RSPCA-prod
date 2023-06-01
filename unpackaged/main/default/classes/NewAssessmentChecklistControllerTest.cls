@@ -98,4 +98,34 @@ public class NewAssessmentChecklistControllerTest {
         NewAssessmentChecklistController.createAssessmentChecklist(appList[0].Id,checklistIds);
         Test.stopTest();
     }
+    
+    @isTest
+    static void nonComplianceCreationTest(){
+
+		FObject application = DataFactory.getDefNewApplications();
+        application.setDefinition('Existing_Member__c', 'static value(No)');
+        application.insertRecords(true);
+
+		// Application Unit
+        FObject assessments = new FObject('Assessments__c', 1);
+        assessments.setDefinition('Application__c', 'random lookup(Application__c) source(forceea)');
+        //appUnit.setDefinition('Unit__c', 'random lookup(Unit__c) source(forceea)');
+        assessments.setDefinition('Status__c', 'static value(Completed)');
+        assessments.insertRecords(true);
+        
+        
+            
+		FObject acq = new FObject('Assessment_Checklist_Question__c', 1);
+        acq.setDefinition('Assessment_Checklist__c', 'random lookup(Assessments__c) source(forceea)');
+        acq.setDefinition('Compliant__c', 'static value(No)');
+        acq.setDefinition('Evidence_Required__c', 'static value(Invoice )');
+        acq.insertRecords(true);
+        
+        
+        List<Assessments__c> assessmentsList = [SELECT Id, Status__c, Non_Compliances_Created__c, Application__c, Application_Assessor__c FROM Assessments__c];
+        
+        Test.startTest();
+        NonComplianceCreation.createNonCompliance(assessmentsList);
+        Test.stopTest();
+    }
 }

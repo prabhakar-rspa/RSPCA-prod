@@ -85,7 +85,7 @@
                             </h3>
                             <lightning:input aura:id="field" label="Transfer From Account Id" value="{!v.transferFromId}"
                                             class="hiddenComponent" />
-                            <lightning:select aura:id="field" label="Transfer Type" name="transferType" required="true" value="{!v.transferType}">
+                            <lightning:select aura:id="field" label="Transfer Type" name="transferType" required="true" value="{!v.transferType}" onchange="{!c.handleChange}">
                                 <option value="">Choose transfer type...</option>
                                 <aura:iteration items="{!v.transferTypeValues}" var="item">
                                     <option value="{!item.value}">{!item}</option>
@@ -111,8 +111,9 @@
                                         <aura:set attribute="actions">
                                             <lightning:input aura:id="field" type="checkbox-button" label="Select Account" name="accountSelected" checked="{!v.accountSelected}" required="true"/>
                                         </aura:set>
-                                        <p class="slds-p-horizontal_small">
-                                            {!v.transferToObject.Head_Office_Number__c}
+                                        <p class="slds-p-horizontal_small slds-form-element__label">
+                                            Head Office Membership Number: {!v.transferToObject.Head_Office_Number__c}&nbsp;&nbsp;&nbsp;
+                                            Primary Contact:  {!v.transferToObject.PrimaryContact}
                                         </p>
                                     </lightning:card>
                 

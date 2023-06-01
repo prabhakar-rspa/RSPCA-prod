@@ -562,11 +562,11 @@
         <name>GuestCommunityCase</name>
     </quickActions>
     <quickActions>
-        <label><!-- Log a Call --></label>
+        <label><!-- LogACall --></label>
         <name>LogACall</name>
     </quickActions>
     <quickActions>
-        <label><!-- New Case --></label>
+        <label><!-- NewCase --></label>
         <name>NewCase</name>
     </quickActions>
     <quickActions>
@@ -574,11 +574,11 @@
         <name>NewCommunityCase</name>
     </quickActions>
     <quickActions>
-        <label><!-- New Contact --></label>
+        <label><!-- NewContact --></label>
         <name>NewContact</name>
     </quickActions>
     <quickActions>
-        <label><!-- New Event --></label>
+        <label><!-- NewEvent --></label>
         <name>NewEvent</name>
     </quickActions>
     <quickActions>
@@ -590,15 +590,15 @@
         <name>NewLead</name>
     </quickActions>
     <quickActions>
-        <label><!-- New Note --></label>
+        <label><!-- NewNote --></label>
         <name>NewNote</name>
     </quickActions>
     <quickActions>
-        <label><!-- New Opportunity --></label>
+        <label><!-- NewOpportunity --></label>
         <name>NewOpportunity</name>
     </quickActions>
     <quickActions>
-        <label><!-- New Task --></label>
+        <label><!-- NewTask --></label>
         <name>NewTask</name>
     </quickActions>
     <quickActions>
@@ -606,7 +606,7 @@
         <name>New_Grant</name>
     </quickActions>
     <quickActions>
-        <label><!-- Email --></label>
+        <label><!-- SendEmail --></label>
         <name>SendEmail</name>
     </quickActions>
     <reportTypes>

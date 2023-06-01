@@ -9,7 +9,7 @@ public class NonComplianceCreation {
 
         if(!assessmentsComplete.isEmpty()){
             Map<Id,List<Assessment_Checklist_Question__c>> assessmentQuestionMap = new Map<Id,List<Assessment_Checklist_Question__c>>();
-            for(Assessment_Checklist_Question__c acq : [SELECT Id, Assessment_Checklist__c, Standard__c, Summary__c, Compliant__c, Comments_Action__c FROM Assessment_Checklist_Question__c WHERE Assessment_Checklist__c IN:assessmentsComplete.keySet() AND Compliant__c ='No']){
+            for(Assessment_Checklist_Question__c acq : [SELECT Id, Assessment_Checklist__c, Standard__c, Summary__c, Compliant__c, Comments_Action__c, Evidence_Required__c FROM Assessment_Checklist_Question__c WHERE Assessment_Checklist__c IN:assessmentsComplete.keySet() AND Compliant__c ='No']){
                 if(assessmentQuestionMap.containsKey(acq.Assessment_Checklist__c)){
                     List<Assessment_Checklist_Question__c> questions = assessmentQuestionMap.get(acq.Assessment_Checklist__c);
                     questions.add(acq);
@@ -25,7 +25,7 @@ public class NonComplianceCreation {
                 Assessment_Report__c report = new Assessment_Report__c();
                 report.Application__c = a.Application__c;
                 report.Assessment__c = a.Id;
-                report.Assessment_Date__c = Date.today();
+                //report.Assessment_Date__c = Date.today();
                 report.Assessor__c = a.Application_Assessor__c;
                 assessmentToReportMap.put(a.Id, report);
             }
@@ -40,11 +40,13 @@ public class NonComplianceCreation {
                     if(assessmentQuestionMap.containsKey(a.Id)){
                         List<Assessment_Checklist_Question__c> questions = assessmentQuestionMap.get(a.Id);
                         for(Assessment_Checklist_Question__c q : questions){
+                            system.debug('====q.Evidence_Required__c==='+ q.Evidence_Required__c);
                             Non_Compliance__c nonCompliance = new Non_Compliance__c();
                             nonCompliance.Assessment_Report__c = assReport.Id;
                             nonCompliance.Name = q.Standard__c;
                             nonCompliance.Standard__c = q.Summary__c;
                             nonCompliance.Non_compliance__c = q.Comments_Action__c;
+                            nonCompliance.Evidence_Required__c = q.Evidence_Required__c;
                             nonCompliancesToCreate.add(nonCompliance);
                             a.Non_Compliances_Created__c = true;
                         }

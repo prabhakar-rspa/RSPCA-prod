@@ -266,7 +266,7 @@
                                                 <td style="width: 40px">&nbsp;</td>
                                                 <td style="padding: 0px 0px 0px 0px; text-align: left; font-family: Arial, sans-serif; font-size: 14px; mso-height-rule: exactly; line-height: 20px; color: #000000;">
                                                     <p style="font-size: 14px; font-weight: bold;">Dear {!HeadOffice.Primary_Contact_Full_Name__c}</p>
-                                                    <p>We are writing to let you know that the sites listed in the attached document are due for renewal.</p>
+                                                    <p>We are writing to let you know that the sites listed in the attached document are due for renewal on &nbsp;<apex:outputText value="{0,date,dd/MM/yyyy}"><apex:param value="{!MembershipExpiryDate}" /> </apex:outputText>.</p>
                                                     <p>To renew your membership, please pay your membership fee by BACS or card payment over the phone.  Please quote your membership number as the reference.</p>
                                                     <p>To pay by BACS:</p>
                                                     <p style="padding-left: 35px">Our Account Name: Freedom Food Limited</p> 

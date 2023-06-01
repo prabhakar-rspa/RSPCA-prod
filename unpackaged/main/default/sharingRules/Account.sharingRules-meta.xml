@@ -163,7 +163,7 @@
         <sharedTo>
             <group>J_I_Forbes_Partner</group>
         </sharedTo>
-        <booleanFilter>1 OR 2 OR 3 OR 4 OR 5 OR 6 OR 7</booleanFilter>
+        <booleanFilter>1 OR 2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8 OR 9 OR 10 OR 11 OR 12</booleanFilter>
         <criteriaItems>
             <field>Membership_Number_Text__c</field>
             <operation>startsWith</operation>
@@ -192,12 +192,37 @@
         <criteriaItems>
             <field>Membership_Number_Text__c</field>
             <operation>startsWith</operation>
+            <value>4620</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Head_Office_Number__c</field>
+            <operation>startsWith</operation>
             <value>4833</value>
         </criteriaItems>
         <criteriaItems>
-            <field>Membership_Number_Text__c</field>
+            <field>Head_Office_Number__c</field>
+            <operation>startsWith</operation>
+            <value>4620</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Head_Office_Number__c</field>
             <operation>startsWith</operation>
             <value>3436</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Head_Office_Number__c</field>
+            <operation>startsWith</operation>
+            <value>4009</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Head_Office_Number__c</field>
+            <operation>startsWith</operation>
+            <value>4232</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Head_Office_Number__c</field>
+            <operation>startsWith</operation>
+            <value>4664</value>
         </criteriaItems>
         <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
     </sharingCriteriaRules>
@@ -352,6 +377,41 @@
         <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
+        <fullName>Tom_Huw_Jones</fullName>
+        <accessLevel>Read</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Read</contactAccessLevel>
+            <opportunityAccessLevel>None</opportunityAccessLevel>
+        </accountSettings>
+        <label>Tom Huw Jones</label>
+        <sharedTo>
+            <group>Tom_Huw_Jones</group>
+        </sharedTo>
+        <booleanFilter>1 OR 2 OR 3 OR 4</booleanFilter>
+        <criteriaItems>
+            <field>Membership_Number_Text__c</field>
+            <operation>startsWith</operation>
+            <value>4945.</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Membership_Number_Text__c</field>
+            <operation>startsWith</operation>
+            <value>4945</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Membership_Number_Text__c</field>
+            <operation>startsWith</operation>
+            <value>2373.</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Membership_Number_Text__c</field>
+            <operation>startsWith</operation>
+            <value>2373</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
         <fullName>cmagriculture</fullName>
         <accessLevel>Read</accessLevel>
         <accountSettings>
@@ -392,4 +452,20 @@
         </criteriaItems>
         <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
     </sharingCriteriaRules>
+    <sharingOwnerRules>
+        <fullName>Sunrise_Poultry_Farms_Ltd</fullName>
+        <accessLevel>Read</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Read</contactAccessLevel>
+            <opportunityAccessLevel>None</opportunityAccessLevel>
+        </accountSettings>
+        <label>Sunrise Poultry Farms Ltd</label>
+        <sharedTo>
+            <group>Sunrise_Poultry_Farms_Ltd</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>Sunrise_Poultry_Farms_Ltd</group>
+        </sharedFrom>
+    </sharingOwnerRules>
 </SharingRules>

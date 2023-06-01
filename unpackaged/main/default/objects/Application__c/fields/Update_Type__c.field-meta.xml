@@ -26,10 +26,12 @@
         </valueSetDefinition>
         <valueSettings>
             <controllingFieldValue>Update</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
             <valueName>New Unit</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Update</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
             <valueName>Update to flock size</valueName>
         </valueSettings>
     </valueSet>

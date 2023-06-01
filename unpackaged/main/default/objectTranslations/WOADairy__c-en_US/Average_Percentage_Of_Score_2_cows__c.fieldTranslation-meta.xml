@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Average % Of Score 2 cows --></label>
+        <name>Average_Percentage_Of_Score_2_cows__c</name>
+    </CustomFieldTranslation>

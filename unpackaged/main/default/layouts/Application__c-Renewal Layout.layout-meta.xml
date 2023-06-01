@@ -52,8 +52,20 @@
                 <field>Invoice_Date__c</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Calculated_Stage__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Assessment_Required__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>MST_Comments__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Re_visit_Fee_required__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -91,7 +103,12 @@
                 <field>Head_Office__c</field>
             </layoutItems>
         </layoutColumns>
-        <layoutColumns />
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Stage__c</field>
+            </layoutItems>
+        </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>
@@ -277,6 +294,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Evidence__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Evidence_Received_Date__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -583,12 +604,14 @@
         <fields>NAME</fields>
         <fields>Number_of_Animals__c</fields>
         <fields>Animals__c</fields>
+        <fields>List_of_Animals__c</fields>
         <fields>Animals_At_Assessment__c</fields>
         <fields>Production__c</fields>
         <relatedList>Application_Unit__c.Application__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Animals_List__c</fields>
         <fields>Farm_Rating__c</fields>
         <fields>Farmer_Rating__c</fields>
         <fields>Welfare_Rating__c</fields>

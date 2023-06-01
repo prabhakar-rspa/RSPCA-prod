@@ -7,19 +7,19 @@
     <columns>Business__c</columns>
     <columns>Production__c</columns>
     <columns>Animals__c</columns>
-    <columns>Rearing_System__c</columns>
+    <columns>Animals_List__c</columns>
     <columns>Status__c</columns>
     <columns>Vehicle_Registration__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
         <field>Business__c</field>
         <operation>equals</operation>
-        <value>Catching</value>
+        <value>Haulier</value>
     </filters>
     <filters>
-        <field>Own_Catching__c</field>
-        <operation>equals</operation>
-        <value>1</value>
+        <field>Animals_List__c</field>
+        <operation>includes</operation>
+        <value>Salmon</value>
     </filters>
     <label>All</label>
 </ListView>

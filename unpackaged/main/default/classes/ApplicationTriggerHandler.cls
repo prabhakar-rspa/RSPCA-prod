@@ -444,7 +444,10 @@ public class ApplicationTriggerHandler extends TriggerHandler{
                 Id bulkRenewalId = (ID)ar.get('Bulk_Renewal__c');
                 if(bulkRenewalUpdate.containsKey(bulkRenewalId)){
                     Bulk_Renewal__c br = bulkRenewalUpdate.get(bulkRenewalId);
-                    br.Total_Amount_Inc_VAT__c = (Decimal)ar.get('totalIncVat');
+                    Decimal totalIncVat = (Decimal)ar.get('totalIncVat');
+                    if(totalIncVat != null){
+                        br.Total_Amount_Inc_VAT__c = totalIncVat.setscale(2,RoundingMode.DOWN);
+                    }
                     br.Total_Amount__c = (Decimal)ar.get('total');
                     br.VAT__c = (Decimal)ar.get('vat');
                     bulkRenewalUpdate.put(bulkRenewalId , br);

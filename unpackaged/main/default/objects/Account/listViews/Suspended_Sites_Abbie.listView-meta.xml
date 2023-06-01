@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Suspended_Sites_Abbie</fullName>
+    <columns>Membership_Number__c</columns>
+    <columns>ACCOUNT.SITE</columns>
+    <columns>Status__c</columns>
+    <columns>Other_Cancellation_Reason__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>Suspended Sites</label>
+    <sharedTo>
+        <group>Member_Services_Abbie</group>
+    </sharedTo>
+</ListView>

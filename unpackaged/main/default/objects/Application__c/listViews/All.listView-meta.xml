@@ -14,9 +14,9 @@
     <columns>Assessment_Deadline__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
-        <field>Assessor_Full_Name__c</field>
-        <operation>contains</operation>
-        <value>Sue</value>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Application__c.Additional_Visit</value>
     </filters>
     <label>All</label>
 </ListView>
