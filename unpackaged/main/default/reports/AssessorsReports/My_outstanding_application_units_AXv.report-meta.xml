@@ -28,6 +28,9 @@
         <field>Account.ApplicationSite__r.ApplicationUnits__r$Animals__c</field>
     </columns>
     <columns>
+        <field>Account.ApplicationSite__r.ApplicationUnits__r$List_of_Animals__c</field>
+    </columns>
+    <columns>
         <aggregateTypes>Sum</aggregateTypes>
         <field>Account.ApplicationSite__r.ApplicationUnits__r$Number_of_Animals__c</field>
     </columns>
@@ -44,7 +47,7 @@
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>notEqual</operator>
-            <value>CANCELLED,LAPSED,SUSPENDED,WITHDRAWN,SUSPENDED/LAPSED</value>
+            <value>CANCELLED,SUSPENDED,SUSPENDED/LAPSED,WITHDRAWN</value>
         </criteriaItems>
         <criteriaItems>
             <column>Account.ApplicationSite__r$Paid__c</column>
@@ -86,7 +89,7 @@
         <field>Account.ApplicationSite__r$Name</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>My outstanding application units</name>
+    <name>My outstanding applications (+units)</name>
     <params>
         <name>co</name>
         <value>0</value>

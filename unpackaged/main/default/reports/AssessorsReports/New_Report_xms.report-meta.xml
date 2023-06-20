@@ -29,6 +29,9 @@
         <field>User.Applications__r.ApplicationUnits__r$Animals__c</field>
     </columns>
     <columns>
+        <field>User.Applications__r.ApplicationUnits__r$List_of_Animals__c</field>
+    </columns>
+    <columns>
         <aggregateTypes>Sum</aggregateTypes>
         <field>User.Applications__r.ApplicationUnits__r$Number_of_Animals__c</field>
     </columns>

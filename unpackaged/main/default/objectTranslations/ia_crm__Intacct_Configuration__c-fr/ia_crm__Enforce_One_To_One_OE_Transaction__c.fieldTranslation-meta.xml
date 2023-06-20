@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Enforce One To One OE Transaction --></label>
+        <name>ia_crm__Enforce_One_To_One_OE_Transaction__c</name>
+    </CustomFieldTranslation>

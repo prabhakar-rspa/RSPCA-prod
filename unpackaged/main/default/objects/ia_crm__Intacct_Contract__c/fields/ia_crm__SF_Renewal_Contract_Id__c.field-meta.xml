@@ -3,7 +3,7 @@
     <fullName>ia_crm__SF_Renewal_Contract_Id__c</fullName>
     <deprecated>false</deprecated>
     <externalId>false</externalId>
-    <label>SF Renewal Contract Id</label>
+    <label>SF Renewal Contract ID</label>
     <length>50</length>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>

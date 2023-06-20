@@ -43,6 +43,11 @@
                                     <a href="#" id="fifthTab" class="slds-tabs--scoped__link slds-active">{!$Label.SFDC_Contract_Mass_Create}</a>
                                 </li>
                             </apex:outputpanel>
+                            <apex:outputpanel rendered="{!showSalesDocumentTab}">
+                                <li id="tab6" class="slds-tabs--scoped__item slds-text-heading--label" title="{!$Label.Sales_Document_Mass_Creation}" role="presentation">
+                                    <a href="#" id="sixTab" class="slds-tabs--scoped__link slds-active">{!$Label.Sales_Document_Mass_Creation}</a>
+                                </li>
+                            </apex:outputpanel>
                         </ul>
                         <div id="tab-scoped-1" class="slds-tabs_scoped__content slds-show" role="tabpanel" aria-labelledby="tab-scoped-1__item">
                             <div style="padding-left:30px;padding-right:30px;">
@@ -59,20 +64,20 @@
                                 <div style="padding-left:30px;padding-right:30px;">
                                     <h2 class="slds-has-divider--top-space slds-text-heading--small">{!$Label.ia_crm__Start_a_synchronization_process}</h2>
                                     <span class="slds-truncate slds-col_bump-left" style="float: right;">
-                                        <div class="slds-grid">
-                                            <div class="slds-col" style="width: 40px;">
-                                                <apex:image value="{!URLFOR($Resource.ia_crm__Intacct,'images/sfdc_logo.png')}" />
-                                            </div>
-                                            <div class="slds-col" style="width: 50px;">
-                                               <svg class="slds-button__icon" aria-hidden="true">
-                                                   <span class="slds-icon_container null slds-icon__svg--default" data-reactid="2705"><svg xmlns="http://www.w3.org/2000/svg" class="slds-icon slds-icon-text-default" aria-hidden="true" viewBox="0 0 36 30" data-reactid="2706"><path d="M1.6 13.4h15.3c.4 0 .6.5.3.8l-4.4 4.4c-.3.3-.3.7 0 1l1 1c.3.3.7.3 1 0l8-8.1c.3-.3.3-.7 0-1l-8-8.1c-.3-.3-.7-.3-1 0l-1 1c-.2.3-.2.7 0 1l4.5 4.4c.2.3.1.8-.4.8H1.6c-.4 0-.7.3-.7.7v1.3c0 .4.3.8.7.8z" /></svg></span>
-                                               </svg>
-                                            </div>
-                                            <div class="slds-col" style="width: 100px;">
-                                                <apex:image value="{!URLFOR($Resource.ia_crm__Intacct,'images/sage-Intacct-logo.png')}" />
-                                            </div>
-                                        </div>
-                                    </span>
+                            			<div class="slds-grid">
+                                			<div class="slds-col" style="width: 40px;">
+			                                    <apex:image value="{!URLFOR($Resource.ia_crm__Intacct,'images/sfdc_logo.png')}" />
+			                                </div>
+			                                <div class="slds-col" style="width: 50px;">
+			                                   <svg class="slds-button__icon" aria-hidden="true">
+			                                       <span class="slds-icon_container null slds-icon__svg--default" data-reactid="2705"><svg xmlns="http://www.w3.org/2000/svg" class="slds-icon slds-icon-text-default" aria-hidden="true" viewBox="0 0 36 30" data-reactid="2706"><path d="M1.6 13.4h15.3c.4 0 .6.5.3.8l-4.4 4.4c-.3.3-.3.7 0 1l1 1c.3.3.7.3 1 0l8-8.1c.3-.3.3-.7 0-1l-8-8.1c-.3-.3-.7-.3-1 0l-1 1c-.2.3-.2.7 0 1l4.5 4.4c.2.3.1.8-.4.8H1.6c-.4 0-.7.3-.7.7v1.3c0 .4.3.8.7.8z" /></svg></span>
+			                                   </svg>
+			                                </div>
+			                                <div class="slds-col" style="width: 100px;">
+                                    			<apex:image value="{!URLFOR($Resource.ia_crm__Intacct,'images/sage-Intacct-logo.png')}" />
+                                			</div>
+                        				</div>
+                                	</span>
                                     <!-- Select object -->
                                     <div class="slds-grid slds-grid_vertical-align-start">
                                         <div class="">
@@ -242,11 +247,11 @@
                                                                                 </div>
                                                                             </div>
                                                                         </apex:outputpanel>
-                                                                         <apex:outputpanel rendered="{!mapfieldsWrap[index].toFieldType == 'MULTIPICKLIST'}" id="multipicklistPanel">   
-                                                                            <c:MultiSelectList availableoptions="{!mapfieldsWrap[index].multiPicklistOptions}"
-                                                                            selectedoptions="{!mapfieldsWrap[index].selectedOptions}"
-                                                                            controlname="opportunityTransaction" />  
-                                                                        </apex:outputpanel>
+                                                              			 <apex:outputpanel rendered="{!mapfieldsWrap[index].toFieldType == 'MULTIPICKLIST'}" id="multipicklistPanel">	
+			                                                     		 	<c:MultiSelectList availableoptions="{!mapfieldsWrap[index].multiPicklistOptions}"
+			                                           						selectedoptions="{!mapfieldsWrap[index].selectedOptions}"
+			                                           						controlname="opportunityTransaction" />	 
+				                                                     	</apex:outputpanel>
                                                                         <apex:outputpanel rendered="{!mapfieldsWrap[index].toFieldType=='DATE' || mapfieldsWrap[index].toFieldType=='DATETIME'}">
                                                                             <apex:inputtext size="10" id="txtDatetime" value="{!mapfieldsWrap[index].valueFilter}" styleclass="slds-input" >
                                                                                 <apex:actionsupport event="onmouseup" action="{!clearErrorMessage}" rerender="pageMessages" status="fetchStatus" />
@@ -372,7 +377,7 @@
                                         </div>
                                     </apex:outputpanel>
                                     <apex:outputpanel id="paginationRecords" rendered="{!selectedObjectValue == ($Label.ia_crm__Package_Prefix + 'Intacct_Journal_Entry__c')}">
-                                        <!--    
+                                        <!--	
                                         <c:RecordsBulkPagination objname="{!$Label.ia_crm__package_prefix + 'Intacct_Journal_Entry__c'}" objrecords="{!syncRecords}" mappingfieldstodisplay="{!mappingFieldsSync}" />
                                         -->  
                                         <apex:actionfunction name="setMyParam" rerender="none">
@@ -411,7 +416,7 @@
                                             </div>
                                         </div>
                                         <apex:outputpanel id="paginationOpportunityRecords" rendered="{!selectedObjectValue == 'Opportunity'}">
-                                            <!--<c:RecordsBulkPagination objname="Opportunity" objrecords="{!syncRecords}" mappingfieldstodisplay="{!mappingFieldsSync}" />-->
+                                        	<!--<c:RecordsBulkPagination objname="Opportunity" objrecords="{!syncRecords}" mappingfieldstodisplay="{!mappingFieldsSync}" />-->
 
                                             <apex:actionfunction name="callBackF" rerender="none">
                                                 <apex:param name="callBackParam" value="" assignto="{!selectedRowsData}"/>
@@ -484,20 +489,20 @@
                                     <h2 class="slds-text-heading--small">{!$Label.ia_crm__You_can_sync_Order_Entry}</h2>         
                                 </span>
                                 <span class="slds-truncate slds-col_bump-left" style="float: right;">
-                                        <div class="slds-grid">
-                                            <div class="slds-col" style="width: 100px;">
-                                                <apex:image value="{!URLFOR($Resource.ia_crm__Intacct,'images/sage-Intacct-logo.png')}" />
-                                            </div>
-                                            <div class="slds-col" style="width: 50px;">
-                                               <svg class="slds-button__icon" aria-hidden="true">
-                                                   <span class="slds-icon_container null slds-icon__svg--default" data-reactid="2705"><svg xmlns="http://www.w3.org/2000/svg" class="slds-icon slds-icon-text-default" aria-hidden="true" viewBox="0 0 36 30" data-reactid="2706"><path d="M1.6 13.4h15.3c.4 0 .6.5.3.8l-4.4 4.4c-.3.3-.3.7 0 1l1 1c.3.3.7.3 1 0l8-8.1c.3-.3.3-.7 0-1l-8-8.1c-.3-.3-.7-.3-1 0l-1 1c-.2.3-.2.7 0 1l4.5 4.4c.2.3.1.8-.4.8H1.6c-.4 0-.7.3-.7.7v1.3c0 .4.3.8.7.8z" /></svg></span>
-                                               </svg>
-                                            </div>
-                                            <div class="slds-col" style="width: 40px;">
-                                                <apex:image value="{!URLFOR($Resource.ia_crm__Intacct,'images/sfdc_logo.png')}" />
-                                            </div>
-                                        </div>
-                                    </span>
+	                           			<div class="slds-grid">
+	                               			<div class="slds-col" style="width: 100px;">
+	                                   			<apex:image value="{!URLFOR($Resource.ia_crm__Intacct,'images/sage-Intacct-logo.png')}" />
+	                               			</div>
+			                                <div class="slds-col" style="width: 50px;">
+			                                   <svg class="slds-button__icon" aria-hidden="true">
+			                                       <span class="slds-icon_container null slds-icon__svg--default" data-reactid="2705"><svg xmlns="http://www.w3.org/2000/svg" class="slds-icon slds-icon-text-default" aria-hidden="true" viewBox="0 0 36 30" data-reactid="2706"><path d="M1.6 13.4h15.3c.4 0 .6.5.3.8l-4.4 4.4c-.3.3-.3.7 0 1l1 1c.3.3.7.3 1 0l8-8.1c.3-.3.3-.7 0-1l-8-8.1c-.3-.3-.7-.3-1 0l-1 1c-.2.3-.2.7 0 1l4.5 4.4c.2.3.1.8-.4.8H1.6c-.4 0-.7.3-.7.7v1.3c0 .4.3.8.7.8z" /></svg></span>
+			                                   </svg>
+			                                </div>
+			                                <div class="slds-col" style="width: 40px;">
+			                                    <apex:image value="{!URLFOR($Resource.ia_crm__Intacct,'images/sfdc_logo.png')}" />
+			                                </div>
+	                       				</div>
+	                               	</span>
                             </div>
                             <div style="padding-left:30px;padding-right:30px;">
                                 <h2 class="slds-has-divider--top-space slds-text-heading--small">{!$Label.Account_filters}</h2>
@@ -695,7 +700,7 @@
                                         <div class="slds-col--padded slds-size--1-of-2 slds-medium-size--2-of-6 slds-large-size--2-of-12">
                                             <label class="slds-form-element__label" for="select-11">{!$Label.Select_Transaction_Definitions}</label>
                                             <apex:outputpanel id="accTrans"> 
-                                                <c:MultiSelectList availableoptions="{!atw.allAccountTransactions}"
+                                            	<c:MultiSelectList availableoptions="{!atw.allAccountTransactions}"
                                                                selectedoptions="{!atw.selectedAccountTransactions}"
                                                                controlname="accountTransaction"/>
                                             </apex:outputpanel>                    
@@ -754,20 +759,20 @@
                                     <h2 class="slds-text-heading--small">{!$Label.ia_crm__You_can_sync_Contract}</h2>
                                 </span>
                                  <span class="slds-truncate slds-col_bump-left" style="float: right;">
-                                        <div class="slds-grid">
-                                            <div class="slds-col" style="width: 100px;">
-                                                <apex:image value="{!URLFOR($Resource.ia_crm__Intacct,'images/sage-Intacct-logo.png')}" />
-                                            </div>
-                                            <div class="slds-col" style="width: 50px;">
-                                               <svg class="slds-button__icon" aria-hidden="true">
-                                                   <span class="slds-icon_container null slds-icon__svg--default" data-reactid="2705"><svg xmlns="http://www.w3.org/2000/svg" class="slds-icon slds-icon-text-default" aria-hidden="true" viewBox="0 0 36 30" data-reactid="2706"><path d="M1.6 13.4h15.3c.4 0 .6.5.3.8l-4.4 4.4c-.3.3-.3.7 0 1l1 1c.3.3.7.3 1 0l8-8.1c.3-.3.3-.7 0-1l-8-8.1c-.3-.3-.7-.3-1 0l-1 1c-.2.3-.2.7 0 1l4.5 4.4c.2.3.1.8-.4.8H1.6c-.4 0-.7.3-.7.7v1.3c0 .4.3.8.7.8z" /></svg></span>
-                                               </svg>
-                                            </div>
-                                            <div class="slds-col" style="width: 40px;">
-                                                <apex:image value="{!URLFOR($Resource.ia_crm__Intacct,'images/sfdc_logo.png')}" />
-                                            </div>
-                                        </div>
-                                    </span>
+	                           			<div class="slds-grid">
+	                               			<div class="slds-col" style="width: 100px;">
+	                                   			<apex:image value="{!URLFOR($Resource.ia_crm__Intacct,'images/sage-Intacct-logo.png')}" />
+	                               			</div>
+			                                <div class="slds-col" style="width: 50px;">
+			                                   <svg class="slds-button__icon" aria-hidden="true">
+			                                       <span class="slds-icon_container null slds-icon__svg--default" data-reactid="2705"><svg xmlns="http://www.w3.org/2000/svg" class="slds-icon slds-icon-text-default" aria-hidden="true" viewBox="0 0 36 30" data-reactid="2706"><path d="M1.6 13.4h15.3c.4 0 .6.5.3.8l-4.4 4.4c-.3.3-.3.7 0 1l1 1c.3.3.7.3 1 0l8-8.1c.3-.3.3-.7 0-1l-8-8.1c-.3-.3-.7-.3-1 0l-1 1c-.2.3-.2.7 0 1l4.5 4.4c.2.3.1.8-.4.8H1.6c-.4 0-.7.3-.7.7v1.3c0 .4.3.8.7.8z" /></svg></span>
+			                                   </svg>
+			                                </div>
+			                                <div class="slds-col" style="width: 40px;">
+			                                    <apex:image value="{!URLFOR($Resource.ia_crm__Intacct,'images/sfdc_logo.png')}" />
+			                                </div>
+	                       				</div>
+	                               	</span>
                             </div>
                             <div style="padding-left:30px;padding-right:30px;">
                                 <h2 class="slds-has-divider--top-space slds-text-heading--small">{!$Label.Account_filters}</h2>
@@ -929,7 +934,7 @@
                                             
                                             <label class="slds-form-element__label" for="select-11">{!$Label.Select_Contract_Records_to_Sync}</label>
                                             <div class="slds-form-element__control" style="min-width: 220px;">
-                                                <div class="slds-select_container">
+	                                            <div class="slds-select_container">
                                                     <apex:selectlist value="{!ctw.selectedItemToSync}" size="1" styleclass="slds-select">
                                                         <apex:selectoptions value="{!ctw.allItemsToSyncTransactions}" />
                                                     </apex:selectlist>
@@ -1242,7 +1247,7 @@
                                                                                         <div class="slds-form-element__control">
                                                                                             <div class="slds-select_container">
                                                                                                 <apex:selectlist value="{!filterMap[index].fieldName}" size="1" styleclass="slds-select" disabled="{!IF(filterMap[index].isDisabled, 'true', 'false')}">
-                                                                                                    <apex:actionsupport event="onchange" action="{!selectedFilterField}" rerender="jEFilters, pageJEMessages" status="fetchStatus" immediate="false">
+                                                                                                    <apex:actionsupport event="onchange" action="{!selectedFilterField}" rerender="jEFilters, pageJEMessages, filtersPanel" status="fetchStatus" immediate="false">
                                                                                                         <apex:param name="selectedFilterLineRow" value="{!index}" assignto="{!selectedFilterLine}" />
                                                                                                     </apex:actionsupport>
                                                                                                     <apex:selectoptions value="{!filterMap[index].fieldOptions}" />
@@ -1441,7 +1446,7 @@
                                                             </fieldset>
                                                             <div style="display: table-row">
                                                                 <div style="padding-left: 20px; height: 55px; display: table-cell; ">
-                                                                    <apex:commandbutton action="{!addJEFilter}" value="{!$Label.ia_crm__Add_filter}" styleclass="slds-button " rerender="jEFilters" status="fetchStatus" />
+                                                                    <apex:commandbutton action="{!addJEFilter}" value="{!$Label.ia_crm__Add_filter}" styleclass="slds-button " rerender="jEFilters, filtersPanel" status="fetchStatus" />
                                                                 </div>
                                                                 <div style="display: table-cell;">
                                                                     <apex:outputpanel rendered="{!LEN(journalEntryAddFilterErrorMessage) > 0}">
@@ -1711,7 +1716,7 @@
                                     </div>
                                 </apex:outputpanel>
                                 <apex:outputpanel id="recordsPanel">
-                                    <!--<c:RecordsBulkPagination objname="{!selectedMappingValue}" objrecords="{!records}" mappingfieldstodisplay="{!mappingFieldsTemp}" />-->  
+                                 	<!--<c:RecordsBulkPagination objname="{!selectedMappingValue}" objrecords="{!records}" mappingfieldstodisplay="{!mappingFieldsTemp}" />-->	
                                      <apex:actionfunction name="getCallbackValue" rerender="none">
                                         <apex:param name="callBackParam" value="" assignto="{!selectedRowsData}"/>
                                     </apex:actionfunction>
@@ -1765,6 +1770,13 @@
                         <div id="tab-scoped-5" class="slds-tabs_scoped__content slds-hide" role="tabpanel" aria-labelledby="tab-scoped-5__item">
                             <apex:outputpanel rendered="{!showContractTab}">
                                 <c:SFDCContractMassCreate />
+                            </apex:outputpanel>
+                        </div>
+
+                        <!-- Create Mass SD -->
+                        <div id="tab-scoped-6" class="slds-tabs_scoped__content slds-hide" role="tabpanel" aria-labelledby="tab-scoped-6__item">
+                            <apex:outputpanel rendered="{!isJournalEntryEnabled}">
+                                <c:SalesDocumentMassCreate />
                             </apex:outputpanel>
                         </div>
                     </div>
@@ -1882,6 +1894,12 @@
 
         if(fifthTab != null) {
             fifthTab.onclick = function() {switchTab('5')};
+        }
+
+        var sixTab = document.getElementById("sixTab");
+
+        if(sixTab != null) {
+            sixTab.onclick = function() {switchTab('6')};
         }
 
         function expandOrColapseCreationProcess() {

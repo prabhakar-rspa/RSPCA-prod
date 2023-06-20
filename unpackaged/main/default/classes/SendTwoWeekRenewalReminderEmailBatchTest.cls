@@ -1,6 +1,6 @@
 @isTest
 public class SendTwoWeekRenewalReminderEmailBatchTest {
-
+    
     @isTest
     static void SendTwoWeekRenewEmailTest(){
         Account act = new Account();
@@ -8,17 +8,17 @@ public class SendTwoWeekRenewalReminderEmailBatchTest {
         act.Name = 'Test Head Office';
         act.Status__c = 'ENQUIRY';
         insert act;
-
+        
         Contact cnt = new Contact();
         cnt.AccountId = act.Id;
         cnt.FirstName = 'Test';
         cnt.LastName = 'Name';
         cnt.Email = 'test@test.com';
         insert cnt;
-
+        
         act.Primary_Contact__c = cnt.Id;
         update act;
-
+        
         Account site = new Account();
         site.RecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Site').getRecordTypeId();
         site.Name = 'Test Site';
@@ -28,7 +28,7 @@ public class SendTwoWeekRenewalReminderEmailBatchTest {
         site.Membership_Expiry_Date__c = Date.today().addDays(14);
         site.Status__c = 'Member';
         insert site;
-		Renewal_Price_Report__c report = new Renewal_Price_Report__c();
+        Renewal_Price_Report__c report = new Renewal_Price_Report__c();
         report.Site__c = site.Id;
         report.Membership_Expiry_Date__c = Date.today().addDays(14);
         insert report;
@@ -49,18 +49,11 @@ public class SendTwoWeekRenewalReminderEmailBatchTest {
         testDate.Test_Date__c = acc.X2_Week_Renewal_Scheduled_Date__c;
         insert testDate;
         Test.startTest();
-        system.debug([SELECT Id,Status__c,
-                                            Primary_Contact__c,
-                                            Primary_Contact__r.Email,
-                                            Renewal_Date__c,
-                                            Membership_Expiry_Date__c,
-                                            Final_Renewal_Reminder_Sent__c,
-                      						X2_Week_Renewal_Scheduled_Date__c,
-                      						Renewal_Reminder_Ready__c,
-                                            ParentId 
-                                            FROM Account]);
+        
+        
         SendTwoWeekRenewalReminderEmailBatch obj = new SendTwoWeekRenewalReminderEmailBatch();
         obj.execute(null);
+        
         Test.stopTest();
     }
     

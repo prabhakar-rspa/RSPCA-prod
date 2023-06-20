@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Item GL Group --></label>
+        <name>ia_crm__Item_GL_Group__c</name>
+        <picklistValues>
+            <masterLabel>Auto GL Group</masterLabel>
+            <translation>Groupe GL automatique</translation>
+        </picklistValues>
+    </CustomFieldTranslation>

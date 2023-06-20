@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Intacct Template</layout>
+        <sections>
+            <label>Liens personnalisés</label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label>Champs Intacct</label>
+            <section>Intacct Fields</section>
+        </sections>
+        <sections>
+            <label>Informations sur Intacct</label>
+            <section>Intacct Information</section>
+        </sections>
+        <sections>
+            <label>Informations sur Intacct</label>
+            <section>Intacct Insights</section>
+        </sections>
+        <sections>
+            <label>Renouvellements Intacct</label>
+            <section>Intacct Renewals</section>
+        </sections>
+        <sections>
+            <label>Synchronisation d’Intacct</label>
+            <section>Intacct Synchronization</section>
+        </sections>
+        <sections>
+            <label>Nouvelle section</label>
+            <section>New Section</section>
+        </sections>
+        <sections>
+            <label>Factures de vente</label>
+            <section>Sales Invoices</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <validationRules>
+        <errorMessage><!-- You must enter a value --></errorMessage>
+        <name>ia_crm__ContractNameRequired</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Start date must be earlier than the end date. --></errorMessage>
+        <name>ia_crm__Start_and_End_Dates_Validation</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Create_Add_on_opportunity --></label>
+        <name>ia_crm__Create_Add_on_opportunity</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Create_Add_on_oppotunity --></label>
+        <name>ia_crm__Create_Add_on_oppotunity</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Create_Contract --></label>
+        <name>ia_crm__Create_Contract</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Create_Renewal_Opportunity --></label>
+        <name>ia_crm__Create_Renewal_Opportunity</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Sync_Selected_Records --></label>
+        <name>ia_crm__Sync_Selected_Records</name>
+    </webLinks>
+</CustomObjectTranslation>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Item Type --></label>
+        <name>ia_crm__Item_Type__c</name>
+        <picklistValues>
+            <masterLabel>Inventory</masterLabel>
+            <translation>Stock</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kit</masterLabel>
+            <translation><!-- Kit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Non-Inventory</masterLabel>
+            <translation>Hors stock</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Non-Inventory (Sales only)</masterLabel>
+            <translation>Hors stock (ventes uniquement)</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stockable Kit</masterLabel>
+            <translation>Kit stockable</translation>
+        </picklistValues>
+    </CustomFieldTranslation>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help>Pour les activités standard/directes, laissez le champ vide. 
+Pour les activités de revendeur, renseignez ce champ avec le client final. Veuillez noter que la valeur doit être identique au compte d’opportunité.</help>
+        <label><!-- End Customer --></label>
+        <name>ia_crm__End_Customer__c</name>
+        <relationshipLabel><!-- Contracts (End Customer) --></relationshipLabel>
+    </CustomFieldTranslation>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Recognition method --></label>
+        <name>ia_crm__Recognition_method__c</name>
+        <picklistValues>
+            <masterLabel>Custom</masterLabel>
+            <translation>Personnalisé</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Exact days per period, prorate days</masterLabel>
+            <translation>Jours exacts par période, au prorata des jours</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Milestone</masterLabel>
+            <translation>Jalon</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Percent completed</masterLabel>
+            <translation>Pourcentage d’achèvement</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Straight line</masterLabel>
+            <translation>Ligne droite</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Straight-line, percent allocation</masterLabel>
+            <translation>Ligne droite, pourcentage de ventilation</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Straight-line, prorate exact days</masterLabel>
+            <translation>Ligne droite, au prorata des jours exacts</translation>
+        </picklistValues>
+    </CustomFieldTranslation>

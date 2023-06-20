@@ -267,8 +267,9 @@
                 </table>
                  <div class="slds-card__footer slds-grid slds-grid--vertical-align-end">
                     <div class="slds-grid--vertical-align-end" style="width: 100%;" >
-                        <label class="slds-form-element__label" for="input-01" style="float:left;">{!$Label.Showing_Page} {!pageNumber} {!$Label.of} {!totalPages}</label>
+                        <label class="slds-form-element__label" for="input-01" style="float:left;">{!SHOWING_PAGE}</label>
                     </div>
+
                     <div class="slds-col slds-size--2-of-2">
                         <div class="" role="group" style="float:right;">
                             <apex:commandButton status="fetchStatus" disabled="{!disablePrevious}" oncomplete="selectParent()" action="{!firstPage}" rerender="productsPanel" value="{!$Label.ia_crm__First}" title="{!$Label.ia_crm__First_Page}" styleClass="slds-button slds-button--brand"/>

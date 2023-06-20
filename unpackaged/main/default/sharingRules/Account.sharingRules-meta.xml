@@ -347,6 +347,31 @@
         <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
+        <fullName>Sunrise_Poultry_Farms_Ltd</fullName>
+        <accessLevel>Read</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Read</contactAccessLevel>
+            <opportunityAccessLevel>None</opportunityAccessLevel>
+        </accountSettings>
+        <label>Sunrise Poultry Farms Ltd</label>
+        <sharedTo>
+            <group>Sunrise_Poultry_Farms_Ltd</group>
+        </sharedTo>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>Membership_Number_Text__c</field>
+            <operation>startsWith</operation>
+            <value>0478.</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Membership_Number_Text__c</field>
+            <operation>startsWith</operation>
+            <value>0478</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
         <fullName>Tan_ydderwen</fullName>
         <accessLevel>Read</accessLevel>
         <accountSettings>
@@ -452,20 +477,29 @@
         </criteriaItems>
         <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
     </sharingCriteriaRules>
-    <sharingOwnerRules>
-        <fullName>Sunrise_Poultry_Farms_Ltd</fullName>
+    <sharingCriteriaRules>
+        <fullName>t_as_Bryndu_Free_Range_Eggs_Ltd</fullName>
         <accessLevel>Read</accessLevel>
         <accountSettings>
             <caseAccessLevel>None</caseAccessLevel>
             <contactAccessLevel>Read</contactAccessLevel>
             <opportunityAccessLevel>None</opportunityAccessLevel>
         </accountSettings>
-        <label>Sunrise Poultry Farms Ltd</label>
+        <label>t/as Bryndu Free Range Eggs Ltd</label>
         <sharedTo>
-            <group>Sunrise_Poultry_Farms_Ltd</group>
+            <group>t_as_Bryndu_Free_Range_Eggs_Ltd</group>
         </sharedTo>
-        <sharedFrom>
-            <group>Sunrise_Poultry_Farms_Ltd</group>
-        </sharedFrom>
-    </sharingOwnerRules>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>Membership_Number_Text__c</field>
+            <operation>startsWith</operation>
+            <value>4046.</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Head_Office_Number__c</field>
+            <operation>startsWith</operation>
+            <value>4046</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
 </SharingRules>

@@ -1,20 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <layouts>
         <layout>Product Layout</layout>
         <sections>
@@ -22,20 +7,101 @@
             <section>Additional Information</section>
         </sections>
         <sections>
-            <label><!-- Custom Links --></label>
+            <label>Défaut de contrat</label>
+            <section>Contract Default</section>
+        </sections>
+        <sections>
+            <label>Liens personnalisés</label>
             <section>Custom Links</section>
         </sections>
         <sections>
-            <label><!-- Fields --></label>
+            <label>Champs</label>
             <section>Fields</section>
         </sections>
         <sections>
             <label><!-- Intacct Fields --></label>
             <section>Intacct Fields</section>
         </sections>
+        <sections>
+            <label>Synchronisation d’Intacct</label>
+            <section>Intacct Synchronization</section>
+        </sections>
+        <sections>
+            <label>Nouvelle section</label>
+            <section>New Section</section>
+        </sections>
+        <sections>
+            <label>Achats</label>
+            <section>Purchasing</section>
+        </sections>
+        <sections>
+            <label>Ventes</label>
+            <section>Sales</section>
+        </sections>
+        <sections>
+            <label>Informations système</label>
+            <section>System Information</section>
+        </sections>
     </layouts>
     <validationRules>
         <errorMessage><!-- Sage 50 Nominal AC must be numeric. --></errorMessage>
         <name>Sage_50_Nominal_AC_must_be_numeric</name>
     </validationRules>
+    <validationRules>
+        <errorMessage><!-- Cost method is required for Inventory products. --></errorMessage>
+        <name>ia_crm__Cost_Method_Required_Inventory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must enter a value --></errorMessage>
+        <name>ia_crm__Product_Code_Required</name>
+    </validationRules>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <webLinks>
+        <label><!-- Inventory_Status --></label>
+        <name>ia_crm__Inventory_Status</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Sync_Selected_Records --></label>
+        <name>ia_crm__Sync_Selected_Records</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Sync_to_Intacct --></label>
+        <name>ia_crm__Sync_to_Intacct</name>
+    </webLinks>
 </CustomObjectTranslation>

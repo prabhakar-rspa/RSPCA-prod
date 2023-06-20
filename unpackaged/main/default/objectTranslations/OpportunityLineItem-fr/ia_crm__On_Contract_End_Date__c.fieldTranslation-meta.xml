@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- On Contract End Date --></label>
+        <name>ia_crm__On_Contract_End_Date__c</name>
+        <picklistValues>
+            <masterLabel>Bill unused quantity</masterLabel>
+            <translation>Facturer la quantité inutilisée</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cancel unused quantity</masterLabel>
+            <translation>Annuler la quantité inutilisée</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Do nothing</masterLabel>
+            <translation>Ne rien faire</translation>
+        </picklistValues>
+    </CustomFieldTranslation>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- If Usage Exceeds The Committed Quantity --></label>
+        <name>ia_crm__If_Usage_Exceeds_The_Committed_Quantity__c</name>
+        <picklistValues>
+            <masterLabel>Bill overage</masterLabel>
+            <translation>Excédent de facture</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Do nothing</masterLabel>
+            <translation>Ne rien faire</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Don’t allow overage</masterLabel>
+            <translation>Ne pas autoriser le dépassement</translation>
+        </picklistValues>
+    </CustomFieldTranslation>

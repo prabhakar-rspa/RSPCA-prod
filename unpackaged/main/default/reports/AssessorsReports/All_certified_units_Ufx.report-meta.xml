@@ -19,9 +19,6 @@
         <field>ADDRESS1_COUNTRY</field>
     </columns>
     <columns>
-        <field>PARENT.NAME</field>
-    </columns>
-    <columns>
         <field>CDF1</field>
     </columns>
     <columns>
@@ -32,6 +29,9 @@
     </columns>
     <columns>
         <field>Unit__c.Vehicle_Type__c</field>
+    </columns>
+    <columns>
+        <field>Unit__c.Animals_List__c</field>
     </columns>
     <customDetailFormulas>
         <calculatedFormula>IF(ADDRESS1_ZIP&lt;&gt;&quot;&quot;,ADDRESS1_ZIP,ADDRESS1_CITY)</calculatedFormula>
@@ -49,9 +49,21 @@
             <operator>equals</operator>
             <value>Certified</value>
         </criteriaItems>
+        <criteriaItems>
+            <column>Unit__c.Animals__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Chickens</value>
+        </criteriaItems>
         <language>en_US</language>
     </filter>
-    <format>Tabular</format>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>PARENT.NAME</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
     <name>All certified units</name>
     <params>
         <name>co</name>

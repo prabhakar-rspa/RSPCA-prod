@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ia_crm__Is_Sales_Document_Synced__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>!ISNULL(ia_crm__Sales_Document__r.ia_crm__Synced_With_Intacct_Date__c)</formula>
+    <label>Is Sales Document Synced</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -195,7 +195,14 @@
                                          addOpportunityProductNewPage="{!addOpportunityProductNewPage}" 
                                          JEMappingNewPage="{!JEMappingNewPage}" 
                                          saveTriggerSettings="{!saveTriggerSettings}"
-                                         saveJETriggerSettings="{!saveJETriggerSettings}" />
+                                         saveJETriggerSettings="{!saveJETriggerSettings}" 
+                                         
+                                         salesDocumentMap="{!salesDocumentMap}" 
+                                         showSOMappingDeletePopupDialog="{!showSOMappingDeletePopupDialog}"
+                                         confirmDeleteSOMappingAction="{!confirmDeleteSOMappingAction}"
+                                         deleteSODialogAction="{!deleteSODialogAction}"
+                                         selectedSOMappingObjectName="{!selectedSOMappingObjectName}"/>
+
                     </div>
                     <div id="tab-scoped-3" class="slds-tabs--scoped__content slds-hide" role="tabpanel" aria-labelledby="tab-scoped-3__item">
                         <c:RenewalConfigurations configuration="{!configuration}"
@@ -355,7 +362,7 @@
         }
         
         .configLayout {
-            max-width: 1200px;
+            max-width: 1315px;
             min-width: 750px;
             margin: auto;
         }

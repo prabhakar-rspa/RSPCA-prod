@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Ship to Contact --></label>
+        <name>ia_crm__Ship_To__c</name>
+        <relationshipLabel><!-- Sales Order Items --></relationshipLabel>
+    </CustomFieldTranslation>

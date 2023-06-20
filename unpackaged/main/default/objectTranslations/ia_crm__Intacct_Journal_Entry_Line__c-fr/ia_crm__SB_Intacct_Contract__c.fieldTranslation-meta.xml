@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- SB Intacct Contract --></label>
+        <name>ia_crm__SB_Intacct_Contract__c</name>
+        <relationshipLabel><!-- Intacct Journal Entry Lines (SB Intacct Contract) --></relationshipLabel>
+    </CustomFieldTranslation>

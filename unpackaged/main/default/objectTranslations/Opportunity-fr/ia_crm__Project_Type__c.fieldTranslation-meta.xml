@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help>Il s’agit d’un champ standard dans Intacct, vous pouvez personnaliser les valeurs disponibles dans Intacct. Les valeurs de Salesforce doivent correspondre aux valeurs d’Intacct pour qu’elles soient mappées.</help>
+        <label><!-- Project Type --></label>
+        <name>ia_crm__Project_Type__c</name>
+        <picklistValues>
+            <masterLabel>Consulting</masterLabel>
+            <translation><!-- Consulting --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Internal</masterLabel>
+            <translation>Interne</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Template</masterLabel>
+            <translation>Modèle</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Training</masterLabel>
+            <translation>Formation</translation>
+        </picklistValues>
+    </CustomFieldTranslation>

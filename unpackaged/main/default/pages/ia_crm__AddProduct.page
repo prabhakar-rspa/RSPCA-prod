@@ -56,7 +56,7 @@
                                             <div class="slds-form-element__control">
                                                 <div class="slds-select_container">
                                                     <select id="select-01" class="slds-select {!disableButtons}" ng-model="Filter.Operator">
-                                                        <option value="NONE">--NONE--</option>
+                                                        <option value="NONE">{!$Label.None2}</option>
                                                         <option ng-repeat="opt in Filter.OperatorOptions" value="{{opt.value}}">{{opt.value}}</option>
                                                     </select>
                                                 </div>
@@ -226,7 +226,7 @@
                             </table>
                             <div class="slds-card__footer slds-grid slds-grid--vertical-align-end">
                                 <div class="slds-grid--vertical-align-end" style="width: 100%;">
-                                    <label class="slds-form-element__label" for="input-01" style="float:left;">{!$Label.ia_crm__Showing} {!IF(noOfRecords != 0, (setCon.pageNumber * size) + 1 - size, 0)} {!$Label.ia_crm__to} {!IF((setCon.pageNumber * size) > noOfRecords, noOfRecords,(setCon.pageNumber * size))} {!$Label.ia_crm__of} {!noOfRecords} {!$Label.ia_crm__records}</label>
+                                    <label class="slds-form-element__label" for="input-01" style="float:left;">{!SHOWING_RECORDS}</label>
                                     <apex:outputpanel rendered="{!isContract}">
                                         <div style="float:left;clear:left;">
                                             <p><img src="/img/msg_icons/info16.png" /><label class="slds-text-title" style="padding-left:10px;color: #54698d;font-size: 12px;">{!$Label.Only_Non_inventory_items_are_displayed}</label></p>

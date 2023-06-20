@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Automatically Create Renewal Opps --></label>
+        <name>ia_crm__Automatically_Create_Renewal_Opps__c</name>
+    </CustomFieldTranslation>

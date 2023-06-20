@@ -135,6 +135,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>ia_crm__Project__c.ia_crm__Bill_to__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>ia_crm__Project__c.ia_crm__Billing_Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -301,6 +306,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>ia_crm__Project__c.ia_crm__Service_Budget__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ia_crm__Project__c.ia_crm__Ship_to__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

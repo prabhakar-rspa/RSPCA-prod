@@ -3,7 +3,7 @@
     <apiVersion>48.0</apiVersion>
     <packageVersions>
         <majorNumber>2</majorNumber>
-        <minorNumber>87</minorNumber>
+        <minorNumber>89</minorNumber>
         <namespace>ia_crm</namespace>
     </packageVersions>
     <status>Active</status>

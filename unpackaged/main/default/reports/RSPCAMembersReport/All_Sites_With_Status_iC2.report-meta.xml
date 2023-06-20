@@ -58,9 +58,6 @@
         <field>Account.Same_Address_As_Head_Office__c</field>
     </columns>
     <columns>
-        <field>ADDRESS1_COUNTRY_CODE</field>
-    </columns>
-    <columns>
         <field>Account.Region__c</field>
     </columns>
     <columns>
@@ -100,7 +97,12 @@
         </criteriaItems>
         <language>en_US</language>
     </filter>
-    <format>Tabular</format>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>ADDRESS1_COUNTRY_CODE</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
     <name>All Sites With Status</name>
     <params>
         <name>co</name>

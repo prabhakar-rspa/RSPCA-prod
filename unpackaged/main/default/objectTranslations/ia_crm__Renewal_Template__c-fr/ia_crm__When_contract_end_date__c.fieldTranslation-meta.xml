@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- When contract end date --></label>
+        <name>ia_crm__When_contract_end_date__c</name>
+        <picklistValues>
+            <masterLabel>After</masterLabel>
+            <translation>Après</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Before</masterLabel>
+            <translation>Avant</translation>
+        </picklistValues>
+    </CustomFieldTranslation>

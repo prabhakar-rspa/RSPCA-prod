@@ -1,84 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <layouts>
+        <layout>Intacct Template - Contract</layout>
+        <sections>
+            <label>Facturation et expédition</label>
+            <section>Billing &amp; Shipping</section>
+        </sections>
+        <sections>
+            <label>Liens personnalisés</label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label>Valeurs par défaut d’Intacct pour les lignes de produits</label>
+            <section>Intacct Defaults for Product Lines</section>
+        </sections>
+        <sections>
+            <label>Champs Intacct</label>
+            <section>Intacct Fields</section>
+        </sections>
+        <sections>
+            <label>Champs de projet Intacct</label>
+            <section>Intacct Project Fields</section>
+        </sections>
+        <sections>
+            <label>Validation Intacct</label>
+            <section>Intacct Validation</section>
+        </sections>
+        <sections>
+            <label>Nouvelle section</label>
+            <section>New Section</section>
+        </sections>
+        <sections>
+            <label>Champs Intacct</label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Intacct Template - Order Entry</layout>
+        <sections>
+            <label>Champs de projet Intacct</label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label>Validation Intacct</label>
+            <section>Intacct Defaults for Product Lines</section>
+        </sections>
+        <sections>
+            <label>Nouvelle section</label>
+            <section>Intacct Fields</section>
+        </sections>
+        <sections>
+            <label>Informations système</label>
+            <section>Intacct Project Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Intacct Validation --></label>
+            <section>Intacct Validation</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
     <layouts>
         <layout>Opportunity Layout</layout>
         <sections>
@@ -137,8 +124,202 @@
         <label><!-- Partnerships --></label>
         <name>Partnerships</name>
     </recordTypes>
+    <recordTypes>
+        <description><!-- Contract Billing workflow --></description>
+        <label><!-- Contract --></label>
+        <name>ia_crm__Contract</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Order Entry workflow --></description>
+        <label><!-- Order Entry --></label>
+        <name>ia_crm__OrderEntry</name>
+    </recordTypes>
     <validationRules>
         <errorMessage><!-- Please provide a reason why this Opportunity is Closed or On Hold. --></errorMessage>
         <name>Must_provide_notes_when_On_Hold_or_Close</name>
     </validationRules>
+    <validationRules>
+        <errorMessage><!-- Default Intacct Location for Products should be the same like Intacct Entity or it should be a sub-location of the Intacct Entity. --></errorMessage>
+        <name>ia_crm__Intacct_Entity_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This opportunity is locked from editing because it has already been synchronized with Intacct. --></errorMessage>
+        <name>ia_crm__Lock_Opportunity_from_editing</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The Entity ID selected does not match the Entity ID selected for this Account or does not belong to the Parent Entity selected for this Account. 
+You must select the Entity ID selected in the Account or a child entity. --></errorMessage>
+        <name>ia_crm__ParentChildEntityValidate</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Start date must be earlier than the end date. --></errorMessage>
+        <name>ia_crm__Start_and_End_Dates_Validation</name>
+    </validationRules>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <webLinks>
+        <label><!-- Create_Contract_record --></label>
+        <name>ia_crm__Create_Contract_record</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Create_Journal_Entry --></label>
+        <name>ia_crm__Create_Journal_Entry</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Create_Project --></label>
+        <name>ia_crm__Create_Project</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Create_Sales_Credit --></label>
+        <name>ia_crm__Create_Sales_Credit</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Create_Sales_Document --></label>
+        <name>ia_crm__Create_Sales_Document</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Create_Sales_Invoice --></label>
+        <name>ia_crm__Create_Sales_Invoice</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Create_Sales_Order --></label>
+        <name>ia_crm__Create_Sales_Order</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Create_Sales_Quote --></label>
+        <name>ia_crm__Create_Sales_Quote</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Create_Shipper --></label>
+        <name>ia_crm__Create_Shipper</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- DeliveryStatus --></label>
+        <name>ia_crm__DeliveryStatus</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Modify_Contract --></label>
+        <name>ia_crm__Modify_Contract</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Modify_Contract_As_Draft --></label>
+        <name>ia_crm__Modify_Contract_As_Draft</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Sync_to_Intacct --></label>
+        <name>ia_crm__Sync_to_Intacct</name>
+    </webLinks>
 </CustomObjectTranslation>

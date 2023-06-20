@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help>Indique si le système doit remplir la nouvelle opportunité avec les mêmes produits (articles) que ceux qui étaient présents dans l’opportunité initiale.</help>
+        <label><!-- Inherit products from parent sales oppor --></label>
+        <name>ia_crm__Inherit_products_from_parent_sales_oppor__c</name>
+    </CustomFieldTranslation>

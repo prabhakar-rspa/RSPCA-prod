@@ -2,9 +2,9 @@
 <Role xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseAccessLevel>None</caseAccessLevel>
     <contactAccessLevel>Edit</contactAccessLevel>
-    <description>Duncan Farms Ltd Customer User</description>
+    <description>Duncan Farms Customer User</description>
     <mayForecastManagerShare>false</mayForecastManagerShare>
-    <name>Duncan Farms Ltd Customer User</name>
+    <name>Duncan Farms Customer User</name>
     <opportunityAccessLevel>None</opportunityAccessLevel>
     <parentRole>Assessors</parentRole>
 </Role>

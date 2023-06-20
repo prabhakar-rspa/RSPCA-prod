@@ -86,7 +86,7 @@
                     </apex:outputpanel>
                 <apex:outputpanel layout="none" >
                     <div style="text-align: center;">
-                        <apex:commandLink style="margin-top: 20px;" value="Close window" styleclass="btnClose slds-button slds-button--neutral" />
+                        <apex:commandLink style="margin-top: 20px;" value="{!$Label.ia_crm__Close}" styleclass="btnClose slds-button slds-button--neutral" />
                     </div>
                 </apex:outputpanel>
             </div>

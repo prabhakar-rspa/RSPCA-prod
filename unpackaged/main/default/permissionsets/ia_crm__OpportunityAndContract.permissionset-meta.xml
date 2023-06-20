@@ -43,6 +43,14 @@
     <hasActivationRequired>false</hasActivationRequired>
     <label>OpportunityAndContract</label>
     <pageAccesses>
+        <apexPage>ia_crm__AddProduct</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>ia_crm__AddProductsToOpportunity</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>ia_crm__ContractAddOn</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
@@ -173,6 +181,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Contract.ia_crm__Renewal_Template__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contract.ia_crm__Renewal_contract_term_type__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1123,6 +1136,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>ia_crm__Intacct_Contract__c.ia_crm__Renewal_Term_Period__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ia_crm__Intacct_Contract__c.ia_crm__Renewal_contract_term_type__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help>Champ utilisé pour le flux de travail du contrat et les transactions de commandes clients.</help>
+        <label><!-- Intacct Location --></label>
+        <name>ia_crm__Intacct_Location__c</name>
+        <relationshipLabel><!-- Opportunity Product (Intacct Location) --></relationshipLabel>
+    </CustomFieldTranslation>

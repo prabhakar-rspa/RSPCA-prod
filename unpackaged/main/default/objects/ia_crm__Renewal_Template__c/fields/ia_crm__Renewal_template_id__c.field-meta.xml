@@ -3,7 +3,7 @@
     <fullName>ia_crm__Renewal_template_id__c</fullName>
     <deprecated>false</deprecated>
     <externalId>false</externalId>
-    <label>Renewal template id</label>
+    <label>Renewal template ID</label>
     <length>30</length>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>

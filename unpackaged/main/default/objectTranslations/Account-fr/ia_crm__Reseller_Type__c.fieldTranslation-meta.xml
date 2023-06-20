@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help>Ce champ est automatiquement renseigné par les fonctionnalités internes. La modification de la valeur aura un impact sur les flux de revendeurs.</help>
+        <label><!-- Reseller Type --></label>
+        <name>ia_crm__Reseller_Type__c</name>
+    </CustomFieldTranslation>

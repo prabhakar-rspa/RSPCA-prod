@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help>Indique si le système va créer une nouvelle transaction de vente dans Intacct dans le cadre du renouvellement.</help>
+        <label><!-- Create sales transaction --></label>
+        <name>ia_crm__Create_sales_transaction__c</name>
+    </CustomFieldTranslation>

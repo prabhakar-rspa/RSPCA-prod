@@ -4,7 +4,7 @@
     <caseSensitive>false</caseSensitive>
     <deprecated>false</deprecated>
     <externalId>true</externalId>
-    <label>Unique Id</label>
+    <label>Unique ID</label>
     <length>255</length>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>

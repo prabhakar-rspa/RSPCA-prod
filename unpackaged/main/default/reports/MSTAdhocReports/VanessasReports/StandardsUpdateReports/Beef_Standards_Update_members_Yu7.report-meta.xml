@@ -38,19 +38,22 @@
         <field>Account.Previous_Assessment_Date__c</field>
     </columns>
     <columns>
-        <field>ADDRESS1_STATE_CODE</field>
+        <field>Account.Primary_Contact_Full_Name__c</field>
+    </columns>
+    <columns>
+        <field>ADDRESS1_STREET</field>
+    </columns>
+    <columns>
+        <field>ADDRESS1_CITY</field>
+    </columns>
+    <columns>
+        <field>ADDRESS1_COUNTRY_CODE</field>
     </columns>
     <columns>
         <field>ADDRESS1_ZIP</field>
     </columns>
     <columns>
         <field>Account.Primary_Contact_Email__c</field>
-    </columns>
-    <columns>
-        <field>Account.Primary_Contact_Full_Name__c</field>
-    </columns>
-    <columns>
-        <field>ADDRESS1_LINE1</field>
     </columns>
     <columns>
         <aggregateTypes>Sum</aggregateTypes>

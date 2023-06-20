@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Document Type --></label>
+        <name>ia_crm__Intacct_Transaction__c</name>
+        <picklistValues>
+            <masterLabel>Sales Credit Memo</masterLabel>
+            <translation>Avoir de vente</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sales Invoice</masterLabel>
+            <translation>Facture de vente</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sales Order</masterLabel>
+            <translation>Commande de vente</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sales Quote</masterLabel>
+            <translation>Devis de vente</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shipper</masterLabel>
+            <translation>Renseignements d’expédition</translation>
+        </picklistValues>
+    </CustomFieldTranslation>

@@ -7,7 +7,7 @@ public class SendTwoWeekRenewalReminderEmailBatch implements Database.Batchable<
             if(testDateSetting.Use_Test_Date_Data__c == true && testDateSetting.Test_Date__c != null){
                 reminderDate = testDateSetting.Test_Date__c;
             }
-            List<Account> siteList = [SELECT Id,
+            List<Account> siteList = [SELECT Id,Name,
                                             Status__c,
                                             Primary_Contact__c,
                                             Primary_Contact__r.Email,
@@ -25,14 +25,15 @@ public class SendTwoWeekRenewalReminderEmailBatch implements Database.Batchable<
                                             AND RecordType.DeveloperName = 'Site'
                                             AND ParentId != null
                                             AND Active__c = true
-                                            AND Renewal_Reminder_Ready__c = true];
+                                            AND Renewal_Reminder_Ready__c = true
+                                     ];
             Set<Id> headOfcIdSet = new Set<Id>();
             for(Account acc : siteList){
                 if(acc.ParentId != null){
                     headOfcIdSet.add(acc.ParentId);
                 }
             }
-            return Database.getQueryLocator('SELECT Id, Primary_Contact__c, Primary_Contact__r.Email FROM Account WHERE Id IN: headOfcIdSet AND Primary_Contact__r.Email != null');
+            return Database.getQueryLocator('SELECT Id,Name, Primary_Contact__c, Primary_Contact__r.Email FROM Account WHERE Id IN: headOfcIdSet AND Primary_Contact__r.Email != null');
         /*}else{
             return null;
         }*/
@@ -49,12 +50,31 @@ public class SendTwoWeekRenewalReminderEmailBatch implements Database.Batchable<
             if(testDateSetting.Use_Test_Date_Data__c == true && testDateSetting.Test_Contact_Id__c != null){
                 contactId = testDateSetting.Test_Contact_Id__c;
             }
+            PageReference reportPage = new PageReference('/apex/MembershipPrices');
+            reportPage.getParameters().put('id', act.Id);
+            Blob reportPdf;
+            try {
+                system.debug('reportPage:::'+reportPage);
+                reportPdf = reportPage.getContentAsPDF();
+            }
+            catch (Exception e) {
+                system.debug('going catch:::'+e);
+                reportPdf = Blob.valueOf(e.getMessage());
+            }
+            ContentVersion cv = new ContentVersion();
+            cv.VersionData = reportPdf;
+            cv.Title = 'MembershipPrices';
+            cv.PathOnClient = 'MembershipPrices.pdf';
+            cv.Description = act.Name;
+            cv.isMajorVersion = true;
+            insert cv;
             Messaging.SingleEmailMessage message = Messaging.renderStoredEmailTemplate(emailTemplate.Id, contactId, act.Id);
             if(testDateSetting.Use_Test_Date_Data__c == true && testDateSetting.Test_Contact_Id__c != null){
                 message.setSaveAsActivity(false);
             }else {
                 message.setSaveAsActivity(true);
             }
+			message.setEntityAttachments(new list<Id> {cv.Id});
             message.setSenderDisplayName('RSPCA Assured'); 
             message.setReplyTo('help@rspcaassured.org.uk');
             message.setUseSignature(false); 

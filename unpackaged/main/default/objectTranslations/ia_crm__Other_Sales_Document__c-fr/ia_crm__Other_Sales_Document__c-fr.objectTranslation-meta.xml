@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Autre document de vente</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Autres documents de vente</value>
+    </caseValues>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <gender>Masculine</gender>
+    <layouts>
+        <layout>Other Sales Document Layout</layout>
+        <sections>
+            <label>Informations de facturation/d’expédition</label>
+            <section>Bill to/Ship to Information</section>
+        </sections>
+        <sections>
+            <label>Liens personnalisés</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nom</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
+    <webLinks>
+        <label><!-- Delete_Other_Sales_Document --></label>
+        <name>ia_crm__Delete_Other_Sales_Document</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Print_Other_Sales_Document --></label>
+        <name>ia_crm__Print_Other_Sales_Document</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- View_Other_Sales_Document --></label>
+        <name>ia_crm__View_Other_Sales_Document</name>
+    </webLinks>
+</CustomObjectTranslation>

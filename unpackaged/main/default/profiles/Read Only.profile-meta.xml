@@ -1552,39 +1552,39 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>CMTD__EnhancedRelatedList__mdt.CMTD__Colour__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>CMTD__EnhancedRelatedList__mdt.CMTD__Field_API_Name__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>CMTD__EnhancedRelatedList__mdt.CMTD__Header__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>CMTD__EnhancedRelatedList__mdt.CMTD__Inactive__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>CMTD__EnhancedRelatedList__mdt.CMTD__Order__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>CMTD__EnhancedRelatedList__mdt.CMTD__Target_API_Name__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>CMTD__EnhancedRelatedList__mdt.CMTD__UI_Type_Override__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -6567,539 +6567,539 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Asperato_Settings__mdt.asp04__Direct_Debit_Lead_Time__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Asperato_Settings__mdt.asp04__Live_Server__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Asperato_Settings__mdt.asp04__Paypage_endpoint__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Asperato_Settings__mdt.asp04__Repeat_Endpoint__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Asperato_Settings__mdt.asp04__Test_Server__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Authorisation__c.Account__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Authorisation__c.Contact__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Authorisation__c.asp04__Account_Name__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Authorisation__c.asp04__Account_Reference__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Authorisation__c.asp04__Asperato_Repeat_Token__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Authorisation__c.asp04__Billing_Address_City__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Authorisation__c.asp04__Billing_Address_Country__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Authorisation__c.asp04__Billing_Address_PostalCode__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Authorisation__c.asp04__Billing_Address_State__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Authorisation__c.asp04__Billing_Address_Street__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Authorisation__c.asp04__CPA_Granted__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Authorisation__c.asp04__Cancel_Endpoint_Long__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Authorisation__c.asp04__Cancel_Endpoint__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Authorisation__c.asp04__Card_Type__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Authorisation__c.asp04__Company_Name__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Authorisation__c.asp04__Customer_ID__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Authorisation__c.asp04__Direct_Debit_Error_Code__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Authorisation__c.asp04__Email__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Authorisation__c.asp04__Error_Code__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Authorisation__c.asp04__Expiry_Date__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Authorisation__c.asp04__Fail_Endpoint_Long__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Authorisation__c.asp04__Fail_Endpoint__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Authorisation__c.asp04__First_Name__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Authorisation__c.asp04__Last_Name__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Authorisation__c.asp04__Mandate_Reference__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Authorisation__c.asp04__Merchant_Group__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Authorisation__c.asp04__PSP_Repeat_Token__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Authorisation__c.asp04__Pass_Thru_Parameters__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Authorisation__c.asp04__Payment_Route_Options__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Authorisation__c.asp04__Payment_Route_Selected__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Authorisation__c.asp04__Status_Description__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Authorisation__c.asp04__Status__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Authorisation__c.asp04__Success_Endpoint_Long__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Authorisation__c.asp04__Success_Endpoint__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Authorisation__c.asp04__eCommerce_URL__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__PaymentSchedule__c.Application__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__PaymentSchedule__c.asp04__Authorisation_Status__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__PaymentSchedule__c.asp04__Authorisation__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__PaymentSchedule__c.asp04__Final_Payment_Date__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__PaymentSchedule__c.asp04__Last_Payment_Date__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__PaymentSchedule__c.asp04__Next_Payment_Date__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__PaymentSchedule__c.asp04__Next_Process_Date__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__PaymentSchedule__c.asp04__Payment_Route_Selected__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__PaymentSchedule__c.asp04__Status__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.Application__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.Bulk_Renewal__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <readable>false</readable>
         <field>asp04__Payment__c.Payment_Link__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.asp04__Account_Name__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.asp04__Account_Reference__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.asp04__Asperato_Reference__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.asp04__Asperato_Repeat_Token__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.asp04__Authorisation_Status__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.asp04__Authorisation__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.asp04__Batch_Identifier__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.asp04__Billing_Address_City__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.asp04__Billing_Address_Country__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.asp04__Billing_Address_PostalCode__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.asp04__Billing_Address_State__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.asp04__Billing_Address_Street__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.asp04__Cancel_Endpoint_Long__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.asp04__Cancel_Endpoint__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.asp04__Card_Type__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.asp04__Company_Name__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.asp04__Customer_ID__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.asp04__Direct_Debit_Error_Code__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.asp04__Due_Date__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.asp04__Email__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.asp04__Error_Code__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.asp04__Fail_Endpoint_Long__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.asp04__Fail_Endpoint__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.asp04__First_Name__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.asp04__Frequency__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.asp04__Is_Gift_Card__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.asp04__Last_Name__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.asp04__Merchant_Group__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.asp04__PSP_Reference__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.asp04__PSP_Repeat_Token__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.asp04__Pass_Thru_Parameters__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.asp04__PaymentSchedule__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.asp04__Payment_Date__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.asp04__Payment_Route_Options__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.asp04__Payment_Route_Selected__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.asp04__Payment_Stage_Description__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.asp04__Payment_Stage__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.asp04__Process_Date__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.asp04__Source__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.asp04__Success_Endpoint_Long__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.asp04__Success_Endpoint__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.asp04__Total_Refunded__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.asp04__Transaction_Group__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Payment__c.asp04__eCommerce_URL__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Refund__c.asp04__Amount__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Refund__c.asp04__Asperato_Reference__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Refund__c.asp04__Direct_Debit_Error_Code__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Refund__c.asp04__Error_Code__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Refund__c.asp04__PSP_Reference__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Refund__c.asp04__Payment_Date__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Refund__c.asp04__Payment_Route__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Refund__c.asp04__Refund_Stage_Description__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Refund__c.asp04__Refund_Stage__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Service_Handlers__mdt.asp04__Handler_NamespacePrefix__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>asp04__Service_Handlers__mdt.asp04__Interface_Name__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -7175,6 +7175,9 @@
         <recordType>Application__c.Renewal</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>AuthorizationForm-Authorization Form Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>CMTD__EnhancedRelatedList__mdt-CMTD__Enhanced Related List Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -7186,6 +7189,14 @@
     <layoutAssignments>
         <layout>Opportunity-Opportunity Layout</layout>
         <recordType>Opportunity.Partnerships</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-ia_crm__Intacct Template - Contract</layout>
+        <recordType>Opportunity.ia_crm__Contract</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-ia_crm__Intacct Template - Order Entry</layout>
+        <recordType>Opportunity.ia_crm__OrderEntry</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>OpportunityLineItem-Opportunity Product Layout</layout>
@@ -7615,6 +7626,18 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>ia_crm__Revenue_Recognition_Template__c-ia_crm__Revenue Recognition Template Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ia_crm__Sales_Document_Item__c-ia_crm__Sales Document Item Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ia_crm__Sales_Document_Payment__c-ia_crm__Sales Document Payment Detail Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ia_crm__Sales_Document_Total__c-ia_crm__Sales Document Total Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ia_crm__Sales_Document__c-ia_crm__Sales Document Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>ia_crm__Sales_Invoice_Item__c-ia_crm__Sales Invoice Item Layout</layout>
@@ -8192,6 +8215,10 @@
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>ia_crm__Intacct_Contract_Line__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>ia_crm__Intacct_Contract__c</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
@@ -8244,6 +8271,10 @@
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>ia_crm__Sales_Document__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>ia_crm__Sales_Invoice_Item__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
@@ -8277,6 +8308,14 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>standard-Contact</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>standard-MessagingEndUser</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>standard-MessagingSession</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
@@ -8630,6 +8669,10 @@
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
+        <name>CanAccessCE</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
         <name>ChatterEditOwnPost</name>
     </userPermissions>
     <userPermissions>
@@ -8737,411 +8780,411 @@
         <name>ViewSetup</name>
     </userPermissions>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>CMTD__ERL_RTSelector_CC</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>CMTD__ERL_RTSelector_Test</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>CMTD__EnhancedRelatedList_CC</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>CMTD__EnhancedRelatedList_Test</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__AsperatoConnectionService</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__AsperatoCustomSettingsSelector</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__AsperatoSettingsSelector</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__AsperatoSetupVFController</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__AuthorisationSelector</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__BatchProcessPaymentSchedules</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__BatchProcessPaymentSchedules2</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__BatchProcessPaymentSchedules_Test</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__BatchSendPayments</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__BatchSendPayments2</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__BatchSendPaymentsResponseUpdate</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__BatchSendPayments_Test</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__Constants</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__Controllers_Test</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__CreateConfigController</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__CreateConfigService</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__CreateConfigService_Test</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__CurrencyUtils</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__CustomException</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__GetAuthorisationsService</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__GetAuthorisationsServiceHandler</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__GetAuthorisationsServiceHandlerStub</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__GetAuthorisationsServiceHandler_Test</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__GetAuthorisationsService_Test</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__GetPaymentsService</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__GetPaymentsServiceHandler</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__GetPaymentsServiceHandlerStub</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__GetPaymentsServiceHandler_Test</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__GetPaymentsService_Test</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__GettingStartedController</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__HTTPCalloutStub</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__IGetAuthorisationsService</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__IGetPaymentsService</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__IPutAuthorisationsService</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__IPutMessagesService</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__IPutPaymentsService</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__ISendPaymentsService</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__LProcessConfigController</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__LProcessPayUsingAuthController</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__LProcessUrlController</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__LRefundController</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__PSPConnection</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__PSPConnectionController</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__PSPConnectionController_Test</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__PSPConnectionResult</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__PSPConnectionService</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__PSPConnectionService_Test</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__PSPConnectionType</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__PaymentScheduleSelector</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__PaymentSelector</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__PostInstallScript</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__PostInstallScript_Test</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__ProcessAuthorisationControllerExtension</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__ProcessPayUsingAuthControllerExtension</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__ProcessPayUsingAuthSubmit</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__ProcessPaymentControllerExtension</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__PutAuthorisationsService</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__PutAuthorisationsServiceHandler</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__PutAuthorisationsServiceHandlerStub</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__PutAuthorisationsServiceHandler_Test</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__PutAuthorisationsService_Test</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__PutMessagesService</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__PutMessagesServiceHandler</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__PutMessagesServiceHandlerStub</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__PutMessagesServiceHandler_Test</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__PutMessagesService_Test</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__PutPaymentsService</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__PutPaymentsServiceHandler</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__PutPaymentsServiceHandlerStub</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__PutPaymentsServiceHandler_Test</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__PutPaymentsService_Test</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__RefundControllerExtension</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__RefundSelector</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__RefundSubmit</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__SFConnectionController</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__SFConnectionService</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__SFConnectionService_Test</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__SecurityViolationException</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__SelectorBase</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__Selector_Test</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__SendPaymentServiceStub</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__SendPaymentsService</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__SendPaymentsService_Test</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__SendPaymentsUtilities</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__SendPaymentsUtilities_Test</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__ServiceHandlerSelector</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__ServiceLocator</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__ServiceLocatorException</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__ServiceLocator_Test</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__TestDataFactory</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__Utilities</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>asp04__Utilities_Test</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <pageAccesses>
         <apexPage>asp04__GettingStarted</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>asp04__ProcessAuthorisation</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>asp04__ProcessPayment</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>asp04__ProcessPaymentUsingAuthorisation</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>asp04__ProcessRefund</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <customMetadataTypeAccesses>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
         <name>CMTD__EnhancedRelatedList__mdt</name>
     </customMetadataTypeAccesses>
 </Profile>
