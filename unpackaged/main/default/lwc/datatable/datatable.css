@@ -1,0 +1,34 @@
+.THIS .spinner {
+    position: absolute;
+}
+
+.THIS .outer-div {
+    position: relative;
+}
+
+.custom-height{
+    max-height: 300px;
+    height: auto;
+}
+
+table th:nth-of-type(3) {
+    width: 10px;
+}
+
+.custom-wordwrap{
+max-width: 100%; 
+overflow: hidden;
+text-overflow: unset;
+white-space: pre-line;
+}
+.tableScroll {
+    table-layout: fixed;
+}
+
+.fieldColumn {
+    width: 10rem;
+}
+.heightStyle{
+    height: 10px;
+    overflow: scroll;
+}

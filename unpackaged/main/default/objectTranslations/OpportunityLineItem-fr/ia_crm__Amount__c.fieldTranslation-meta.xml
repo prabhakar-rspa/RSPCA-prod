@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help>Montant forfaitaire/fixe en tenue de compte Intacct. Cette valeur doit être égale à Quantité x Taux (prix de vente) x Multiplicateur - Remise.</help>
+        <label><!-- Amount --></label>
+        <name>ia_crm__Amount__c</name>
+    </CustomFieldTranslation>

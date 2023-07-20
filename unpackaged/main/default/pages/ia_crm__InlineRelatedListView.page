@@ -87,7 +87,7 @@
 						              <apex:commandButton value="First" styleClass="slds-button slds-button_neutral" reRender="dataTable, buttonsPanel" action="{!first}" disabled="{!NOT(hasPrevious)}"
 						                status="fetchStatus" />
 						              <apex:commandButton value="{!$Label.ia_crm__Previous}" styleClass="slds-button slds-button_neutral" rerender="dataTable, buttonsPanel" action="{!previous}"
-						                disabled="{!NOT(hasPrevious)}" status="fetchStatus" />&nbsp;{!$Label.Page} {!pageNumber} {!$Label.of} {!totalPages}&nbsp;/&nbsp;{!allRecordsNumber} {!$Label.records}&nbsp;
+						                disabled="{!NOT(hasPrevious)}" status="fetchStatus" />&nbsp;{!NO_OF_PAGES}&nbsp;
 						              <apex:commandButton value="{!$Label.ia_crm__Next}" styleClass="slds-button slds-button_neutral" rerender="dataTable, buttonsPanel" action="{!next}" disabled="{!NOT(hasNext)}"
 						                status="fetchStatus" />
 						              <apex:commandButton value="{!$Label.ia_crm__Last}" styleClass="slds-button slds-button_neutral" rerender="dataTable, buttonsPanel" action="{!last}" disabled="{!NOT(hasNext)}"

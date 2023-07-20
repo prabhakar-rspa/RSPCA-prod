@@ -4,7 +4,7 @@
     <deprecated>false</deprecated>
     <externalId>false</externalId>
     <formula>CASESAFEID(AccountId)</formula>
-    <label>SFDC Account Id</label>
+    <label>SFDC Account ID</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Text</type>

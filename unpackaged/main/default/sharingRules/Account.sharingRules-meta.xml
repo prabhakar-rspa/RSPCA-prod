@@ -1,6 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
     <sharingCriteriaRules>
+        <fullName>Boarcross_and_Feelright</fullName>
+        <accessLevel>Read</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Read</contactAccessLevel>
+            <opportunityAccessLevel>None</opportunityAccessLevel>
+        </accountSettings>
+        <label>Boarcross and Feelright</label>
+        <sharedTo>
+            <group>Boarcross_and_Feelright</group>
+        </sharedTo>
+        <booleanFilter>1 OR 2 OR 3 OR 4 OR 5 OR 6</booleanFilter>
+        <criteriaItems>
+            <field>Head_Office_Number__c</field>
+            <operation>startsWith</operation>
+            <value>3838</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Membership_Number_Text__c</field>
+            <operation>startsWith</operation>
+            <value>3838.</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Head_Office_Number__c</field>
+            <operation>startsWith</operation>
+            <value>5091</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Membership_Number_Text__c</field>
+            <operation>startsWith</operation>
+            <value>5091.</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Head_Office_Number__c</field>
+            <operation>startsWith</operation>
+            <value>5094</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Membership_Number_Text__c</field>
+            <operation>startsWith</operation>
+            <value>5094.</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
         <fullName>Cooke_Aquaculture</fullName>
         <accessLevel>Read</accessLevel>
         <accountSettings>
@@ -37,6 +82,31 @@
             <field>Head_Office_Number__c</field>
             <operation>startsWith</operation>
             <value>3505</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Corby_Rock_Eggs_Ltd</fullName>
+        <accessLevel>Read</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Read</contactAccessLevel>
+            <opportunityAccessLevel>None</opportunityAccessLevel>
+        </accountSettings>
+        <label>Corby Rock Eggs Ltd</label>
+        <sharedTo>
+            <group>Corby_Rock_Eggs_Ltd</group>
+        </sharedTo>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>Head_Office_Number__c</field>
+            <operation>startsWith</operation>
+            <value>4017</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Membership_Number_Text__c</field>
+            <operation>startsWith</operation>
+            <value>4017.</value>
         </criteriaItems>
         <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
     </sharingCriteriaRules>
@@ -118,6 +188,66 @@
             <field>Head_Office_Number__c</field>
             <operation>startsWith</operation>
             <value>4729</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Greenfield_Foods_Limited</fullName>
+        <accessLevel>Read</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Read</contactAccessLevel>
+            <opportunityAccessLevel>None</opportunityAccessLevel>
+        </accountSettings>
+        <label>Greenfield Foods Limited</label>
+        <sharedTo>
+            <group>Greenfield_Foods_Limited</group>
+        </sharedTo>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>Head_Office_Number__c</field>
+            <operation>startsWith</operation>
+            <value>4002</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Membership_Number_Text__c</field>
+            <operation>startsWith</operation>
+            <value>4002.</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>H_P_Westwood</fullName>
+        <accessLevel>Read</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Read</contactAccessLevel>
+            <opportunityAccessLevel>None</opportunityAccessLevel>
+        </accountSettings>
+        <label>H P Westwood</label>
+        <sharedTo>
+            <group>H_P_Westwood</group>
+        </sharedTo>
+        <booleanFilter>1 OR 2 OR 3 OR 4</booleanFilter>
+        <criteriaItems>
+            <field>Head_Office_Number__c</field>
+            <operation>startsWith</operation>
+            <value>4671</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Membership_Number_Text__c</field>
+            <operation>startsWith</operation>
+            <value>4671.</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Head_Office_Number__c</field>
+            <operation>startsWith</operation>
+            <value>5002</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Membership_Number_Text__c</field>
+            <operation>startsWith</operation>
+            <value>5002.</value>
         </criteriaItems>
         <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
     </sharingCriteriaRules>
@@ -278,16 +408,11 @@
         <sharedTo>
             <group>Noble_Foods_Group</group>
         </sharedTo>
-        <booleanFilter>1 OR 2 OR 3 OR 4 OR 5 OR 6 OR 7</booleanFilter>
+        <booleanFilter>1 OR 2 OR 3 OR 4 OR 5 OR 6</booleanFilter>
         <criteriaItems>
             <field>Membership_Number_Text__c</field>
             <operation>startsWith</operation>
-            <value>0001.</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Membership_Number_Text__c</field>
-            <operation>startsWith</operation>
-            <value>0002.</value>
+            <value>001.</value>
         </criteriaItems>
         <criteriaItems>
             <field>Membership_Number_Text__c</field>
@@ -302,17 +427,42 @@
         <criteriaItems>
             <field>Head_Office_Number__c</field>
             <operation>startsWith</operation>
-            <value>0002</value>
+            <value>001.</value>
         </criteriaItems>
         <criteriaItems>
             <field>Head_Office_Number__c</field>
             <operation>startsWith</operation>
-            <value>0022</value>
+            <value>0022.</value>
         </criteriaItems>
         <criteriaItems>
             <field>Head_Office_Number__c</field>
             <operation>startsWith</operation>
-            <value>1975</value>
+            <value>1975.</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Scottish_Sea_Farms</fullName>
+        <accessLevel>Read</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Read</contactAccessLevel>
+            <opportunityAccessLevel>None</opportunityAccessLevel>
+        </accountSettings>
+        <label>Scottish Sea Farms</label>
+        <sharedTo>
+            <group>Scottish_Sea_Farms</group>
+        </sharedTo>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>Head_Office_Number__c</field>
+            <operation>equals</operation>
+            <value>2328</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Membership_Number_Text__c</field>
+            <operation>equals</operation>
+            <value>2328.</value>
         </criteriaItems>
         <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
     </sharingCriteriaRules>
@@ -343,6 +493,31 @@
             <field>Head_Office_Number__c</field>
             <operation>startsWith</operation>
             <value>3105</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Sunrise_Poultry_Farms_Ltd</fullName>
+        <accessLevel>Read</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Read</contactAccessLevel>
+            <opportunityAccessLevel>None</opportunityAccessLevel>
+        </accountSettings>
+        <label>Sunrise Poultry Farms Ltd</label>
+        <sharedTo>
+            <group>Sunrise_Poultry_Farms_Ltd</group>
+        </sharedTo>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>Membership_Number_Text__c</field>
+            <operation>startsWith</operation>
+            <value>0478.</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Membership_Number_Text__c</field>
+            <operation>startsWith</operation>
+            <value>0478</value>
         </criteriaItems>
         <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
     </sharingCriteriaRules>
@@ -412,6 +587,41 @@
         <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
+        <fullName>Yorkshire_Farmhouse_Eggs</fullName>
+        <accessLevel>Read</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Read</contactAccessLevel>
+            <opportunityAccessLevel>None</opportunityAccessLevel>
+        </accountSettings>
+        <label>Yorkshire Farmhouse Eggs</label>
+        <sharedTo>
+            <group>Yorkshire_Farmhouse_Eggs</group>
+        </sharedTo>
+        <booleanFilter>1 OR 2 OR 3 OR 4</booleanFilter>
+        <criteriaItems>
+            <field>Head_Office_Number__c</field>
+            <operation>startsWith</operation>
+            <value>3201</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Membership_Number_Text__c</field>
+            <operation>startsWith</operation>
+            <value>3201.</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Head_Office_Number__c</field>
+            <operation>startsWith</operation>
+            <value>1796</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Membership_Number_Text__c</field>
+            <operation>startsWith</operation>
+            <value>1796.</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
         <fullName>cmagriculture</fullName>
         <accessLevel>Read</accessLevel>
         <accountSettings>
@@ -452,20 +662,29 @@
         </criteriaItems>
         <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
     </sharingCriteriaRules>
-    <sharingOwnerRules>
-        <fullName>Sunrise_Poultry_Farms_Ltd</fullName>
+    <sharingCriteriaRules>
+        <fullName>t_as_Bryndu_Free_Range_Eggs_Ltd</fullName>
         <accessLevel>Read</accessLevel>
         <accountSettings>
             <caseAccessLevel>None</caseAccessLevel>
             <contactAccessLevel>Read</contactAccessLevel>
             <opportunityAccessLevel>None</opportunityAccessLevel>
         </accountSettings>
-        <label>Sunrise Poultry Farms Ltd</label>
+        <label>t/as Bryndu Free Range Eggs Ltd</label>
         <sharedTo>
-            <group>Sunrise_Poultry_Farms_Ltd</group>
+            <group>t_as_Bryndu_Free_Range_Eggs_Ltd</group>
         </sharedTo>
-        <sharedFrom>
-            <group>Sunrise_Poultry_Farms_Ltd</group>
-        </sharedFrom>
-    </sharingOwnerRules>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>Membership_Number_Text__c</field>
+            <operation>startsWith</operation>
+            <value>4046.</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Head_Office_Number__c</field>
+            <operation>startsWith</operation>
+            <value>4046</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
 </SharingRules>

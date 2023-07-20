@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help>Si nécessaire, renseignez ce champ avec le compte de revendeur. Veuillez noter que la valeur doit être identique au compte de facturation. Lorsque vous créez une transaction de vente ou un contrat à l’aide du bouton « Créer un contrat », cette valeur est attribuée au contrat par défaut.</help>
+        <label><!-- Bill to Account --></label>
+        <name>ia_crm__Bill_to_Account__c</name>
+        <relationshipLabel><!-- Opportunities --></relationshipLabel>
+    </CustomFieldTranslation>

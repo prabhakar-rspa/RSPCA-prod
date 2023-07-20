@@ -52,6 +52,12 @@
     <columns>
         <field>PARENT.NAME</field>
     </columns>
+    <columns>
+        <field>Account.Region__c</field>
+    </columns>
+    <columns>
+        <field>ADDRESS1_ZIP</field>
+    </columns>
     <filter>
         <criteriaItems>
             <column>Unit__c.Status__c</column>
@@ -87,7 +93,7 @@
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
-    <sortColumn>Account.Status__c</sortColumn>
+    <sortColumn>Account.Region__c</sortColumn>
     <sortOrder>Desc</sortOrder>
     <timeFrameFilter>
         <dateColumn>DUE_DATE</dateColumn>

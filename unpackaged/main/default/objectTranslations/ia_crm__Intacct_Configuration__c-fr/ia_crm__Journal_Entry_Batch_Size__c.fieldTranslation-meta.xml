@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Journal Entry Batch Size --></label>
+        <name>ia_crm__Journal_Entry_Batch_Size__c</name>
+    </CustomFieldTranslation>

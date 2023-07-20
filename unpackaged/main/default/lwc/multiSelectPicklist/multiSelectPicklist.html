@@ -6,7 +6,7 @@
        onmouseleave={handleMouseLeave}
        >
        <label class="slds-form-element__label" if:true={isRequired}>
-       <abbr class="slds-required" title="required">* </abbr></label>
+       <abbr class="slds-required" title="required">* </abbr><span if:true={showLabel}>{label}</span></label>
        <div class="slds-form-element__control">
           <div class="slds-combobox_container">
              <div class="slds-combobox">

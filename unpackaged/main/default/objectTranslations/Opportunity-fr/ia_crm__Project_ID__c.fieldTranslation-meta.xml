@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Template Project ID --></label>
+        <name>ia_crm__Project_ID__c</name>
+        <picklistValues>
+            <masterLabel>3COM01</masterLabel>
+            <translation><!-- 3COM01 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AMAZ01</masterLabel>
+            <translation><!-- AMAZ01 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BLK0901</masterLabel>
+            <translation><!-- BLK0901 --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

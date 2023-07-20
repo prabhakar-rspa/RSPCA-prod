@@ -7,20 +7,8 @@
             <translation><!-- Administration Contact --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Agricultural/Technical Contact</masterLabel>
-            <translation><!-- Agricultural/Technical Contact --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Artwork Contact</masterLabel>
-            <translation><!-- Artwork Contact --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>Assessments Contact</masterLabel>
             <translation><!-- Assessments Contact --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Certification Contact</masterLabel>
-            <translation><!-- Certification Contact --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Compliance Contact</masterLabel>
@@ -33,10 +21,6 @@
         <picklistValues>
             <masterLabel>Licence Fee Contact</masterLabel>
             <translation><!-- Licence Fee Contact --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Membership Fee Contact</masterLabel>
-            <translation><!-- Membership Fee Contact --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Partnerships Commercial Contact</masterLabel>

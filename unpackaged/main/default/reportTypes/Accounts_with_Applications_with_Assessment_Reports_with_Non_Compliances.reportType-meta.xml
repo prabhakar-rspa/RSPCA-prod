@@ -974,6 +974,11 @@
             <field>Assessment__c.Welfare_Rating__c</field>
             <table>Account.ApplicationSite__r.Assessment_Reports__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Assessment_Date__c</field>
+            <table>Account.ApplicationSite__r.Assessment_Reports__r</table>
+        </columns>
         <masterLabel>Assessment Reports</masterLabel>
     </sections>
     <sections>

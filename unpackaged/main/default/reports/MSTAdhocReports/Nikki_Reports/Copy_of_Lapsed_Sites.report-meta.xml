@@ -51,7 +51,7 @@
         <language>en_US</language>
     </filter>
     <format>Tabular</format>
-    <name>Copy of Lapsed Sites</name>
+    <name>Lapsed Sites</name>
     <params>
         <name>co</name>
         <value>1</value>

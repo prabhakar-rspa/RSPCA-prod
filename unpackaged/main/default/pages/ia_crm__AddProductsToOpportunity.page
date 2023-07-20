@@ -217,7 +217,7 @@
                                                                 </apex:outputpanel>
                                                                 <span class="quantityBased{!cnt}">
                                                                     <apex:outputpanel id="quantityBasedPricebookWarning" rendered="{!AND(currentOpportunity.ContractId != null, contractPricebook == null)}">
-                                                                        <p><img src="/img/msg_icons/warning16.png" />Your must add Pricebook on Contract record.</p>
+                                                                        <p><img src="/img/msg_icons/warning16.png" />{!$Label.Your_must_add_Pricebook_on_Contract_record}</p>
                                                                     </apex:outputpanel>
                                                                 </span>
                                                             </td>

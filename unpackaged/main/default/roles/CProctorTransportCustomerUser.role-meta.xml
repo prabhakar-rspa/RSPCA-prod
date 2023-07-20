@@ -2,9 +2,9 @@
 <Role xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseAccessLevel>None</caseAccessLevel>
     <contactAccessLevel>Edit</contactAccessLevel>
-    <description>C. Proctor Transport Customer User</description>
+    <description>CTM  Proctor Transport Limited Customer User</description>
     <mayForecastManagerShare>false</mayForecastManagerShare>
-    <name>C. Proctor Transport Customer User</name>
+    <name>CTM  Proctor Transport Limited Customer User</name>
     <opportunityAccessLevel>None</opportunityAccessLevel>
     <parentRole>Assessors</parentRole>
 </Role>

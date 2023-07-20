@@ -1,0 +1,121 @@
+<template>
+  <!--template if:true={isLookup}>
+    <c-lookup-cmp
+      obj-name={objectName}
+      record-name={recordName}
+      selected-id={fieldValue}
+      onlookupselected={handleLookupSelection}
+      required={isRequired}
+      filter={filter}
+    >
+    </c-lookup-cmp>
+  </template-->
+  <template if:true={isMultiPicklist}>
+    
+    <c-multi-select-picklist
+        onselecting={handleSelection} 
+        optionslist={options} 
+        field-name={apiName}
+        is-required={isRequired}
+        selected-values={fieldValue}
+  ></c-multi-select-picklist>
+  </template>
+  <template if:true={isText}>
+    <lightning-input
+      type="text"
+      value={fieldValue}
+      onchange={handleUpdate}
+      required={isRequired}
+      variant="label-hidden"
+      read-only={record.readOnly}
+    >
+    </lightning-input>
+  </template>
+  <!-- onblur={handleBlur} -->
+
+  <template if:true={isNumber}>
+    <lightning-input
+      type="number"
+      value={fieldValue}
+      onchange={handleUpdate}
+      required={isRequired}
+      variant="label-hidden"
+      disabled={record.readOnly}
+    >
+    </lightning-input>
+  </template>
+
+  <template if:true={isCurrency}>
+    <lightning-input
+      type="number"
+      value={fieldValue}
+      onchange={handleUpdate}
+      formatter="currency"
+      step=".01"
+      required={isRequired}
+      variant="label-hidden"
+      read-only={record.readOnly}
+    >
+    </lightning-input>
+  </template>
+
+  <template if:true={isCheckbox}>
+    <lightning-input
+      type="checkbox"
+      checked={fieldValue}
+      class="selectCheckbox"
+      onclick={handleCheckBoxUpdate}
+      variant="label-hidden"
+      read-only={record.readOnly}
+    >
+    </lightning-input>
+  </template>
+
+  <template if:true={isDate}>
+    <lightning-input
+      type="date"
+      value={fieldValue}
+      onchange={handleUpdate}
+      required={isRequired}
+      class="customDateTime"
+      variant="label-hidden"
+      read-only={record.readOnly}
+    >
+    </lightning-input>
+  </template>
+
+  <template if:true={isDateTime}>
+    <lightning-input
+      type="datetime"
+      value={fieldValue}
+      onchange={handleUpdate}
+      required={isRequired}
+      class="customDateTime"
+      variant="label-hidden"
+      read-only={record.readOnly}
+    >
+    </lightning-input>
+  </template>
+  <template if:true={isPicklist}>
+    <lightning-combobox
+      name="option"
+      variant="label-hidden"
+      value={fieldValue}
+      options={_options}
+      onchange={handleUpdate}
+      required={isRequired}
+      read-only={record.readOnly}
+    ></lightning-combobox>
+
+    <!--div class="slds-form-element">
+            <div class="slds-select_container">
+                <select class="slds-select"   
+                    onchange={handlePicklistUpdate}>
+                    <template for:each={_options} for:item="dataOption" >
+                        <option key={dataOption.value} value={dataOption.value} selected={dataOption.selected}>{dataOption.label}</option>
+                    </template>
+                </select>
+            </div>
+        </div-->
+  </template>
+</template>

@@ -13,10 +13,6 @@
         <field>Account.ApplicationSite__r$Site_Postcode__c</field>
     </columns>
     <columns>
-        <aggregateTypes>Sum</aggregateTypes>
-        <field>CDF1</field>
-    </columns>
-    <columns>
         <field>Account.ApplicationSite__r$Assessment_Deadline__c</field>
     </columns>
     <columns>
@@ -33,6 +29,9 @@
     </columns>
     <columns>
         <field>Account.ApplicationSite__r.ApplicationUnits__r$Animals__c</field>
+    </columns>
+    <columns>
+        <field>Account.ApplicationSite__r.ApplicationUnits__r$List_of_Animals__c</field>
     </columns>
     <columns>
         <aggregateTypes>Sum</aggregateTypes>
@@ -101,6 +100,11 @@
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
         <field>Account.ApplicationSite__r$Name</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>CDF1</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <name>All outstanding applications (+units)</name>

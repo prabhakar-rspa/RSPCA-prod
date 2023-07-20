@@ -4,7 +4,7 @@
     <deprecated>false</deprecated>
     <externalId>false</externalId>
     <formula>CASESAFEID(Id)</formula>
-    <label>SFDC Opportunity Product Id</label>
+    <label>SFDC Opportunity Product ID</label>
     <required>false</required>
     <type>Text</type>
     <unique>false</unique>

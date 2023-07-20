@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Ligne d’écriture de journal Intacct</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Lignes d’écriture de journal Intacct</value>
+    </caseValues>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <gender>Masculine</gender>
+    <layouts>
+        <layout>Journal Entry Line Layout</layout>
+        <sections>
+            <label>Liens personnalisés</label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dimensions --></label>
+            <section>Dimensions</section>
+        </sections>
+        <sections>
+            <label>Champs de retour à la synchronisation d’Intacct</label>
+            <section>Intacct Sync Back Fields</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nom</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

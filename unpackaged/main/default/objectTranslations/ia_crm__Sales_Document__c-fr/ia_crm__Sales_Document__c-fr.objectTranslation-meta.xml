@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Document de vente</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Documents de vente</value>
+    </caseValues>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <gender>Masculine</gender>
+    <layouts>
+        <layout>Sales Document Layout</layout>
+        <sections>
+            <label>Liens personnalisés</label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label>Synchronisation d’Intacct</label>
+            <section>Intacct Synchronization</section>
+        </sections>
+        <sections>
+            <label>Nouvelle section</label>
+            <section>New Section</section>
+        </sections>
+        <sections>
+            <label><!-- Payment Details --></label>
+            <section>Payment Details</section>
+        </sections>
+        <sections>
+            <label><!-- Record Related Information --></label>
+            <section>Record Related Information</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nom</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
+    <webLinks>
+        <label><!-- Sync_to_Intacct --></label>
+        <name>ia_crm__Sync_to_Intacct</name>
+    </webLinks>
+</CustomObjectTranslation>

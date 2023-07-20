@@ -1260,6 +1260,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>INACTIVE</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>LAPSED</fullName>
             <default>false</default>
         </values>

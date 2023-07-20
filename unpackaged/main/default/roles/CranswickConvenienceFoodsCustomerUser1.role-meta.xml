@@ -2,9 +2,9 @@
 <Role xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseAccessLevel>None</caseAccessLevel>
     <contactAccessLevel>Edit</contactAccessLevel>
-    <description>Cranswick Convenience Foods (3168) Customer User</description>
+    <description>Cranswick Convenience Foods - Sutton Fields (3168) Customer User</description>
     <mayForecastManagerShare>false</mayForecastManagerShare>
-    <name>Cranswick Convenience Foods (3168) Customer User</name>
+    <name>Cranswick Convenience Foods - Sutton Fields (3168) Customer User</name>
     <opportunityAccessLevel>None</opportunityAccessLevel>
     <parentRole>Assessors</parentRole>
 </Role>

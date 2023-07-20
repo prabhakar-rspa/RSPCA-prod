@@ -610,7 +610,9 @@
         <relatedList>Application_Unit__c.Application__c</relatedList>
     </relatedLists>
     <relatedLists>
+        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
+        <fields>Animals__c</fields>
         <fields>Animals_List__c</fields>
         <fields>Farm_Rating__c</fields>
         <fields>Farmer_Rating__c</fields>

@@ -38,6 +38,9 @@
         <field>PARENT.NAME</field>
     </columns>
     <columns>
+        <field>Account.Certificate_Issue_Date__c</field>
+    </columns>
+    <columns>
         <field>Application__c.Membership_Expiry_Date__c</field>
     </columns>
     <columns>

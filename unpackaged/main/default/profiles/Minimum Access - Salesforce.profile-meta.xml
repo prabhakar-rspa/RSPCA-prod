@@ -822,39 +822,39 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>CMTD__EnhancedRelatedList__mdt.CMTD__Colour__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>CMTD__EnhancedRelatedList__mdt.CMTD__Field_API_Name__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>CMTD__EnhancedRelatedList__mdt.CMTD__Header__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>CMTD__EnhancedRelatedList__mdt.CMTD__Inactive__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>CMTD__EnhancedRelatedList__mdt.CMTD__Order__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>CMTD__EnhancedRelatedList__mdt.CMTD__Target_API_Name__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>CMTD__EnhancedRelatedList__mdt.CMTD__UI_Type_Override__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -3362,6 +3362,9 @@
         <layout>Assessments__c-Assessment Checklist Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>AuthorizationForm-Authorization Form Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>BusinessBrand-Business Brand Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -3419,6 +3422,14 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Mobility_Scoring__c-Mobility Scoring Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-ia_crm__Intacct Template - Contract</layout>
+        <recordType>Opportunity.ia_crm__Contract</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-ia_crm__Intacct Template - Order Entry</layout>
+        <recordType>Opportunity.ia_crm__OrderEntry</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Pricebook2-ia_crm__Price Book Layout</layout>
@@ -3556,6 +3567,18 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>ia_crm__Revenue_Recognition_Template__c-ia_crm__Revenue Recognition Template Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ia_crm__Sales_Document_Item__c-ia_crm__Sales Document Item Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ia_crm__Sales_Document_Payment__c-ia_crm__Sales Document Payment Detail Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ia_crm__Sales_Document_Total__c-ia_crm__Sales Document Total Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ia_crm__Sales_Document__c-ia_crm__Sales Document Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>ia_crm__Sales_Invoice_Item__c-ia_crm__Sales Invoice Item Layout</layout>
@@ -3708,6 +3731,10 @@
         <visible>false</visible>
     </recordTypeVisibilities>
     <tabVisibilities>
+        <tab>Assessment_Checklist_Question__c</tab>
+        <visibility>DefaultOff</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>asp04__Getting_Started</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
@@ -3764,6 +3791,10 @@
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>ia_crm__Intacct_Contract_Line__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>ia_crm__Intacct_Contract__c</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
@@ -3813,6 +3844,10 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>ia_crm__Revenue_Recognition_Template__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>ia_crm__Sales_Document__c</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
@@ -4177,23 +4212,23 @@
         <name>ViewHelpLink</name>
     </userPermissions>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>CMTD__ERL_RTSelector_CC</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>CMTD__ERL_RTSelector_Test</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>CMTD__EnhancedRelatedList_CC</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <enabled>false</enabled>
         <apexClass>CMTD__EnhancedRelatedList_Test</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <customMetadataTypeAccesses>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
         <name>CMTD__EnhancedRelatedList__mdt</name>
     </customMetadataTypeAccesses>
 </Profile>

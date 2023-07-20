@@ -67,7 +67,7 @@
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>notEqual</operator>
-            <value>CANCELLED,LAPSED,SUSPENDED,WITHDRAWN,SUSPENDED/LAPSED</value>
+            <value>CANCELLED,WITHDRAWN</value>
         </criteriaItems>
         <criteriaItems>
             <column>Application__c.Paid__c</column>
@@ -88,7 +88,7 @@
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>startsWith</operator>
-            <value>Jocelyn</value>
+            <value>Jocelyn,Emilie</value>
         </criteriaItems>
         <criteriaItems>
             <column>Application__c.Assessment_Report__c</column>
@@ -97,10 +97,17 @@
             <operator>equals</operator>
             <value></value>
         </criteriaItems>
+        <criteriaItems>
+            <column>Application__c.Cancel_Application__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>0</value>
+        </criteriaItems>
         <language>en_US</language>
     </filter>
     <format>Tabular</format>
-    <name>Jocelyn&#39;s Outstanding Applications -</name>
+    <name>O/S Assessor Applications-Jocelyn/Emilie</name>
     <params>
         <name>co</name>
         <value>1</value>
@@ -110,7 +117,7 @@
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
-    <sortColumn>Account.Membership_Number__c</sortColumn>
+    <sortColumn>Application__c.Assessment_Deadline__c</sortColumn>
     <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
         <dateColumn>DUE_DATE</dateColumn>

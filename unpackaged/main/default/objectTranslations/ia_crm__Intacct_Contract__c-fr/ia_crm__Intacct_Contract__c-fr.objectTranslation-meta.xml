@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Contrat Intacct</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Contrats Intacct</value>
+    </caseValues>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <gender>Masculine</gender>
+    <layouts>
+        <layout>Intacct Contract Layout</layout>
+        <sections>
+            <label>Informations de facturation/d’expédition</label>
+            <section>Bill to/Ship to Information</section>
+        </sections>
+        <sections>
+            <label>Devise</label>
+            <section>Currency</section>
+        </sections>
+        <sections>
+            <label>Liens personnalisés</label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dimensions --></label>
+            <section>Dimensions</section>
+        </sections>
+        <sections>
+            <label>Renouvellement</label>
+            <section>Renewal</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nom</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
+    <webLinks>
+        <label><!-- Create_Renewal_Opportunity --></label>
+        <name>ia_crm__Create_Renewal_Opportunity</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Create_SFDC_Contract --></label>
+        <name>ia_crm__Create_SFDC_Contract</name>
+    </webLinks>
+</CustomObjectTranslation>

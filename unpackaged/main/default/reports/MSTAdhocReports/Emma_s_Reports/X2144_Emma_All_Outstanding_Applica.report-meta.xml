@@ -80,15 +80,15 @@
             <column>Application__c.Assessor__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
-            <operator>contains</operator>
-            <value>SCI Contractors,Charlotte Thomas,Barrie Gibson,Heather Vinash,Kevin White</value>
+            <operator>notContain</operator>
+            <value>Lloyds Register</value>
         </criteriaItems>
         <criteriaItems>
             <column>Account.Membership_Number__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>startsWith</operator>
-            <value>0450,1833</value>
+            <value>2144</value>
         </criteriaItems>
         <criteriaItems>
             <column>Application__c.Assessment_Report__c</column>
@@ -96,13 +96,6 @@
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
             <value></value>
-        </criteriaItems>
-        <criteriaItems>
-            <column>Application__c.Assessment_Deadline__c</column>
-            <columnToColumn>false</columnToColumn>
-            <isUnlocked>true</isUnlocked>
-            <operator>lessThan</operator>
-            <value>3/1/2023</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>

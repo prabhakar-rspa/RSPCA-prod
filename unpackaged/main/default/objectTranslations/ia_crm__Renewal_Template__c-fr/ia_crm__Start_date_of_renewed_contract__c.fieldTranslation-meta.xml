@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help>Ce champ indique comment le système détermine la date de début de l’élément sur la transaction de vente créée par le renouvellement.</help>
+        <label><!-- Start date of renewed contract --></label>
+        <name>ia_crm__Start_date_of_renewed_contract__c</name>
+        <picklistValues>
+            <masterLabel>Same as Document Date</masterLabel>
+            <translation>Identique à la date du document</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>With Inherited Offset from Parent</masterLabel>
+            <translation>Avec compensation héritée du parent</translation>
+        </picklistValues>
+    </CustomFieldTranslation>

@@ -33,8 +33,12 @@
     <columns>
         <field>Application__c$Renewal_Stage__c</field>
     </columns>
+    <columns>
+        <field>Application__c$MST_Comments__c</field>
+    </columns>
     <description>Assessments booked 10 or more days ago with no paperwork submitted</description>
     <filter>
+        <booleanFilter>1 AND (2 OR 3)</booleanFilter>
         <criteriaItems>
             <column>Application__c$Assessment_Date__c</column>
             <columnToColumn>false</columnToColumn>
@@ -44,6 +48,13 @@
         </criteriaItems>
         <criteriaItems>
             <column>Application__c$Assessment_Report__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value></value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Application__c$Assessment_Checklist__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>

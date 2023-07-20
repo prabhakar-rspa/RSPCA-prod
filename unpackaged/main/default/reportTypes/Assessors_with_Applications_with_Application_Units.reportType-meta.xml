@@ -1335,6 +1335,11 @@
             <field>Unit__c.Description__c</field>
             <table>User.Applications__r.ApplicationUnits__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>List_of_Animals__c</field>
+            <table>User.Applications__r.ApplicationUnits__r</table>
+        </columns>
         <masterLabel>Application Units</masterLabel>
     </sections>
     <sections>

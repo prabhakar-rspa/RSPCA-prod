@@ -2,6 +2,7 @@
 public class RenewalReminderSixWeeksEmailBatchTest {
     @testSetup
     static void loadData(){
+        
         TestDataFactory.createDocument('RSPCA_Assured_Headers_Assess_Con_png');
         TestDataFactory.createDocument('RSPCA_Assured_Headers_Comm_In_png');
         TestDataFactory.createDocument('RSPCA_Assured_Headers_Renewal_Invite_png');
@@ -17,24 +18,24 @@ public class RenewalReminderSixWeeksEmailBatchTest {
         TestDataFactory.createDocument('RSPCA_Assured_Email_Header_EG_png');
         TestDataFactory.createDocument('FinalEvidenceReminder');
     }
-	@isTest
+    @isTest
     static void SendSixWeekRenewEmailTest(){
         Account act = new Account();
         act.RecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Head Office').getRecordTypeId();
         act.Name = 'Test Head Office';
         act.Status__c = 'ENQUIRY';
         insert act;
-
+        
         Contact cnt = new Contact();
         cnt.AccountId = act.Id;
         cnt.FirstName = 'Test';
         cnt.LastName = 'Name';
         cnt.Email = 'test@test.com';
         insert cnt;
-
+        
         act.Primary_Contact__c = cnt.Id;
         update act;
-
+        
         Account site = new Account();
         site.RecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Site').getRecordTypeId();
         site.Name = 'Test Site';
@@ -44,7 +45,7 @@ public class RenewalReminderSixWeeksEmailBatchTest {
         site.Membership_Expiry_Date__c = Date.today().addDays(14);
         site.Status__c = 'Member';
         insert site;
-		Renewal_Price_Report__c report = new Renewal_Price_Report__c();
+        Renewal_Price_Report__c report = new Renewal_Price_Report__c();
         report.Site__c = site.Id;
         report.Membership_Expiry_Date__c = Date.today().addDays(14);
         insert report;
@@ -68,9 +69,10 @@ public class RenewalReminderSixWeeksEmailBatchTest {
         testDate.Test_Date__c = acc.X6_Week_Renewal_Scheduled_Date__c;
         insert testDate;
         Test.startTest();
-        system.debug([SELECT Id,Site__r.Renewal_Reminder_Ready__c, Site__r.Parent.Name, Name,Total_Inc_VAT__c, CreatedDate FROM Renewal_Price_Report__c]);
+        
         RenewalReminderSixWeeksEmailBatch obj = new RenewalReminderSixWeeksEmailBatch();
-        obj.execute(null);
+        obj.execute(null);   
+        
         Test.stopTest();
     }
 }

@@ -1180,6 +1180,16 @@
             <field>MST_Comments__c</field>
             <table>Account.ApplicationSite__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Assessment_Approved_By_Certifier__c</field>
+            <table>Account.ApplicationSite__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Assessment_Approved_By_Certifier_Date__c</field>
+            <table>Account.ApplicationSite__r</table>
+        </columns>
         <masterLabel>Applications</masterLabel>
     </sections>
     <sections>
@@ -1241,6 +1251,11 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Unit__c.Description__c</field>
+            <table>Account.ApplicationSite__r.ApplicationUnits__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>List_of_Animals__c</field>
             <table>Account.ApplicationSite__r.ApplicationUnits__r</table>
         </columns>
         <masterLabel>Application Units</masterLabel>

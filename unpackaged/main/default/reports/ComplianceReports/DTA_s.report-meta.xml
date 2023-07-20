@@ -22,6 +22,9 @@
         <field>Account.ApplicationSite__r.ApplicationUnits__r$Animals__c</field>
     </columns>
     <columns>
+        <field>Account.ApplicationSite__r.ApplicationUnits__r$List_of_Animals__c</field>
+    </columns>
+    <columns>
         <field>Account.ApplicationSite__r.ApplicationUnits__r$Business__c</field>
     </columns>
     <columns>

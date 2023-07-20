@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Reset Usage Quantity --></label>
+        <name>ia_crm__Reset_Usage_Quantity__c</name>
+        <picklistValues>
+            <masterLabel>After each invoice</masterLabel>
+            <translation>Après chaque facture</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>After each renewal</masterLabel>
+            <translation>Après chaque renouvellement</translation>
+        </picklistValues>
+    </CustomFieldTranslation>

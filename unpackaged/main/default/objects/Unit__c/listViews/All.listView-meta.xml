@@ -11,15 +11,5 @@
     <columns>Status__c</columns>
     <columns>Vehicle_Registration__c</columns>
     <filterScope>Everything</filterScope>
-    <filters>
-        <field>Business__c</field>
-        <operation>equals</operation>
-        <value>Haulier</value>
-    </filters>
-    <filters>
-        <field>Animals_List__c</field>
-        <operation>includes</operation>
-        <value>Salmon</value>
-    </filters>
     <label>All</label>
 </ListView>

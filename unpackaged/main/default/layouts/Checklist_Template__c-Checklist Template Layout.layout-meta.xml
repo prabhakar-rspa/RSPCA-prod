@@ -74,6 +74,7 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Order__c</fields>
         <relatedList>Checklist_Template_Section__c.Checklist_Template__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>

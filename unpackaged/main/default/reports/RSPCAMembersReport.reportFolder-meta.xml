@@ -20,5 +20,10 @@
         <sharedTo>tayla.hammond@rspcaassured.org.uk</sharedTo>
         <sharedToType>User</sharedToType>
     </folderShares>
+    <folderShares>
+        <accessLevel>View</accessLevel>
+        <sharedTo>RSPCA_Assured_Community</sharedTo>
+        <sharedToType>Group</sharedToType>
+    </folderShares>
     <name>MST Reports</name>
 </ReportFolder>

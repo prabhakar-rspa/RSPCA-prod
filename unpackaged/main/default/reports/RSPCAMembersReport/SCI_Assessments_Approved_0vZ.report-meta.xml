@@ -33,6 +33,9 @@
     <columns>
         <field>Application__c$Date_of_Payment__c</field>
     </columns>
+    <columns>
+        <field>Application__c.Assessments__r$Animals__c</field>
+    </columns>
     <description>All Applications approved by SCI including renewals, new and other applications.  Note: Date Certified shows for new applications only</description>
     <filter>
         <criteriaItems>
@@ -56,6 +59,13 @@
             <operator>startsWith</operator>
             <value>diane</value>
         </criteriaItems>
+        <criteriaItems>
+            <column>Application__c$Assessor_Full_Name__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>startsWith</operator>
+            <value>Charlotte</value>
+        </criteriaItems>
         <language>en_US</language>
     </filter>
     <format>Tabular</format>
@@ -69,8 +79,8 @@
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
-    <sortColumn>Application__c$Date_Certified__c</sortColumn>
-    <sortOrder>Desc</sortOrder>
+    <sortColumn>Application__c$Assessor_Full_Name__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
         <dateColumn>Application__c$Add_Visit_Approval_Date_Office__c</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>

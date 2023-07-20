@@ -1,0 +1,124 @@
+<template>
+    <lightning-card title={label}>
+        <lightning-button label="Cancel" slot="actions" onclick={handleCancel} if:true={editMode}></lightning-button>
+        <lightning-button label="Save" variant="brand" slot="actions" onclick={handleSave}
+            if:true={editMode}></lightning-button>
+        <lightning-button label="Edit" slot="actions" onclick={handleEdit} if:false={editMode}></lightning-button>
+        <lightning-button label="Delete" slot="actions" onclick={handleDelete}></lightning-button>
+        <lightning-button label="New" slot="actions" onclick={handleCreate}></lightning-button>
+        <lightning-spinner class="slds-is-fixed" if:true={isLoading} alternative-text="Loading" size="medium"
+            variant="brand"></lightning-spinner>
+        <div style="overflow-x: scroll;max-height: 400px;">
+            <c-datatable columns={outputColumns} records={records} row-selectable="true" select-label="Select to Delete"
+                if:false={editMode} onhandleupdate={handleFieldUpdate}>
+            </c-datatable>
+            <c-datatable columns={inputColumns} records={records} row-selectable="true" if:true={editMode}
+                select-label="Select to Delete" onhandleupdate={handleFieldUpdate}>
+            </c-datatable>
+        </div>
+        <template if:true={isShowNewModal}>
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                            title="Close" onclick={hideModal} if:true={isClosable}>
+                            <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+                                size="small"></lightning-icon>
+                            <span class="slds-assistive-text" onclick={hideModal}>Close</span>
+                        </button>
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">New Contact</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium" style="overflow: initial;">
+                        <lightning-layout multiple-rows="true">
+                            <lightning-layout-item size="6" class="slds-p-around--x-small" if:true={showAccount}>
+                                <lightning-combobox required="true" options={options} label="Account" name="AccountId"
+                                    onchange={handleChange}></lightning-combobox>
+                            </lightning-layout-item>
+
+                            <lightning-layout-item size="6" class="slds-p-around--x-small">
+                                <lightning-input label="First Name" required="true" name="FirstName"
+                                    onchange={handleChange}></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6" class="slds-p-around--x-small">
+                                <lightning-input label="Last Name" required="true" name="LastName"
+                                    onchange={handleChange}></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6" class="slds-p-around--x-small">
+                                <lightning-input label="Email" required="true" name="Email"
+                                    onchange={handleChange}></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6" class="slds-p-around--x-small">
+                                <lightning-input label="Job Title" required="true" name="Title"
+                                    onchange={handleChange}></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6" class="slds-p-around--x-small">
+                                <lightning-input label="Phone" required="true" name="Phone"
+                                    onchange={handleChange}></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6" class="slds-p-around--x-small">
+                                <lightning-input label="Mobile" required="true" name="MobilePhone"
+                                    onchange={handleChange}></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6" class="slds-p-around--x-small">
+                                <c-multi-select-picklist onselecting={handleSelection} optionslist={roleOptions}
+                                    show-label="true" label="Role" field-name='Role__c'
+                                    is-required="true"></c-multi-select-picklist>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6" class="slds-p-around--x-small">
+                                <lightning-combobox label="Preferred Phone" required="true" name="Preferred_Phone__c"
+                                    onchange={handleChange} options={preferredPhoneOptions}>
+                                </lightning-combobox>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <lightning-button label="Cancel" slot="actions" onclick={hideModal}></lightning-button>
+                        <lightning-button label="Save" variant="brand" slot="actions"
+                            onclick={create}></lightning-button>
+                    </footer>
+
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+
+        <template if:true={isShowDeleteModal}>
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                            title="Close" onclick={hideModal} if:true={isClosable}>
+                            <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+                                size="small" onclick={hideModal}></lightning-icon>
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                        <h2 class="slds-text-heading_medium slds-hyphenate">Delete Contact</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <lightning-layout multiple-rows="true">
+                            <lightning-layout-item size="12" class="slds-p-around--x-small">
+                                Are you sure you want to delete the following contact(s)?
+                            </lightning-layout-item>
+                            <lightning-layout-item size="12" class="slds-p-around--x-small">
+                                <div for:each={contactsToDelete} for:item="contact" key={contact.Id}>{contact.Name}
+                                </div>
+                            </lightning-layout-item>
+
+                        </lightning-layout>
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <lightning-button label="Cancel" slot="actions" onclick={hideModal}></lightning-button>
+                        <lightning-button label="Delete" variant="brand" slot="actions"
+                            onclick={deleteRecord}></lightning-button>
+                    </footer>
+
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+
+    </lightning-card>
+
+</template>

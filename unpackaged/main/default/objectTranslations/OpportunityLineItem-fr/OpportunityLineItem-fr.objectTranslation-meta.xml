@@ -1,13 +1,136 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    
-    
-    
     <layouts>
         <layout>Opportunity Product Layout</layout>
         <sections>
-            <label><!-- Custom Links --></label>
+            <label>Facturation du contrat</label>
+            <section>Contract billing</section>
+        </sections>
+        <sections>
+            <label>Détails du contrat</label>
+            <section>Contract details</section>
+        </sections>
+        <sections>
+            <label>Liens personnalisés</label>
             <section>Custom Links</section>
         </sections>
+        <sections>
+            <label><!-- Dimensions --></label>
+            <section>Dimensions</section>
+        </sections>
+        <sections>
+            <label>Détails des commandes clients</label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+        <sections>
+            <label><!-- Order Entry details --></label>
+            <section>Order Entry details</section>
+        </sections>
     </layouts>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <fieldSets>
+        <label><!-- Contract Fields --></label>
+        <name>ia_crm__Contract_Fields</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Order Entry Fields --></label>
+        <name>ia_crm__Order_Entry_Fields</name>
+    </fieldSets>
+    <validationRules>
+        <errorMessage><!-- Flat/Fixed amount cannot be empty if billing method is Fixed price. --></errorMessage>
+        <name>ia_crm__Amount_cannot_be_empty</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Billing Template, Billing Start Date and Billing End Date are required when Flat/Fixed amount frequency is &apos;Use billing template&apos;. --></errorMessage>
+        <name>ia_crm__Billing_Template_Dates_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- If the Opportunity has a Contract associated with it dates must be within the Start Date and End Date of the Contract. --></errorMessage>
+        <name>ia_crm__Contract_Dates_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- If &apos;Flat/Fixed amount frequency&apos; = &apos;One Time&apos; or &apos;Include with every invoice&apos; the Start Date and End Date are required. --></errorMessage>
+        <name>ia_crm__Flat_Fixed_amount_frequency</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The Intacct Location should match the Opportunity Intacct Entity or be a sublocation for it. --></errorMessage>
+        <name>ia_crm__Intacct_Entities_Match</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The Intacct Entity from the Opportunity Product should match the Opportunity Intacct Entity or be a sublocation for it. --></errorMessage>
+        <name>ia_crm__Order_Entry_Entity_Match</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Incomplete input data is provided for &apos;Rate&apos;, &apos;Quantity&apos;, and &apos;Multiplier&apos;. --></errorMessage>
+        <name>ia_crm__Quantity_Rate_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Start dates must be earlier than the end dates. --></errorMessage>
+        <name>ia_crm__Start_and_End_Dates_Validation</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Add_Line --></label>
+        <name>ia_crm__Add_Line</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Bulk_update --></label>
+        <name>ia_crm__Bulk_update</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Bulk_update_lightning --></label>
+        <name>ia_crm__Bulk_update_lightning</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Inventory_Status --></label>
+        <name>ia_crm__Inventory_Status</name>
+    </webLinks>
 </CustomObjectTranslation>

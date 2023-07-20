@@ -465,6 +465,46 @@
             <field>LastModifiedBy</field>
             <table>Account.ApplicationSite__r.Application_Line_Items__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Quantity__c</field>
+            <table>Account.ApplicationSite__r.Application_Line_Items__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>List_Price__c</field>
+            <table>Account.ApplicationSite__r.Application_Line_Items__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>List_Price_Inc_Vat__c</field>
+            <table>Account.ApplicationSite__r.Application_Line_Items__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Subtotal__c</field>
+            <table>Account.ApplicationSite__r.Application_Line_Items__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Item__c</field>
+            <table>Account.ApplicationSite__r.Application_Line_Items__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Item_Description__c</field>
+            <table>Account.ApplicationSite__r.Application_Line_Items__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Line_Description__c</field>
+            <table>Account.ApplicationSite__r.Application_Line_Items__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Product__c</field>
+            <table>Account.ApplicationSite__r.Application_Line_Items__r</table>
+        </columns>
         <masterLabel>Application Line Items</masterLabel>
     </sections>
 </ReportType>

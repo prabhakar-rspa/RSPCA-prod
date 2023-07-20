@@ -1,0 +1,223 @@
+<template>
+  <div
+    id="containerDiv"
+    class="slds-table_header-fixed_container slds-border_right slds-border_left tableScroll"
+    if:true={hasData}
+    style={overflowStyle} 
+    onmousemove={handlemousemove}
+    onmouseup={handlemouseup}
+    onmouseleave={handlemouseup}
+    ondblclick={handledblclickresizable}
+    onscroll={tableOuterDivScrolled}>
+    <div id="tableViewInnerDiv" onscroll={tableScrolled} class={heightStyle}> <!-- style="width: fit-content;"-->
+      <table
+        class="
+                  slds-table
+                  slds-table_bordered
+                  slds-table_header-fixed
+                  slds-table_edit
+                  custom-tableid
+                  slds-table_resizable-cols
+              "
+        style="width: 100%;"
+      >
+        <thead>
+          <tr class="slds-text-title_caps">
+            <th
+              scope="col"
+              title="Select All"
+              style="width: 6rem"
+              class="slds-is-resizable  dv-dynamic-width slds-cell-wrap"
+              if:true={rowSelectable}
+            >
+              <div style="width: 6rem" class="slds-cell-fixed">
+                <a class="slds-th__action slds-text-link--reset">
+                  <span >
+                    <lightning-input
+                      class="selectAll"
+                      type="checkbox"
+                      value=""
+                      onchange={allSelected}
+                      variant="label-hidden"
+                      if:false={selectLabel}
+                    >
+                    </lightning-input>
+                    <span if:true={selectLabel}>{selectLabel}</span>
+                  </span>
+                </a>
+                 <div class="slds-resizable" if:true={isResizeable}>
+                  <span class="slds-resizable__handle" onmousedown={handlemousedown}>
+                      <span class="slds-resizable__divider" style="right: -17px;"></span>
+                  </span>
+                </div>
+              </div>
+            </th>
+
+            <template for:each={columns} for:item="objColumn" for:index="colIndex">
+              <th
+                key={objColumn.columnName}
+                class="slds-is-resizable slds-cell-wrap dv-dynamic-width"
+                scope="col"
+                data-index={colIndex}
+                style={objColumn.fixedWidth}
+                title={objColumn.columnLabel}
+              >
+                <div class="slds-cell-fixed" style={objColumn.fixedWidth}>
+                  <a class="slds-th__action slds-text-link--reset">
+                    <span
+                      title={objColumn.helpText}
+                      style={objColumn.fixedWidth}
+                      onclick={handleSorting}
+                      if:true={objColumn.sortable}
+                      >{objColumn.columnLabel}</span
+                    >
+                    <span
+                      title={objColumn.helpText}
+                      if:false={objColumn.sortable}
+                      style={objColumn.fixedWidth}
+                      >{objColumn.columnLabel}<span if:true={objColumn.isRequired} class="slds-required"
+                      >&nbsp;*</span
+                    ></span
+                    >
+                    
+                    <!--div class="slds-th__action" if:true={objColumn.sortable}>
+                      <c-header-sorting
+                        column-api={objColumn.columnName}
+                        style={objColumn.fixedWidth}
+                        sort-by={sortBy}
+                        sort-dir={sortDirection}
+                        onupdatesorting={handleSortingUpdate}
+                      >
+                      </c-header-sorting>
+                    </div-->
+                  </a>
+                  <div class="slds-resizable" if:true={isResizeable}>
+                    <span class="slds-resizable__handle" onmousedown={handlemousedown}>
+                        <span class="slds-resizable__divider" style="right: -17px;"></span>
+                    </span>
+                  </div>
+                </div>
+              </th>
+            </template>
+            <th
+              if:true={showRemoveRows}
+              class="slds-is-resizable dv-dynamic-width"
+              scope="col"
+            >
+              <div class="slds-cell-fixed"></div>
+            </th>
+            <th
+              if:true={showEditRows}
+              class="slds-is-resizable dv-dynamic-width"
+              scope="col"
+            >
+              <div class="slds-cell-fixed"></div>
+            </th>
+          </tr>
+        </thead>
+        <tbody style={bodyHeight}>
+          <template for:each={_records} for:item="record" for:index="index">
+            <tr key={record.index} data-index={index}>
+              <!--onclick={onRowClick} style="overflow: initial;"-->
+              <td
+                class="slds-cell-edit slds-cell-wrap"
+                if:true={rowSelectable}
+                data-index={index}
+              >
+                <div class="slds-truncate slds-cell-edit dv-dynamic-width" style="width: 6rem;">
+                  <lightning-input
+                    type="checkbox"
+                    data-id={record.Id}
+                    data-index={index}
+                    class="selectinput"
+                    variant="label-hidden"
+                    onchange={handleSelected}
+                    checked={record.selected}
+                  >
+                  </lightning-input>
+                </div>
+              </td>
+              <template for:each={columns} for:item="objColumn">
+                <td
+                  class="slds-is-resizable slds-cell-wrap"
+                  style={objColumn.fixedWidth}
+                  key={objColumn.columnName}
+                >
+                  <div>
+                    <!--class="slds-truncate-->
+                    <div style={objColumn.fixedWidth} class="dv-dynamic-width">
+                      <c-column-output
+                        record={record}
+                        api-name={objColumn.columnName}
+                        field-type={objColumn.columnType}
+                        wrap-text="false"
+                        if:false={objColumn.isEditable}
+                        input-class={objColumn.class}
+                        url-name={objColumn.urlName}
+                        is-text-link={objColumn.isTextLink}
+                        row-index={index}
+                        is-clickable={objColumn.isClickable}
+                        onoutputclick={handleOutputClick}
+                      >
+                      </c-column-output>
+                      <c-column-input
+                        if:true={objColumn.isEditable}
+                        object-name={objColumn.objectName}
+                        options={objColumn.options}
+                        record={record}
+                        row-index={index}
+                        dependent-field={objColumn.dependentField}
+                        api-name={objColumn.columnName}
+                        field-type={objColumn.columnType}
+                        is-required={objColumn.isRequired}
+                        oncolumnupdate={handleColumnUpdate}
+                        onsetvalue={handleSetValue}
+                        filter-field-name={objColumn.filterFieldName}
+                        filter-source-field-name={objColumn.filterSourceFieldName}
+                        filter-source-field-value={objColumn.filterSourceFieldValue}
+                      >
+                      </c-column-input>
+                      <!--oncolumnblur={handleColumnBlur}-->
+                    </div>
+                  </div>
+                </td>
+              </template>
+              <td class="slds-cell-edit slds-no-print" if:true={showRemoveRows}>
+                <div class="slds-truncate slds-cell-edit">
+                  <lightning-icon
+                    icon-name="utility:delete"
+                    alternative-text="Delete"
+                    title="Delete"
+                    size="x-small"
+                    data-index={index}
+                    data-id={record.Id}
+                    onclick={removeRow}
+                  ></lightning-icon>
+                </div>
+              </td>
+              <td class="slds-cell-edit slds-no-print" if:true={showEditRows}>
+                <div class="slds-truncate slds-cell-edit">
+                  <lightning-icon
+                    icon-name="utility:edit"
+                    alternative-text="edit"
+                    title="edit"
+                    size="x-small"
+                    data-index={index}
+                    data-id={record.Id}
+                    onclick={editRow}
+                  ></lightning-icon>
+                </div>
+              </td>
+            </tr>
+          </template>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div if:true={isLoading}>
+    <lightning-spinner
+      alternative-text="Loading"
+      size="medium"
+    ></lightning-spinner>
+  </div>
+</template>

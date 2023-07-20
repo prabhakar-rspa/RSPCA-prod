@@ -74,6 +74,10 @@
     </flowDefinitions>
     <flowDefinitions>
         <flows />
+        <fullName>Application_Unit_Before_Flow</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows />
         <fullName>Application_Unit_Record_Create_Flow</fullName>
     </flowDefinitions>
     <flowDefinitions>
@@ -555,7 +559,15 @@
     </flowDefinitions>
     <flowDefinitions>
         <flows />
+        <fullName>Unit_After_Trigger_Flow</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows />
         <fullName>Update_Common_Renewal_Date_on_Sites_from_Head_Office</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows />
+        <fullName>User_After_Insert_Trigger_Flow</fullName>
     </flowDefinitions>
     <quickActions>
         <label><!-- Guest Community Case --></label>
@@ -1128,6 +1140,15 @@
         <sections>
             <label><!-- Units --></label>
             <name>Units</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Applications with Application Units --></description>
+        <label><!-- Applications with Application Units --></label>
+        <name>Applications_with_Application_Units</name>
+        <sections>
+            <label><!-- Applications --></label>
+            <name>Applications</name>
         </sections>
     </reportTypes>
     <reportTypes>

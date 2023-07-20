@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help>Utilisez ce champ pour voir le type de transaction de vente que le système créera lors du renouvellement.</help>
+        <label><!-- Sales transaction type --></label>
+        <name>ia_crm__Sales_transaction_type__c</name>
+        <picklistValues>
+            <masterLabel>Sales Credit Memo</masterLabel>
+            <translation>Avoir de vente</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sales Invoice</masterLabel>
+            <translation>Facture de vente</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sales Order</masterLabel>
+            <translation>Commande de vente</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sales Quote</masterLabel>
+            <translation>Devis de vente</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sales Return</masterLabel>
+            <translation>Retour de vente</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shipper</masterLabel>
+            <translation>Renseignements d’expédition</translation>
+        </picklistValues>
+    </CustomFieldTranslation>

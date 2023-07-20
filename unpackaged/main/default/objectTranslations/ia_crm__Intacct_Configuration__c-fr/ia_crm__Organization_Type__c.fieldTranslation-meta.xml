@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Organization Type --></label>
+        <name>ia_crm__Organization_Type__c</name>
+        <picklistValues>
+            <masterLabel>M-Console</masterLabel>
+            <translation>Console manuelle</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>M-Console, multi-currency</masterLabel>
+            <translation>M-Console, multidevise</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Multi-entity shared</masterLabel>
+            <translation>Partagé avec plusieurs entités</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Multi-entity shared, multi-currency</masterLabel>
+            <translation>Partagé avec plusieurs entités, multidevise</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Single-entity</masterLabel>
+            <translation>Entité unique</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Single-entity, multi-currency</masterLabel>
+            <translation>Entité unique, multidevise</translation>
+        </picklistValues>
+    </CustomFieldTranslation>

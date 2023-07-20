@@ -6,6 +6,11 @@
     <columns>Status__c</columns>
     <columns>Other_Cancellation_Reason__c</columns>
     <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>SUSPENDED</value>
+    </filters>
     <label>Suspended Sites</label>
     <sharedTo>
         <group>Member_Services_Abbie</group>

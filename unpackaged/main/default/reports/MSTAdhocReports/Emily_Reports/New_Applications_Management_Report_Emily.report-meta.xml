@@ -68,6 +68,13 @@
             <operator>startsWith</operator>
             <value>3,1,2191.</value>
         </criteriaItems>
+        <criteriaItems>
+            <column>Application__c.Cancel_Application__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>0</value>
+        </criteriaItems>
         <language>en_US</language>
     </filter>
     <format>Tabular</format>
@@ -81,6 +88,8 @@
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
+    <sortColumn>Account.Membership_Number__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
         <dateColumn>DUE_DATE</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>

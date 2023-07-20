@@ -73,14 +73,14 @@
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
-            <value>7/1/2023</value>
+            <value>8/1/2023</value>
         </criteriaItems>
         <criteriaItems>
             <column>Account.Status__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>notEqual</operator>
-            <value>CANCELLED,WITHDRAWN</value>
+            <value>CANCELLED,INACTIVE,WITHDRAWN</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>
