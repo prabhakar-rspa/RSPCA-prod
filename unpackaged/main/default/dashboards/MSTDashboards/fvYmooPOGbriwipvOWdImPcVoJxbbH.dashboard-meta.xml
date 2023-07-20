@@ -30,7 +30,7 @@
                 </groupingSortProperties>
                 <header>New Applications Management-Dashboard</header>
                 <legendPosition>Right</legendPosition>
-                <report>RSPCAMembersReport/MSTWeeklyReportstoCheck/New_Applications_ManagementDashboard_9tn</report>
+                <report>MSTWeeklyReportstoCheck/New_Applications_ManagementDashboard_9tn</report>
                 <showPercentage>false</showPercentage>
                 <showTotal>true</showTotal>
                 <showValues>true</showValues>
