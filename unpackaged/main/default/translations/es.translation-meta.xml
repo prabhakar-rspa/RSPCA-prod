@@ -558,6 +558,20 @@
         <fullName>Sanctions_Create_and_Update</fullName>
     </flowDefinitions>
     <flowDefinitions>
+        <flows>
+            <textTemplates>
+                <name>ChecklistTemplateName</name>
+            </textTemplates>
+            <textTemplates>
+                <name>NotificationBody</name>
+            </textTemplates>
+            <textTemplates>
+                <name>NotificationTitle</name>
+            </textTemplates>
+        </flows>
+        <fullName>Send_Notification_for_New_Certificate_Version</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
         <flows />
         <fullName>Unit_After_Trigger_Flow</fullName>
     </flowDefinitions>
@@ -1196,6 +1210,23 @@
         <sections>
             <label><!-- Assessments --></label>
             <name>Assessments</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Applications with Checklists and/or Questions --></description>
+        <label><!-- Applications with Checklists and/or Questions --></label>
+        <name>Applications_with_Checklists_with_Questions</name>
+        <sections>
+            <label><!-- Applications --></label>
+            <name>Applications</name>
+        </sections>
+        <sections>
+            <label><!-- Assessment Checklist Questions --></label>
+            <name>Assessment Checklist Questions</name>
+        </sections>
+        <sections>
+            <label><!-- Assessment Checklists --></label>
+            <name>Assessment Checklists</name>
         </sections>
     </reportTypes>
     <reportTypes>

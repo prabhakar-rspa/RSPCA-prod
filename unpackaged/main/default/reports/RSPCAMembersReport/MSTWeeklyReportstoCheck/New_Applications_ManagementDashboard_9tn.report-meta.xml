@@ -91,7 +91,7 @@
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
-    <sortColumn>Application__c.Sage_Invoice__c</sortColumn>
+    <sortColumn>Account.Account_Manager__c</sortColumn>
     <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
         <dateColumn>DUE_DATE</dateColumn>

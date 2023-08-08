@@ -1190,6 +1190,11 @@
             <field>Assessment_Approved_By_Certifier_Date__c</field>
             <table>Account.ApplicationSite__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Current_User_is_Allocated_Inspector__c</field>
+            <table>Account.ApplicationSite__r</table>
+        </columns>
         <masterLabel>Applications</masterLabel>
     </sections>
     <sections>

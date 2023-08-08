@@ -1,29 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
-    <chart>
-        <backgroundColor1>#FFFFFF</backgroundColor1>
-        <backgroundColor2>#FFFFFF</backgroundColor2>
-        <backgroundFadeDir>Diagonal</backgroundFadeDir>
-        <chartSummaries>
-            <axisBinding>y</axisBinding>
-            <column>RowCount</column>
-        </chartSummaries>
-        <chartType>HorizontalBar</chartType>
-        <enableHoverLabels>false</enableHoverLabels>
-        <expandOthers>true</expandOthers>
-        <groupingColumn>LAST_LOGIN</groupingColumn>
-        <location>CHART_BOTTOM</location>
-        <showAxisLabels>false</showAxisLabels>
-        <showPercentage>false</showPercentage>
-        <showTotal>false</showTotal>
-        <showValues>false</showValues>
-        <size>Medium</size>
-        <summaryAxisRange>Auto</summaryAxisRange>
-        <textColor>#000000</textColor>
-        <textSize>12</textSize>
-        <titleColor>#000000</titleColor>
-        <titleSize>18</titleSize>
-    </chart>
     <columns>
         <field>ROLE</field>
     </columns>
@@ -39,6 +15,28 @@
     <columns>
         <field>Account.Head_Office_Number__c</field>
     </columns>
+    <columns>
+        <field>Account.Membership_Number__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Account.Active__c</field>
+    </columns>
+    <columns>
+        <field>Account.ia_crm__Status__c</field>
+    </columns>
+    <columns>
+        <field>Account.Status__c</field>
+    </columns>
+    <columns>
+        <field>Account.Cancellation_Reason__c</field>
+    </columns>
+    <columns>
+        <field>SITE</field>
+    </columns>
+    <columns>
+        <field>Account.Site_Number__c</field>
+    </columns>
     <description>Shows us which Head Office Contacts have logged into Communities. Ones at the bottom have not.</description>
     <filter>
         <criteriaItems>
@@ -53,7 +51,7 @@
     <format>Summary</format>
     <groupingsDown>
         <field>LAST_LOGIN</field>
-        <sortOrder>Desc</sortOrder>
+        <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <name>Community Login of HO Prim Contact- MST</name>
     <params>
@@ -68,6 +66,8 @@
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
+    <sortColumn>Account.ia_crm__Status__c</sortColumn>
+    <sortOrder>Desc</sortOrder>
     <timeFrameFilter>
         <dateColumn>LAST_LOGIN</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>

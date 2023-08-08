@@ -11,8 +11,13 @@
     <filterScope>Everything</filterScope>
     <filters>
         <field>Standard__c</field>
-        <operation>startsWith</operation>
-        <value>JT 4.13.4</value>
+        <operation>equals</operation>
+        <value>S 1.4.2</value>
+    </filters>
+    <filters>
+        <field>Standard_Order__c</field>
+        <operation>equals</operation>
+        <value>4900</value>
     </filters>
     <label>All</label>
 </ListView>

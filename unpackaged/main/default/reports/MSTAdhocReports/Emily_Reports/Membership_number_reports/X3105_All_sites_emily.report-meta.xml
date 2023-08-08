@@ -99,12 +99,12 @@
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>startsWith</operator>
-            <value>3105</value>
+            <value>3987,0335</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>
     <format>Tabular</format>
-    <name>3105. All sites - emily</name>
+    <name>Wold sites - 0335 &amp; 3987</name>
     <params>
         <name>co</name>
         <value>1</value>

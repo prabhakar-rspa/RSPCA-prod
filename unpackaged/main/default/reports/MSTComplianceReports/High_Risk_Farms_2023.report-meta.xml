@@ -52,8 +52,8 @@
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
-    <sortColumn>Application__c$Assessment_Date__c</sortColumn>
-    <sortOrder>Asc</sortOrder>
+    <sortColumn>Application__c.Assessments__r$Welfare_Rating__c</sortColumn>
+    <sortOrder>Desc</sortOrder>
     <timeFrameFilter>
         <dateColumn>Application__c$CreatedDate</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>

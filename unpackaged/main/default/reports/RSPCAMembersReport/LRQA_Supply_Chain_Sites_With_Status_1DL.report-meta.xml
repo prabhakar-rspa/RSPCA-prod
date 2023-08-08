@@ -4,7 +4,7 @@
         <field>Account.Membership_Number__c</field>
     </columns>
     <columns>
-        <field>Account.Previous_Assessment_Date__c</field>
+        <field>Account.Membership_Expiry_Date__c</field>
     </columns>
     <columns>
         <field>ACCOUNT.NAME</field>
@@ -17,7 +17,7 @@
         <field>Account.Active__c</field>
     </columns>
     <columns>
-        <field>Account.Membership_Expiry_Date__c</field>
+        <field>Account.Previous_Assessment_Date__c</field>
     </columns>
     <columns>
         <field>Account.Previous_Assessor__c</field>

@@ -73,7 +73,7 @@
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
-            <value>8/1/2023</value>
+            <value>10/1/2023</value>
         </criteriaItems>
         <criteriaItems>
             <column>Account.Status__c</column>

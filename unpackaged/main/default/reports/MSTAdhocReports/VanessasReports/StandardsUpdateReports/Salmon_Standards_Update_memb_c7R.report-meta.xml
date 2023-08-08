@@ -48,13 +48,13 @@
     </columns>
     <description>For the Salmon Standards - all producers, hauliers and abattoir units</description>
     <filter>
-        <booleanFilter>1 AND (2 OR 3)</booleanFilter>
+        <booleanFilter>1 AND (2 OR 3 OR 4) AND 5 AND 6</booleanFilter>
         <criteriaItems>
             <column>Account.Status__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
-            <value>MEMBER,SUSPENDED,ENQUIRY,NEW</value>
+            <value>ENQUIRY,INACTIVE,LAPSED,MEMBER,NEW,REINSTATE,SUSPENDED,SUSPENDED/LAPSED</value>
         </criteriaItems>
         <criteriaItems>
             <column>Unit__c.Animals__c</column>
@@ -70,15 +70,41 @@
             <operator>contains</operator>
             <value>salmon,wellboat,tank unit</value>
         </criteriaItems>
+        <criteriaItems>
+            <column>Unit__c.Animals_List__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Salmon,Trout,Wrasse</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Unit__c.Business__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Supply Chain</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Active__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>1</value>
+        </criteriaItems>
         <language>en_US</language>
     </filter>
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
+        <field>Account.Head_Office_Number_of_Parent_Account__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
         <field>Account.Membership_Number__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>Salmon Standards Update memb</name>
+    <name>Salmon Standards All Members</name>
     <params>
         <name>co</name>
         <value>1</value>

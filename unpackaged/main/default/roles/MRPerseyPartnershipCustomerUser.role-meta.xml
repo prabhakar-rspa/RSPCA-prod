@@ -2,9 +2,9 @@
 <Role xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseAccessLevel>None</caseAccessLevel>
     <contactAccessLevel>Edit</contactAccessLevel>
-    <description>M R Persey Partnership Customer User</description>
+    <description>Bagmore Ltd Customer User</description>
     <mayForecastManagerShare>false</mayForecastManagerShare>
-    <name>M R Persey Partnership Customer User</name>
+    <name>Bagmore Ltd Customer User</name>
     <opportunityAccessLevel>None</opportunityAccessLevel>
     <parentRole>Assessors</parentRole>
 </Role>

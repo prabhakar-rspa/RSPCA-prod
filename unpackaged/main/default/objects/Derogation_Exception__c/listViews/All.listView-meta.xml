@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>All</fullName>
-    <booleanFilter>1 OR 2</booleanFilter>
     <columns>NAME</columns>
     <columns>Site__c</columns>
     <columns>Conditions_of_Derogration_Exception__c</columns>
@@ -12,16 +11,6 @@
     <columns>Start_Date__c</columns>
     <columns>End_Date__c</columns>
     <filterScope>Everything</filterScope>
-    <filters>
-        <field>Standard_number__c</field>
-        <operation>equals</operation>
-        <value>T2.7</value>
-    </filters>
-    <filters>
-        <field>Standard_number__c</field>
-        <operation>equals</operation>
-        <value>T 2.7</value>
-    </filters>
     <label>All</label>
     <sharedTo>
         <group>Membership_Services</group>

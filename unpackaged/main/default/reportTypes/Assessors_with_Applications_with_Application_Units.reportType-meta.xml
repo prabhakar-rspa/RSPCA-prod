@@ -1348,6 +1348,11 @@
             <field>MST_Comments__c</field>
             <table>User.Applications__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Current_User_is_Allocated_Inspector__c</field>
+            <table>User.Applications__r</table>
+        </columns>
         <masterLabel>Applications</masterLabel>
     </sections>
 </ReportType>

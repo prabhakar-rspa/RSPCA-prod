@@ -13,10 +13,10 @@
         <field>Unit__c.Description__c</field>
     </columns>
     <columns>
-        <field>Unit__c.Ingredients__c</field>
+        <field>Unit__c.Animals__c</field>
     </columns>
     <columns>
-        <field>Unit__c.Animals__c</field>
+        <field>Unit__c.Business__c</field>
     </columns>
     <columns>
         <field>CUST_NAME</field>
@@ -64,7 +64,7 @@
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
-            <value>Applying,Certified,Lapsed</value>
+            <value>Applying,Certified,Inactive,Lapsed</value>
         </criteriaItems>
         <criteriaItems>
             <column>Account.ia_crm__Status__c</column>
@@ -78,11 +78,23 @@
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
-            <value>LAPSED,MEMBER,ENQUIRY,NEW,REINSTATE</value>
+            <value>ENQUIRY,INACTIVE,LAPSED,MEMBER,NEW,REINSTATE</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Unit__c.Animals__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Salmon</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>
-    <format>Tabular</format>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Unit__c.Production__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
     <name>Units- MST</name>
     <params>
         <name>co</name>
@@ -93,8 +105,6 @@
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
-    <sortColumn>Account.Region__c</sortColumn>
-    <sortOrder>Desc</sortOrder>
     <timeFrameFilter>
         <dateColumn>DUE_DATE</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>

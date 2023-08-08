@@ -59,13 +59,6 @@
             <operator>startsWith</operator>
             <value>diane</value>
         </criteriaItems>
-        <criteriaItems>
-            <column>Application__c$Assessor_Full_Name__c</column>
-            <columnToColumn>false</columnToColumn>
-            <isUnlocked>true</isUnlocked>
-            <operator>startsWith</operator>
-            <value>Charlotte</value>
-        </criteriaItems>
         <language>en_US</language>
     </filter>
     <format>Tabular</format>

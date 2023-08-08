@@ -11,8 +11,9 @@
                 <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
                 <chartAxisRange>Auto</chartAxisRange>
                 <chartSummary>
+                    <aggregate>Sum</aggregate>
                     <axisBinding>y</axisBinding>
-                    <column>RowCount</column>
+                    <column>Account.Active__c</column>
                 </chartSummary>
                 <componentType>Donut</componentType>
                 <decimalPrecision>-1</decimalPrecision>
@@ -21,16 +22,16 @@
                 <drillToDetailEnabled>false</drillToDetailEnabled>
                 <enableHover>false</enableHover>
                 <expandOthers>false</expandOthers>
-                <groupingColumn>Account.Account_Manager__c</groupingColumn>
+                <groupingColumn>ACCOUNT.NAME</groupingColumn>
                 <groupingSortProperties>
                     <groupingSorts>
                         <groupingLevel>g1</groupingLevel>
                         <sortOrder>a</sortOrder>
                     </groupingSorts>
                 </groupingSortProperties>
-                <header>New Applications Management-Dashboard</header>
+                <header>Lapsed Sites</header>
                 <legendPosition>Right</legendPosition>
-                <report>MSTWeeklyReportstoCheck/New_Applications_ManagementDashboard_9tn</report>
+                <report>RSPCAMembersReport/Lapsed_Sites_1ig</report>
                 <showPercentage>false</showPercentage>
                 <showTotal>true</showTotal>
                 <showValues>true</showValues>

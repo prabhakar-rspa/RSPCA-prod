@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
-    <excludeButtons>DataDotComAccountInsights</excludeButtons>
-    <excludeButtons>DataDotComClean</excludeButtons>
+    <excludeButtons>DataDotComCompanyHierarchy</excludeButtons>
     <excludeButtons>Edit</excludeButtons>
     <excludeButtons>IncludeOffline</excludeButtons>
     <excludeButtons>Share</excludeButtons>
@@ -366,10 +365,6 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <relatedList>Suspension_History__c.Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
         <relatedList>Certificate_Extension_Request__c.Account__c</relatedList>
     </relatedLists>
     <relatedObjects>ParentId</relatedObjects>
@@ -379,7 +374,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h0D000000WexM</masterLabel>
+        <masterLabel>00h2p00000lxikP</masterLabel>
         <sizeX>1</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

@@ -1588,6 +1588,92 @@
                 <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Date</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>Date</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.Date_Certified__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.Site__r.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>ENQUIRY</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_54_A1</targetReference>
+            </connector>
+            <label>Date Certified Populated &amp; Enquiry Status</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>18.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision55</name>
+        <label>myDecision55</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision57</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_56</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
                         <stringValue>Picklist</stringValue>
                     </value>
                 </processMetadataValues>
@@ -1678,7 +1764,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_54_A1</targetReference>
+                <targetReference>myRule_56_A1</targetReference>
             </connector>
             <label>New Application Certified - Head office</label>
         </rules>
@@ -1687,19 +1773,19 @@
         <processMetadataValues>
             <name>index</name>
             <value>
-                <numberValue>18.0</numberValue>
+                <numberValue>19.0</numberValue>
             </value>
         </processMetadataValues>
-        <name>myDecision55</name>
-        <label>myDecision55</label>
+        <name>myDecision57</name>
+        <label>myDecision57</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>myDecision57</targetReference>
+            <targetReference>myDecision59</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>myRule_56</name>
+            <name>myRule_58</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
@@ -1826,7 +1912,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_56_A1</targetReference>
+                <targetReference>myRule_58_A1</targetReference>
             </connector>
             <label>New Application Certified - Site</label>
         </rules>
@@ -1835,19 +1921,19 @@
         <processMetadataValues>
             <name>index</name>
             <value>
-                <numberValue>19.0</numberValue>
+                <numberValue>20.0</numberValue>
             </value>
         </processMetadataValues>
-        <name>myDecision57</name>
-        <label>myDecision57</label>
+        <name>myDecision59</name>
+        <label>myDecision59</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>myDecision61</targetReference>
+            <targetReference>myDecision63</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>myRule_58</name>
+            <name>myRule_60</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
@@ -1918,7 +2004,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_58_A1</targetReference>
+                <targetReference>myRule_60_A1</targetReference>
             </connector>
             <label>Extension Granted?</label>
         </rules>
@@ -2019,16 +2105,16 @@
         <processMetadataValues>
             <name>index</name>
             <value>
-                <numberValue>20.0</numberValue>
+                <numberValue>21.0</numberValue>
             </value>
         </processMetadataValues>
-        <name>myDecision61</name>
-        <label>myDecision61</label>
+        <name>myDecision63</name>
+        <label>myDecision63</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>myRule_62</name>
+            <name>myRule_64</name>
             <conditionLogic>or</conditionLogic>
             <conditions>
                 <processMetadataValues>
@@ -2093,7 +2179,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_62_A1</targetReference>
+                <targetReference>myRule_64_A1</targetReference>
             </connector>
             <label>Application/Renewal Certified</label>
         </rules>
@@ -2363,7 +2449,7 @@
                 <stringValue>TODAY() </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_12_myRule_11_A1_8910641723</name>
+        <name>formula_12_myRule_11_A1_7379696842</name>
         <dataType>Date</dataType>
         <expression>TODAY()</expression>
     </formulas>
@@ -2374,7 +2460,7 @@
                 <stringValue>$User.Id </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_13_myRule_11_A1_1941829657</name>
+        <name>formula_13_myRule_11_A1_8448311457</name>
         <dataType>String</dataType>
         <expression>{!$User.Id}</expression>
     </formulas>
@@ -2385,7 +2471,7 @@
                 <stringValue>TODAY()</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_16_myRule_15_A1_1604716678</name>
+        <name>formula_16_myRule_15_A1_7811059739</name>
         <dataType>Date</dataType>
         <expression>TODAY()</expression>
     </formulas>
@@ -2396,7 +2482,7 @@
                 <stringValue>$User.Id </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_17_myRule_15_A1_6239601565</name>
+        <name>formula_17_myRule_15_A1_7680037413</name>
         <dataType>String</dataType>
         <expression>{!$User.Id}</expression>
     </formulas>
@@ -2407,7 +2493,7 @@
                 <stringValue>TODAY()</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_20_myRule_19_A1_5782961029</name>
+        <name>formula_20_myRule_19_A1_4353792801</name>
         <dataType>Date</dataType>
         <expression>TODAY()</expression>
     </formulas>
@@ -2418,7 +2504,7 @@
                 <stringValue>$User.Id </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_21_myRule_19_A1_2237684523</name>
+        <name>formula_21_myRule_19_A1_8884778757</name>
         <dataType>String</dataType>
         <expression>{!$User.Id}</expression>
     </formulas>
@@ -2429,7 +2515,7 @@
                 <stringValue>TODAY()</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_24_myRule_23_A1_7474473958</name>
+        <name>formula_24_myRule_23_A1_1854110535</name>
         <dataType>Date</dataType>
         <expression>TODAY()</expression>
     </formulas>
@@ -2440,7 +2526,7 @@
                 <stringValue>$User.Id </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_25_myRule_23_A1_1865859364</name>
+        <name>formula_25_myRule_23_A1_4623607959</name>
         <dataType>String</dataType>
         <expression>{!$User.Id}</expression>
     </formulas>
@@ -2451,7 +2537,7 @@
                 <stringValue>TODAY()</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_28_myRule_27_A1_3356461357</name>
+        <name>formula_28_myRule_27_A1_2853230953</name>
         <dataType>Date</dataType>
         <expression>TODAY()</expression>
     </formulas>
@@ -2462,7 +2548,7 @@
                 <stringValue>$User.Id </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_29_myRule_27_A1_6083134528</name>
+        <name>formula_29_myRule_27_A1_7099356568</name>
         <dataType>String</dataType>
         <expression>{!$User.Id}</expression>
     </formulas>
@@ -2473,7 +2559,7 @@
                 <stringValue>TODAY()</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_32_myRule_31_A1_6491093269</name>
+        <name>formula_32_myRule_31_A1_0326071620</name>
         <dataType>Date</dataType>
         <expression>TODAY()</expression>
     </formulas>
@@ -2484,7 +2570,7 @@
                 <stringValue>$User.Id</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_33_myRule_31_A1_5614636149</name>
+        <name>formula_33_myRule_31_A1_6455211270</name>
         <dataType>String</dataType>
         <expression>{!$User.Id}</expression>
     </formulas>
@@ -2495,7 +2581,7 @@
                 <stringValue>TODAY()</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_36_myRule_35_A1_1371886313</name>
+        <name>formula_36_myRule_35_A1_3109125105</name>
         <dataType>Date</dataType>
         <expression>TODAY()</expression>
     </formulas>
@@ -2506,7 +2592,7 @@
                 <stringValue>$User.Id</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_37_myRule_35_A1_8760240154</name>
+        <name>formula_37_myRule_35_A1_6762609823</name>
         <dataType>String</dataType>
         <expression>{!$User.Id}</expression>
     </formulas>
@@ -2517,7 +2603,7 @@
                 <stringValue>TODAY()</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_42_myRule_41_A1_9841989995</name>
+        <name>formula_42_myRule_41_A1_0946966649</name>
         <dataType>Date</dataType>
         <expression>TODAY()</expression>
     </formulas>
@@ -2528,51 +2614,7 @@
                 <stringValue>TODAY()</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_4_myRule_3_A1_7491826719</name>
-        <dataType>Date</dataType>
-        <expression>TODAY()</expression>
-    </formulas>
-    <formulas>
-        <processMetadataValues>
-            <name>originalFormula</name>
-            <value>
-                <stringValue>$User.Id </stringValue>
-            </value>
-        </processMetadataValues>
-        <name>formula_59_myRule_58_A1_0862654919</name>
-        <dataType>String</dataType>
-        <expression>{!$User.Id}</expression>
-    </formulas>
-    <formulas>
-        <processMetadataValues>
-            <name>originalFormula</name>
-            <value>
-                <stringValue>$User.Id </stringValue>
-            </value>
-        </processMetadataValues>
-        <name>formula_5_myRule_3_A1_0635325793</name>
-        <dataType>String</dataType>
-        <expression>{!$User.Id}</expression>
-    </formulas>
-    <formulas>
-        <processMetadataValues>
-            <name>originalFormula</name>
-            <value>
-                <stringValue>TODAY()</stringValue>
-            </value>
-        </processMetadataValues>
-        <name>formula_60_myRule_58_A1_6605241991</name>
-        <dataType>Date</dataType>
-        <expression>TODAY()</expression>
-    </formulas>
-    <formulas>
-        <processMetadataValues>
-            <name>originalFormula</name>
-            <value>
-                <stringValue>TODAY()</stringValue>
-            </value>
-        </processMetadataValues>
-        <name>formula_8_myRule_7_A1_4751671468</name>
+        <name>formula_4_myRule_3_A1_5623181778</name>
         <dataType>Date</dataType>
         <expression>TODAY()</expression>
     </formulas>
@@ -2583,11 +2625,55 @@
                 <stringValue>$User.Id </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_9_myRule_7_A1_7706781912</name>
+        <name>formula_5_myRule_3_A1_6061012094</name>
         <dataType>String</dataType>
         <expression>{!$User.Id}</expression>
     </formulas>
-    <interviewLabel>ApplicationProcess-16_InterviewLabel</interviewLabel>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>$User.Id </stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_61_myRule_60_A1_3162284045</name>
+        <dataType>String</dataType>
+        <expression>{!$User.Id}</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>TODAY()</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_62_myRule_60_A1_0207713532</name>
+        <dataType>Date</dataType>
+        <expression>TODAY()</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>TODAY()</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_8_myRule_7_A1_2371821602</name>
+        <dataType>Date</dataType>
+        <expression>TODAY()</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>$User.Id </stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_9_myRule_7_A1_8063987739</name>
+        <dataType>String</dataType>
+        <expression>{!$User.Id}</expression>
+    </formulas>
+    <interviewLabel>ApplicationProcess-11_InterviewLabel</interviewLabel>
     <label>ApplicationProcess</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -2693,7 +2779,7 @@
             </processMetadataValues>
             <field>Renewal_Approval_Date__c</field>
             <value>
-                <elementReference>formula_12_myRule_11_A1_8910641723</elementReference>
+                <elementReference>formula_12_myRule_11_A1_7379696842</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -2729,7 +2815,7 @@
             </processMetadataValues>
             <field>Renewal_Approved_By_NSF__c</field>
             <value>
-                <elementReference>formula_13_myRule_11_A1_1941829657</elementReference>
+                <elementReference>formula_13_myRule_11_A1_8448311457</elementReference>
             </value>
         </inputAssignments>
         <object>Application__c</object>
@@ -2813,7 +2899,7 @@
             </processMetadataValues>
             <field>Assessment_Approved_By_Office_Date__c</field>
             <value>
-                <elementReference>formula_16_myRule_15_A1_1604716678</elementReference>
+                <elementReference>formula_16_myRule_15_A1_7811059739</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -2849,7 +2935,7 @@
             </processMetadataValues>
             <field>Assessment_Approved_By_Office__c</field>
             <value>
-                <elementReference>formula_17_myRule_15_A1_6239601565</elementReference>
+                <elementReference>formula_17_myRule_15_A1_7680037413</elementReference>
             </value>
         </inputAssignments>
         <object>Application__c</object>
@@ -2933,7 +3019,7 @@
             </processMetadataValues>
             <field>Assessment_Approved_By_Assessor_Date__c</field>
             <value>
-                <elementReference>formula_20_myRule_19_A1_5782961029</elementReference>
+                <elementReference>formula_20_myRule_19_A1_4353792801</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -2969,7 +3055,7 @@
             </processMetadataValues>
             <field>Assessment_Approved_By_Assessor__c</field>
             <value>
-                <elementReference>formula_21_myRule_19_A1_2237684523</elementReference>
+                <elementReference>formula_21_myRule_19_A1_8884778757</elementReference>
             </value>
         </inputAssignments>
         <object>Application__c</object>
@@ -3137,7 +3223,7 @@
             </processMetadataValues>
             <field>Assessment_Approved_By_Certifier_Date__c</field>
             <value>
-                <elementReference>formula_24_myRule_23_A1_7474473958</elementReference>
+                <elementReference>formula_24_myRule_23_A1_1854110535</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -3173,7 +3259,7 @@
             </processMetadataValues>
             <field>Assessment_Approved_By_Certifier__c</field>
             <value>
-                <elementReference>formula_25_myRule_23_A1_1865859364</elementReference>
+                <elementReference>formula_25_myRule_23_A1_4623607959</elementReference>
             </value>
         </inputAssignments>
         <object>Application__c</object>
@@ -3257,7 +3343,7 @@
             </processMetadataValues>
             <field>Evidence_Approved_By_Office_Date__c</field>
             <value>
-                <elementReference>formula_28_myRule_27_A1_3356461357</elementReference>
+                <elementReference>formula_28_myRule_27_A1_2853230953</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -3293,7 +3379,7 @@
             </processMetadataValues>
             <field>Evidence_Approved_By_Office__c</field>
             <value>
-                <elementReference>formula_29_myRule_27_A1_6083134528</elementReference>
+                <elementReference>formula_29_myRule_27_A1_7099356568</elementReference>
             </value>
         </inputAssignments>
         <object>Application__c</object>
@@ -3377,7 +3463,7 @@
             </processMetadataValues>
             <field>Evidence_Approved_By_Assessor_Date__c</field>
             <value>
-                <elementReference>formula_32_myRule_31_A1_6491093269</elementReference>
+                <elementReference>formula_32_myRule_31_A1_0326071620</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -3413,7 +3499,7 @@
             </processMetadataValues>
             <field>Evidence_Approved_By_Assessor__c</field>
             <value>
-                <elementReference>formula_33_myRule_31_A1_5614636149</elementReference>
+                <elementReference>formula_33_myRule_31_A1_6455211270</elementReference>
             </value>
         </inputAssignments>
         <object>Application__c</object>
@@ -3497,7 +3583,7 @@
             </processMetadataValues>
             <field>Evidence_Approved_By_Certifier_Date__c</field>
             <value>
-                <elementReference>formula_36_myRule_35_A1_1371886313</elementReference>
+                <elementReference>formula_36_myRule_35_A1_3109125105</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -3533,7 +3619,7 @@
             </processMetadataValues>
             <field>Evidence_Approved_By_Certifier__c</field>
             <value>
-                <elementReference>formula_37_myRule_35_A1_8760240154</elementReference>
+                <elementReference>formula_37_myRule_35_A1_6762609823</elementReference>
             </value>
         </inputAssignments>
         <object>Application__c</object>
@@ -3701,7 +3787,7 @@
             </processMetadataValues>
             <field>Application_Approved_By_Office_Date__c</field>
             <value>
-                <elementReference>formula_4_myRule_3_A1_7491826719</elementReference>
+                <elementReference>formula_4_myRule_3_A1_5623181778</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -3737,7 +3823,7 @@
             </processMetadataValues>
             <field>Application_Approved_By_Office__c</field>
             <value>
-                <elementReference>formula_5_myRule_3_A1_0635325793</elementReference>
+                <elementReference>formula_5_myRule_3_A1_6061012094</elementReference>
             </value>
         </inputAssignments>
         <object>Application__c</object>
@@ -3821,7 +3907,7 @@
             </processMetadataValues>
             <field>Date_of_Payment__c</field>
             <value>
-                <elementReference>formula_42_myRule_41_A1_9841989995</elementReference>
+                <elementReference>formula_42_myRule_41_A1_0946966649</elementReference>
             </value>
         </inputAssignments>
         <object>Application__c</object>
@@ -4073,7 +4159,7 @@
             </processMetadataValues>
             <field>Previous_Assessment_Date__c</field>
             <value>
-                <elementReference>myVariable_current.Previous_Assessment_Date__c</elementReference>
+                <elementReference>myVariable_current.Assessment_Date__c</elementReference>
             </value>
         </inputAssignments>
         <object>Account</object>
@@ -4192,7 +4278,7 @@
         <locationX>5200</locationX>
         <locationY>200</locationY>
         <connector>
-            <targetReference>myRule_52_A2</targetReference>
+            <targetReference>myDecision53</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -4271,12 +4357,12 @@
         <processMetadataValues>
             <name>referenceTargetField</name>
         </processMetadataValues>
-        <name>myRule_52_A2</name>
+        <name>myRule_54_A1</name>
         <label>Update Status to Member</label>
-        <locationX>5200</locationX>
-        <locationY>300</locationY>
+        <locationX>5400</locationX>
+        <locationY>200</locationY>
         <connector>
-            <targetReference>myDecision53</targetReference>
+            <targetReference>myDecision55</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -4355,12 +4441,12 @@
         <processMetadataValues>
             <name>referenceTargetField</name>
         </processMetadataValues>
-        <name>myRule_54_A1</name>
+        <name>myRule_56_A1</name>
         <label>Generate Head Office Number</label>
-        <locationX>5400</locationX>
+        <locationX>5600</locationX>
         <locationY>200</locationY>
         <connector>
-            <targetReference>myDecision55</targetReference>
+            <targetReference>myDecision57</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -4439,12 +4525,12 @@
         <processMetadataValues>
             <name>referenceTargetField</name>
         </processMetadataValues>
-        <name>myRule_56_A1</name>
+        <name>myRule_58_A1</name>
         <label>Generate Site Number</label>
-        <locationX>5600</locationX>
+        <locationX>5800</locationX>
         <locationY>200</locationY>
         <connector>
-            <targetReference>myDecision57</targetReference>
+            <targetReference>myDecision59</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -4523,12 +4609,12 @@
         <processMetadataValues>
             <name>referenceTargetField</name>
         </processMetadataValues>
-        <name>myRule_58_A1</name>
+        <name>myRule_60_A1</name>
         <label>Update Extension Granted by and Date</label>
-        <locationX>5800</locationX>
+        <locationX>6000</locationX>
         <locationY>200</locationY>
         <connector>
-            <targetReference>myDecision61</targetReference>
+            <targetReference>myDecision63</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -4577,7 +4663,7 @@
             </processMetadataValues>
             <field>Extension_Granted_By__c</field>
             <value>
-                <elementReference>formula_59_myRule_58_A1_0862654919</elementReference>
+                <elementReference>formula_61_myRule_60_A1_3162284045</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -4613,7 +4699,7 @@
             </processMetadataValues>
             <field>Extension_Granted_On__c</field>
             <value>
-                <elementReference>formula_60_myRule_58_A1_6605241991</elementReference>
+                <elementReference>formula_62_myRule_60_A1_0207713532</elementReference>
             </value>
         </inputAssignments>
         <object>Application__c</object>
@@ -4643,9 +4729,9 @@
         <processMetadataValues>
             <name>referenceTargetField</name>
         </processMetadataValues>
-        <name>myRule_62_A1</name>
+        <name>myRule_64_A1</name>
         <label>Clear Renewal Sent Fields on Account</label>
-        <locationX>6200</locationX>
+        <locationX>6400</locationX>
         <locationY>200</locationY>
         <filterLogic>and</filterLogic>
         <filters>
@@ -4808,7 +4894,7 @@
             </processMetadataValues>
             <field>Application_Approved_By_Certifier_Date__c</field>
             <value>
-                <elementReference>formula_8_myRule_7_A1_4751671468</elementReference>
+                <elementReference>formula_8_myRule_7_A1_2371821602</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -4844,13 +4930,13 @@
             </processMetadataValues>
             <field>Application_Approved_By_Certifier__c</field>
             <value>
-                <elementReference>formula_9_myRule_7_A1_7706781912</elementReference>
+                <elementReference>formula_9_myRule_7_A1_8063987739</elementReference>
             </value>
         </inputAssignments>
         <object>Application__c</object>
     </recordUpdates>
     <startElementReference>myDecision</startElementReference>
-    <status>Draft</status>
+    <status>Active</status>
     <variables>
         <name>myVariable_current</name>
         <dataType>SObject</dataType>

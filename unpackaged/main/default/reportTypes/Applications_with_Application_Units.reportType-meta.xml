@@ -985,6 +985,11 @@
             <field>Update_to_flock_size__c</field>
             <table>Application__c.ApplicationUnits__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Current_User_is_Allocated_Inspector__c</field>
+            <table>Application__c</table>
+        </columns>
         <masterLabel>Applications</masterLabel>
     </sections>
 </ReportType>

@@ -185,7 +185,7 @@
         <fields>Summary__c</fields>
         <fields>Compliant__c</fields>
         <fields>Comments_Action__c</fields>
-        <fields>Guidance_Notes__c</fields>
+        <fields>Standard_Order__c</fields>
         <relatedList>Assessment_Checklist_Question__c.Assessment_Checklist__c</relatedList>
     </relatedLists>
     <relatedLists>

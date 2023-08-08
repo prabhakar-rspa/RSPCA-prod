@@ -14,4 +14,7 @@
         <value>Account.Retailer</value>
     </filters>
     <label>Retailer Accounts</label>
+    <sharedTo>
+        <group>Partnerships</group>
+    </sharedTo>
 </ListView>

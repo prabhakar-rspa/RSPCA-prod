@@ -3,7 +3,8 @@
     <fullName>Comments_Action__c</fullName>
     <externalId>false</externalId>
     <label>Comments/Action</label>
-    <required>false</required>
+    <length>1000</length>
     <trackTrending>false</trackTrending>
-    <type>TextArea</type>
+    <type>LongTextArea</type>
+    <visibleLines>4</visibleLines>
 </CustomField>

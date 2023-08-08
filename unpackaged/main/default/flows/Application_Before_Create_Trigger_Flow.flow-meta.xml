@@ -2,10 +2,148 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>54.0</apiVersion>
     <assignments>
+        <name>Assign_Assessment_Approved_By_Assessor</name>
+        <label>Assign Assessment Approved By (Assessor)</label>
+        <locationX>50</locationX>
+        <locationY>2711</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Assessment_Approved_By_Assessor_Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>todayDate</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Assessment_Approved_By_Assessor__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$User.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Check_Assessment_Approved_By_Certifier</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Assessment_Approved_By_Certifier</name>
+        <label>Assign Assessment Approved By (Certifier)</label>
+        <locationX>50</locationX>
+        <locationY>3011</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Assessment_Approved_By_Certifier_Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>todayDate</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Assessment_Approved_By_Certifier__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$User.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Check_Evidence_Approved_By_Office</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Assessment_Approved_By_Office</name>
+        <label>Assign Assessment Approved By (Office)</label>
+        <locationX>50</locationX>
+        <locationY>2411</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Assessment_Approved_By_Office_Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>todayDate</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Assessment_Approved_By_Office__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$User.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Check_Assessment_Approved_By_Assessor</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Evidence_Approved_By_Assessor</name>
+        <label>Assign Evidence Approved By (Assessor)</label>
+        <locationX>50</locationX>
+        <locationY>3611</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Evidence_Approved_By_Assessor_Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>todayDate</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Evidence_Approved_By_Assessor__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$User.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Check_Evidence_Approved_By_Certifier</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Evidence_Approved_By_Certifier</name>
+        <label>Assign Evidence Approved By (Certifier)</label>
+        <locationX>50</locationX>
+        <locationY>3911</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Evidence_Approved_By_Certifier_Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>todayDate</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Evidence_Approved_By_Certifier__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$User.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Check_Paid_By_Card</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Evidence_Approved_By_Office</name>
+        <label>Assign Evidence Approved By (Office)</label>
+        <locationX>50</locationX>
+        <locationY>3311</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Evidence_Approved_By_Office_Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>todayDate</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Evidence_Approved_By_Office__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$User.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Check_Evidence_Approved_By_Assessor</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Assign_Open_Application_Count</name>
         <label>Assign Open Application Count</label>
         <locationX>50</locationX>
-        <locationY>887</locationY>
+        <locationY>803</locationY>
         <assignmentItems>
             <assignToReference>openApplicationSize</assignToReference>
             <operator>AssignCount</operator>
@@ -18,10 +156,111 @@
         </connector>
     </assignments>
     <assignments>
+        <name>Assign_Paid_By_Card</name>
+        <label>Assign Paid By Card</label>
+        <locationX>50</locationX>
+        <locationY>4211</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Paid__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Check_Amount_Paid_True</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Payment_Confirmation_Sent</name>
+        <label>Payment Confirmation Sent</label>
+        <locationX>50</locationX>
+        <locationY>4811</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Payment_Confirmation_Sent__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Is_Extension_Granted</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>populate_approver</name>
+        <label>populate approver</label>
+        <locationX>50</locationX>
+        <locationY>1811</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Application_Approved_By_Certifier__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$User.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Application_Approved_By_Certifier_Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>todayDate</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Check_Approved_for_Renewal_true</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Populate_Approver_and_Date</name>
+        <label>Populate Approver and Date</label>
+        <locationX>50</locationX>
+        <locationY>1511</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Application_Approved_By_Office__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$User.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Application_Approved_By_Office_Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>todayDate</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Check_Application_Approved_By_Certifier</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Populate_Renewal_Approver</name>
+        <label>Populate Renewal Approver</label>
+        <locationX>50</locationX>
+        <locationY>2111</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Renewal_Approval_Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>todayDate</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Renewal_Approved_By_NSF__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$User.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Check_Assessment_Approved_By_Office</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Set_Assessment_Deadline_Date</name>
         <label>Set Assessment Deadline Date</label>
         <locationX>50</locationX>
-        <locationY>1007</locationY>
+        <locationY>911</locationY>
         <assignmentItems>
             <assignToReference>$Record.Assessment_Deadline__c</assignToReference>
             <operator>Assign</operator>
@@ -33,11 +272,447 @@
             <targetReference>Is_Pricebook_Id_Populated</targetReference>
         </connector>
     </assignments>
+    <assignments>
+        <name>Update_Extension_Granted_by_and_Date</name>
+        <label>Update Extension Granted by and Date</label>
+        <locationX>50</locationX>
+        <locationY>5111</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Extension_Granted_By__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$User.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Extension_Granted_On__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>todayDate</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Update_Payment_Date</name>
+        <label>Update Payment Date</label>
+        <locationX>50</locationX>
+        <locationY>4511</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Date_of_Payment__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>todayDate</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Check_Paid_and_Date_of_Payment</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Check_Amount_Paid_True</name>
+        <label>Check Amount Paid = True</label>
+        <locationX>182</locationX>
+        <locationY>4403</locationY>
+        <defaultConnector>
+            <targetReference>Check_Paid_and_Date_of_Payment</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Amount_Paid_True</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Paid__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Date_of_Payment__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Payment_Date</targetReference>
+            </connector>
+            <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+            <label>Amount Paid = True</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Application_Approved_By_Certifier</name>
+        <label>Check Application Approved By (Certifier)</label>
+        <locationX>182</locationX>
+        <locationY>1703</locationY>
+        <defaultConnector>
+            <targetReference>Check_Approved_for_Renewal_true</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Application_Approved_By_Certifier</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Application_Approved_By_Certifier__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Application_Approved_By_Certifier_Date__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>populate_approver</targetReference>
+            </connector>
+            <label>Application Approved By (Certifier)</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Application_Approved_By_Office</name>
+        <label>Check Application Approved By (Office)</label>
+        <locationX>182</locationX>
+        <locationY>1403</locationY>
+        <defaultConnector>
+            <targetReference>Check_Application_Approved_By_Certifier</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Application_Approved_By_Office</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Application_Approved_By_Office__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Application_Approved_By_Office_Date__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Populate_Approver_and_Date</targetReference>
+            </connector>
+            <label>Application Approved By (Office)</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Approved_for_Renewal_true</name>
+        <label>Check Approved for Renewal = true</label>
+        <locationX>182</locationX>
+        <locationY>2003</locationY>
+        <defaultConnector>
+            <targetReference>Check_Assessment_Approved_By_Office</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Approved_for_Renewal_true</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Approved_for_Renewal__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Renewal_Approval_Date__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Populate_Renewal_Approver</targetReference>
+            </connector>
+            <label>Approved for Renewal = true</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Assessment_Approved_By_Assessor</name>
+        <label>Check Assessment Approved By (Assessor)</label>
+        <locationX>182</locationX>
+        <locationY>2603</locationY>
+        <defaultConnector>
+            <targetReference>Check_Assessment_Approved_By_Certifier</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Assessment_Approved_By_Assessor</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Assessment_Approved_By_Assessor__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Assessment_Approved_By_Assessor_Date__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Assessment_Approved_By_Assessor</targetReference>
+            </connector>
+            <label>Assessment Approved By (Assessor)</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Assessment_Approved_By_Certifier</name>
+        <label>Check Assessment Approved By (Certifier)</label>
+        <locationX>182</locationX>
+        <locationY>2903</locationY>
+        <defaultConnector>
+            <targetReference>Check_Evidence_Approved_By_Office</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Assessment_Approved_By_Certifier</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Assessment_Approved_By_Certifier__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Assessment_Approved_By_Certifier_Date__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Assessment_Approved_By_Certifier</targetReference>
+            </connector>
+            <label>Assessment Approved By (Certifier)</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Assessment_Approved_By_Office</name>
+        <label>Check Assessment Approved By (Office)</label>
+        <locationX>182</locationX>
+        <locationY>2303</locationY>
+        <defaultConnector>
+            <targetReference>Check_Assessment_Approved_By_Assessor</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Assessment_Approved_By_Office</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Assessment_Approved_By_Office__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Assessment_Approved_By_Office_Date__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Assessment_Approved_By_Office</targetReference>
+            </connector>
+            <label>Assessment Approved By (Office)</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Evidence_Approved_By_Assessor</name>
+        <label>Check Evidence Approved By (Assessor)</label>
+        <locationX>182</locationX>
+        <locationY>3503</locationY>
+        <defaultConnector>
+            <targetReference>Check_Evidence_Approved_By_Certifier</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Evidence_Approved_By_Assessor</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Evidence_Approved_By_Assessor__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Evidence_Approved_By_Assessor_Date__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Evidence_Approved_By_Assessor</targetReference>
+            </connector>
+            <label>Evidence Approved By (Assessor)</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Evidence_Approved_By_Certifier</name>
+        <label>Check Evidence Approved By (Certifier)</label>
+        <locationX>182</locationX>
+        <locationY>3803</locationY>
+        <defaultConnector>
+            <targetReference>Check_Paid_By_Card</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Evidence_Approved_By_Certifier</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Evidence_Approved_By_Certifier__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Evidence_Approved_By_Certifier_Date__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Evidence_Approved_By_Certifier</targetReference>
+            </connector>
+            <label>Evidence Approved By (Certifier)</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Evidence_Approved_By_Office</name>
+        <label>Check Evidence Approved By (Office)</label>
+        <locationX>182</locationX>
+        <locationY>3203</locationY>
+        <defaultConnector>
+            <targetReference>Check_Evidence_Approved_By_Assessor</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Evidence_Approved_By_Office</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Evidence_Approved_By_Office__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Evidence_Approved_By_Office_Date__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Evidence_Approved_By_Office</targetReference>
+            </connector>
+            <label>Evidence Approved By (Office)</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Paid_and_Date_of_Payment</name>
+        <label>Check Paid and Date of Payment</label>
+        <locationX>182</locationX>
+        <locationY>4703</locationY>
+        <defaultConnector>
+            <targetReference>Is_Extension_Granted</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Paid_and_Date_of_Payment</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Paid__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Date_of_Payment__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Payment_Confirmation_Sent__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Bulk_Renewal__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Payment_Confirmation_Sent</targetReference>
+            </connector>
+            <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+            <label>Paid and Date of Payment</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Paid_By_Card</name>
+        <label>Check Paid By Card</label>
+        <locationX>182</locationX>
+        <locationY>4103</locationY>
+        <defaultConnector>
+            <targetReference>Check_Amount_Paid_True</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Paid_By_Card</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Payment_Amount_Received_Card__c</leftValueReference>
+                <operator>GreaterThanOrEqualTo</operator>
+                <rightValue>
+                    <elementReference>TotalAmountIncVAT</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Paid__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Paid_By_Card</targetReference>
+            </connector>
+            <label>Paid By Card</label>
+        </rules>
+    </decisions>
     <decisions>
         <name>Check_Renewal</name>
         <label>Check Renewal</label>
         <locationX>182</locationX>
-        <locationY>647</locationY>
+        <locationY>587</locationY>
         <defaultConnector>
             <targetReference>Is_Pricebook_Id_Populated</targetReference>
         </defaultConnector>
@@ -66,6 +741,13 @@
                     <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
             <connector>
                 <targetReference>Get_Applications</targetReference>
             </connector>
@@ -73,16 +755,55 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Is_Extension_Granted</name>
+        <label>Extension Granted ?</label>
+        <locationX>182</locationX>
+        <locationY>5003</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Extension_Granted</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Extension_Granted__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Yes</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Extension_Granted_By__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Extension_Granted_by_and_Date</targetReference>
+            </connector>
+            <label>Extension Granted</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Is_Pricebook_Id_Populated</name>
         <label>Is Pricebook Id Populated?</label>
         <locationX>182</locationX>
-        <locationY>1223</locationY>
+        <locationY>1103</locationY>
+        <defaultConnector>
+            <targetReference>Check_Application_Approved_By_Office</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Pricebook_Id_is_not_populated</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>$Record.Pricebook_Id__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -98,7 +819,7 @@
         <name>Previous_Assessment_Date</name>
         <label>Previous Assessment Date</label>
         <locationX>182</locationX>
-        <locationY>311</locationY>
+        <locationY>287</locationY>
         <defaultConnector>
             <targetReference>Check_Renewal</targetReference>
         </defaultConnector>
@@ -113,18 +834,44 @@
                     <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
             <connector>
                 <targetReference>Update_Previous_Assessment_Date</targetReference>
             </connector>
             <label>Exists</label>
         </rules>
     </decisions>
-    <description>Flow that handles automations for Applications before record is inserted.</description>
+    <description>Flow that handles automations for Applications before record is inserted. Removed CR2 changes</description>
     <environments>Default</environments>
     <formulas>
         <name>deadlineDate</name>
         <dataType>Date</dataType>
         <expression>ADDMONTHS({!$Record.Previous_Assessment_Date__c},(({!openApplicationSize}+1) * 14))</expression>
+    </formulas>
+    <formulas>
+        <name>todayDate</name>
+        <dataType>Date</dataType>
+        <expression>TODAY()</expression>
+    </formulas>
+    <formulas>
+        <name>TotalAmountIncVAT</name>
+        <dataType>Number</dataType>
+        <expression>IF(({!$Record.Amount_Ex_VAT__c}+ {!VAT})- (FLOOR({!$Record.Amount_Ex_VAT__c}+ {!VAT})) &gt;= 0.5,({!$Record.Amount_Ex_VAT__c}+ {!VAT}),FLOOR(100*({!$Record.Amount_Ex_VAT__c}+ {!VAT}))/100)</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
+        <name>VAT</name>
+        <dataType>Number</dataType>
+        <expression>IF({!$Record.Head_Office__r.BillingCountry}= &#39;United Kingdom&#39;,
+{!$Record.Amount_Ex_VAT__c}* 0.2,
+0)</expression>
+        <scale>2</scale>
     </formulas>
     <interviewLabel>Application Before Create Trigger Flow {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Application Before Create Trigger Flow</label>
@@ -151,7 +898,7 @@
         <name>Get_Applications</name>
         <label>Get Applications</label>
         <locationX>50</locationX>
-        <locationY>767</locationY>
+        <locationY>695</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Assign_Open_Application_Count</targetReference>
@@ -186,7 +933,7 @@
         <name>Update_Previous_Assessment_Date</name>
         <label>Update Previous Assessment Date</label>
         <locationX>50</locationX>
-        <locationY>431</locationY>
+        <locationY>395</locationY>
         <connector>
             <targetReference>Check_Renewal</targetReference>
         </connector>
@@ -203,7 +950,10 @@
         <name>Update_Pricebook_Id_with_Membership_Pricebook</name>
         <label>Update Pricebook Id with Membership Pricebook</label>
         <locationX>50</locationX>
-        <locationY>1343</locationY>
+        <locationY>1211</locationY>
+        <connector>
+            <targetReference>Check_Application_Approved_By_Office</targetReference>
+        </connector>
         <inputAssignments>
             <field>Pricebook_Id__c</field>
             <value>
@@ -219,10 +969,10 @@
             <targetReference>Previous_Assessment_Date</targetReference>
         </connector>
         <object>Application__c</object>
-        <recordTriggerType>Create</recordTriggerType>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordBeforeSave</triggerType>
     </start>
-    <status>Active</status>
+    <status>Obsolete</status>
     <variables>
         <name>openApplicationSize</name>
         <dataType>Number</dataType>

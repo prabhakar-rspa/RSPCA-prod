@@ -50,23 +50,16 @@
             <value>MEMBER</value>
         </criteriaItems>
         <criteriaItems>
-            <column>Unit__c.Animals__c</column>
-            <columnToColumn>false</columnToColumn>
-            <isUnlocked>true</isUnlocked>
-            <operator>equals</operator>
-            <value>Chickens,Laying Hens,Meat Chicken Chicks,Pullets,Turkeys</value>
-        </criteriaItems>
-        <criteriaItems>
             <column>Account.Membership_Number__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>startsWith</operator>
-            <value>3105</value>
+            <value>3178</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>
     <format>Tabular</format>
-    <name>3105 Poultry Indoor and Outdoor - emily</name>
+    <name>3180 units - emily</name>
     <params>
         <name>co</name>
         <value>1</value>

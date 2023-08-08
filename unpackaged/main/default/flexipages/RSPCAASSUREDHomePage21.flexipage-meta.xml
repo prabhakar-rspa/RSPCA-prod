@@ -43,7 +43,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>filterName</name>
-                    <value>ApprovalsMST</value>
+                    <value>My_additional_visits</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>hideActionBar</name>

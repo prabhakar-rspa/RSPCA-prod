@@ -64,10 +64,6 @@
             <label><!-- Site Information --></label>
             <section>Site Information</section>
         </sections>
-        <sections>
-            <label><!-- Suspensions --></label>
-            <section>Suspensions</section>
-        </sections>
     </layouts>
     <layouts>
         <layout>Intacct Template</layout>

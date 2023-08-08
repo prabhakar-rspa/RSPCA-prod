@@ -95,8 +95,15 @@
             <column>Account.Membership_Number__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
-            <operator>startsWith</operator>
-            <value>2</value>
+            <operator>greaterOrEqual</operator>
+            <value>2000</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Membership_Number__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>lessOrEqual</operator>
+            <value>2327</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>

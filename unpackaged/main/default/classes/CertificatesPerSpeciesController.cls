@@ -1,428 +1,429 @@
-public with sharing class CertificatesPerSpeciesController {
-    public Account currentRecord{get;set;}
-
-    public String startDate{get;set;}
-    public String endDate{get;set;}
-    public String species{get;set;}
-    public Map<Integer, String> monthsMap = new Map<Integer, String>{
-        1  => 'January',
-        2  => 'February',
-        3  => 'March',
-        4  => 'April',
-        5  => 'May',
-        6  => 'June',
-        7  => 'July',
-        8  => 'August',
-        9  => 'September',
-        10 => 'October',
-        11 => 'November',
-        12 => 'December'
-    };
-
-    public CertificatesPerSpeciesController() {
-        currentRecord = [SELECT Id, Name, Parent.Name, Membership_Number__c, Membership_Expiry_Date__c, Certificate_Issue_Date__c, Certificate_Expiry_Date_Calculated__c, BillingStreet, BillingCity, County__c, BillingCountry, BillingPostalcode FROM Account WHERE Id = :ApexPages.currentPage().getParameters().get('id')];
-        species = ApexPages.currentPage().getParameters().get('species');
-        if(currentRecord.Certificate_Issue_Date__c != null){
-            startDate = currentRecord.Certificate_Issue_Date__c.day() + ' ' + monthsMap.get(currentRecord.Certificate_Issue_Date__c.month()) + ' ' + currentRecord.Certificate_Issue_Date__c.year();
+public with sharing class CertificatesPerSpeciesController{
+    public Account currentRecord{ get; set; }
+    public Application_Unit__c ApplicationUnitRecord{get;set;}
+    public Checklist_Template__c checklistTemplateRecord{ get; set; }
+    public String startDate{ get; set; }
+    public String endDate{ get; set; }
+    public String species{ get; set; }
+    
+    public Map<Integer, String> monthsMap = new Map<Integer, String>{ 1 => 'January', 2 => 'February', 3 => 'March', 4 => 'April', 5 => 'May', 6 => 'June', 7 => 'July', 8 => 'August', 9 => 'September', 10 => 'October', 11 => 'November', 12 => 'December' };
+        public CertificatesPerSpeciesController(){
+            // Added Renewal_Date__c field in the SOQL query
+            currentRecord = [SELECT Id, Name, Parent.Name, Membership_Number__c, Membership_Expiry_Date__c, Certificate_Issue_Date__c, Previous_Assessment_Date__c, Certificate_Expiry_Date_Calculated__c, BillingStreet, BillingCity, County__c, BillingCountry, BillingPostalcode
+                             FROM Account
+                             WHERE Id = :ApexPages.currentPage().getParameters().get('id')];
+           
+            species = ApexPages.currentPage().getParameters().get('species');
+            String strSpecies = '%'+species+'%';
+            // Getting Application Unit records based on Application and Account Record
+            
+            List<Application_Unit__c> applicationUnits = [SELECT Id,Name,Application__c,Application__r.Name,Application__r.Stage__c,Application__r.Assessment_Approved_By_Assessor_Date__c,Application__r.Assessment_Date__c, Application__r.Previous_Assessment_Date__c,Application__r.Site__c, Application__r.Site__r.Name,Application__r.Status__c,Animals__c FROM Application_Unit__c WHERE Application__r.Site__c =:ApexPages.currentPage().getParameters().get('id') AND Application__r.Assessment_Approved_By_Certifier_Date__c != NULL AND (Animals__c =:species OR (Animals__c ='list' AND List_of_Animals__c like :strSpecies)) ORDER BY Application__r.Name DESC LIMIT 1];   
+            if(applicationUnits != null && applicationUnits.size()>0){
+                ApplicationUnitRecord = applicationUnits[0];
+            }
+            // Getting Checklist Template Record based on Renewal Date and Species.
+            List<Checklist_Template__c> chechlistTemplateList = [SELECT Id, Name, Type__c, Species__c, Status__c, Animals_List__c, Start_Date__c, End_Date__c, Scheme_Wording__c
+                                                                 FROM Checklist_Template__c WHERE Species__c = :species AND Status__c != 'Draft'];
+            System.debug('chechlistTemplateList '+chechlistTemplateList);
+            for(Checklist_Template__c objCT: chechlistTemplateList){
+                if(ApplicationUnitRecord != null && ApplicationUnitRecord.Application__r.Assessment_Date__c >= objCT.Start_Date__c && ApplicationUnitRecord.Application__r.Assessment_Date__c <= objCT.End_Date__c){
+                    checklistTemplateRecord = objCT;
+                }
+            }                            
+            if (currentRecord.Certificate_Issue_Date__c != null){
+                startDate = currentRecord.Certificate_Issue_Date__c.day() + ' ' + monthsMap.get(currentRecord.Certificate_Issue_Date__c.month()) + ' ' + currentRecord.Certificate_Issue_Date__c.year();
+            }
+            if (currentRecord.Membership_Expiry_Date__c != null){
+                endDate = currentRecord.Membership_Expiry_Date__c.day() + ' ' + monthsMap.get(currentRecord.Membership_Expiry_Date__c.month()) + ' ' + currentRecord.Membership_Expiry_Date__c.year();
+            }
         }
-        if(currentRecord.Membership_Expiry_Date__c != null){
-            endDate = currentRecord.Membership_Expiry_Date__c.day() + ' ' + monthsMap.get(currentRecord.Membership_Expiry_Date__c.month()) + ' ' + currentRecord.Membership_Expiry_Date__c.year();
-
-        }
-    }
+    
     //method to get a list of supply chain units
     public List<Unit__c> getSupplyChainUnits(){
         List<Unit__c> unitList = new List<Unit__c>();
-        if(String.isNotBlank(species)){
-            unitList = [SELECT Id, Name, Account__c, Business__c, Description__c, Animals__c, Production__c, Rearing_System__c, Status__c, Vehicle_Registration__c, Vehicle_Type__c, Own_Transport__c FROM Unit__c WHERE Account__c =:currentRecord.Id AND Status__c = 'Certified' AND Business__c = 'Supply Chain' AND Animals__c =:species];
-        }else{
-            unitList = [SELECT Id, Name, Account__c, Business__c, Description__c, Animals__c, Production__c, Rearing_System__c, Status__c, Vehicle_Registration__c, Vehicle_Type__c, Own_Transport__c FROM Unit__c WHERE Account__c =:currentRecord.Id AND Status__c = 'Certified' AND Business__c = 'Supply Chain'];
+        if (String.isNotBlank(species)){
+            unitList = [SELECT Id, Name, Account__c, Business__c, Description__c, Animals__c, Production__c, Rearing_System__c, Status__c, Vehicle_Registration__c, Vehicle_Type__c, Own_Transport__c
+                        FROM Unit__c
+                        WHERE Account__c = :currentRecord.Id AND Status__c = 'Certified' AND Business__c = 'Supply Chain' AND Animals__c = :species];
+        } else{
+            unitList = [SELECT Id, Name, Account__c, Business__c, Description__c, Animals__c, Production__c, Rearing_System__c, Status__c, Vehicle_Registration__c, Vehicle_Type__c, Own_Transport__c
+                        FROM Unit__c
+                        WHERE Account__c = :currentRecord.Id AND Status__c = 'Certified' AND Business__c = 'Supply Chain'];
         }
         return unitList;
     }
-
+    
     // Method to get a list of trout units
     public List<Unit__c> getTrouts(){
-        Set<String> businessSet = new Set<String>{
-            'Hatchery',
-            'Haulier',
-            'Abattoir',
-            'Producer'
-        };
-        List<Unit__c> troutList = [SELECT Id, Name, Account__c, Business__c, Description__c, Animals__c, Production__c, Rearing_System__c, Status__c, Vehicle_Registration__c, Vehicle_Type__c, Own_Transport__c FROM Unit__c WHERE Account__c =:currentRecord.Id AND Status__c = 'Certified' AND Business__c IN:businessSet AND Animals__c = 'Trout'];
+        Set<String> businessSet = new Set<String>{ 'Hatchery', 'Haulier', 'Abattoir', 'Producer' };
+            List<Unit__c> troutList = [SELECT Id, Name, Account__c, Business__c, Description__c, Animals__c, Production__c, Rearing_System__c, Status__c, Vehicle_Registration__c, Vehicle_Type__c, Own_Transport__c
+                                       FROM Unit__c
+                                       WHERE Account__c = :currentRecord.Id AND Status__c = 'Certified' AND Business__c IN:businessSet AND Animals__c = 'Trout'];
         return troutList;
-    } 
-
+    }
+    
     //method to get a list of Animals Units exluding trout
     public List<Unit__c> getNSFUKASUnits(){
-        Set<String> businessSet = new Set<String>{
-            'Hatchery',
-            'Haulier',
-            'Abattoir',
-            'Producer',
-            'Cleaner Fish',
-            'Catching'
-        };
-        // Old query has trout and new query does not
-        //List<Unit__c> unitList = [SELECT Id, Name, Account__c, Business__c, Description__c, Animals__c, Production__c, Rearing_System__c, Status__c, Vehicle_Registration__c, Own_Transport__c FROM Unit__c WHERE Account__c =:currentRecord.Id AND Status__c = 'Certified' AND Business__c IN:businessSet AND Animals__c != 'Trout'];
-        List<Unit__c> unitList = new List<Unit__c>();
-        if(String.isNotBlank(species)){
-            unitList = [SELECT Id,Animals_List__c, Name, Account__c, Business__c, Description__c, Animals__c, Production__c, Rearing_System__c, Status__c, Vehicle_Registration__c,Vehicle_Type__c, Own_Transport__c FROM Unit__c WHERE Account__c =:currentRecord.Id AND Status__c = 'Certified' AND Business__c IN:businessSet AND (Animals__c =:species OR Animals_List__c INCLUDES ( :species))];
-        }else{
-            unitList = [SELECT Id,Animals_List__c, Name, Account__c, Business__c, Description__c, Animals__c, Production__c, Rearing_System__c, Status__c, Vehicle_Registration__c,Vehicle_Type__c, Own_Transport__c FROM Unit__c WHERE Account__c =:currentRecord.Id AND Status__c = 'Certified' AND Business__c IN:businessSet];
+        Set<String> businessSet = new Set<String>{ 'Hatchery', 'Haulier', 'Abattoir', 'Producer', 'Cleaner Fish', 'Catching' };
+            // Old query has trout and new query does not
+            //List<Unit__c> unitList = [SELECT Id, Name, Account__c, Business__c, Description__c, Animals__c, Production__c, Rearing_System__c, Status__c, Vehicle_Registration__c, Own_Transport__c FROM Unit__c WHERE Account__c =:currentRecord.Id AND Status__c = 'Certified' AND Business__c IN:businessSet AND Animals__c != 'Trout'];
+            List<Unit__c> unitList = new List<Unit__c>();
+        if (String.isNotBlank(species)){
+            unitList = [SELECT Id, Animals_List__c, Name, Account__c, Business__c, Description__c, Animals__c, Production__c, Rearing_System__c, Status__c, Vehicle_Registration__c, Vehicle_Type__c, Own_Transport__c
+                        FROM Unit__c
+                        WHERE Account__c = :currentRecord.Id AND Status__c = 'Certified' AND Business__c IN:businessSet AND (Animals__c = :species OR Animals_List__c INCLUDES(:species))];
+        } else{
+            unitList = [SELECT Id, Animals_List__c, Name, Account__c, Business__c, Description__c, Animals__c, Production__c, Rearing_System__c, Status__c, Vehicle_Registration__c, Vehicle_Type__c, Own_Transport__c
+                        FROM Unit__c
+                        WHERE Account__c = :currentRecord.Id AND Status__c = 'Certified' AND Business__c IN:businessSet];
         }
+        
         return unitList;
     }
-
+    
     // This method gets the animals list for the trout certification with the word "Scheme" or "Schemes" appended to it
-    public String getTroutAnimalScheme() {
+    public String getTroutAnimalScheme(){
         String animalsString = '';
         Set<String> animalsSet = new Set<String>();
-        for(Unit__c u : getTrouts()){
+        for (Unit__c u : getTrouts()){
             animalsSet.add(u.Animals__c);
         }
         // Converting set to list in order to the the initial value from 0
         List<String> animalsList = new List<String>(animalsSet);
         // place the first animal from the set
-        if(animalsSet.size() > 0){
+        if (animalsSet.size() > 0){
             animalsString = animalsList[0];
         }
         // add additonal animals to the string with concatanation
-        if(animalsSet.size() > 1){
+        if (animalsSet.size() > 1){
             //Commented out as the query inside geTrouts() methods is filtering animals by trout so there will only be 1 animal inside the set
-            /*
+                        /*
             for(String animal: animalsSet){
-                if(animal != animalsString){
-                    animalsString = animalsString + ' and ' + animal; 
-                }
+            if(animal != animalsString){
+            animalsString = animalsString + ' and ' + animal;
+            }
             }
             // adding "Schemes" for plural animals
             animalsString = animalsString + ' Schemes';
-			*/
-        }else{
+            */
+        } else{
             // adding "Scheme" for singulr animal
             animalsString = animalsString + ' Scheme';
         }
         return animalsString;
     }
-
+    
     // This method gets the animals list for the trout certification
-    public String getTroutAnimals() {
+    public String getTroutAnimals(){
         String animalsString = '';
         Set<String> animalsSet = new Set<String>();
-        for(Unit__c u : getTrouts()){
+        for (Unit__c u : getTrouts()){
             animalsSet.add(u.Animals__c);
         }
         // Converting set to list in order to the the initial value from 0
         List<String> animalsList = new List<String>(animalsSet);
         // place the first animal from the list
-        if(animalsList.size() > 0){
+        if (animalsList.size() > 0){
             animalsString = animalsList[0];
         }
         // add additonal animals to the string with concatanation
-        if(animalsList.size() > 1){
+        if (animalsList.size() > 1){
             //Commented out as the query inside geTrouts() methods is filtering animals by trout so there will only be 1 animal inside the set
             /*
-            for(String animal: animalsList){
-                if(animal != animalsString){
-                    animalsString = animalsString + ' and ' + animal; 
-                }
-            }
-			*/
+for(String animal: animalsList){
+if(animal != animalsString){
+animalsString = animalsString + ' and ' + animal;
+}
+}
+*/
         }
         return animalsString;
     }
-
+    
     public String getTroutRearingSystems(){
         String rearingSystemAnimalString = '';
         Set<String> rearingSystemAnimalSet = new Set<String>();
-        for(Unit__c u : getTrouts()){
+        for (Unit__c u : getTrouts()){
             rearingSystemAnimalSet.add(u.Rearing_System__c + ' ' + u.Animals__c);
         }
         // Converting set to list in order to the the initial value from 0
         List<String> rearingSystemAnimalList = new List<String>(rearingSystemAnimalSet);
         // Place the first Rearing System Animal from the list
-        if(rearingSystemAnimalList.size() > 0){
+        if (rearingSystemAnimalList.size() > 0){
             rearingSystemAnimalString = rearingSystemAnimalList[0];
         }
         // add additional rearing system animals to the string with concatenation
-        if(rearingSystemAnimalList.size() > 1){
+        if (rearingSystemAnimalList.size() > 1){
             //Commented out as the query inside geTrouts() methods is filtering animals by trout so there will only be 1 animal inside the set
             /*
-            for(String rearingAnimal : rearingSystemAnimalList){
-                if(rearingAnimal != rearingSystemAnimalString){
-                    rearingSystemAnimalString = rearingSystemAnimalString + ' and ' + rearingAnimal;
-                }
-            }
-            // adding "Units" for plural animals
-            rearingSystemAnimalString = rearingSystemAnimalString + ' Units';
-			*/
-        }else {
+for(String rearingAnimal : rearingSystemAnimalList){
+if(rearingAnimal != rearingSystemAnimalString){
+rearingSystemAnimalString = rearingSystemAnimalString + ' and ' + rearingAnimal;
+}
+}
+// adding "Units" for plural animals
+rearingSystemAnimalString = rearingSystemAnimalString + ' Units';
+*/
+        } else{
             // adding "Scheme" for singulr animal
             rearingSystemAnimalString = rearingSystemAnimalString + ' Unit';
         }
-
+        
         return rearingSystemAnimalString;
     }
     
     // This method gets the animals list for the NSF UKAS certification with the word "Scheme" or "Schemes" appended to it
-    public String getAllAnimalScheme() {
+    public String getAllAnimalScheme(){
         String animalsString = '';
         Set<String> animalsSet = new Set<String>();
-        for(Unit__c u : getNSFUKASUnits()){
+        System.debug(getNSFUKASUnits());
+        for (Unit__c u : getNSFUKASUnits()){
             animalsSet.add(u.Animals__c);
         }
         // Converting set to list in order to the the initial value from 0
         List<String> animalsList = new List<String>(animalsSet);
         // place the first animal from the set
-        if(animalsSet.size() > 0){
+        if (animalsSet.size() > 0){
             animalsString = animalsList[0];
         }
         // add additonal animals to the string with concatanation
-        if(animalsSet.size() > 1){
-            for(String animal: animalsSet){
-                if(animal != animalsString){
-                    animalsString = animalsString + ' and ' + animal; 
+        if (animalsSet.size() > 1){
+            for (String animal : animalsSet){
+                if (animal != animalsString){
+                    animalsString = animalsString + ' and ' + animal;
                 }
             }
             // adding "Schemes" for plural animals
             animalsString = animalsString + ' Schemes';
-        }else{
+        } else{
             // adding "Scheme" for singulr animal
             animalsString = animalsString + ' Scheme';
         }
         return animalsString;
     }
-
+    
     // This method gets the animals list for the NSF UKAS certification. Get's all except trouts.
-    public String getAllAnimals() {
+    public String getAllAnimals(){
         String animalsString = '';
         Set<String> animalsSet = new Set<String>();
-        for(Unit__c u : getNSFUKASUnits()){
+        for (Unit__c u : getNSFUKASUnits()){
             animalsSet.add(u.Animals__c);
         }
         // Converting set to list in order to the the initial value from 0
         List<String> animalsList = new List<String>(animalsSet);
         // place the first animal from the list
-        if(animalsList.size() > 0){
+        if (animalsList.size() > 0){
             animalsString = animalsList[0];
         }
         // add additonal animals to the string with concatanation
-        if(animalsList.size() > 1){
-            for(String animal: animalsList){
-                if(animal != animalsString){
-                    animalsString = animalsString + ' and ' + animal; 
+        if (animalsList.size() > 1){
+            for (String animal : animalsList){
+                if (animal != animalsString){
+                    animalsString = animalsString + ' and ' + animal;
                 }
             }
         }
         return animalsString;
     }
-
+    
     // This method gets the rearing system for all amimals except for trout
     public String getAllAnimalRearingSystems(){
         String rearingSystemAnimalString = '';
         Set<String> rearingSystemAnimalSet = new Set<String>();
-        for(Unit__c u : getNSFUKASUnits()){
+        for (Unit__c u : getNSFUKASUnits()){
             rearingSystemAnimalSet.add(u.Rearing_System__c + ' ' + u.Animals__c);
         }
         // Converting set to list in order to the the initial value from 0
         List<String> rearingSystemAnimalList = new List<String>(rearingSystemAnimalSet);
         // Place the first Rearing System Animal from the list
-        if(rearingSystemAnimalList.size() > 0){
+        if (rearingSystemAnimalList.size() > 0){
             rearingSystemAnimalString = rearingSystemAnimalList[0];
         }
         // add additional rearing system animals to the string with concatenation
-        if(rearingSystemAnimalList.size() > 1){
-            for(String rearingAnimal : rearingSystemAnimalList){
-                if(rearingAnimal != rearingSystemAnimalString){
+        if (rearingSystemAnimalList.size() > 1){
+            for (String rearingAnimal : rearingSystemAnimalList){
+                if (rearingAnimal != rearingSystemAnimalString){
                     rearingSystemAnimalString = rearingSystemAnimalString + ' and ' + rearingAnimal;
                 }
             }
             // adding "Units" for plural animals
             rearingSystemAnimalString = rearingSystemAnimalString + ' Units';
-        }else {
+        } else{
             // adding "Scheme" for singulr animal
             rearingSystemAnimalString = rearingSystemAnimalString + ' Unit';
         }
-
+        
         return rearingSystemAnimalString;
     }
-
+    
     // get SCI Scheme Texts
+    // Updated the logic based on Checklist Template record
     public String getSCISchemeTexts(){
-        List<SchemeCertificateText__mdt> schemeTextList = SchemeCertificateText__mdt.getAll().values();
-        Set<String> schemeTextSet = new Set<String>();
-        for(Unit__c u : getNSFUKASUnits()){
-            for(SchemeCertificateText__mdt scheme : schemeTextList){
-                if(u.Business__c == 'Producer'){
-                    if(u.Animals__c == scheme.Species_Type__c){
-                        schemeTextSet.add(scheme.Scheme_Wording__c);
+        
+        Set<String> checklistTextSet = new Set<String>();
+        if(checklistTemplateRecord != null){
+            for (Unit__c u : getNSFUKASUnits()){
+                if (u.Business__c == 'Producer'){
+                    if (u.Animals__c == checklistTemplateRecord.Species__c){
+                        checklistTextSet.add(checklistTemplateRecord.Scheme_Wording__c);
                     }
                 }
-                if(u.Business__c == 'Abattoir'){
-                    if(u.Animals__c == 'Salmon'){
-                        if(scheme.Species_Type__c == 'Salmon Abattoir'){
-                            schemeTextSet.add(scheme.Scheme_Wording__c);
+                if (u.Business__c == 'Abattoir'){
+                    if (u.Animals__c == 'Salmon'){
+                        if (checklistTemplateRecord.Species__c == 'Salmon'){
+                            checklistTextSet.add(checklistTemplateRecord.Scheme_Wording__c);
                         }
-                    }else{
-                        if(scheme.Species_Type__c == 'Abattoir'){
-                            schemeTextSet.add(scheme.Scheme_Wording__c);
-                        }
-                    }
-                }
-                if(u.Business__c == 'Catching'){
-                    if(scheme.Species_Type__c == 'Catching'){
-                        schemeTextSet.add(scheme.Scheme_Wording__c);
-                    }
-                }
-                if(u.Business__c == 'Hatchery'){
-                    if(u.Animals__c == 'Salmon'){
-                        if(scheme.Species_Type__c == 'Salmon Hatchery'){
-                            schemeTextSet.add(scheme.Scheme_Wording__c);
-                        }
-                    }else{
-                        if(scheme.Species_Type__c == 'Hatchery'){
-                            schemeTextSet.add(scheme.Scheme_Wording__c);
+                    } else{
+                        if (checklistTemplateRecord.Species__c == 'Turkeys'){
+                            checklistTextSet.add(checklistTemplateRecord.Scheme_Wording__c);
                         }
                     }
                 }
-                if(u.Business__c == 'Haulier'){
-                    if(u.Animals__c == 'Salmon'){
-                        if(u.Vehicle_Type__c == 'Wellboat'){
-                            if(scheme.Species_Type__c == 'Salmon Wellboat'){
-                                schemeTextSet.add(scheme.Scheme_Wording__c);
+                if (u.Business__c == 'Catching'){
+                    if (checklistTemplateRecord.Species__c == 'Salmon'){
+                        checklistTextSet.add(checklistTemplateRecord.Scheme_Wording__c);
+                    }
+                }
+                if (u.Business__c == 'Hatchery'){
+                    if (u.Animals__c == 'Salmon'){
+                        if (checklistTemplateRecord.Species__c == 'Salmon'){
+                            checklistTextSet.add(checklistTemplateRecord.Scheme_Wording__c);
+                        }
+                    } else{
+                        if (checklistTemplateRecord.Species__c == 'Salmon'){
+                            checklistTextSet.add(checklistTemplateRecord.Scheme_Wording__c);
+                        }
+                    }
+                }
+                if (u.Business__c == 'Haulier'){
+                    if (u.Animals__c == 'Salmon'){
+                        if (u.Vehicle_Type__c == 'Wellboat'){
+                            if (checklistTemplateRecord.Species__c == 'Salmon'){
+                                checklistTextSet.add(checklistTemplateRecord.Scheme_Wording__c);
                             }
                         }
-                        if(u.Vehicle_Type__c == 'Helicopter'){
-                            if(scheme.Species_Type__c == 'Salmon Helicopter'){
-                                schemeTextSet.add(scheme.Scheme_Wording__c);
-                            }
-                        }
-                    }else{
-                        if(u.Own_Transport__c){
-                            if(scheme.Species_Type__c == 'Own Transport'){
-                                schemeTextSet.add(scheme.Scheme_Wording__c);
-                            }
-                        }else{
-                            if(scheme.Species_Type__c == 'Haulier'){
-                                schemeTextSet.add(scheme.Scheme_Wording__c);
+                        if (u.Vehicle_Type__c == 'Helicopter'){
+                            if (checklistTemplateRecord.Species__c == 'Salmon'){
+                                checklistTextSet.add(checklistTemplateRecord.Scheme_Wording__c);
                             }
                         }
                     }
                 }
-                
+            }
+          	
+            if(checklistTextSet.size() == 0 && checklistTemplateRecord.Scheme_Wording__c != null){
+                checklistTextSet.add(checklistTemplateRecord.Scheme_Wording__c);
             }
         }
-
-        String schemeTextString = '';
-
+        String checklistTextString = '';
+        
         // Converting set to list in order to the the initial value from 0
-        List<String> schemeTextValuesFromSet = new List<String>(schemeTextSet);
+        List<String> checklistTextValuesFromSet = new List<String>(checklistTextSet);
         // place the first animal from the set
-        if(schemeTextValuesFromSet.size() > 0){
-            schemeTextString = schemeTextValuesFromSet[0];
+        if (checklistTextValuesFromSet.size() > 0){
+            checklistTextString = checklistTextValuesFromSet[0];
         }
         
         // add additonal scheme to the string with concatanation
-        if(schemeTextValuesFromSet.size() > 1){
-            for(String scheme: schemeTextValuesFromSet){
-                if(scheme != schemeTextString){
-                    schemeTextString = schemeTextString + ' and ' + scheme; 
+        if (checklistTextValuesFromSet.size() > 1){
+            for (String scheme : checklistTextValuesFromSet){
+                if (scheme != checklistTextString){
+                    checklistTextString = checklistTextString + ' and ' + scheme;
                 }
             }
         }
-        return schemeTextString;
-
+        return checklistTextString;
     }
-
-    // get SCI Scheme Texts
+    
+    // get SCI Scheme Texts 
+    // Updated the logic based on Checklist Template record
     public String getSCISchemeTitle(){
-        List<SchemeCertificateText__mdt> schemeTextList = SchemeCertificateText__mdt.getAll().values();
-        Set<String> schemeTitle = new Set<String>();
-        for(Unit__c u : getNSFUKASUnits()){
-            for(SchemeCertificateText__mdt scheme : schemeTextList){
-                if(u.Business__c == 'Producer'){
-                    if(u.Animals__c == scheme.Species_Type__c){
-                        schemeTitle.add(scheme.MasterLabel);
+        Set<String> checklistTitle = new Set<String>();
+        if(checklistTemplateRecord != null){
+            for (Unit__c u : getNSFUKASUnits()){
+                
+                if (u.Business__c == 'Producer'){
+                    if (u.Animals__c == checklistTemplateRecord.Species__c){
+                        checklistTitle.add(checklistTemplateRecord.Name);
                     }
                 }
-                if(u.Business__c == 'Abattoir'){
-                    if(u.Animals__c == 'Salmon'){
-                        if(scheme.Species_Type__c == 'Salmon Abattoir'){
-                            schemeTitle.add(scheme.MasterLabel);
+                if (u.Business__c == 'Abattoir'){
+                    if (u.Animals__c == 'Salmon'){
+                        if (checklistTemplateRecord.Species__c == 'Salmon'){
+                            checklistTitle.add(checklistTemplateRecord.Name);
                         }
-                    }else{
-                        if(scheme.Species_Type__c == 'Abattoir'){
+                    } else{
+                        if (checklistTemplateRecord.Species__c == 'Abattoir'){
                             // do nothing as the Scheme title will be 'RSPCA Assured Scheme'
                         }
                     }
                 }
-                if(u.Business__c == 'Catching'){
-                    if(scheme.Species_Type__c == 'Catching'){
-                        schemeTitle.add(scheme.MasterLabel);
+                if (u.Business__c == 'Catching'){
+                    if (checklistTemplateRecord.Species__c == 'Ducks'){
+                        checklistTitle.add(checklistTemplateRecord.Name);
                     }
                 }
-                if(u.Business__c == 'Hatchery'){
-                    if(u.Animals__c == 'Salmon'){
-                        if(scheme.Species_Type__c == 'Salmon Hatchery'){
-                            schemeTitle.add(scheme.MasterLabel);
+                if (u.Business__c == 'Hatchery'){
+                    if (u.Animals__c == 'Salmon'){
+                        if (checklistTemplateRecord.Species__c == 'Salmon'){
+                            checklistTitle.add(checklistTemplateRecord.Name);
                         }
-                    }else{
-                        if(scheme.Species_Type__c == 'Hatchery'){
-                            schemeTitle.add(scheme.MasterLabel);
+                    } else{
+                        if (checklistTemplateRecord.Species__c == 'Turkeys'){
+                            checklistTitle.add(checklistTemplateRecord.Name);
                         }
                     }
                 }
-                if(u.Business__c == 'Haulier'){
-                    if(u.Animals__c == 'Salmon'){
-                        if(u.Vehicle_Type__c == 'Wellboat'){
-                            if(scheme.Species_Type__c == 'Salmon Wellboat'){
-                                schemeTitle.add(scheme.MasterLabel);
+                if (u.Business__c == 'Haulier'){
+                    if (u.Animals__c == 'Salmon'){
+                        if (u.Vehicle_Type__c == 'Wellboat'){
+                            if (checklistTemplateRecord.Species__c == 'Salmon'){
+                                checklistTitle.add(checklistTemplateRecord.Name);
                             }
                         }
-                        if(u.Vehicle_Type__c == 'Helicopter'){
-                            if(scheme.Species_Type__c == 'Salmon Helicopter'){
-                                schemeTitle.add(scheme.MasterLabel);
+                        if (u.Vehicle_Type__c == 'Helicopter'){
+                            if (checklistTemplateRecord.Species__c == 'Salmon'){
+                                checklistTitle.add(checklistTemplateRecord.Name);
                             }
                         }
-                    }else{
-                        if(u.Own_Transport__c){
-                            if(scheme.Species_Type__c == 'Own Transport'){
-                                schemeTitle.add(scheme.MasterLabel);
+                    } else{
+                        if (u.Own_Transport__c){
+                            if (checklistTemplateRecord.Species__c == 'Own Transport'){
+                                checklistTitle.add(checklistTemplateRecord.Name);
                             }
-                        }else{
-                            if(scheme.Species_Type__c == 'Haulier'){
+                        } else{
+                            if (checklistTemplateRecord.Species__c == 'Haulier'){
                                 // do nothing as the Scheme title will be 'RSPCA Assured Scheme'
                             }
                         }
                     }
                 }
-                
+            }
+            if(checklistTitle.size() == 0 && checklistTemplateRecord.Name != null){
+                checklistTitle.add(checklistTemplateRecord.Name);   
             }
         }
-
-        String schemeTitleString = '';
-
+        System.debug('checklistTitle ' + checklistTitle);
+        String checklistTitleString = '';
+        
         // Converting set to list in order to the the initial value from 0
-        List<String> schemeTitleValuesFromSet = new List<String>(schemeTitle);
+        List<String> checklistTitleValuesFromSet = new List<String>(checklistTitle);
+        System.debug('checklistTitleValuesFromSet ' + checklistTitleValuesFromSet);
         // place the first animal from the set
-        if(schemeTitleValuesFromSet.size() > 0){
-            schemeTitleString = schemeTitleValuesFromSet[0];
-
-             // add additonal scheme to the string with concatanation
-            if(schemeTitleValuesFromSet.size() > 1){
-                for(String scheme: schemeTitleValuesFromSet){
-                    if(scheme != schemeTitleString){
-                        schemeTitleString = schemeTitleString + ' and ' + scheme; 
+        if (checklistTitleValuesFromSet.size() > 0){
+            checklistTitleString = checklistTitleValuesFromSet[0];
+            
+            // add additonal scheme to the string with concatanation
+            if (checklistTitleValuesFromSet.size() > 1){
+                for (String scheme : checklistTitleValuesFromSet){
+                    if (scheme != checklistTitleString){
+                        checklistTitleString = checklistTitleString + ' and ' + scheme;
                     }
                 }
             }
-        }else {
-            schemeTitleString = 'Scheme';
+        } else{
+            checklistTitleString = 'Scheme';
         }
-        
-       
-        return schemeTitleString;
-
+        return checklistTitleString;
     }
 }

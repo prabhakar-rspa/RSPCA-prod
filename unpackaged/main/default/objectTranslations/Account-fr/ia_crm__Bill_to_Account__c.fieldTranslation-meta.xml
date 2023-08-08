@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-        <help>Pour les activités standard/directes, laissez le champ vide.
-Pour les activités de revendeur, renseignez ce champ avec le compte de revendeur. Ce champ s’affiche par défaut dans les opportunités lorsque vous les créez à l’aide des boutons « Créer une opportunité de contrat » ou « Créer une opportunité de vente ».</help>
-        <label><!-- Bill to Account --></label>
-        <name>ia_crm__Bill_to_Account__c</name>
-        <relationshipLabel><!-- Accounts --></relationshipLabel>
-    </CustomFieldTranslation>

@@ -70,7 +70,7 @@
                 <header>Active users based on profile</header>
                 <legendPosition>Right</legendPosition>
                 <maxValuesDisplayed>6</maxValuesDisplayed>
-                <report>Users/Active_users_based_on_profile_WSS</report>
+                <report>AdminReports/Users/Active_users_based_on_profile_WSS</report>
                 <showPercentage>false</showPercentage>
                 <showValues>true</showValues>
                 <sortBy>RowLabelAscending</sortBy>
@@ -105,7 +105,7 @@
                 </groupingSortProperties>
                 <header>New Identity Verification Methods Report</header>
                 <legendPosition>Bottom</legendPosition>
-                <report>Users/New_Identity_Verification_Methods_Report_p59</report>
+                <report>AdminReports/Users/New_Identity_Verification_Methods_Report_p59</report>
                 <showPercentage>false</showPercentage>
                 <showPicturesOnCharts>false</showPicturesOnCharts>
                 <showValues>true</showValues>

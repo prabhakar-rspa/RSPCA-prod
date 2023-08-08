@@ -23,6 +23,9 @@
         <field>CDF1</field>
     </columns>
     <columns>
+        <field>Account.Site_Notes__c</field>
+    </columns>
+    <columns>
         <field>CUST_NAME</field>
     </columns>
     <columns>

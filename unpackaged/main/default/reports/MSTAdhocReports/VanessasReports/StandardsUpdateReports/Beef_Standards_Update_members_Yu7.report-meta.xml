@@ -63,15 +63,19 @@
         <aggregateTypes>Sum</aggregateTypes>
         <field>Account.Invoice_Address__c</field>
     </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Account.Same_Address_As_Head_Office__c</field>
+    </columns>
     <description>For the beef standards - all producers, hauliers and abattoir units</description>
     <filter>
-        <booleanFilter>1 AND (2 OR 3 OR 4) AND 5 AND 6 AND 7</booleanFilter>
+        <booleanFilter>1 AND (2 OR 3 OR 4 OR 8) AND 5 AND 6 AND 7</booleanFilter>
         <criteriaItems>
             <column>Account.Status__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
-            <value>LAPSED,MEMBER,SUSPENDED,ENQUIRY,NEW,REINSTATE,SUSPENDED/LAPSED</value>
+            <value>ENQUIRY,INACTIVE,LAPSED,MEMBER,NEW,REINSTATE,SUSPENDED,SUSPENDED/LAPSED</value>
         </criteriaItems>
         <criteriaItems>
             <column>Unit__c.Animals__c</column>
@@ -115,6 +119,13 @@
             <operator>equals</operator>
             <value>1</value>
         </criteriaItems>
+        <criteriaItems>
+            <column>Unit__c.Animals_List__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>includes</operator>
+            <value>Beef Cattle</value>
+        </criteriaItems>
         <language>en_US</language>
     </filter>
     <format>Summary</format>
@@ -123,7 +134,7 @@
         <field>Account.Membership_Number__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>Beef Standards Update members</name>
+    <name>Beef  Standard 1st Aug 23 ALL MEMBERS</name>
     <params>
         <name>co</name>
         <value>1</value>
