@@ -177,6 +177,10 @@
         </sections>
     </layouts>
     <quickActions>
+        <label><!-- Create Additional Visit --></label>
+        <name>Create_Additional_Visit</name>
+    </quickActions>
+    <quickActions>
         <label><!-- Create Other Application --></label>
         <name>Create_Other_Application_flow</name>
     </quickActions>
@@ -372,7 +376,6 @@
         <label><!-- Sync_to_Intacct --></label>
         <name>ia_crm__Sync_to_Intacct</name>
     </webLinks>
-    
     
     
     

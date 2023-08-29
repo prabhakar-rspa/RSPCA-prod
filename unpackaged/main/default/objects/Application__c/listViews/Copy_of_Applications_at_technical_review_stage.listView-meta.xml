@@ -32,7 +32,7 @@
         <operation>equals</operation>
         <value>1</value>
     </filters>
-    <label>My applications at technical review</label>
+    <label>Applications at technical review</label>
     <sharedTo>
         <group>Assessors</group>
     </sharedTo>

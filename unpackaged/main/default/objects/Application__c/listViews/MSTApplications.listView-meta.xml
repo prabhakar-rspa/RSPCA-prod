@@ -14,5 +14,10 @@
         <operation>equals</operation>
         <value>0</value>
     </filters>
-    <label>Unpaid Applications</label>
+    <filters>
+        <field>Application_Type__c</field>
+        <operation>notEqual</operation>
+        <value>Levy,Additional Visit</value>
+    </filters>
+    <label>Unpaid Applications (MST)</label>
 </ListView>

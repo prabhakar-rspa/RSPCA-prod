@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email sent to member once certificate is confirmed</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Certification Confirmation for Additional Visits</name>
+    <style>none</style>
+    <subject>Additional Visit Confirmation</subject>
+    <textOnly>EmailTemplate-Responsive
+
+Dear Member
+
+Site Name: {!Application__c.Site_Name__c}, Membership Number: {!Application__c.Membership_Number__c}
+
+Following your recent Revisit, we are pleased to confirm your on- going certification.
+
+Your certificate is available for you to download at any time from the RSPCA Members Portal.
+
+RSPCA Assured has sent you an email invitation to the RSPCA Members Portal which details how to log in and set your unique password. Please email help@rspcaassured.org.uk if you require a copy.
+
+We will be in touch with you before your certificate expires, to invite you to renew your certification.
+
+Your certificate is issued by Supply Chain In-Sites Ltd our Certification Body, the SCI Certification Obligations and Conditions which apply to your on-going certification can be found here. and also within the RSPCA Assured Membership Agreement available here.
+
+Your certification status enables you to use the RSPCA Assured logo, for more information, or if you have any questions, need to make changes to your membership, or need assistance we are here to help. Please contact RSPCA Assured Membership Services on 01403 286170 or help@rspcaassured.org.uk
+
+Yours Sincerely,
+
+Membership services
+RSPCA Assured</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

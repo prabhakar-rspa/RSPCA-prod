@@ -10,14 +10,9 @@
     <columns>Comments_Action__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
-        <field>Standard__c</field>
+        <field>Assessment_Checklist__c</field>
         <operation>equals</operation>
-        <value>S 1.4.2</value>
-    </filters>
-    <filters>
-        <field>Standard_Order__c</field>
-        <operation>equals</operation>
-        <value>4900</value>
+        <value>AC-013623</value>
     </filters>
     <label>All</label>
 </ListView>

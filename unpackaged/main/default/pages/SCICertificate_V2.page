@@ -277,7 +277,7 @@
                  
                     <div style="height: 545px; overflow: hidden; font-family: Arial, sans-serif; text-align:center;">
                         <div class="s1"><Strong>CERTIFICATE OF CONFORMITY</Strong></div>
-                        <div class="s2"><Strong>THIS IS TO CERITIFY THE OPERATIONS AT</Strong></div>
+                        <div class="s2"><Strong>THIS IS TO CERTIFY THE OPERATIONS AT</Strong></div>
                         <p style="font-size: 12pt"></p>
                         <div class="s3"><Strong>{!currentRecord.Parent.Name}</Strong></div>
                         <div class="s3"><Strong>Site: {!currentRecord.Name}</Strong></div>

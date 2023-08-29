@@ -3,12 +3,15 @@
     <fullName>Additional_Visits</fullName>
     <columns>NAME</columns>
     <columns>Membership_Number__c</columns>
-    <columns>Application_Type__c</columns>
-    <columns>Assessor__c</columns>
-    <columns>Extension_Deadline__c</columns>
-    <columns>Extension_Granted_By__c</columns>
-    <columns>Extension_Granted__c</columns>
-    <columns>CREATEDBY_USER</columns>
+    <columns>Site__c</columns>
+    <columns>Site_Postcode__c</columns>
+    <columns>Visit_Type__c</columns>
+    <columns>Allocated_Inspector__c</columns>
+    <columns>Stage__c</columns>
+    <columns>Visit_Deadline__c</columns>
+    <columns>Visit_Date__c</columns>
+    <columns>Reason_for_Visit__c</columns>
+    <columns>Check__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
         <field>RECORDTYPE</field>

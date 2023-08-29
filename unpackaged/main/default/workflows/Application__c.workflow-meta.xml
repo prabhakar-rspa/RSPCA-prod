@@ -512,7 +512,7 @@
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
-        <booleanFilter>1 OR 2</booleanFilter>
+        <booleanFilter>(1 OR 2) AND 3</booleanFilter>
         <criteriaItems>
             <field>Application__c.Assessment_Date__c</field>
             <operation>notEqual</operation>
@@ -520,6 +520,11 @@
         <criteriaItems>
             <field>Application__c.Assessment_Date__c</field>
             <operation>equals</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application__c.RecordTypeId</field>
+            <operation>notEqual</operation>
+            <value>Additional Visit</value>
         </criteriaItems>
         <description>If Assessment Date is populated, update the Evidence deadline to be 4 weeks from that date.</description>
         <triggerType>onAllChanges</triggerType>

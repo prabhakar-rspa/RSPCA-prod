@@ -161,7 +161,7 @@
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <label>Sanction</label>
     <nameField>
-        <displayFormat>{00000}</displayFormat>
+        <displayFormat>SAN{0000}</displayFormat>
         <label>Sanction Number</label>
         <trackHistory>false</trackHistory>
         <type>AutoNumber</type>

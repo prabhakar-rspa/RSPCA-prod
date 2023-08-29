@@ -13,7 +13,7 @@
         <operation>equals</operation>
         <value>Certification</value>
     </filters>
-    <label>Certification</label>
+    <label>Applications @ Certification Stage (MST)</label>
     <sharedTo>
         <group>Membership_Services</group>
     </sharedTo>

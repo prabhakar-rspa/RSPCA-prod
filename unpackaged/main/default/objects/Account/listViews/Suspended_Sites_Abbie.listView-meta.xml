@@ -13,6 +13,6 @@
     </filters>
     <label>Suspended Sites</label>
     <sharedTo>
-        <group>Member_Services_Abbie</group>
+        <group>Compliance</group>
     </sharedTo>
 </ListView>

@@ -23,5 +23,5 @@
         <operation>equals</operation>
         <value>0</value>
     </filters>
-    <label>BACS and Cheque Payments (pending)</label>
+    <label>BACS and Chequ Payments (pending) delete</label>
 </ListView>

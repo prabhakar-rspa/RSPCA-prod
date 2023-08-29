@@ -3,8 +3,8 @@
     <actionCalls>
         <name>Send_Additional_Visit_email_to_users</name>
         <label>Send Additional Visit Complete email to users</label>
-        <locationX>292</locationX>
-        <locationY>2927</locationY>
+        <locationX>523</locationX>
+        <locationY>3239</locationY>
         <actionName>Application__c.Additional_Visit_Completed</actionName>
         <actionType>emailAlert</actionType>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
@@ -18,12 +18,12 @@
     <actionCalls>
         <name>Send_email_to_allocated_assessor</name>
         <label>Send email to allocated assessor</label>
-        <locationX>292</locationX>
-        <locationY>2255</locationY>
+        <locationX>523</locationX>
+        <locationY>2939</locationY>
         <actionName>Application__c.Additional_Visit_Allocation_Status_Accepted</actionName>
         <actionType>emailAlert</actionType>
         <connector>
-            <targetReference>Inspector_changed_wipe_allocation_status</targetReference>
+            <targetReference>Additional_Visit_Completed</targetReference>
         </connector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
@@ -34,11 +34,57 @@
         </inputParameters>
     </actionCalls>
     <apiVersion>53.0</apiVersion>
+    <assignments>
+        <name>Add_Application_Units</name>
+        <label>Add Application Units</label>
+        <locationX>468</locationX>
+        <locationY>755</locationY>
+        <assignmentItems>
+            <assignToReference>ApplicationUnits</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>ApplicationUnit</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Iterate_Units</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Application_Unit</name>
+        <label>Assign Application Unit</label>
+        <locationX>468</locationX>
+        <locationY>647</locationY>
+        <assignmentItems>
+            <assignToReference>ApplicationUnit.Unit__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Iterate_Units.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>ApplicationUnit.Application__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>ApplicationUnit.Name</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Iterate_Units.Name</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Add_Application_Units</targetReference>
+        </connector>
+    </assignments>
     <decisions>
         <name>Additional_Visit_Completed</name>
         <label>Additional Visit Completed</label>
-        <locationX>424</locationX>
-        <locationY>2807</locationY>
+        <locationX>655</locationX>
+        <locationY>3131</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Report_added</name>
@@ -61,8 +107,8 @@
         <description>Checks if the Additional Visit has been created or it already existed and has been updated.</description>
         <name>Additional_Visit_created_or_updated</name>
         <label>Additional Visit created or updated</label>
-        <locationX>424</locationX>
-        <locationY>335</locationY>
+        <locationX>655</locationX>
+        <locationY>323</locationY>
         <defaultConnector>
             <targetReference>Stage_moved_to_review</targetReference>
         </defaultConnector>
@@ -71,14 +117,14 @@
             <name>Created</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>$Record.CreatedDate</leftValueReference>
-                <operator>EqualTo</operator>
+                <leftValueReference>$Record__Prior</leftValueReference>
+                <operator>IsNull</operator>
                 <rightValue>
-                    <elementReference>$Record.LastModifiedDate</elementReference>
+                    <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Update_MST_User_on_Record_0</targetReference>
+                <targetReference>Get_Units</targetReference>
             </connector>
             <label>Created</label>
         </rules>
@@ -101,8 +147,8 @@
     <decisions>
         <name>Certifier_Approved</name>
         <label>Certifier approved</label>
-        <locationX>424</locationX>
-        <locationY>1679</locationY>
+        <locationX>655</locationX>
+        <locationY>2423</locationY>
         <defaultConnector>
             <targetReference>Minimumfieldsarepopulated</targetReference>
         </defaultConnector>
@@ -125,42 +171,74 @@
         </rules>
     </decisions>
     <decisions>
-        <name>Inspector_changed_wipe_allocation_status</name>
-        <label>Inspector changed, wipe allocation status</label>
-        <locationX>424</locationX>
-        <locationY>2471</locationY>
+        <name>Check_Application_Units_Size</name>
+        <label>Check Application Units Size</label>
+        <locationX>380</locationX>
+        <locationY>947</locationY>
         <defaultConnector>
-            <targetReference>Additional_Visit_Completed</targetReference>
+            <targetReference>Is_primary_contact_blank_on_site</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
-            <name>Changed</name>
+            <name>Not_empty</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>$Record.Allocated_Inspector__c</leftValueReference>
-                <operator>IsChanged</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>$Record.Allocated_Inspector__c</leftValueReference>
+                <leftValueReference>ApplicationUnits</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Allocation_status_pending</targetReference>
+                <targetReference>Create_Application_Units</targetReference>
             </connector>
-            <label>Changed</label>
+            <label>Not empty</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Sanction_Head_Office_Not_null</name>
+        <label>Check Sanction Head Office Not null</label>
+        <locationX>182</locationX>
+        <locationY>1355</locationY>
+        <defaultConnector>
+            <targetReference>Update_Primary_Contact</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Head_office_not_null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Sanction__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Sanction__r.Site_Under_Sanction__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Sanction__r.Site_Under_Sanction__r.ParentId</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Primary_Contact_Head_Office</targetReference>
+            </connector>
+            <label>Head office not null</label>
         </rules>
     </decisions>
     <decisions>
         <name>Is_primary_contact_blank_on_site</name>
         <label>Is primary contact blank on site?</label>
-        <locationX>182</locationX>
-        <locationY>575</locationY>
+        <locationX>380</locationX>
+        <locationY>1247</locationY>
         <defaultConnector>
             <targetReference>Stage_moved_to_review</targetReference>
         </defaultConnector>
@@ -176,7 +254,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Update_Primary_Contact_0_0</targetReference>
+                <targetReference>Check_Sanction_Head_Office_Not_null</targetReference>
             </connector>
             <label>Contact exists</label>
         </rules>
@@ -184,10 +262,10 @@
     <decisions>
         <name>Minimumfieldsarepopulated</name>
         <label>Minimum fields are populated</label>
-        <locationX>424</locationX>
-        <locationY>2015</locationY>
+        <locationX>655</locationX>
+        <locationY>2723</locationY>
         <defaultConnector>
-            <targetReference>Inspector_changed_wipe_allocation_status</targetReference>
+            <targetReference>Additional_Visit_Completed</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -252,8 +330,8 @@
     <decisions>
         <name>Office_approved</name>
         <label>Office approved</label>
-        <locationX>424</locationX>
-        <locationY>1343</locationY>
+        <locationX>655</locationX>
+        <locationY>2123</locationY>
         <defaultConnector>
             <targetReference>Certifier_Approved</targetReference>
         </defaultConnector>
@@ -278,8 +356,8 @@
     <decisions>
         <name>Stage_moved_to_review</name>
         <label>Stage moved to review</label>
-        <locationX>424</locationX>
-        <locationY>1007</locationY>
+        <locationX>655</locationX>
+        <locationY>1823</locationY>
         <defaultConnector>
             <targetReference>Office_approved</targetReference>
         </defaultConnector>
@@ -301,6 +379,7 @@
             <label>Review stage</label>
         </rules>
     </decisions>
+    <environments>Default</environments>
     <formulas>
         <name>TodaysDate</name>
         <dataType>Date</dataType>
@@ -308,6 +387,20 @@
     </formulas>
     <interviewLabel>Additional Visit Reviewing Manager Name {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Additional Visit Create and Edit Flow</label>
+    <loops>
+        <name>Iterate_Units</name>
+        <label>Iterate Units</label>
+        <locationX>380</locationX>
+        <locationY>539</locationY>
+        <collectionReference>Get_Units</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Assign_Application_Unit</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Check_Application_Units_Size</targetReference>
+        </noMoreValuesConnector>
+    </loops>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -327,27 +420,56 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
-    <recordUpdates>
-        <name>Allocation_status_pending</name>
-        <label>Allocation status pending</label>
-        <locationX>292</locationX>
-        <locationY>2591</locationY>
+    <recordCreates>
+        <name>Create_Application_Units</name>
+        <label>Create Application Units</label>
+        <locationX>248</locationX>
+        <locationY>1055</locationY>
         <connector>
-            <targetReference>Additional_Visit_Completed</targetReference>
+            <targetReference>Is_primary_contact_blank_on_site</targetReference>
         </connector>
-        <inputAssignments>
-            <field>Allocation_Status__c</field>
+        <inputReference>ApplicationUnits</inputReference>
+    </recordCreates>
+    <recordLookups>
+        <name>Get_Units</name>
+        <label>Get Units</label>
+        <locationX>380</locationX>
+        <locationY>431</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Iterate_Units</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Account__c</field>
+            <operator>EqualTo</operator>
             <value>
-                <stringValue>Pending</stringValue>
+                <elementReference>$Record.Site__c</elementReference>
             </value>
-        </inputAssignments>
-        <inputReference>$Record</inputReference>
-    </recordUpdates>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Inactive</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Cancelled</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Unit__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <recordUpdates>
         <name>Pending_approvals</name>
         <label>Pending approvals</label>
-        <locationX>292</locationX>
-        <locationY>1127</locationY>
+        <locationX>523</locationX>
+        <locationY>1931</locationY>
         <connector>
             <targetReference>Office_approved</targetReference>
         </connector>
@@ -368,31 +490,15 @@
     <recordUpdates>
         <name>Update_Allocation_Status_to_Accepted</name>
         <label>Update Allocation Status to Accepted and Update Stage</label>
-        <locationX>292</locationX>
-        <locationY>2135</locationY>
+        <locationX>523</locationX>
+        <locationY>2831</locationY>
         <connector>
             <targetReference>Send_email_to_allocated_assessor</targetReference>
         </connector>
         <inputAssignments>
             <field>Allocation_Status__c</field>
             <value>
-                <stringValue>Pending</stringValue>
-            </value>
-        </inputAssignments>
-        <inputReference>$Record</inputReference>
-    </recordUpdates>
-    <recordUpdates>
-        <name>Update_MST_User_on_Record_0</name>
-        <label>Update MST User on Record</label>
-        <locationX>182</locationX>
-        <locationY>455</locationY>
-        <connector>
-            <targetReference>Is_primary_contact_blank_on_site</targetReference>
-        </connector>
-        <inputAssignments>
-            <field>Reviewing_Manager__c</field>
-            <value>
-                <elementReference>$User.Id</elementReference>
+                <stringValue>Accepted</stringValue>
             </value>
         </inputAssignments>
         <inputReference>$Record</inputReference>
@@ -400,8 +506,8 @@
     <recordUpdates>
         <name>Update_name_and_date</name>
         <label>Update name and date</label>
-        <locationX>292</locationX>
-        <locationY>1463</locationY>
+        <locationX>523</locationX>
+        <locationY>2231</locationY>
         <connector>
             <targetReference>Certifier_Approved</targetReference>
         </connector>
@@ -422,8 +528,8 @@
     <recordUpdates>
         <name>Update_name_and_date_0</name>
         <label>Update name and date</label>
-        <locationX>292</locationX>
-        <locationY>1799</locationY>
+        <locationX>523</locationX>
+        <locationY>2531</locationY>
         <connector>
             <targetReference>Minimumfieldsarepopulated</targetReference>
         </connector>
@@ -442,10 +548,26 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <recordUpdates>
-        <name>Update_Primary_Contact_0_0</name>
+        <name>Update_Primary_Contact</name>
         <label>Update Primary Contact</label>
+        <locationX>314</locationX>
+        <locationY>1463</locationY>
+        <connector>
+            <targetReference>Stage_moved_to_review</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Contact__c</field>
+            <value>
+                <elementReference>$Record.Site__r.Primary_Contact__r.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Primary_Contact_Head_Office</name>
+        <label>Update Primary Contact &amp; Head Office</label>
         <locationX>50</locationX>
-        <locationY>695</locationY>
+        <locationY>1463</locationY>
         <connector>
             <targetReference>Stage_moved_to_review</targetReference>
         </connector>
@@ -464,12 +586,19 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
-        <locationX>298</locationX>
+        <locationX>529</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Additional_Visit_created_or_updated</targetReference>
         </connector>
-        <filterLogic>and</filterLogic>
+        <filterLogic>or</filterLogic>
+        <filters>
+            <field>RecordTypeId</field>
+            <operator>Contains</operator>
+            <value>
+                <stringValue>0122p000000OZLz</stringValue>
+            </value>
+        </filters>
         <filters>
             <field>RecordTypeId</field>
             <operator>EqualTo</operator>
@@ -482,4 +611,20 @@
         <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
+    <variables>
+        <name>ApplicationUnit</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Application_Unit__c</objectType>
+    </variables>
+    <variables>
+        <name>ApplicationUnits</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Application_Unit__c</objectType>
+    </variables>
 </Flow>

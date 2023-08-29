@@ -13,7 +13,7 @@
         <operation>equals</operation>
         <value>1</value>
     </filters>
-    <label>Rejections</label>
+    <label>Rejections - delete</label>
     <sharedTo>
         <group>Membership_Services</group>
     </sharedTo>

@@ -2,20 +2,17 @@
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Lapsed_Accounts</fullName>
     <columns>ACCOUNT.NAME</columns>
-    <columns>ACCOUNT.ACCOUNT_NUMBER</columns>
     <columns>Membership_Number__c</columns>
-    <columns>ACCOUNT.SITE</columns>
-    <columns>ACCOUNT.TYPE</columns>
-    <columns>CREATEDBY_USER.ALIAS</columns>
-    <columns>UPDATEDBY_USER.ALIAS</columns>
+    <columns>Membership_Expiry_Date__c</columns>
     <columns>Status__c</columns>
+    <columns>Account_Manager__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
         <field>Status__c</field>
         <operation>equals</operation>
         <value>LAPSED</value>
     </filters>
-    <label>Lapsed Accounts</label>
+    <label>Lapsed Site Accounts</label>
     <sharedTo>
         <group>Membership_Services</group>
     </sharedTo>

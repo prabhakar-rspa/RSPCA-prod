@@ -58,7 +58,7 @@
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
-            <value>Applying,Certified,Lapsed</value>
+            <value>Applying,Certified,Inactive,Lapsed</value>
         </criteriaItems>
         <criteriaItems>
             <column>Account.ia_crm__Status__c</column>
@@ -72,7 +72,7 @@
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
-            <value>LAPSED,MEMBER,ENQUIRY,NEW,REINSTATE</value>
+            <value>ENQUIRY,INACTIVE,LAPSED,MEMBER,NEW,REINSTATE</value>
         </criteriaItems>
         <criteriaItems>
             <column>Unit__c.Animals__c</column>

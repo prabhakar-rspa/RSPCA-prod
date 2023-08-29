@@ -4,7 +4,6 @@
     <columns>NAME</columns>
     <columns>Membership_Number__c</columns>
     <columns>Application_Type__c</columns>
-    <columns>Renewal_Stage__c</columns>
     <columns>Status__c</columns>
     <columns>Head_Office__c</columns>
     <columns>Site__c</columns>
@@ -12,6 +11,8 @@
     <columns>Assessor_Full_Name__c</columns>
     <columns>Assessment_Date__c</columns>
     <columns>Assessment_Deadline__c</columns>
+    <columns>Stage__c</columns>
+    <columns>Renewal_Stage__c</columns>
     <filterScope>Everything</filterScope>
     <label>All</label>
 </ListView>

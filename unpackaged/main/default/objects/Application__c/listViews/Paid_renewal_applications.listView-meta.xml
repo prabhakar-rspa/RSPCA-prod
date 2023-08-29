@@ -53,5 +53,5 @@
         <field>Assessment_Checklist__c</field>
         <operation>equals</operation>
     </filters>
-    <label>Paid applications to be assessed</label>
+    <label>Paid applications to be assessed (MST)</label>
 </ListView>

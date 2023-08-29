@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>My_additional_visits</fullName>
+    <booleanFilter>1 AND 2 AND 3</booleanFilter>
     <columns>NAME</columns>
     <columns>Visit_Type__c</columns>
     <columns>Visit_Deadline__c</columns>
+    <columns>Visit_Date__c</columns>
     <columns>Membership_Number__c</columns>
     <columns>Site__c</columns>
     <columns>Site_Postcode__c</columns>
@@ -18,6 +20,11 @@
         <field>Stage__c</field>
         <operation>equals</operation>
         <value>Visit</value>
+    </filters>
+    <filters>
+        <field>Current_User_is_Allocated_Inspector__c</field>
+        <operation>equals</operation>
+        <value>1</value>
     </filters>
     <label>My additional visits</label>
 </ListView>

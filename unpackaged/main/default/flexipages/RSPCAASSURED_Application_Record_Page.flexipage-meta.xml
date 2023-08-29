@@ -7,28 +7,28 @@
                     <name>actionNames</name>
                     <valueList>
                         <valueListItems>
-                            <value>Application__c.Add_Product_Line</value>
-                        </valueListItems>
-                        <valueListItems>
                             <value>Application__c.Send_Multiple_Invoices</value>
                         </valueListItems>
                         <valueListItems>
                             <value>Application__c.Update_Payment</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>Application__c.Create_Credit_Note</value>
+                            <value>Application__c.New_Assessment_Checklist</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>Application__c.New_Assessment_Checklist</value>
+                            <value>Application__c.Download_Invoice</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Application__c.Add_Product_Line</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Application__c.Create_Credit_Note</value>
                         </valueListItems>
                         <valueListItems>
                             <value>Global.NewTask</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>Edit</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>Application__c.Download_Invoice</value>
+                            <value>Global.LogACall</value>
                         </valueListItems>
                         <valueListItems>
                             <value>Delete</value>
@@ -240,6 +240,46 @@
                         <leftValue>{!Record.X12_weeks_without_assessment__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>flowArguments</name>
+                    <value>[{&quot;label&quot;:&quot;recordId&quot;,&quot;value&quot;:null,&quot;dataType&quot;:&quot;SObject&quot;,&quot;supportsRecordId&quot;:true,&quot;selected&quot;:false}]</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>flowLayout</name>
+                    <value>oneColumn</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>flowName</name>
+                    <value>Approve_Additional_Application_Screen_Flow</value>
+                </componentInstanceProperties>
+                <componentName>flowruntime:interview</componentName>
+                <identifier>flowruntime_interview2</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.Stage__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Review</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Evidence__c}</leftValue>
+                        <operator>NE</operator>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.RecordType.DeveloperName}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Additional_Visit</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Renewal_Approval_Status__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Approved</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>

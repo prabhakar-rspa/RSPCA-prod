@@ -8,13 +8,11 @@
         <fieldNames>Site__c</fieldNames>
         <fieldNames>Outcome_of_Visit__c</fieldNames>
         <fieldNames>Other_Outcome_of_Visit__c</fieldNames>
-        <info>&lt;p&gt;Visit Completed&lt;/p&gt;</info>
         <picklistValueName>Complete</picklistValueName>
     </pathAssistantSteps>
     <pathAssistantSteps>
         <fieldNames>Report__c</fieldNames>
         <fieldNames>Communications__c</fieldNames>
-        <info>&lt;p&gt;Review the &lt;b&gt;assessor or monitor&amp;#39;s report&lt;/b&gt; and add &lt;b&gt;any additional information&lt;/b&gt;, such as letters. &lt;/p&gt;&lt;p&gt;Mark stage as complete to close off the visit. &lt;/p&gt;</info>
         <picklistValueName>Review</picklistValueName>
     </pathAssistantSteps>
     <pathAssistantSteps>
@@ -23,14 +21,12 @@
         <fieldNames>Check__c</fieldNames>
         <fieldNames>Allocated_Inspector__c</fieldNames>
         <fieldNames>Visit_Deadline__c</fieldNames>
-        <info>&lt;p&gt;&lt;b&gt;&lt;u&gt;Before moving onto the next stage:&lt;/u&gt;&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;Select the &lt;b&gt;type of visit&lt;/b&gt; (Investigation, Monitoring or a Revisit)&lt;/li&gt;&lt;li&gt;What is the &lt;b&gt;reason for visit&lt;/b&gt;?&lt;/li&gt;&lt;li&gt;What needs &lt;b&gt;checking&lt;/b&gt;? Separate each item with a line break.&lt;/li&gt;&lt;li&gt;Which &lt;b&gt;Inspector/FLO &lt;/b&gt;do you want to allocate this visit to?&lt;/li&gt;&lt;li&gt;What is the &lt;b&gt;deadline&lt;/b&gt; for the visit?&lt;/li&gt;&lt;li&gt;If there is any additional information to provide, use the &lt;b&gt;Further Information&lt;/b&gt; field.&lt;/li&gt;&lt;/ol&gt;</info>
         <picklistValueName>Schedule</picklistValueName>
     </pathAssistantSteps>
     <pathAssistantSteps>
         <fieldNames>Report__c</fieldNames>
         <fieldNames>Outcome_of_Visit__c</fieldNames>
         <fieldNames>Other_Outcome_of_Visit__c</fieldNames>
-        <info>&lt;p&gt;Once you have completed your visit, please upload your checklist to Google Drive and paste the URL into the &lt;b&gt;Report&lt;/b&gt; field. Move onto the next stage once this has been done. &lt;/p&gt;</info>
         <picklistValueName>Visit</picklistValueName>
     </pathAssistantSteps>
     <recordTypeName>Additional_Visit</recordTypeName>

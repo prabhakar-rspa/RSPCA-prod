@@ -62,6 +62,11 @@
                 <default>false</default>
                 <label>Other</label>
             </value>
+            <value>
+                <fullName>Additional Visit</fullName>
+                <default>false</default>
+                <label>Additional Visit</label>
+            </value>
         </valueSetDefinition>
         <valueSettings>
             <controllingFieldValue>Yes</controllingFieldValue>
@@ -107,6 +112,10 @@
         <valueSettings>
             <controllingFieldValue>No</controllingFieldValue>
             <valueName>New</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>No</controllingFieldValue>
+            <valueName>Additional Visit</valueName>
         </valueSettings>
     </valueSet>
 </CustomField>

@@ -4,9 +4,6 @@
         <field>Application__c$Site__c</field>
     </columns>
     <columns>
-        <field>Application__c$Assessment_Date__c</field>
-    </columns>
-    <columns>
         <field>Application__c$Name</field>
     </columns>
     <columns>
@@ -22,10 +19,10 @@
         <field>Application__c$Assessment_Report__c</field>
     </columns>
     <columns>
-        <field>Application__c$Assessment_Approved_By_Certifier_Date__c</field>
+        <field>Application__c$Assessment_Approved_By_Certifier__c</field>
     </columns>
     <columns>
-        <field>Application__c$Assessment_Approved_By_Certifier__c</field>
+        <field>Application__c$Assessment_Approved_By_Certifier_Date__c</field>
     </columns>
     <columns>
         <field>Application__c$Date_Certified__c</field>

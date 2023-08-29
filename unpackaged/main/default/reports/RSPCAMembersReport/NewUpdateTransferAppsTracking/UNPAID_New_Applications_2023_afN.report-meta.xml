@@ -47,6 +47,9 @@
     <columns>
         <field>Account.ApplicationSite__r$Assessment_Date__c</field>
     </columns>
+    <columns>
+        <field>Account.ApplicationSite__r$MST_Comments__c</field>
+    </columns>
     <description>any where Paid box is not ticked.  Vanessa has excluded Inactive accounts or account names of Archived or Deleted</description>
     <filter>
         <criteriaItems>

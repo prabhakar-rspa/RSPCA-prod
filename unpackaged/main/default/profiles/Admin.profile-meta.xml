@@ -3183,12 +3183,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Application__c.Add_Visit_Approval_Date_inspector__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Application__c.Add_Visit_Approved_By_Certifier__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Application__c.Add_Visit_Approved_By_Office__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Application__c.Add_Visit_approved_by_inspector__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3813,6 +3823,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Application__c.Renewal_Approval_Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Application__c.Renewal_Approved_By_NSF__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3949,6 +3964,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Application__c.VAT__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Application__c.Visit_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

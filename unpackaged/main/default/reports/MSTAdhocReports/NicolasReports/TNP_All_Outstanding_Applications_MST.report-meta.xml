@@ -97,6 +97,13 @@
             <operator>equals</operator>
             <value></value>
         </criteriaItems>
+        <criteriaItems>
+            <column>Application__c.Application_Type__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>New,Renewal,Transfer,Update</value>
+        </criteriaItems>
         <language>en_US</language>
     </filter>
     <format>Tabular</format>

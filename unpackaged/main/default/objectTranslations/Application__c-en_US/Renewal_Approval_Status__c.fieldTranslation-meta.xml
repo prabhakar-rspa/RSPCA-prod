@@ -16,6 +16,10 @@
             <translation><!-- Pending Certifier Approval --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Pending Inspector Approval</masterLabel>
+            <translation><!-- Pending Inspector Approval --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Pending Office Approval</masterLabel>
             <translation><!-- Pending Office Approval --></translation>
         </picklistValues>

@@ -87,6 +87,125 @@
     <flowDefinitions>
         <flows>
             <choices>
+                <name>Certifier</name>
+            </choices>
+            <choices>
+                <name>Inspector</name>
+            </choices>
+            <choices>
+                <name>Office</name>
+            </choices>
+            <choices>
+                <name>Yes</name>
+            </choices>
+            <screens>
+                <fields>
+                    <name>ApproveRecordScreen</name>
+                </fields>
+                <name>ApproveButton</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>Copy_1_of_ApproveRecordScreen</name>
+                </fields>
+                <fields>
+                    <name>RefreshPageDisplayText</name>
+                </fields>
+                <name>CompleteApproval</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>AccountManagerText</name>
+                </fields>
+                <fields>
+                    <name>AllocatedAssessorText</name>
+                </fields>
+                <fields>
+                    <inputParameters>
+                        <name>label</name>
+                        <value />
+                    </inputParameters>
+                    <inputParameters>
+                        <name>readonly</name>
+                        <value />
+                    </inputParameters>
+                    <inputParameters>
+                        <name>value</name>
+                        <value />
+                    </inputParameters>
+                    <name>AssessmentReport</name>
+                </fields>
+                <fields>
+                    <name>Confirmation</name>
+                </fields>
+                <fields>
+                    <name>DocumentationLinks</name>
+                </fields>
+                <fields>
+                    <inputParameters>
+                        <name>label</name>
+                        <value />
+                    </inputParameters>
+                    <inputParameters>
+                        <name>readonly</name>
+                        <value />
+                    </inputParameters>
+                    <inputParameters>
+                        <name>value</name>
+                        <value />
+                    </inputParameters>
+                    <name>EvidenceURL</name>
+                </fields>
+                <fields>
+                    <inputParameters>
+                        <name>label</name>
+                        <value />
+                    </inputParameters>
+                    <inputParameters>
+                        <name>readonly</name>
+                        <value />
+                    </inputParameters>
+                    <inputParameters>
+                        <name>value</name>
+                        <value />
+                    </inputParameters>
+                    <name>InternalUnannouncedVisitReport</name>
+                </fields>
+                <fields>
+                    <name>ReviewManager</name>
+                </fields>
+                <name>Screen_1</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>I_am_a</name>
+                </fields>
+                <name>UserType</name>
+            </screens>
+            <textTemplates>
+                <name>CertifierTaskDescription</name>
+            </textTemplates>
+            <textTemplates>
+                <name>CertifierTaskSubject</name>
+            </textTemplates>
+            <textTemplates>
+                <name>InspectorTaskDescription</name>
+            </textTemplates>
+            <textTemplates>
+                <name>InspectorTaskSubject</name>
+            </textTemplates>
+            <textTemplates>
+                <name>ReviewManagerTaskDescription</name>
+            </textTemplates>
+            <textTemplates>
+                <name>ReviewManagerTaskSubject</name>
+            </textTemplates>
+        </flows>
+        <fullName>Approve_Additional_Application_Screen_Flow</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <choices>
                 <name>Assessor</name>
             </choices>
             <choices>
@@ -265,6 +384,10 @@
             </textTemplates>
         </flows>
         <fullName>Approve_Application_Screen_Flow</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows />
+        <fullName>Assessment_Report_Before_Insert_Flow</fullName>
     </flowDefinitions>
     <flowDefinitions>
         <flows />
@@ -1299,6 +1422,70 @@
         <sections>
             <label><!-- Opportunities --></label>
             <name>Opportunities</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- WOAs with WOA Dairy with Cows Housing --></description>
+        <label><!-- WOAs with WOA Dairy with Cows Housing --></label>
+        <name>WOAs_with_WOA_Dairy_with_Cows_Housing</name>
+        <sections>
+            <label><!-- Cows Housings --></label>
+            <name>Cows Housings</name>
+        </sections>
+        <sections>
+            <label><!-- WOAs --></label>
+            <name>WOAs</name>
+        </sections>
+        <sections>
+            <label><!-- WOAs Dairy --></label>
+            <name>WOAs Dairy</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- WOAs with WOA Dairy with Lameness Prevalence --></description>
+        <label><!-- WOAs with WOA Dairy with Lameness Prevalence --></label>
+        <name>WOAs_with_WOA_Dairy_with_Lameness_Prevalence</name>
+        <sections>
+            <label><!-- Lameness Prevalences --></label>
+            <name>Lameness Prevalences</name>
+        </sections>
+        <sections>
+            <label><!-- WOAs --></label>
+            <name>WOAs</name>
+        </sections>
+        <sections>
+            <label><!-- WOAs Dairy --></label>
+            <name>WOAs Dairy</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- WOAs with WOA Dairy with Mobility Scoring --></description>
+        <label><!-- WOAs with WOA Dairy with Mobility Scoring --></label>
+        <name>WOAs_with_WOA_Dairy_with_Mobility_Scoring</name>
+        <sections>
+            <label><!-- Mobility Scorings --></label>
+            <name>Mobility Scorings</name>
+        </sections>
+        <sections>
+            <label><!-- WOAs --></label>
+            <name>WOAs</name>
+        </sections>
+        <sections>
+            <label><!-- WOAs Dairy --></label>
+            <name>WOAs Dairy</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- WOAs with WOAs Dairy --></description>
+        <label><!-- WOAs with WOAs Dairy --></label>
+        <name>WOAs_with_WOAs_Dairy</name>
+        <sections>
+            <label><!-- WOAs --></label>
+            <name>WOAs</name>
+        </sections>
+        <sections>
+            <label><!-- WOAs Dairy --></label>
+            <name>WOAs Dairy</name>
         </sections>
     </reportTypes>
     <reportTypes>

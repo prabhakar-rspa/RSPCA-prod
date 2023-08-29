@@ -8,11 +8,15 @@
             <translation><!-- Investigation --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Monitoring</masterLabel>
-            <translation><!-- Monitoring --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>Revisit</masterLabel>
             <translation><!-- Revisit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sanction</masterLabel>
+            <translation><!-- Sanction --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Virtual Visit</masterLabel>
+            <translation><!-- Virtual Visit --></translation>
         </picklistValues>
     </CustomFieldTranslation>

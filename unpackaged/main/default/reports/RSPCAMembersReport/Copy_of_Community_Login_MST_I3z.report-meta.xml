@@ -13,6 +13,9 @@
         <field>ACTIVE</field>
     </columns>
     <columns>
+        <field>ACCOUNT.NAME</field>
+    </columns>
+    <columns>
         <field>Account.Head_Office_Number__c</field>
     </columns>
     <columns>
@@ -37,6 +40,9 @@
     <columns>
         <field>Account.Site_Number__c</field>
     </columns>
+    <columns>
+        <field>Account.Membership_Expiry_Date__c</field>
+    </columns>
     <description>Shows us which Head Office Contacts have logged into Communities. Ones at the bottom have not.</description>
     <filter>
         <criteriaItems>
@@ -51,6 +57,11 @@
     <format>Summary</format>
     <groupingsDown>
         <field>LAST_LOGIN</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>ACCOUNT_RECORDTYPE</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <name>Community Login of HO Prim Contact- MST</name>
