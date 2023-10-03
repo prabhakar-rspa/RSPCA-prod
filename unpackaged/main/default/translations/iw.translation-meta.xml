@@ -74,11 +74,134 @@
     </flowDefinitions>
     <flowDefinitions>
         <flows />
+        <fullName>Application_Unit_Before_Flow</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows />
         <fullName>Application_Unit_Record_Create_Flow</fullName>
     </flowDefinitions>
     <flowDefinitions>
         <flows />
         <fullName>Apply_Common_Renewal_Date_on_Site</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <choices>
+                <name>Certifier</name>
+            </choices>
+            <choices>
+                <name>Inspector</name>
+            </choices>
+            <choices>
+                <name>Office</name>
+            </choices>
+            <choices>
+                <name>Yes</name>
+            </choices>
+            <screens>
+                <fields>
+                    <name>ApproveRecordScreen</name>
+                </fields>
+                <name>ApproveButton</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>Copy_1_of_ApproveRecordScreen</name>
+                </fields>
+                <fields>
+                    <name>RefreshPageDisplayText</name>
+                </fields>
+                <name>CompleteApproval</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>AccountManagerText</name>
+                </fields>
+                <fields>
+                    <name>AllocatedAssessorText</name>
+                </fields>
+                <fields>
+                    <inputParameters>
+                        <name>label</name>
+                        <value />
+                    </inputParameters>
+                    <inputParameters>
+                        <name>readonly</name>
+                        <value />
+                    </inputParameters>
+                    <inputParameters>
+                        <name>value</name>
+                        <value />
+                    </inputParameters>
+                    <name>AssessmentReport</name>
+                </fields>
+                <fields>
+                    <name>Confirmation</name>
+                </fields>
+                <fields>
+                    <name>DocumentationLinks</name>
+                </fields>
+                <fields>
+                    <inputParameters>
+                        <name>label</name>
+                        <value />
+                    </inputParameters>
+                    <inputParameters>
+                        <name>readonly</name>
+                        <value />
+                    </inputParameters>
+                    <inputParameters>
+                        <name>value</name>
+                        <value />
+                    </inputParameters>
+                    <name>EvidenceURL</name>
+                </fields>
+                <fields>
+                    <inputParameters>
+                        <name>label</name>
+                        <value />
+                    </inputParameters>
+                    <inputParameters>
+                        <name>readonly</name>
+                        <value />
+                    </inputParameters>
+                    <inputParameters>
+                        <name>value</name>
+                        <value />
+                    </inputParameters>
+                    <name>InternalUnannouncedVisitReport</name>
+                </fields>
+                <fields>
+                    <name>ReviewManager</name>
+                </fields>
+                <name>Screen_1</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>I_am_a</name>
+                </fields>
+                <name>UserType</name>
+            </screens>
+            <textTemplates>
+                <name>CertifierTaskDescription</name>
+            </textTemplates>
+            <textTemplates>
+                <name>CertifierTaskSubject</name>
+            </textTemplates>
+            <textTemplates>
+                <name>InspectorTaskDescription</name>
+            </textTemplates>
+            <textTemplates>
+                <name>InspectorTaskSubject</name>
+            </textTemplates>
+            <textTemplates>
+                <name>ReviewManagerTaskDescription</name>
+            </textTemplates>
+            <textTemplates>
+                <name>ReviewManagerTaskSubject</name>
+            </textTemplates>
+        </flows>
+        <fullName>Approve_Additional_Application_Screen_Flow</fullName>
     </flowDefinitions>
     <flowDefinitions>
         <flows>
@@ -261,6 +384,10 @@
             </textTemplates>
         </flows>
         <fullName>Approve_Application_Screen_Flow</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows />
+        <fullName>Assessment_Report_Before_Insert_Flow</fullName>
     </flowDefinitions>
     <flowDefinitions>
         <flows />
@@ -554,8 +681,30 @@
         <fullName>Sanctions_Create_and_Update</fullName>
     </flowDefinitions>
     <flowDefinitions>
+        <flows>
+            <textTemplates>
+                <name>ChecklistTemplateName</name>
+            </textTemplates>
+            <textTemplates>
+                <name>NotificationBody</name>
+            </textTemplates>
+            <textTemplates>
+                <name>NotificationTitle</name>
+            </textTemplates>
+        </flows>
+        <fullName>Send_Notification_for_New_Certificate_Version</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows />
+        <fullName>Unit_After_Trigger_Flow</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
         <flows />
         <fullName>Update_Common_Renewal_Date_on_Sites_from_Head_Office</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows />
+        <fullName>User_After_Insert_Trigger_Flow</fullName>
     </flowDefinitions>
     <quickActions>
         <label><!-- Guest Community Case --></label>
@@ -609,4 +758,760 @@
         <label><!-- SendEmail --></label>
         <name>SendEmail</name>
     </quickActions>
+    <reportTypes>
+        <description><!-- Accounts_Application_Opp_Invoices --></description>
+        <label><!-- Accounts_Application_Opp_Invoices --></label>
+        <name>Accounts_Application_Opp_Invoices</name>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+        <sections>
+            <label><!-- Applications --></label>
+            <name>Applications</name>
+        </sections>
+        <sections>
+            <label><!-- Invoices &amp; Credit Notes --></label>
+            <name>Invoices &amp; Credit Notes</name>
+        </sections>
+        <sections>
+            <label><!-- Opportunities --></label>
+            <name>Opportunities</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Accounts with Applications with Application Line Items --></description>
+        <label><!-- Accounts with Applications with Application Line Items --></label>
+        <name>Accounts_with_Applications_with_Application_Line_Items</name>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+        <sections>
+            <label><!-- Application Line Items --></label>
+            <name>Application Line Items</name>
+        </sections>
+        <sections>
+            <label><!-- Applications --></label>
+            <name>Applications</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Accounts with Applications with Application Units --></description>
+        <label><!-- Accounts with Applications with Application Units --></label>
+        <name>Accounts_with_Applications_with_Application_Units</name>
+        <sections>
+            <columns>
+                <label><!-- Postcode --></label>
+                <name>Postcode</name>
+            </columns>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+        <sections>
+            <label><!-- Application Units --></label>
+            <name>Application Units</name>
+        </sections>
+        <sections>
+            <columns>
+                <label><!-- Assessor --></label>
+                <name>Assessor</name>
+            </columns>
+            <columns>
+                <label><!-- Previous Assessment --></label>
+                <name>Previous Assessment</name>
+            </columns>
+            <label><!-- Applications --></label>
+            <name>Applications</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Accounts with Applications with Approvals --></description>
+        <label><!-- Accounts with Applications with Approvals --></label>
+        <name>Accounts_with_Applications_with_Approvals</name>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+        <sections>
+            <label><!-- Applications --></label>
+            <name>Applications</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Accounts with Applications with Assessment Reports --></description>
+        <label><!-- Accounts with Applications with Assessment Reports --></label>
+        <name>Accounts_with_Applications_with_Assessment_Reports</name>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+        <sections>
+            <label><!-- Applications --></label>
+            <name>Applications</name>
+        </sections>
+        <sections>
+            <label><!-- Assessment Reports --></label>
+            <name>Assessment Reports</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Accounts with Applications with Assessment Reports with Non-Compliances --></description>
+        <label><!-- Accounts with Applications with Assessment Reports with Non-Compliances --></label>
+        <name>Accounts_with_Applications_with_Assessment_Reports_with_Non_Compliances</name>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+        <sections>
+            <label><!-- Applications --></label>
+            <name>Applications</name>
+        </sections>
+        <sections>
+            <label><!-- Assessment Reports --></label>
+            <name>Assessment Reports</name>
+        </sections>
+        <sections>
+            <label><!-- Non-Compliances --></label>
+            <name>Non-Compliances</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Accounts with Applications with Evidence --></description>
+        <label><!-- Accounts with Applications with Evidence --></label>
+        <name>Accounts_with_Applications_with_Evidence</name>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+        <sections>
+            <label><!-- Applications --></label>
+            <name>Applications</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Accounts with Applications with WOAs with WOADairy --></description>
+        <label><!-- Accounts with Applications with WOAs with WOADairy --></label>
+        <name>Accounts_with_Applications_with_WOA_Dairy</name>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+        <sections>
+            <label><!-- Applications --></label>
+            <name>Applications</name>
+        </sections>
+        <sections>
+            <label><!-- WOAs --></label>
+            <name>WOAs</name>
+        </sections>
+        <sections>
+            <label><!-- WOAs Dairy --></label>
+            <name>WOAs Dairy</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Accounts with Applications with WOAs with Dry Sows --></description>
+        <label><!-- Accounts with Applications with WOAs with Dry Sows --></label>
+        <name>Accounts_with_Applications_with_WOAs_with_Dry_Sows</name>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+        <sections>
+            <label><!-- Applications --></label>
+            <name>Applications</name>
+        </sections>
+        <sections>
+            <label><!-- WOA Pigs --></label>
+            <name>WOA Pigs</name>
+        </sections>
+        <sections>
+            <label><!-- WOAs --></label>
+            <name>WOAs</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Accounts with Applications with WOAs with WOAPigs --></description>
+        <label><!-- Accounts with Applications with WOAs with WOAPigs --></label>
+        <name>Accounts_with_Applications_with_WOAs_with_Pigs</name>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+        <sections>
+            <label><!-- Applications --></label>
+            <name>Applications</name>
+        </sections>
+        <sections>
+            <columns>
+                <label><!-- Average euthanased % prev 2 batches --></label>
+                <name>Average euthanased % prev 2 batches</name>
+            </columns>
+            <columns>
+                <label><!-- Average mortality % prev 2 batches --></label>
+                <name>Average mortality % prev 2 batches</name>
+            </columns>
+            <columns>
+                <label><!-- Body condition Fat --></label>
+                <name>Body condition Fat</name>
+            </columns>
+            <columns>
+                <label><!-- Body condition Moderate --></label>
+                <name>Body condition Moderate</name>
+            </columns>
+            <columns>
+                <label><!-- Body condition Thin --></label>
+                <name>Body condition Thin</name>
+            </columns>
+            <columns>
+                <label><!-- Body marks Score 0 --></label>
+                <name>Body marks Score 0</name>
+            </columns>
+            <columns>
+                <label><!-- Body marks Score 1 --></label>
+                <name>Body marks Score 1</name>
+            </columns>
+            <columns>
+                <label><!-- Body marks Score 2 --></label>
+                <name>Body marks Score 2</name>
+            </columns>
+            <columns>
+                <label><!-- Body too dirty to assess --></label>
+                <name>Body too dirty to assess</name>
+            </columns>
+            <columns>
+                <label><!-- Ear biting? --></label>
+                <name>Ear biting?</name>
+            </columns>
+            <columns>
+                <label><!-- Flank biting? --></label>
+                <name>Flank biting?</name>
+            </columns>
+            <columns>
+                <label><!-- Improvements next 12 months --></label>
+                <name>Improvements next 12 months</name>
+            </columns>
+            <columns>
+                <label><!-- Improvements previous 12 months --></label>
+                <name>Improvements previous 12 months</name>
+            </columns>
+            <columns>
+                <label><!-- Leg swellings Score 0 --></label>
+                <name>Leg swellings Score 0</name>
+            </columns>
+            <columns>
+                <label><!-- Leg swellings Score 1 --></label>
+                <name>Leg swellings Score 1</name>
+            </columns>
+            <columns>
+                <label><!-- Leg swellings Score 2 --></label>
+                <name>Leg swellings Score 2</name>
+            </columns>
+            <columns>
+                <label><!-- Manure Score 0 --></label>
+                <name>Manure Score 0</name>
+            </columns>
+            <columns>
+                <label><!-- Manure Score 1 --></label>
+                <name>Manure Score 1</name>
+            </columns>
+            <columns>
+                <label><!-- Manure Score 2 --></label>
+                <name>Manure Score 2</name>
+            </columns>
+            <columns>
+                <label><!-- Mixed within 7 days --></label>
+                <name>Mixed within 7 days</name>
+            </columns>
+            <columns>
+                <label><!-- No pig mortality (batch) --></label>
+                <name>No pig mortality (batch)</name>
+            </columns>
+            <columns>
+                <label><!-- No pig mortality (continuous) --></label>
+                <name>No pig mortality (continuous)</name>
+            </columns>
+            <columns>
+                <label><!-- No pig mortality (dry sows) --></label>
+                <name>No pig mortality (dry sows)</name>
+            </columns>
+            <columns>
+                <label><!-- No pigs euthanased (batch) --></label>
+                <name>No pigs euthanased (batch)</name>
+            </columns>
+            <columns>
+                <label><!-- No pigs euthanased (continuous) --></label>
+                <name>No pigs euthanased (continuous)</name>
+            </columns>
+            <columns>
+                <label><!-- No pigs euthanased (dry sows) --></label>
+                <name>No pigs euthanased (dry sows)</name>
+            </columns>
+            <columns>
+                <label><!-- Number rectal prolapse --></label>
+                <name>Number rectal prolapse</name>
+            </columns>
+            <columns>
+                <label><!-- Number skin conditions --></label>
+                <name>Number skin conditions</name>
+            </columns>
+            <columns>
+                <label><!-- Number smalls --></label>
+                <name>Number smalls</name>
+            </columns>
+            <columns>
+                <label><!-- Number tail bitten --></label>
+                <name>Number tail bitten</name>
+            </columns>
+            <columns>
+                <label><!-- Number thin pigs --></label>
+                <name>Number thin pigs</name>
+            </columns>
+            <columns>
+                <label><!-- Number umbilical hernia --></label>
+                <name>Number umbilical hernia</name>
+            </columns>
+            <columns>
+                <label><!-- Number uterine/vaginal prolapse --></label>
+                <name>Number uterine/vaginal prolapse</name>
+            </columns>
+            <columns>
+                <label><!-- Other pen object --></label>
+                <name>Other pen object</name>
+            </columns>
+            <columns>
+                <label><!-- Other reason (hospital pens) --></label>
+                <name>Other reason (hospital pens)</name>
+            </columns>
+            <columns>
+                <label><!-- Pen design (dry sows) --></label>
+                <name>Pen design (dry sows)</name>
+            </columns>
+            <columns>
+                <label><!-- Pen design (finishing pigs) --></label>
+                <name>Pen design (finishing pigs)</name>
+            </columns>
+            <columns>
+                <label><!-- Pen object --></label>
+                <name>Pen object</name>
+            </columns>
+            <columns>
+                <label><!-- Percentage euthanased (batch) --></label>
+                <name>Percentage euthanased (batch)</name>
+            </columns>
+            <columns>
+                <label><!-- Percentage euthanased (continuous) --></label>
+                <name>Percentage euthanased (continuous)</name>
+            </columns>
+            <columns>
+                <label><!-- Percentage euthanased (dry sows) --></label>
+                <name>Percentage euthanased (dry sows)</name>
+            </columns>
+            <columns>
+                <label><!-- Percentage mortality (batch) --></label>
+                <name>Percentage mortality (batch)</name>
+            </columns>
+            <columns>
+                <label><!-- Percentage mortality (continuous) --></label>
+                <name>Percentage mortality (continuous)</name>
+            </columns>
+            <columns>
+                <label><!-- Percentage mortality (dry sows) --></label>
+                <name>Percentage mortality (dry sows)</name>
+            </columns>
+            <columns>
+                <label><!-- Pigs manipulating enrichment --></label>
+                <name>Pigs manipulating enrichment</name>
+            </columns>
+            <columns>
+                <label><!-- Pigs manipulating other --></label>
+                <name>Pigs manipulating other</name>
+            </columns>
+            <columns>
+                <label><!-- Pigs stone chewing --></label>
+                <name>Pigs stone chewing</name>
+            </columns>
+            <columns>
+                <label><!-- Predominant reason (batch) --></label>
+                <name>Predominant reason (batch)</name>
+            </columns>
+            <columns>
+                <label><!-- Predominant reason (continuous) --></label>
+                <name>Predominant reason (continuous)</name>
+            </columns>
+            <columns>
+                <label><!-- Predominant reason (dry sows) --></label>
+                <name>Predominant reason (dry sows)</name>
+            </columns>
+            <columns>
+                <label><!-- Predominant region(s) of body marks --></label>
+                <name>Predominant region(s) of body marks</name>
+            </columns>
+            <columns>
+                <label><!-- Responsive action --></label>
+                <name>Responsive action</name>
+            </columns>
+            <columns>
+                <label><!-- Sexed or unsexed --></label>
+                <name>Sexed or unsexed</name>
+            </columns>
+            <columns>
+                <label><!-- Shoulder lesions Score 0 --></label>
+                <name>Shoulder lesions Score 0</name>
+            </columns>
+            <columns>
+                <label><!-- Shoulder lesions Score 1 --></label>
+                <name>Shoulder lesions Score 1</name>
+            </columns>
+            <columns>
+                <label><!-- Shoulder lesions Score 2 --></label>
+                <name>Shoulder lesions Score 2</name>
+            </columns>
+            <columns>
+                <label><!-- Skin conditions Score 0 --></label>
+                <name>Skin conditions Score 0</name>
+            </columns>
+            <columns>
+                <label><!-- Skin conditions Score 1 --></label>
+                <name>Skin conditions Score 1</name>
+            </columns>
+            <columns>
+                <label><!-- Skin conditions Score 2 --></label>
+                <name>Skin conditions Score 2</name>
+            </columns>
+            <columns>
+                <label><!-- Sows nose ringed --></label>
+                <name>Sows nose ringed</name>
+            </columns>
+            <columns>
+                <label><!-- Tail lesions Score 0 --></label>
+                <name>Tail lesions Score 0</name>
+            </columns>
+            <columns>
+                <label><!-- Tail lesions Score 1 --></label>
+                <name>Tail lesions Score 1</name>
+            </columns>
+            <columns>
+                <label><!-- Tail lesions Score 2 --></label>
+                <name>Tail lesions Score 2</name>
+            </columns>
+            <columns>
+                <label><!-- Treated within 7 days --></label>
+                <name>Treated within 7 days</name>
+            </columns>
+            <columns>
+                <label><!-- Unit type (dry sows) --></label>
+                <name>Unit type (dry sows)</name>
+            </columns>
+            <columns>
+                <label><!-- Vulva lesions Score 0 --></label>
+                <name>Vulva lesions Score 0</name>
+            </columns>
+            <columns>
+                <label><!-- Vulva lesions Score 1 --></label>
+                <name>Vulva lesions Score 1</name>
+            </columns>
+            <columns>
+                <label><!-- Vulva lesions Score 2 --></label>
+                <name>Vulva lesions Score 2</name>
+            </columns>
+            <label><!-- WOA Pigs --></label>
+            <name>WOA Pigs</name>
+        </sections>
+        <sections>
+            <columns>
+                <label><!-- Membership No --></label>
+                <name>Membership No</name>
+            </columns>
+            <label><!-- WOAs --></label>
+            <name>WOAs</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Accounts with Applications with WOAs with WOAHens --></description>
+        <label><!-- Accounts with Applications with WOAs with WOAHens --></label>
+        <name>Accounts_with_Applications_with_WOAs_with_WOAHens</name>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+        <sections>
+            <label><!-- Applications --></label>
+            <name>Applications</name>
+        </sections>
+        <sections>
+            <label><!-- WOAHens --></label>
+            <name>WOAHens</name>
+        </sections>
+        <sections>
+            <label><!-- WOAs --></label>
+            <name>WOAs</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Accounts with Sales invoice --></description>
+        <label><!-- Accounts with Sales invoice --></label>
+        <name>Accounts_with_Sales_invoice</name>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+        <sections>
+            <label><!-- Sales Invoices (Account) --></label>
+            <name>Sales Invoices (Account)</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Accounts with Units with Application Units --></description>
+        <label><!-- Accounts with Units with Application Units --></label>
+        <name>Accounts_with_Units_with_Application_Units</name>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+        <sections>
+            <label><!-- Application Units --></label>
+            <name>Application Units</name>
+        </sections>
+        <sections>
+            <label><!-- Units --></label>
+            <name>Units</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Applications with Application Units --></description>
+        <label><!-- Applications with Application Units --></label>
+        <name>Applications_with_Application_Units</name>
+        <sections>
+            <label><!-- Applications --></label>
+            <name>Applications</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Applications with Assessment Checklists --></description>
+        <label><!-- Applications with Assessment Checklists --></label>
+        <name>Applications_with_Assessment_Checklists</name>
+        <sections>
+            <label><!-- Applications --></label>
+            <name>Applications</name>
+        </sections>
+        <sections>
+            <label><!-- Assessment Checklists --></label>
+            <name>Assessment Checklists</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Applications with Assessments --></description>
+        <label><!-- Applications with Assessments --></label>
+        <name>Applications_with_Assessments</name>
+        <sections>
+            <label><!-- Applications --></label>
+            <name>Applications</name>
+        </sections>
+        <sections>
+            <label><!-- Assessment Checklists --></label>
+            <name>Assessment Checklists</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Applications with Assessors(sample) --></description>
+        <label><!-- Applications with Assessors(sample) --></label>
+        <name>Applications_with_Assessors_sample</name>
+        <sections>
+            <label><!-- Applications --></label>
+            <name>Applications</name>
+        </sections>
+        <sections>
+            <label><!-- Assessment --></label>
+            <name>Assessment</name>
+        </sections>
+        <sections>
+            <label><!-- Assessment Checklists --></label>
+            <name>Assessment Checklists</name>
+        </sections>
+        <sections>
+            <label><!-- Assessments --></label>
+            <name>Assessments</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Applications with Checklists and/or Questions --></description>
+        <label><!-- Applications with Checklists and/or Questions --></label>
+        <name>Applications_with_Checklists_with_Questions</name>
+        <sections>
+            <label><!-- Applications --></label>
+            <name>Applications</name>
+        </sections>
+        <sections>
+            <label><!-- Assessment Checklist Questions --></label>
+            <name>Assessment Checklist Questions</name>
+        </sections>
+        <sections>
+            <label><!-- Assessment Checklists --></label>
+            <name>Assessment Checklists</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Applications with WOA --></description>
+        <label><!-- Applications with WOA --></label>
+        <name>Applications_with_WOA</name>
+        <sections>
+            <label><!-- Applications --></label>
+            <name>Applications</name>
+        </sections>
+        <sections>
+            <label><!-- WOAs --></label>
+            <name>WOAs</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Assessors with Applications --></description>
+        <label><!-- Assessors with Applications --></label>
+        <name>Assessors_with_Applications</name>
+        <sections>
+            <label><!-- Applications --></label>
+            <name>Applications</name>
+        </sections>
+        <sections>
+            <label><!-- Applications (Allocated Assessor) --></label>
+            <name>Applications (Allocated Assessor)</name>
+        </sections>
+        <sections>
+            <label><!-- Users --></label>
+            <name>Users</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Assessors with Applications with Application Units --></description>
+        <label><!-- Assessors with Applications with Application Units --></label>
+        <name>Assessors_with_Applications_with_Application_Units</name>
+        <sections>
+            <label><!-- Application Units --></label>
+            <name>Application Units</name>
+        </sections>
+        <sections>
+            <label><!-- Applications --></label>
+            <name>Applications</name>
+        </sections>
+        <sections>
+            <label><!-- Applications (Allocated Assessor) --></label>
+            <name>Applications (Allocated Assessor)</name>
+        </sections>
+        <sections>
+            <label><!-- Users --></label>
+            <name>Users</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Assessors with Applications with Assessments --></description>
+        <label><!-- Assessors with Applications with Assessments --></label>
+        <name>Assessors_with_Applications_with_Assessments</name>
+        <sections>
+            <label><!-- Applications --></label>
+            <name>Applications</name>
+        </sections>
+        <sections>
+            <label><!-- Applications (Assessment Approved By (Assessor)) --></label>
+            <name>Applications (Assessment Approved By (Assessor))</name>
+        </sections>
+        <sections>
+            <label><!-- Assessment Checklists --></label>
+            <name>Assessment Checklists</name>
+        </sections>
+        <sections>
+            <label><!-- Users --></label>
+            <name>Users</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Opportunities w/Contacts w/Affiliations (custom) --></description>
+        <label><!-- Opportunities w/Contacts w/Affiliations (custom) --></label>
+        <name>Opportunities_with_Contacts_with_Affiliations</name>
+        <sections>
+            <label><!-- Contact Roles --></label>
+            <name>Contact Roles</name>
+        </sections>
+        <sections>
+            <label><!-- Opportunities --></label>
+            <name>Opportunities</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- WOAs with WOA Dairy with Cows Housing --></description>
+        <label><!-- WOAs with WOA Dairy with Cows Housing --></label>
+        <name>WOAs_with_WOA_Dairy_with_Cows_Housing</name>
+        <sections>
+            <label><!-- Cows Housings --></label>
+            <name>Cows Housings</name>
+        </sections>
+        <sections>
+            <label><!-- WOAs --></label>
+            <name>WOAs</name>
+        </sections>
+        <sections>
+            <label><!-- WOAs Dairy --></label>
+            <name>WOAs Dairy</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- WOAs with WOA Dairy with Lameness Prevalence --></description>
+        <label><!-- WOAs with WOA Dairy with Lameness Prevalence --></label>
+        <name>WOAs_with_WOA_Dairy_with_Lameness_Prevalence</name>
+        <sections>
+            <label><!-- Lameness Prevalences --></label>
+            <name>Lameness Prevalences</name>
+        </sections>
+        <sections>
+            <label><!-- WOAs --></label>
+            <name>WOAs</name>
+        </sections>
+        <sections>
+            <label><!-- WOAs Dairy --></label>
+            <name>WOAs Dairy</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- WOAs with WOA Dairy with Mobility Scoring --></description>
+        <label><!-- WOAs with WOA Dairy with Mobility Scoring --></label>
+        <name>WOAs_with_WOA_Dairy_with_Mobility_Scoring</name>
+        <sections>
+            <label><!-- Mobility Scorings --></label>
+            <name>Mobility Scorings</name>
+        </sections>
+        <sections>
+            <label><!-- WOAs --></label>
+            <name>WOAs</name>
+        </sections>
+        <sections>
+            <label><!-- WOAs Dairy --></label>
+            <name>WOAs Dairy</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- WOAs with WOAs Dairy --></description>
+        <label><!-- WOAs with WOAs Dairy --></label>
+        <name>WOAs_with_WOAs_Dairy</name>
+        <sections>
+            <label><!-- WOAs --></label>
+            <name>WOAs</name>
+        </sections>
+        <sections>
+            <label><!-- WOAs Dairy --></label>
+            <name>WOAs Dairy</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Screen Flows --></description>
+        <label><!-- Screen Flows --></label>
+        <name>screen_flows_prebuilt_crt</name>
+        <sections>
+            <label><!-- Flow Interview Log Entries --></label>
+            <name>Flow Interview Log Entries</name>
+        </sections>
+        <sections>
+            <label><!-- Flow Interview Logs --></label>
+            <name>Flow Interview Logs</name>
+        </sections>
+    </reportTypes>
 </Translations>

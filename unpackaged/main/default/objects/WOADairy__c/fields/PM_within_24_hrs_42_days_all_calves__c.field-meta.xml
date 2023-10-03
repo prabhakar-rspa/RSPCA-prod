@@ -3,9 +3,9 @@
     <fullName>PM_within_24_hrs_42_days_all_calves__c</fullName>
     <externalId>false</externalId>
     <label>PM within 24 hrs - 42 days (all calves)</label>
-    <precision>18</precision>
+    <precision>16</precision>
     <required>false</required>
-    <scale>2</scale>
+    <scale>0</scale>
     <trackTrending>false</trackTrending>
     <type>Number</type>
     <unique>false</unique>

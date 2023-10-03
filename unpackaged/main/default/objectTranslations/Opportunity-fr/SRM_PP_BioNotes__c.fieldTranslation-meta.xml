@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Relevant details to describe the supporter - background summary --></help>
+        <label><!-- Bio Notes --></label>
+        <name>SRM_PP_BioNotes__c</name>
+    </CustomFieldTranslation>

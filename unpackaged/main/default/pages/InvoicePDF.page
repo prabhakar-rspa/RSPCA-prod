@@ -1,4 +1,4 @@
-<apex:page controller="InvoicePDFController" standardStylesheets="false" renderAs="pdf" showHeader="false" applyBodyTag="false" applyHtmlTag="false">
+<apex:page standardController="Application__c" extensions="InvoicePDFController" renderAs="pdf" standardStylesheets="false" showHeader="false" applyBodyTag="false" applyHtmlTag="false" title="Invoice.pdf">
     <head>
         <meta charset="UTF-8"/>
         <!-- utf-8 works for most cases -->
@@ -13,6 +13,31 @@
         
         <!-- CSS Reset -->
         <style type="text/css">
+            @Page {
+                /* add page's header and footer */
+                
+                 /*background */
+              
+                @top-center { 
+                    content: element(header); 
+             
+                }
+                @bottom-left { 
+                    content: element(footer);        
+                }
+                
+            }
+            div.footer { 
+                position: running(footer); 
+                /* font style */ 
+                text-align: left;
+                font-family: Arial, sans-serif;
+                font-size: 14px;
+                mso-height-rule: exactly;
+                line-height: 20px;
+                color: #000000;
+    
+            }
             /* add margin and size to our page */
             @Page {
                 
@@ -22,10 +47,9 @@
                 margin-left: 0;
                 margin-right: 0;
                 margin-top: 0;
-                margin-bottom:0;
-                
-
+                margin-bottom:200px;
             }
+            
             /* What it does: Remove spaces around the email design added by some email clients. */
             /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
             html,
@@ -85,6 +109,7 @@
             a[x-apple-data-detectors] {
             color: inherit !important;
             }
+            
         </style>
         
         <!-- Progressive Enhancements -->
@@ -248,10 +273,35 @@
             .stack-column-center {
                 text-align: center !important;
             }
+            
             }
         </style>
     
     </head>
+    <div class="header">
+        <table cellspacing="0" cellpadding="0" border="0" align="center" bgcolor="#ffffff" width="100%">
+            <tr>
+                
+                <td bgcolor="#ffffff" style="padding: 0px 0px 0px 0px; "><apex:image url="https://rspcaassured.file.force.com/servlet/servlet.ImageServer?id=0152p000006gh2S&oid=00D1t000000rBVS&lastMod=1605189307000" width="100%"/> </td>
+            </tr>
+        </table>
+    </div>
+    <div class="footer" name="footer">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr >
+                    <td style="width: 30px">&nbsp;</td>
+                    <td >
+                        <p>Registered Office: Freedom Food Limited (t/a <strong>RSPCA Assured</strong>)<br/>
+                            Parkside | Horsham | West Sussex | RH12 1XH<br/>
+                            01403 286170 | <a href="mailto:help@rspcaassured.org.uk" style="color: #000000; text-decoration: underline;">help@rspcaassured.org.uk</a></p>
+                    </td>
+                </tr>
+            </tbody>
+            
+        </table>
+    </div>
+    <div class="content">
     
     <table bgcolor="#f3f3f3" cellpadding="0" cellspacing="0" border="0" height="100%" width="100%"
         style="border-collapse:collapse; border:0;">
@@ -264,12 +314,6 @@
                 class="email-container">
     
                 <tr>
-                <td width="100%" bgcolor="#ffffff" style="padding: 0px 0px 0px 0px; "><img
-                    src="https://rspcaassured--c.documentforce.com/servlet/servlet.ImageServer?id=0152p000006gh2S&oid=00D1t000000rBVS&lastMod=1605189307000" width="2500" alt="" border="0" align="center"
-                    style="width: 100%; max-width: 700px; height: auto;"/></td>
-                </tr>
-    
-                <tr>
                 <td>
                     <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:0;">
                     <tr>
@@ -277,12 +321,12 @@
                         <td style="height: 5px;">&nbsp;</td>
                         <td style="width: 35px; height: 5px;"></td>
                     </tr>
+                    
                     <tr>
                         <td style="width: 40px">&nbsp;</td>
                         <td style="padding: 0px 0px 0px 0px; text-align: left; font-family: Arial, sans-serif; font-size: 14px; mso-height-rule: exactly; line-height: 20px; color: #000000;">
-                            <p>Registered Office: Freedom Food Limited (t/a <strong>RSPCA Assured</strong>)<br/>
-                            Wilberforce Way | Southwater | West Sussex | RH13 9RS<br/>
-                            01403 286170 | <a href="mailto:help@rspcaassured.org.uk" style="color: #000000; text-decoration: underline;">help@rspcaassured.org.uk</a></p>
+                            
+                            
                             <table cellspacing="0" cellpadding="1" border="2" bordercolor="#ffffff" width="100%" valign="top" style="border: 2px solid white;">
                             <tr>
                                 <td width="42%" valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px;  color: #000000; border: 2px solid white;"><span style="margin: 5px;">{!currentRecord.Applicant_Full_Name__c}</span> <br/>
@@ -304,6 +348,28 @@
                                     <span style="margin: 5px; color: red;">(You must use this reference when paying by BACS)</span>
                                 </td>
                             </tr>
+                            <tr>
+                                <td width="42%"  valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px;  color: #000000; border: 2px solid white;">
+                                    <p>
+                                        Membership Number: {!currentRecord.Membership_Number__c}<br/>
+                                        Site Name: {!currentRecord.Site__r.Name}<br/>
+                                       <apex:outputPanel rendered="{!currentRecord.RecordType.DeveloperName == 'Renewal'}">
+                                            Annual Membership Fee from <br/>
+                                            <apex:outputText value="{0,date,dd/MM/yyyy}">
+                                            <apex:param value="{!startDate}" /> 
+                                            </apex:outputText>
+                                            to &nbsp;
+                                            <apex:outputText value="{0,date,dd/MM/yyyy}">
+                                            <apex:param value="{!EndDate}" /> 
+                                        </apex:outputText>
+                                        </apex:outputPanel>
+                                    
+                                </p>
+                                </td>
+                                <td width="58%">
+
+                                </td>
+                            </tr>
                             </table>
                             <br/>
                             <c:InvoiceItems applicationId="{!currentRecord.Id}"/><br/>
@@ -314,11 +380,10 @@
                                 <span style="margin: 5px;">Sort Code: 60-11-17</span> </td>
                                 <td width="50%" valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><span style="margin: 5px;">VAT Registration Number: 602 7676 42</span><br/>
                                 <span style="margin: 5px;">Company No. 2723670</span><br/>
-                                <span style="margin: 5px;">Charity No. 10539879 / SC038199</span></td>
+                                <span style="margin: 5px;">Charity No. 1059879 / SCO38199</span></td>
                             </tr>
                             </table>
                             <p><span style="font-weight: bold">Thank you for your business.</span></p>
-                            <p style="font-size: 14px; font-weight: bold;">&nbsp;</p>
             
                         </td>
                         <td style="width: 35px">&nbsp;</td>
@@ -340,6 +405,8 @@
             </center>
         </td>
         </tr>
+        
+        
     </table>
-
+</div>
 </apex:page>

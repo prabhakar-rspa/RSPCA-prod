@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Used to map the account record type from the lead to the account record. Used for validation to ensure that lead gets converted to the correct account type. --></help>
+        <label><!-- LeadToAccountRecordType --></label>
+        <name>LeadToAccountRecordType__c</name>
+    </CustomFieldTranslation>

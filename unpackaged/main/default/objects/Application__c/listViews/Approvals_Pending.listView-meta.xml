@@ -15,5 +15,5 @@
         <operation>equals</operation>
         <value>Compliance</value>
     </filters>
-    <label>Approvals (Pending)</label>
+    <label>Approvals (Pending) - delete</label>
 </ListView>

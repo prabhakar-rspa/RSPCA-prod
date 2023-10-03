@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>asp04__Process_Payment</fullName>
+    <availability>online</availability>
+    <description>Takes the user to the Asperato payment page</description>
+    <displayType>button</displayType>
+    <height>600</height>
+    <linkType>page</linkType>
+    <masterLabel>Process Payment</masterLabel>
+    <openType>noSidebar</openType>
+    <page>asp04__ProcessPayment</page>
+    <protected>false</protected>
+</WebLink>

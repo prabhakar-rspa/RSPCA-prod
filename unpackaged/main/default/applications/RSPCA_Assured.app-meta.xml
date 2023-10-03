@@ -7,6 +7,7 @@
         <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
     </brand>
     <description>App for RSPCA Assured team to use.</description>
+    <formFactors>Small</formFactors>
     <formFactors>Large</formFactors>
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
@@ -360,6 +361,14 @@
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>Tab</actionName>
+        <content>RSPCAASSUREDHomePageAbbie</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Compliance</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
         <content>RSPCAASSUREDHomePage212</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>standard-home</pageOrSobjectType>
@@ -462,6 +471,15 @@
         <type>Flexipage</type>
         <profile>NSF</profile>
     </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>RSPCAASSUREDHomePage211</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Contract Assessors</profile>
+    </profileActionOverrides>
+    <setupExperience>all</setupExperience>
     <tabs>standard-home</tabs>
     <tabs>standard-Lead</tabs>
     <tabs>standard-Account</tabs>
@@ -478,6 +496,7 @@
     <tabs>Suspension_History__c</tabs>
     <tabs>WOA__c</tabs>
     <tabs>Derogation_Exception__c</tabs>
+    <tabs>Assessment_Checklist_Question__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>RSPCA_Assured_UtilityBar</utilityBar>
 </CustomApplication>

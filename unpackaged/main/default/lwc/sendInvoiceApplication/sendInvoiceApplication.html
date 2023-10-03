@@ -1,0 +1,39 @@
+<template>
+    <lightning-quick-action-panel header="Send Invoice">
+        <lightning-layout multiple-rows="true">
+            <lightning-layout-item size="12">
+                <lightning-record-edit-form record-id={recordId} object-api-name="Application__c">
+                    <lightning-input-field field-name="Custom_Invoice_Message__c" onchange={handleMessageChange}></lightning-input-field>
+                </lightning-record-edit-form>
+            </lightning-layout-item>
+            <lightning-layout-item size="12" class="slds-p-top_xx-small">
+                <lightning-datatable
+                key-field="id"
+                data={records}
+                columns={columns}
+                onrowselection={getSelectedRecord}
+                if:true={contactsAvailable}>
+                </lightning-datatable>
+                <div if:false={contactsAvailable}>
+                    <div class="slds-notify slds-notify_alert" role="alert">
+                        <span class="slds-assistive-text">info</span>
+                        <h2>
+                            No contact found at Head Office level with Invoice User role
+                        </h2>
+                    </div>
+                </div>
+            </lightning-layout-item>
+        </lightning-layout>
+        <lightning-spinner
+            class="slds-is-fixed"
+            if:true={isLoading}
+            alternative-text="Loading"
+            size="medium"
+            variant="brand"
+        ></lightning-spinner>
+        <div slot="footer">
+          <lightning-button variant="neutral" label="Cancel" onclick={handleCancel}></lightning-button>
+          <lightning-button variant="brand" label="Send Invoice" class="slds-m-left_x-small" onclick={UpdateMessage}></lightning-button>
+        </div>
+      </lightning-quick-action-panel>
+</template>

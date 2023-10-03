@@ -1,8 +1,11 @@
 public class CertificatesController {
     public Account currentRecord{get;set;}
-
+    public Checklist_Template__c chechlistTemplateRecord{get;set;}
+    public Application_Unit__c ApplicationUnitRecord{get;set;}
     public String startDate{get;set;}
     public String endDate{get;set;}
+    public String species{ get; set; }
+
 
     public Map<Integer, String> monthsMap = new Map<Integer, String>{
         1  => 'January',
@@ -20,9 +23,35 @@ public class CertificatesController {
     };
 
     public CertificatesController() {
-        currentRecord = [SELECT Id, Name, Parent.Name, Membership_Number__c, Membership_Expiry_Date__c, Certificate_Issue_Date__c, Certificate_Expiry_Date_Calculated__c, BillingStreet, BillingCity, County__c, BillingCountry, BillingPostalcode FROM Account WHERE Id = :ApexPages.currentPage().getParameters().get('id')];
-        startDate = currentRecord.Certificate_Issue_Date__c.day() + ' ' + monthsMap.get(currentRecord.Certificate_Issue_Date__c.month()) + ' ' + currentRecord.Certificate_Issue_Date__c.year();
-        endDate = currentRecord.Membership_Expiry_Date__c.day() + ' ' + monthsMap.get(currentRecord.Membership_Expiry_Date__c.month()) + ' ' + currentRecord.Membership_Expiry_Date__c.year();
+        currentRecord = [SELECT Id, Name, Parent.Name, Membership_Number__c, Membership_Expiry_Date__c, Certificate_Issue_Date__c, Previous_Assessment_Date__c, Certificate_Expiry_Date_Calculated__c, BillingStreet, BillingCity, County__c, BillingCountry, BillingPostalcode
+                         FROM Account WHERE Id = :ApexPages.currentPage().getParameters().get('id')];
+        
+        species = ApexPages.currentPage().getParameters().get('species');
+        System.debug('species '+species);
+        // Getting Application records based on Account Records
+        System.debug('App Unit '+[SELECT Id,Name,Application__c,Application__r.Name,Application__r.Stage__c,Application__r.Assessment_Approved_By_Assessor_Date__c,Application__r.Assessment_Date__c, Application__r.Previous_Assessment_Date__c,Application__r.Site__c, Application__r.Site__r.Name,Application__r.Status__c,Animals__c FROM Application_Unit__c]);
+        ApplicationUnitRecord = [SELECT Id,Name,Application__c,Application__r.Name,Application__r.Stage__c,Application__r.Assessment_Approved_By_Assessor_Date__c,Application__r.Assessment_Date__c, Application__r.Previous_Assessment_Date__c,Application__r.Site__c, Application__r.Site__r.Name,Application__r.Status__c,Animals__c FROM Application_Unit__c WHERE Application__r.Site__c =:ApexPages.currentPage().getParameters().get('id') AND Application__r.Assessment_Approved_By_Certifier_Date__c != NULL AND Animals__c =:species ORDER BY Application__r.Name DESC LIMIT 1];
+        
+		
+        // Getting Checklist Template Record based on Renewal Date and Species.
+        List<Checklist_Template__c> chechlistTemplateList = [SELECT Id, Name, Type__c, Species__c, Status__c, Animals_List__c, Start_Date__c, End_Date__c, Scheme_Wording__c
+                                                             FROM Checklist_Template__c WHERE Species__c = :species];
+
+        System.debug('chechlistTemplateList '+chechlistTemplateList);
+        for(Checklist_Template__c objCT: chechlistTemplateList){
+            System.debug('objCT.Start_Date__c '+objCT.Start_Date__c);
+            System.debug('objCT.End_Date__c '+objCT.End_Date__c);
+            if(ApplicationUnitRecord.Application__r.Assessment_Date__c >= objCT.Start_Date__c && ApplicationUnitRecord.Application__r.Assessment_Date__c <= objCT.End_Date__c){
+                chechlistTemplateRecord = objCT;
+            }
+        }                            
+
+        if(currentRecord.Certificate_Issue_Date__c != null){
+            startDate = currentRecord.Certificate_Issue_Date__c.day() + ' ' + monthsMap.get(currentRecord.Certificate_Issue_Date__c.month()) + ' ' + currentRecord.Certificate_Issue_Date__c.year();
+        }
+        if(currentRecord.Membership_Expiry_Date__c != null){
+            endDate = currentRecord.Membership_Expiry_Date__c.day() + ' ' + monthsMap.get(currentRecord.Membership_Expiry_Date__c.month()) + ' ' + currentRecord.Membership_Expiry_Date__c.year();
+        }
     }
     //method to get a list of supply chain units
     public List<Unit__c> getSupplyChainUnits(){
@@ -82,7 +111,7 @@ public class CertificatesController {
             }
             // adding "Schemes" for plural animals
             animalsString = animalsString + ' Schemes';
-			*/
+            */
         }else{
             // adding "Scheme" for singulr animal
             animalsString = animalsString + ' Scheme';
@@ -112,7 +141,7 @@ public class CertificatesController {
                     animalsString = animalsString + ' and ' + animal; 
                 }
             }
-			*/
+            */
         }
         return animalsString;
     }
@@ -140,7 +169,7 @@ public class CertificatesController {
             }
             // adding "Units" for plural animals
             rearingSystemAnimalString = rearingSystemAnimalString + ' Units';
-			*/
+            */
         }else {
             // adding "Scheme" for singulr animal
             rearingSystemAnimalString = rearingSystemAnimalString + ' Unit';
@@ -233,180 +262,181 @@ public class CertificatesController {
     }
 
     // get SCI Scheme Texts
+    // Updated the logic based on Checklist Template record
     public String getSCISchemeTexts(){
-        List<SchemeCertificateText__mdt> schemeTextList = SchemeCertificateText__mdt.getAll().values();
-        Set<String> schemeTextSet = new Set<String>();
-        for(Unit__c u : getNSFUKASUnits()){
-            for(SchemeCertificateText__mdt scheme : schemeTextList){
-                if(u.Business__c == 'Producer'){
-                    if(u.Animals__c == scheme.Species_Type__c){
-                        schemeTextSet.add(scheme.Scheme_Wording__c);
+        
+        Set<String> checklistTextSet = new Set<String>();
+        if(chechlistTemplateRecord != null){
+            for (Unit__c u : getNSFUKASUnits()){
+                if (u.Business__c == 'Producer'){
+                    if (u.Animals__c == chechlistTemplateRecord.Species__c){
+                        checklistTextSet.add(chechlistTemplateRecord.Scheme_Wording__c);
                     }
                 }
-                if(u.Business__c == 'Abattoir'){
-                    if(u.Animals__c == 'Salmon'){
-                        if(scheme.Species_Type__c == 'Salmon Abattoir'){
-                            schemeTextSet.add(scheme.Scheme_Wording__c);
+                if (u.Business__c == 'Abattoir'){
+                    if (u.Animals__c == 'Salmon'){
+                        if (chechlistTemplateRecord.Species__c == 'Salmon'){
+                            checklistTextSet.add(chechlistTemplateRecord.Scheme_Wording__c);
                         }
-                    }else{
-                        if(scheme.Species_Type__c == 'Abattoir'){
-                            schemeTextSet.add(scheme.Scheme_Wording__c);
-                        }
-                    }
-                }
-                if(u.Business__c == 'Catching'){
-                    if(scheme.Species_Type__c == 'Catching'){
-                        schemeTextSet.add(scheme.Scheme_Wording__c);
-                    }
-                }
-                if(u.Business__c == 'Hatchery'){
-                    if(u.Animals__c == 'Salmon'){
-                        if(scheme.Species_Type__c == 'Salmon Hatchery'){
-                            schemeTextSet.add(scheme.Scheme_Wording__c);
-                        }
-                    }else{
-                        if(scheme.Species_Type__c == 'Hatchery'){
-                            schemeTextSet.add(scheme.Scheme_Wording__c);
+                    } else{
+                        if (chechlistTemplateRecord.Species__c == 'Abattoir'){
+                            checklistTextSet.add(chechlistTemplateRecord.Scheme_Wording__c);
                         }
                     }
                 }
-                if(u.Business__c == 'Haulier'){
-                    if(u.Animals__c == 'Salmon'){
-                        if(u.Vehicle_Type__c == 'Wellboat'){
-                            if(scheme.Species_Type__c == 'Salmon Wellboat'){
-                                schemeTextSet.add(scheme.Scheme_Wording__c);
+                if (u.Business__c == 'Catching'){
+                    if (chechlistTemplateRecord.Species__c == 'Catching'){
+                        checklistTextSet.add(chechlistTemplateRecord.Scheme_Wording__c);
+                    }
+                }
+                if (u.Business__c == 'Hatchery'){
+                    if (u.Animals__c == 'Salmon'){
+                        if (chechlistTemplateRecord.Species__c == 'Salmon'){
+                            checklistTextSet.add(chechlistTemplateRecord.Scheme_Wording__c);
+                        }
+                    } else{
+                        if (chechlistTemplateRecord.Species__c == 'Hatchery'){
+                            checklistTextSet.add(chechlistTemplateRecord.Scheme_Wording__c);
+                        }
+                    }
+                }
+                if (u.Business__c == 'Haulier'){
+                    if (u.Animals__c == 'Salmon'){
+                        if (u.Vehicle_Type__c == 'Wellboat'){
+                            if (chechlistTemplateRecord.Species__c == 'Salmon'){
+                                checklistTextSet.add(chechlistTemplateRecord.Scheme_Wording__c);
                             }
                         }
-                        if(u.Vehicle_Type__c == 'Helicopter'){
-                            if(scheme.Species_Type__c == 'Salmon Helicopter'){
-                                schemeTextSet.add(scheme.Scheme_Wording__c);
+                        if (u.Vehicle_Type__c == 'Helicopter'){
+                            if (chechlistTemplateRecord.Species__c == 'Salmon'){
+                                checklistTextSet.add(chechlistTemplateRecord.Scheme_Wording__c);
                             }
                         }
-                    }else{
-                        if(u.Own_Transport__c){
-                            if(scheme.Species_Type__c == 'Own Transport'){
-                                schemeTextSet.add(scheme.Scheme_Wording__c);
+                    } else{
+                        if (u.Own_Transport__c){
+                            if (chechlistTemplateRecord.Species__c == 'Own Transport'){
+                                checklistTextSet.add(chechlistTemplateRecord.Scheme_Wording__c);
                             }
-                        }else{
-                            if(scheme.Species_Type__c == 'Haulier'){
-                                schemeTextSet.add(scheme.Scheme_Wording__c);
+                        } else{
+                            if (chechlistTemplateRecord.Species__c == 'Haulier'){
+                                checklistTextSet.add(chechlistTemplateRecord.Scheme_Wording__c);
                             }
                         }
                     }
                 }
-                
+            }
+            if(checklistTextSet.size() == 0 && chechlistTemplateRecord.Scheme_Wording__c != null){
+                checklistTextSet.add(chechlistTemplateRecord.Scheme_Wording__c);
             }
         }
-
-        String schemeTextString = '';
-
+        String checklistTextString = '';
+        
         // Converting set to list in order to the the initial value from 0
-        List<String> schemeTextValuesFromSet = new List<String>(schemeTextSet);
+        List<String> checklistTextValuesFromSet = new List<String>(checklistTextSet);
         // place the first animal from the set
-        if(schemeTextValuesFromSet.size() > 0){
-            schemeTextString = schemeTextValuesFromSet[0];
+        if (checklistTextValuesFromSet.size() > 0){
+            checklistTextString = checklistTextValuesFromSet[0];
         }
         
         // add additonal scheme to the string with concatanation
-        if(schemeTextValuesFromSet.size() > 1){
-            for(String scheme: schemeTextValuesFromSet){
-                if(scheme != schemeTextString){
-                    schemeTextString = schemeTextString + ' and ' + scheme; 
+        if (checklistTextValuesFromSet.size() > 1){
+            for (String scheme : checklistTextValuesFromSet){
+                if (scheme != checklistTextString){
+                    checklistTextString = checklistTextString + ' and ' + scheme;
                 }
             }
         }
-        return schemeTextString;
-
+        return checklistTextString;
     }
-
+    
     // get SCI Scheme Texts
+    // Updated the logic based on Checklist Template record
     public String getSCISchemeTitle(){
-        List<SchemeCertificateText__mdt> schemeTextList = SchemeCertificateText__mdt.getAll().values();
-        Set<String> schemeTitle = new Set<String>();
-        for(Unit__c u : getNSFUKASUnits()){
-            for(SchemeCertificateText__mdt scheme : schemeTextList){
-                if(u.Business__c == 'Producer'){
-                    if(u.Animals__c == scheme.Species_Type__c){
-                        schemeTitle.add(scheme.MasterLabel);
+        Set<String> checklistTitle = new Set<String>();
+        if(chechlistTemplateRecord != null){
+            for (Unit__c u : getNSFUKASUnits()){
+                if (u.Business__c == 'Producer'){
+                    if (u.Animals__c == chechlistTemplateRecord.Species__c){
+                        checklistTitle.add(chechlistTemplateRecord.Name);
                     }
                 }
-                if(u.Business__c == 'Abattoir'){
-                    if(u.Animals__c == 'Salmon'){
-                        if(scheme.Species_Type__c == 'Salmon Abattoir'){
-                            schemeTitle.add(scheme.MasterLabel);
+                if (u.Business__c == 'Abattoir'){
+                    if (u.Animals__c == 'Salmon'){
+                        if (chechlistTemplateRecord.Species__c == 'Salmon'){
+                            checklistTitle.add(chechlistTemplateRecord.Name);
                         }
-                    }else{
-                        if(scheme.Species_Type__c == 'Abattoir'){
+                    } else{
+                        if (chechlistTemplateRecord.Species__c == 'Abattoir'){
                             // do nothing as the Scheme title will be 'RSPCA Assured Scheme'
                         }
                     }
                 }
-                if(u.Business__c == 'Catching'){
-                    if(scheme.Species_Type__c == 'Catching'){
-                        schemeTitle.add(scheme.MasterLabel);
+                if (u.Business__c == 'Catching'){
+                    if (chechlistTemplateRecord.Species__c == 'Catching'){
+                        checklistTitle.add(chechlistTemplateRecord.Name);
                     }
                 }
-                if(u.Business__c == 'Hatchery'){
-                    if(u.Animals__c == 'Salmon'){
-                        if(scheme.Species_Type__c == 'Salmon Hatchery'){
-                            schemeTitle.add(scheme.MasterLabel);
+                if (u.Business__c == 'Hatchery'){
+                    if (u.Animals__c == 'Salmon'){
+                        if (chechlistTemplateRecord.Species__c == 'Salmon'){
+                            checklistTitle.add(chechlistTemplateRecord.Name);
                         }
-                    }else{
-                        if(scheme.Species_Type__c == 'Hatchery'){
-                            schemeTitle.add(scheme.MasterLabel);
+                    } else{
+                        if (chechlistTemplateRecord.Species__c == 'Hatchery'){
+                            checklistTitle.add(chechlistTemplateRecord.Name);
                         }
                     }
                 }
-                if(u.Business__c == 'Haulier'){
-                    if(u.Animals__c == 'Salmon'){
-                        if(u.Vehicle_Type__c == 'Wellboat'){
-                            if(scheme.Species_Type__c == 'Salmon Wellboat'){
-                                schemeTitle.add(scheme.MasterLabel);
+                if (u.Business__c == 'Haulier'){
+                    if (u.Animals__c == 'Salmon'){
+                        if (u.Vehicle_Type__c == 'Wellboat'){
+                            if (chechlistTemplateRecord.Species__c == 'Salmon'){
+                                checklistTitle.add(chechlistTemplateRecord.Name);
                             }
                         }
-                        if(u.Vehicle_Type__c == 'Helicopter'){
-                            if(scheme.Species_Type__c == 'Salmon Helicopter'){
-                                schemeTitle.add(scheme.MasterLabel);
+                        if (u.Vehicle_Type__c == 'Helicopter'){
+                            if (chechlistTemplateRecord.Species__c == 'Salmon'){
+                                checklistTitle.add(chechlistTemplateRecord.Name);
                             }
                         }
-                    }else{
-                        if(u.Own_Transport__c){
-                            if(scheme.Species_Type__c == 'Own Transport'){
-                                schemeTitle.add(scheme.MasterLabel);
+                    } else{
+                        if (u.Own_Transport__c){
+                            if (chechlistTemplateRecord.Species__c == 'Own Transport'){
+                                checklistTitle.add(chechlistTemplateRecord.Name);
                             }
-                        }else{
-                            if(scheme.Species_Type__c == 'Haulier'){
+                        } else{
+                            if (chechlistTemplateRecord.Species__c == 'Haulier'){
                                 // do nothing as the Scheme title will be 'RSPCA Assured Scheme'
                             }
                         }
                     }
                 }
-                
+            }
+            if(checklistTitle.size() == 0 && chechlistTemplateRecord.Name != null){
+                checklistTitle.add(chechlistTemplateRecord.Name);   
             }
         }
-
-        String schemeTitleString = '';
-
+        System.debug('checklistTitle ' + checklistTitle);
+        String checklistTitleString = '';
+        
         // Converting set to list in order to the the initial value from 0
-        List<String> schemeTitleValuesFromSet = new List<String>(schemeTitle);
+        List<String> checklistTitleValuesFromSet = new List<String>(checklistTitle);
+        System.debug('checklistTitleValuesFromSet ' + checklistTitleValuesFromSet);
         // place the first animal from the set
-        if(schemeTitleValuesFromSet.size() > 0){
-            schemeTitleString = schemeTitleValuesFromSet[0];
-
-             // add additonal scheme to the string with concatanation
-            if(schemeTitleValuesFromSet.size() > 1){
-                for(String scheme: schemeTitleValuesFromSet){
-                    if(scheme != schemeTitleString){
-                        schemeTitleString = schemeTitleString + ' and ' + scheme; 
+        if (checklistTitleValuesFromSet.size() > 0){
+            checklistTitleString = checklistTitleValuesFromSet[0];
+            
+            // add additonal scheme to the string with concatanation
+            if (checklistTitleValuesFromSet.size() > 1){
+                for (String scheme : checklistTitleValuesFromSet){
+                    if (scheme != checklistTitleString){
+                        checklistTitleString = checklistTitleString + ' and ' + scheme;
                     }
                 }
             }
-        }else {
-            schemeTitleString = 'Scheme';
+        } else{
+            checklistTitleString = 'Scheme';
         }
-        
-       
-        return schemeTitleString;
-
+        return checklistTitleString;
     }
 }

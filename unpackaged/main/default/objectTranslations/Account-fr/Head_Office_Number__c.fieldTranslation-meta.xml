@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The first four digits of the full membership number that represents the group --></help>
+        <label><!-- Head Office Membership Number --></label>
+        <name>Head_Office_Number__c</name>
+    </CustomFieldTranslation>

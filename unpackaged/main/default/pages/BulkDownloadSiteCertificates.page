@@ -110,7 +110,7 @@
                                              <a class="supply-chain-certificate-{!sc.siteRecordId}"  
                                            style="{!IF(unit.hasSupplyChainCertificate, 'display:block','display:none')}" 
                                            href="{!unit.supplyChainCertificateURL}" id="supplyChainCertificate" 
-                                           target="_blank" download="{!sc.membershipNumber} {!sc.siteName} {!unit.species} Certificate.pdf">
+                                           target="_blank" download="{!sc.membershipNumber} {!sc.siteName} {!unit.species} Certificate.pdf" onclick="attach(this);">
                                             Download Individual
                                         </a>
                                         </apex:outputPanel>
@@ -122,7 +122,7 @@
                                             Not Available
                                         </apex:outputPanel>
                                          <apex:outputPanel rendered="{!unit.hasNSFUKASCertificate}">
-                                            <a class="sci-certificate-{!sc.siteRecordId}" style="{!IF(unit.hasNSFUKASCertificate, 'display:block','display:none')}" href="{!unit.nsfUkasCertificateUrl}" id="supplyChainCertificate" target="_blank" download="{!sc.membershipNumber} {!sc.siteName} {!unit.species} Certificate.pdf">
+                                            <a class="sci-certificate-{!sc.siteRecordId}" style="{!IF(unit.hasNSFUKASCertificate, 'display:block','display:none')}" href="{!unit.nsfUkasCertificateUrl}" id="supplyChainCertificate" target="_blank" download="{!sc.membershipNumber} {!sc.siteName} {!unit.species} Certificate.pdf" onclick="attach(this);">
                                                 Download Individual
                                             </a>
                                         </apex:outputPanel>
@@ -145,7 +145,17 @@
         
         
     </div> 
+    <apex:form >
+        <apex:actionFunction action="{!attachPDF}" name="attachPDF" rerender="none">
+            <apex:param name="imageURL" assignTo="{!imageURL}" value="" />
+            <apex:param name="pdfName" assignTo="{!pdfName}" value="" />
+        </apex:actionFunction>
+    </apex:form>
     <script>
+    function attach(event){
+      console.log('event:::',event);
+       attachPDF(event.href,event.download);
+    }
     function show(obj) {
         let elements = document.querySelectorAll('.child-'+obj);
         if(elements && elements.length>0){

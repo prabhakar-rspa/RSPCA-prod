@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Default</label>
+    <protected>false</protected>
+    <values>
+        <field>asp04__Direct_Debit_Lead_Time__c</field>
+        <value xsi:type="xsd:double">4.0</value>
+    </values>
+    <values>
+        <field>asp04__Live_Server__c</field>
+        <value xsi:type="xsd:string">https://live.protectedpayments.net</value>
+    </values>
+    <values>
+        <field>asp04__Paypage_endpoint__c</field>
+        <value xsi:type="xsd:string">/PMWeb1</value>
+    </values>
+    <values>
+        <field>asp04__Repeat_Endpoint__c</field>
+        <value xsi:type="xsd:string">/PMRepeatJson</value>
+    </values>
+    <values>
+        <field>asp04__Test_Server__c</field>
+        <value xsi:type="xsd:string">https://test.protectedpayments.net</value>
+    </values>
+</CustomMetadata>

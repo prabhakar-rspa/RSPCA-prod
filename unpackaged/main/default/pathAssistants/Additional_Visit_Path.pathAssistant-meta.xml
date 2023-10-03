@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PathAssistant xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <entityName>Application__c</entityName>
+    <fieldName>Stage__c</fieldName>
+    <masterLabel>Additional Visit Path</masterLabel>
+    <pathAssistantSteps>
+        <fieldNames>Site__c</fieldNames>
+        <fieldNames>Outcome_of_Visit__c</fieldNames>
+        <fieldNames>Other_Outcome_of_Visit__c</fieldNames>
+        <picklistValueName>Complete</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>Report__c</fieldNames>
+        <fieldNames>Communications__c</fieldNames>
+        <picklistValueName>Review</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>Visit_Type__c</fieldNames>
+        <fieldNames>Reason_for_Visit__c</fieldNames>
+        <fieldNames>Check__c</fieldNames>
+        <fieldNames>Allocated_Inspector__c</fieldNames>
+        <fieldNames>Visit_Deadline__c</fieldNames>
+        <picklistValueName>Schedule</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>Report__c</fieldNames>
+        <fieldNames>Outcome_of_Visit__c</fieldNames>
+        <fieldNames>Other_Outcome_of_Visit__c</fieldNames>
+        <picklistValueName>Visit</picklistValueName>
+    </pathAssistantSteps>
+    <recordTypeName>Additional_Visit</recordTypeName>
+</PathAssistant>

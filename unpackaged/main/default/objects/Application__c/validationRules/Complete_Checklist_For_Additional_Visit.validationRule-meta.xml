@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Complete_Checklist_For_Additional_Visit</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND( RecordType.DeveloperName = &#39;Additional_Visit&#39;, Completed_Checklist_Count__c &lt;=0 ,
+TEXT(Stage__c ) = &#39;Complete&#39;)</errorConditionFormula>
+    <errorMessage>Checklist must be completed before moving to &#39;Complete&#39; stage.</errorMessage>
+</ValidationRule>

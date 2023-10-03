@@ -1,0 +1,39 @@
+.THIS .slds-progress{
+    max-width: 60%;
+}
+.THIS lightning-input.hiddenComponent.slds-form-element{
+    display: none;
+}
+.THIS div.slds-form{
+    padding: 1rem;
+}
+
+.THIS .membershipAgreementLink{
+    color: #0058a5;
+}
+
+
+.THIS .cardPaymentForm{
+    padding-bottom: 5em !important;
+    height: 100%;
+}
+
+.THIS div.scrollable.addUnitScroll.uiScrollerWrapper{
+    text-align: center;
+}
+
+.THIS .labelWithTooltip{
+    max-width: calc(100% - 2.50rem);
+}
+
+.THIS .referenceHelpMessage{
+    color: red;
+}
+
+.THIS div.container.activeState{
+    height: 100% !important;
+}
+
+.THIS div.baseDefault.forceChatterBasePublisher.forceChatterLightningComponent{
+    height: 100% !important;
+}

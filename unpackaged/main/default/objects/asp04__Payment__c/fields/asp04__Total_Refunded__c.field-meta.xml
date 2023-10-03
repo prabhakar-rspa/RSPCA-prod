@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>asp04__Total_Refunded__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Total Refunded</label>
+    <summarizedField>asp04__Refund__c.asp04__Amount__c</summarizedField>
+    <summaryFilterItems>
+        <field>asp04__Refund__c.asp04__Refund_Stage__c</field>
+        <operation>equals</operation>
+        <value>Refunded to customer</value>
+    </summaryFilterItems>
+    <summaryForeignKey>asp04__Refund__c.asp04__Payment__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

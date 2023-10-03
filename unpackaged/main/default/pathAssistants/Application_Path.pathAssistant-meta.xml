@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PathAssistant xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <entityName>Application__c</entityName>
+    <fieldName>Stage__c</fieldName>
+    <masterLabel>Application Path</masterLabel>
+    <pathAssistantSteps>
+        <fieldNames>Assessment_Deadline__c</fieldNames>
+        <fieldNames>Assessor__c</fieldNames>
+        <fieldNames>Assessor_Email__c</fieldNames>
+        <fieldNames>Assessor_Mobile__c</fieldNames>
+        <fieldNames>Allocation_Status__c</fieldNames>
+        <info>&lt;p&gt;&lt;span style=&quot;font-size: 11pt; font-family: Roboto, sans-serif;&quot;&gt;Member Services&lt;/span&gt;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;&lt;span style=&quot;font-size: 11pt;&quot;&gt;Click on ‘Allocated Assessor’ and type in the assessor&amp;#39;s name and click ‘Save’&lt;/span&gt;&lt;/li&gt;&lt;/ol&gt;</info>
+        <picklistValueName>Allocation</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>Applicant_Full_Name__c</fieldNames>
+        <fieldNames>Applicant_Phone__c</fieldNames>
+        <fieldNames>Applicant_Mobile__c</fieldNames>
+        <fieldNames>Applicant_Email__c</fieldNames>
+        <info>&lt;p&gt;&lt;span style=&quot;font-size: 11pt; font-family: Roboto, sans-serif;&quot;&gt;Member Services&lt;/span&gt;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;&lt;span style=&quot;font-size: 11pt;&quot;&gt;Check the fields are complete and correct, including payment&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 11pt;&quot;&gt;Contact the member and amend anything that is missing or incorrect&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 11pt;&quot;&gt;Click the ‘Mark Stage as Complete’ button when you are finished&lt;/span&gt;&lt;/li&gt;&lt;/ol&gt;</info>
+        <picklistValueName>Application</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>Assessment_Date__c</fieldNames>
+        <fieldNames>Rescheduled_Assessment_Reason__c</fieldNames>
+        <fieldNames>Site__c</fieldNames>
+        <fieldNames>Site_Postcode__c</fieldNames>
+        <fieldNames>Contact_Mobile__c</fieldNames>
+        <info>&lt;p&gt;&lt;span style=&quot;font-size: 11pt; font-family: Roboto, sans-serif;&quot;&gt;Assessor&lt;/span&gt;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;&lt;span style=&quot;font-size: 11pt;&quot;&gt;Contact the member to book an assessment&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 11pt;&quot;&gt;Click on ‘Scheduled Assessment Date’ and enter the date of assessment&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 11pt;&quot;&gt;Once the assessment is complete add a link to your checklist and report&lt;/span&gt;&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 11pt;&quot;&gt;Member Services&lt;/span&gt;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;&lt;br&gt;&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</info>
+        <picklistValueName>Assessment</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>Status__c</fieldNames>
+        <fieldNames>Date_Certified__c</fieldNames>
+        <fieldNames>Passed_Date__c</fieldNames>
+        <fieldNames>Membership_Expiry_Date__c</fieldNames>
+        <fieldNames>Additional_Visit__c</fieldNames>
+        <info>&lt;p&gt;&lt;span style=&quot;font-family: Roboto, sans-serif; font-size: 11pt;&quot;&gt;To view the certificate click the ’Site’ link to go to the Site Account, then click on the ‘Download Certificates’ button.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-family: Roboto, sans-serif; font-size: 11pt;&quot;&gt;The member will automatically be emailed a reminder about renewing six weeks and two weeks before the date their certificate expires.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-family: Roboto, sans-serif; font-size: 11pt;&quot;&gt;If they still have not renewed one week before their certificate expires you will receive an email advising you to contact them.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</info>
+        <picklistValueName>Certification</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>Membership_Expiry_Date__c</fieldNames>
+        <fieldNames>Contact_Name__c</fieldNames>
+        <fieldNames>Contact_Email__c</fieldNames>
+        <fieldNames>Contact_Mobile__c</fieldNames>
+        <info>&lt;p&gt;&lt;span style=&quot;font-family: Roboto, sans-serif; font-size: 11pt;&quot;&gt;Member services, Assessor and SCI&lt;/span&gt;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;&lt;span style=&quot;font-size: 11pt;&quot;&gt;Review the application, checklist, report and evidence (if applicable)&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 11pt;&quot;&gt;Once you’re satisfied, check each of the approved checkboxes&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 11pt;&quot;&gt;If issuing an extension, click on ‘Extension Period’ and select the duration from the list and click the ‘Save’ button&lt;/span&gt;&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;&lt;strong style=&quot;font-family: Roboto, sans-serif; font-size: 11pt;&quot;&gt;Note:&lt;/strong&gt;&lt;span style=&quot;font-family: Roboto, sans-serif; font-size: 11pt;&quot;&gt; when ticking the approved checkboxes or selecting an extension period, the other fields will auto-populate&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-family: Roboto, sans-serif; font-size: 11pt;&quot;&gt;Member services&lt;/span&gt;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;&lt;span style=&quot;font-size: 11pt;&quot;&gt;Once all approvals are complete, click the ‘Mark Stage as Complete’ button&lt;/span&gt;&lt;/li&gt;&lt;/ol&gt;</info>
+        <picklistValueName>Compliance</picklistValueName>
+    </pathAssistantSteps>
+    <recordTypeName>Applications</recordTypeName>
+</PathAssistant>

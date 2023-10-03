@@ -2,9 +2,9 @@
 <Role xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseAccessLevel>None</caseAccessLevel>
     <contactAccessLevel>Edit</contactAccessLevel>
-    <description>Brown Brothers Ltd. Customer User</description>
+    <description>Brown Manufacturing Limited T/A Brown Brothers Customer User</description>
     <mayForecastManagerShare>false</mayForecastManagerShare>
-    <name>Brown Brothers Ltd. Customer User</name>
+    <name>Brown Manufacturing Limited T/A Brown Brothers Customer User</name>
     <opportunityAccessLevel>None</opportunityAccessLevel>
     <parentRole>Assessors</parentRole>
 </Role>

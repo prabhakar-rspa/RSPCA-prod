@@ -8,9 +8,6 @@
         <plural>true</plural>
         <value>Checklist Templates</value>
     </caseValues>
-    
-    
-    
     <layouts>
         <layout>Checklist Template Layout</layout>
         <sections>
@@ -18,5 +15,12 @@
             <section>Custom Links</section>
         </sections>
     </layouts>
+    
+    
+    
+    
+    
+    
+    
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

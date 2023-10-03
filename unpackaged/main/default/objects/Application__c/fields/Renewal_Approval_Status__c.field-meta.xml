@@ -33,6 +33,11 @@
                 <label>Pending Certifier Approval</label>
             </value>
             <value>
+                <fullName>Pending Inspector Approval</fullName>
+                <default>false</default>
+                <label>Pending Inspector Approval</label>
+            </value>
+            <value>
                 <fullName>Assessor Approved</fullName>
                 <default>false</default>
                 <isActive>false</isActive>

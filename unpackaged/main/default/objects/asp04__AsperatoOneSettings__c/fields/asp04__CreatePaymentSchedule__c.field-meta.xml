@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>asp04__CreatePaymentSchedule__c</fullName>
+    <defaultValue>true</defaultValue>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <inlineHelpText>When checked (default) then a Payment Schedule row will be linked to the Authorisation when a brand new row is inserted.  This does not apply when an Authorisation is updated.</inlineHelpText>
+    <label>Create Payment Schedule</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -7,7 +7,7 @@
     <columns>Business__c</columns>
     <columns>Production__c</columns>
     <columns>Animals__c</columns>
-    <columns>Rearing_System__c</columns>
+    <columns>Animals_List__c</columns>
     <columns>Status__c</columns>
     <columns>Vehicle_Registration__c</columns>
     <filterScope>Everything</filterScope>

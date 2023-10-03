@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>NAME</columns>
+    <columns>Assessment_Checklist__c</columns>
+    <columns>Standard_Order__c</columns>
+    <columns>Standard__c</columns>
+    <columns>Summary__c</columns>
+    <columns>Compliant__c</columns>
+    <columns>Comments_Action__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Assessment_Checklist__c</field>
+        <operation>equals</operation>
+        <value>AC-013623</value>
+    </filters>
+    <label>All</label>
+</ListView>

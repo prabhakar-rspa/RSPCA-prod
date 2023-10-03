@@ -1,17 +1,317 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>54.0</apiVersion>
+    <assignments>
+        <name>Assign_Add_Visit_approved_by_inspector</name>
+        <label>Assign Add. Visit approved by (inspector)</label>
+        <locationX>50</locationX>
+        <locationY>2411</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Add_Visit_approved_by_inspector__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$User.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Add_Visit_Approval_Date_inspector__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>todayDate</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Check_Add_Visit_Approved_By_Certifier</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Add_Visit_Approved_By_Office</name>
+        <label>Assign Add. Visit Approved By (Office)</label>
+        <locationX>50</locationX>
+        <locationY>2111</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Add_Visit_Approval_Date_Office__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>todayDate</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Add_Visit_Approved_By_Office__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$User.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Check_Add_Visit_approved_by_inspector</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Add_Visits_Approval_Certifier</name>
+        <label>Assign Add. Visits Approval (Certifier)</label>
+        <locationX>50</locationX>
+        <locationY>2711</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Add_Visits_Approval_Date_Certifier__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>todayDate</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Add_Visit_Approved_By_Certifier__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$User.Id</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Assign_Open_Application_Count</name>
+        <label>Assign Open Application Count</label>
+        <locationX>50</locationX>
+        <locationY>1403</locationY>
+        <assignmentItems>
+            <assignToReference>openApplicationSize</assignToReference>
+            <operator>AssignCount</operator>
+            <value>
+                <elementReference>Get_Applications</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Set_Assessment_Deadline_Date</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Application_Type_To_Additional_Visit</name>
+        <label>Set Application Type To Additional Visit</label>
+        <locationX>50</locationX>
+        <locationY>395</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Application_Type__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Additional Visit</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Existing_Member__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>No</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Additional_Visit__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Yes</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Allocation_Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Accepted</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Is_Visit_date_not_null</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Assessment_Deadline_Date</name>
+        <label>Set Assessment Deadline Date</label>
+        <locationX>50</locationX>
+        <locationY>1511</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Assessment_Deadline__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>deadlineDate</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Is_Pricebook_Id_Populated</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Evidence_Deadline</name>
+        <label>Set Evidence Deadline</label>
+        <locationX>50</locationX>
+        <locationY>695</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Evidence_Deadline__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>EvidenceDeadlineDate</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Previous_Assessment_Date</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Check_Add_Visit_Approved_By_Certifier</name>
+        <label>Check Add. Visit Approved By (Certifier)</label>
+        <locationX>182</locationX>
+        <locationY>2603</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Add_Visit_Approved_By_Certifier</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Add_Visit_Approved_By_Certifier__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Add_Visits_Approval_Date_Certifier__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Add_Visits_Approval_Certifier</targetReference>
+            </connector>
+            <label>Add. Visit Approved By (Certifier)</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Add_Visit_approved_by_inspector</name>
+        <label>Check Add. Visit approved by (inspector)</label>
+        <locationX>182</locationX>
+        <locationY>2303</locationY>
+        <defaultConnector>
+            <targetReference>Check_Add_Visit_Approved_By_Certifier</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Add_Visit_approved_by_inspector</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Add_Visit_approved_by_inspector__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Add_Visit_Approval_Date_inspector__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Add_Visit_approved_by_inspector</targetReference>
+            </connector>
+            <label>Add. Visit approved by (inspector)</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Add_Visit_Approved_By_Office</name>
+        <label>Check Add. Visit Approved By (Office)</label>
+        <locationX>182</locationX>
+        <locationY>2003</locationY>
+        <defaultConnector>
+            <targetReference>Check_Add_Visit_approved_by_inspector</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Add_Visit_Approved_By_Office</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Add_Visit_Approved_By_Office__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Add_Visit_Approval_Date_Office__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Add_Visit_Approved_By_Office</targetReference>
+            </connector>
+            <label>Add. Visit Approved By (Office)</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Renewal</name>
+        <label>Check Renewal</label>
+        <locationX>182</locationX>
+        <locationY>1187</locationY>
+        <defaultConnector>
+            <targetReference>Is_Pricebook_Id_Populated</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Renewals</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RecordType.DeveloperName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Renewal</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Previous_Assessment_Date__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Site__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Applications</targetReference>
+            </connector>
+            <label>Renewals</label>
+        </rules>
+    </decisions>
     <decisions>
         <name>Is_Pricebook_Id_Populated</name>
         <label>Is Pricebook Id Populated?</label>
         <locationX>182</locationX>
-        <locationY>647</locationY>
+        <locationY>1703</locationY>
+        <defaultConnector>
+            <targetReference>Check_Add_Visit_Approved_By_Office</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Pricebook_Id_is_not_populated</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>$Record.Pricebook_Id__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -24,12 +324,90 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Is_record_type_equals_additional_visit</name>
+        <label>Is record type equals additional visit</label>
+        <locationX>182</locationX>
+        <locationY>287</locationY>
+        <defaultConnector>
+            <targetReference>Is_Visit_date_not_null</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Additional_Visit</name>
+            <conditionLogic>1 AND (2 OR 3)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RecordType.DeveloperName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Additional_Visit</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Application_Type_To_Additional_Visit</targetReference>
+            </connector>
+            <label>Additional Visit</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_Visit_date_not_null</name>
+        <label>Is Visit date not null</label>
+        <locationX>182</locationX>
+        <locationY>587</locationY>
+        <defaultConnector>
+            <targetReference>Previous_Assessment_Date</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Visit_Date_Not_Null</name>
+            <conditionLogic>1 AND (2 OR 3)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Visit_Date__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Visit_Date__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Evidence_Deadline</targetReference>
+            </connector>
+            <label>Visit Date Not Null</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Previous_Assessment_Date</name>
         <label>Previous Assessment Date</label>
         <locationX>182</locationX>
-        <locationY>311</locationY>
+        <locationY>887</locationY>
         <defaultConnector>
-            <targetReference>Is_Pricebook_Id_Populated</targetReference>
+            <targetReference>Check_Renewal</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -42,13 +420,50 @@
                     <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
             <connector>
                 <targetReference>Update_Previous_Assessment_Date</targetReference>
             </connector>
             <label>Exists</label>
         </rules>
     </decisions>
-    <description>Flow that handles automations for Applications before record is inserted.</description>
+    <description>Removed Process builder conversion and contains old logic and CR2 changes</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>deadlineDate</name>
+        <dataType>Date</dataType>
+        <expression>ADDMONTHS({!$Record.Previous_Assessment_Date__c},(({!openApplicationSize}+1) * 14))</expression>
+    </formulas>
+    <formulas>
+        <name>EvidenceDeadlineDate</name>
+        <dataType>Date</dataType>
+        <expression>{!$Record.Visit_Date__c} + 28</expression>
+    </formulas>
+    <formulas>
+        <name>todayDate</name>
+        <dataType>Date</dataType>
+        <expression>TODAY()</expression>
+    </formulas>
+    <formulas>
+        <name>TotalAmountIncVAT</name>
+        <dataType>Number</dataType>
+        <expression>IF(({!$Record.Amount_Ex_VAT__c}+ {!VAT})- (FLOOR({!$Record.Amount_Ex_VAT__c}+ {!VAT})) &gt;= 0.5,({!$Record.Amount_Ex_VAT__c}+ {!VAT}),FLOOR(100*({!$Record.Amount_Ex_VAT__c}+ {!VAT}))/100)</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
+        <name>VAT</name>
+        <dataType>Number</dataType>
+        <expression>IF({!$Record.Head_Office__r.BillingCountry}= &#39;United Kingdom&#39;,
+{!$Record.Amount_Ex_VAT__c}* 0.2,
+0)</expression>
+        <scale>2</scale>
+    </formulas>
     <interviewLabel>Application Before Create Trigger Flow {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Application Before Create Trigger Flow</label>
     <processMetadataValues>
@@ -70,13 +485,48 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Applications</name>
+        <label>Get Applications</label>
+        <locationX>50</locationX>
+        <locationY>1295</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Assign_Open_Application_Count</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Site__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Site__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Calculated_Stage__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Compliance</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>RecordTypeId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.RecordTypeId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Application__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <recordUpdates>
         <name>Update_Previous_Assessment_Date</name>
         <label>Update Previous Assessment Date</label>
         <locationX>50</locationX>
-        <locationY>431</locationY>
+        <locationY>995</locationY>
         <connector>
-            <targetReference>Is_Pricebook_Id_Populated</targetReference>
+            <targetReference>Check_Renewal</targetReference>
         </connector>
         <inputAssignments>
             <field>Previous_Assessment_Date__c</field>
@@ -91,7 +541,10 @@
         <name>Update_Pricebook_Id_with_Membership_Pricebook</name>
         <label>Update Pricebook Id with Membership Pricebook</label>
         <locationX>50</locationX>
-        <locationY>767</locationY>
+        <locationY>1811</locationY>
+        <connector>
+            <targetReference>Check_Add_Visit_Approved_By_Office</targetReference>
+        </connector>
         <inputAssignments>
             <field>Pricebook_Id__c</field>
             <value>
@@ -104,11 +557,22 @@
         <locationX>56</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Previous_Assessment_Date</targetReference>
+            <targetReference>Is_record_type_equals_additional_visit</targetReference>
         </connector>
         <object>Application__c</object>
-        <recordTriggerType>Create</recordTriggerType>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordBeforeSave</triggerType>
     </start>
     <status>Active</status>
+    <variables>
+        <name>openApplicationSize</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <scale>0</scale>
+        <value>
+            <numberValue>0.0</numberValue>
+        </value>
+    </variables>
 </Flow>

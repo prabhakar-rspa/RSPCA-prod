@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Reason the record status has been put on hold --></help>
+        <label><!-- On Hold Reason --></label>
+        <name>SRM_PP_HoldReason__c</name>
+        <picklistValues>
+            <masterLabel>Changed funding priorities</masterLabel>
+            <translation><!-- Changed funding priorities --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Donor opted for payment holiday</masterLabel>
+            <translation><!-- Donor opted for payment holiday --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Internal delays</masterLabel>
+            <translation><!-- Internal delays --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rephase - Changed funding capacity</masterLabel>
+            <translation><!-- Rephase - Changed funding capacity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rephase - Proposal amends required</masterLabel>
+            <translation><!-- Rephase - Proposal amends required --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rephase - Timing no longer right</masterLabel>
+            <translation><!-- Rephase - Timing no longer right --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Right contact not yet identified</masterLabel>
+            <translation><!-- Right contact not yet identified --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

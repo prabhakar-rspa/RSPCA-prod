@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Notes as to why the record status was closed or put on hold --></help>
+        <label><!-- Partnerships On Hold / Closed Notes --></label>
+        <name>P_P_On_Hold_Closed_Notes__c</name>
+    </CustomFieldTranslation>

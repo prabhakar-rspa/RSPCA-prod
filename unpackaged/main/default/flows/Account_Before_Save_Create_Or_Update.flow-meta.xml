@@ -1,11 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>55.0</apiVersion>
+    <assignments>
+        <name>Set_Active</name>
+        <label>Set Active</label>
+        <locationX>314</locationX>
+        <locationY>395</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Active__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Account_Inactive_decision</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Inactive</name>
+        <label>Set Inactive</label>
+        <locationX>50</locationX>
+        <locationY>395</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Active__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Account_Inactive_decision</targetReference>
+        </connector>
+    </assignments>
     <decisions>
         <name>Account_Inactive_decision</name>
         <label>Account Inactive decision</label>
-        <locationX>182</locationX>
-        <locationY>311</locationY>
+        <locationX>314</locationX>
+        <locationY>587</locationY>
         <defaultConnector>
             <targetReference>Billing_Country</targetReference>
         </defaultConnector>
@@ -36,15 +68,15 @@
     <decisions>
         <name>Billing_Country</name>
         <label>Billing Country?</label>
-        <locationX>182</locationX>
-        <locationY>647</locationY>
+        <locationX>314</locationX>
+        <locationY>887</locationY>
         <defaultConnector>
             <targetReference>General_Export_Customers_Tax_Group</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>UK</name>
-            <conditionLogic>and</conditionLogic>
+            <conditionLogic>or</conditionLogic>
             <conditions>
                 <leftValueReference>$Record.BillingCountry</leftValueReference>
                 <operator>EqualTo</operator>
@@ -52,10 +84,78 @@
                     <stringValue>United Kingdom</stringValue>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>$Record.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Corby Rock Eggs Ltd</stringValue>
+                </rightValue>
+            </conditions>
             <connector>
                 <targetReference>UK_Customers_Tax_Group</targetReference>
             </connector>
             <label>UK</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_site_status_changed</name>
+        <label>Is site status changed</label>
+        <locationX>314</locationX>
+        <locationY>287</locationY>
+        <defaultConnector>
+            <targetReference>Account_Inactive_decision</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Site_is_inactivated</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>INACTIVE</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Inactive</targetReference>
+            </connector>
+            <label>Site is inactivated</label>
+        </rules>
+        <rules>
+            <name>Site_is_activated</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>MEMBER</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>INACTIVE</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Active</targetReference>
+            </connector>
+            <label>Site is activated</label>
         </rules>
     </decisions>
     <environments>Default</environments>
@@ -83,8 +183,8 @@
     <recordUpdates>
         <name>General_Export_Customers_Tax_Group</name>
         <label>General Export Customers Tax Group</label>
-        <locationX>314</locationX>
-        <locationY>767</locationY>
+        <locationX>446</locationX>
+        <locationY>995</locationY>
         <inputAssignments>
             <field>Tax_Group__c</field>
             <value>
@@ -96,8 +196,8 @@
     <recordUpdates>
         <name>UK_Customers_Tax_Group</name>
         <label>UK Customers Tax Group</label>
-        <locationX>50</locationX>
-        <locationY>767</locationY>
+        <locationX>182</locationX>
+        <locationY>995</locationY>
         <inputAssignments>
             <field>Tax_Group__c</field>
             <value>
@@ -109,8 +209,8 @@
     <recordUpdates>
         <name>Update_Account_to_Active</name>
         <label>Update Account to Active</label>
-        <locationX>50</locationX>
-        <locationY>431</locationY>
+        <locationX>182</locationX>
+        <locationY>695</locationY>
         <connector>
             <targetReference>Billing_Country</targetReference>
         </connector>
@@ -123,10 +223,10 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
-        <locationX>56</locationX>
+        <locationX>188</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Account_Inactive_decision</targetReference>
+            <targetReference>Is_site_status_changed</targetReference>
         </connector>
         <object>Account</object>
         <recordTriggerType>CreateAndUpdate</recordTriggerType>

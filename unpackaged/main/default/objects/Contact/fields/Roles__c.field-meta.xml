@@ -17,34 +17,14 @@
                 <label>Administration Contact</label>
             </value>
             <value>
-                <fullName>Agricultural/Technical Contact</fullName>
-                <default>false</default>
-                <label>Agricultural/Technical Contact</label>
-            </value>
-            <value>
-                <fullName>Artwork Contact</fullName>
-                <default>false</default>
-                <label>Artwork Contact</label>
-            </value>
-            <value>
                 <fullName>Assessments Contact</fullName>
                 <default>false</default>
                 <label>Assessments Contact</label>
             </value>
             <value>
-                <fullName>Certification Contact</fullName>
-                <default>false</default>
-                <label>Certification Contact</label>
-            </value>
-            <value>
                 <fullName>Compliance Contact</fullName>
                 <default>false</default>
                 <label>Compliance Contact</label>
-            </value>
-            <value>
-                <fullName>Membership Fee Contact</fullName>
-                <default>false</default>
-                <label>Membership Fee Contact</label>
             </value>
             <value>
                 <fullName>Licence Fee Contact</fullName>
@@ -60,6 +40,11 @@
                 <fullName>Payments Contact</fullName>
                 <default>false</default>
                 <label>Payments Contact</label>
+            </value>
+            <value>
+                <fullName>Invoice Contact</fullName>
+                <default>false</default>
+                <label>Invoice Contact</label>
             </value>
             <value>
                 <fullName>Partnerships Commercial Contact</fullName>

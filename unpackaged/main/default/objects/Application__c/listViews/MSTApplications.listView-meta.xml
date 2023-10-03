@@ -4,6 +4,7 @@
     <columns>NAME</columns>
     <columns>Membership_Number__c</columns>
     <columns>Application_Type__c</columns>
+    <columns>Paid__c</columns>
     <columns>Applicant_Contact__c</columns>
     <columns>Site__c</columns>
     <columns>CREATED_DATE</columns>
@@ -13,5 +14,10 @@
         <operation>equals</operation>
         <value>0</value>
     </filters>
-    <label>Applications</label>
+    <filters>
+        <field>Application_Type__c</field>
+        <operation>notEqual</operation>
+        <value>Levy,Additional Visit</value>
+    </filters>
+    <label>Unpaid Applications (MST)</label>
 </ListView>

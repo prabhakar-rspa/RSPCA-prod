@@ -8,17 +8,6 @@
         <plural>true</plural>
         <value>Application Units</value>
     </caseValues>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <layouts>
         <layout>Application Unit Layout</layout>
         <sections>
@@ -30,5 +19,17 @@
             <section>Custom Links</section>
         </sections>
     </layouts>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <startsWith>Vowel</startsWith>
 </CustomObjectTranslation>

@@ -6,7 +6,7 @@
     <label>InvoicePDF</label>
     <packageVersions>
         <majorNumber>2</majorNumber>
-        <minorNumber>80</minorNumber>
+        <minorNumber>87</minorNumber>
         <namespace>ia_crm</namespace>
     </packageVersions>
 </ApexPage>

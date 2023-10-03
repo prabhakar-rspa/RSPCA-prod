@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Membership Expiry Date is 1 year after the Certificate Issue Date by Default. However if common renewal date is used, then Membership Expiry Date reflects when the sites will need to renew by from a group level. --></help>
+        <label><!-- Membership Expiry Date --></label>
+        <name>Membership_Expiry_Date__c</name>
+    </CustomFieldTranslation>

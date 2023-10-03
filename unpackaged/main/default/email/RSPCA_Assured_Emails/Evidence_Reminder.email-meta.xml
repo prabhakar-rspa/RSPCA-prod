@@ -1,25 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
-    <available>false</available>
+    <available>true</available>
     <description>Evidence Reminder - to be sent two weeks before the evidence deadline</description>
     <encodingKey>ISO-8859-1</encodingKey>
     <name>Evidence Reminder</name>
     <style>none</style>
-    <subject>Evidence Reminder</subject>
-    <textOnly>Dear {!Application__c.Applicant_Full_Name__c} &lt;br&gt;
-&lt;b&gt;Corrective evidence&lt;/b&gt; &lt;br&gt;
-Don’t forget, you must submit your corrective actions and evidence by {!Application__c.Evidence_Deadline__c}&lt;br&gt;
-This is an automated reminder, so if you have already submitted the evidence and pink report you can ignore this email.&lt;br&gt;
-Please email all supporting evidence including the pink report left by the assessor. Once done please send to help@rspcaassured.org.uk on a separate email quoting your membership number and farm name.  Please note that the pink report needs to include your corrections to the non-compliances raised with a signature and date to show rectification of this &lt;br&gt;
-If we do not receive your corrective actions and evidence on time your membership maybe suspended and you may have to reapply.&lt;br&gt;
-If you need any help please get in touch with our Membership Services team on 01403 286170 or help@rspcaassured.org.uk.&lt;br&gt;
-&lt;br&gt;
-Yours sincerely 
-&lt;b&gt;Membership services RSPCA Assured &lt;/b&gt;
+    <subject>Evidence Reminder for membership number: {!Application__c.Membership_Number__c} - {!Application__c.Site_Name__c}</subject>
+    <textOnly>Dear  {!Application__c.Applicant_Full_Name__c}
 
-For your reference: 
-RSPCA welfare standards 
-RSPCA Assured renewing your membership fact sheet 
+{!Application__c.Site_Name__c} {!Application__c.Membership_Number__c}
+
+Further to your recent Assessment, please ensure you submit your corrective actions and evidence by {!Application__c.Evidence_Deadline__c}
+
+This is an automated reminder, so if you have already submitted the evidence and pink report you can ignore this email.
+
+Please email all supporting evidence together with the pink report left by the assessor.  Please note the pink report must include your corrections to the non-compliances raised with a signature and date to show rectification of this. Once done please send to help@rspcaassured.org.uk quoting your membership number and farm name.
+
+If we do not receive your corrective actions and evidence on time your membership may be suspended and you may have to reapply.
+
+If you need any help please get in touch with our Membership Services Team on 01403 286170 or help@rspcaassured.org.uk.
+
+Yours sincerely
+
+Membership Services
+RSPCA Assured
+
+
+
+For your reference:
+
+
+RSPCA welfare standards
+RSPCA Assured renewing your membership fact sheet
 RSPCA Assured membership agreement (including SCI scheme regulations)</textOnly>
     <type>custom</type>
     <uiType>Aloha</uiType>

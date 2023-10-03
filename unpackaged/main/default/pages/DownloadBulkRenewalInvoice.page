@@ -1,0 +1,39 @@
+<apex:page showHeader="false" standardController="Bulk_Renewal__c" extensions="BulkRenewalInvoiceController" lightningStylesheets="true">
+  <head>
+    <style>
+      div.content {
+        /* font style */ 
+        text-align: left;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        mso-height-rule: exactly;
+        line-height: 20px;
+        color: #000000;
+      }
+      div.invoice-section {
+        padding: 5px;
+      }
+
+    </style>
+  </head>
+
+  <!-- Content -->
+  <div class="content">
+    <div class="invoice-section">
+      <strong>Invoice</strong><br/>
+      File is being downloaded. If it doesn't download, <a href="{!invoiceURL}" id="invoiceURL" target="_blank" download="{!currenntRecord.Name} Invoice.pdf" onload="auto_download();">click here</a> to download file.
+    </div>
+  
+
+  </div> 
+
+  <!-- Script to controll the auto download of certificates -->
+  <script>
+    function auto_download(){
+        document.getElementById('invoiceURL').click();
+    };
+    
+    //trigger auto-download
+    window.setTimeout(auto_download, 10);
+  </script>
+</apex:page>

@@ -11,19 +11,9 @@
         <label>Angus</label>
     </customValue>
     <customValue>
-        <fullName>Antrim</fullName>
-        <default>false</default>
-        <label>Antrim</label>
-    </customValue>
-    <customValue>
         <fullName>Argyll &amp; Bute</fullName>
         <default>false</default>
         <label>Argyll &amp; Bute</label>
-    </customValue>
-    <customValue>
-        <fullName>Armagh</fullName>
-        <default>false</default>
-        <label>Armagh</label>
     </customValue>
     <customValue>
         <fullName>Ayrshire</fullName>
@@ -59,11 +49,6 @@
         <fullName>Blaenau Gwent</fullName>
         <default>false</default>
         <label>Blaenau Gwent</label>
-    </customValue>
-    <customValue>
-        <fullName>Borders</fullName>
-        <default>false</default>
-        <label>Borders</label>
     </customValue>
     <customValue>
         <fullName>Bridgend</fullName>
@@ -121,6 +106,11 @@
         <label>Clackmannanshire</label>
     </customValue>
     <customValue>
+        <fullName>Clwyd</fullName>
+        <default>false</default>
+        <label>Clwyd</label>
+    </customValue>
+    <customValue>
         <fullName>Conwy</fullName>
         <default>false</default>
         <label>Conwy</label>
@@ -131,9 +121,79 @@
         <label>Cornwall</label>
     </customValue>
     <customValue>
+        <fullName>Antrim</fullName>
+        <default>false</default>
+        <label>County Antrim</label>
+    </customValue>
+    <customValue>
+        <fullName>Armagh</fullName>
+        <default>false</default>
+        <label>County Armagh</label>
+    </customValue>
+    <customValue>
+        <fullName>County Cork</fullName>
+        <default>false</default>
+        <label>County Cork</label>
+    </customValue>
+    <customValue>
+        <fullName>County Donegal</fullName>
+        <default>false</default>
+        <label>County Donegal</label>
+    </customValue>
+    <customValue>
+        <fullName>Down</fullName>
+        <default>false</default>
+        <label>County Down</label>
+    </customValue>
+    <customValue>
         <fullName>County Durham</fullName>
         <default>false</default>
         <label>County Durham</label>
+    </customValue>
+    <customValue>
+        <fullName>Fermanagh</fullName>
+        <default>false</default>
+        <label>County Fermanagh</label>
+    </customValue>
+    <customValue>
+        <fullName>County Galway</fullName>
+        <default>false</default>
+        <label>County Galway</label>
+    </customValue>
+    <customValue>
+        <fullName>County Kildare</fullName>
+        <default>false</default>
+        <label>County Kildare</label>
+    </customValue>
+    <customValue>
+        <fullName>Londonderry</fullName>
+        <default>false</default>
+        <label>County Londonderry</label>
+    </customValue>
+    <customValue>
+        <fullName>County Louth</fullName>
+        <default>false</default>
+        <label>County Louth</label>
+    </customValue>
+    <customValue>
+        <fullName>County Mayo</fullName>
+        <default>false</default>
+        <label>County Mayo</label>
+    </customValue>
+    <customValue>
+        <fullName>County Monaghan</fullName>
+        <default>false</default>
+        <label>County Monaghan</label>
+    </customValue>
+    <customValue>
+        <fullName>County Tipperary</fullName>
+        <default>false</default>
+        <label>County Tipperary</label>
+    </customValue>
+    <customValue>
+        <fullName>Tyrone</fullName>
+        <default>false</default>
+        <label>County Tyrone</label>
     </customValue>
     <customValue>
         <fullName>Cumbria</fullName>
@@ -159,11 +219,6 @@
         <fullName>Dorset</fullName>
         <default>false</default>
         <label>Dorset</label>
-    </customValue>
-    <customValue>
-        <fullName>Down</fullName>
-        <default>false</default>
-        <label>Down</label>
     </customValue>
     <customValue>
         <fullName>Dumfries &amp; Galloway</fullName>
@@ -209,11 +264,6 @@
         <fullName>Essex</fullName>
         <default>false</default>
         <label>Essex</label>
-    </customValue>
-    <customValue>
-        <fullName>Fermanagh</fullName>
-        <default>false</default>
-        <label>Fermanagh</label>
     </customValue>
     <customValue>
         <fullName>Fife</fullName>
@@ -271,9 +321,19 @@
         <label>Inverclyde</label>
     </customValue>
     <customValue>
+        <fullName>Inverness-shire</fullName>
+        <default>false</default>
+        <label>Inverness-shire</label>
+    </customValue>
+    <customValue>
         <fullName>Isle of Anglesey</fullName>
         <default>false</default>
         <label>Isle of Anglesey</label>
+    </customValue>
+    <customValue>
+        <fullName>Isle of Skye</fullName>
+        <default>false</default>
+        <label>Isle of Skye</label>
     </customValue>
     <customValue>
         <fullName>Isle of Wight</fullName>
@@ -316,11 +376,6 @@
         <label>Lincolnshire</label>
     </customValue>
     <customValue>
-        <fullName>Londonderry</fullName>
-        <default>false</default>
-        <label>Londonderry</label>
-    </customValue>
-    <customValue>
         <fullName>Merseyside</fullName>
         <default>false</default>
         <label>Merseyside</label>
@@ -329,6 +384,11 @@
         <fullName>Merthyr Tydfil</fullName>
         <default>false</default>
         <label>Merthyr Tydfil</label>
+    </customValue>
+    <customValue>
+        <fullName>Mid Glamorgan</fullName>
+        <default>false</default>
+        <label>Mid Glamorgan</label>
     </customValue>
     <customValue>
         <fullName>Midlothian</fullName>
@@ -431,9 +491,24 @@
         <label>Rhondda Cynon Taff</label>
     </customValue>
     <customValue>
+        <fullName>Ross-shire</fullName>
+        <default>false</default>
+        <label>Ross-shire</label>
+    </customValue>
+    <customValue>
+        <fullName>Roxburghshire</fullName>
+        <default>false</default>
+        <label>Roxburghshire</label>
+    </customValue>
+    <customValue>
         <fullName>Rutland</fullName>
         <default>false</default>
         <label>Rutland</label>
+    </customValue>
+    <customValue>
+        <fullName>Borders</fullName>
+        <default>false</default>
+        <label>Scottish Borders</label>
     </customValue>
     <customValue>
         <fullName>Shetland</fullName>
@@ -506,11 +581,6 @@
         <label>Tyne &amp; Wear</label>
     </customValue>
     <customValue>
-        <fullName>Tyrone</fullName>
-        <default>false</default>
-        <label>Tyrone</label>
-    </customValue>
-    <customValue>
         <fullName>Vale of Glamorgan</fullName>
         <default>false</default>
         <label>Vale of Glamorgan</label>
@@ -566,75 +636,95 @@
         <label>Wrexham</label>
     </customValue>
     <customValue>
-        <fullName>Clwyd</fullName>
+        <fullName>County Dublin</fullName>
         <default>false</default>
-        <label>Clwyd</label>
+        <label>County Dublin</label>
     </customValue>
     <customValue>
-        <fullName>County Cork</fullName>
+        <fullName>County Carlow</fullName>
         <default>false</default>
-        <label>County Cork</label>
+        <label>County Carlow</label>
     </customValue>
     <customValue>
-        <fullName>County Donegal</fullName>
+        <fullName>County Cavan</fullName>
         <default>false</default>
-        <label>County Donegal</label>
+        <label>County Cavan</label>
     </customValue>
     <customValue>
-        <fullName>County Galway</fullName>
+        <fullName>County Clare</fullName>
         <default>false</default>
-        <label>County Galway</label>
+        <label>County Clare</label>
     </customValue>
     <customValue>
-        <fullName>County Kildare</fullName>
+        <fullName>County Kerry</fullName>
         <default>false</default>
-        <label>County Kildare</label>
+        <label>County Kerry</label>
     </customValue>
     <customValue>
-        <fullName>County Louth</fullName>
+        <fullName>County Kilkenny</fullName>
         <default>false</default>
-        <label>County Louth</label>
+        <label>County Kilkenny</label>
     </customValue>
     <customValue>
-        <fullName>County Mayo</fullName>
+        <fullName>County Laois</fullName>
         <default>false</default>
-        <label>County Mayo</label>
+        <label>County Laois</label>
     </customValue>
     <customValue>
-        <fullName>County Monaghan</fullName>
+        <fullName>County Leitrim</fullName>
         <default>false</default>
-        <label>County Monaghan</label>
+        <label>County Leitrim</label>
     </customValue>
     <customValue>
-        <fullName>County Tipperary</fullName>
+        <fullName>County Limerick</fullName>
         <default>false</default>
-        <label>County Tipperary</label>
+        <label>County Limerick</label>
     </customValue>
     <customValue>
-        <fullName>Inverness-shire</fullName>
+        <fullName>County Longford</fullName>
         <default>false</default>
-        <label>Inverness-shire</label>
+        <label>County Longford</label>
     </customValue>
     <customValue>
-        <fullName>Isle of Skye</fullName>
+        <fullName>County Meath</fullName>
         <default>false</default>
-        <label>Isle of Skye</label>
+        <label>County Meath</label>
     </customValue>
     <customValue>
-        <fullName>Mid Glamorgan</fullName>
+        <fullName>County Offaly</fullName>
         <default>false</default>
-        <label>Mid Glamorgan</label>
+        <label>County Offaly</label>
     </customValue>
     <customValue>
-        <fullName>Ross-shire</fullName>
+        <fullName>County Roscommon</fullName>
         <default>false</default>
-        <label>Ross-shire</label>
+        <label>County Roscommon</label>
     </customValue>
     <customValue>
-        <fullName>Roxburghshire</fullName>
+        <fullName>County Sligo</fullName>
         <default>false</default>
-        <label>Roxburghshire</label>
+        <label>County Sligo</label>
+    </customValue>
+    <customValue>
+        <fullName>County Waterford</fullName>
+        <default>false</default>
+        <label>County Waterford</label>
+    </customValue>
+    <customValue>
+        <fullName>County Westmeath</fullName>
+        <default>false</default>
+        <label>County Westmeath</label>
+    </customValue>
+    <customValue>
+        <fullName>County Wexford</fullName>
+        <default>false</default>
+        <label>County Wexford</label>
+    </customValue>
+    <customValue>
+        <fullName>County Wicklow</fullName>
+        <default>false</default>
+        <label>County Wicklow</label>
     </customValue>
     <masterLabel>County</masterLabel>
-    <sorted>false</sorted>
+    <sorted>true</sorted>
 </GlobalValueSet>

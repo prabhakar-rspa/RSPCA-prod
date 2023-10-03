@@ -1,0 +1,118 @@
+<aura:component controller="WOAEditController" implements="force:hasRecordId,lightning:actionOverride" access="global">
+
+    <aura:attribute name="woaSummaryRecord" type="Object"/>
+    <aura:attribute name="dynamicDisableField" type="boolean" default="true"/>
+
+    <!-- Picklist options -->
+    <aura:attribute name="visitType" type="List" default="[
+    {'label': 'RSPCA Assured', 'value': 'RSPCA Assured'},
+    {'label': 'RSPCA Monitoring', 'value': 'RSPCA Monitoring'}
+    ]"/>
+    <aura:attribute name="assessorOptions" type="List"/>
+    <aura:attribute name="yesOrNoOptions" type="List" default="[
+    {'label': 'Yes', 'value': 'Yes'},
+    {'label': 'No', 'value': 'No'}
+    ]"/>
+
+    <!-- Initialise the component -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <div class="c-container slds-card">
+        <lightning:layout multipleRows="true" horizontalAlign="center">
+            <!-- Header Layout Item-->
+            <lightning:layoutItem padding="around-small" size="12">
+                <div class="page-section page-header slds-var-p-horizontal_small">
+                    <h2 class="slds-text-heading_large headerColour">Edit {!v.woaSummaryRecord.Species_Type__c} WOA</h2>
+                </div>
+            </lightning:layoutItem>
+
+            <!-- WOA Summary Content Layout Item -->
+            <lightning:layoutItem padding="around-small" size="12">
+                <lightning:layout horizontalAlign="center">
+                    <!-- Column 1 fields -->
+                    <lightning:layoutItem padding="around-small" size="6">
+                        <lightning:input aura:id="field" name="WOANumber" disabled="true" value="{!v.woaSummaryRecord.Name}" label="WOA Number" />
+                        <lightning:combobox aura:id="field" name="visitType" label="Visit Type" value="{!v.woaSummaryRecord.Visit_Type__c}" placeholder="Select Visit Type" options="{! v.visitType }" required="true" disabled="{!v.dynamicDisableField}"/>
+                        <lightning:input aura:id="field" name="FFRegNo" disabled="true" value="{!v.woaSummaryRecord.FF_Reg_No__c}" label="FF Reg No" />
+                        <lightning:input aura:id="field" name="producer" disabled="true" value="{!v.woaSummaryRecord.Producer__c}" label="Producer" />
+                        <lightning:input aura:id="field" type="date" name="vistDate" label="Visit Date" value="{!v.woaSummaryRecord.Visit_Date__c}" required="true"  disabled="{!v.dynamicDisableField}"/>
+                    </lightning:layoutItem>
+                    <!-- Column 2 fields -->
+                    <lightning:layoutItem padding="around-small" size="6">
+                        <lightning:input aura:id="field" type="date" name="formCompletionDate" disabled="true" value="{!v.woaSummaryRecord.Form_Completion_Date__c}" label="WOA Submission Date" />
+                        <lightning:input aura:id="field" name="houses" label="Houses" value="{!v.woaSummaryRecord.Houses__c}" maxlength="255" disabled="{!v.dynamicDisableField}"/>
+                        <lightning:combobox aura:id="field" name="assessor" label="Assessor/FLO Name" value="{!v.woaSummaryRecord.Assessor__c}" options="{! v.assessorOptions }" required="true" disabled="{!v.dynamicDisableField}"/>
+                        <lightning:input aura:id="field" name="speciesType" disabled="true" value="{!v.woaSummaryRecord.Species_Type__c}" label="Species Type" />
+                    </lightning:layoutItem>
+                </lightning:layout>
+            </lightning:layoutItem>
+
+            
+            <!-- solid line -->
+            <lightning:layoutItem size="12">
+                <div class="slds-var-p-horizontal_large">
+                    <div class="solidDivider"></div>                
+                </div>
+            </lightning:layoutItem>
+        
+            <!-- Complete WOA?  -->
+            <lightning:layoutItem padding="around-small" size="12">
+                <div class="slds-var-p-horizontal_small">
+                    <lightning:combobox aura:id="field" name="completingWOA" label="Are you able to complete a welfare outcome form for this visit?" value="{!v.woaSummaryRecord.CompletingWOA__c}" options="{! v.yesOrNoOptions }" onchange="{!c.completingWOAChange}" required="true" disabled="{!v.dynamicDisableField}"/>
+                </div>
+            </lightning:layoutItem>
+
+            <!-- solid line -->
+            <lightning:layoutItem size="12">
+                <div class="slds-var-p-horizontal_large">
+                    <div class="solidDivider"></div>                
+                </div>
+            </lightning:layoutItem>
+
+            <!-- Completion text -->
+            <aura:if isTrue="{!v.woaSummaryRecord.CompletingWOA__c == null}">
+                <lightning:layoutItem padding="around-small" size="12">
+                    <div class="slds-var-p-horizontal_small slds-text-heading_medium">
+                        Please select if you are completing the Welfare Outcome form
+                    </div>
+                </lightning:layoutItem>
+            </aura:if>
+            
+            <!-- laying hen component -->
+            <aura:if isTrue="{!v.woaSummaryRecord.Species_Type__c == 'Laying Hen'}">
+                <lightning:layoutItem padding="around-small" size="12">
+                    <div class="slds-var-p-horizontal_small">
+                        <c:WOAHens aura:id="layingHenComponent" woaSummaryRecord="{!v.woaSummaryRecord}" dynamicDisableField="{!v.dynamicDisableField}"/>
+                    </div>
+                </lightning:layoutItem>
+            </aura:if>
+            
+            <!-- Dairy Cattle component -->
+            <aura:if isTrue="{!v.woaSummaryRecord.Species_Type__c == 'Dairy Cattle'}">
+                <lightning:layoutItem padding="around-small" size="12">
+                    <div class="slds-var-p-horizontal_small">
+                        <c:WOADairy aura:id="dairyCattleComponent" woaSummaryRecord="{!v.woaSummaryRecord}" dynamicDisableField="{!v.dynamicDisableField}"/>
+                    </div>
+                </lightning:layoutItem>
+            </aura:if>
+
+            <!-- Pigs component -->
+            <aura:if isTrue="{!v.woaSummaryRecord.Species_Type__c == 'Pigs'}">
+                <lightning:layoutItem padding="around-small" size="12">
+                    <div class="slds-var-p-horizontal_small">
+                        <c:WOAPigs aura:id="pigComponent" woaSummaryRecord="{!v.woaSummaryRecord}" dynamicDisableField="{!v.dynamicDisableField}"/>
+                    </div>
+                </lightning:layoutItem>
+            </aura:if>
+
+
+            <!-- Footer Layout Item -->
+            <lightning:layoutItem flexibility="auto" padding="around-small" size="12">
+                <div class="page-footer page-section slds-var-p-horizontal_small">
+                    <lightning:button variant="brand" label="Save" onclick="{! c.handleSave }" disabled="{!v.dynamicDisableField}"/>
+                    <lightning:button label="Cancel" onclick="{! c.handleCancel }"/>
+                </div>
+            </lightning:layoutItem>
+        </lightning:layout>
+    </div>
+</aura:component>

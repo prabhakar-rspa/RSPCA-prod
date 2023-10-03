@@ -1,0 +1,12 @@
+.THIS .slds-progress{
+    max-width: 60%;
+}
+.THIS div.slds-form{
+    padding: 1rem;
+}
+.THIS .referenceHelpMessage{
+    color: red;
+}
+.THIS .bulkRenewalScroller{
+    height: 500px;
+}

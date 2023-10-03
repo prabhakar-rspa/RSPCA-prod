@@ -1,27 +1,456 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>EmailPaymentConfirmation</name>
+        <label>EmailPaymentConfirmation</label>
+        <locationX>50</locationX>
+        <locationY>1655</locationY>
+        <actionName>Application__c.Application_Payment_Confirmation_Email_Alert</actionName>
+        <actionType>emailAlert</actionType>
+        <connector>
+            <targetReference>Is_Assessor_Selected</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
     <apiVersion>57.0</apiVersion>
+    <assignments>
+        <name>Add_application</name>
+        <label>Add application</label>
+        <locationX>138</locationX>
+        <locationY>863</locationY>
+        <assignmentItems>
+            <assignToReference>ApplicationsToUpdate</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Iterate_Applications</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Iterate_Applications</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Increment_Index</name>
+        <label>Increment Index</label>
+        <locationX>138</locationX>
+        <locationY>755</locationY>
+        <assignmentItems>
+            <assignToReference>index</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Add_application</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Previous_Assessment_Deadline_Date</name>
+        <label>Set Previous Assessment &amp; Deadline Date</label>
+        <locationX>138</locationX>
+        <locationY>647</locationY>
+        <assignmentItems>
+            <assignToReference>Iterate_Applications.Previous_Assessment_Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Assessment_Date__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Iterate_Applications.Assessment_Deadline__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>deadlineDate</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Increment_Index</targetReference>
+        </connector>
+    </assignments>
     <decisions>
-        <name>Assessment_Date_Changed</name>
-        <label>Assessment Date Changed</label>
+        <name>Check_Paid_and_Date_of_Payment</name>
+        <label>Check Paid and Date of Payment</label>
         <locationX>182</locationX>
-        <locationY>335</locationY>
+        <locationY>1547</locationY>
+        <defaultConnector>
+            <targetReference>Is_Assessor_Selected</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
-            <name>Changed</name>
+            <name>Paid_and_Date_of_Payment</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>$Record.Assessment_Date__c</leftValueReference>
-                <operator>IsChanged</operator>
+                <leftValueReference>$Record.Paid__c</leftValueReference>
+                <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>$Record.Site__c</leftValueReference>
+                <leftValueReference>$Record.Date_of_Payment__c</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Payment_Confirmation_Sent__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Bulk_Renewal__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>EmailPaymentConfirmation</targetReference>
+            </connector>
+            <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+            <label>Paid and Date of Payment</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Primary_Contact_Is_None_Exist</name>
+        <label>Check Primary Contact Is None Exist</label>
+        <locationX>182</locationX>
+        <locationY>1247</locationY>
+        <defaultConnector>
+            <targetReference>Check_Paid_and_Date_of_Payment</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>None_Exist</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Applicant_Contact__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Site__r.Primary_Contact__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Primary_Contact_If_None_Exist</targetReference>
+            </connector>
+            <label>None Exist</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_Application_Assessment_Date_Set</name>
+        <label>Is Application Assessment Date Set</label>
+        <locationX>182</locationX>
+        <locationY>2147</locationY>
+        <defaultConnector>
+            <targetReference>Is_Renewal_Assessment_Date_Set</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Application_Assessment_Date_Set</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Assessment_Date__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Stage__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Compliance</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Assessment_Date__c</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <elementReference>$Record.Site__r.Previous_Assessment_Date__c</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_previous_assessment_date</targetReference>
+            </connector>
+            <label>Application Assessment Date Set</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_Application_Renewal_Certified</name>
+        <label>Is Application/Renewal Certified</label>
+        <locationX>182</locationX>
+        <locationY>3947</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Application_Renewal_Certified</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Stage__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Certification</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Renewal_Stage__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Certification</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Clear_Renewal_Sent_Fields_on_Account</targetReference>
+            </connector>
+            <label>Application_Renewal_Certified</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_Assessor_Selected</name>
+        <label>Is Assessor Selected</label>
+        <locationX>182</locationX>
+        <locationY>1847</locationY>
+        <defaultConnector>
+            <targetReference>Is_Application_Assessment_Date_Set</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Assessor_Selected</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Assessor__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Site__r.Previous_Assessor__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>$Record.Assessor__c</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_previous_assessor_field_on_site</targetReference>
+            </connector>
+            <label>Assessor Selected</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_Date_Certified_Populated</name>
+        <label>Is Date Certified Populated</label>
+        <locationX>182</locationX>
+        <locationY>2747</locationY>
+        <defaultConnector>
+            <targetReference>Is_Date_Certified_Populated_Enquiry_Status</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Date_Certified_Populated</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Date_Certified__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Application_Units_Date_Certified</targetReference>
+            </connector>
+            <label>Date Certified Populated</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_Date_Certified_Populated_Enquiry_Status</name>
+        <label>Is Date Certified Populated &amp; Enquiry Status</label>
+        <locationX>182</locationX>
+        <locationY>3047</locationY>
+        <defaultConnector>
+            <targetReference>Is_New_Application_Certified_Head_office</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Date_Certified_Populated_Enquiry_Status</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Date_Certified__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Site__r.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>ENQUIRY</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Status_to_Member</targetReference>
+            </connector>
+            <label>Date Certified Populated &amp; Enquiry Status</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_New_Application_Certified_Head_office</name>
+        <label>Is New Application Certified - Head office</label>
+        <locationX>182</locationX>
+        <locationY>3347</locationY>
+        <defaultConnector>
+            <targetReference>Is_New_Application_Certified_Site</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>New_Application_Certified_Head_office</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Stage__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Certification</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Head_Office__r.Head_Office_Number__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordType.DeveloperName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Applications</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Generate_Head_Office_Number</targetReference>
+            </connector>
+            <label>New_Application_Certified_Head_office</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_New_Application_Certified_Site</name>
+        <label>Is New Application Certified - Site</label>
+        <locationX>182</locationX>
+        <locationY>3647</locationY>
+        <defaultConnector>
+            <targetReference>Is_Application_Renewal_Certified</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>New_Application_Certified_Site</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Stage__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Certification</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordType.DeveloperName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Applications</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Site__r.Site_Number__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Site__r.Head_Office_Number_of_Parent_Account__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Generate_Site_Number</targetReference>
+            </connector>
+            <label>New Application Certified - Site</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_Renewal_Assessment_Date_Set</name>
+        <label>Is Renewal Assessment Date Set</label>
+        <locationX>182</locationX>
+        <locationY>2447</locationY>
+        <defaultConnector>
+            <targetReference>Is_Date_Certified_Populated</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Renewal_Assessment_Date_Set</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Assessment_Date__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Renewal_Stage__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Compliance</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Assessment_Date__c</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <elementReference>$Record.Site__r.Previous_Assessment_Date__c</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_previous_assessment_date_with_Assessment_date</targetReference>
+            </connector>
+            <label>Renewal Assessment Date Set</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Renewal_Assessment_Date_Changed</name>
+        <label>Renewal Assessment Date Changed</label>
+        <locationX>182</locationX>
+        <locationY>323</locationY>
+        <defaultConnector>
+            <targetReference>Check_Primary_Contact_Is_None_Exist</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Changed</name>
+            <conditionLogic>(1 OR 4) AND 2 AND 3</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Assessment_Date__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -35,18 +464,44 @@
                 <leftValueReference>$Record.RecordType.DeveloperName</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Applications</stringValue>
+                    <stringValue>Renewal</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Update_Other_Open_Applications</targetReference>
+                <targetReference>Get_Other_Open_Application</targetReference>
             </connector>
             <label>Changed</label>
         </rules>
     </decisions>
     <environments>Default</environments>
+    <formulas>
+        <name>deadlineDate</name>
+        <dataType>Date</dataType>
+        <expression>ADDMONTHS({!$Record.Assessment_Date__c},(({!index}) * 14))</expression>
+    </formulas>
     <interviewLabel>Application After Trigger Flow {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Application After Trigger Flow</label>
+    <loops>
+        <name>Iterate_Applications</name>
+        <label>Iterate Applications</label>
+        <locationX>50</locationX>
+        <locationY>539</locationY>
+        <collectionReference>Get_Other_Open_Application</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Set_Previous_Assessment_Deadline_Date</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Update_Other_Open_Renewal_Applications</targetReference>
+        </noMoreValuesConnector>
+    </loops>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -66,17 +521,21 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
-    <recordUpdates>
-        <name>Update_Other_Open_Applications</name>
-        <label>Update Other Open Applications</label>
+    <recordLookups>
+        <name>Get_Other_Open_Application</name>
+        <label>Get Other Open Application</label>
         <locationX>50</locationX>
-        <locationY>455</locationY>
+        <locationY>431</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Iterate_Applications</targetReference>
+        </connector>
         <filterLogic>and</filterLogic>
         <filters>
-            <field>Stage__c</field>
-            <operator>NotEqualTo</operator>
+            <field>RecordTypeId</field>
+            <operator>EqualTo</operator>
             <value>
-                <stringValue>Compliance</stringValue>
+                <elementReference>$Record.RecordTypeId</elementReference>
             </value>
         </filters>
         <filters>
@@ -86,23 +545,221 @@
                 <elementReference>$Record.Site__c</elementReference>
             </value>
         </filters>
+        <filters>
+            <field>Calculated_Stage__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Compliance</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Id</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Application__c</object>
+        <sortField>Name</sortField>
+        <sortOrder>Asc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Assign_Primary_Contact_If_None_Exist</name>
+        <label>Assign Primary Contact If None Exist</label>
+        <locationX>50</locationX>
+        <locationY>1355</locationY>
+        <connector>
+            <targetReference>Check_Paid_and_Date_of_Payment</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Primary_Contact__c</field>
+            <value>
+                <elementReference>$Record.Applicant_Contact__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record.Site__r</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Clear_Renewal_Sent_Fields_on_Account</name>
+        <label>Clear Renewal Sent Fields on Account</label>
+        <locationX>50</locationX>
+        <locationY>4055</locationY>
+        <inputAssignments>
+            <field>Final_Renewal_Reminder_Sent__c</field>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Six_Week_Renewal_Reminder_Sent__c</field>
+        </inputAssignments>
+        <inputReference>$Record.Site__r</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Generate_Head_Office_Number</name>
+        <label>Generate Head Office Number</label>
+        <locationX>50</locationX>
+        <locationY>3455</locationY>
+        <connector>
+            <targetReference>Is_New_Application_Certified_Site</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Generate_Head_Office_Number__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record.Head_Office__r</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Generate_Site_Number</name>
+        <label>Generate Site Number</label>
+        <locationX>50</locationX>
+        <locationY>3755</locationY>
+        <connector>
+            <targetReference>Is_Application_Renewal_Certified</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Generate_Site_Number__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record.Site__r</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Application_Units_Date_Certified</name>
+        <label>Update Application Units Date Certified</label>
+        <locationX>50</locationX>
+        <locationY>2855</locationY>
+        <connector>
+            <targetReference>Is_Date_Certified_Populated_Enquiry_Status</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Application__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Date_Certified__c</field>
+            <value>
+                <elementReference>$Record.Date_Certified__c</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Application_Unit__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Other_Open_Renewal_Applications</name>
+        <label>Update Other Open Renewal Applications</label>
+        <locationX>50</locationX>
+        <locationY>1055</locationY>
+        <connector>
+            <targetReference>Check_Primary_Contact_Is_None_Exist</targetReference>
+        </connector>
+        <inputReference>ApplicationsToUpdate</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_previous_assessment_date</name>
+        <label>Update previous assessment date</label>
+        <locationX>50</locationX>
+        <locationY>2255</locationY>
+        <connector>
+            <targetReference>Is_Renewal_Assessment_Date_Set</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Previous_Assessment_Date__c</field>
+            <value>
+                <elementReference>$Record.Previous_Assessment_Date__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record.Site__r</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_previous_assessment_date_with_Assessment_date</name>
+        <label>Update previous assessment date with Assessment date</label>
+        <locationX>50</locationX>
+        <locationY>2555</locationY>
+        <connector>
+            <targetReference>Is_Date_Certified_Populated</targetReference>
+        </connector>
         <inputAssignments>
             <field>Previous_Assessment_Date__c</field>
             <value>
                 <elementReference>$Record.Assessment_Date__c</elementReference>
             </value>
         </inputAssignments>
-        <object>Application__c</object>
+        <inputReference>$Record.Site__r</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_previous_assessor_field_on_site</name>
+        <label>Update previous assessor field on site</label>
+        <locationX>50</locationX>
+        <locationY>1955</locationY>
+        <connector>
+            <targetReference>Is_Application_Assessment_Date_Set</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Previous_Assessor__c</field>
+            <value>
+                <elementReference>$Record.Assessor__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record.Site__r</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Status_to_Member</name>
+        <label>Update Status to Member</label>
+        <locationX>50</locationX>
+        <locationY>3155</locationY>
+        <connector>
+            <targetReference>Is_New_Application_Certified_Head_office</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Status__c</field>
+            <value>
+                <stringValue>MEMBER</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record.Site__r</inputReference>
     </recordUpdates>
     <start>
         <locationX>56</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Assessment_Date_Changed</targetReference>
+            <targetReference>Renewal_Assessment_Date_Changed</targetReference>
         </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Site__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
         <object>Application__c</object>
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Draft</status>
+    <status>Obsolete</status>
+    <variables>
+        <name>ApplicationsToUpdate</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Application__c</objectType>
+    </variables>
+    <variables>
+        <name>index</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+        <value>
+            <numberValue>1.0</numberValue>
+        </value>
+    </variables>
 </Flow>

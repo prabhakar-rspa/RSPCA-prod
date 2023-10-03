@@ -1,0 +1,116 @@
+<aura:component controller="RecordDetailUserPhotoController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <aura:attribute name="Title" type="String"/>
+    <aura:attribute name="UserFieldName" type="String"/>
+    <aura:attribute name="imageHeight" type="string" default="150px"/>
+    <aura:attribute name="imageWidth" type="string" default="150px"/>
+    <aura:attribute name="oUser" type="user" />
+    <aura:attribute name="recordError" type="String"/>
+    <aura:if isTrue="{!v.oUser != null}">
+        <div class="card">
+            <div class="userHeader">
+                <!-- Title -->
+                <div class="userTitle">{!v.Title}</div>
+            </div>
+            
+            
+            <!-- Photo -->
+            <img class="userPhoto" src="{!v.oUser.FullPhotoUrl}" alt="{!v.oUser.Name}"/> 
+            
+            <!-- Name -->
+            <div class="userName">{!v.oUser.Name}</div>
+
+            <hr class="hr"/>
+            
+            <div class="userfooter">
+                <div class="userFooterInner">
+                    <!-- Email -->
+                    <div class="email">
+                        <strong>Email: </strong><a href="{!'mailto:' + v.oUser.Email}">{!v.oUser.Email}</a>
+                    </div>
+
+                    <!-- Mobile -->
+                    <div class="mobile">
+                        <strong>Contact: </strong>{!v.oUser.Mobile}
+                    </div>
+                </div>
+                
+            </div>
+            
+
+        </div>    
+    </aura:if>
+   
+    
+    <!-- Display Lightning Data Service errors, if any -->
+    <aura:if isTrue="{!not(empty(v.recordError))}">
+        <div class="recordError">
+                {!v.recordError}</div>
+    </aura:if>
+    
+    <aura:html tag="style">
+        
+        .card {
+            border-radius: 6px;
+            display: inline-block;
+            height: auto;
+            position: relative;
+            width: 100%;
+            box-shadow: 0 5px 6px rgba(0,0,0,0.16), 0 5px 6px rgba(0,0,0,0.16);
+            transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+        }
+        .userHeader {
+            background: #0058a5;
+            border-radius: 6px 6px 0px 0px;
+            padding: 0.4em;
+            margin-bottom: 1.7em;
+            
+        }
+        .userTitle {
+            text-align: center;
+            
+            color:#FFFFFF;
+            font-weight:500;
+            font-size:20px;
+        }
+        .userPhoto {
+            height: {!v.imageHeight};
+            width: {!v.imageWidth};
+            border-radius: 50%;
+            object-fit: cover;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+        .userName {
+            text-align: center;
+            padding: 1em;
+            font-size:2em;
+            font-weight:2em; 
+        }
+        hr{
+            border-color:#0058a5;
+            width:90%;
+            margin-top:0;
+            margin-bottom:0;
+            margin-left:auto;
+            margin-right:auto;
+        }
+        .userfooter{
+            padding-top:1em;
+            padding-bottom:1em;
+            font-size:1em;
+            font-weight:1em; 
+            color:#000000;
+        }
+        .userFooterInner {
+            margin:auto;
+            width:90%;
+            text-align:center;
+
+        }
+    
+    </aura:html>
+
+</aura:component>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- How the lead was identified --></help>
+        <label><!-- Opportunity Lead Source Type --></label>
+        <name>SRM_PP_LeadSource__c</name>
+        <picklistValues>
+            <masterLabel>Contacted Us</masterLabel>
+            <translation><!-- Contacted Us --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LinkedIn</masterLabel>
+            <translation><!-- LinkedIn --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Networking</masterLabel>
+            <translation><!-- Networking --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Partner Referral</masterLabel>
+            <translation><!-- Partner Referral --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Phone Inquiry</masterLabel>
+            <translation><!-- Phone Inquiry --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Purchased List</masterLabel>
+            <translation><!-- Purchased List --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Targeted (research and email)</masterLabel>
+            <translation><!-- Targeted (research and email) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Web Inquiry</masterLabel>
+            <translation><!-- Web Inquiry --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

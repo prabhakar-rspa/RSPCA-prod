@@ -1,0 +1,1181 @@
+<aura:component controller="AdditionalApplicationController"
+    implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickActionWithoutHeader"
+    access="global">
+    <!-- New Application Record Attributes-->
+    <aura:attribute name="newApplication" type="Object" />
+    <aura:attribute name="NewApplicationFields" type="Object" />
+    <aura:attribute name="newApplicationError" type="String" />
+    <aura:attribute name="updateTypeValues" type="Object" />
+    <aura:attribute name="payMethodValues" type="Object" />
+    <c:LightningPicklist sObjectName="Application__c" fieldName="Update_Type__c"
+        picklistValues="{!v.updateTypeValues}" />
+    <c:LightningPicklist sObjectName="Application__c" fieldName="Payment_Method__c"
+        picklistValues="{!v.payMethodValues}" />
+    <force:recordData aura:id="applicationRecordCreate"
+        fields="Existing_Member__c, Stage__c, Application_Type__c, Update_Type__c, Site__c, Head_Office__c, Agreement__c, No_Offences__c , Payment_Method__c, Applicant_Contact__c, Signatory_Contact__c, Agreement_Date__c"
+        targetRecord="{!v.newApplication}" targetFields="{!v.NewApplicationFields}"
+        targetError="{!v.newApplicationError}" />
+
+    <!-- Current Site Record Attributes -->
+    <aura:attribute name="siteFields" type="Object" />
+    <aura:attribute name="siteRecordError" type="String" />
+    <force:recordData aura:id="siteRecordLoader" recordId="{!v.recordId}" targetFields="{!v.siteFields}"
+        fields="Id, ParentId" targetError="{!v.siteRecordError}" />
+
+    <!-- Contact Record -->
+    <aura:attribute name="primaryContact" type="Object" />
+    <aura:attribute name="fullname" type="string" />
+
+    <!-- Unit List to Create -->
+    <aura:attribute name="unitList" type="Unit__c[]" /> 
+
+    <!-- Unit Dependant Fields -->
+    <!-- Controlling Field -->
+    <aura:attribute name="businessPicklist" type="Object" />
+    <c:LightningPicklist sObjectName="Unit__c" fieldName="Business__c" picklistValues="{!v.businessPicklist}"/>
+
+    <!-- Animals dependant values-->
+    <aura:attribute name="abattoirAnimals" type="List"  default="['Chickens', 'Beef Cattle', 'Dairy Cattle', 'Ducks', 'Laying Hens', 'Pigs', 'Salmon', 'Sheep', 'Trout', 'Turkeys', 'Veal Calves']"/>
+    <aura:attribute name="catchingAnimals" type="List"  default="['Chickens', 'Ducks', 'Laying Hens', 'Turkeys']"/>
+    <aura:attribute name="cleanerFishAnimals" type="List"  default="['Lumpfish', 'Wrasse']"/>
+    <aura:attribute name="hatcheryAnimals" type="List"  default="['Meat Chicken Chicks', 'Ducklings', 'Laying Hen Chicks', 'Salmon', 'Trout', 'Turkey Poults']"/>
+    <aura:attribute name="haulierAnimals" type="List"  default="['Chickens', 'Beef Cattle', 'Dairy Cattle', 'Ducks', 'Laying Hen Chicks', 'Laying Hens', 'Meat Chicken Chicks', 'Pigs', 'Pullets','Salmon', 'Sheep', 'Trout', 'Turkey Poults', 'Turkeys', 'Veal Calves']"/>
+    <aura:attribute name="producerAnimals" type="List" default="['Chickens', 'Beef Cattle', 'Dairy Cattle', 'Ducks', 'Laying Hens', 'Pigs', 'Salmon', 'Sheep', 'Trout', 'Turkeys', 'Veal Calves', 'Pullets']" />
+
+
+    <aura:attribute name="abattoirAnimalsOptions" type="List"  default="[{'label':'Beef Cattle','value':'Beef Cattle'},{'label':'Chickens','value':'Chickens'},{'label':'Dairy Cattle','value':'Dairy Cattle'},{'label':'Ducks','value':'Ducks'},{'label':'Laying Hens','value':'Laying Hens'},{'label':'Pigs','value':'Pigs'},{'label':'Salmon','value':'Salmon'},{'label':'Sheep','value':'Sheep'},{'label':'Trout','value':'Trout'},{'label':'Turkeys','value':'Turkeys'},{'label':'Veal Calves','value':'Veal Calves'}]"/>
+    <aura:attribute name="catchingAnimalsOptions" type="List"  default="[{'label':'Chickens','value':'Chickens'},{'label':'Ducks','value':'Ducks'},{'label':'Laying Hens','value':'Laying Hens'},{'label':'Turkeys','value':'Turkeys'}]"/>
+    <aura:attribute name="hatcheryAnimalsOptions" type="List"  default="[{'label':'Ducklings','value':'Ducklings'},{'label':'Laying Hen Chicks','value':'Laying Hen Chicks'},{'label':'Meat Chicken Chicks','value':'Meat Chicken Chicks'},{'label':'Salmon','value':'Salmon'},{'label':'Trout','value':'Trout'},{'label':'Turkey Poults','value':'Turkey Poults'}]"/>
+    <aura:attribute name="haulierAnimalsOptions" type="List"  default="[{'label':'Beef Cattle','value':'Beef Cattle'},{'label':'Chickens','value':'Chickens'},{'label':'Dairy Cattle','value':'Dairy Cattle'},{'label':'Ducks','value':'Ducks'},{'label':'Laying Hen Chicks','value':'Laying Hen Chicks'},{'label':'Laying Hens','value':'Laying Hens'},{'label':'Meat Chicken Chicks','value':'Meat Chicken Chicks'},{'label':'Pigs','value':'Pigs'},{'label':'Pullets','value':'Pullets'},{'label':'Salmon','value':'Salmon'},{'label':'Sheep','value':'Sheep'},{'label':'Trout','value':'Trout'},{'label':'Turkey Poults','value':'Turkey Poults'},{'label':'Turkeys','value':'Turkeys'},{'label':'Veal Calves','value':'Veal Calves'}]"/>
+    <!-- Production Dependant values -->
+    <aura:attribute name="abattoirProduction" type="List" default="['Abattoir']" />
+    <aura:attribute name="catchingProduction" type="List" default="['Catching Team']" />
+    <aura:attribute name="cleanerFishProduction" type="List" default="['Cleaner Fish']" />
+    <aura:attribute name="poultryHatcheryProduction" type="List" default="['Hatchery']" />
+    <aura:attribute name="FishHatcheryProduction" type="List" default="['Hatchery (On Grower)', 'Hatchery (Ova)']" />
+    <aura:attribute name="haulierProduction" type="List" default="['Haulier']" />
+    <aura:attribute name="supplyChainProduction" type="List" default="['Processor/Packer', 'Distributor', 'Processor', 'Packer', 'Wholesaler', 'Retailer', 'Brand/Marketing']" />
+    <!-- Producer Animals production -->
+    <aura:attribute name="salmonProduction" type="List" default="['Freshwater', 'Seawater']" />
+    <aura:attribute name="troutProduction" type="List" default="['Freshwater']" />
+    <aura:attribute name="beefCattleProduction" type="List" default="['Finishing', 'Rearing', 'Suckler']" />
+    <aura:attribute name="dairyCattleProduction" type="List" default="['Dry Cows', 'Finishing', 'Heifers', 'Rearing']" />
+    <aura:attribute name="pigsProduction" type="List" default="['Breeding', 'Finishing', 'Gilts', 'Rearing', 'Breeding to rearing', 'Breeding to finishing', 'Rearing to finishing']" />
+    <aura:attribute name="sheepProduction" type="List" default="['Breeding', 'Finishing', 'Grazing']" />
+    <aura:attribute name="vealProduction" type="List" default="['Calves']" />
+    <aura:attribute name="chickenDuckProduction" type="List" default="['Producer']" />
+    <aura:attribute name="layingHensProduction" type="List" default="['Flat deck (one-storey)', 'Flat deck (two storey)', 'Flat deck with Veranda', 'Multi-tier (one-storey)',' Multi-tier (two-storey)', 'Multi-tier with Veranda']" />
+    <aura:attribute name="pulletProduction" type="List" default="['Flat deck (one-storey)', 'Flat deck (two storey)', 'Multi-tier (one-storey)',' Multi-tier (two-storey)']" />
+    <aura:attribute name="turkeyProduction" type="List" default="['Brood', 'Finishing']" />
+
+    <!-- Animal Dependant House Type values -->
+    <aura:attribute name="houseTypeChickenDucksTurkeys" type="List" default="['Mobile', 'Static']" />
+    <aura:attribute name="houseTypedairyCattle" type="List" default="['Cubicles', 'Loose yard', 'Straw yard']" />
+    <aura:attribute name="houseTypesalmon" type="List" default="['Incubation', 'Incubation and Tank', 'Loch', 'Tank', 'TBC']" />
+
+    <!-- Ingrediants Picklist values -->
+    <aura:attribute name="ingrediantsPicklist" type="Object" />
+    <c:LightningPicklist sObjectName="Unit__c" fieldName="Ingredients__c" picklistValues="{!v.ingrediantsPicklist}" />
+
+    <!-- Order Sizes picklist value -->
+    <aura:attribute name="orderSizesPicklist" type="Object" />
+    <c:LightningPicklist sObjectName="Unit__c" fieldName="Order_Sizes__c" picklistValues="{!v.orderSizesPicklist}" />
+    
+    <!-- Vehicle Type Picklist-->
+    <aura:attribute name="vehicleTypePicklist" type="Object" />
+    <c:LightningPicklist sObjectName="Unit__c" fieldName="Vehicle_Type__c" picklistValues="{!v.vehicleTypePicklist}" />
+
+
+    <!-- Poultry Units -->
+    <aura:attribute name="poultryList" type="Unit__c[]" /> 
+    <aura:attribute name="poultrySize" type="integer" />
+
+    <!-- IsLoading boolean -->
+    <aura:attribute name="isLoading" type="boolean" default="true" />
+    
+    <!-- Payment record or Application Record-->
+    <aura:attribute name="submitResponse" type="Object" />
+
+
+    <!-- Steps check -->
+    <aura:attribute name="currentStep" type="string" default="1" />
+    <aura:attribute name="step1" type="boolean" default="true" />
+    <aura:attribute name="step2" type="boolean" default="false" />
+    <aura:attribute name="step3" type="boolean" default="false" />
+    <aura:attribute name="step4" type="boolean" default="false" />
+    <aura:attribute name="hasError" type="boolean" default="false" />
+    <aura:attribute name="newUnit" type="boolean" default="false" />
+    <aura:attribute name="extension" type="boolean" default="false" />
+
+    <aura:attribute name="assessmentRequired" type="boolean" default="false" />
+    <aura:attribute name="assessmentNeeded" type="boolean" default="false" />
+
+    <!-- Initialise the component -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <!-- Modal Header -->
+    <header class="slds-modal__header">
+        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Update Site</h2>
+    </header>
+    <!-- Modal Content -->
+    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+        
+        <!-- Step 1 -->
+        <!-- Form -->
+        <aura:if isTrue="{!v.step1}">
+            <!-- Is Loading -->
+            <aura:if isTrue="{!v.isLoading}">
+                <div class="exampleHolder">
+                    <lightning:spinner alternativeText="Loading" size="medium" />
+                </div>
+                <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_offline" role="alert">
+                    <span class="slds-assistive-text">loading message</span>
+                    <h2>
+                        Application Loading. If it doesn't, close this window and try again or refresh your browser and try again.   
+                    </h2>
+                </div>
+                      
+                
+                <aura:set attribute="else">
+                    <aura:if isTrue="{!v.primaryContact != null}">
+                        <div class="slds-form">
+                            <h3 class="slds-section__title slds-theme_shade">
+                                Choose type of update
+                            </h3>
+                            <lightning:input aura:id="field" label="Head Office" value="{!v.NewApplicationFields.Head_Office__c}"
+                                class="hiddenComponent" />
+                            <lightning:input aura:id="field" label="Site" value="{!v.NewApplicationFields.Site__c}"
+                                class="hiddenComponent" />
+            
+                            <div class="slds-form-element slds-form-element_horizontal">
+                                <label class="slds-form-element__label">
+                                    Type of update
+                                </label>
+                                <lightning:select name="additionType" aura:id="field"
+                                    value="{!v.NewApplicationFields.Update_Type__c}" required="true">
+                                    <option label="Please select..."></option>
+                                    <aura:iteration items="{!v.updateTypeValues}" var="item">
+                                        <option value="{!item.value}">{!item}</option>
+                                    </aura:iteration>
+                                </lightning:select>
+                            </div>
+                            
+                        </div>
+                        <aura:set attribute="else">
+                            <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error" role="alert">
+                                <span class="slds-assistive-text">error</span>
+                                <h2>
+                                    No primary contact found for this site. Please ensure that there is a primary contact available for this site.
+                                </h2>
+                            </div>
+                            <br/>
+        
+                        </aura:set>
+        
+                    </aura:if>
+
+                </aura:set>
+            </aura:if>
+            
+        </aura:if>
+
+        <!-- Step 2 -->
+        <!-- Form -->
+        <aura:if isTrue="{!v.step2}">
+            <!-- New Units -->
+            <aura:if isTrue="{!v.newUnit}">
+                <div class="slds-form-element slds-form-element_horizontal">
+                    <label class="slds-form-element__label">
+                        Assessment Required
+                    </label>
+                    <lightning:input type="checkbox" checked="{!v.assessmentRequired}"/>
+                </div>
+                <div class="slds-form-element slds-form-element_horizontal">
+                    <label class="slds-form-element__label">
+                        Re-visit Fee required
+                    </label>
+                    <lightning:input type="checkbox" checked="{!v.assessmentNeeded}"/>
+                </div>
+                <div class="slds-form newUnitForm">
+                    <h3 class="slds-section__title slds-theme_shade">
+                        Add units
+                    </h3>
+                    
+                    <div class="text-align-right slds-p-bottom_small">
+                        
+                            <lightning:button label="Add Unit" iconName="utility:add" iconPosition="right"
+                                    onclick="{!c.addUnit}" />
+
+                    </div>
+                    <ui:scrollerWrapper class="addUnitScroll" >
+
+                    
+                        <aura:iteration items="{!v.unitList}" var="u" indexVar="index">
+                            <article class="slds-card">
+                                <!-- Card header -->
+                                <div class="slds-card__header slds-grid">
+                                    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                        <div class="slds-media__figure">
+                                            <span class="slds-icon_container" title="Unit">
+                                                <lightning:icon iconName="custom:custom57" alternativeText="Unit" />
+                                                <span class="slds-assistive-text">Unit</span>
+                                            </span>
+                                        </div>
+                                        <div class="slds-media__body">
+                                            <h2 class="slds-card__header-title">
+                                                <span>Unit # {!index + 1}</span>
+                                            </h2>
+                                        </div>
+                                        <div class="slds-no-flex">
+                                            <a onclick="{!c.removeRow}" data-record="{!index}">
+                                                <lightning:icon iconName="utility:delete" size="small"
+                                                    alternativeText="Delete" />
+                                                <span class="slds-assistive-text">Delete</span>
+                                            </a>
+                                        </div>
+                                    </header>
+                                </div>
+                        
+                                <!-- Card content -->
+                                <div class="slds-card__body slds-card__body_inner">
+                                    
+
+                                    <div class="slds-form" role="list">
+                                        <!-- Unit Field Row 1 -->
+                                        <div class="slds-form__row">
+                                            <div class="slds-form__item" role="listitem">
+                                                <div class="slds-form-element slds-form-element_horizontal slds-is-editing">
+                                                    <div class="labelWithTooltip">
+                                                        <label class="slds-form-element__label">
+                                                            Unit Number
+                                                        </label>
+                                                        <lightning:helptext content="Number representing the house, shed, paddock, pen, tank, vehicle etc. Allows us to distinguish between units. Each unit must a unique sequential number. For example, 01, 02, 03 and so on."/>
+                                                    </div>
+                                                    
+                                                    <lightning:input name="unitNumber" value="{!u.Name}" required="true"/>                                   
+                                                </div>
+                                            </div>
+
+                                            <div class="slds-form__item" role="listitem">
+                                                <div class="slds-form-element slds-form-element_horizontal slds-is-editing">
+                                                    <label class="slds-form-element__label">Business</label>
+                                                    <!-- Business Controlling field -->
+                                                    <lightning:select aura:id="field" name="{!'business' + index}" value="{!u.Business__c}" required="true" onchange="{!c.handleBussinessChange}">
+                                                        <option label="Please select..."></option>
+                                                        <aura:iteration items="{!v.businessPicklist}" var="item">
+                                                            <option value="{!item.value}">{!item}</option>
+                                                        </aura:iteration>
+                                                    </lightning:select>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        
+                                        <!-- Unit Field Row 2 -->
+                                        <div class="slds-form__row">
+                                            <aura:if isTrue="{!(u.Business__c == 'Abattoir' || u.Business__c == 'Catching' || u.Business__c == 'Hatchery' || u.Business__c == 'Haulier')}">
+                                                <div class="slds-form__item" role="listitem">
+                                                    <div class="slds-form-element slds-form-element_horizontal slds-is-editing">
+                                                        <div class="labelWithTooltip">
+                                                            <label class="slds-form-element__label">
+                                                                Animals
+                                                            </label>
+                                                        </div>
+                                                        <lightning:select aura:id="field" value="{!u.Animals__c}" disabled="true">
+                                                            <option value="List">List</option>
+                                                        </lightning:select>
+                                                    </div>
+                                                </div>
+                                                
+                                            </aura:if>
+
+                                            <div class="slds-form__item" role="listitem">
+                                                <div class="slds-form-element slds-form-element_horizontal slds-is-editing">
+                                                    <aura:if isTrue="{!u.Business__c == 'Supply Chain'}">
+                                                        <div class="labelWithTooltip">
+                                                            <label class="slds-form-element__label">
+                                                                Ingredients
+                                                            </label>
+                                                            <lightning:helptext content="To add more ingredients, click 'Add Unit'."/>
+                                                        </div>
+                                                          
+                                                        <aura:set attribute="else">
+                                                            <div class="labelWithTooltip">
+                                                            	<label class="slds-form-element__label">
+                                                                    <aura:if isTrue="{!OR(u.Business__c == 'Abattoir',u.Business__c == 'Catching',u.Business__c == 'Hatchery',u.Business__c == 'Haulier')}">
+                                                                        List of Animals
+                                                                        <aura:set attribute="else">
+                                                                            Animals
+                                                                        </aura:set>
+                                                                    </aura:if>
+                                                            	</label>
+                                                                <lightning:helptext content="If you process more than one species, please select the main species you process."/>
+                                                            </div>
+                                                        </aura:set>
+                                                    </aura:if>
+                                                                                
+                                                    <!-- Animals Dependant Values -->
+                                                    <aura:if isTrue="{!u.Business__c == 'Abattoir'}">
+                                                        <!-- Abattoir animal values -->
+                                                        <!--lightning:select aura:id="field" value="{!u.Animals__c}" required="true" disabled="false">
+                                                            <option label="Please select..."></option>
+                                                            <aura:iteration items="{!v.abattoirAnimals}" var="item">
+                                                                <option value="{!item.value}">{!item}</option>
+                                                            </aura:iteration>
+                                                        </lightning:select-->
+                                                        <div>
+                                                            <c:multiSelectPicklist
+                                                            aura:id="multiField"
+                                                            onselecting="{!c.handleAnimalSelection}" 
+                                                            optionslist="{!v.abattoirAnimalsOptions}" 
+                                                            fieldName="Animals_List__c"
+                                                            isRequired="true"
+                                                            label="Animals"
+                                                            index="{!index}"
+                                                            selectedValues="{!u.Animals_List__c}"
+                                                        />
+                                                        </div>
+                                                        
+                                                    </aura:if>
+                                                    <aura:if isTrue="{!u.Business__c == 'Catching'}">
+                                                        <!-- Catching animal values -->
+                                                        <!--lightning:select  aura:id="field"  value="{!u.Animals__c}" required="true" disabled="false">
+                                                            <option label="Please select..."></option>
+                                                            <aura:iteration items="{!v.catchingAnimals}" var="item">
+                                                                <option value="{!item.value}">{!item}</option>
+                                                            </aura:iteration>
+                                                        </lightning:select-->
+                                                        <c:multiSelectPicklist
+                                                            aura:id="multiField"
+                                                            onselecting="{!c.handleAnimalSelection}" 
+                                                            optionslist="{!v.catchingAnimalsOptions}" 
+                                                            fieldName="Animals_List__c"
+                                                            isRequired="true"
+                                                            label="Animals"
+                                                            index="{!index}"
+                                                            selectedValues="{!u.Animals_List__c}"
+                                                        />
+
+                                                    </aura:if>
+                                                    <aura:if isTrue="{!u.Business__c == 'Cleaner Fish'}">
+                                                        <!-- Cleaner Fish animal values -->
+                                                        <lightning:select  aura:id="field"  value="{!u.Animals__c}" required="true" disabled="false">
+                                                            <option label="Please select..."></option>
+                                                            <aura:iteration items="{!v.cleanerFishAnimals}" var="item">
+                                                                <option value="{!item.value}">{!item}</option>
+                                                            </aura:iteration>
+                                                        </lightning:select>
+                                                    </aura:if>
+                                                    <aura:if isTrue="{!u.Business__c == 'Hatchery'}">
+                                                        <!-- Hatchery animal values -->
+                                                        <!--lightning:select  aura:id="field"  value="{!u.Animals__c}" required="true" disabled="false">
+                                                            <option label="Please select..."></option>
+                                                            <aura:iteration items="{!v.hatcheryAnimals}" var="item">
+                                                                <option value="{!item.value}">{!item}</option>
+                                                            </aura:iteration>
+                                                        </lightning:select-->
+                                                        <c:multiSelectPicklist
+                                                        aura:id="multiField"
+                                                            onselecting="{!c.handleAnimalSelection}" 
+                                                            optionslist="{!v.hatcheryAnimalsOptions}" 
+                                                            fieldName="Animals_List__c"
+                                                            isRequired="true"
+                                                            label="Animals"
+                                                            index="{!index}"
+                                                            selectedValues="{!u.Animals_List__c}"
+                                                        />
+                                                    </aura:if>
+                                                    <aura:if isTrue="{!u.Business__c == 'Haulier'}">
+                                                        <!-- Haulier animal values -->
+                                                        <!--lightning:select  aura:id="field"  value="{!u.Animals__c}" required="true" disabled="false">
+                                                            <option label="Please select..."></option>
+                                                            <aura:iteration items="{!v.haulierAnimals}" var="item">
+                                                                <option value="{!item.value}">{!item}</option>
+                                                            </aura:iteration>
+                                                        </lightning:select-->
+                                                        <c:multiSelectPicklist
+                                                        aura:id="multiField"
+                                                            onselecting="{!c.handleAnimalSelection}" 
+                                                            optionslist="{!v.haulierAnimalsOptions}" 
+                                                            fieldName="Animals_List__c"
+                                                            isRequired="true"
+                                                            label="Animals"
+                                                            index="{!index}"
+                                                            selectedValues="{!u.Animals_List__c}"
+                                                        />
+
+                                                    </aura:if>
+                                                    <aura:if isTrue="{!u.Business__c == 'Producer'}">
+                                                        <!-- Producer animal values -->
+                                                        <lightning:select  aura:id="field"  value="{!u.Animals__c}" required="true" disabled="false">
+                                                            <option label="Please select..."></option>
+                                                            <aura:iteration items="{!v.producerAnimals}" var="item">
+                                                                <option value="{!item.value}">{!item}</option>
+                                                            </aura:iteration>
+                                                        </lightning:select>
+                                                    </aura:if>
+                                                    <aura:if isTrue="{!u.Business__c == 'Supply Chain'}">
+                                                        <!-- Supply Chain Ingrediants values -->
+                                                        <lightning:select aura:id="field"  value="{!u.Ingrediants__c}" required="true" disabled="false">
+                                                            <option label="Please select..."></option>
+                                                            <aura:iteration items="{!v.ingrediantsPicklist}" var="item">
+                                                                <option value="{!item.value}">{!item}</option>
+                                                            </aura:iteration>
+                                                        </lightning:select>
+                                                    </aura:if>
+                                                    <aura:if isTrue="{!u.Business__c == ''}">
+                                                        <!-- No Business Selected animal values -->
+                                                        <lightning:select aura:id="field"  value="{!u.Animals__c}" required="false" disabled="true">
+                                                            <option label="Please select..."></option>
+                                                        </lightning:select>
+                                                    </aura:if>                                 
+                                                    
+                                                </div>
+                                            </div>
+
+                                            <div class="slds-form__item" role="listitem">
+                                                <div class="slds-form-element slds-form-element_horizontal slds-is-editing">
+                                                    <label class="slds-form-element__label">Production</label>
+                                                    <aura:if isTrue="{!u.Business__c == 'Abattoir'}">
+                                                        <!-- Abattoir production values -->
+                                                        <lightning:select aura:id="field"  value="{!u.Production__c}" required="true" disabled="false">
+                                                            <aura:iteration items="{!v.abattoirProduction}" var="item">
+                                                                <option value="{!item.value}">{!item}</option>
+                                                            </aura:iteration>
+                                                        </lightning:select>
+                                                    </aura:if>
+                                                    <aura:if isTrue="{!u.Business__c == 'Catching'}">
+                                                        <!-- Catching production values -->
+                                                        <lightning:select aura:id="field"  value="{!u.Production__c}" required="true" disabled="false">
+                                                            <aura:iteration items="{!v.catchingProduction}" var="item">
+                                                                <option value="{!item.value}">{!item}</option>
+                                                            </aura:iteration>
+                                                        </lightning:select>
+                                                    </aura:if>
+                                                    <aura:if isTrue="{!u.Business__c == 'Cleaner Fish'}">
+                                                        <!-- Cleaner Fish production values -->
+                                                        <lightning:select aura:id="field"  value="{!u.Production__c}" required="true" disabled="false">
+                                                            <aura:iteration items="{!v.cleanerFishProduction}" var="item">
+                                                                <option value="{!item.value}">{!item}</option>
+                                                            </aura:iteration>
+                                                        </lightning:select>
+                                                    </aura:if>
+                                                    <aura:if isTrue="{!and(u.Business__c == 'Hatchery', or(u.Animals__c == 'Salmon', u.Animals__c == 'Trout'))}">
+                                                        <!-- Fish Hatchery production values -->
+                                                        <lightning:select aura:id="field"  value="{!u.Production__c}" required="true" disabled="false">
+                                                            <option label="Please select..."></option>
+                                                            <aura:iteration items="{!v.FishHatcheryProduction}" var="item">
+                                                                <option value="{!item.value}">{!item}</option>
+                                                            </aura:iteration>
+                                                        </lightning:select>
+                                                        <aura:set attribute="else">
+                                                            <!-- Only Hatchery Value-->
+                                                            <aura:if isTrue="{!u.Business__c == 'Hatchery'}">
+                                                                <lightning:select aura:id="field"  value="{!u.Production__c}" required="true" disabled="false">
+                                                                    <aura:iteration items="{!v.poultryHatcheryProduction}" var="item">
+                                                                        <option value="{!item.value}">{!item}</option>
+                                                                    </aura:iteration>                                                                        
+                                                                </lightning:select>
+                                                            </aura:if>
+                                                        </aura:set>
+                                                    </aura:if>
+                                                    
+                                                    <aura:if isTrue="{!u.Business__c == 'Haulier'}">
+                                                        <!-- Haulier production values -->
+                                                        <lightning:select aura:id="field"  value="{!u.Production__c}" required="true" disabled="false">
+                                                            <aura:iteration items="{!v.haulierProduction}" var="item">
+                                                                <option value="{!item.value}">{!item}</option>
+                                                            </aura:iteration>
+                                                        </lightning:select>
+                                                    </aura:if>
+                                                    <aura:if isTrue="{!u.Business__c == 'Supply Chain'}">
+                                                        <!-- Supply Chain production values -->
+                                                        <lightning:select aura:id="field"  value="{!u.Production__c}" required="true" disabled="false">
+                                                            <option label="Please select..."></option>
+                                                            <aura:iteration items="{!v.supplyChainProduction}" var="item">
+                                                                <option value="{!item.value}">{!item}</option>
+                                                            </aura:iteration>
+                                                        </lightning:select>
+                                                    </aura:if>
+                                                    <aura:if isTrue="{!and(u.Business__c == 'Producer', u.Animals__c == 'Salmon')}">
+                                                        <!-- Producer Salmon production values -->
+                                                        <lightning:select aura:id="field"  value="{!u.Production__c}" required="true" disabled="false">
+                                                            <option label="Please select..."></option>
+                                                            <aura:iteration items="{!v.salmonProduction}" var="item">
+                                                                <option value="{!item.value}">{!item}</option>
+                                                            </aura:iteration>
+                                                        </lightning:select>
+                                                    </aura:if>
+                                                    <aura:if isTrue="{!and(u.Business__c == 'Producer', u.Animals__c == 'Trout')}">
+                                                        <!-- Producer trout production values -->
+                                                        <lightning:select aura:id="field"  value="{!u.Production__c}" required="true" disabled="false">
+                                                            <aura:iteration items="{!v.troutProduction}" var="item">
+                                                                <option value="{!item.value}">{!item}</option>
+                                                            </aura:iteration>
+                                                        </lightning:select>
+                                                    </aura:if>
+                                                    <aura:if isTrue="{!and(u.Business__c == 'Producer', u.Animals__c == 'Beef Cattle')}">
+                                                        <!-- Producer Beef Cattle production values -->
+                                                        <lightning:select aura:id="field"  value="{!u.Production__c}" required="true" disabled="false">
+                                                            <option label="Please select..."></option>
+                                                            <aura:iteration items="{!v.beefCattleProduction}" var="item">
+                                                                <option value="{!item.value}">{!item}</option>
+                                                            </aura:iteration>
+                                                        </lightning:select>
+                                                    </aura:if>
+                                                    <aura:if isTrue="{!and(u.Business__c == 'Producer', u.Animals__c == 'Dairy Cattle')}">
+                                                        <!-- Producer Dairy Cattle production values -->
+                                                        <lightning:select aura:id="field"  value="{!u.Production__c}" required="true" disabled="false">
+                                                            <option label="Please select..."></option>
+                                                            <aura:iteration items="{!v.dairyCattleProduction}" var="item">
+                                                                <option value="{!item.value}">{!item}</option>
+                                                            </aura:iteration>
+                                                        </lightning:select>
+                                                    </aura:if>
+                                                    <aura:if isTrue="{!and(u.Business__c == 'Producer', u.Animals__c == 'Pigs')}">
+                                                        <!-- Producer pigs production values -->
+                                                        <lightning:select aura:id="field"  value="{!u.Production__c}" required="true" disabled="false">
+                                                            <option label="Please select..."></option>
+                                                            <aura:iteration items="{!v.pigsProduction}" var="item">
+                                                                <option value="{!item.value}">{!item}</option>
+                                                            </aura:iteration>
+                                                        </lightning:select>
+                                                    </aura:if>
+                                                    <aura:if isTrue="{!and(u.Business__c == 'Producer', u.Animals__c == 'Sheep')}">
+                                                        <!-- Producer Sheep production values -->
+                                                        <lightning:select aura:id="field"  value="{!u.Production__c}" required="true" disabled="false">
+                                                            <option label="Please select..."></option>
+                                                            <aura:iteration items="{!v.sheepProduction}" var="item">
+                                                                <option value="{!item.value}">{!item}</option>
+                                                            </aura:iteration>
+                                                        </lightning:select>
+                                                    </aura:if>
+                                                    <aura:if isTrue="{!and(u.Business__c == 'Producer', u.Animals__c == 'Veal Calves')}">
+                                                        <!-- Producer veal calves production values -->
+                                                        <lightning:select aura:id="field"  value="{!u.Production__c}" required="true" disabled="false">
+                                                            <aura:iteration items="{!v.vealProduction}" var="item">
+                                                                <option value="{!item.value}">{!item}</option>
+                                                            </aura:iteration>
+                                                        </lightning:select>
+                                                    </aura:if>
+                                                    <aura:if isTrue="{!and(u.Business__c == 'Producer', or(u.Animals__c == 'Chickens', u.Animals__c == 'Ducks'))}">
+                                                        <!-- Producer chciken/duck production values -->
+                                                        <lightning:select aura:id="field"  value="{!u.Production__c}" required="true" disabled="false">
+                                                            <aura:iteration items="{!v.chickenDuckProduction}" var="item">
+                                                                <option value="{!item.value}">{!item}</option>
+                                                            </aura:iteration>
+                                                        </lightning:select>
+                                                    </aura:if>
+                                                    <aura:if isTrue="{!and(u.Business__c == 'Producer', u.Animals__c == 'Laying Hens')}">
+                                                        <!-- Producer Laying Hens production values -->
+                                                        <lightning:select aura:id="field"  value="{!u.Production__c}" required="true" disabled="false">
+                                                            <option label="Please select..."></option>
+                                                            <aura:iteration items="{!v.layingHensProduction}" var="item">
+                                                                <option value="{!item.value}">{!item}</option>
+                                                            </aura:iteration>
+                                                        </lightning:select>
+                                                    </aura:if>
+                                                    <aura:if isTrue="{!and(u.Business__c == 'Producer', u.Animals__c == 'Pullets')}">
+                                                        <!-- Producer pullet production values -->
+                                                        <lightning:select aura:id="field"  value="{!u.Production__c}" required="true" disabled="false">
+                                                            <option label="Please select..."></option>
+                                                            <aura:iteration items="{!v.pulletProduction}" var="item">
+                                                                <option value="{!item.value}">{!item}</option>
+                                                            </aura:iteration>
+                                                        </lightning:select>
+                                                    </aura:if>
+                                                    <aura:if isTrue="{!and(u.Business__c == 'Producer', u.Animals__c == 'Turkeys')}">
+                                                        <!-- Producer turkey production values -->
+                                                        <lightning:select aura:id="field"  value="{!u.Production__c}" required="true" disabled="false">
+                                                            <option label="Please select..."></option>
+                                                            <aura:iteration items="{!v.turkeyProduction}" var="item">
+                                                                <option value="{!item.value}">{!item}</option>
+                                                            </aura:iteration>
+                                                        </lightning:select>
+                                                    </aura:if>
+
+                                                    <aura:if isTrue="{!and(u.Business__c == 'Producer', u.Animals__c == '')}">
+                                                        <!-- Producer No Animals Selected production values -->
+                                                        <lightning:select aura:id="field"  value="{!u.Production__c}" required="false" disabled="true">
+                                                            <option label="Please select..."></option>
+                                                        </lightning:select>
+                                                    </aura:if>
+                                                    <aura:if isTrue="{!u.Business__c == ''}">
+                                                        <!-- Producer No Animals Selected production values -->
+                                                        <lightning:select aura:id="field"  value="{!u.Production__c}" required="false" disabled="true">
+                                                            <option label="Please select..."></option>
+                                                        </lightning:select>
+                                                    </aura:if>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        
+                                        <!-- Unit Field Row 3 -->
+                                        <div class="slds-form__row">
+
+                                            <div class="slds-form__item" role="listitem">
+                                                <div class="slds-form-element slds-form-element_horizontal slds-is-editing">
+                                                    <aura:if isTrue="{!u.Business__c == 'Producer' || u.Business__c == 'Cleaner Fish'}">
+                                                        <!-- Number of animals when business is producer or cleaner fish -->
+                                                        <div class="labelWithTooltip">
+                                                            <label class="slds-form-element__label">Number of Animals</label>
+                                                            <lightning:helptext content="Please take care when entering the number of animals as this could affect the membership fee you are charged."/>
+                                                        </div>
+                                                        <lightning:input aura:id="field" type="number" name="noOfAnimals" value="{!u.Number_of_Animals__c}" placeholder="Enter the number of animals..." required="true"/>
+                                                    </aura:if>
+                                                    <aura:if isTrue="{!u.Business__c == 'Supply Chain'}">
+                                                        <!-- Order Size when the business is supply chain -->
+                                                        <div class="labelWithTooltip">
+                                                            <label class="slds-form-element__label">
+                                                                Order Sizes
+                                                            </label>
+                                                            <lightning:helptext content="What size orders are you able to fulfil?
+                                                            Single outlet; 
+                                                            Small number of outlets (less than 10); 
+                                                            Medium number of outlets (less than 100); 
+                                                            Large number of outlets (more than 100)."/>
+                                                        </div>
+                                                        <lightning:select aura:id="field"  value="{!u.Order_Sizes__c}" required="true" disabled="false">
+                                                            <option label="Please select..."></option>
+                                                            <aura:iteration items="{!v.orderSizesPicklist}" var="item">
+                                                                <option value="{!item.value}">{!item}</option>
+                                                            </aura:iteration>
+                                                        </lightning:select>
+                                                    </aura:if>
+                                                    <aura:if isTrue="{!u.Business__c == 'Catching'}">
+                                                        <!-- Own catching checkbox to display when the business is catching -->
+                                                        <div class="labelWithTooltip">
+                                                            <label class="slds-form-element__label">
+                                                                Own Catching
+                                                            </label>
+                                                            <lightning:helptext content="This catching team is managed by the site and catches for this site only."/>
+                                                        </div>
+                                                        <lightning:input aura:id="field" type="checkbox" name="ownCatching" checked="{!u.Own_Catching__c}" title="This catching team is managed by the site and catches for this site only."/>
+                                                    </aura:if>
+                                                    <aura:if isTrue="{!u.Business__c == 'Haulier'}">
+                                                        <!-- Vehicle Type when the business is Haulier -->
+                                                        <label class="slds-form-element__label">
+                                                            Vehicle Type
+                                                        </label>
+                                                        <lightning:select aura:id="field"  value="{!u.Vehicle_Type__c}" required="true" disabled="false">
+                                                            <option label="Please select..."></option>
+                                                            <aura:iteration items="{!v.vehicleTypePicklist}" var="item">
+                                                                <option value="{!item.value}">{!item}</option>
+                                                            </aura:iteration>
+                                                        </lightning:select>
+                                                    </aura:if>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="slds-form__item" role="listitem">
+                                                <div class="slds-form-element slds-form-element_horizontal slds-is-editing">
+                                                    
+                                                    <aura:if isTrue="{!u.Business__c == 'Producer'}">
+                                                        <!-- Rearing system dependencies for when business is producer -->
+                                                        
+                                                        <aura:if isTrue="{!u.Animals__c == 'Beef Cattle' || u.Animals__c == 'Dairy Cattle' || u.Animals__c == 'Sheep' }">
+                                                            <!-- rearing system for beef cattle, dairy cattle and sheep -->
+                                                            <label class="slds-form-element__label">
+                                                                Rearing System
+                                                            </label>
+                                                            <lightning:select aura:id="field"  value="{!u.Rearing_System__c}" required="true" disabled="false">
+                                                                <option label="Please select..."></option>
+                                                                <option value="Indoor">Indoor</option>
+                                                                <option value="Pasture">Pasture</option>
+                                                                <option value="Organic">Organic</option>
+                                                            </lightning:select>
+                                                        </aura:if>
+                                                        <aura:if isTrue="{!u.Animals__c == 'Pigs'}">
+                                                            <!-- rearing system for pigs -->
+                                                            <label class="slds-form-element__label">
+                                                                Rearing System
+                                                            </label>
+                                                            <lightning:select aura:id="field"  value="{!u.Rearing_System__c}" required="true" disabled="false">
+                                                                <option label="Please select..."></option>
+                                                                <option value="Free Range">Free Range</option>
+                                                                <option value="Indoor">Indoor</option>
+                                                                <option value="Outdoor Bred">Outdoor Bred</option>
+                                                                <option value="Outdoor Reared">Outdoor Reared</option>
+                                                                <option value="Organic">Organic</option>
+                                                            </lightning:select>
+                                                        </aura:if>
+                                                        <aura:if isTrue="{!u.Animals__c == 'Veal Calves'}">
+                                                            <!-- rearing system for veal calves -->
+                                                            <label class="slds-form-element__label">
+                                                                Rearing System
+                                                            </label>
+                                                            <lightning:select aura:id="field"  value="{!u.Rearing_System__c}" required="true" disabled="false">
+                                                                <option value="Indoor">Indoor</option>
+                                                            </lightning:select>
+                                                        </aura:if>
+                                                        <aura:if isTrue="{!u.Animals__c == 'Chickens' || u.Animals__c == 'Ducks' || u.Animals__c == 'Turkeys'}">
+                                                            <!-- rearing system for chicken, ducks and turkey -->
+                                                            <label class="slds-form-element__label">
+                                                                Rearing System
+                                                            </label>
+                                                            <lightning:select aura:id="field"  value="{!u.Rearing_System__c}" required="true" disabled="false">
+                                                                <option label="Please select..."></option>
+                                                                <option value="Free Range">Free Range</option>
+                                                                <option value="Indoor">Indoor</option>
+                                                                <option value="Organic">Organic</option>
+                                                            </lightning:select>
+                                                        </aura:if>
+                                                        <aura:if isTrue="{!u.Animals__c == 'Laying Hens' || u.Animals__c == 'Pullets'}">
+                                                            <!-- rearing system for laying hens and pullets -->
+                                                            <label class="slds-form-element__label">
+                                                                Rearing System
+                                                            </label>
+                                                            <lightning:select aura:id="field"  value="{!u.Rearing_System__c}" required="true" disabled="false">
+                                                                <option label="Please select..."></option>
+                                                                <option value="Free Range">Free Range</option>
+                                                                <option value="Barn">Barn</option>
+                                                                <option value="Organic">Organic</option>
+                                                            </lightning:select>
+                                                        </aura:if>
+                                                        <aura:if isTrue="{!u.Animals__c == ''}">
+                                                            <label class="slds-form-element__label">
+                                                                Rearing System
+                                                            </label>
+                                                            <lightning:select aura:id="field"  value="{!u.Rearing_System__c}" required="false" disabled="true">
+                                                                <option label="Please select..."></option>
+                                                            </lightning:select>
+                                                        </aura:if>
+                                                    </aura:if>
+                                                    <aura:if isTrue="{!u.Business__c == 'Haulier'}">
+                                                            <label class="slds-form-element__label">
+                                                                Vehicle Registration
+                                                            </label>
+                                                            <lightning:input aura:id="field" name="vehicleRegistration" value="{!u.Vehicle_Registration__c}" required="true"/>
+
+                                                    </aura:if>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Unit Field Row 4 -->
+                                        <div class="slds-form__row">
+                                            <div class="slds-form__item" role="listitem">
+                                                <div class="slds-form-element slds-form-element_horizontal slds-is-editing">
+                                                    <aura:if isTrue="{!u.Business__c == 'Haulier'}">
+                                                        <label class="slds-form-element__label">
+                                                            Chassis Number
+                                                        </label>
+                                                        <lightning:input aura:id="field" name="chassisNumber" value="{!u.Chassis_Number__c}" required="true"/>
+
+                                                    </aura:if>
+                                                
+                                                </div>
+                                            </div>
+
+                                            <div class="slds-form__item" role="listitem">
+                                                <div class="slds-form-element slds-form-element_horizontal slds-is-editing">
+                                                    <aura:if isTrue="{!u.Business__c == 'Haulier'}">
+                                                        <div class="labelWithTooltip">
+                                                            <label class="slds-form-element__label">
+                                                                Own Transport
+                                                            </label>
+                                                            <lightning:helptext content="This vehicle or trailer is owned by the site for the transportation of animals or produce to or from this site only."/>
+                                                        </div>
+                                                        
+                                                        <lightning:input aura:id="field" type="checkbox" name="ownTransport" checked="{!u.Own_Transport__c}"/>
+
+                                                    </aura:if>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Unit Field Row 5 -->
+                                        
+                                        <div class="slds-form__row">
+                                            <!-- Column 1 -->
+                                            <div class="slds-form__item" role="listitem">
+                                                <!-- House Type Field -->
+                                                <div class="slds-form-element slds-form-element_horizontal slds-is-editing">
+                                                    
+                                                    <aura:if isTrue="{!u.Animals__c == 'Chickens'}">
+                                                        <label class="slds-form-element__label">
+                                                            House Type
+                                                        </label>
+                                                        <lightning:select aura:id="field" value="{!u.House_Type__c}" required="true" disabled="false">
+                                                            <option label="Please select..."></option>
+                                                            <aura:iteration items="{!v.houseTypeChickenDucksTurkeys}" var="item">
+                                                                <option value="{!item.value}">{!item}</option>
+                                                            </aura:iteration>
+                                                        </lightning:select>
+                                                    </aura:if>
+
+                                                    <aura:if isTrue="{!u.Animals__c == 'Ducks'}">
+                                                        <label class="slds-form-element__label">
+                                                            House Type
+                                                        </label>
+                                                        <lightning:select aura:id="field" value="{!u.House_Type__c}" required="true" disabled="false">
+                                                            <option label="Please select..."></option>
+                                                            <aura:iteration items="{!v.houseTypeChickenDucksTurkeys}" var="item">
+                                                                <option value="{!item.value}">{!item}</option>
+                                                            </aura:iteration>
+                                                        </lightning:select>
+                                                    </aura:if>
+                                                    
+                                                    <aura:if isTrue="{!u.Animals__c == 'Turkeys'}">
+                                                        <label class="slds-form-element__label">
+                                                            House Type
+                                                        </label>
+                                                        <lightning:select aura:id="field" value="{!u.House_Type__c}" required="true" disabled="false">
+                                                            <option label="Please select..."></option>
+                                                            <aura:iteration items="{!v.houseTypeChickenDucksTurkeys}" var="item">
+                                                                <option value="{!item.value}">{!item}</option>
+                                                            </aura:iteration>
+                                                        </lightning:select>
+                                                    </aura:if>
+
+                                                    <aura:if isTrue="{!u.Animals__c == 'Dairy Cattle'}">
+                                                        <label class="slds-form-element__label">
+                                                            House Type
+                                                        </label>
+                                                        <lightning:select aura:id="field" value="{!u.House_Type__c}" required="true" disabled="false">
+                                                            <option label="Please select..."></option>
+                                                            <aura:iteration items="{!v.houseTypedairyCattle}" var="item">
+                                                                <option value="{!item.value}">{!item}</option>
+                                                            </aura:iteration>
+                                                        </lightning:select>
+                                                    </aura:if>
+
+                                                    <aura:if isTrue="{!u.Animals__c == 'Salmon'}">
+                                                        <label class="slds-form-element__label">
+                                                            House Type
+                                                        </label>
+                                                        <lightning:select aura:id="field" value="{!u.House_Type__c}" required="true" disabled="false">
+                                                            <option label="Please select..."></option>
+                                                            <aura:iteration items="{!v.houseTypesalmon}" var="item">
+                                                                <option value="{!item.value}">{!item}</option>
+                                                            </aura:iteration>
+                                                        </lightning:select>
+                                                    </aura:if>
+                                                </div>
+                                            </div>
+                                            <!-- Column 2-->
+                                            <div class="slds-form__item" role="listitem">
+
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    
+                                </div>
+                        
+                            </article>
+                        </aura:iteration>
+                    </ui:scrollerWrapper>
+                    
+                </div>
+                
+            </aura:if>
+
+            <!-- Extension to flock -->
+            <aura:if isTrue="{!v.extension}">
+                <aura:if isTrue="{!v.isLoading}">
+                    <div class="exampleHolder">
+                        <lightning:spinner alternativeText="Loading" size="medium" />
+                    </div>
+                    <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_offline" role="alert">
+                        <span class="slds-assistive-text">loading message</span>
+                        <h2>
+                            Application submitting. Please do not refresh the page or close the browser while we submit your application. 
+                        </h2>
+                    </div>
+                    <aura:set attribute="else">
+                        <div class="slds-form updateUnitForm">
+                            <h3 class="slds-section__title slds-theme_shade">
+                                Make an extension to flock
+                            </h3>
+                            <ui:scrollerWrapper class="addUnitScroll" >
+                                <aura:if isTrue="{!v.poultrySize == 0}">
+                                    <p>
+                                        There are no certified poultry units available to update the flock size.
+                                    </p>
+                                    <aura:set attribute="else">
+                                        <p>All certified poultry units available for update will be shown below.</p>
+                                        <aura:iteration items="{!v.poultryList}" var="u" indexVar="index">
+                                            <article class="slds-card">
+                                                <!-- Card header -->
+                                                <div class="slds-card__header slds-grid">
+                                                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                                    <div class="slds-media__figure">
+                                                    <span class="slds-icon_container" title="Unit">
+                                                        <lightning:icon iconName="custom:custom57" alternativeText="Unit" />
+                                                        <span class="slds-assistive-text">Unit</span>
+                                                    </span>
+                                                    </div>
+                                                    <div class="slds-media__body">
+                                                    <h2 class="slds-card__header-title">
+                                                        <span>Unit # {!u.Name}</span>
+                                                    </h2>
+                                                    </div>
+                                                </header>
+                                                </div>
+                    
+                                                <!-- Card content -->
+                                                <div class="slds-card__body slds-card__body_inner">
+                                                <div class="slds-form" role="list">
+                                                    <!-- Unit Field Row 1 -->
+                                                    <div class="slds-form__row">
+                                                    <div class="slds-form__item" role="listitem">
+                                                        <div
+                                                        class="slds-form-element slds-form-element_horizontal slds-is-editing"
+                                                        >
+                                                        <label class="slds-form-element__label">
+                                                            Animals
+                                                        </label>
+                                                        <lightning:input
+                                                            name="Animal"
+                                                            value="{!u.Animals__c}"
+                                                            readonly="true"
+                                                        />
+                                                        </div>
+                                                    </div>
+                    
+                                                    <div class="slds-form__item" role="listitem">
+                                                        <div class="slds-form-element slds-form-element_horizontal slds-is-editing">
+                                                            <div class="labelWithTooltip">
+                                                                <label class="slds-form-element__label">Number of Animals</label>
+                                                                <lightning:helptext content="Please take care when entering the number of animals as this could affect the membership fee you are charged."/>
+                                                            </div>
+                                                            <lightning:input aura:id="field" type="number" name="Animal" value="{!u.Number_of_Animals__c}" required="true"/>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </article>
+                                        </aura:iteration>
+        
+                                    </aura:set>
+                                </aura:if>
+                                
+        
+                            </ui:scrollerWrapper>
+                            
+                        </div>
+                    </aura:set>
+                </aura:if>
+                
+            </aura:if>
+        </aura:if>
+
+        <!-- Step 3 -->
+        <!-- Form -->
+        <aura:if isTrue="{!v.step3}">
+            <aura:if isTrue="{!v.isLoading}">
+                <div class="exampleHolder">
+                    <lightning:spinner alternativeText="Loading" size="medium" />
+                </div>
+                <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_offline" role="alert">
+                    <span class="slds-assistive-text">loading message</span>
+                    <h2>
+                        Application submitting. Please do not refresh the page or close the browser while we submit your application.  
+                    </h2>
+                </div>
+                <aura:set attribute="else">
+                    <div class="slds-form">
+                        <h3 class="slds-section__title slds-theme_shade">
+                            Payment Information
+                        </h3>
+                        <div class="slds-form-element slds-form-element_horizontal">
+                            <label class="slds-form-element__label">
+                                Payment Method
+                            </label>
+                            <lightning:select name="payMethod" aura:id="field"
+                                value="{!v.NewApplicationFields.Payment_Method__c}" required="true">
+                                <option label="Please select..."></option>
+                                <aura:iteration items="{!v.payMethodValues}" var="item">
+                                    <option value="{!item.value}">{!item}</option>
+                                </aura:iteration>
+                            </lightning:select>
+                        </div>
+        
+                        <h3 class="slds-section__title slds-theme_shade">
+                            Legal Information
+                        </h3>
+                        <div>
+                            <label class="slds-form-element__label">
+                                I have read and agreed to the terms of the SCI Certification UK
+                                scheme regulations and RSPCA Assured
+                                <a class="membershipAgreementLink"
+                                    href="https://www.berspcaassured.org.uk/media/1038/rspca-assured-membership-agreement-july-2016.pdf">membership
+                                    agreement</a>.
+                            </label>
+                            <lightning:input aura:id="field" type="checkbox" label="I Agree"
+                                checked="{!v.NewApplicationFields.Agreement__c}" required="true" />
+                        </div>
+                        <br />
+                        <div>
+                            <label class="slds-form-element__label">
+                                I confirm that I do not have any previous convictions or pending
+                                prosecutions relating to any offence involving the care, handling,
+                                transport, slaughter or sale of animals or produce.
+                            </label>
+                            <lightning:input aura:id="field" type="checkbox" label="I confirm"
+                                checked="{!v.NewApplicationFields.No_Offences__c}" required="true" />
+                        </div>
+                    </div>
+                    <!-- Signatory Fields -->
+                    <div class="slds-form" role="list">
+                        <div class="slds-form__row">
+                            <div class="slds-form__item" role="listitem">
+                                <div class="slds-form-element slds-form-element_horizontal slds-is-editing">
+                                    <label class="slds-form-element__label">
+                                        Signatory Contact
+                                    </label>
+                                    <div class="slds-form-element__control">
+                                        <lightning:input aura:id="field" label="Signatory Contact"
+                                            value="{!v.NewApplicationFields.Signatory_Contact__c}" class="hiddenComponent" />
+                                        <lightning:input aura:id="field" label="Application Contact"
+                                            value="{!v.NewApplicationFields.Applicant_Contact__c}" class="hiddenComponent" />
+        
+                                        <lightning:input type="text" value="{!v.fullname}" readonly="true"
+                                            messageWhenValueMissing="Please enter a primary contact for the site." />
+        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-form__item" role="listitem">
+                                <div class="slds-form-element slds-form-element_horizontal slds-is-editing">
+                                    <label class="slds-form-element__label">Signed Date</label>
+                                    <div class="slds-form-element__control">
+                                        <lightning:input type="date" name="signedDate" disabled="true"
+                                            value="{!v.NewApplicationFields.Agreement_Date__c}" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </aura:set>
+
+            </aura:if>
+            
+        </aura:if>
+
+        <!-- Step 4 -->
+        <!-- Form -->
+        <aura:if isTrue="{!v.step4}">
+            <aura:if isTrue="{!v.NewApplicationFields.Payment_Method__c == 'Card'}">
+                <div class="slds-form cardPaymentForm">    
+                    <ui:scrollerWrapper class="addUnitScroll" >
+                        <h3 class="slds-section__title slds-theme_shade">
+                            Paying by Card
+                        </h3>
+                        <div class="slds-form-element slds-form-element_horizontal">
+                            <label class="slds-form-element__label" for="paymentAmount" id="fixed-text-label">Amount Including VAT @ 20%</label>
+                            <div class="slds-form-element__control">
+                            <input type="text" id="paymentAmount" value="{! '£' + v.submitResponse.asp04__Amount__c}" readonly="true" class="slds-input" />
+                            </div>
+                        </div>
+                        <iframe src="{!v.submitResponse.Payment_Link__c}" width="500px" height="600px"></iframe>
+                    </ui:scrollerWrapper>
+                </div>
+                
+                
+                <aura:set attribute="else">
+                    <div class="slds-form">
+                        <h3 class="slds-section__title slds-theme_shade">
+                            Paying by BACS or Cheque
+                        </h3>
+                        <div class="slds-form-element slds-form-element_horizontal">
+                            
+                            <label class="slds-form-element__label" id="fixed-text-label">Amount Including VAT @ 20%</label>
+                            <div class="slds-form-element__control">
+                                <input type="text" id="payAmount" value="{!'£' + v.submitResponse.Total_Amount_Inc_VAT__c}" readonly="true" class="slds-input" />
+                            </div>
+                        </div>
+                        <div class="slds-form-element slds-form-element_horizontal">
+                            <div class="labelWithTooltip">
+                                <label class="slds-form-element__label" id="fixed-text-label">Payment Reference</label>
+                                <lightning:helptext content="We advise copying the following reference number to easily paste when making a BACS payment."/>
+                            </div>
+                            
+                            <div class="slds-form-element__control">
+                                <input type="text" id="payReference" value="{!v.submitResponse.Payment_Reference__c}" readonly="true" class="slds-input" />
+                            </div>
+                        </div>
+                        <h3 class="referenceHelpMessage">PLEASE USE THIS REFERENCE WHEN PAYING BY BACS</h3>
+                        <lightning:button variant="brand" label="Go to Application" onclick="{!c.goToApplication}" />
+                    </div>
+                </aura:set>
+            </aura:if>
+           
+        </aura:if>
+
+    </div>
+
+    <!-- Display Lightning Data Service errors  -->
+    <aura:if isTrue="{!not(empty(v.newApplicationError))}">
+        <div class="recordError">
+            {!v.newApplicationError}
+        </div>
+    </aura:if>
+
+    <!-- Modal Footer -->
+    <footer class="slds-modal__footer slds-grid slds-grid_align-spread footer-fixed">        
+        <aura:if isTrue="{!v.step1 || v.step2}">
+            <lightning:button variant="destructive" label="Cancel" title="Cancel" onclick="{!c.handleCancel}" />
+        </aura:if>
+        
+        <lightning:progressIndicator currentStep="{!v.currentStep}" type="base" hasError="{!v.hasError}" variant="base">
+            <lightning:progressStep label="Step 1" value="1" />
+            <lightning:progressStep label="Step 2" value="2" />
+            <lightning:progressStep label="Step 3" value="3" />
+            <lightning:progressStep label="Step 4" value="4" />
+        </lightning:progressIndicator>
+        
+        <aura:if isTrue="{!and(!v.step1, !v.step4)}">
+            <aura:if isTrue="{!v.isLoading == false}">
+                <lightning:button title="Previous" label="Previous" onclick="{!c.handlePrevious}" />
+            </aura:if>
+        </aura:if>
+        
+        <aura:if isTrue="{!v.step1}">  
+            <aura:if isTrue="{!and(v.primaryContact != null, v.isLoading == false)}">
+                    <lightning:button title="Next" label="Next" onclick="{!c.handleNext}" />
+            </aura:if>   
+        </aura:if>
+        <aura:if isTrue="{!v.step2}">  
+            <aura:if isTrue="{!and(v.primaryContact != null, v.isLoading == false)}">
+                <aura:if isTrue="{!or(v.newUnit, v.poultrySize > 0)}">
+                        <lightning:button title="Next" label="Next" onclick="{!c.handleNext}" />
+                </aura:if>  
+            </aura:if>   
+        </aura:if>
+        
+        <aura:if isTrue="{!v.step3}">
+            <aura:if isTrue="{!v.isLoading == false}">
+                <lightning:button variant="brand" label="Submit" title="Submit" onclick="{!c.handleSubmit}" />
+            </aura:if>
+        </aura:if>
+    </footer>
+
+    <!-- Styling to remove padding from the lightning quick action launch -->
+
+    <aura:html tag="style">
+        .slds-p-around--medium {
+            padding: 0rem !important;
+        }
+        .slds-modal__content{
+            overflow-y:hidden !important;
+            height:unset !important;
+            max-height:unset !important;
+        }
+        .cuf-content {
+            padding: 0 0rem !important;
+        }
+        @media (min-width: 48em){
+            .slds-modal__container {
+                width: 80% !important;
+            }
+        }
+        .slds-spinner_container{
+            position:inherit !important;
+        }
+    </aura:html>
+</aura:component>

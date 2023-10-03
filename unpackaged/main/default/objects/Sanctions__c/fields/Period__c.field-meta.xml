@@ -37,6 +37,11 @@
                 <default>false</default>
                 <label>6 months</label>
             </value>
+            <value>
+                <fullName>12 months</fullName>
+                <default>false</default>
+                <label>12 months</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

@@ -4,6 +4,7 @@
     <externalId>false</externalId>
     <label>Production</label>
     <required>false</required>
+    <trackHistory>true</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>
@@ -68,7 +69,19 @@
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Producer</controllingFieldValue>
+            <valueName>Aviary Rearing</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Producer</controllingFieldValue>
             <valueName>Breeding</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Producer</controllingFieldValue>
+            <valueName>Breeding to finishing</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Producer</controllingFieldValue>
+            <valueName>Breeding to rearing</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Producer</controllingFieldValue>
@@ -136,27 +149,15 @@
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Producer</controllingFieldValue>
+            <valueName>Rearing to finishing</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Producer</controllingFieldValue>
             <valueName>Seawater</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Producer</controllingFieldValue>
             <valueName>Suckler</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Producer</controllingFieldValue>
-            <valueName>Breeding to rearing</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Producer</controllingFieldValue>
-            <valueName>Breeding to finishing</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Producer</controllingFieldValue>
-            <valueName>Rearing to finishing</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Producer</controllingFieldValue>
-            <valueName>Aviary Rearing</valueName>
         </valueSettings>
     </valueSet>
 </CustomField>

@@ -15,6 +15,10 @@
             <translation><!-- Certified --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Inactive</masterLabel>
+            <translation><!-- Inactive --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Lapsed</masterLabel>
             <translation><!-- Lapsed --></translation>
         </picklistValues>

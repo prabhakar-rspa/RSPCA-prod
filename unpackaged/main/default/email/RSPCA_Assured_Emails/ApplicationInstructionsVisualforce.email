@@ -279,9 +279,12 @@ style="border-collapse:collapse;">
                     <ol>
                       <li>Read the relevant standards and check that you meet them<br/>
                         <br/>
-                        <c:EnquiryStandardsList lid="{!relatedTo.ConvertedLeadID__c}"/><br/>
+                        <a href="https://business.rspcaassured.org.uk/resources-for-farmers/welfare-standards/"
+                        style="color: #000000; text-decoration: underline;" target=" _blank">RSPCA welfare standards</a> 
+                       <br/>
+                      <!--  <c:EnquiryStandardsList lid="{!relatedTo.ConvertedLeadID__c}"/><br/> -->
                       </li>
-    
+                      <br/>
                       <li>Read the <strong><a
                             href="https://business.rspcaassured.org.uk/resources-for-farmers/membership-agreement/"
                             style="color: #000000; text-decoration: underline;" target=" _blank">RSPCA Assured membership
@@ -304,9 +307,8 @@ style="border-collapse:collapse;">
                       </tr>
                     </table><br/>
     
-                    <p>Our <a href="https://business.rspcaassured.org.uk/media/a4wfjjzb/rspcaassured_a4information_280622.pdf"
-                        style="color: #000000; text-decoration: underline;" target=" _blank"><strong>information
-                          booklet</strong></a> will tell everything you need to know about your assessment and becoming a
+                    <p>Our <a href="https://business.rspcaassured.org.uk/resources-for-farmers/becoming-an-rspca-assured-member-and-renewing-your-membership/"
+                        style="color: #000000; text-decoration: underline;" target=" _blank"><strong>RSPCA Assured Member Information</strong></a> will tell everything you need to know about your assessment and becoming a
                       member of RSPCA Assured.</p>
                     <p>If you have any questions please don’t hesitate to contact our member services team on 01403 286170 –
                       or email <a href="mailto:help@rspcaassured.org.uk"

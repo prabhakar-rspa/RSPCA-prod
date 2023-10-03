@@ -22,7 +22,7 @@ public class FindAppLineItems {
     }
     public decimal getTotalAmount(){
         Application__c app = [SELECT Id, Total_Amount_Inc_VAT__c FROM Application__c WHERE Id=:appId];
-        return app.Total_Amount_Inc_VAT__c;
+        return app.Total_Amount_Inc_VAT__c.setscale(2,RoundingMode.DOWN);
     }
     
 }

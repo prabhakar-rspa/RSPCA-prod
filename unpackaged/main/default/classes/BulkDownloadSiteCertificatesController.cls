@@ -3,6 +3,8 @@ public with sharing class BulkDownloadSiteCertificatesController {
     public List<SiteCertificate> siteCertificateList{get;set;}
     public Boolean hasSiteCertificates{get;set;}
     public Boolean showSpinner{get;set;}
+    public String imageURL{get;set;}
+     public String pdfName{get;set;}
     public BulkDownloadSiteCertificatesController(ApexPages.StandardController controller) {
         showSpinner = true;
         currentRecord = [SELECT Id, Name, Membership_Number__c FROM Account WHERE Id = :controller.getRecord().Id];
@@ -130,6 +132,31 @@ public with sharing class BulkDownloadSiteCertificatesController {
             hasSiteCertificates = false;
         }
         showSpinner = false;
+    }
+    public PageReference attachPDF(){
+        if(imageURL != null){
+         	PageReference reportPage = new PageReference(imageURL);
+            Blob reportPdf;
+            try {
+                reportPdf = reportPage.getContentAsPDF();
+            }
+            catch (Exception e) {
+                reportPdf = Blob.valueOf(e.getMessage());
+            }
+            ContentVersion cv = new ContentVersion();
+            cv.VersionData = reportPdf;
+            cv.Title = pdfName;
+            cv.PathOnClient = pdfName;
+            cv.Description = pdfName;
+            cv.isMajorVersion = true;
+            insert cv;
+            ContentDocumentLink cdl = new ContentDocumentLink();
+            cdl.ContentDocumentId = [SELECT Id, ContentDocumentId FROM ContentVersion WHERE Id =: cv.Id].ContentDocumentId;
+            cdl.LinkedEntityId = currentRecord.Id;
+            cdl.ShareType = 'V';
+            insert cdl;   
+        }
+        return null;
     }
     public class SiteCertificate{
         public String siteRecordId{get;set;} // Site Id

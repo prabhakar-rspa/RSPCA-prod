@@ -305,10 +305,6 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Monitoring</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Revisit</fullName>
             <default>false</default>
         </values>

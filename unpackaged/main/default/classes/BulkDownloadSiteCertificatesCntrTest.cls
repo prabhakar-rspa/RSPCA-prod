@@ -48,6 +48,8 @@ public class BulkDownloadSiteCertificatesCntrTest {
         ApexPages.StandardController sc = new ApexPages.StandardController(headOffice);
         BulkDownloadSiteCertificatesController downloadCertificates = new BulkDownloadSiteCertificatesController(sc);
         system.assert(downloadCertificates.siteCertificateList != null && downloadCertificates.siteCertificateList.size()>0) ;
-        
+        downloadCertificates.imageURL = 'www.google.com';
+        downloadCertificates.pdfName = 'Test';
+        downloadCertificates.attachPDF();
     }
 }

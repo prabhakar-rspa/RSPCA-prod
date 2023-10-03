@@ -1,0 +1,11 @@
+.THIS .row{
+    padding-left:20px;
+    padding-right:20px;
+}
+.THIS.scrollerSize {
+    height: 300px;
+}
+.THIS.slds-spinner_container {  
+    z-index: 10000;
+    position:fixed;  
+  }

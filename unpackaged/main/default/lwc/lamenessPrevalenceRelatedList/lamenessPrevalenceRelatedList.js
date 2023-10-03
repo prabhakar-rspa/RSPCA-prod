@@ -91,6 +91,9 @@ export default class LamenessPrevalenceRelatedList extends LightningElement {
     let records = [this.record1, this.record2, this.record3, this.record4];
     return records;
   }
+  @api getAverage(){
+    return {averageOfScore2Cows:this.averageOfScore2Cows,averageOfScore3Cows:this.averageOfScore3Cows};
+  }
   calculateAverage(fieldName) {
 
     console.log('-------------values------------');

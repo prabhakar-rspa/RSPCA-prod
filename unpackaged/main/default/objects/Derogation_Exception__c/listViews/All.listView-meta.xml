@@ -2,6 +2,7 @@
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>All</fullName>
     <columns>NAME</columns>
+    <columns>Site__c</columns>
     <columns>Conditions_of_Derogration_Exception__c</columns>
     <columns>Derogation_Exception__c</columns>
     <columns>Granted_by__c</columns>

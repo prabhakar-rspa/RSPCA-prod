@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>asp04__In_force_status_test</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND (ISPICKVAL(asp04__Status__c, &#39;Active&#39;), ISBLANK( asp04__Authorisation__c ))</errorConditionFormula>
+    <errorMessage>You must have an Authorisation in place before you can set the Subscription Status to &#39;Active&#39;.</errorMessage>
+</ValidationRule>

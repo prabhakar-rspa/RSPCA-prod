@@ -1,35 +1,35 @@
 public virtual class AppUnitHelper {
-
+    
     public static List<Product2> productList;
     public static List<Unit__c> allSiteUnits;
     public static List<Application_Line_Item__c> allExistingLines;
     public static List<PricebookEntry> allPricebookEntires;
     public static List<Application_Unit__c> allApplicationUnits;
-
-    // gets list of all products available for pricing calculation
-    public static void getProductList(){
-        productList = [
-            SELECT 
-            Id, 
-            Name,
-            Business__c,
-            Animal__c,
-            ProductCode,
-            Production__c, 
-            IsActive,
-            Pricing_Method__c,
-            Quantity_Threshold__c,  
-            Family,
-            Additional_Quantity_Pricing_Component__c,
-            Dynamic_Quantity_Pricing_Component__c,
-            Additional_Quantity_Product__c,
-            Dynamic_Quantity_Product__c,
-            Vehicle_Type__c
-            FROM   Product2 
-            WHERE  IsActive=true
-        ];
-    }
-
+    public static List<String> businesses = new List<String>{'Abattoir','Catching','Hatchery','Haulier'};
+        // gets list of all products available for pricing calculation
+        public static void getProductList(){
+            productList = [
+                SELECT 
+                Id, 
+                Name,
+                Business__c,
+                Animal__c,
+                ProductCode,
+                Production__c, 
+                IsActive,
+                Pricing_Method__c,
+                Quantity_Threshold__c,  
+                Family,
+                Additional_Quantity_Pricing_Component__c,
+                Dynamic_Quantity_Pricing_Component__c,
+                Additional_Quantity_Product__c,
+                Dynamic_Quantity_Product__c,
+                Vehicle_Type__c
+                FROM   Product2 
+                WHERE  IsActive=true
+            ];
+        }
+    
     // get pricebook entries for pricebook ids passed from application
     public static void getAllPricebookEntries(Set<String> pricebookIds){
         Set<String> productIdSet = new Set<String>();
@@ -50,7 +50,7 @@ public virtual class AppUnitHelper {
             AND Product2Id IN :productIdSet
         ];
     }
-
+    
     // get price for a product from pricebook
     public static Decimal getPriceForProduct(String productId){
         Decimal price = 0;
@@ -62,7 +62,7 @@ public virtual class AppUnitHelper {
         }
         return price;
     }
-
+    
     // get list of all sites units for the accounts
     public static void getAllSiteUnits(Set<String> siteIds){
         allSiteUnits = [
@@ -71,7 +71,7 @@ public virtual class AppUnitHelper {
             Name, 
             Account__c,
             Business__c, 
-            Animals__c, 
+            Animals__c, Animals_List__c,
             Production__c, 
             Own_Transport__c, 
             Own_Catching__c, 
@@ -82,8 +82,9 @@ public virtual class AppUnitHelper {
             WHERE 
             Account__c IN :siteIds
         ];
+        
     }
-
+    
     // get all existing lines for applications
     public static void getAllExistingLines(Set<String> appIds){
         allExistingLines = [
@@ -96,7 +97,7 @@ public virtual class AppUnitHelper {
             Application__c IN :appIds
         ];
     }
-
+    
     // get all application units for application
     public static void getAllAppUnits(Set<String> appIds){
         allApplicationUnits = [
@@ -113,7 +114,7 @@ public virtual class AppUnitHelper {
             Application__c =:appIds
         ];
     }
-
+    
     // get units for the created application units only
     public static Map<Id, Unit__c> getUnitsForCreatedAppUnit(Set<String> unitIds){
         Map<Id, Unit__c> unitMap = new Map<Id, Unit__c>();
@@ -124,7 +125,7 @@ public virtual class AppUnitHelper {
         }
         return unitMap;
     }
-
+    
     //find products with business and production
     public static Product2 getProduct(string business, string production){
         Product2 productResult = null;
@@ -140,24 +141,47 @@ public virtual class AppUnitHelper {
     }
     
     //find products with business, animals and production
-    public static Product2 getProduct(string business, string animals, string production, string vehicleType){
+    public static Product2 getProduct(string business, string animals, string production, string vehicleType,String animalsList){
         Product2 productResult = null;
         for(Product2 p : productList){
             // ensure products returned are not additional quantity pricing component or dynamic quantity pricing component
             if(p.Additional_Quantity_Pricing_Component__c == false && p.Dynamic_Quantity_Pricing_Component__c == false){
-                if(
+                if(businesses.indexOf(p.Business__c) != -1){
+                    if(String.isNotBlank(animalsList) && String.isNotBlank (p.Animal__c)){
+                        List<String> selectedAnimalsList =  animalsList.split(';');
+                        List<String> prductAnimalsList =  p.Animal__c.split(';');
+                        boolean animalContains = false;
+                        
+                        for(String animal:selectedAnimalsList){
+                            system.debug('animal:::'+animal);
+                            
+                            if(prductAnimalsList.indexOf(animal) != -1){
+                                animalContains = true;
+                            }
+                        }
+                        if(
+                            p.Business__c == business && 
+                            p.Production__c.contains(production) && 
+                            animalContains &&
+                            p.Vehicle_Type__c == vehicleType
+                        ){
+                            productResult = p;
+                        }   
+                    }
+                    
+                }else if(
                     p.Business__c == business && 
                     p.Production__c.contains(production) && 
-                    p.Animal__c.contains(animals) &&
+                    (p.Animal__c.contains(animals)) &&
                     p.Vehicle_Type__c == vehicleType
-                    ){
-                        productResult = p;
+                ){
+                    productResult = p;
                 }
             }
         }
         return productResult;
     }
-
+    
     // get additional quantity product
     public static Product2 getAdditionalQuantityProduct(Product2 product){
         Product2 productResult = null;
@@ -168,7 +192,7 @@ public virtual class AppUnitHelper {
         }
         return productResult;
     }
-
+    
     // get dynamic quantity product
     public static Product2 getDynamicQuantityProduct(Product2 product){
         Product2 productResult = null;
@@ -179,7 +203,7 @@ public virtual class AppUnitHelper {
         }
         return productResult;
     }
-
+    
     // check for existing supply chain unit on the site
     public static boolean existingSupplyChainUnit(String siteId, Product2 product, String unitAdded){
         Boolean existingUnit = false;
@@ -190,12 +214,12 @@ public virtual class AppUnitHelper {
                 u.Id != unitAdded && 
                 u.Status__c == 'Certified' 
             ){
-                    existingUnit = true;
+                existingUnit = true;
             }
         }
         return existingUnit;
     }
-
+    
     // check for existing units that are price on a per site basis
     public static Boolean existingPerSiteUnit(String siteId, Product2 product, String unitAdded){
         Boolean existingUnit = false;
@@ -213,7 +237,7 @@ public virtual class AppUnitHelper {
         }
         return existingUnit;
     }
-
+    
     // check for existing vehicle, catching 
     public static Boolean existingVehicleOrCatching(String siteId, Product2 product, String unitAdded){
         Boolean existingUnit = false;
@@ -231,7 +255,7 @@ public virtual class AppUnitHelper {
         }
         return existingUnit;
     }
-
+    
     public static Boolean existingLivestockUnit(String siteId, Product2 product, String unitAdded){
         Boolean existingUnit = false;
         for(Unit__c u : allSiteUnits){
@@ -257,6 +281,7 @@ public virtual class AppUnitHelper {
             }
             if(
                 u.Business__c == product.Business__c &&
+                
                 product.Animal__c.contains(u.Animals__c) &&
                 product.Production__c.contains(unitProduction) &&
                 u.Account__c == siteId &&
@@ -282,7 +307,7 @@ public virtual class AppUnitHelper {
         }
         return existingLineItem;
     }
-
+    
     public static boolean checkExistingPigDiscount1(Id appId){
         Boolean existingPigDiscount = false;
         String pigStage1DiscountId = null;
@@ -297,7 +322,7 @@ public virtual class AppUnitHelper {
         }
         return existingPigDiscount;
     }
-
+    
     public static boolean checkExistingPigDiscount2(Id appId){
         Boolean existingPigDiscount = false;
         String pigStage2DiscountId = null;
@@ -312,7 +337,7 @@ public virtual class AppUnitHelper {
         }
         return existingPigDiscount;
     }
-
+    
     public static Application_Line_Item__c getExistingPigDiscount1LineItem(Id appId){
         String pigStage1DiscountId = null;
         for(Product2 p : productList){
@@ -333,7 +358,7 @@ public virtual class AppUnitHelper {
         }
         return existingLineItem;
     }
-
+    
     public static Application_Line_Item__c getExistingPigDiscount2LineItem(Id appId){
         String pigStage2DiscountId = null;
         for(Product2 p : productList){
@@ -354,7 +379,7 @@ public virtual class AppUnitHelper {
         }
         return existingLineItem;
     }
-
+    
     public static Decimal getTotalAnimalNumbersForSpecies(String species, String applicationId){
         Decimal numAnimals = 0;
         for(Application_Unit__c au : allApplicationUnits){
@@ -364,10 +389,11 @@ public virtual class AppUnitHelper {
         }
         return numAnimals;
     }
-
+    
     public static List<Application_Line_Item__c> getExistingPoultryLineItems(Id appId, String species){
         Set<String> poultryProductIds = new Set<String>();
         for(Product2 p : productList){
+            
             if(p.Family == 'Poultry' && p.Animal__c.contains(species)){
                 poultryProductIds.add(p.Id);
             }
@@ -383,12 +409,11 @@ public virtual class AppUnitHelper {
         }
         return existingLineItems;
     }
-
+    
     // Create line item from application unit and product passed in
     public static Application_Line_Item__c createLineItem(Id appUnitId, Id appId, Id productId, Double quantity, String headOfficeBillingCountry){
         // get price for product
         Decimal price = getPriceForProduct(productId);
-        System.debug('Price => ' + price);
         Application_Line_Item__c appli = new Application_Line_Item__c();
         appli.Application__c = appId;
         appli.Product__c = productId;
@@ -404,7 +429,7 @@ public virtual class AppUnitHelper {
         
         return appli;
     }
-
+    
     public static Application_Line_Item__c createPigStage1DiscountLine(Id appUnitId, Id appId, Double quantity, String headOfficeBillingCountry){
         String pigStage1DiscountId = null;
         for(Product2 p : productList){
@@ -416,7 +441,7 @@ public virtual class AppUnitHelper {
         Application_Line_Item__c appli = createLineItem(appUnitId, appId, pigStage1DiscountId, quantity, headOfficeBillingCountry);
         return appli;
     }
-
+    
     public static Application_Line_Item__c createPigStage2DiscountLine(Id appUnitId, Id appId, Double quantity, String headOfficeBillingCountry){
         String pigStage2DiscountId = null;
         for(Product2 p : productList){
@@ -428,7 +453,7 @@ public virtual class AppUnitHelper {
         Application_Line_Item__c appli = createLineItem(appUnitId, appId, pigStage2DiscountId, quantity, headOfficeBillingCountry);
         return appli;
     }
-
+    
     public static List<Unit__c> getPigBreedingRearingFinishingUnitCount(String siteId){
         Map<String, Unit__c> PigsBreedingRearingFinishing = new Map<String, Unit__c>();
         for(Unit__c u: allSiteUnits){
@@ -442,13 +467,13 @@ public virtual class AppUnitHelper {
                     u.Production__c == 'Finishing' || 
                     u.Production__c == 'Rearing'
                 )
-                ){
-                    PigsBreedingRearingFinishing.put(u.Production__c, u);
+            ){
+                PigsBreedingRearingFinishing.put(u.Production__c, u);
             }
         }
         return PigsBreedingRearingFinishing.values();
     }
-
+    
     public static integer getPigBreedingRearingFinishingAppCount(String appId, Set<Id> unitIds){
         Set<String> pigProduction = new Set<String>(); // using set to find unique counts of units with production
         Integer countOfPigsBreedingRearingFinishing = 0;
@@ -471,11 +496,11 @@ public virtual class AppUnitHelper {
                 }
             }
         }
-
+        
         for(String s : pigProduction){
             countOfPigsBreedingRearingFinishing++;
         }
         return countOfPigsBreedingRearingFinishing;
     }
-
+    
 }

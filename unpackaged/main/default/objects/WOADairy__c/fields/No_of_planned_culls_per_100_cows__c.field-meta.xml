@@ -3,9 +3,9 @@
     <fullName>No_of_planned_culls_per_100_cows__c</fullName>
     <externalId>false</externalId>
     <label>No. of planned culls per 100 cows</label>
-    <precision>18</precision>
+    <precision>16</precision>
     <required>false</required>
-    <scale>2</scale>
+    <scale>0</scale>
     <trackTrending>false</trackTrending>
     <type>Number</type>
     <unique>false</unique>

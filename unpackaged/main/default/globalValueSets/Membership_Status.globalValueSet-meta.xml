@@ -1,9 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <customValue>
+        <fullName>ADDITION</fullName>
+        <default>false</default>
+        <label>ADDITION</label>
+    </customValue>
+    <customValue>
+        <fullName>ARCHIVED</fullName>
+        <default>false</default>
+        <label>ARCHIVED</label>
+    </customValue>
+    <customValue>
         <fullName>CANCELLED</fullName>
         <default>false</default>
         <label>CANCELLED</label>
+    </customValue>
+    <customValue>
+        <fullName>ENQUIRY</fullName>
+        <default>true</default>
+        <label>ENQUIRY</label>
+    </customValue>
+    <customValue>
+        <fullName>FALLOW</fullName>
+        <default>false</default>
+        <label>FALLOW</label>
     </customValue>
     <customValue>
         <fullName>LAPSED</fullName>
@@ -16,6 +36,26 @@
         <label>MEMBER</label>
     </customValue>
     <customValue>
+        <fullName>NEW</fullName>
+        <default>false</default>
+        <label>NEW</label>
+    </customValue>
+    <customValue>
+        <fullName>REINSTATE</fullName>
+        <default>false</default>
+        <label>REINSTATE</label>
+    </customValue>
+    <customValue>
+        <fullName>RENEWR</fullName>
+        <default>false</default>
+        <label>RENEWR</label>
+    </customValue>
+    <customValue>
+        <fullName>REVISIT</fullName>
+        <default>false</default>
+        <label>REVISIT</label>
+    </customValue>
+    <customValue>
         <fullName>SUSPENDED</fullName>
         <default>false</default>
         <label>SUSPENDED</label>
@@ -26,155 +66,142 @@
         <label>WITHDRAWN</label>
     </customValue>
     <customValue>
-        <fullName>ENQUIRY</fullName>
-        <default>true</default>
-        <label>ENQUIRY</label>
-    </customValue>
-    <customValue>
-        <fullName>NEW</fullName>
+        <fullName>INACTIVE</fullName>
         <default>false</default>
-        <label>NEW</label>
-    </customValue>
-    <customValue>
-        <fullName>NEWAPP2</fullName>
-        <default>false</default>
-        <label>NEWAPP2</label>
-    </customValue>
-    <customValue>
-        <fullName>NEWAPP2R</fullName>
-        <default>false</default>
-        <label>NEWAPP2R</label>
-    </customValue>
-    <customValue>
-        <fullName>NONFR</fullName>
-        <default>false</default>
-        <label>NONFR</label>
-    </customValue>
-    <customValue>
-        <fullName>RENEWA</fullName>
-        <default>false</default>
-        <label>RENEWA</label>
-    </customValue>
-    <customValue>
-        <fullName>RENEWR</fullName>
-        <default>false</default>
-        <label>RENEWR</label>
-    </customValue>
-    <customValue>
-        <fullName>WITHPANEL</fullName>
-        <default>false</default>
-        <label>WITHPANEL</label>
-    </customValue>
-    <customValue>
-        <fullName>PASSED</fullName>
-        <default>false</default>
-        <label>PASSED</label>
-    </customValue>
-    <customValue>
-        <fullName>ADDITION</fullName>
-        <default>false</default>
-        <label>ADDITION</label>
-    </customValue>
-    <customValue>
-        <fullName>NEWASS</fullName>
-        <default>false</default>
-        <label>NEWASS</label>
-    </customValue>
-    <customValue>
-        <fullName>RENEWASS</fullName>
-        <default>false</default>
-        <label>RENEWASS</label>
-    </customValue>
-    <customValue>
-        <fullName>ASSREC</fullName>
-        <default>false</default>
-        <label>ASSREC</label>
-    </customValue>
-    <customValue>
-        <fullName>ASSREC5R</fullName>
-        <default>false</default>
-        <label>ASSREC5R</label>
-    </customValue>
-    <customValue>
-        <fullName>ASSREC7R</fullName>
-        <default>false</default>
-        <label>ASSREC7R</label>
-    </customValue>
-    <customValue>
-        <fullName>EVIDENCE</fullName>
-        <default>false</default>
-        <label>EVIDENCE</label>
-    </customValue>
-    <customValue>
-        <fullName>REVISIT</fullName>
-        <default>false</default>
-        <label>REVISIT</label>
-    </customValue>
-    <customValue>
-        <fullName>MONREQ</fullName>
-        <default>false</default>
-        <label>MONREQ</label>
-    </customValue>
-    <customValue>
-        <fullName>CONPASS</fullName>
-        <default>false</default>
-        <label>CONPASS</label>
-    </customValue>
-    <customValue>
-        <fullName>ARCHIVED</fullName>
-        <default>false</default>
-        <label>ARCHIVED</label>
-    </customValue>
-    <customValue>
-        <fullName>FALLOW</fullName>
-        <default>false</default>
-        <label>FALLOW</label>
+        <label>INACTIVE</label>
     </customValue>
     <customValue>
         <fullName>NOTINSCHEME</fullName>
         <default>false</default>
+        <isActive>false</isActive>
         <label>NOTINSCHEME</label>
     </customValue>
     <customValue>
         <fullName>PREPANEL</fullName>
         <default>false</default>
+        <isActive>false</isActive>
         <label>PREPANEL</label>
     </customValue>
     <customValue>
         <fullName>FAILED</fullName>
         <default>false</default>
+        <isActive>false</isActive>
         <label>FAILED</label>
     </customValue>
     <customValue>
         <fullName>UNKNOWN</fullName>
         <default>false</default>
+        <isActive>false</isActive>
         <label>UNKNOWN</label>
     </customValue>
     <customValue>
-        <fullName>RENEWALINP</fullName>
+        <fullName>NEWAPP2</fullName>
         <default>false</default>
-        <label>RENEWALINP</label>
-    </customValue>
-    <customValue>
-        <fullName>REINSTATE</fullName>
-        <default>false</default>
-        <label>REINSTATE</label>
+        <isActive>false</isActive>
+        <label>NEWAPP2</label>
     </customValue>
     <customValue>
         <fullName>RENEW/REVISIT</fullName>
         <default>false</default>
+        <isActive>false</isActive>
         <label>RENEW/REVISIT</label>
     </customValue>
     <customValue>
         <fullName>WAITINGVOC</fullName>
         <default>false</default>
+        <isActive>false</isActive>
         <label>WAITINGVOC</label>
     </customValue>
     <customValue>
         <fullName>SUSPENDED/LAPSED</fullName>
         <default>false</default>
+        <isActive>false</isActive>
         <label>SUSPENDED/LAPSED</label>
     </customValue>
+    <customValue>
+        <fullName>RENEWALINP</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>RENEWALINP</label>
+    </customValue>
+    <customValue>
+        <fullName>NEWAPP2R</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>NEWAPP2R</label>
+    </customValue>
+    <customValue>
+        <fullName>NONFR</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>NONFR</label>
+    </customValue>
+    <customValue>
+        <fullName>RENEWA</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>RENEWA</label>
+    </customValue>
+    <customValue>
+        <fullName>WITHPANEL</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>WITHPANEL</label>
+    </customValue>
+    <customValue>
+        <fullName>PASSED</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>PASSED</label>
+    </customValue>
+    <customValue>
+        <fullName>NEWASS</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>NEWASS</label>
+    </customValue>
+    <customValue>
+        <fullName>RENEWASS</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>RENEWASS</label>
+    </customValue>
+    <customValue>
+        <fullName>ASSREC</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>ASSREC</label>
+    </customValue>
+    <customValue>
+        <fullName>ASSREC5R</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>ASSREC5R</label>
+    </customValue>
+    <customValue>
+        <fullName>ASSREC7R</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>ASSREC7R</label>
+    </customValue>
+    <customValue>
+        <fullName>EVIDENCE</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>EVIDENCE</label>
+    </customValue>
+    <customValue>
+        <fullName>MONREQ</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>MONREQ</label>
+    </customValue>
+    <customValue>
+        <fullName>CONPASS</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>CONPASS</label>
+    </customValue>
     <masterLabel>Membership Status</masterLabel>
-    <sorted>false</sorted>
+    <sorted>true</sorted>
 </GlobalValueSet>

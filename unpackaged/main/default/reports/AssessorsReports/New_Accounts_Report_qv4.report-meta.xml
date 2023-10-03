@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Account.Membership_Number__c</field>
+    </columns>
+    <columns>
+        <field>ACCOUNT.NAME</field>
+    </columns>
+    <columns>
+        <field>ADDRESS1_LINE1</field>
+    </columns>
+    <columns>
+        <field>ADDRESS1_ZIP</field>
+    </columns>
+    <columns>
+        <field>Account.Status__c</field>
+    </columns>
+    <columns>
+        <field>Account.Previous_Assessment_Date__c</field>
+    </columns>
+    <columns>
+        <field>CDF1</field>
+    </columns>
+    <customDetailFormulas>
+        <calculatedFormula>DATE(
+  YEAR( Account.Previous_Assessment_Date__c ) + FLOOR( ( MONTH ( Account.Previous_Assessment_Date__c ) + 14 - 1 ) / 12 ),
+  MOD( MONTH ( Account.Previous_Assessment_Date__c ) + 2 - 1 + 
+    IF( DAY ( Account.Previous_Assessment_Date__c ) &gt; CASE( MOD( MONTH( Account.Previous_Assessment_Date__c ) + 14 - 1, 12 ) + 1, 
+      2, 28,
+      4, 30,
+      6, 30,
+      9, 30, 
+      11, 30,
+      31 ), 1, 0 ), 12 ) + 1,
+    IF( DAY( Account.Previous_Assessment_Date__c ) &gt; CASE( MOD( MONTH( Account.Previous_Assessment_Date__c ) + 14 - 1, 12 ) + 1,
+      2, 28, 
+      4, 30, 
+      6, 30, 
+      9, 30, 
+      11, 30, 
+      31 ), 
+    1, DAY( Account.Previous_Assessment_Date__c )
+  )
+)</calculatedFormula>
+        <dataType>DateOnly</dataType>
+        <description>14 months after previous assessment date</description>
+        <developerName>CDF1</developerName>
+        <label>Next assessment due by</label>
+        <scale>2</scale>
+    </customDetailFormulas>
+    <filter>
+        <criteriaItems>
+            <column>Account.Active__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>1</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>RECORDTYPE</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Account.Site</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Membership_Number__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>startsWith</operator>
+            <value>2191.</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>List of a member&#39;s sites</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>AccountList</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>Account.Previous_Assessment_Date__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

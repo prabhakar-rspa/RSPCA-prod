@@ -1,0 +1,18 @@
+.THIS .scrollerSize{
+    height: 20em;
+}
+.THIS div.customTileStyle > div.slds-media__body > h3 > a{
+    color: royalblue;
+    cursor: default;
+    opacity: 1;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.THIS div.scrollable.scrollerSize.uiScrollerWrapper > table > tbody > tr > td > lightning-textarea > label{
+    display: none;
+}
+
+.THIS div.scrollable.scrollerSize.uiScrollerWrapper > table > tbody > tr > td > lightning-input > lightning-datepicker > div > label{
+    display: none;
+}

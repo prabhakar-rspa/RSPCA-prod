@@ -90,6 +90,11 @@
         <default>false</default>
         <label>Wrasse</label>
     </customValue>
+    <customValue>
+        <fullName>List</fullName>
+        <default>false</default>
+        <label>List</label>
+    </customValue>
     <masterLabel>Animals</masterLabel>
     <sorted>false</sorted>
 </GlobalValueSet>

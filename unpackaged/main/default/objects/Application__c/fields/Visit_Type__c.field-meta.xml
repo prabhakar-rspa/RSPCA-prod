@@ -18,14 +18,25 @@
                 <label>Investigation</label>
             </value>
             <value>
-                <fullName>Monitoring</fullName>
+                <fullName>Sanction</fullName>
                 <default>false</default>
-                <label>Monitoring</label>
+                <label>Sanction</label>
             </value>
             <value>
                 <fullName>Revisit</fullName>
                 <default>false</default>
                 <label>Revisit</label>
+            </value>
+            <value>
+                <fullName>Virtual Visit</fullName>
+                <default>false</default>
+                <label>Virtual Visit</label>
+            </value>
+            <value>
+                <fullName>Monitoring</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Monitoring</label>
             </value>
         </valueSetDefinition>
     </valueSet>

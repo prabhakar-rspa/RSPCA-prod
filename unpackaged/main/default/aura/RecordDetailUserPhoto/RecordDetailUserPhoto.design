@@ -1,0 +1,6 @@
+<design:component >
+    <design:attribute name="UserFieldName" label="User Lookup Field API" description="Enter the API Name of the user lookup field on this object."/>
+    <design:attribute name="Title" label="Title above photo" description="Enter the title to be used above the user photo."/>
+    <design:attribute name="imageHeight" label="Image Height" description="Set the height of the image in pixels."/>
+    <design:attribute name="imageWidth" label="Image Width" description="Set the width of the image in pixels."/>
+</design:component>

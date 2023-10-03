@@ -50,6 +50,8 @@ public class DownloadCertificatesPerSpeciesCntrTest {
         DownloadCertificatesPerSpeciesController downloadCertificates = new DownloadCertificatesPerSpeciesController(sc);
         system.assert(downloadCertificates.sciCertificateList != null && downloadCertificates.sciCertificateList.size()>0) ;
         system.assert(downloadCertificates.supplyChainCertificateList != null && downloadCertificates.supplyChainCertificateList.size()>0) ;
-
+		downloadCertificates.imageURL = 'www.google.com';
+        downloadCertificates.pdfName = 'Test';
+        downloadCertificates.attachPDF();
     }
 }

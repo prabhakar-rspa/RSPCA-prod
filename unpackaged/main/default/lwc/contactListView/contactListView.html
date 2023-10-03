@@ -1,0 +1,18 @@
+<template>
+    <lightning-spinner
+    class="slds-is-fixed"
+    if:true={isLoading}
+    alternative-text="Loading"
+    size="medium"
+    variant="brand"
+  ></lightning-spinner>
+    <lightning-layout multiple-rows="true">
+        
+        <lightning-layout-item size="12" if:true={showHeadOfficeContacts} padding="around-small"> <!--{showHeadOfficeContacts}-->
+            <c-contacts-table records={headOfficeContacts} label="Head Office Contacts" onrefresh={handleRefresh} account-id={headOfficeAccountId} primary-contact={primaryContact} ></c-contacts-table>
+        </lightning-layout-item>
+        <lightning-layout-item size="12" if:true={showSiteContacts} padding="around-small"><!--showSiteContacts-->
+            <c-contacts-table records={siteContacts} label="Site Contacts"  onrefresh={handleRefresh} account-id={siteAccountId} parent-account-id={headOfficeAccountId} primary-contact={primaryContact} ></c-contacts-table>
+        </lightning-layout-item>
+    </lightning-layout>
+</template>

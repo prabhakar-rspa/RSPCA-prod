@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Retailer Type --></label>
+        <name>Retailer_Type__c</name>
+        <picklistValues>
+            <masterLabel>Butcher</masterLabel>
+            <translation><!-- Butcher --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cafe</masterLabel>
+            <translation><!-- Cafe --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Canteen</masterLabel>
+            <translation><!-- Canteen --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Caterer</masterLabel>
+            <translation><!-- Caterer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Catering butcher</masterLabel>
+            <translation><!-- Catering butcher --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Convenience store</masterLabel>
+            <translation><!-- Convenience store --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Distributor</masterLabel>
+            <translation><!-- Distributor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Farm shop</masterLabel>
+            <translation><!-- Farm shop --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Restaurant</masterLabel>
+            <translation><!-- Restaurant --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Supermarket</masterLabel>
+            <translation><!-- Supermarket --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wholesaler</masterLabel>
+            <translation><!-- Wholesaler --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

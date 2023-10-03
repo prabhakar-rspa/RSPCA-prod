@@ -78,7 +78,7 @@ public class AdditionalApplicationControllerTest {
         AdditionalApplicationController.fetchCustomerContact(accounts[0].Id);
 
     }
-    /*
+    
     @isTest
     static void createAppWithUnitsTest(){
         // Create joinFee product
@@ -189,15 +189,15 @@ public class AdditionalApplicationControllerTest {
         System.assertEquals(7, unitList.size());
 
         // Call the method to add new units
-        AdditionalApplicationController.createAppWithUnits(appNewUnits, unitList);
+        AdditionalApplicationController.createAppWithUnits(appNewUnits, unitList,true,false);
 
         
         
         // call the method with the app size 0
-        AdditionalApplicationController.createAppWithUnits(appNewUnits.clone(false,false,false,false), new List<Unit__c>());
+        AdditionalApplicationController.createAppWithUnits(appNewUnits.clone(false,false,false,false), new List<Unit__c>(),false,true);
+		AdditionalApplicationController.createRevisitFee(insertedApps[0]);
 
-
-    }*/
+    }
     
     /*
     @isTest

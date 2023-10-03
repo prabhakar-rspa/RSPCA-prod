@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
     <description>Downloads the invoice pdf for this application.</description>
-    <height>250</height>
+    <height>350</height>
     <label>Download Invoice</label>
     <optionsCreateFeedItem>false</optionsCreateFeedItem>
-    <page>DownloadInvoice</page>
+    <page>InvoicePDF</page>
     <type>VisualforcePage</type>
     <width>-100</width>
 </QuickAction>

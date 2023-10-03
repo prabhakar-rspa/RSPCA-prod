@@ -34,6 +34,10 @@
     <picklistValues>
         <picklist>Application_Type__c</picklist>
         <values>
+            <fullName>Additional Visit</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Consultancy</fullName>
             <default>false</default>
         </values>
@@ -269,6 +273,18 @@
             <fullName>Approved</fullName>
             <default>false</default>
         </values>
+        <values>
+            <fullName>Pending Certifier Approval</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pending Inspector Approval</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pending Office Approval</fullName>
+            <default>false</default>
+        </values>
     </picklistValues>
     <picklistValues>
         <picklist>Renewal_Stage__c</picklist>
@@ -330,11 +346,15 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Monitoring</fullName>
+            <fullName>Revisit</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Revisit</fullName>
+            <fullName>Sanction</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Virtual Visit</fullName>
             <default>false</default>
         </values>
     </picklistValues>

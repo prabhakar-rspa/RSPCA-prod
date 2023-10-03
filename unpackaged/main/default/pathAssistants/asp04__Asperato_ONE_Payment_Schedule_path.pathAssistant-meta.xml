@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PathAssistant xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <entityName>asp04__PaymentSchedule__c</entityName>
+    <fieldName>asp04__Status__c</fieldName>
+    <masterLabel>Asperato ONE Payment Schedule path</masterLabel>
+    <pathAssistantSteps>
+        <fieldNames>asp04__Authorisation__c</fieldNames>
+        <fieldNames>asp04__Authorisation_Status__c</fieldNames>
+        <fieldNames>asp04__Regular_Amount__c</fieldNames>
+        <fieldNames>asp04__Next_Payment_Date__c</fieldNames>
+        <info>&lt;p&gt;An active Payment Schedule will only function once the Authorisation record is InForce.&lt;/p&gt;</info>
+        <picklistValueName>Active</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>asp04__Authorisation__c</fieldNames>
+        <fieldNames>asp04__Authorisation_Status__c</fieldNames>
+        <info>&lt;p&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;An expired Schedule as been stopped:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;Either because the Final Payment Date has been reached or it has ben manually expired by a Salesforce User.&lt;/span&gt;&lt;/p&gt;</info>
+        <picklistValueName>Expired</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>asp04__Authorisation__c</fieldNames>
+        <fieldNames>asp04__Authorisation_Status__c</fieldNames>
+        <info>&lt;p&gt;&lt;span style=&quot;font-size: 13px;&quot;&gt;An Inactive Payment Schedule will not function, regardless of the stage of the Authorisation.&lt;/span&gt;&lt;/p&gt;</info>
+        <picklistValueName>Inactive</picklistValueName>
+    </pathAssistantSteps>
+    <recordTypeName>__MASTER__</recordTypeName>
+</PathAssistant>

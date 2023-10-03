@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Certification Body Layout</layout>
+        <sections>
+            <label><!-- Certification Body Information --></label>
+            <section>Certification Body Information</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Partnerships --></label>
+            <section>Partnerships</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Community Head Office Layout</layout>
+        <sections>
+            <label><!-- Account Type Fields --></label>
+            <section>Account Type Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Intacct Fields --></label>
+            <section>Intacct Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Membership Information --></label>
+            <section>Membership Information</section>
+        </sections>
+        <sections>
+            <label><!-- Partnerships --></label>
+            <section>Partnerships</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Community Site Layout</layout>
+        <sections>
+            <label><!-- Account Type Fields --></label>
+            <section>Account Type Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Membership Information --></label>
+            <section>Membership Information</section>
+        </sections>
+        <sections>
+            <label><!-- Optional Settings --></label>
+            <section>Optional Settings</section>
+        </sections>
+        <sections>
+            <label><!-- Partnerships --></label>
+            <section>Partnerships</section>
+        </sections>
+        <sections>
+            <label><!-- Site Information --></label>
+            <section>Site Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>READ ONLY Certification Body Layout</layout>
+        <sections>
+            <label><!-- Certification Body Information --></label>
+            <section>Certification Body Information</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>RSPCA Head Office Layout</layout>
+        <sections>
+            <label><!-- Account Type Fields --></label>
+            <section>Account Type Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Intacct Fields --></label>
+            <section>Intacct Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Membership Information --></label>
+            <section>Membership Information</section>
+        </sections>
+        <sections>
+            <label><!-- Partnerships --></label>
+            <section>Partnerships</section>
+        </sections>
+        <sections>
+            <label><!-- Product --></label>
+            <section>Product</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>RSPCA Site Layout</layout>
+        <sections>
+            <label><!-- Account Type Fields --></label>
+            <section>Account Type Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Membership Information --></label>
+            <section>Membership Information</section>
+        </sections>
+        <sections>
+            <label><!-- Optional Settings --></label>
+            <section>Optional Settings</section>
+        </sections>
+        <sections>
+            <label><!-- Partnerships --></label>
+            <section>Partnerships</section>
+        </sections>
+        <sections>
+            <label><!-- Product --></label>
+            <section>Product</section>
+        </sections>
+        <sections>
+            <label><!-- Site Information --></label>
+            <section>Site Information</section>
+        </sections>
+        <sections>
+            <label><!-- Suspensions --></label>
+            <section>Suspensions</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Retailer Layout</layout>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Partnerships --></label>
+            <section>Partnerships</section>
+        </sections>
+        <sections>
+            <label><!-- Retailer Information --></label>
+            <section>Retailer Information</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Renew Membership --></label>
+        <name>Renew_Membership</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Renew Sites --></label>
+        <name>Renew_Sites</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Transfer --></label>
+        <name>Transfer</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Update --></label>
+        <name>Update</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Create Additional Visit --></label>
+        <name>Create_Additional_Visit</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Create Certificate Extension Request --></label>
+        <name>Create_Certificate_Extension_Request</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Create Other Application --></label>
+        <name>Create_Other_Application</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Create Other Application --></label>
+        <name>Create_Other_Application_flow</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Create Renewal Price Report --></label>
+        <name>Create_Renewal_Price_Report</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Download  Certificate --></label>
+        <name>Download_Certificate_New</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Download Certificates Old --></label>
+        <name>Download_Certificates</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Download Site Certificates Old --></label>
+        <name>Download_Site_Certificates</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Download Site Certificates --></label>
+        <name>Download_Site_Certificates_New</name>
+    </quickActions>
+    <recordTypes>
+        <description><!-- Organisations involved in the auditing of food and farming businesses. --></description>
+        <label><!-- Certification Body --></label>
+        <name>Certification_Body</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- An Account representing the head office. --></description>
+        <label><!-- Head Office --></label>
+        <name>Head_Office</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Organisations involved in food retail including supermarkets, restaurants, caterers and wholesalers. --></description>
+        <label><!-- Retailer --></label>
+        <name>Retailer</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- An Account representing a site. --></description>
+        <label><!-- Site --></label>
+        <name>Site</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- Please specify the Cancellation Reason. --></errorMessage>
+        <name>Cancellation_Reason_Other</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can&apos;t have more than one Certificate Extension Request pending! --></errorMessage>
+        <name>Cert_Extension_Request_pending</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please populate this field. --></errorMessage>
+        <name>Company_Type_Detail</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Head Office Number must be 4 characters long. --></errorMessage>
+        <name>Head_Office_Number_Min_Length</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Head Office Number can only contain numbers. --></errorMessage>
+        <name>Head_Office_Number_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The enquiry account type is &apos;Head Office&apos;, please select the Head Office record type for converting this enquiry. --></errorMessage>
+        <name>Head_Office_Record_Type_Lead_Conversion</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select the type of retailer from the list. --></errorMessage>
+        <name>If_Retailer_Provide_Retailer_Type</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Cannot have more than one open New Application. --></errorMessage>
+        <name>Only_1_Open_New_Aplication</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Cannot have more than one open Renewal Application. --></errorMessage>
+        <name>Only_1_Open_Renewal_Aplication</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Cannot have more than one open Transfer Application. --></errorMessage>
+        <name>Only_1_Open_Transfer_Aplication</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter a valid phone number. --></errorMessage>
+        <name>Phone_number_validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter more details on the type of company --></errorMessage>
+        <name>Populate_Other_Account_Type</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please specify the company type here. --></errorMessage>
+        <name>Populate_Other_Reason_Company</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please provide a reason for this site&apos;s suspension. If the reason is not a value on this picklist, please use the &apos;Other Reason for Suspension&apos; field. --></errorMessage>
+        <name>Provide_Suspension_Reason</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please detail what the reason for suspension is if you have selected &apos;Other&apos; from the picklist. --></errorMessage>
+        <name>Provide_Suspension_Reason_Other</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Site Number must be 4 characters long. --></errorMessage>
+        <name>Site_Number_Min_Length</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Site Number field can only contain numbers. --></errorMessage>
+        <name>Site_Number_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The enquiry account type is &apos;Site&apos;, please select the Site record type for converting this enquiry. --></errorMessage>
+        <name>Site_Record_Type_Lead_Conversion</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Clear_Suspension --></label>
+        <name>Clear_Suspension</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- New_Application --></label>
+        <name>New_Application</name>
+    </webLinks>
+</CustomObjectTranslation>

@@ -21,7 +21,7 @@ public without sharing class AdditionalApplicationController {
 
     // Create application with units
     @AuraEnabled
-    public static SObject createAppWithUnits(Application__c app, List<Unit__c> units){
+    public static SObject createAppWithUnits(Application__c app, List<Unit__c> units,boolean assessmentRequired,boolean createRevisitFee){
 
         System.debug(app);
         system.debug('Number of units to be created: ' + units.size());
@@ -30,6 +30,17 @@ public without sharing class AdditionalApplicationController {
         List<Application_Unit__c> apuToCreate = new List<Application_Unit__c>();
         
         if(app != null){
+            system.debug('assessmentRequired:::::'+assessmentRequired);
+            system.debug('createRevisitFee:::::'+createRevisitFee);
+            app.Assessment_Required__c = assessmentRequired;
+            app.Re_visit_Fee_required__c = createRevisitFee;
+            if(!assessmentRequired){
+                String otherRT = Schema.SObjectType.Application__c.getRecordTypeInfosByDeveloperName().get('Other').getRecordTypeId();
+                app.RecordTypeId = otherRT;
+                app.Application_Type__c = 'Other';
+                app.stage__c = 'Not Applicable';
+                //app.Update_Type__c= '';
+            }
             Insert app;
             if(units.size() != 0){
                 // If new unit is selected as the update type
@@ -86,7 +97,9 @@ public without sharing class AdditionalApplicationController {
 
                 
                 insert apuToCreate;
-                
+                if(createRevisitFee){
+                    createRevisitFee(app);
+                }
                 app.Send_Application_Confirmation_Email__c = true;
                 app.Send_Invoice__c = false; // prevent automatic sending of invoice to member
                 update app;
@@ -142,7 +155,33 @@ public without sharing class AdditionalApplicationController {
         }
         
     }
+    public static void createRevisitFee(Application__c app){
+        Application__c application= [SELECT ID,Pricebook_Id__c FROM Application__c WHERE ID=:app.Id];
+        List<Product2> activeProducts = [SELECT Id, Name, ProductCode, IsActive From Product2 WHERE IsActive=true AND ProductCode ='REVISIT'];
+        system.debug('activeProducts:::'+activeProducts);
+        system.debug('application:::'+application);
 
+        if(activeProducts != null && activeProducts.size()>0 && application.Pricebook_Id__c != null){
+            List<PricebookEntry> priceEntries = [SELECT Id, UnitPrice, Product2Id, Pricebook2Id, IsActive FROM PricebookEntry WHERE IsActive = true AND Pricebook2Id =:application.Pricebook_Id__c AND Product2Id =:activeProducts[0].Id ];
+            Account headOffice = [SELECT Id, BillingCountry FROM Account WHERE Id =:app.Head_Office__c];
+            if(priceEntries != null && priceEntries.size()>0){
+                PricebookEntry revisitFeePBE = priceEntries[0];
+                if(revisitFeePBE != null){
+                    Application_Line_Item__c appli = new Application_Line_Item__c();
+                    appli.Application__c = app.Id;
+                    appli.Product__c = revisitFeePBE.Product2Id;
+                    appli.List_Price__c = revisitFeePBE.UnitPrice;
+                    if(headOffice.BillingCountry == 'United Kingdom'){
+                        appli.List_Price_Inc_Vat__c = revisitFeePBE.UnitPrice + (revisitFeePBE.UnitPrice * 0.2);
+                    }else{
+                        appli.List_Price_Inc_Vat__c = revisitFeePBE.UnitPrice;
+                    }
+                    appli.Quantity__c = 1;
+                    insert appli;
+                }
+            }
+        }
+    }
     @AuraEnabled
     public static List<Unit__c> getPoultryUnits(String siteId){
 

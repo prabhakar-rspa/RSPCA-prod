@@ -451,11 +451,27 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>County Carlow</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>County Cavan</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>County Clare</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>County Cork</fullName>
             <default>false</default>
         </values>
         <values>
             <fullName>County Donegal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>County Dublin</fullName>
             <default>false</default>
         </values>
         <values>
@@ -467,7 +483,31 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>County Kerry</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>County Kildare</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>County Kilkenny</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>County Laois</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>County Leitrim</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>County Limerick</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>County Longford</fullName>
             <default>false</default>
         </values>
         <values>
@@ -479,11 +519,43 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>County Meath</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>County Monaghan</fullName>
             <default>false</default>
         </values>
         <values>
+            <fullName>County Offaly</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>County Roscommon</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>County Sligo</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>County Tipperary</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>County Waterford</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>County Westmeath</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>County Wexford</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>County Wicklow</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1224,36 +1296,12 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>ASSREC</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>ASSREC5R</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>ASSREC7R</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>CANCELLED</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>CONPASS</fullName>
             <default>false</default>
         </values>
         <values>
             <fullName>ENQUIRY</fullName>
             <default>true</default>
-        </values>
-        <values>
-            <fullName>EVIDENCE</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>FAILED</fullName>
-            <default>false</default>
         </values>
         <values>
             <fullName>FALLOW</fullName>
@@ -1268,55 +1316,11 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>MONREQ</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>NEW</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>NEWAPP2R</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>NEWASS</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>NONFR</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>NOTINSCHEME</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>PASSED</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>PREPANEL</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>REINSTATE</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>RENEW%2FREVISIT</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>RENEWA</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>RENEWALINP</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>RENEWASS</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1332,23 +1336,7 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>SUSPENDED%2FLAPSED</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>UNKNOWN</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>WAITINGVOC</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>WITHDRAWN</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>WITHPANEL</fullName>
             <default>false</default>
         </values>
     </picklistValues>

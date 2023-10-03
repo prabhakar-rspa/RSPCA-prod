@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Cancellation Reason --></label>
+        <name>Cancellation_Reason__c</name>
+        <picklistValues>
+            <masterLabel>As requested by group</masterLabel>
+            <translation><!-- As requested by group --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>As transferring membership</masterLabel>
+            <translation><!-- As transferring membership --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No longer in production</masterLabel>
+            <translation><!-- No longer in production --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No longer required</masterLabel>
+            <translation><!-- No longer required --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not renewing</masterLabel>
+            <translation><!-- Not renewing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

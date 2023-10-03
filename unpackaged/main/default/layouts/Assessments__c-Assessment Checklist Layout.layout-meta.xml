@@ -44,20 +44,16 @@
                 <field>Welfare_Rating__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Application_Assessor__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Non_Compliances_Created__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Signed_by_Member__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Signed_by_Member_Date__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Animals_List__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -150,9 +146,9 @@
         <detailHeading>false</detailHeading>
         <editHeading>true</editHeading>
         <label>Custom Links</label>
-        <layoutColumns/>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
+        <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
     <relatedLists>
@@ -181,10 +177,11 @@
         <fields>Summary__c</fields>
         <fields>Compliant__c</fields>
         <fields>Comments_Action__c</fields>
-        <fields>Guidance_Notes__c</fields>
+        <fields>Standard_Order__c</fields>
         <relatedList>Assessment_Checklist_Question__c.Assessment_Checklist__c</relatedList>
     </relatedLists>
     <relatedLists>
+        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>Checklist_Section_Name__c</fields>
         <fields>Checklist_Section_Comments__c</fields>
@@ -201,7 +198,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h0D000000Lg54</masterLabel>
+        <masterLabel>00h2p00000lO0On</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

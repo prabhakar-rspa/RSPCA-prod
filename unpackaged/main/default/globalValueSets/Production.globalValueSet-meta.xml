@@ -6,6 +6,11 @@
         <label>Abattoir</label>
     </customValue>
     <customValue>
+        <fullName>Aviary Rearing</fullName>
+        <default>false</default>
+        <label>Aviary Rearing</label>
+    </customValue>
+    <customValue>
         <fullName>Brand/Marketing</fullName>
         <default>false</default>
         <label>Brand/Marketing</label>
@@ -14,6 +19,16 @@
         <fullName>Breeding</fullName>
         <default>false</default>
         <label>Breeding</label>
+    </customValue>
+    <customValue>
+        <fullName>Breeding to finishing</fullName>
+        <default>false</default>
+        <label>Breeding to finishing</label>
+    </customValue>
+    <customValue>
+        <fullName>Breeding to rearing</fullName>
+        <default>false</default>
+        <label>Breeding to rearing</label>
     </customValue>
     <customValue>
         <fullName>Brood</fullName>
@@ -146,6 +161,11 @@
         <label>Rearing</label>
     </customValue>
     <customValue>
+        <fullName>Rearing to finishing</fullName>
+        <default>false</default>
+        <label>Rearing to finishing</label>
+    </customValue>
+    <customValue>
         <fullName>Retailer</fullName>
         <default>false</default>
         <label>Retailer</label>
@@ -165,26 +185,6 @@
         <default>false</default>
         <label>Wholesaler</label>
     </customValue>
-    <customValue>
-        <fullName>Breeding to rearing</fullName>
-        <default>false</default>
-        <label>Breeding to rearing</label>
-    </customValue>
-    <customValue>
-        <fullName>Breeding to finishing</fullName>
-        <default>false</default>
-        <label>Breeding to finishing</label>
-    </customValue>
-    <customValue>
-        <fullName>Rearing to finishing</fullName>
-        <default>false</default>
-        <label>Rearing to finishing</label>
-    </customValue>
-    <customValue>
-        <fullName>Aviary Rearing</fullName>
-        <default>false</default>
-        <label>Aviary Rearing</label>
-    </customValue>
     <masterLabel>Production</masterLabel>
-    <sorted>false</sorted>
+    <sorted>true</sorted>
 </GlobalValueSet>

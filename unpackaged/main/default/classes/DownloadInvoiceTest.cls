@@ -42,7 +42,7 @@ public class DownloadInvoiceTest {
         ApexPages.currentPage().getParameters().put('Id', insertedApp[0].Id);
 
         // Instantiate a new controller with all parameters in the page
-        InvoicePDFController controller = new InvoicePDFController(); 
+        //InvoicePDFController controller = new InvoicePDFController(); 
 
         ApexPages.StandardController sc = new ApexPages.StandardController(insertedApp[0]);
         DownloadInvoiceController downloadInvoice = new DownloadInvoiceController(sc);

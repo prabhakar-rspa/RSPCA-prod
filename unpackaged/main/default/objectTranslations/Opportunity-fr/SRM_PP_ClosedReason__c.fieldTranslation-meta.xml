@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Reason the record status has been closed --></help>
+        <label><!-- Closed Reason --></label>
+        <name>SRM_PP_ClosedReason__c</name>
+        <picklistValues>
+            <masterLabel>Conflicting Priorities</masterLabel>
+            <translation><!-- Conflicting Priorities --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cost</masterLabel>
+            <translation><!-- Cost --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Established Supplier</masterLabel>
+            <translation><!-- Established Supplier --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other Certification</masterLabel>
+            <translation><!-- Other Certification --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Species Availability</masterLabel>
+            <translation><!-- Species Availability --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Volume Availability</masterLabel>
+            <translation><!-- Volume Availability --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

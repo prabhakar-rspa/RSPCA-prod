@@ -1,0 +1,19 @@
+<apex:page standardController="asp04__Payment__c" extensions="asp04.ProcessPaymentControllerExtension" action="{!RedirectToAsperato}" >
+      <h1>Redirecting to Asperato...</h1>
+ <style type="text/css">
+  .exceptionText {
+    color:red; 
+    font-size:14px; 
+    font-weight:normal; 
+    margin-left:40px;
+  }
+ </style>
+ <apex:messages styleClass="exceptionText"/>
+   <apex:form >
+      <apex:pageBlock mode="MainDetail" >
+          <apex:pageBlockButtons location="bottom" >
+              <apex:commandButton action="{!Cancel}" value="Cancel" />
+          </apex:pageBlockButtons>
+      </apex:pageBlock>
+    </apex:form>
+ </apex:page>

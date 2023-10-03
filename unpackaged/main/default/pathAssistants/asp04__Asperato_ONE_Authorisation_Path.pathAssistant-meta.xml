@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PathAssistant xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <entityName>asp04__Authorisation__c</entityName>
+    <fieldName>asp04__Status__c</fieldName>
+    <masterLabel>Asperato ONE Authorisation Path</masterLabel>
+    <pathAssistantSteps>
+        <fieldNames>asp04__Status_Description__c</fieldNames>
+        <fieldNames>asp04__Error_Code__c</fieldNames>
+        <info>&lt;p&gt;This Authorisation has been cancelled by the customer and cannot be used to take payments. &lt;/p&gt;</info>
+        <picklistValueName>Cancelled</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>asp04__Status_Description__c</fieldNames>
+        <fieldNames>asp04__Error_Code__c</fieldNames>
+        <fieldNames>asp04__Payment_Route_Selected__c</fieldNames>
+        <info>&lt;p&gt;This request for an Authorisation has failed. See the status description and error code for further details.&lt;/p&gt;</info>
+        <picklistValueName>Failed</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>asp04__Status_Description__c</fieldNames>
+        <fieldNames>asp04__Payment_Route_Selected__c</fieldNames>
+        <fieldNames>asp04__Expiry_Date__c</fieldNames>
+        <info>&lt;p&gt;The saved payment method (Authorisation) can now be used to collect payments.&lt;/p&gt;</info>
+        <picklistValueName>In Force</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;This status show that the Authorisation has been completed by the customer but is not yet active. The InForce or failed status will update automatically and should not be changed manually.&lt;/p&gt;</info>
+        <picklistValueName>Pending</picklistValueName>
+    </pathAssistantSteps>
+    <recordTypeName>__MASTER__</recordTypeName>
+</PathAssistant>

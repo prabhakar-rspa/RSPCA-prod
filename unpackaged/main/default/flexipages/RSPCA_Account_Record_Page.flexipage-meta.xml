@@ -17,6 +17,16 @@
                             </visibilityRule>
                         </valueListItems>
                         <valueListItems>
+                            <value>Account.Renew_Membership</value>
+                            <visibilityRule>
+                                <criteria>
+                                    <leftValue>{!Record.Record_Type_Name__c}</leftValue>
+                                    <operator>CONTAINS</operator>
+                                    <rightValue>Site</rightValue>
+                                </criteria>
+                            </visibilityRule>
+                        </valueListItems>
+                        <valueListItems>
                             <value>Account.Download_Site_Certificates_New</value>
                             <visibilityRule>
                                 <criteria>
@@ -27,22 +37,52 @@
                             </visibilityRule>
                         </valueListItems>
                         <valueListItems>
-                            <value>CustomButton.Account.New_Application</value>
+                            <value>Account.Download_Certificate_New</value>
                             <visibilityRule>
-                                <booleanFilter>1 AND 2</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.Record_Type_Name__c}</leftValue>
                                     <operator>CONTAINS</operator>
-                                    <rightValue>Head Office</rightValue>
-                                </criteria>
-                                <criteria>
-                                    <leftValue>{!Record.Primary_Contact_Full_Name__c}</leftValue>
-                                    <operator>NE</operator>
+                                    <rightValue>Site</rightValue>
                                 </criteria>
                             </visibilityRule>
                         </valueListItems>
                         <valueListItems>
-                            <value>Account.Renew_Membership</value>
+                            <value>Account.Create_Other_Application_flow</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Account.Create_Additional_Visit</value>
+                            <visibilityRule>
+                                <criteria>
+                                    <leftValue>{!Record.Record_Type_Name__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>Site</rightValue>
+                                </criteria>
+                            </visibilityRule>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Account.Transfer</value>
+                            <visibilityRule>
+                                <criteria>
+                                    <leftValue>{!Record.Record_Type_Name__c}</leftValue>
+                                    <operator>CONTAINS</operator>
+                                    <rightValue>Site</rightValue>
+                                </criteria>
+                            </visibilityRule>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Global.NewContact</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Global.NewTask</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Global.LogACall</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Account.Create_Certificate_Extension_Request</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Account.Create_Renewal_Price_Report</value>
                             <visibilityRule>
                                 <criteria>
                                     <leftValue>{!Record.Record_Type_Name__c}</leftValue>
@@ -62,6 +102,27 @@
                             </visibilityRule>
                         </valueListItems>
                         <valueListItems>
+                            <value>AccountHierarchy</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>ChangeOwnerOne</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>CustomButton.Account.New_Application</value>
+                            <visibilityRule>
+                                <booleanFilter>1 AND 2</booleanFilter>
+                                <criteria>
+                                    <leftValue>{!Record.Record_Type_Name__c}</leftValue>
+                                    <operator>CONTAINS</operator>
+                                    <rightValue>Head Office</rightValue>
+                                </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.Primary_Contact_Full_Name__c}</leftValue>
+                                    <operator>NE</operator>
+                                </criteria>
+                            </visibilityRule>
+                        </valueListItems>
+                        <valueListItems>
                             <value>Account.Update</value>
                             <visibilityRule>
                                 <criteria>
@@ -72,60 +133,7 @@
                             </visibilityRule>
                         </valueListItems>
                         <valueListItems>
-                            <value>Account.Create_Other_Application_flow</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>Account.Transfer</value>
-                            <visibilityRule>
-                                <criteria>
-                                    <leftValue>{!Record.Record_Type_Name__c}</leftValue>
-                                    <operator>CONTAINS</operator>
-                                    <rightValue>Site</rightValue>
-                                </criteria>
-                            </visibilityRule>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>Account.Download_Certificate_New</value>
-                            <visibilityRule>
-                                <criteria>
-                                    <leftValue>{!Record.Record_Type_Name__c}</leftValue>
-                                    <operator>CONTAINS</operator>
-                                    <rightValue>Site</rightValue>
-                                </criteria>
-                            </visibilityRule>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>Global.NewContact</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>Global.LogACall</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>Global.NewTask</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>Global.NewEvent</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>Edit</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>AccountHierarchy</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>ChangeOwnerOne</value>
-                        </valueListItems>
-                        <valueListItems>
                             <value>Delete</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>CallHighlightAction</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>SmsHighlightAction</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>WebsiteHighlightAction</value>
                         </valueListItems>
                         <valueListItems>
                             <value>EmailHighlightAction</value>
@@ -135,39 +143,6 @@
                         </valueListItems>
                         <valueListItems>
                             <value>CustomButton.Account.ia_crm__Sync_to_Intacct</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>Account.Create_Certificate_Extension_Request</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>Account.Create_Renewal_Price_Report</value>
-                            <visibilityRule>
-                                <criteria>
-                                    <leftValue>{!Record.Record_Type_Name__c}</leftValue>
-                                    <operator>CONTAINS</operator>
-                                    <rightValue>Site</rightValue>
-                                </criteria>
-                            </visibilityRule>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>Account.Download_Certificates</value>
-                            <visibilityRule>
-                                <criteria>
-                                    <leftValue>{!Record.Record_Type_Name__c}</leftValue>
-                                    <operator>CONTAINS</operator>
-                                    <rightValue>Site</rightValue>
-                                </criteria>
-                            </visibilityRule>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>Account.Download_Site_Certificates</value>
-                            <visibilityRule>
-                                <criteria>
-                                    <leftValue>{!Record.Record_Type_Name__c}</leftValue>
-                                    <operator>CONTAINS</operator>
-                                    <rightValue>Head Office</rightValue>
-                                </criteria>
-                            </visibilityRule>
                         </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
@@ -219,6 +194,89 @@
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>defaultNumberofRecordsToDisplay</name>
+                    <value>4</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>defaultRecordType</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>displayType</name>
+                    <value>List</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>filter</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>hideOnNoRecord</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>iconName</name>
+                    <value>standard:case</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>layoutType</name>
+                    <value>1 Column</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>maxNumberofRecordsToDisplay</name>
+                    <value>50</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>newRecord</name>
+                    <value>Standard</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>objectAPIName</name>
+                    <value>Bulk_Renewal__c</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>parentField</name>
+                    <value>Head_Office__c</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>parentObjectIdField</name>
+                    <value>Id</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListName</name>
+                    <value>Bulk_Renewal</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>showHeader</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>showMenuAction</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>showRefreshButton</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sort</name>
+                    <value>CreatedDate DESC</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>title</name>
+                    <value>Bulk Renewals</value>
+                </componentInstanceProperties>
+                <componentName>CMTD:EnhancedRelatedList</componentName>
+                <identifier>CMTD_EnhancedRelatedList4</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Record_Type_Name__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Head Office</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
@@ -629,6 +687,13 @@
                 </componentInstanceProperties>
                 <componentName>CMTD:EnhancedRelatedList</componentName>
                 <identifier>CMTD_EnhancedRelatedList3</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.RecordType.DeveloperName}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Site</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <itemInstances>

@@ -3,7 +3,7 @@
     <fullName>Communications__c</fullName>
     <externalId>false</externalId>
     <inlineHelpText>Use this to link to any additional communication, e.g., letters or emails, in a Google Drive folder.</inlineHelpText>
-    <label>Communications</label>
+    <label>Internal Unannounced Visit Report</label>
     <required>false</required>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>

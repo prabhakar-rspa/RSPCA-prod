@@ -272,7 +272,7 @@
                                 <td width="100%" valign="bottom" ><p style="text-align: center; font-size: 10px; line-height: 1.2;"><strong>This certificate remains the property of Supply Chain In-Sites Ltd and must be returned on request.</strong><br/>
                                     As the certificate holder, it is your responsibility to inform customers of any changes in the certification status. It is the customer's responsibility to verify the certification status with Freedom Food Ltd (t/a RSPCA Assured). To do this, please
                                     call 01403 286170 or email help@rspcaassured.org.uk. Alternatively, write to SCI Certified RSPCA Scheme
-                                    at Wilberforce Way, Southwater, Horsham, West Sussex, RH13 9RS</p></td>
+                                    at Parkside, Chart Way, Horsham, West Sussex, RH12 1GY</p></td>
                          <br/>   </tr>
                             <tr>
                                 <td width="100%" valign="bottom"><p style="text-align: center; font-size: 10px; line-height: 1.2; color: white;">Supply Chain In-Sites, 78 Cannon Street, London, EC4N 6AF</p></td>
@@ -297,7 +297,7 @@
                  
                     <div style="height: 630px; overflow: hidden; font-family: Arial, sans-serif; text-align:center;">
                         <div class="s1"><Strong>CERTIFICATE OF CONFORMITY</Strong></div>
-                        <div class="s2"><Strong>THIS IS TO CERITIFY THAT</Strong></div>
+                        <div class="s2"><Strong>THIS IS TO CERTIFY THE OPERATIONS AT</Strong></div>
                         <p style="font-size: 12pt"></p>
                         <div class="s3"><Strong>{!currentRecord.Parent.Name}</Strong></div>
                         <div class="s3"><Strong>Site: {!currentRecord.Name}</Strong></div>
@@ -349,7 +349,16 @@
                     <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><span style="margin: 5px;">{!u.Name}</span></td>
                     <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><span style="margin: 5px;">{!u.Description__c}</span></td>
                     <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><span style="margin: 5px;">{!u.Business__c}</span></td>
-                    <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><span style="margin: 5px;">{!u.Animals__c}</span></td>
+                    <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;">
+                        <span style="margin: 5px;">
+                          <apex:outputText rendered="{!OR(u.Business__c == 'Hatchery',u.Business__c == 'Haulier',u.Business__c == 'Abattoir',u.Business__c == 'Catching')}">
+                            {!u.Animals_List__c}
+                          </apex:outputText>  
+                          <apex:outputText rendered="{!!OR(u.Business__c == 'Hatchery',u.Business__c == 'Haulier',u.Business__c == 'Abattoir',u.Business__c == 'Catching')}">
+                            {!u.Animals__c}
+                          </apex:outputText>  
+                        </span>
+                    </td>
                     <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><span style="margin: 5px;">{!u.Vehicle_Registration__c}</span></td>
                 </tr>
             </apex:repeat>

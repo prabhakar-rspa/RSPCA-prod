@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Account.Membership_Number__c</field>
+    </columns>
+    <columns>
+        <field>Application__c.Site_Name__c</field>
+    </columns>
+    <columns>
+        <field>Account.Renewal_Date__c</field>
+    </columns>
+    <columns>
+        <field>Account.Reason_for_Status__c</field>
+    </columns>
+    <columns>
+        <field>Account.Status__c</field>
+    </columns>
+    <customDetailFormulas>
+        <calculatedFormula>TODAY() - (Account.Membership_Expiry_Date__c)</calculatedFormula>
+        <dataType>Double</dataType>
+        <description>NO. OF DAYS PASSED FROM MEMBERSHIP EXPIRY DATE</description>
+        <developerName>CDF1</developerName>
+        <label>DAYS PASSED FROM MEMBERSHIP EXPIRY DATE</label>
+        <scale>0</scale>
+    </customDetailFormulas>
+    <description>Report to show any sites that have passed their membership expiry date and not paid, can we show number of days passed the membership expiry date because when they go 28 days after they cancel.</description>
+    <filter>
+        <criteriaItems>
+            <column>Account.Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>LAPSED</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <field>Account.Membership_Expiry_Date__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>CDF1</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Draft - Lapsed sites-MST</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>AccountCustomEntity$Application__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>DUE_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

@@ -1,6 +1,6 @@
 @isTest
 public class ApplicationTriggerHandlerTest {
-
+	
     @isTest
     static Application__c createApplication(){
         // Create joinFee product
@@ -93,6 +93,78 @@ public class ApplicationTriggerHandlerTest {
         renewalApplication.setDefinition('Bulk_Renewal__c', 'random lookup(Bulk_Renewal__c) source(forceea)');
         renewalApplication.insertRecords(true);
 
+    }
+    @isTest
+    static void testMethod1(){
+        Account act = TestDataFactory.createHeadOfficeAccount();
+        Contact cnt = TestDataFactory.createContact(act.Id);
+        cnt.Roles__c = 'Invoice Contact';
+        update cnt;
+        act.Primary_Contact__c = cnt.Id;
+        update act;
+        Account site = TestDataFactory.createSiteAccount(act.Id);
+        site.Needs_an_Assessment__c = true;
+        update site;
+        Id recordTypeId = Schema.SObjectType.Application__c.getRecordTypeInfosByName().get('Applications').getRecordTypeId();
+        Bulk_Renewal__c  bulk_renewal = TestDataFactory.createBulkRenewal(cnt.Id,act.Id,true);
+        
+        Product2 product = TestDataFactory.createProduct(false);
+        product.ProductCode = 'JOINFEE';
+        insert product;
+        PricebookEntry pbe = TestDataFactory.createPriceBookEntry(product.Id,Test.getStandardPricebookId(),true);
+        Unit__c unit = TestDataFactory.createUnit(act.Id,true);
+        Application__c app = TestDataFactory.createApplication(recordTypeId, act.Id, act.Id, cnt.Id, false); 
+        app.Pricebook_Id__c =  Test.getStandardPricebookId();
+        app.Payment_Due_Date__c = system.today();
+        app.Invoice_Date__c = system.today();
+        insert app;
+        Application__c app1 = TestDataFactory.createApplication(recordTypeId, act.Id, site.Id, cnt.Id, false); 
+        app1.Pricebook_Id__c =  Test.getStandardPricebookId();
+        app1.Bulk_Renewal__c = bulk_renewal.Id;
+        insert app1;
+        TestDataFactory.createApplicationLineItem(product.Id,app.Id,true);
+        Test.startTest();
+        app.Send_Invoice__c = true;
+        update app;
+        Test.stopTest();
+        app = [SELECT Id,Sage_Invoice__c,InvoiceSent__c FROM Application__c WHERE Id=:app.Id];
+        system.assert(app.Sage_Invoice__c != null);
+        system.assert(app.InvoiceSent__c);
+    }
+    @isTest
+    static void testMethod2(){
+        Account act = TestDataFactory.createHeadOfficeAccount();
+        Contact cnt = TestDataFactory.createContact(act.Id);
+        cnt.Roles__c = 'Invoice Contact';
+        update cnt;
+        act.Primary_Contact__c = cnt.Id;
+        update act;
+        Account site = TestDataFactory.createSiteAccount(act.Id);
+        site.Needs_an_Assessment__c = true;
+        update site;
+        Id recordTypeId = Schema.SObjectType.Application__c.getRecordTypeInfosByName().get('Applications').getRecordTypeId();
+        Bulk_Renewal__c  bulk_renewal = TestDataFactory.createBulkRenewal(cnt.Id,act.Id,true);
+        
+        
+        Product2 product1 = TestDataFactory.createProduct(false);
+        product1.ProductCode = 'REVISIT';
+        insert product1;
+        PricebookEntry pbe = TestDataFactory.createPriceBookEntry(product1.Id,Test.getStandardPricebookId(),true);
+        Unit__c unit = TestDataFactory.createUnit(act.Id,true);
+        /*Application__c app = TestDataFactory.createApplication(recordTypeId, act.Id, act.Id, cnt.Id, false); 
+        app.Pricebook_Id__c =  Test.getStandardPricebookId();
+        app.Payment_Due_Date__c = system.today();
+        app.Invoice_Date__c = system.today();
+        insert app;*/
+        Application__c app1 = TestDataFactory.createApplication(recordTypeId, act.Id, site.Id, cnt.Id, false); 
+        app1.Pricebook_Id__c =  Test.getStandardPricebookId();
+        app1.Bulk_Renewal__c = bulk_renewal.Id;
+        app1.Existing_Member__c = 'Yes';
+        app1.Application_Type__c = 'Update';
+        insert app1;
+        TestDataFactory.createApplicationLineItem(product1.Id,app1.Id,true);
+        
+        
     }
     /*
     @isTest(SeeAllData = true)

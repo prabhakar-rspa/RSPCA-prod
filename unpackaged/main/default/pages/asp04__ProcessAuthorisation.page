@@ -1,0 +1,3 @@
+<apex:page standardController="asp04__Authorisation__c" extensions="asp04.ProcessAuthorisationControllerExtension" action="{!RedirectToAsperato}" >
+      <h1>Redirecting to Asperato...</h1>
+</apex:page>

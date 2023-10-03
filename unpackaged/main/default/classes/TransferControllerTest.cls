@@ -1,6 +1,6 @@
 @isTest
 public class TransferControllerTest {
-    /*
+    
     @isTest
     public static void fetchCustomerContactWithUser() {
         // Create System Admin User with Role to create the account
@@ -198,5 +198,5 @@ public class TransferControllerTest {
         TransferController.createTransferApplication(application2, 'Independant', null, siteRecord);
 
         
-    }*/
+    }
 }

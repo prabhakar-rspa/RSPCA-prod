@@ -1,0 +1,25 @@
+<apex:page standardController="asp04__Authorisation__c" extensions="asp04.ProcessPayUsingAuthControllerExtension" >
+ <style type="text/css">
+  .exceptionText {
+    color:red; 
+    font-size:14px; 
+    font-weight:normal; 
+    margin-left:40px;
+  }
+ </style>
+ <apex:messages styleClass="exceptionText"/>
+    <apex:form >
+      <apex:sectionheader title="Take an immediate payment using an authorisation" />
+      <apex:pageBlock mode="MainDetail" >
+          <apex:pageblocksection columns="1" >
+              <apex:inputField value="{!Payment.asp04__Amount__c}"/>
+          </apex:pageblocksection>
+
+          <apex:pageBlockButtons location="bottom" >
+              <apex:commandButton action="{!Save}" value="Process Payment" rendered="{!$ObjectType.asp04__Payment__c.Createable}"/>
+              <apex:commandButton action="{!Cancel}" value="Cancel" />
+          </apex:pageBlockButtons>
+
+      </apex:pageBlock>
+    </apex:form>
+</apex:page>

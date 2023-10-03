@@ -84,9 +84,9 @@ public class ApplicationTriggerHandler extends TriggerHandler{
         //create a application line item list to add products to insert
         List<Application_Line_Item__c> productsToAdd = new List<Application_Line_Item__c>();
         
-        
+        system.debug('productIdToPriceBookEntries:::'+productIdToPriceBookEntries);
         for(Application__c app:(List<Application__c>)Trigger.new){
-            
+            system.debug(';app:::'+app);
             //add joining fee
             if((app.RecordTypeId==applicationRecordTypeId)&&(app.Existing_Member__c == 'No') &&(productMap.containsKey('JOINFEE'))&&(existingJoinFee.size() == 0) && app.Pricebook_Id__c != null){
                 // get join fee price
@@ -117,8 +117,14 @@ public class ApplicationTriggerHandler extends TriggerHandler{
                     }
                 }
             }
+             system.debug(';app.Application_Type__c:::'+app.Application_Type__c);
+             system.debug(';app.productMap:::'+productMap);
+            system.debug(';app.Pricebook_Id__c != null:::'+app.Pricebook_Id__c != null);
+            system.debug(';app.Site_needs_assessment__c:::'+app.Site_needs_assessment__c);
             // add revisit fee
-            if((app.Application_Type__c == 'Update' || app.Application_Type__c == 'Transfer') && productMap.containsKey('REVISIT') && existingRevisitFee.size() == 0 && app.Pricebook_Id__c != null && app.Site_needs_assessment__c){
+            if((app.Application_Type__c == 'Update' || app.Application_Type__c == 'Transfer') 
+               && productMap.containsKey('REVISIT') && existingRevisitFee.size() == 0 
+               && app.Pricebook_Id__c != null && app.Site_needs_assessment__c){
                 if(productIdToPriceBookEntries.containsKey(productMap.get('REVISIT').Id)){
                     List<PricebookEntry> prices = productIdToPriceBookEntries.get(productMap.get('REVISIT').Id);
                     PricebookEntry revisitFeePBE;
@@ -241,18 +247,17 @@ public class ApplicationTriggerHandler extends TriggerHandler{
         // get Order Entry Record Type for opportunity
         Id orderEntryRecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByDeveloperName().get('OrderEntry').getRecordTypeId();
         
-        
-        Set<String> appIds = new Set<String>();
+        List<Application__c> sendInvoiceApplication = new List<Application__c>();
         for(Application__c app: (List<Application__c>)Trigger.new){
             if(app.Send_Invoice__c == true && app.InvoiceSent__c == false && app.Payment_Due_Date__c != null && app.Invoice_Date__c != null && app.Bulk_Renewal__c == null){
-                appIds.add(app.Id);
+                sendInvoiceApplication.add(app);
             }
+            
         }
-
-        if(!appIds.isEmpty()){
+        if(!sendInvoiceApplication.isEmpty()){
 
             // query Application Line Item
-            List<Application_Line_Item__c> lineItemsForApplications = [SELECT Id, Product__c, Product__r.Name, Application__c, Application_Unit__c, Item_Description__c, List_Price__c, List_Price_Inc_Vat__c, Quantity__c, Subtotal__c, Number_of_Animals__c, Line_Description__c FROM   Application_Line_Item__c WHERE Application__c IN :appIds];
+            List<Application_Line_Item__c> lineItemsForApplications = [SELECT Id, Product__c, Product__r.Name, Application__c, Application_Unit__c, Item_Description__c, List_Price__c, List_Price_Inc_Vat__c, Quantity__c, Subtotal__c, Number_of_Animals__c, Line_Description__c FROM   Application_Line_Item__c WHERE Application__c IN :sendInvoiceApplication];
             
             // Map Application Id to List of Line Items
             Map<String, List<Application_Line_Item__c>> appIdToLineItems = new Map<String, List<Application_Line_Item__c>>();
@@ -266,12 +271,11 @@ public class ApplicationTriggerHandler extends TriggerHandler{
                 }
             }
             
-            Set<Id> appIdToUpdate = new Set<Id>();
-            Map<Id, Id> appIdToOppId = new Map<Id, Id>();
+            //Map<Id, Id> appIdToOppId = new Map<Id, Id>();
+            Map<Id,Opportunity> opportunityMap = new Map<Id,Opportunity>();
 
-            for(Application__c app: (List<Application__c>)Trigger.new){
-                if(app.Send_Invoice__c == true && app.InvoiceSent__c == false && app.Payment_Due_Date__c != null && app.Invoice_Date__c != null && app.Bulk_Renewal__c == null){ 
-                    
+            for(Application__c app: sendInvoiceApplication){
+                if(app.Sage_Invoice__c == null){ 
                     String appCreatedDate = app.CreatedDate.format('dd/MM/yyyy');
                     Opportunity invoiceOpp = new Opportunity();
                     invoiceOpp.Name = app.Site_Name__c + ' ' + app.Application_Type__c + ' ' + appCreatedDate;
@@ -282,20 +286,24 @@ public class ApplicationTriggerHandler extends TriggerHandler{
                     invoiceOpp.Application__c = app.Id;
                     invoiceOpp.ia_crm__Intacct_Transaction__c = 'Sales Invoice';
                     invoiceOpp.RecordTypeId = orderEntryRecordTypeId;
-                    invoiceOpp.Intacct_Application__c = app.Name;
+                    //invoiceOpp.Intacct_Application__c = app.Name;
                     if(app.Applicant_Contact__c != null){
                         invoiceOpp.ia_crm__Bill_to__c = app.Applicant_Contact__c;
                     }
-                    
-                    insert invoiceOpp;
-                    appIdToOppId.put(app.Id, invoiceOpp.Id);
-                    appIdToUpdate.add(app.Id);
-                    
-                    if(appIdToLineItems.containsKey(app.Id)){
-                        List<OpportunityLineItem> oppProdToInsert = new List<OpportunityLineItem>();
-                        for(Application_Line_Item__c item : appIdToLineItems.get(app.Id)){
+                    opportunityMap.put(app.Id,invoiceOpp);
+                }
+            }
+            if(!opportunityMap.isEmpty()){
+                insert opportunityMap.values();
+            
+                List<OpportunityLineItem> oppProdToInsert = new List<OpportunityLineItem>();
+                for(Id applicationId:opportunityMap.keySet()){
+                    Application__c app = (Application__c)Trigger.newMap.get(applicationId);
+                    Opportunity sageInvoice = opportunityMap.get(applicationId);
+                    if(appIdToLineItems.containsKey(applicationId)){
+                        for(Application_Line_Item__c item : appIdToLineItems.get(applicationId)){
                             OpportunityLineItem oppItem = new OpportunityLineItem(
-                                OpportunityId = invoiceOpp.Id,
+                                OpportunityId = sageInvoice.Id,
                                 Site__c = app.Site__c,
                                 Product2Id = item.Product__c,
                                 Quantity = item.Quantity__c,
@@ -304,92 +312,114 @@ public class ApplicationTriggerHandler extends TriggerHandler{
                             );
                             oppProdToInsert.add(oppItem);
                         }
-                        if(oppProdToInsert.size() > 0){
-                            insert oppProdToInsert;
-                            invoiceOpp.StageName = 'Closed Won';
-                            invoiceOpp.ia_crm__Sync_With_Intacct__c = true;
-                            update invoiceOpp;
-                        }
+                        sageInvoice.StageName = 'Closed Won';
+                        sageInvoice.ia_crm__Sync_With_Intacct__c = true;
+                        opportunityMap.put(applicationId,sageInvoice);
                     }
-                    
                 }
-            }
-
-            // Update the sage invoice Id to the application
-            List<Application__c> appToUpdateWithSageId = new List<Application__c>();
-            for(Id i : appIdToUpdate){
-                Application__c app = new Application__c(Id = i);
-                if(appIdToOppId.containsKey(i)){
-                    app.Sage_Invoice__c = appIdToOppId.get(i);
+                if(oppProdToInsert.size() > 0){
+                    insert oppProdToInsert;
+                    update opportunityMap.values();
                 }
-                appToUpdateWithSageId.add(app);
-            }
-            TriggerHandler.bypass('ApplicationTriggerHandler');
-            update appToUpdateWithSageId;
-            TriggerHandler.clearBypass('ApplicationTriggerHandler');
-
-            EmailTemplate invoiceTemplate = null;
-            OrgWideEmailAddress[] owea = null;
-            if(!appToUpdateWithSageId.isEmpty()){
-                owea = [select Id from OrgWideEmailAddress where Address = 'help@rspcaassured.org.uk'];
-                invoiceTemplate = [SELECT Id, Subject, DeveloperName, HtmlValue FROM EmailTemplate WHERE DeveloperName ='Invoice_Email_Template'];
-            }
-
-            for(Application__c application : appToUpdateWithSageId){
-
-                Application__c app = (Application__c)Trigger.newMap.get(application.Id);
-                    
-                    // Send invoice email
-                    System.debug('InvoiceTemplateId  => ' + invoiceTemplate.Id); // remove after debugging
-                    System.debug('Org Wide Email Address Id => ' + owea.get(0).Id); // remove after debugging
-                    System.debug('Application Contact Id => ' + app.Applicant_Contact__c); // remove after debugging
-                    Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
-                    message.setTargetObjectId(app.Applicant_Contact__c);
-                    if(app.Alternative_Invoice_Sender_Email__c != null){
-                        message.setReplyTo(app.Alternative_Invoice_Sender_Email__c);
-                        message.setSenderDisplayName(app.Alternative_Invoice_Sender_Email__c);
-                    }else{
-                        message.setReplyTo('help@rspcaassured.org.uk');
-                        message.setOrgWideEmailAddressId(owea.get(0).Id);
+                List<Application__c> appToUpdateWithSageId = new List<Application__c>();
+                for(Id i : opportunityMap.keySet()){
+                    Application__c app = new Application__c(Id = i);
+                    if(opportunityMap.containsKey(i)){
+                        app.Sage_Invoice__c = opportunityMap.get(i).Id;
                     }
-                    message.setUseSignature(false);
-                    message.setBccSender(false);
-                    message.setSaveAsActivity(true);
-                    message.setTemplateID(invoiceTemplate.Id);
-                    message.setWhatId(app.Id);//This is important for the merge fields in template to work
-                    system.debug('Accounts Email => ' + app.Accounts_Email__c );
-                    if(app.Accounts_Email__c != null){
-                        message.toAddresses = new String[] {app.Accounts_Email__c};
-                            }
-                    
-                    system.debug('toAddresses '+message.toAddresses);
-                    Messaging.SingleEmailMessage[] messages = new List<Messaging.SingleEmailMessage> {message};
-                        Messaging.SendEmailResult[] results = Messaging.sendEmail(messages);
-                    
-                    if (results[0].success) {
-                        System.debug('The email was sent successfully.');
-                        appIdToUpdate.add(app.Id); // Add the application Id to update the InvoiceSent__c to true
-                    } else {
-                        System.debug('The email failed to send: ' +  results[0].errors[0].message);
-                    }
+                    appToUpdateWithSageId.add(app);
+                }
+                TriggerHandler.bypass('ApplicationTriggerHandler');
+                update appToUpdateWithSageId;
+                TriggerHandler.clearBypass('ApplicationTriggerHandler');
             }
             
-            List<Application__c> appToUpdateToSent = new List<Application__c>();
             
-            for(Id i : appIdToUpdate){
-                Application__c app = new Application__c(Id = i, InvoiceSent__c = true);
-                appToUpdateToSent.add(app);
+            for(Application__c application : sendInvoiceApplication){
+                sendEmail(application.Id);
             }
-            
-            TriggerHandler.bypass('ApplicationTriggerHandler');
-            update appToUpdateToSent;
-            TriggerHandler.clearBypass('ApplicationTriggerHandler');
-            
             
         }
         
     }
     
+    @future(callout=true)
+    public static void sendEmail(String applicationId){
+
+        EmailTemplate emailTemplate = [SELECT ID FROM EmailTemplate WHERE Name = 'Application Invoice Email'];
+        OrgWideEmailAddress[] owea = [select Id from OrgWideEmailAddress where Address = 'help@rspcaassured.org.uk'];
+        Application__c app = [SELECT Id,Name,Membership_Number__c,Applicant_Contact__c,Alternative_Invoice_Sender_Email__c,Accounts_Email__c,Custom_Invoice_Message__c FROM Application__c WHERE Id=:applicationId];
+        PageReference reportPage = new PageReference('/apex/InvoicePDF');
+        reportPage.getParameters().put('id', app.Id);
+        Blob reportPdf;
+        try {
+            system.debug('reportPage:::'+reportPage);
+            reportPdf = reportPage.getContentAsPDF();
+        }
+        catch (Exception e) {
+            system.debug('going catch:::'+e);
+            reportPdf = Blob.valueOf(e.getMessage());
+        }
+        ContentVersion cv = new ContentVersion();
+        cv.VersionData = reportPdf;
+        cv.Title = app.Name;
+        cv.PathOnClient = app.Name+'.pdf';
+        cv.Description = app.Name;
+        cv.isMajorVersion = true;
+        insert cv;
+        //commented this to create attachments under email message record
+        /*List<Messaging.EmailFileAttachment> attachments = New List<Messaging.EmailFileAttachment>();
+        Messaging.EmailFileAttachment attach = new Messaging.EmailFileAttachment();
+        attach.setContentType('application/pdf');
+        attach.setFileName(app.Name+'.pdf');
+        attach.setInline(true);
+        attach.Body = reportPdf;         
+        attachments.add(attach);*/
+    
+        //Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
+        Messaging.SingleEmailMessage message = Messaging.renderStoredEmailTemplate(emailTemplate.Id, app.Applicant_Contact__c, app.Id);
+		message.setEntityAttachments(new list<Id> {cv.Id});
+        //message.setFileAttachments(attachments);
+        system.debug('contact::'+app.Applicant_Contact__c);
+        //-message.setTargetObjectId(app.Applicant_Contact__c);
+        if(app.Alternative_Invoice_Sender_Email__c != null){
+            message.setReplyTo(app.Alternative_Invoice_Sender_Email__c);
+            message.setSenderDisplayName(app.Alternative_Invoice_Sender_Email__c);
+        }else{
+            message.setReplyTo('help@rspcaassured.org.uk');
+            message.setOrgWideEmailAddressId(owea.get(0).Id);
+            //message.setSenderDisplayName('help@rspcaassured.org.uk'); 
+        }
+        message.setSubject('Invoice For membership number: '+app.Membership_Number__c);
+        message.setUseSignature(false);
+        message.setBccSender(false);
+        message.setSaveAsActivity(true);                  
+       //message.setTemplateID(invoiceTemplate.Id);
+        //message.setPlainTextBody('Please find your invoice attached below…');
+        /* if(!String.isBlank(app.Custom_Invoice_Message__c)){
+             message.setPlainTextBody(app.Custom_Invoice_Message__c);
+        }else{
+             message.setPlainTextBody('Please find your invoice attached below…');
+        }*/
+       
+        //-message.setWhatId(app.Id);//This is important for the merge fields in template to work
+        if(app.Accounts_Email__c != null){
+            message.toAddresses = new String[] {app.Accounts_Email__c};
+        }
+        
+        Messaging.SingleEmailMessage[] messages = new List<Messaging.SingleEmailMessage> {message};
+            Messaging.SendEmailResult[] results = Messaging.sendEmail(messages);
+        
+        if (results[0].success) {
+            System.debug('The email was sent successfully.');
+             app.InvoiceSent__c = true;
+             TriggerHandler.bypass('ApplicationTriggerHandler');
+             update app;
+             TriggerHandler.clearBypass('ApplicationTriggerHandler');
+        } else {
+            System.debug('The email failed to send: ' +  results[0].errors[0].message);
+        }
+    }
     
     // Method to roll up total amount inc vat to the bulk renewal record
     public static void updateTotalOnBulkRenewal(Map<Id,Application__c> newMap, Map<Id,Application__c> oldMap){ 
@@ -398,7 +428,6 @@ public class ApplicationTriggerHandler extends TriggerHandler{
         
         for(Application__c ap:newMap.values()){
             if(ap.Bulk_Renewal__c != null ){
-                
                 if(!bulkRenewalUpdate.containsKey(ap.Bulk_Renewal__c)){
                     bulkRenewalUpdate.put(ap.Bulk_Renewal__c, new Bulk_Renewal__c(Id = ap.Bulk_Renewal__c));
                 }
@@ -415,7 +444,10 @@ public class ApplicationTriggerHandler extends TriggerHandler{
                 Id bulkRenewalId = (ID)ar.get('Bulk_Renewal__c');
                 if(bulkRenewalUpdate.containsKey(bulkRenewalId)){
                     Bulk_Renewal__c br = bulkRenewalUpdate.get(bulkRenewalId);
-                    br.Total_Amount_Inc_VAT__c = (Decimal)ar.get('totalIncVat');
+                    Decimal totalIncVat = (Decimal)ar.get('totalIncVat');
+                    if(totalIncVat != null){
+                        br.Total_Amount_Inc_VAT__c = totalIncVat.setscale(2,RoundingMode.DOWN);
+                    }
                     br.Total_Amount__c = (Decimal)ar.get('total');
                     br.VAT__c = (Decimal)ar.get('vat');
                     bulkRenewalUpdate.put(bulkRenewalId , br);
@@ -469,30 +501,35 @@ public class ApplicationTriggerHandler extends TriggerHandler{
     public static void sendAssessmentCompleteEmail(Map<ID, Application__c> oldAppMap, List<Application__c> updatedApps){
         for(Application__c newApp : updatedApps){
             Application__c oldApp = oldAppMap.get(newApp.Id);
-            if((oldApp.Stage__c == 'Assessment' || oldApp.Renewal_Stage__c == 'Assessment') && (newApp.Stage__c == 'Compliance' || newApp.Renewal_Stage__c == 'Compliance')){
-                EmailTemplate emailTemplate = [SELECT ID FROM EmailTemplate WHERE Name = 'AssessmentComplete'];
-                Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
-                message.setTargetObjectId(newApp.Applicant_Contact__c); 
-                message.setSenderDisplayName('RSPCA Assured'); 
-                message.setReplyTo('accounts@rspcaassured.org.uk');
-                message.setUseSignature(false); 
-                message.setBccSender(false); 
-                message.setTemplateID(emailTemplate.Id); 
-                message.setWhatId(newApp.Id);
-                //message.toAddresses = new String[] {newApp.Applicant_Email__c};
-                System.debug('message '+message);
-                Messaging.SingleEmailMessage[] messages = new List<Messaging.SingleEmailMessage> {message};
-                    if(messages != null && messages.size() > 0){
-                        Messaging.SendEmailResult[] results = Messaging.sendEmail(messages);
-                        System.debug('results.size() '+results.size());
-                        if (results != null && results.size() > 0 && results[0].success){
-                            System.debug('The email was sent successfully.');
-                        }else {
-                            System.debug('The email failed to send: '+results[0].errors[0].message);
-                        }
-                    }
+            if(!ApplicationTriggerHelper.assessmentCompletedApplications.contains(newApp.Id) && ((oldApp.Stage__c != newApp.Stage__c && oldApp.Stage__c == 'Assessment' && newApp.Stage__c == 'Compliance') || 
+               (oldApp.Renewal_Stage__c != newApp.Renewal_Stage__c && oldApp.Renewal_Stage__c == 'Assessment' && newApp.Renewal_Stage__c == 'Compliance'))){ 
+                   EmailTemplate emailTemplate = [SELECT ID FROM EmailTemplate WHERE Name = 'AssessmentComplete'];
+                   Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
+                   message.setTargetObjectId(newApp.Applicant_Contact__c); 
+                   message.setSenderDisplayName('RSPCA Assured'); 
+                   message.setReplyTo('accounts@rspcaassured.org.uk');
+                   message.setUseSignature(false); 
+                   message.setBccSender(false); 
+                   message.setTemplateID(emailTemplate.Id); 
+                   message.setWhatId(newApp.Id);
+                   //message.toAddresses = new String[] {newApp.Applicant_Email__c};
+                   System.debug('message '+message);
+                   Messaging.SingleEmailMessage[] messages = new List<Messaging.SingleEmailMessage> {message};
+                       if(messages != null && messages.size() > 0){
+                           Messaging.SendEmailResult[] results = Messaging.sendEmail(messages);
+                           System.debug('results.size() '+results.size());
+                           if (results != null && results.size() > 0 && results[0].success){
+                               System.debug('The email was sent successfully.');
+                               ApplicationTriggerHelper.assessmentCompletedApplications.add(newApp.Id);
+                           }else {
+                               System.debug('The email failed to send: '+results[0].errors[0].message);
+                           }
+                       }
             }
-        }
+            /*if((oldApp.Stage__c != newApp.Stage__c && oldApp.Stage__c == 'Assessment' && newApp.Stage__c == 'Compliance') || 
+               (oldApp.Renewal_Stage__c != newApp.Renewal_Stage__c && oldApp.Renewal_Stage__c == 'Assessment' && newApp.Renewal_Stage__c == 'Compliance')){  
+            }*/
+        } 
     }
 
     public static void evidenceEmailCheckboxUpdates(Map<ID, Application__c> oldAppMap, List<Application__c> updatedApps){

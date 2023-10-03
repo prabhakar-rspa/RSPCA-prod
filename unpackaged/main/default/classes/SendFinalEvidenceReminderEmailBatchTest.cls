@@ -1,47 +1,21 @@
 @isTest
 public class SendFinalEvidenceReminderEmailBatchTest {
-/*
-    @isTest(SeeAllData=true)
+
+    @isTest
     static void FinalEvidenceReminderEmailTest(){
-        Account act = new Account();
-        act.RecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Head Office').getRecordTypeId();
-        act.Name = 'Test Head Office';
-        act.Status__c = 'ENQUIRY';
-        insert act;
-
-        Contact cnt = new Contact();
-        cnt.AccountId = act.Id;
-        cnt.FirstName = 'Test';
-        cnt.LastName = 'Name';
-        cnt.Email = 'test@test.com';
-        insert cnt;
-
+		Account act = TestDataFactory.createHeadOfficeAccount();
+        Contact cnt = TestDataFactory.createContact(act.Id);
         act.Primary_Contact__c = cnt.Id;
         update act;
-
-        Account site = new Account();
-        site.RecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Site').getRecordTypeId();
-        site.Name = 'Test Site';
-        site.ParentId = act.Id;
-        site.Company_Industry__c = 'Fish';
-        site.Active__c = true;
-        site.Membership_Expiry_Date__c = Date.today().addDays(42);
-        insert site;
-
-        Application__c app = new Application__c();
-        app.RecordTypeId = Schema.SObjectType.Application__c.getRecordTypeInfosByName().get('Applications').getRecordTypeId();
-        app.Existing_Member__c = 'No';
-        app.Application_Type__c = 'New';
-        app.Stage__c = 'Application';
-        app.Head_Office__c = act.Id;
-        app.Site__c = site.Id;
-        app.Applicant_Contact__c = cnt.Id;
-        app.Evidence_Deadline__c = Date.today().addDays(6);
-        insert app;
-
+        Account site = TestDataFactory.createSiteAccount(act.Id);
+        Id recordTypeId = Schema.SObjectType.Application__c.getRecordTypeInfosByName().get('Applications').getRecordTypeId();
+		Application__c app = TestDataFactory.createApplication(recordTypeId, act.Id, act.Id, cnt.Id, true); 
+        
         Test.startTest();
         SendFinalEvidenceReminderEmailBatch obj = new SendFinalEvidenceReminderEmailBatch();
         obj.execute(null);
         Test.stopTest();
-    }*/
+         app =[SELECT Id,Final_Evidence_Email_Sent__c FROM Application__c WHERE Id=:app.Id];
+        system.assert(app.Final_Evidence_Email_Sent__c);
+    }
 }

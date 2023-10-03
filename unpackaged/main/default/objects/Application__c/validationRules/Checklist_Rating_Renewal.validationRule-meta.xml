@@ -3,13 +3,15 @@
     <fullName>Checklist_Rating_Renewal</fullName>
     <active>true</active>
     <description>Rating fields must be populated for all checklists before moving to &#39;Compliance&#39; stage.</description>
-    <errorConditionFormula>AND( RecordType.DeveloperName = &#39;Renewal&#39;,
-				 TEXT(Renewal_Stage__c ) = &#39;Compliance&#39;,
-				 OR(
-         Farm_Rating_Not_Populated__c  &lt;&gt; 0	,
-				     Farmer_Rating_Not_Populated__c  &lt;&gt; 0,
-				     Welfare_Rating_Not_Populated__c &lt;&gt; 0
-					)
-			)</errorConditionFormula>
+    <errorConditionFormula>AND(
+RecordType.DeveloperName = &#39;Renewal&#39;,
+TEXT(Renewal_Stage__c ) = &#39;Compliance&#39;,
+OR(
+Farm_Rating_Not_Populated__c &lt;&gt; 0,
+Farmer_Rating_Not_Populated__c &lt;&gt; 0,
+Welfare_Rating_Not_Populated__c &lt;&gt; 0
+),
+$Profile.Name != &#39;System Administrator&#39;
+)</errorConditionFormula>
     <errorMessage>Rating fields must be populated for all checklists before moving to &#39;Compliance&#39; stage.</errorMessage>
 </ValidationRule>
