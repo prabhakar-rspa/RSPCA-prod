@@ -11,11 +11,30 @@
                 var result = response.getReturnValue();
 
                 component.set("v.application", result);
-                this.getInvoice(component);
-                this.getInvoiceLineItems(component);
-
+                console.log('result::',result);
+                if(result.Sage_Invoice__c){
+                    this.getInvoice(component);
+                	this.getInvoiceLineItems(component);
+                }else{
+                    var toastEvent = $A.get("e.force:showToast");
+                    toastEvent.setParams({
+                        "title": "Error!",
+                        "message":"Invoice not available",
+                        "type": "error"
+                    });
+                    toastEvent.fire();
+                }
             } else {
-                console.log('Problem getting records, response state: ' + state);
+                console.log('Problem getting records, response state: ' , state);
+                var message = response.getError()[0].message;
+                var toastEvent = $A.get("e.force:showToast");
+                toastEvent.setParams({
+                    "title": "Error!",
+                    "message":message,
+                    "type": "error"
+                });
+                toastEvent.fire();
+                
             }
         });
         $A.enqueueAction(action);
@@ -36,7 +55,15 @@
                 component.set("v.headOfficeBillingCountry", result.Account.BillingCountry);
 
             } else {
-                console.log('Problem getting records, response state: ' + state);
+                console.log('Problem getting records, response state: ' , state);
+                var message = response.getError()[0].message;
+                var toastEvent = $A.get("e.force:showToast");
+                toastEvent.setParams({
+                    "title": "Error!",
+                    "message":message,
+                    "type": "error"
+                });
+                toastEvent.fire();
             }
         });
         $A.enqueueAction(action);
@@ -61,7 +88,15 @@
                 
 
             } else {
-                console.log('Problem getting records, response state: ' + state);
+                console.log('Problem getting records, response state: ' , state);
+                var message = response.getError()[0].message;
+                var toastEvent = $A.get("e.force:showToast");
+                toastEvent.setParams({
+                    "title": "Error!",
+                    "message":message,
+                    "type": "error"
+                });
+                toastEvent.fire();
             }
         });
         $A.enqueueAction(action);
@@ -82,7 +117,15 @@
                 
 
             } else {
-                console.log('Problem getting records, response state: ' + state);
+                console.log('Problem getting records, response state: ' , state);
+                var message = response.getError()[0].message;
+                var toastEvent = $A.get("e.force:showToast");
+                toastEvent.setParams({
+                    "title": "Error!",
+                    "message":message,
+                    "type": "error"
+                });
+                toastEvent.fire();
             }
         });
         $A.enqueueAction(action);
@@ -193,7 +236,15 @@
                 
 
             } else {
-                console.log('Problem getting records, response state: ' + state);
+                console.log('Problem getting records, response state: ' , state);
+                var message = response.getError()[0].message;
+                var toastEvent = $A.get("e.force:showToast");
+                toastEvent.setParams({
+                    "title": "Error!",
+                    "message":message,
+                    "type": "error"
+                });
+                toastEvent.fire();
             }
         });
         $A.enqueueAction(action);

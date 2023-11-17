@@ -274,7 +274,7 @@
                         <p style="text-align: center; font-size: 18px; font-weight: bold;">Assessment confirmation </p>
                         <p>This email is to confirm {!Application__c.Site_Name__c}, {!Application__c.Site_Postcode__c} was assessed by {!Application__c.Assessor_Full_Name__c} on {!Application__c.Assessment_Date__c}. </p>
                         <p>{!Application__c.Assessor_Full_Name__c} will have left a copy of their assessment report. This report will tell you what if any a) non-compliances were found and b) evidence is needed to correct these non-compliances.</p>
-                        <p>If you do have non-compliances please email your evidence to <a href="mailto:help@rspcaassured.org.uk" style="color: #000000; text-decoration: underline;">help@rspcaassured.org.uk</a> by [date].</p>
+                        <p>If you do have non-compliances please email your evidence to <a href="mailto:help@rspcaassured.org.uk" style="color: #000000; text-decoration: underline;">help@rspcaassured.org.uk</a> by {!Application__c.Evidence_Deadline__c}.</p>
                         <p>In the meantime, if you have any questions please feel free to contact our membership services team at the email above or on 01403 286170.</p>
                       <p>Yours sincerely</p>
                         <p><span style="font-weight: bold">Membership services<br>

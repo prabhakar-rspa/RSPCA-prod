@@ -261,7 +261,7 @@
                                             <tr>
                                                 <td style="width: 40px">&nbsp;</td>
                                                 <td style="padding: 0px 0px 0px 0px; text-align: left; font-family: Arial, sans-serif; font-size: 14px; mso-height-rule: exactly; line-height: 20px; color: #000000;">
-                                                    <p style="font-size: 14px; font-weight: bold;">Dear  {!Application__c.Applicant_Full_Name__c}</p>
+                                                    <p style="font-size: 14px; font-weight: bold;">Dear Member,</p>
                                                     <p style="text-align: center; font-size: 18px; font-weight: bold;">{!Application__c.Site_Name__c} {!Application__c.Membership_Number__c}</p>
                                                     <p>Further to your recent Additional Visit, please ensure you submit your corrective actions and evidence by {!Application__c.Evidence_Deadline__c}</p>
 

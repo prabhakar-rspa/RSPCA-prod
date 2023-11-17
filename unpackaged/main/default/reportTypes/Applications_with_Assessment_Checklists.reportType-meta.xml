@@ -227,6 +227,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Visit_Date__c</field>
+            <table>Application__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Certification_Record__c</field>
             <table>Application__c</table>
         </columns>

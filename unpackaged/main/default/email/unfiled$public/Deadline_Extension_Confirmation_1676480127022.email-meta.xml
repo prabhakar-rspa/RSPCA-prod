@@ -10,17 +10,17 @@
     <subject>Deadline Extension Confirmation</subject>
     <textOnly>Dear {{{Recipient.FirstName}}} {{{Recipient.LastName}}}
 
-Farm name:{{{Account.Site}}}
+Farm name:{{{Account.Name}}}
 
-Registration: [Membership Number]
+Registration: {{{Account.Membership_Number__c}}}
 
-Extension to deadline granted – New date: (MST to add date granted)
+Extension to deadline granted – New date:
 
 Following review of information received, the Scheme Manager has asked us to write to you.
 
 As you are aware the 28 day requirement to respond to non-compliance is normally final. However, owing to exceptional circumstances the Certification Body has agreed on this occasion to extend the deadline date as above, for submission of corrective action and supporting objective evidence to the following non-compliance:
 
- - Standard Ref: (MST to add standard ref)
+ - Standard Ref: 
 
 Please note that under scheme rules you are required to notify us that work has been completed and provide evidence of this before the new deadline date expires. This is to ensure all paperwork can be processed and approved by the Scheme Manager within the timeframe. We should advise that failure to meet the new deadline will result in a nullified application or withdrawal of certificates. 
 

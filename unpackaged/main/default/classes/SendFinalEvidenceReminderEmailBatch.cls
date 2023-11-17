@@ -12,7 +12,7 @@ public class SendFinalEvidenceReminderEmailBatch implements Database.Batchable<s
         for(Application__c app : evdAppList){
             appIdSet.add(app.Id);
         }*/
-        String query = 'SELECT Id,RecordType.DeveloperName, Membership_Number__c,Head_Office__c, Head_Office__r.Primary_Contact__c,Head_Office__r.Primary_Contact__r.Email, Final_Evidence_Email_Sent__c,Assessment_Date__c FROM Application__c WHERE Head_Office__r.Primary_Contact__r.Email != null AND Assessment_Date__c = :before21Days AND Final_Evidence_Email_Sent__c = false AND Evidence__c = NULL';
+        String query = 'SELECT Id,RecordType.DeveloperName, Membership_Number__c,Head_Office__c, Head_Office__r.Primary_Contact__c,Head_Office__r.Primary_Contact__r.Email, Final_Evidence_Email_Sent__c,Assessment_Date__c,Visit_Date__c FROM Application__c WHERE Head_Office__r.Primary_Contact__r.Email != null AND ((Assessment_Date__c = :before21Days AND RecordType.DeveloperName != \'Additional_Visit\') OR (Visit_Date__c =:before21Days AND RecordType.DeveloperName = \'Additional_Visit\')) AND Final_Evidence_Email_Sent__c = false AND Evidence__c = NULL';
         return Database.getQueryLocator(query);
     }
 

@@ -29,12 +29,6 @@
         <field>Account.Primary_Contact_Email__c</field>
     </columns>
     <columns>
-        <field>PARENT.NAME</field>
-    </columns>
-    <columns>
-        <field>Account.Head_Office_Number_of_Parent_Account__c</field>
-    </columns>
-    <columns>
         <field>Account.Account_Manager__c</field>
     </columns>
     <columns>
@@ -106,18 +100,23 @@
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>startsWith</operator>
-            <value>2794</value>
+            <value></value>
         </criteriaItems>
         <criteriaItems>
             <column>Account.Membership_Expiry_Date__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
-            <value>12/1/2023</value>
+            <value>1/1/2024</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>
-    <format>Tabular</format>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account.Head_Office_Number_of_Parent_Account__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
     <name>Copy of All Sites With Status</name>
     <params>
         <name>co</name>
@@ -128,7 +127,7 @@
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
-    <sortColumn>Account.Membership_Expiry_Date__c</sortColumn>
+    <sortColumn>Account.Membership_Number__c</sortColumn>
     <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
         <dateColumn>CREATED_DATE</dateColumn>

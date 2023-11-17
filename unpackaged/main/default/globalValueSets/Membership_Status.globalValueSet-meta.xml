@@ -71,10 +71,9 @@
         <label>INACTIVE</label>
     </customValue>
     <customValue>
-        <fullName>NOTINSCHEME</fullName>
+        <fullName>PRE-AUDIT</fullName>
         <default>false</default>
-        <isActive>false</isActive>
-        <label>NOTINSCHEME</label>
+        <label>PRE-AUDIT</label>
     </customValue>
     <customValue>
         <fullName>PREPANEL</fullName>
@@ -201,6 +200,12 @@
         <default>false</default>
         <isActive>false</isActive>
         <label>CONPASS</label>
+    </customValue>
+    <customValue>
+        <fullName>NOTINSCHEME</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>NOTINSCHEME</label>
     </customValue>
     <masterLabel>Membership Status</masterLabel>
     <sorted>true</sorted>

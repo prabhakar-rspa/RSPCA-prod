@@ -141,7 +141,7 @@ public class AppUnitTriggerHandler extends AppUnitHelper{
                     String vehicleType = unitAdded.Vehicle_Type__c;
                     // if business is haulier then do not fiiter the getProduct method by vehicle type
                     unitAdded.Animals_List__c = unitAdded.Animals_List__c != null?unitAdded.Animals_List__c:'';
-                    if(unitAdded.Business__c == 'Haulier' && unitAdded.Animals__c != 'Salmon' && unitAdded.Animals__c != 'Trout' && !unitAdded.Animals_List__c.contains('Salmon') && unitAdded.Animals_List__c.contains('Trout') ){
+                    if(unitAdded.Business__c == 'Haulier' && unitAdded.Animals__c != 'Salmon' && unitAdded.Animals__c != 'Trout' && !unitAdded.Animals_List__c.contains('Salmon') && !unitAdded.Animals_List__c.contains('Trout') ){
                         vehicleType = null;
                     }
 

@@ -129,9 +129,9 @@
     </params>
     <reportType>AccountCustomEntity$Unit__c</reportType>
     <scope>organization</scope>
-    <showDetails>true</showDetails>
+    <showDetails>false</showDetails>
     <showGrandTotal>true</showGrandTotal>
-    <showSubTotals>false</showSubTotals>
+    <showSubTotals>true</showSubTotals>
     <sortColumn>Unit__c.Animals__c</sortColumn>
     <sortOrder>Desc</sortOrder>
     <timeFrameFilter>

@@ -50,6 +50,41 @@
         <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
+        <fullName>Baird_Foods_Services_Ltd_Baird_Foods</fullName>
+        <accessLevel>Read</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Read</contactAccessLevel>
+            <opportunityAccessLevel>None</opportunityAccessLevel>
+        </accountSettings>
+        <label>Baird Foods Services Ltd/Baird Foods</label>
+        <sharedTo>
+            <group>Baird_Foods_Services_Ltd_Baird_Foods</group>
+        </sharedTo>
+        <booleanFilter>1 OR 2 OR 3 OR 4</booleanFilter>
+        <criteriaItems>
+            <field>Membership_Number_Text__c</field>
+            <operation>startsWith</operation>
+            <value>4606.0001</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Head_Office_Number__c</field>
+            <operation>startsWith</operation>
+            <value>4606.</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Membership_Number_Text__c</field>
+            <operation>startsWith</operation>
+            <value>4855.0001</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Head_Office_Number__c</field>
+            <operation>startsWith</operation>
+            <value>4855.</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
         <fullName>Boarcross_and_Feelright</fullName>
         <accessLevel>Read</accessLevel>
         <accountSettings>
@@ -437,6 +472,76 @@
             <field>Head_Office_Number__c</field>
             <operation>startsWith</operation>
             <value>4664</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Killsannagh_Lane_Rehaghy_Road</fullName>
+        <accessLevel>Read</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Read</contactAccessLevel>
+            <opportunityAccessLevel>None</opportunityAccessLevel>
+        </accountSettings>
+        <label>Killsannagh Lane &amp; Rehaghy Road</label>
+        <sharedTo>
+            <group>Killsannagh_Lane_Rehaghy_Road</group>
+        </sharedTo>
+        <booleanFilter>1 OR 2 OR 3 OR 4</booleanFilter>
+        <criteriaItems>
+            <field>Membership_Number_Text__c</field>
+            <operation>startsWith</operation>
+            <value>4803.</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Head_Office_Number__c</field>
+            <operation>startsWith</operation>
+            <value>4803</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Membership_Number_Text__c</field>
+            <operation>startsWith</operation>
+            <value>4804.</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Head_Office_Number__c</field>
+            <operation>startsWith</operation>
+            <value>4804</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Lloyds_Animal_Country_Fresh_Pullets</fullName>
+        <accessLevel>Read</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Read</contactAccessLevel>
+            <opportunityAccessLevel>None</opportunityAccessLevel>
+        </accountSettings>
+        <label>Lloyds (Animal) &amp; Country Fresh Pullets</label>
+        <sharedTo>
+            <group>Lloyds_Animal_Country_Fresh_Pullets</group>
+        </sharedTo>
+        <booleanFilter>1 OR 2 OR 3 OR 4</booleanFilter>
+        <criteriaItems>
+            <field>Head_Office_Number__c</field>
+            <operation>startsWith</operation>
+            <value>0156</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Membership_Number_Text__c</field>
+            <operation>startsWith</operation>
+            <value>0156.</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Head_Office_Number__c</field>
+            <operation>startsWith</operation>
+            <value>0014</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Membership_Number_Text__c</field>
+            <operation>startsWith</operation>
+            <value>0014.</value>
         </criteriaItems>
         <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
     </sharingCriteriaRules>

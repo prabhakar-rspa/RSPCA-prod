@@ -44,6 +44,7 @@
     </customDetailFormulas>
     <description>List of paid applications assigned to assessors who are not active Salesforce users, showing application units</description>
     <filter>
+        <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND (6 OR (7 AND 8) OR (9 OR 10 OR 11 OR 12))</booleanFilter>
         <criteriaItems>
             <column>User.Applications__r$Assessment_Report__c</column>
             <columnToColumn>false</columnToColumn>
@@ -57,6 +58,13 @@
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
             <value>1</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>User.Applications__r$Assessor_Full_Name__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Lloyds Register</value>
         </criteriaItems>
         <criteriaItems>
             <column>User.Applications__r$Site_Status__c</column>
@@ -78,6 +86,48 @@
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
             <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>User*User$Assessor__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>User*User$Contract_Assessor__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>User.Applications__r$Assessor_Full_Name__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Julie Taylor</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>User.Applications__r$Assessor_Full_Name__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Emilie Wix</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>User.Applications__r$Assessor_Full_Name__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Jenny Simpson</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>User.Applications__r$Assessor_Full_Name__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Kevin White</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>

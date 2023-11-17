@@ -41,16 +41,22 @@
         <field>Application__c.Membership_Expiry_Date__c</field>
     </columns>
     <columns>
-        <field>CUST_CREATED_DATE</field>
-    </columns>
-    <columns>
         <field>Application__c.Stage__c</field>
     </columns>
     <columns>
-        <field>Account.Previous_Assessor__c</field>
+        <field>Application__c.Assessment_Report__c</field>
     </columns>
     <columns>
-        <field>Application__c.Assessment_Report__c</field>
+        <field>CUST_CREATED_DATE</field>
+    </columns>
+    <columns>
+        <field>Application__c.Applicant_Contact__c</field>
+    </columns>
+    <columns>
+        <field>Account.Primary_Contact__c</field>
+    </columns>
+    <columns>
+        <field>Account.Primary_Contact_Email__c</field>
     </columns>
     <customDetailFormulas>
         <calculatedFormula>((YEAR(TODAY()) - YEAR(Application__c.Previous_Assessment_Date__c))*12) + (MONTH(today()) - MONTH(Application__c.Previous_Assessment_Date__c))</calculatedFormula>
@@ -110,8 +116,8 @@
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
-    <sortColumn>Application__c.Assessment_Deadline__c</sortColumn>
-    <sortOrder>Asc</sortOrder>
+    <sortColumn>Application__c.Applicant_Contact__c</sortColumn>
+    <sortOrder>Desc</sortOrder>
     <timeFrameFilter>
         <dateColumn>DUE_DATE</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>

@@ -4,6 +4,9 @@
         <field>ACCOUNT.NAME</field>
     </columns>
     <columns>
+        <field>Account.Head_Office_Number__c</field>
+    </columns>
+    <columns>
         <field>Account.Primary_Contact__c</field>
     </columns>
     <columns>

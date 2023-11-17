@@ -45,6 +45,9 @@
         <field>Account.ApplicationSite__r$Assessor__c</field>
     </columns>
     <columns>
+        <field>Account.ApplicationSite__r$Date_of_Payment__c</field>
+    </columns>
+    <columns>
         <field>Account.ApplicationSite__r$Assessment_Date__c</field>
     </columns>
     <columns>

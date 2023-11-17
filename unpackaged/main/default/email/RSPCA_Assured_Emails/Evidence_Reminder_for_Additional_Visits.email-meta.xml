@@ -8,7 +8,7 @@
     <subject>Additional Visit Evidence Reminder for membership number: {!Application__c.Membership_Number__c} - {!Application__c.Site_Name__c}</subject>
     <textOnly>EmailTemplate-Responsive
 
-Dear  {!Application__c.Applicant_Full_Name__c}
+Dear Member,
 
 {!Application__c.Site_Name__c} {!Application__c.Membership_Number__c}
 

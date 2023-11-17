@@ -88,7 +88,7 @@
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>startsWith</operator>
-            <value>2815</value>
+            <value>2329</value>
         </criteriaItems>
         <criteriaItems>
             <column>Application__c.Assessment_Report__c</column>

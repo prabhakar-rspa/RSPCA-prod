@@ -54,7 +54,7 @@
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>startsWith</operator>
-            <value>2815.</value>
+            <value>2815</value>
         </criteriaItems>
         <criteriaItems>
             <column>Account.ApplicationSite__r$Assessment_Date__c</column>

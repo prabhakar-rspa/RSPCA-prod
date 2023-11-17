@@ -17,6 +17,7 @@
     </columns>
     <description>Shows all tasks to do for MST and SCI</description>
     <filter>
+        <booleanFilter>1</booleanFilter>
         <criteriaItems>
             <column>ASSIGNED</column>
             <columnToColumn>false</columnToColumn>

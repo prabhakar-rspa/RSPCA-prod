@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
     <columns>
+        <field>Application__c$Site__c</field>
+    </columns>
+    <columns>
         <field>Application__c$Assessment_Date__c</field>
+    </columns>
+    <columns>
+        <field>Application__c$Name</field>
     </columns>
     <columns>
         <field>Application__c.ApplicationUnits__r$Animals__c</field>
@@ -11,13 +17,20 @@
         <field>Application__c.ApplicationUnits__r$Animals_At_Assessment__c</field>
     </columns>
     <columns>
-        <field>Application__c$Site__c</field>
-    </columns>
-    <columns>
         <field>Application__c$Application_Type__c</field>
     </columns>
     <columns>
         <field>Application__c$Assessment_Checklist__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Application__c.ApplicationUnits__r$Number_of_Animals__c</field>
+    </columns>
+    <columns>
+        <field>Application__c$Renewal_Stage__c</field>
+    </columns>
+    <columns>
+        <field>Application__c$Stage__c</field>
     </columns>
     <filter>
         <criteriaItems>
@@ -42,12 +55,7 @@
         <field>Application__c$Membership_Number__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <groupingsDown>
-        <dateGranularity>Day</dateGranularity>
-        <field>Application__c$Name</field>
-        <sortOrder>Asc</sortOrder>
-    </groupingsDown>
-    <name>VE draft Animals@Assessment - Chicken</name>
+    <name>Draft Animal Numbers - Chicken Oct 23</name>
     <params>
         <name>co</name>
         <value>1</value>

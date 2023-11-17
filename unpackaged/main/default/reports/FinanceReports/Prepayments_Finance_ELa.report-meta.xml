@@ -13,9 +13,6 @@
         <field>Account.ApplicationSite__r$Membership_Number__c</field>
     </columns>
     <columns>
-        <field>Account.ApplicationSite__r$Membership_Expiry_Date__c</field>
-    </columns>
-    <columns>
         <field>Account.ApplicationSite__r$Site_Name__c</field>
     </columns>
     <columns>
@@ -31,7 +28,21 @@
     <columns>
         <field>Account.ApplicationSite__r$CreatedDate</field>
     </columns>
-    <format>Tabular</format>
+    <filter>
+        <criteriaItems>
+            <column>Account.ApplicationSite__r$CreatedDate</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>greaterThan</operator>
+            <value>10/1/2023 12:00 AM</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <field>Account.ApplicationSite__r$Membership_Expiry_Date__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
     <name>Pre-payments- Finance</name>
     <params>
         <name>co</name>

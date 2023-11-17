@@ -4,6 +4,9 @@
         <field>Account.Membership_Number__c</field>
     </columns>
     <columns>
+        <field>ACCOUNT.NAME</field>
+    </columns>
+    <columns>
         <field>Application__c.Application_Type__c</field>
     </columns>
     <columns>
@@ -29,9 +32,6 @@
         <field>CDF1</field>
     </columns>
     <columns>
-        <field>ACCOUNT.NAME</field>
-    </columns>
-    <columns>
         <field>Application__c.Site_Postcode__c</field>
     </columns>
     <columns>
@@ -51,6 +51,9 @@
     </columns>
     <columns>
         <field>Application__c.Assessment_Report__c</field>
+    </columns>
+    <columns>
+        <field>Account.Status__c</field>
     </columns>
     <customDetailFormulas>
         <calculatedFormula>((YEAR(TODAY()) - YEAR(Application__c.Previous_Assessment_Date__c))*12) + (MONTH(today()) - MONTH(Application__c.Previous_Assessment_Date__c))</calculatedFormula>
@@ -80,8 +83,8 @@
             <column>Application__c.Assessor__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
-            <operator>contains</operator>
-            <value>SCI Contractors,Charlotte Thomas,Barrie Gibson,Heather Vinash,Kevin White,Sue McCabe</value>
+            <operator>notContain</operator>
+            <value>Lloyds Register</value>
         </criteriaItems>
         <criteriaItems>
             <column>Account.Membership_Number__c</column>
@@ -102,7 +105,7 @@
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>lessThan</operator>
-            <value>5/1/2023</value>
+            <value>1/1/2024</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>
@@ -117,7 +120,7 @@
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
-    <sortColumn>Application__c.Assessor__c</sortColumn>
+    <sortColumn>Application__c.Assessment_Deadline__c</sortColumn>
     <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
         <dateColumn>DUE_DATE</dateColumn>

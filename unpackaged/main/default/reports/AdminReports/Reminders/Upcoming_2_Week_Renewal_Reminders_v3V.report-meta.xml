@@ -78,6 +78,13 @@
             <operator>equals</operator>
             <value>MEMBER</value>
         </criteriaItems>
+        <criteriaItems>
+            <column>Account.Membership_Expiry_Date__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>12/1/2023</value>
+        </criteriaItems>
         <language>en_US</language>
     </filter>
     <format>Summary</format>

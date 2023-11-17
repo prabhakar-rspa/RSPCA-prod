@@ -2,7 +2,7 @@ public class CreateCreditNoteController {
 
     @AuraEnabled
     public static Application__c getApplication(String recordId){
-        Application__c application = [SELECT Id, Site__c, Site_Name__c, Head_Office__c, Applicant_Contact__c,  Application_Type__c, Sage_Invoice__c, Pricebook_Id__c FROM Application__c WHERE Id =:recordId];
+        Application__c application = [SELECT Id,Name, Site__c, Site_Name__c, Head_Office__c, Applicant_Contact__c,  Application_Type__c, Sage_Invoice__c, Pricebook_Id__c FROM Application__c WHERE Id =:recordId];
 
         return application;
     }

@@ -41,6 +41,9 @@
         <field>Application__c.Evidence_Deadline__c</field>
     </columns>
     <columns>
+        <field>Application__c.Evidence__c</field>
+    </columns>
+    <columns>
         <field>Application__c.Report__c</field>
     </columns>
     <columns>
@@ -73,7 +76,7 @@
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
         <field>Application__c.Reviewing_Manager__c</field>
-        <sortOrder>Desc</sortOrder>
+        <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <name>MST DTA Revisit Report</name>
     <params>
@@ -85,6 +88,8 @@
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
+    <sortColumn>Application__c.Stage__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
         <dateColumn>DUE_DATE</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>

@@ -6,7 +6,9 @@
     <name>New Application Assessment Confirmation</name>
     <style>none</style>
     <subject>Assessment Confirmation</subject>
-    <textOnly>Dear {!Application__c.Applicant_Full_Name__c}
+    <textOnly>EmailTemplate-Responsive
+
+Dear {!Application__c.Applicant_Full_Name__c}
 
 Assessment confirmation
 
@@ -14,9 +16,9 @@ This email is to confirm {!Application__c.Site_Name__c}, {!Application__c.Site_P
 
 {!Application__c.Assessor_Full_Name__c} will have left a copy of their assessment report. This report will tell you what if any a) non-compliances were found and b) evidence is needed to correct these non-compliances.
 
-If you do have non-compliances please email your evidence to help@rspcaassured.org.uk by [date].
+If you do have non-compliances please email your evidence to help@rspcaassured.org.uk by {!Application__c.Evidence_Deadline__c}.
 
-In the meantime, if you have any questions please feel free to contact our membership services team at the email above or on 01403 800141.
+In the meantime, if you have any questions please feel free to contact our membership services team at the email above or on 01403 286170.
 
 Yours sincerely
 

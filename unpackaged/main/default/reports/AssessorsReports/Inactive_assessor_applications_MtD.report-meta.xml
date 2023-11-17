@@ -38,7 +38,7 @@
     </customDetailFormulas>
     <description>Outstanding applications assigned to people who are not active assessors</description>
     <filter>
-        <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND (6 OR (7 AND 8))</booleanFilter>
+        <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND (6 OR (7 AND 8) OR (9 OR 10 OR 11 OR 12))</booleanFilter>
         <criteriaItems>
             <column>User.Applications__r$Assessment_Report__c</column>
             <columnToColumn>false</columnToColumn>
@@ -94,6 +94,34 @@
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
             <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>User.Applications__r$Assessor_Full_Name__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Julie Taylor</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>User.Applications__r$Assessor_Full_Name__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Emilie Wix</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>User.Applications__r$Assessor_Full_Name__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Jenny Simpson</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>User.Applications__r$Assessor_Full_Name__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Kevin White</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>

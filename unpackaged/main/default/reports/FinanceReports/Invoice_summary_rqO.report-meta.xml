@@ -43,6 +43,16 @@
     <columns>
         <field>Account.ia_crm__Synced_With_Intacct_Date__c</field>
     </columns>
+    <filter>
+        <criteriaItems>
+            <column>Application__c.Application_Type__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Levy</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
     <format>Tabular</format>
     <name>Invoice summary</name>
     <params>
@@ -58,6 +68,8 @@
     <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
         <dateColumn>Application__c.Invoice_Date__c</dateColumn>
+        <endDate>2023-11-02</endDate>
         <interval>INTERVAL_CUSTOM</interval>
+        <startDate>2023-09-01</startDate>
     </timeFrameFilter>
 </Report>

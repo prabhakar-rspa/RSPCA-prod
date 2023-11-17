@@ -123,7 +123,7 @@
                                                     <ui:inputCheckbox aura:id="lineItemCheckbox" text="{!item.Id}"/>
                                                 </td>
                                                 <td data-label="Application Number">
-                                                    <div class="slds-truncate" title="Application Number">{!item.Opportunity.Application__r.Name}</div>
+                                                    <div class="slds-truncate" title="Application Number">{!v.application.Name}</div>
                                                 </td>
                                                 <td data-label="Invoice Date">
                                                     <div class="slds-truncate" title="Product">{!item.Product2.Name}</div>

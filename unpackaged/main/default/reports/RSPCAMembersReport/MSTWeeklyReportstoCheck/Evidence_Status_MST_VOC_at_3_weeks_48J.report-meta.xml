@@ -39,6 +39,7 @@
     </columns>
     <description>Assessment taken place - show evidence not received between 21 and 27 days following assessment - MST to check scheduled reminder has gone out (initially from help@)</description>
     <filter>
+        <booleanFilter>1 AND 2 AND 3 AND 7 AND 5 AND 6 AND 4</booleanFilter>
         <criteriaItems>
             <column>Application__c$Evidence__c</column>
             <columnToColumn>false</columnToColumn>
@@ -81,6 +82,13 @@
             <operator>equals</operator>
             <value>0</value>
         </criteriaItems>
+        <criteriaItems>
+            <column>Application__c$Assessment_Report__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notContain</operator>
+            <value>Link not available</value>
+        </criteriaItems>
         <language>en_US</language>
     </filter>
     <format>Tabular</format>
@@ -95,7 +103,7 @@
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
     <sortColumn>Application__c$Evidence_Deadline__c</sortColumn>
-    <sortOrder>Desc</sortOrder>
+    <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
         <dateColumn>Application__c$LastActivityDate</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>

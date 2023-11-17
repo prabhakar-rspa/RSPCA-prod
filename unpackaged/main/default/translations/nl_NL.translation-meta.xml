@@ -1,26 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Translations xmlns="http://soap.sforce.com/2006/04/metadata">
     <customApplications>
+        <description p3:nil="true" xmlns:p3="http://www.w3.org/2001/XMLSchema-instance" />
         <label><!-- Checklist Settings --></label>
         <name>Checklist_Settings</name>
     </customApplications>
     <customApplications>
+        <description p3:nil="true" xmlns:p3="http://www.w3.org/2001/XMLSchema-instance" />
         <label><!-- Forceea --></label>
         <name>Forceea</name>
     </customApplications>
     <customApplications>
+        <description p3:nil="true" xmlns:p3="http://www.w3.org/2001/XMLSchema-instance" />
         <label><!-- Forceea --></label>
         <name>ForceeaLightning</name>
     </customApplications>
     <customApplications>
+        <description p3:nil="true" xmlns:p3="http://www.w3.org/2001/XMLSchema-instance" />
         <label><!-- Nonprofit Success Pack --></label>
         <name>Nonprofit_Success_Pack</name>
     </customApplications>
     <customApplications>
+        <description p3:nil="true" xmlns:p3="http://www.w3.org/2001/XMLSchema-instance" />
         <label><!-- RSPCA Assured --></label>
         <name>RSPCA_Assured</name>
     </customApplications>
     <customApplications>
+        <description p3:nil="true" xmlns:p3="http://www.w3.org/2001/XMLSchema-instance" />
         <label><!-- Volunteers --></label>
         <name>Volunteers</name>
     </customApplications>
@@ -1271,6 +1277,31 @@
             <name>Accounts</name>
         </sections>
         <sections>
+            <label><!-- Application Units --></label>
+            <name>Application Units</name>
+        </sections>
+        <sections>
+            <label><!-- Units --></label>
+            <name>Units</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Accounts with Units with Application Units 2 --></description>
+        <label><!-- Accounts with Units with Application Units 2 --></label>
+        <name>Accounts_with_Units_with_without_Application_Units</name>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+        <sections>
+            <columns>
+                <label><!--  Application Type --></label>
+                <name> Application Type</name>
+            </columns>
+            <columns>
+                <label><!-- Assessment Date --></label>
+                <name>Assessment Date</name>
+            </columns>
             <label><!-- Application Units --></label>
             <name>Application Units</name>
         </sections>

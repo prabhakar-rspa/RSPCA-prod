@@ -32,10 +32,10 @@
         <field>ADDRESS1_COUNTRY</field>
     </columns>
     <columns>
-        <field>CDF1</field>
+        <field>Account.Region__c</field>
     </columns>
     <columns>
-        <field>Unit__c.Status__c</field>
+        <field>CDF1</field>
     </columns>
     <columns>
         <field>Unit__c.Business__c</field>

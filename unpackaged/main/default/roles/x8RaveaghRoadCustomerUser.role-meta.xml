@@ -2,9 +2,9 @@
 <Role xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseAccessLevel>None</caseAccessLevel>
     <contactAccessLevel>Edit</contactAccessLevel>
-    <description>8 Raveagh Road Customer User</description>
+    <description>Glenhoy Poultry Ltd Customer User</description>
     <mayForecastManagerShare>false</mayForecastManagerShare>
-    <name>8 Raveagh Road Customer User</name>
+    <name>Glenhoy Poultry Ltd Customer User</name>
     <opportunityAccessLevel>None</opportunityAccessLevel>
     <parentRole>Assessors</parentRole>
 </Role>
