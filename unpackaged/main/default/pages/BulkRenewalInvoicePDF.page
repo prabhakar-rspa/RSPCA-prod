@@ -288,7 +288,7 @@
                     <tr >
                         <td style="width: 30px">&nbsp;</td>
                         <td >
-                            <p>Registered Office: Freedom Food Limited (t/a <strong>RSPCA Assured</strong>)<br/>
+                            <p>Registered Office: RSPCA Assured Ltd <br/>
                                 Parkside | Horsham | West Sussex | RH12 1XH<br/>
                                 01403 286170 | <a href="mailto:help@rspcaassured.org.uk" style="color: #000000; text-decoration: underline;">help@rspcaassured.org.uk</a></p>
                         </td>
@@ -322,8 +322,8 @@
                                                 <td style="width: 40px">&nbsp;</td>
                                                 <td style="padding: 0px 0px 0px 0px; text-align: left; font-family: Arial, sans-serif; font-size: 14px; mso-height-rule: exactly; line-height: 20px; color: #000000;">
                                                     <p style="text-align: center; font-size: 18px; font-weight: bold;">Thank you for renewing your membership</p><br/>
-                                                    <!--p>Registered Office: Freedom Food Limited (t/a <strong>RSPCA Assured</strong>)<br/>
-                                                        Wilberforce Way | Southwater | West Sussex | RH13 9RS<br/>
+                                                    <!--p>Registered Office: RSPCA Assured Ltd<br/>
+                                                        Parkside | Horsham | West Sussex | RH12 1GY<br/>
                                                         01403 286170 | <a href="mailto:help@rspcaassured.org.uk" style="color: #000000; text-decoration: underline;">help@rspcaassured.org.uk</a></p-->
                                                     <table cellspacing="0" cellpadding="1" border="2" bordercolor="#ffffff" width="100%" valign="top" style="border: 2px solid white;">
                                                         <tr>
@@ -360,8 +360,8 @@
                                                                 <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><span style="margin: 5px;">{!li.Site_Name__c} | {!li.Membership_Number__c}</span></td>
                                                                 <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;text-align:right;"><span style="margin: 5px;">
                                                                     <apex:outputText value="{0, number, 00.00}">
-																		<apex:param value="{!li.Amount_Ex_VAT__c}" />
-																	</apex:outputText>
+                                                                        <apex:param value="{!li.Amount_Ex_VAT__c}" />
+                                                                    </apex:outputText>
                                                                     </span></td>
                                                                 <!--td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;text-align:right;"><span style="margin: 5px;">n/a</span></td-->
                                                                 <td valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;text-align:right;">
@@ -425,7 +425,7 @@
                                                     </table>
                                                     <table cellspacing="0" cellpadding="1" border="2" bordercolor="#ffffff" width="100%" valign="top" style="border: 2px solid white;">
                                                         <tr>
-                                                            <td width="50%" valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px;  color: #000000; border: 2px solid white;"><span style="margin: 5px;">Account Name: Freedom Food Limited</span><br/>
+                                                            <td width="50%" valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px;  color: #000000; border: 2px solid white;"><span style="margin: 5px;">Account Name: RSPCA Assured Ltd</span><br/>
                                                                 <span style="margin: 5px;">Account Number: 69595259</span><br/>
                                                                 <span style="margin: 5px;">Sort Code: 60-11-17</span> </td>
                                                             <td width="50%" valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><span style="margin: 5px;">VAT Registration Number: 602 7676 42</span><br/>

@@ -43,7 +43,7 @@
     <columns>
         <field>Unit__c.Vehicle_Registration__c</field>
     </columns>
-    <description>Report to show key Unit information for each Membership.  Give members the option to download to a CSV file.</description>
+    <description>Report to show key Unit information for each Membership Group.  Members can download the report to a CSV file.</description>
     <filter>
         <criteriaItems>
             <column>Unit__c.Status__c</column>
@@ -60,7 +60,7 @@
         <field>Account.Membership_Number__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>Sprint 4 Units Report</name>
+    <name>Member Portal Units Report</name>
     <params>
         <name>co</name>
         <value>1</value>

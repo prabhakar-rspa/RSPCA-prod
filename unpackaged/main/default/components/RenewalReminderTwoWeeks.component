@@ -269,7 +269,7 @@
                                                     <p>We are writing to let you know that the sites listed in the attached document are due for renewal on &nbsp;<apex:outputText value="{0,date,dd/MM/yyyy}"><apex:param value="{!MembershipExpiryDate}" /> </apex:outputText>.</p>
                                                     <p>To renew your membership, please pay your membership fee by BACS or card payment over the phone.  Please quote your membership number as the reference.</p>
                                                     <p>To pay by BACS:</p>
-                                                    <p style="padding-left: 35px">Our Account Name: Freedom Food Limited</p> 
+                                                    <p style="padding-left: 35px">Our Account Name: RSPCA Assured Ltd</p> 
                                                     <p style="padding-left: 35px">Sort code: 60-11-17</p>  
                                                     <p style="padding-left: 35px">Account number: 69595259</p>     
                                                     <p>To pay by Card payment over the phone:</p>    

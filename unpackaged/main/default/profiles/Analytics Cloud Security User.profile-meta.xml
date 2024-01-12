@@ -77,6 +77,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Application__c.Assessment_Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Assessment_Checklist_Section__c.Checklist_Section_Comments__c</field>
         <readable>true</readable>
@@ -499,6 +504,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Checklist_Template_Standard__c.Guidance_Notes__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Checklist_Template_Standard__c.Previous_Standard__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -4768,8 +4778,8 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <readable>false</readable>
         <field>Application__c.Evidence_Reminder_Date__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -7074,6 +7084,10 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>standard-Macro</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>standard-OperatingHours</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>

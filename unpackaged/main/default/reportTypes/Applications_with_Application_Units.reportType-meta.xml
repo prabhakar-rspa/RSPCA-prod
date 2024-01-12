@@ -990,6 +990,28 @@
             <field>Current_User_is_Allocated_Inspector__c</field>
             <table>Application__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Assessor Division</displayNameOverride>
+            <field>Assessor__c.Division</field>
+            <table>Application__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Inspector Division</displayNameOverride>
+            <field>Allocated_Inspector__c.Division</field>
+            <table>Application__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Assessment_Status__c</field>
+            <table>Application__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Visit_Date__c</field>
+            <table>Application__c</table>
+        </columns>
         <masterLabel>Applications</masterLabel>
     </sections>
 </ReportType>

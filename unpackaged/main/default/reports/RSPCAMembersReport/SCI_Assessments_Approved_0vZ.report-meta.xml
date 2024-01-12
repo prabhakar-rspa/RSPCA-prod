@@ -22,9 +22,6 @@
         <field>Application__c$Assessment_Approved_By_Certifier__c</field>
     </columns>
     <columns>
-        <field>Application__c$Assessment_Approved_By_Certifier_Date__c</field>
-    </columns>
-    <columns>
         <field>Application__c$Date_Certified__c</field>
     </columns>
     <columns>
@@ -58,7 +55,12 @@
         </criteriaItems>
         <language>en_US</language>
     </filter>
-    <format>Tabular</format>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Month</dateGranularity>
+        <field>Application__c$Assessment_Approved_By_Certifier_Date__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
     <name>Assessments Complete &amp; Approved by SCI</name>
     <params>
         <name>co</name>
@@ -66,7 +68,7 @@
     </params>
     <reportType>Applications_with_Assessment_Checklists__c</reportType>
     <scope>organization</scope>
-    <showDetails>true</showDetails>
+    <showDetails>false</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
     <sortColumn>Application__c$Assessor_Full_Name__c</sortColumn>

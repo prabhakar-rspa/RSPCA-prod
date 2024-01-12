@@ -354,7 +354,11 @@ public class ApplicationTriggerHandler extends TriggerHandler{
         Blob reportPdf;
         try {
             system.debug('reportPage:::'+reportPage);
-            reportPdf = reportPage.getContentAsPDF();
+            if(Test.isRunningTest()) { 
+              reportPdf = blob.valueOf('Unit.Test');
+            } else {
+            	reportPdf = reportPage.getContentAsPDF();
+            }
         }
         catch (Exception e) {
             system.debug('going catch:::'+e);

@@ -38,7 +38,7 @@
         <label>Assessment status</label>
         <scale>2</scale>
     </customDetailFormulas>
-    <description>Report to show key Application information for each Membership.  Give members the option to download to a CSV file.</description>
+    <description>Report to show key Application information for each Membership Group.  Members can download the report to a CSV file.</description>
     <filter>
         <criteriaItems>
             <column>Account.Status__c</column>
@@ -67,7 +67,7 @@
         <field>ACCOUNT.NAME</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>Sprint 4 Assessments Report</name>
+    <name>Member Portal Assessment Report</name>
     <params>
         <name>co</name>
         <value>0</value>

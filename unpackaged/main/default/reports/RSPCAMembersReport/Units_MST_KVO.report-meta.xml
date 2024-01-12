@@ -80,20 +80,6 @@
             <operator>equals</operator>
             <value>ENQUIRY,INACTIVE,LAPSED,MEMBER,NEW,REINSTATE</value>
         </criteriaItems>
-        <criteriaItems>
-            <column>Unit__c.Animals__c</column>
-            <columnToColumn>false</columnToColumn>
-            <isUnlocked>true</isUnlocked>
-            <operator>equals</operator>
-            <value>Chickens</value>
-        </criteriaItems>
-        <criteriaItems>
-            <column>Unit__c.Business__c</column>
-            <columnToColumn>false</columnToColumn>
-            <isUnlocked>true</isUnlocked>
-            <operator>equals</operator>
-            <value>Producer</value>
-        </criteriaItems>
         <language>en_US</language>
     </filter>
     <format>Summary</format>
@@ -121,7 +107,7 @@
     <scope>organization</scope>
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
-    <showSubTotals>true</showSubTotals>
+    <showSubTotals>false</showSubTotals>
     <timeFrameFilter>
         <dateColumn>DUE_DATE</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>

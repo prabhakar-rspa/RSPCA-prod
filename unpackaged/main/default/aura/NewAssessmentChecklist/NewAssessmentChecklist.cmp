@@ -1,77 +1,121 @@
 <aura:component controller="NewAssessmentChecklistController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickActionWithoutHeader" access="global" >
     <aura:attribute name="checklistTemplates" type="List"/>
-    
+    <aura:attribute name="checklistIds" type="List"/>
+    <aura:attribute name="isLoading" type="boolean" default="false"/>
+    <aura:attribute name="assessmentChecklistDetails" type="List"/>
+    <aura:attribute name="showOtherAssessments" type="boolean" default="false"/>
+     <ltng:require styles="{!$Resource.ModalWidthCSS}"/>
+    <aura:attribute name="selectedRow" type="map"/>
+    <aura:attribute name="columns" type="List" default="[
+        {label: 'CHECKLIST NAME', fieldName: 'Name', type: 'text'},
+        {label: 'SPECIES', fieldName: 'animals', type: 'text'}
+     ]"/>
+
     <!-- Initialise the component -->
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
-    
+    <aura:if isTrue="{!v.isLoading}">
+        <div class="slds-spinner_container">
+            <lightning:spinner alternativeText="Loading" size="medium" />
+        </div>
+    </aura:if>
     <!-- Modal Header -->
     <header class="slds-modal__header">
         <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">New Assessment Checklist</h2>
     </header>
     
     <!-- Modal Content -->
-    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+    <div class="slds-modal__content  slds-p-around_medium" id="modal-content-id-1">
         <!-- list of units -->
-        <div class="slds-m-around_x-small">
-            <table
-                   class="slds-table slds-table_bordered slds-table_striped slds-table_cell-buffer slds-table_fixed-layout"
-                   >
-                <thead>
-                    <tr class="slds-text-heading_label">
-                        <th scope="col">
-                            <div class="slds-truncate" title="Select">Select</div>
-                        </th>
-                        <th scope="col">
-                            <div class="slds-truncate" title="Unit Number"
-                                 >Checklist Name</div
-                                >
-                        </th>
-                        <th scope="col">
-                            <div class="slds-truncate" title="Description"
-                                 >Species</div
-                                >
-                        </th>
-                    </tr>
-                </thead>
-                
-                <tbody>
-                    <!-- Iterate all child record list in table format -->
-                    
-                    
-                    <aura:iteration items="{!v.checklistTemplates}" var="item">
-                        <tr>
-                            <td>
-                                <ui:inputCheckbox aura:id="checkBox" text="{!item.Id}" />
-                            </td>
-                            <td>
-                                <div class="slds-truncate" title="{!item.Name}"
-                                     >{!item.Name}</div
+        <aura:if isTrue="{!!v.showOtherAssessments}">
+            <div >
+                <lightning:datatable
+                                     resizeColumnDisabled="true"
+                                     keyField="id"
+                                     data="{!v.checklistTemplates}"
+                                     columns="{!v.columns}"
+                                     maxRowSelection="1" onrowselection="{! c.handleSelect }">
+                </lightning:datatable>
+            </div>
+         
+            <!--div class="slds-m-around_x-small">
+                <table
+                    class="slds-table slds-table_bordered slds-table_striped slds-table_cell-buffer slds-table_fixed-layout"
+                    >
+                    <thead>
+                        <tr class="slds-text-heading_label">
+                            <th scope="col">
+                                <div class="slds-truncate" title="Select">Select</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Unit Number"
+                                    >Checklist Name</div
                                     >
-                            </td>
-                            <td>
-                                <aura:if isTrue="{!!empty(item.Animals_List__c)}">
-                                    <div class="slds-cell-wrap" title="{!item.Animals_List__c}"
-                                    >{!item.Animals_List__c}</div
-                                   >
-                                   <aura:set attribute="else">
-                                        <div class="slds-truncate" title="{!item.Species__c}"
-                                        >{!item.Species__c}</div
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Description"
+                                    >Species</div
                                     >
-                                   </aura:set>
-                                </aura:if>
-                                
-                            </td>
+                            </th>
                         </tr>
-                    </aura:iteration> 
-                </tbody>
-            </table>
-        </div>
+                    </thead>
+                    
+                    <tbody>
+                        <!-/- Iterate all child record list in table format -/->
+                        
+                        
+                        <aura:iteration items="{!v.checklistTemplates}" var="item">
+                            <tr>
+                                <td>
+                                    <ui:inputCheckbox aura:id="checkBox" text="{!item.Id}" />
+                                </td>
+                                <td>
+                                    <div class="slds-truncate" title="{!item.Name}"
+                                        >{!item.Name}</div
+                                        >
+                                </td>
+                                <td>
+                                    <aura:if isTrue="{!!empty(item.Animals_List__c)}">
+                                        <div class="slds-cell-wrap" title="{!item.Animals_List__c}"
+                                        >{!item.Animals_List__c}</div
+                                    >
+                                    <aura:set attribute="else">
+                                            <div class="slds-truncate" title="{!item.Species__c}"
+                                            >{!item.Species__c}</div
+                                        >
+                                    </aura:set>
+                                    </aura:if>
+                                    
+                                </td>
+                            </tr>
+                        </aura:iteration> 
+                    </tbody>
+                </table>
+            </div-->
+        </aura:if>
+        <aura:if isTrue="{!v.showOtherAssessments}">
+           
+        	<c:assessmentChecklistSourceSelection aura:id="sourceSelection" recordId="{!v.recordId}" assessmentChecklistDetails="{!v.assessmentChecklistDetails}"/>
+        </aura:if>
     </div>
     
     <!-- Modal Footer -->
-    <footer class="slds-modal__footer slds-grid slds-grid_align-spread footer-fixed">
-        <lightning:button title="cancel" label="Cancel" onclick="{!c.handleCancel}" />        
-        <lightning:button variant="brand" label="Submit" title="Submit" onclick="{!c.handleSubmit}" />
+    
+    
+    <footer class="slds-modal__footer slds-grid slds-grid_align-spread footer-fixed " >
+        <aura:if isTrue="{!!v.showOtherAssessments}">
+            <div class="slds-float_right" style="width: 100%;">
+                <lightning:button title="cancel" label="Cancel" onclick="{!c.handleCancel}" />        
+                <lightning:button variant="brand" label="Submit" title="Submit" onclick="{!c.handleSubmit}" />
+            </div>
+            
+            <aura:set attribute="else">
+                <div class="slds-float_right" style="width: 100%;">
+                    <lightning:button title="Create a blank checklist" label="Create a blank checklist" onclick="{!c.skip}" />        
+                    <lightning:button variant="brand" label="Copy Checklist" title="Copy Checklist" onclick="{!c.copyChecklist}" />
+                </div>
+            </aura:set>
+        </aura:if>
+        
     </footer>
     
     <!-- Styling to remove padding from the lightning quick action launch -->

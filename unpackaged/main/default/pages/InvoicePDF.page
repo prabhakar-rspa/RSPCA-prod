@@ -292,8 +292,8 @@
                 <tr >
                     <td style="width: 30px">&nbsp;</td>
                     <td >
-                        <p>Registered Office: Freedom Food Limited (t/a <strong>RSPCA Assured</strong>)<br/>
-                            Parkside | Horsham | West Sussex | RH12 1XH<br/>
+                        <p>Registered Office: RSPCA Assured Ltd<br/>
+                            Parkside | Horsham | West Sussex | RH12 1GY<br/>
                             01403 286170 | <a href="mailto:help@rspcaassured.org.uk" style="color: #000000; text-decoration: underline;">help@rspcaassured.org.uk</a></p>
                     </td>
                 </tr>
@@ -375,7 +375,7 @@
                             <c:InvoiceItems applicationId="{!currentRecord.Id}"/><br/>
                             <table cellspacing="0" cellpadding="1" border="2" bordercolor="#ffffff" width="100%" valign="top" style="border: 2px solid white;">
                             <tr>
-                                <td width="50%" valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px;  color: #000000; border: 2px solid white;"><span style="margin: 5px;">Account Name: Freedom Food Limited</span><br/>
+                                <td width="50%" valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px;  color: #000000; border: 2px solid white;"><span style="margin: 5px;">Account Name: RSPCA Assured Ltd</span><br/>
                                 <span style="margin: 5px;">Account Number: 69595259</span><br/>
                                 <span style="margin: 5px;">Sort Code: 60-11-17</span> </td>
                                 <td width="50%" valign="top" bgcolor="#F3F3F3"  style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><span style="margin: 5px;">VAT Registration Number: 602 7676 42</span><br/>

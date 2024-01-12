@@ -136,7 +136,8 @@ public class AppUnitTriggerHandler extends AppUnitHelper{
                               If it is, check to see if there is an existing line item on the
                               application. Create line item if there is not.
                 ***********************************************************************************/  
-                if(app.RecordType.DeveloperName != 'Additional_Visit' && (unitAdded.Business__c != null) && (unitAdded.Animals__c != null) && (unitAdded.Production__c != null) ){
+                
+                if(app.RecordType.DeveloperName != 'Additional_Visit' && unitAdded != null && (unitAdded.Business__c != null) && (unitAdded.Animals__c != null) && (unitAdded.Production__c != null) ){
 
                     String vehicleType = unitAdded.Vehicle_Type__c;
                     // if business is haulier then do not fiiter the getProduct method by vehicle type

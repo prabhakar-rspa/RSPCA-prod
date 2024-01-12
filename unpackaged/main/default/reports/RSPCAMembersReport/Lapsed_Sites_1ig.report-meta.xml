@@ -62,7 +62,7 @@
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>false</showSubTotals>
     <sortColumn>Account.Membership_Number__c</sortColumn>
-    <sortOrder>Desc</sortOrder>
+    <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
         <dateColumn>CREATED_DATE</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>

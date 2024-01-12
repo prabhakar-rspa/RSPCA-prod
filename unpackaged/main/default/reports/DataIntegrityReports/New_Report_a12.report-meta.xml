@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Application__c.Assessment_Reports__r$Name</field>
+    </columns>
+    <columns>
+        <field>Application__c$Name</field>
+    </columns>
+    <columns>
+        <field>Application__c$Application_Type__c</field>
+    </columns>
+    <columns>
+        <field>Application__c.Assessment_Reports__r$Assessment_Date__c</field>
+    </columns>
+    <description>Assessment Checklists that have more than one Application Report</description>
+    <format>Summary</format>
+    <groupingsDown>
+        <aggregateType>RowCount</aggregateType>
+        <dateGranularity>Day</dateGranularity>
+        <field>Application__c.Assessment_Reports__r$Assessment__c</field>
+        <sortByName>RowCount</sortByName>
+        <sortOrder>Desc</sortOrder>
+        <sortType>Aggregate</sortType>
+    </groupingsDown>
+    <name>ACs with multiple ARs</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Applications_with_Assessment_Reports__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Application__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

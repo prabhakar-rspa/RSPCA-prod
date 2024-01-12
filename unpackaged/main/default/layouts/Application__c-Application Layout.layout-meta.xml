@@ -267,6 +267,10 @@
                 <field>Evidence__c</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Evidence_Reminder_Date__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Evidence_Received_Date__c</field>
             </layoutItems>

@@ -850,6 +850,11 @@
             <field>Current_User_is_Allocated_Inspector__c</field>
             <table>Application__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Assessment_Status__c</field>
+            <table>Application__c</table>
+        </columns>
         <masterLabel>Applications</masterLabel>
     </sections>
     <sections>

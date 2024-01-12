@@ -1,0 +1,52 @@
+<template>
+    <lightning-spinner alternative-text="Loading" size="xx-small" if:true={isloading}></lightning-spinner>
+
+    <lightning-layout multiple-rows="true" class="slds-p-bottom--small">
+        <lightning-layout-item size="3" class="slds-p-around--xx-small">
+            <lightning-input label="Membership Number" name="membershipNumber" type="text"  onchange={handleChange}></lightning-input>
+        </lightning-layout-item>
+        <lightning-layout-item size="3" class="slds-p-around--xx-small">
+            <lightning-combobox
+            name="assessor"
+            label="Assessor"
+            value=""
+            placeholder="Select Progress"
+            options={assessorOptions}
+            onchange={handleChange}
+            ></lightning-combobox>
+
+        </lightning-layout-item>
+        <lightning-layout-item size="3" class="slds-p-around--xx-small">
+            <lightning-input label="Assessment Date Start" name="startDate" type="date" onchange={handleChange}></lightning-input>
+        </lightning-layout-item>
+        <lightning-layout-item size="3" class="slds-p-around--xx-small">
+            <lightning-input label="Assessment Date End" name="endDate" type="date" onchange={handleChange}></lightning-input>
+        </lightning-layout-item>
+        
+        <lightning-layout-item class="slds-p-around--xxx-small">
+            <lightning-button label="Apply Filters" onclick={applyFilters} variant="brand"></lightning-button>
+        </lightning-layout-item>
+        <lightning-layout-item class="slds-p-around--xxx-small">
+            <lightning-button label="Clear Filters" onclick={clearFilters} variant="brand"></lightning-button>
+        </lightning-layout-item>
+    </lightning-layout>
+    <template for:each={filteredAssessmentChecklistDetails} for:item="assessmentChecklistDetail" if:true={filteredAssessmentChecklistDetails}>
+        <div key={assessmentChecklistDetail.species} if:false={assessmentChecklistDetail.sourceAssessment}>
+            <div>Select an existing <b>{assessmentChecklistDetail.species}</b> assessment checklist to provide a foundation for this new checklist<br/></div><br/>
+            <!--c-datatable columns={columns} records={assessmentChecklistDetail.OtherAssessments} row-selectable="true" onhandleupdate={handleFieldUpdate} if:true={assessmentChecklistDetail.OtherAssessments}>
+            </c-datatable-->
+            <div style="max-height: 200px;overflow-y: scroll;">
+                <lightning-datatable
+                    key-field="id"
+                    max-row-selection="1"
+                    data={assessmentChecklistDetail.OtherAssessments}
+                    columns={columns}>
+                </lightning-datatable>
+            </div>
+            <div if:false={assessmentChecklistDetail.otherAssessmentsAvailable}>
+               <span class="slds-text-color_error">No Assessments available for {assessmentChecklistDetail.species}</span> 
+            </div>
+            <br/>
+        </div>
+    </template>
+</template>

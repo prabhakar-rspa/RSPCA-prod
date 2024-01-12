@@ -12,12 +12,7 @@
     <filters>
         <field>Standard__c</field>
         <operation>equals</operation>
-        <value>E 7.2</value>
-    </filters>
-    <filters>
-        <field>Standard_Order__c</field>
-        <operation>equals</operation>
-        <value>680</value>
+        <value>V1.9</value>
     </filters>
     <label>All</label>
 </ListView>

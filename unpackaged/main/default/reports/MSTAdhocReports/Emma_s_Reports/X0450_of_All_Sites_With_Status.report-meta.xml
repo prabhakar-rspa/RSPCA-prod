@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
     <columns>
-        <field>Account.Head_Office_Number__c</field>
-    </columns>
-    <columns>
         <field>ACCOUNT.NAME</field>
     </columns>
     <columns>
@@ -30,9 +27,6 @@
     </columns>
     <columns>
         <field>PARENT.NAME</field>
-    </columns>
-    <columns>
-        <field>Account.Head_Office_Number_of_Parent_Account__c</field>
     </columns>
     <columns>
         <aggregateTypes>Sum</aggregateTypes>
@@ -103,12 +97,17 @@
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>startsWith</operator>
-            <value>0450</value>
+            <value>0450,1833</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>
-    <format>Tabular</format>
-    <name>0450 of All Sites With Status</name>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account.Head_Office_Number_of_Parent_Account__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>BQP Sites - 0450 and 1833</name>
     <params>
         <name>co</name>
         <value>1</value>
@@ -119,7 +118,7 @@
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
     <sortColumn>Account.Status__c</sortColumn>
-    <sortOrder>Asc</sortOrder>
+    <sortOrder>Desc</sortOrder>
     <timeFrameFilter>
         <dateColumn>CREATED_DATE</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>

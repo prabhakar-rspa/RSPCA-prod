@@ -371,6 +371,41 @@
         <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
+        <fullName>Holmesterne_Farm_Co_Ltd</fullName>
+        <accessLevel>Read</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Read</contactAccessLevel>
+            <opportunityAccessLevel>None</opportunityAccessLevel>
+        </accountSettings>
+        <label>Holmesterne Farm Co Ltd</label>
+        <sharedTo>
+            <group>Holmesterne_Farm_Co_Ltd</group>
+        </sharedTo>
+        <booleanFilter>1 OR 2 OR 3 OR 4</booleanFilter>
+        <criteriaItems>
+            <field>Head_Office_Number__c</field>
+            <operation>startsWith</operation>
+            <value>4895</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Membership_Number_Text__c</field>
+            <operation>startsWith</operation>
+            <value>4895.</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Head_Office_Number__c</field>
+            <operation>startsWith</operation>
+            <value>4894</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Membership_Number_Text__c</field>
+            <operation>startsWith</operation>
+            <value>4894.</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
         <fullName>Hook_2_Sisters</fullName>
         <accessLevel>Read</accessLevel>
         <accountSettings>

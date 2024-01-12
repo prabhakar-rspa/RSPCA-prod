@@ -2,9 +2,9 @@
 <Role xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseAccessLevel>None</caseAccessLevel>
     <contactAccessLevel>Edit</contactAccessLevel>
-    <description>Green Label Foods Ltd Customer User</description>
+    <description>Green Label Foods Ltd (3279) Customer User</description>
     <mayForecastManagerShare>false</mayForecastManagerShare>
-    <name>Green Label Foods Ltd Customer User</name>
+    <name>Green Label Foods Ltd (3279) Customer User</name>
     <opportunityAccessLevel>None</opportunityAccessLevel>
     <parentRole>Assessors</parentRole>
 </Role>

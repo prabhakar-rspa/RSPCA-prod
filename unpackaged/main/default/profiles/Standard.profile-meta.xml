@@ -833,6 +833,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Application__c.Assessment_Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Application__c.Assessor_Email__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1454,6 +1459,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>CMTD__EnhancedRelatedList__mdt.CMTD__UI_Type_Override__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Checklist_Template_Standard__c.Previous_Standard__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -6986,6 +6996,10 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>standard-MessagingSession</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>standard-OperatingHours</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>

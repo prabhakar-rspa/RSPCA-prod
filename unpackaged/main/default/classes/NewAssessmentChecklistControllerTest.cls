@@ -7,7 +7,7 @@ public class NewAssessmentChecklistControllerTest {
         joinFee.setDefinition('ProductCode','static value(JOINFEE)');
         joinFee.setDefinition('IsActive','static value(true)');
         joinFee.setDefinition('Standard_Price__c','static value(28.80)');
-        joinFee.insertRecords(true);
+        joinFee.insertRecords(true); 
         
         // Create revisitFee product
         FObject revisitFee = new FObject('Product2', 1);
@@ -73,8 +73,6 @@ public class NewAssessmentChecklistControllerTest {
             ct.Status__c = 'Active';
         }
         update ctList;
-
-
     }
 
     @isTest
@@ -95,7 +93,14 @@ public class NewAssessmentChecklistControllerTest {
         }
         
         Test.startTest();
-        NewAssessmentChecklistController.createAssessmentChecklist(appList[0].Id,checklistIds);
+        NewAssessmentChecklistController.ChecklistDetail ChecklistDetail = NewAssessmentChecklistController.checkPreviousAssessmentChecklist(appList[0].Id,checklistIds);
+        NewAssessmentChecklistController.createAssessmentChecklist(appList[0].Id,checklistIds,JSON.serialize(ChecklistDetail.AssessmentChecklistDetails));
+        List<Assessments__c> assessments = [SELECT ID FROM Assessments__c];
+        assessments[0].Status__c = 'Completed';
+        update assessments[0];
+        system.assert(assessments.size()>0);
+        ChecklistDetail = NewAssessmentChecklistController.checkPreviousAssessmentChecklist(appList[0].Id,checklistIds);
+        NewAssessmentChecklistController.createAssessmentChecklist(appList[0].Id,checklistIds,JSON.serialize(ChecklistDetail.AssessmentChecklistDetails));
         Test.stopTest();
     }
     

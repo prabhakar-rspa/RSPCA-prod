@@ -24,7 +24,7 @@ public class GenerateWOA {
             for(Id appId : appsChangedToAssessment){
                 Application__c app = newMap.get(appId);
                 List<Application_Unit__c> appUnitList = appIdToAppUnits.get(appId);
-                if(appUnitList != null){
+                if(appUnitList != null ){
                     List<WOA__c> woaList = appIdToWOAList.get(appId);
                     Map<String, WOA__c> speciesStringWoaMap = new Map<String, WOA__c>();
                     for(Application_Unit__c au : appUnitList){
@@ -93,8 +93,8 @@ public class GenerateWOA {
     }
 
     private static Map<Id, List<Application_Unit__c>> getAppUnitForApplicationsID(Set<Id> appIdSet){
-        //List<String> woaAnimals = new list<String> { 'Laying Hens' , 'Pigs' , 'Dairy Cattle' };
-        List<String> woaAnimals = new list<String> { 'Laying Hens' , 'Pigs'};
+        List<String> woaAnimals = new list<String> { 'Laying Hens' , 'Pigs' , 'Dairy Cattle' };
+        //List<String> woaAnimals = new list<String> { 'Laying Hens' , 'Pigs'};
         Map<Id, List<Application_Unit__c>> appIdToAppUnits = new  Map<Id, List<Application_Unit__c>>();
         for(Application_Unit__c au : [SELECT Id, Business__c, Animals__c, Application__c FROM Application_Unit__c WHERE Application__c IN: appIdSet AND Animals__c IN:woaAnimals AND Business__c = 'Producer']){
             if(appIdToAppUnits.containsKey(au.Application__c)){

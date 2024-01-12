@@ -215,7 +215,7 @@
                 <td></td>
                 <td><img src="{!URLFOR($Resource.Certificate_Images, 'images/Paul_Eveleigh_Signature.png')}" width="192" height="40" alt=""/></td>
                 
-                <td width="35%" ><img src="{!URLFOR($Resource.Certificate_Images, 'images/Mike_Baker_Signature.png')}" width="192" height="40" alt=""/></td>
+                <td width="35%" ><img src="{!URLFOR($Resource.Certificate_Images, 'images/Kelly_Grellier_Signature.png')}" width="192" height="40" alt=""/></td>
                
             </tr>
             <tr>
@@ -232,9 +232,9 @@
                 </td>
             
                 <td valign="bottom">
-                    <p style="text-align: left; font-size: 11px; line-height: 1.2;"><strong>Mike Baker 
+                    <p style="text-align: left; font-size: 11px; line-height: 1.2;"><strong>Kelly Grellier
                         </strong><br/>
-                        Chief Executive, RSPCA Assured <br/>
+                        Chief Operations Officer, RSPCA Assured <br/>
                     </p>
                 </td>
                     
@@ -250,7 +250,7 @@
                             <tbody>
                             <tr>
                                 <td width="100%" valign="bottom" ><p style="text-align: center; font-size: 10px; line-height: 1.2;"><strong>This certificate remains the property of Supply Chain In-Sites Ltd and must be returned on request.</strong><br/>
-                                    As the certificate holder, it is your responsibility to inform customers of any changes in the certification status. It is the customer's responsibility to verify the certification status with Freedom Food Ltd (t/a RSPCA Assured). To do this, please
+                                    As the certificate holder, it is your responsibility to inform customers of any changes in the certification status. It is the customer's responsibility to verify the certification status with RSPCA Assured Ltd. To do this, please
                                     call 01403 286170 or email help@rspcaassured.org.uk. Alternatively, write to SCI Certified RSPCA Scheme
                                     at Parkside, Chart Way, Horsham, West Sussex, RH12 1GY</p></td>
                          <br/>   </tr>
@@ -316,7 +316,7 @@
             <!-- Line Item Columns -->
             <tr>
                 <td width="15%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><strong><span style="margin: 5px;">Unit Number</span></strong></td>
-                <td width="30%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><strong><span style="margin: 5px;">Description</span></strong></td>
+                <td width="15%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><strong><span style="margin: 5px;">Description</span></strong></td>
                 <td width="15%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><strong><span style="margin: 5px;">Business</span></strong></td>
                 <td width="15%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><strong><span style="margin: 5px;">Species</span></strong></td>
                 <td width="15%" valign="top" bgcolor="#F3F3F3" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; border: 2px solid white;"><strong><span style="margin: 5px;">Vehicle Registration (Hauliers only)</span></strong></td>

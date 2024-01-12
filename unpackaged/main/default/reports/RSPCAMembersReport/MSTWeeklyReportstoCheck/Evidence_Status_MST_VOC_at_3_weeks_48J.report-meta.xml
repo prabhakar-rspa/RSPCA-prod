@@ -22,6 +22,15 @@
         <field>Application__c$Evidence_Deadline__c</field>
     </columns>
     <columns>
+        <field>Application__c$Evidence_Reminder_Date__c</field>
+    </columns>
+    <columns>
+        <field>Application__c$MST_Comments__c</field>
+    </columns>
+    <columns>
+        <field>Application__c$Extension_Deadline__c</field>
+    </columns>
+    <columns>
         <aggregateTypes>Sum</aggregateTypes>
         <field>Application__c$Final_Evidence_Email_Sent__c</field>
     </columns>
@@ -30,12 +39,6 @@
     </columns>
     <columns>
         <field>Application__c$Assessment_Approved_By_Certifier__c</field>
-    </columns>
-    <columns>
-        <field>Application__c$Extension_Deadline__c</field>
-    </columns>
-    <columns>
-        <field>Application__c$MST_Comments__c</field>
     </columns>
     <description>Assessment taken place - show evidence not received between 21 and 27 days following assessment - MST to check scheduled reminder has gone out (initially from help@)</description>
     <filter>
@@ -102,7 +105,7 @@
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
-    <sortColumn>Application__c$Evidence_Deadline__c</sortColumn>
+    <sortColumn>Application__c$Evidence_Reminder_Date__c</sortColumn>
     <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
         <dateColumn>Application__c$LastActivityDate</dateColumn>

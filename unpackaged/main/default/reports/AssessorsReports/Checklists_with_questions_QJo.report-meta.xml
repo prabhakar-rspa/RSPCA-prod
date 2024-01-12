@@ -38,7 +38,7 @@
         <relatedTableJoinColumn>Assessment_Checklist__c</relatedTableJoinColumn>
     </crossFilters>
     <filter>
-        <booleanFilter>1 AND 2 AND 3</booleanFilter>
+        <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
         <criteriaItems>
             <column>Application__c$Assessor__c</column>
             <columnToColumn>false</columnToColumn>
@@ -60,6 +60,13 @@
             <operator>notEqual</operator>
             <value>100</value>
         </criteriaItems>
+        <criteriaItems>
+            <column>Application__c$Assessment_Date__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>greaterOrEqual</operator>
+            <value>10/3/2022</value>
+        </criteriaItems>
         <language>en_US</language>
     </filter>
     <format>Summary</format>
@@ -67,7 +74,7 @@
         <field>Application__c$Assessment_Date__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>Checklists with questions - January 2023</name>
+    <name>Checklists to import</name>
     <params>
         <name>co</name>
         <value>1</value>

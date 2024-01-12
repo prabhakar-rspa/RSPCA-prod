@@ -10,13 +10,13 @@
         <field>Application__c.Reason_for_Visit__c</field>
     </columns>
     <columns>
+        <field>Application__c.Visit_Type__c</field>
+    </columns>
+    <columns>
         <field>CUST_NAME</field>
     </columns>
     <columns>
         <field>Application__c.Check__c</field>
-    </columns>
-    <columns>
-        <field>Application__c.Visit_Type__c</field>
     </columns>
     <columns>
         <field>Application__c.Visit_Date__c</field>

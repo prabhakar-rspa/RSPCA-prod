@@ -77,6 +77,10 @@
                 <behavior>Edit</behavior>
                 <field>DTA__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Cancel_Application__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
@@ -111,6 +115,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Evidence_Received_Date__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Evidence_Reminder_Date__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>

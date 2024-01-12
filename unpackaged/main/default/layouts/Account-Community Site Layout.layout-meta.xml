@@ -501,6 +501,7 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Membership_Expiry_Date__c</fields>
         <relatedList>Renewal_Price_Report__c.Site__c</relatedList>
     </relatedLists>
     <relatedObjects>ParentId</relatedObjects>

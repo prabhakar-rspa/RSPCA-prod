@@ -196,16 +196,16 @@
             <tr>
                 <td><img src="{!URLFOR($Resource.Certificate_Images, 'images/Paul_Eveleigh_Signature.png')}" width="192" height="40" alt=""/></td>
                 <td valign="bottom">&nbsp;</td>
-                <td width="35%" ><img src="{!URLFOR($Resource.Certificate_Images, 'images/Mike_Baker_Signature.png')}" width="192" height="40" alt=""/></td>
+                <td width="35%" ><img src="{!URLFOR($Resource.Certificate_Images, 'images/Kelly_Grellier_Signature.png')}" width="192" height="40" alt=""/></td>
             </tr>
             <tr>
                 <td style="border-top:0.5pt solid #085942;" width="30%" valign="bottom"><p style="text-align: left; font-size: 11px; line-height: 1.2; color: black;"><strong>Paul Eveleigh</strong><br/>
                 Chairman SCI Ltd<br/>
                 </p></td>
                 <td width="40%" valign="bottom">&nbsp;</td>
-                <td style="border-top:0.5pt solid #085942;" valign="bottom"><p style="text-align: left; font-size: 11px; line-height: 1.2;"><strong>Mike Baker 
+                <td style="border-top:0.5pt solid #085942;" valign="bottom"><p style="text-align: left; font-size: 11px; line-height: 1.2;"><strong>Kelly Grellier
                     </strong><br/>
-                    Chief Executive, RSPCA Assured <br/>
+                    Chief Operations Officer, RSPCA Assured <br/>
                 </p></td>
             </tr>
             </tbody>
@@ -245,7 +245,7 @@
                 <td>
                     <div style="height: 545px; overflow: hidden; font-family: Arial, sans-serif; text-align:center;">
                         <div class="s1"><Strong>CERTIFICATE OF CONFORMITY</Strong></div>
-                        <div class="s2"><Strong>THIS IS TO CERITIFY THAT</Strong></div>
+                        <div class="s2"><Strong>THIS IS TO CERTIFY THAT</Strong></div>
                         <p style="font-size: 12pt"></p>
                         <div class="s3"><Strong>{!currentRecord.Parent.Name}</Strong></div>
                         <div class="s3"><Strong>Site: {!currentRecord.Name}</Strong></div>

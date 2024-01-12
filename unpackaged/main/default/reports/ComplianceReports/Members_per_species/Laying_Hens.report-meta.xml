@@ -43,6 +43,9 @@
         <aggregateTypes>Sum</aggregateTypes>
         <field>Account.ApplicationSite__r.ApplicationUnits__r$Number_of_Animals__c</field>
     </columns>
+    <columns>
+        <field>Account.ApplicationSite__r.ApplicationUnits__r$Unit__c.Description__c</field>
+    </columns>
     <filter>
         <criteriaItems>
             <column>Account.ApplicationSite__r$Application_Type__c</column>

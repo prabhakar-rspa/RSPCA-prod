@@ -1,0 +1,10 @@
+.THIS .slds-modal__container{
+	width: 80% !important;
+	max-width: 80% !important;
+    
+    
+}
+
+.THIS .slds-button_icon-bare{
+    display: none;
+}

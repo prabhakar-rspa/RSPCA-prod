@@ -44,7 +44,7 @@
     </customDetailFormulas>
     <description>List of paid applications assigned to assessors who are not active Salesforce users, showing application units</description>
     <filter>
-        <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND (6 OR (7 AND 8) OR (9 OR 10 OR 11 OR 12))</booleanFilter>
+        <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND (6 OR (7 AND 8) OR (9 OR 10 OR 11 OR 12 OR 13 OR 14))</booleanFilter>
         <criteriaItems>
             <column>User.Applications__r$Assessment_Report__c</column>
             <columnToColumn>false</columnToColumn>
@@ -128,6 +128,20 @@
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
             <value>Kevin White</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>User.Applications__r$Assessor_Full_Name__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Tori Tye</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>User.Applications__r$Assessor_Full_Name__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Jocelyn Warwick</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>

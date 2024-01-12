@@ -47,8 +47,8 @@
             <column>Account.X2_Week_Renewal_Scheduled_Date__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>false</isUnlocked>
-            <operator>greaterOrEqual</operator>
-            <value>TODAY</value>
+            <operator>equals</operator>
+            <value>1/2/2024</value>
         </criteriaItems>
         <criteriaItems>
             <column>Account.Active__c</column>
@@ -56,13 +56,6 @@
             <isUnlocked>false</isUnlocked>
             <operator>equals</operator>
             <value>1</value>
-        </criteriaItems>
-        <criteriaItems>
-            <column>Account.Primary_Contact_Email__c</column>
-            <columnToColumn>false</columnToColumn>
-            <isUnlocked>false</isUnlocked>
-            <operator>notEqual</operator>
-            <value></value>
         </criteriaItems>
         <criteriaItems>
             <column>Account.Renewal_Reminder_Ready__c</column>
@@ -77,13 +70,6 @@
             <isUnlocked>false</isUnlocked>
             <operator>equals</operator>
             <value>MEMBER</value>
-        </criteriaItems>
-        <criteriaItems>
-            <column>Account.Membership_Expiry_Date__c</column>
-            <columnToColumn>false</columnToColumn>
-            <isUnlocked>true</isUnlocked>
-            <operator>equals</operator>
-            <value>12/1/2023</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>

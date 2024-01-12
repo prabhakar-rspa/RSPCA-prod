@@ -1096,12 +1096,12 @@
             <table>Account.Units__r.Application_Units__r</table>
         </columns>
         <columns>
-            <checkedByDefault>false</checkedByDefault>
+            <checkedByDefault>true</checkedByDefault>
             <field>Animals__c</field>
             <table>Account.Units__r.Application_Units__r</table>
         </columns>
         <columns>
-            <checkedByDefault>false</checkedByDefault>
+            <checkedByDefault>true</checkedByDefault>
             <field>List_of_Animals__c</field>
             <table>Account.Units__r.Application_Units__r</table>
         </columns>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Application__c.Assessment_Reports__r$Name</field>
+    </columns>
+    <columns>
+        <field>Application__c$RecordType</field>
+    </columns>
+    <columns>
+        <field>Application__c$Application_Type__c</field>
+    </columns>
+    <description>Assessment Reports which are not linked to an Assessment Checklist (indicates that the Assessment Report record has been created manually)</description>
+    <filter>
+        <criteriaItems>
+            <column>Application__c.Assessment_Reports__r$Assessment__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value></value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Application__c$Name</field>
+        <sortOrder>Desc</sortOrder>
+    </groupingsDown>
+    <name>Assessment Reports not linked to an AC</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Applications_with_Assessment_Reports__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Application__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

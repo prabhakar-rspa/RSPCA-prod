@@ -5,10 +5,5 @@
         <sharedTo>Admin</sharedTo>
         <sharedToType>Role</sharedToType>
     </folderShares>
-    <folderShares>
-        <accessLevel>View</accessLevel>
-        <sharedTo>Standard_Role</sharedTo>
-        <sharedToType>Role</sharedToType>
-    </folderShares>
     <name>Assessor Reports</name>
 </ReportFolder>

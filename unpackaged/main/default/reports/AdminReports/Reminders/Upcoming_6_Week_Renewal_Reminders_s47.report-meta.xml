@@ -32,8 +32,8 @@
             <column>Account.X6_Week_Renewal_Scheduled_Date__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>false</isUnlocked>
-            <operator>greaterOrEqual</operator>
-            <value>TODAY</value>
+            <operator>equals</operator>
+            <value>1/1/2024</value>
         </criteriaItems>
         <criteriaItems>
             <column>Account.Six_Week_Renewal_Reminder_Sent__c</column>
@@ -64,18 +64,11 @@
             <value>1</value>
         </criteriaItems>
         <criteriaItems>
-            <column>Account.Primary_Contact_Email__c</column>
-            <columnToColumn>false</columnToColumn>
-            <isUnlocked>false</isUnlocked>
-            <operator>notEqual</operator>
-            <value></value>
-        </criteriaItems>
-        <criteriaItems>
             <column>Account.Renewal_Reminder_Ready__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>false</isUnlocked>
             <operator>equals</operator>
-            <value>1</value>
+            <value>0</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>
@@ -95,7 +88,7 @@
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>false</showSubTotals>
-    <sortColumn>Account.Membership_Number__c</sortColumn>
+    <sortColumn>ACCOUNT.NAME</sortColumn>
     <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
         <dateColumn>Account.X6_Week_Renewal_Scheduled_Date__c</dateColumn>

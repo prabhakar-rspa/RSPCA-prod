@@ -8,7 +8,8 @@
             <field>Applicant_Contact__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>help@rspcaassured.org.uk</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>RSPCA_Assured_Emails/New_Application_Assessment_Confirmation</template>
     </alerts>
     <alerts>

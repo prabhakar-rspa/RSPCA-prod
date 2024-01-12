@@ -151,11 +151,11 @@ public class ApplicationTriggerHandlerTest {
         insert product1;
         PricebookEntry pbe = TestDataFactory.createPriceBookEntry(product1.Id,Test.getStandardPricebookId(),true);
         Unit__c unit = TestDataFactory.createUnit(act.Id,true);
-        /*Application__c app = TestDataFactory.createApplication(recordTypeId, act.Id, act.Id, cnt.Id, false); 
+        Application__c app = TestDataFactory.createApplication(recordTypeId, act.Id, act.Id, cnt.Id, false); 
         app.Pricebook_Id__c =  Test.getStandardPricebookId();
         app.Payment_Due_Date__c = system.today();
         app.Invoice_Date__c = system.today();
-        insert app;*/
+        insert app; 
         Application__c app1 = TestDataFactory.createApplication(recordTypeId, act.Id, site.Id, cnt.Id, false); 
         app1.Pricebook_Id__c =  Test.getStandardPricebookId();
         app1.Bulk_Renewal__c = bulk_renewal.Id;
@@ -166,7 +166,50 @@ public class ApplicationTriggerHandlerTest {
         
         
     }
-    /*
+    @isTest
+    static void testMethod3(){
+        Account act = TestDataFactory.createHeadOfficeAccount();
+        Contact cnt = TestDataFactory.createContact(act.Id);
+        cnt.Roles__c = 'Invoice Contact';
+        update cnt;
+        act.Primary_Contact__c = cnt.Id;
+        update act;
+        Account site = TestDataFactory.createSiteAccount(act.Id);
+        site.Needs_an_Assessment__c = true;
+        update site;
+        Id recordTypeId = Schema.SObjectType.Application__c.getRecordTypeInfosByName().get('Applications').getRecordTypeId();
+        Bulk_Renewal__c  bulk_renewal = TestDataFactory.createBulkRenewal(cnt.Id,act.Id,true);
+        
+        
+        Product2 product1 = TestDataFactory.createProduct(false);
+        product1.ProductCode = 'REVISIT';
+        insert product1;
+        PricebookEntry pbe = TestDataFactory.createPriceBookEntry(product1.Id,Test.getStandardPricebookId(),true);
+        Unit__c unit = TestDataFactory.createUnit(act.Id,FALSE);
+        unit.Business__c = 'Producer';
+        unit.Animals__c = 'Laying Hens';
+        unit.Ingredients__c = '';
+        unit.Order_Sizes__c = '';
+        unit.Production__c = 'Producer';
+        INSERT unit;
+        Unit__c unit2 = TestDataFactory.createUnit(act.Id,true);
+        
+        Application__c app1 = TestDataFactory.createApplication(recordTypeId, act.Id, site.Id, cnt.Id, false); 
+        app1.Pricebook_Id__c =  Test.getStandardPricebookId();
+        app1.Bulk_Renewal__c = bulk_renewal.Id;
+        app1.Existing_Member__c = 'Yes';
+        app1.Application_Type__c = 'Update';
+        insert app1;
+        Application_Line_Item__c appLine = TestDataFactory.createApplicationLineItem(product1.Id,app1.Id,true);
+        Application_Unit__c appUnit = new Application_Unit__c();
+        appUnit.Unit__c = unit2.Id;
+        appUnit.Application__c = app1.Id;
+        insert appUnit;
+        app1.Stage__c = 'Assessment';
+        //update app1;
+        
+    } 
+   
     @isTest(SeeAllData = true)
     static void sendExtensionGrantedEmail(){
         Application__c app = createApplication();
@@ -176,19 +219,39 @@ public class ApplicationTriggerHandlerTest {
         app.Extension_Deadline__c = Date.today();
         app.Reason_for_extension__c = 'test reason';
         update app;
-    }*/
-    /*
+    }
+    
     @isTest(SeeAllData = true)
     static void sendAssessmentCompleteEmail(){
         Application__c app = createApplication();
+        WOA__c woa = new WOA__c();
+        woa.Application__c = app.Id;
+        woa.Species_Type__c = 'Dairy Cattle';
+        insert woa;
+        WOA__c woa1 = new WOA__c();
+        woa1.Application__c = app.Id;
+        woa1.Species_Type__c = 'Pigs';
+        insert woa1;
+        Account act = [SELECT ID FROM Account LIMIT 1];
+        Unit__c unit2 = TestDataFactory.createUnit(act.Id,false);
+        unit2.Animals__c = 'Pigs';
+        unit2.Business__c = 'Producer';
+        unit2.Ingredients__c = '';
+        unit2.Production__c = '';
+        unit2.Order_Sizes__C = '';
+        insert unit2;
+        Application_Unit__c appUnit = new Application_Unit__c();
+		appUnit.Unit__c = unit2.Id;
+        appUnit.Application__c = app.Id;
+        insert appUnit;
         app.Stage__c = 'Assessment';
         app.Paid__c = true;
         app.Assessment_Checklist__c = 'Test link';
         app.Assessment_Report__c = 'Test link';
         update app;
-
+		
         app.Stage__c = 'Compliance';
-        update app;
+        //update app;
     }
-    */
+    
 }

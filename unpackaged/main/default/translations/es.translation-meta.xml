@@ -409,6 +409,10 @@
     </flowDefinitions>
     <flowDefinitions>
         <flows />
+        <fullName>Checklist_Template_Standard_Before_Trigger_Flow</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows />
         <fullName>Community_User_Creation</fullName>
     </flowDefinitions>
     <flowDefinitions>
@@ -883,6 +887,23 @@
         </sections>
     </reportTypes>
     <reportTypes>
+        <description><!-- Accounts with Applications with Checklists --></description>
+        <label><!-- Accounts with Applications with Checklists --></label>
+        <name>Accounts_with_Applications_with_Checklists</name>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+        <sections>
+            <label><!-- Applications --></label>
+            <name>Applications</name>
+        </sections>
+        <sections>
+            <label><!-- Assessment Checklists --></label>
+            <name>Assessment Checklists</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
         <description><!-- Accounts with Applications with Evidence --></description>
         <label><!-- Accounts with Applications with Evidence --></label>
         <name>Accounts_with_Applications_with_Evidence</name>
@@ -1315,6 +1336,14 @@
         <label><!-- Applications with Application Units --></label>
         <name>Applications_with_Application_Units</name>
         <sections>
+            <columns>
+                <label><!-- Assessor Division --></label>
+                <name>Assessor Division</name>
+            </columns>
+            <columns>
+                <label><!-- Inspector Division --></label>
+                <name>Inspector Division</name>
+            </columns>
             <label><!-- Applications --></label>
             <name>Applications</name>
         </sections>
@@ -1330,6 +1359,19 @@
         <sections>
             <label><!-- Assessment Checklists --></label>
             <name>Assessment Checklists</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Applications with Assessment Reports --></description>
+        <label><!-- Applications with Assessment Reports --></label>
+        <name>Applications_with_Assessment_Reports</name>
+        <sections>
+            <label><!-- Applications --></label>
+            <name>Applications</name>
+        </sections>
+        <sections>
+            <label><!-- Assessment Reports --></label>
+            <name>Assessment Reports</name>
         </sections>
     </reportTypes>
     <reportTypes>
@@ -1466,6 +1508,15 @@
         <sections>
             <label><!-- Opportunities --></label>
             <name>Opportunities</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- WOAs --></description>
+        <label><!-- WOAs --></label>
+        <name>WOAs</name>
+        <sections>
+            <label><!-- WOAs --></label>
+            <name>WOAs</name>
         </sections>
     </reportTypes>
     <reportTypes>

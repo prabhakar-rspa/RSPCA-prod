@@ -13,6 +13,9 @@
         <field>Account.Status__c</field>
     </columns>
     <columns>
+        <field>Unit__c.Status__c</field>
+    </columns>
+    <columns>
         <field>Unit__c.Animals__c</field>
     </columns>
     <columns>
@@ -25,7 +28,7 @@
         <field>Account.Other_Cancellation_Reason__c</field>
     </columns>
     <filter>
-        <booleanFilter>1 OR 2</booleanFilter>
+        <booleanFilter>(1 OR 2) AND 3</booleanFilter>
         <criteriaItems>
             <column>Unit__c.Status__c</column>
             <columnToColumn>false</columnToColumn>
@@ -40,6 +43,13 @@
             <operator>equals</operator>
             <value>INACTIVE</value>
         </criteriaItems>
+        <criteriaItems>
+            <column>Unit__c.Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Cancelled</value>
+        </criteriaItems>
         <language>en_US</language>
     </filter>
     <format>Summary</format>
@@ -47,12 +57,7 @@
         <field>Account.Membership_Expiry_Date__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <groupingsDown>
-        <dateGranularity>Day</dateGranularity>
-        <field>Account.Membership_Number__c</field>
-        <sortOrder>Asc</sortOrder>
-    </groupingsDown>
-    <name>Inactive Report MST Tracker Report</name>
+    <name>Inactive Report MST</name>
     <params>
         <name>co</name>
         <value>1</value>

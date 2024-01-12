@@ -78,7 +78,7 @@ CASE(LEFT(Account.BillingPostalCode,2),
     </customDetailFormulas>
     <description>Aquaculture applications in Northern Ireland, Ireland and Scotland</description>
     <filter>
-        <booleanFilter>1 AND (2 OR 3) AND (4 OR 5) AND 6 AND 7 AND 8 AND (9 OR 10)</booleanFilter>
+        <booleanFilter>1 AND (2 OR 3) AND (4 OR 5) AND 6 AND 7 AND (8 AND 9 AND 10 AND 11)</booleanFilter>
         <criteriaItems>
             <column>Account.ApplicationSite__r$Cancel_Application__c</column>
             <columnToColumn>false</columnToColumn>
@@ -129,25 +129,32 @@ CASE(LEFT(Account.BillingPostalCode,2),
             <value>Supply chain</value>
         </criteriaItems>
         <criteriaItems>
-            <column>CDF1</column>
-            <columnToColumn>false</columnToColumn>
-            <isUnlocked>true</isUnlocked>
-            <operator>notEqual</operator>
-            <value>Invalid</value>
-        </criteriaItems>
-        <criteriaItems>
             <column>Account.ApplicationSite__r.ApplicationUnits__r$Animals__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
-            <operator>equals</operator>
+            <operator>contains</operator>
             <value>Salmon</value>
         </criteriaItems>
         <criteriaItems>
             <column>Account.ApplicationSite__r.ApplicationUnits__r$Animals__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
-            <operator>equals</operator>
+            <operator>contains</operator>
             <value>Trout</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.ApplicationSite__r.ApplicationUnits__r$Animals__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>contains</operator>
+            <value>Lumpfish</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.ApplicationSite__r.ApplicationUnits__r$Animals__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>contains</operator>
+            <value>Wrasse</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>
@@ -161,7 +168,7 @@ CASE(LEFT(Account.BillingPostalCode,2),
         <field>Account.ApplicationSite__r$Name</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>Region 3 applications - aqua</name>
+    <name>Outstanding applications - aqua</name>
     <params>
         <name>co</name>
         <value>1</value>

@@ -635,6 +635,11 @@
             <field>Primary_Contact_Email__c</field>
             <table>Account</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Previous_Assessment_Date__c</field>
+            <table>Account</table>
+        </columns>
         <masterLabel>Accounts</masterLabel>
     </sections>
     <sections>
@@ -1215,6 +1220,11 @@
             <field>Add_Visit_approved_by_inspector__c</field>
             <table>Account.ApplicationSite__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Assessment_Status__c</field>
+            <table>Account.ApplicationSite__r</table>
+        </columns>
         <masterLabel>Applications</masterLabel>
     </sections>
     <sections>
@@ -1259,7 +1269,7 @@
             <table>Account.ApplicationSite__r.ApplicationUnits__r</table>
         </columns>
         <columns>
-            <checkedByDefault>false</checkedByDefault>
+            <checkedByDefault>true</checkedByDefault>
             <field>Animals__c</field>
             <table>Account.ApplicationSite__r.ApplicationUnits__r</table>
         </columns>
@@ -1279,8 +1289,13 @@
             <table>Account.ApplicationSite__r.ApplicationUnits__r</table>
         </columns>
         <columns>
-            <checkedByDefault>false</checkedByDefault>
+            <checkedByDefault>true</checkedByDefault>
             <field>List_of_Animals__c</field>
+            <table>Account.ApplicationSite__r.ApplicationUnits__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Animals_At_Assessment__c</field>
             <table>Account.ApplicationSite__r.ApplicationUnits__r</table>
         </columns>
         <masterLabel>Application Units</masterLabel>

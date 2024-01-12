@@ -52,6 +52,14 @@
                 <behavior>Readonly</behavior>
                 <field>TotalPrice</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ia_crm__Intacct_Entity__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ia_crm__Intacct_Location__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
@@ -92,9 +100,9 @@
         <detailHeading>false</detailHeading>
         <editHeading>true</editHeading>
         <label>Custom Links</label>
-        <layoutColumns/>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
+        <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
     <multilineLayoutFields>Product2Id</multilineLayoutFields>
@@ -102,6 +110,7 @@
     <multilineLayoutFields>UnitPrice</multilineLayoutFields>
     <multilineLayoutFields>ServiceDate</multilineLayoutFields>
     <multilineLayoutFields>Description</multilineLayoutFields>
+    <multilineLayoutFields>ia_crm__Intacct_Entity__c</multilineLayoutFields>
     <multilineLayoutFields>OpportunityId</multilineLayoutFields>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>

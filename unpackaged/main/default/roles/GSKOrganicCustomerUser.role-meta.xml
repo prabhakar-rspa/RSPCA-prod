@@ -2,9 +2,9 @@
 <Role xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseAccessLevel>None</caseAccessLevel>
     <contactAccessLevel>Edit</contactAccessLevel>
-    <description>GSK (Organic) Customer User</description>
+    <description>GSK Pig Ltd Customer User</description>
     <mayForecastManagerShare>false</mayForecastManagerShare>
-    <name>GSK (Organic) Customer User</name>
+    <name>GSK Pig Ltd Customer User</name>
     <opportunityAccessLevel>None</opportunityAccessLevel>
     <parentRole>Assessors</parentRole>
 </Role>

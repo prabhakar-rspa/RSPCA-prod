@@ -16,10 +16,10 @@
         <field>Application__c.Check__c</field>
     </columns>
     <columns>
-        <field>Application__c.Visit_Date__c</field>
+        <field>Application__c.Allocated_Inspector__c</field>
     </columns>
     <columns>
-        <field>Application__c.Allocated_Inspector__c</field>
+        <field>Application__c.Visit_Date__c</field>
     </columns>
     <columns>
         <field>Application__c.Visit_Deadline__c</field>

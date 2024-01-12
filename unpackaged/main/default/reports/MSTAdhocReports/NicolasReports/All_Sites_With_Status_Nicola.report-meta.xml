@@ -57,8 +57,15 @@
             <column>Account.Membership_Number__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
-            <operator>contains</operator>
+            <operator>startsWith</operator>
             <value></value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Membership_Expiry_Date__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>2/1/2024</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>
