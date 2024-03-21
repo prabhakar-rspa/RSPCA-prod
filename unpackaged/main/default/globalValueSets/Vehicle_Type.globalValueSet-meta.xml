@@ -11,9 +11,19 @@
         <label>Lorry</label>
     </customValue>
     <customValue>
+        <fullName>TBC</fullName>
+        <default>false</default>
+        <label>TBC</label>
+    </customValue>
+    <customValue>
         <fullName>Trailer</fullName>
         <default>false</default>
         <label>Trailer</label>
+    </customValue>
+    <customValue>
+        <fullName>Treatment vessel</fullName>
+        <default>false</default>
+        <label>Treatment vessel</label>
     </customValue>
     <customValue>
         <fullName>Van</fullName>
@@ -26,10 +36,10 @@
         <label>Wellboat</label>
     </customValue>
     <customValue>
-        <fullName>TBC</fullName>
+        <fullName>Wellboat vessel with treatment capability</fullName>
         <default>false</default>
-        <label>TBC</label>
+        <label>Wellboat vessel with treatment capability</label>
     </customValue>
     <masterLabel>Vehicle Type</masterLabel>
-    <sorted>false</sorted>
+    <sorted>true</sorted>
 </GlobalValueSet>

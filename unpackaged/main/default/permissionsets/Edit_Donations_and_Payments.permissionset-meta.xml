@@ -25,4 +25,9 @@
         <enabled>true</enabled>
         <name>ViewEncryptedData</name>
     </userPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Backlog_Amnesty__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
 </PermissionSet>

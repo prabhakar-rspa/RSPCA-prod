@@ -74,12 +74,12 @@
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>startsWith</operator>
-            <value>4</value>
+            <value>42</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>
     <format>Tabular</format>
-    <name>Copy of 4419 Moy Park</name>
+    <name>Nikki - 4200 Members</name>
     <params>
         <name>co</name>
         <value>1</value>
@@ -89,7 +89,7 @@
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
-    <sortColumn>Account.Account_Manager__c</sortColumn>
+    <sortColumn>Account.Membership_Number__c</sortColumn>
     <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
         <dateColumn>CREATED_DATE</dateColumn>

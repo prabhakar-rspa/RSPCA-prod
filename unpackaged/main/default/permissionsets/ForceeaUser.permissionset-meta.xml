@@ -42,6 +42,11 @@
     </customSettingAccesses>
     <description>Enable Forceea</description>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Backlog_Amnesty__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>FObjectFour__c.ForceeaPartition__c</field>
         <readable>true</readable>

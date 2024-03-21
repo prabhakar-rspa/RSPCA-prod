@@ -43,6 +43,10 @@
     <columns>
         <field>Application__c.Add_Visit_Approved_By_Certifier__c</field>
     </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Application__c.Cancel_Application__c</field>
+    </columns>
     <filter>
         <criteriaItems>
             <column>CUST_RECORDTYPE</column>
@@ -50,6 +54,13 @@
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
             <value>Application__c.Additional_Visit</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Application__c.Cancel_Application__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>0</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>

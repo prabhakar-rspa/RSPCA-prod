@@ -13,6 +13,9 @@
         <field>Account.Opportunities.Applications__r$Membership_Number__c</field>
     </columns>
     <columns>
+        <field>Account.Opportunities.Applications__r$Membership_Expiry_Date__c</field>
+    </columns>
+    <columns>
         <field>Account.Opportunities$Owner</field>
     </columns>
     <columns>
@@ -65,7 +68,7 @@
     <groupingsDown>
         <dateGranularity>Month</dateGranularity>
         <field>Account.Opportunities.Applications__r.Opportunities__r$CreatedDate</field>
-        <sortOrder>Asc</sortOrder>
+        <sortOrder>Desc</sortOrder>
     </groupingsDown>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>

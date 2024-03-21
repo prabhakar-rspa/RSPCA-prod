@@ -10,6 +10,9 @@
         <field>Application__c$Membership_Number__c</field>
     </columns>
     <columns>
+        <field>Application__c$Assessment_Date__c</field>
+    </columns>
+    <columns>
         <field>Application__c.Assessments__r$Farm_Rating__c</field>
     </columns>
     <columns>
@@ -22,9 +25,6 @@
         <field>Application__c$Membership_Expiry_Date__c</field>
     </columns>
     <columns>
-        <field>Application__c$Assessment_Date__c</field>
-    </columns>
-    <columns>
         <field>Application__c$Site_Postcode__c</field>
     </columns>
     <columns>
@@ -35,6 +35,10 @@
     </columns>
     <columns>
         <field>Application__c$Site_Status__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Application__c$Cancel_Application__c</field>
     </columns>
     <description>A report on all Farm Ratings</description>
     <filter>
@@ -52,10 +56,17 @@
             <operator>equals</operator>
             <value>,Member,Inactive,Enquiry</value>
         </criteriaItems>
+        <criteriaItems>
+            <column>Application__c$Cancel_Application__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>0</value>
+        </criteriaItems>
         <language>en_US</language>
     </filter>
     <format>Tabular</format>
-    <name>High Risk Farms 2023</name>
+    <name>High Risk Farms 2023/2024</name>
     <params>
         <name>co</name>
         <value>1</value>
@@ -65,8 +76,8 @@
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
-    <sortColumn>Application__c.Assessments__r$Welfare_Rating__c</sortColumn>
-    <sortOrder>Desc</sortOrder>
+    <sortColumn>Application__c$Assessment_Date__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
         <dateColumn>Application__c$CreatedDate</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>

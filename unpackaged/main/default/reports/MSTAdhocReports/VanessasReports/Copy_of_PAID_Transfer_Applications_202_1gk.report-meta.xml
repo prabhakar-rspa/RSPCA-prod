@@ -97,6 +97,8 @@
     <showSubTotals>false</showSubTotals>
     <timeFrameFilter>
         <dateColumn>Account$CreatedDate</dateColumn>
-        <interval>INTERVAL_CURFY</interval>
+        <endDate>2024-03-11</endDate>
+        <interval>INTERVAL_CUSTOM</interval>
+        <startDate>2023-01-01</startDate>
     </timeFrameFilter>
 </Report>

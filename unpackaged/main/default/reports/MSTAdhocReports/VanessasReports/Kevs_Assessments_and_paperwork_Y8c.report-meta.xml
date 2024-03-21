@@ -7,7 +7,17 @@
         <field>Account.ApplicationSite__r$Membership_Number__c</field>
     </columns>
     <columns>
+        <field>Account.ApplicationSite__r$Application_Type__c</field>
+    </columns>
+    <columns>
         <field>Account$Name</field>
+    </columns>
+    <columns>
+        <field>Account$Status__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Account.ApplicationSite__r$Cancel_Application__c</field>
     </columns>
     <columns>
         <field>Account.ApplicationSite__r$Assessment_Date__c</field>
@@ -28,7 +38,7 @@
         <field>Account.ApplicationSite__r$Rescheduled_Assessment_Reason__c</field>
     </columns>
     <filter>
-        <booleanFilter>(1 OR 2) AND 3 AND 4</booleanFilter>
+        <booleanFilter>(1 OR 2) AND 3 AND 4 AND 5</booleanFilter>
         <criteriaItems>
             <column>Account.ApplicationSite__r$Assessment_Report__c</column>
             <columnToColumn>false</columnToColumn>
@@ -56,6 +66,13 @@
             <isUnlocked>true</isUnlocked>
             <operator>startsWith</operator>
             <value>Kevin,Jenny</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.ApplicationSite__r$Cancel_Application__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>0</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>

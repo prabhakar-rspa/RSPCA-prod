@@ -23,10 +23,7 @@
         <field>Account.Renewal_Date__c</field>
     </columns>
     <columns>
-        <field>Account.Six_Week_Renewal_Reminder_Sent__c</field>
-    </columns>
-    <columns>
-        <field>Account.Final_Renewal_Reminder_Sent__c</field>
+        <field>Account.Previous_Assessment_Date__c</field>
     </columns>
     <filter>
         <criteriaItems>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>ACCOUNT.NAME</field>
+    </columns>
+    <columns>
+        <field>Account.Membership_Number__c</field>
+    </columns>
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>Sanctions__c.Sanction__c</field>
+    </columns>
+    <columns>
+        <field>Sanctions__c.Period__c</field>
+    </columns>
+    <columns>
+        <field>Sanctions__c.Start_Date__c</field>
+    </columns>
+    <columns>
+        <field>Sanctions__c.Selected_Sanctions__c</field>
+    </columns>
+    <columns>
+        <field>Sanctions__c.Further_Information__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>Sanctions__c.Sanction__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>,Additional unannounced inspections,Conditional application,Conditional renewal,Formal warning,Informal advice,Permanent withdrawal,Report to authorities,Special measures,Temporary withdrawal</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>Sanction Report</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>AccountCustomEntity$Sanctions__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

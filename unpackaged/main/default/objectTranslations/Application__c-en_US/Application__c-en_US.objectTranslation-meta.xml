@@ -340,6 +340,10 @@
         <name>DTA_Renewal</name>
     </validationRules>
     <validationRules>
+        <errorMessage><!-- Evidence must be populated before moving the stage to &apos;Review&apos; or &apos;Compliance&apos; --></errorMessage>
+        <name>Evidence_Required_On_Review</name>
+    </validationRules>
+    <validationRules>
         <errorMessage><!-- If extension is granted, reason for extension must be provided. --></errorMessage>
         <name>Extension_reason_must_be_provided</name>
     </validationRules>
@@ -408,6 +412,10 @@
         <name>Renewal_Assessment_Stage_Validation</name>
     </validationRules>
     <validationRules>
+        <errorMessage><!-- Evidence required must be populated before moving the stage to &apos;Review&apos;  or &apos;Compliance&apos; --></errorMessage>
+        <name>Validate_Evidence_Required</name>
+    </validationRules>
+    <validationRules>
         <errorMessage><!-- You must provide a deadline for this visit in order to mark it as complete. --></errorMessage>
         <name>Visit_deadline_field_empty_visit_complet</name>
     </validationRules>
@@ -419,6 +427,7 @@
         <errorMessage><!-- You must provide the visit type in order to mark it as complete. --></errorMessage>
         <name>Visit_type_field_empty_visit_complet</name>
     </validationRules>
+    
     
     
     

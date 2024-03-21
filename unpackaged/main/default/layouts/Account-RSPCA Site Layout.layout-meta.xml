@@ -111,6 +111,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
+                <field>Latest_Renewal_Price_Date_For__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
                 <field>Renewal_Date__c</field>
             </layoutItems>
             <layoutItems>
@@ -127,7 +131,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>X6_Week_Renewal_Scheduled_Date__c</field>
+                <field>Renewal_Reminder_Ready__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -206,7 +210,12 @@
                 <field>Needs_an_Assessment__c</field>
             </layoutItems>
         </layoutColumns>
-        <layoutColumns />
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Backlog_Amnesty__c</field>
+            </layoutItems>
+        </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>

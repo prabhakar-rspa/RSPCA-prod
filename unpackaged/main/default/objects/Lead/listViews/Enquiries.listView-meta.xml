@@ -11,5 +11,5 @@
         <operation>equals</operation>
         <value>Review</value>
     </filters>
-    <label>Enquiries</label>
+    <label>Enquiries (Enquiry Form completed)</label>
 </ListView>

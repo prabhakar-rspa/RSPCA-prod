@@ -45,6 +45,9 @@
     <columns>
         <field>Application__c.Applicant_Phone__c</field>
     </columns>
+    <columns>
+        <field>Application__c.Rescheduled_Assessment_Reason__c</field>
+    </columns>
     <description>Contractor applications for Sarah, with membership number</description>
     <filter>
         <criteriaItems>
@@ -95,6 +98,8 @@
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
+    <sortColumn>Application__c.Assessment_Deadline__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
         <dateColumn>DUE_DATE</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>

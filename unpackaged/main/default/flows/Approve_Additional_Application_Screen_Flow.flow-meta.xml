@@ -1,6 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>57.0</apiVersion>
+    <assignments>
+        <name>Complete_Assessor_Task</name>
+        <label>Complete Assessor Task</label>
+        <locationX>1634</locationX>
+        <locationY>1190</locationY>
+        <assignmentItems>
+            <assignToReference>Get_Assessor_Task.Status</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Completed</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Assessor_Task</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Complete_Certifier_Task</name>
+        <label>Complete Certifier Task</label>
+        <locationX>2690</locationX>
+        <locationY>1190</locationY>
+        <assignmentItems>
+            <assignToReference>Get_Certifier_Task.Status</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Completed</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Certifier_Task</targetReference>
+        </connector>
+    </assignments>
     <choices>
         <name>Certifier</name>
         <choiceText>Certifier</choiceText>
@@ -34,19 +66,134 @@
         </value>
     </choices>
     <decisions>
+        <name>Assessor_Task_Not_Completed</name>
+        <label>Assessor Task Not Completed</label>
+        <locationX>1898</locationX>
+        <locationY>1082</locationY>
+        <defaultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Create_Task_for_Certifier</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Not_Completed_Assessor</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Assessor_Task</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Complete_Assessor_Task</targetReference>
+            </connector>
+            <label>Not Completed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Certifier_Task_Not_Completed</name>
+        <label>Certifier Task Not Completed</label>
+        <locationX>2822</locationX>
+        <locationY>1082</locationY>
+        <defaultConnector>
+            <targetReference>Create_Task_for_Reviewing_Manager</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Not_Completed_Certifier</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Certifier_Task</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Complete_Certifier_Task</targetReference>
+            </connector>
+            <label>Not Completed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Evidence_Not_Required</name>
+        <label>Evidence Not Required</label>
+        <locationX>2184</locationX>
+        <locationY>458</locationY>
+        <defaultConnector>
+            <targetReference>UserType</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Not_required</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>recordId.Evidence_Required__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>No</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Screen_3_User_Role_No_Evidence</targetReference>
+            </connector>
+            <label>Not required</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_Assessor_Already_Approved</name>
+        <label>Is Assessor Already Approved</label>
+        <locationX>446</locationX>
+        <locationY>974</locationY>
+        <defaultConnector>
+            <targetReference>Create_Task_for_Inspector</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Approved</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>recordId.Add_Visit_approved_by_inspector__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>recordId.Add_Visit_Approval_Date_inspector__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_Task_for_Certifier</targetReference>
+            </connector>
+            <label>Approved</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Who_Approved_Record</name>
         <label>Who Approved Record?</label>
-        <locationX>446</locationX>
-        <locationY>566</locationY>
+        <locationX>2184</locationX>
+        <locationY>758</locationY>
         <defaultConnector>
             <targetReference>CompleteApproval</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>OfficeSelected</name>
-            <conditionLogic>and</conditionLogic>
+            <conditionLogic>or</conditionLogic>
             <conditions>
-                <leftValueReference>I_am_a</leftValueReference>
+                <leftValueReference>My_Role1</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>Office</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>My_Role</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <elementReference>Office</elementReference>
@@ -59,9 +206,16 @@
         </rules>
         <rules>
             <name>InspectorSelected</name>
-            <conditionLogic>and</conditionLogic>
+            <conditionLogic>or</conditionLogic>
             <conditions>
-                <leftValueReference>I_am_a</leftValueReference>
+                <leftValueReference>My_Role1</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>Inspector</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>My_Role</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <elementReference>Inspector</elementReference>
@@ -74,9 +228,16 @@
         </rules>
         <rules>
             <name>CertifierSelected</name>
-            <conditionLogic>and</conditionLogic>
+            <conditionLogic>or</conditionLogic>
             <conditions>
-                <leftValueReference>I_am_a</leftValueReference>
+                <leftValueReference>My_Role1</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>Certifier</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>My_Role</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <elementReference>Certifier</elementReference>
@@ -124,11 +285,14 @@
     <recordCreates>
         <name>Create_Task_for_Certifier</name>
         <label>Create Task for Certifier</label>
-        <locationX>314</locationX>
-        <locationY>782</locationY>
+        <locationX>50</locationX>
+        <locationY>1082</locationY>
         <connector>
             <targetReference>Update_Approval_Stage_Picklist_Pending_Certifier_Approval</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Copy_2_of_Task_Message</targetReference>
+        </faultConnector>
         <inputAssignments>
             <field>ActivityDate</field>
             <value>
@@ -171,11 +335,14 @@
     <recordCreates>
         <name>Create_Task_for_Inspector</name>
         <label>Create Task for Inspector</label>
-        <locationX>50</locationX>
-        <locationY>782</locationY>
+        <locationX>842</locationX>
+        <locationY>1082</locationY>
         <connector>
             <targetReference>Update_Approval_Stage_Picklist_Pending_Inspector_Approval</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Task_Message</targetReference>
+        </faultConnector>
         <inputAssignments>
             <field>ActivityDate</field>
             <value>
@@ -218,11 +385,14 @@
     <recordCreates>
         <name>Create_Task_for_Reviewing_Manager</name>
         <label>Create Task for Reviewing Manager</label>
-        <locationX>578</locationX>
-        <locationY>782</locationY>
+        <locationX>2822</locationX>
+        <locationY>1490</locationY>
         <connector>
             <targetReference>Update_Approval_Stage_Picklist_Approved</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Copy_5_of_Task_Message</targetReference>
+        </faultConnector>
         <inputAssignments>
             <field>ActivityDate</field>
             <value>
@@ -263,9 +433,79 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <recordLookups>
+        <name>Get_Assessor_Task</name>
+        <label>Get Assessor Task</label>
+        <locationX>1898</locationX>
+        <locationY>974</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Assessor_Task_Not_Completed</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>WhatId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Subject</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>InspectorTaskSubject</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Status</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Completed</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Task</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Certifier_Task</name>
+        <label>Get Certifier Task</label>
+        <locationX>2822</locationX>
+        <locationY>974</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Certifier_Task_Not_Completed</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>WhatId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Subject</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>CertifierTaskSubject</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Status</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Completed</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Task</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
         <name>Get_Certifier_User</name>
         <label>Get Certifier User</label>
-        <locationX>446</locationX>
+        <locationX>2184</locationX>
         <locationY>134</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -286,11 +526,14 @@
     <recordUpdates>
         <name>Assessor_Approval_Stamps</name>
         <label>Assessor Approval Stamps</label>
-        <locationX>314</locationX>
-        <locationY>674</locationY>
+        <locationX>1898</locationX>
+        <locationY>866</locationY>
         <connector>
-            <targetReference>Create_Task_for_Certifier</targetReference>
+            <targetReference>Get_Assessor_Task</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Copy_8_of_Task_Message</targetReference>
+        </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -299,6 +542,12 @@
                 <elementReference>recordId.Id</elementReference>
             </value>
         </filters>
+        <inputAssignments>
+            <field>Add_Visit_Approval_Date_inspector__c</field>
+            <value>
+                <elementReference>TodaysDate</elementReference>
+            </value>
+        </inputAssignments>
         <inputAssignments>
             <field>Add_Visit_approved_by_inspector__c</field>
             <value>
@@ -310,11 +559,14 @@
     <recordUpdates>
         <name>Certifier_Approval_Stamps</name>
         <label>Certifier Approval Stamps</label>
-        <locationX>578</locationX>
-        <locationY>674</locationY>
+        <locationX>2822</locationX>
+        <locationY>866</locationY>
         <connector>
-            <targetReference>Create_Task_for_Reviewing_Manager</targetReference>
+            <targetReference>Get_Certifier_Task</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Copy_7_of_Task_Message</targetReference>
+        </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -329,15 +581,21 @@
                 <elementReference>$User.Id</elementReference>
             </value>
         </inputAssignments>
+        <inputAssignments>
+            <field>Add_Visits_Approval_Date_Certifier__c</field>
+            <value>
+                <elementReference>TodaysDate</elementReference>
+            </value>
+        </inputAssignments>
         <object>Application__c</object>
     </recordUpdates>
     <recordUpdates>
         <name>Office_Approval_Stamps</name>
         <label>Office Approval Stamps</label>
-        <locationX>50</locationX>
-        <locationY>674</locationY>
+        <locationX>446</locationX>
+        <locationY>866</locationY>
         <connector>
-            <targetReference>Create_Task_for_Inspector</targetReference>
+            <targetReference>Is_Assessor_Already_Approved</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -347,6 +605,12 @@
                 <elementReference>recordId.Id</elementReference>
             </value>
         </filters>
+        <inputAssignments>
+            <field>Add_Visit_Approval_Date_Office__c</field>
+            <value>
+                <elementReference>TodaysDate</elementReference>
+            </value>
+        </inputAssignments>
         <inputAssignments>
             <field>Add_Visit_Approved_By_Office__c</field>
             <value>
@@ -358,11 +622,14 @@
     <recordUpdates>
         <name>Update_Approval_Stage_Picklist_Approved</name>
         <label>Update Approval Stage Picklist (Approved)</label>
-        <locationX>578</locationX>
-        <locationY>890</locationY>
+        <locationX>2822</locationX>
+        <locationY>1598</locationY>
         <connector>
             <targetReference>CompleteApproval</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Copy_6_of_Task_Message</targetReference>
+        </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -382,11 +649,14 @@
     <recordUpdates>
         <name>Update_Approval_Stage_Picklist_Pending_Certifier_Approval</name>
         <label>Update Approval Stage Picklist (Pending Certifier Approval)</label>
-        <locationX>314</locationX>
-        <locationY>890</locationY>
+        <locationX>50</locationX>
+        <locationY>1190</locationY>
         <connector>
             <targetReference>CompleteApproval</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Copy_3_of_Task_Message</targetReference>
+        </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -406,11 +676,14 @@
     <recordUpdates>
         <name>Update_Approval_Stage_Picklist_Pending_Inspector_Approval</name>
         <label>Update Approval Stage Picklist (Pending Inspector Approval)</label>
-        <locationX>50</locationX>
-        <locationY>890</locationY>
+        <locationX>842</locationX>
+        <locationY>1190</locationY>
         <connector>
             <targetReference>CompleteApproval</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Copy_1_of_Task_Message</targetReference>
+        </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -427,11 +700,35 @@
         </inputAssignments>
         <object>Application__c</object>
     </recordUpdates>
+    <recordUpdates>
+        <name>Update_Assessor_Task</name>
+        <label>Update Assessor Task</label>
+        <locationX>1634</locationX>
+        <locationY>1298</locationY>
+        <connector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Create_Task_for_Certifier</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Copy_4_of_Task_Message</targetReference>
+        </faultConnector>
+        <inputReference>Get_Assessor_Task</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Certifier_Task</name>
+        <label>Update Certifier Task</label>
+        <locationX>2690</locationX>
+        <locationY>1298</locationY>
+        <connector>
+            <targetReference>Create_Task_for_Reviewing_Manager</targetReference>
+        </connector>
+        <inputReference>Get_Certifier_Task</inputReference>
+    </recordUpdates>
     <runInMode>SystemModeWithoutSharing</runInMode>
     <screens>
         <name>ApproveButton</name>
         <label>Screen 1 - Approval Button</label>
-        <locationX>446</locationX>
+        <locationX>2184</locationX>
         <locationY>242</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
@@ -451,8 +748,8 @@
     <screens>
         <name>CompleteApproval</name>
         <label>ApprovalComplete</label>
-        <locationX>446</locationX>
-        <locationY>1082</locationY>
+        <locationX>2184</locationX>
+        <locationY>2030</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -471,15 +768,143 @@
         <showHeader>false</showHeader>
     </screens>
     <screens>
+        <name>Copy_1_of_Task_Message</name>
+        <label>Copy 1 of Task_Message</label>
+        <locationX>1106</locationX>
+        <locationY>1298</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Copy_1_of_Message1</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(240, 10, 10);&quot;&gt;{!$Flow.FaultMessage}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>false</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>Copy_2_of_Task_Message</name>
+        <label>Copy 2 of Task_Message</label>
+        <locationX>578</locationX>
+        <locationY>1190</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Copy_2_of_Message1</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(240, 13, 13);&quot;&gt;{!$Flow.FaultMessage}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>false</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>Copy_3_of_Task_Message</name>
+        <label>Copy 3 of Task_Message</label>
+        <locationX>314</locationX>
+        <locationY>1298</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Copy_3_of_Message1</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(240, 14, 14);&quot;&gt;{!$Flow.FaultMessage}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>false</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>Copy_4_of_Task_Message</name>
+        <label>Copy 4 of Task_Message</label>
+        <locationX>1898</locationX>
+        <locationY>1406</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Copy_4_of_Message1</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(237, 10, 10);&quot;&gt;{!$Flow.FaultMessage}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>false</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>Copy_5_of_Task_Message</name>
+        <label>Copy 5 of Task_Message</label>
+        <locationX>3394</locationX>
+        <locationY>1598</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Copy_5_of_Message1</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(234, 15, 15);&quot;&gt;{!$Flow.FaultMessage}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>false</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>Copy_6_of_Task_Message</name>
+        <label>Copy 6 of Task_Message</label>
+        <locationX>3130</locationX>
+        <locationY>1706</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Copy_6_of_Message1</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(244, 12, 12);&quot;&gt;{!$Flow.FaultMessage}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>false</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>Copy_7_of_Task_Message</name>
+        <label>Copy 7 of Task_Message</label>
+        <locationX>3658</locationX>
+        <locationY>974</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Copy_7_of_Message1</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(231, 9, 9);&quot;&gt;{!$Flow.FaultMessage}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>false</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>Copy_8_of_Task_Message</name>
+        <label>Copy 8 of Task_Message</label>
+        <locationX>2426</locationX>
+        <locationY>974</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Copy_8_of_Message1</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(237, 18, 18);&quot;&gt;{!$Flow.FaultMessage}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>false</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
         <name>Screen_1</name>
         <label>Screen 2 - All Documentation</label>
-        <locationX>446</locationX>
+        <locationX>2184</locationX>
         <locationY>350</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>UserType</targetReference>
+            <targetReference>Evidence_Not_Required</targetReference>
         </connector>
         <fields>
             <name>DocumentationLinks</name>
@@ -589,10 +1014,10 @@
         <showHeader>false</showHeader>
     </screens>
     <screens>
-        <name>UserType</name>
-        <label>Screen 3 - User Role</label>
-        <locationX>446</locationX>
-        <locationY>458</locationY>
+        <name>Screen_3_User_Role_No_Evidence</name>
+        <label>Screen 3 - User Roles No Evidence</label>
+        <locationX>2052</locationX>
+        <locationY>566</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -600,7 +1025,47 @@
             <targetReference>Who_Approved_Record</targetReference>
         </connector>
         <fields>
-            <name>I_am_a</name>
+            <name>My_Role</name>
+            <choiceReferences>Office</choiceReferences>
+            <choiceReferences>Certifier</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>My Role</fieldText>
+            <fieldType>RadioButtons</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <nextOrFinishButtonLabel>Approve Application</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>Task_Message</name>
+        <label>Task_Message</label>
+        <locationX>1370</locationX>
+        <locationY>1190</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Message1</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(247, 13, 13);&quot;&gt;{!$Flow.FaultMessage}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>false</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>UserType</name>
+        <label>Screen 3 - User Role</label>
+        <locationX>2316</locationX>
+        <locationY>566</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Who_Approved_Record</targetReference>
+        </connector>
+        <fields>
+            <name>My_Role1</name>
             <choiceReferences>Office</choiceReferences>
             <choiceReferences>Inspector</choiceReferences>
             <choiceReferences>Certifier</choiceReferences>
@@ -614,7 +1079,7 @@
         <showHeader>false</showHeader>
     </screens>
     <start>
-        <locationX>320</locationX>
+        <locationX>2058</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Get_Certifier_User</targetReference>
@@ -624,32 +1089,32 @@
     <textTemplates>
         <name>CertifierTaskDescription</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>The Additional Visit Application {!recordId.Name} has been approved by the Inspector {!recordId.Allocated_Inspector__r.FirstName}. and is now ready for your approval. Thank you.</text>
+        <text>{!recordId.Visit_Type__c} Application {!recordId.Name} has been approved by the Inspector {!recordId.Allocated_Inspector__r.FirstName} and is now ready for your approval. Thank you.</text>
     </textTemplates>
     <textTemplates>
         <name>CertifierTaskSubject</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>Certifier Approval Required: Additional Visit Application {!recordId.Name}</text>
+        <text>Certifier Approval Required: {!recordId.Visit_Type__c} Application {!recordId.Name}</text>
     </textTemplates>
     <textTemplates>
         <name>InspectorTaskDescription</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>The Additional Visit Application  {!recordId.Name} has been approved by the Reviewing Manager and is now ready for your approval. Thank you.</text>
+        <text>{!recordId.Visit_Type__c} Application  {!recordId.Name} has been approved by the Reviewing Manager {!$User.FirstName} {!$User.LastName} and is now ready for your approval. Thank you.</text>
     </textTemplates>
     <textTemplates>
         <name>InspectorTaskSubject</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>Inspector Approval Required: Additional Visit Application {!recordId.Name}</text>
+        <text>Inspector Approval Required: {!recordId.Visit_Type__c} Application {!recordId.Name}</text>
     </textTemplates>
     <textTemplates>
         <name>ReviewManagerTaskDescription</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>The Additional Visit Application {!recordId.Name} has been approved by the Certifier {!$User.FirstName} {!$User.LastName} and is now to be marked as Complete.</text>
+        <text>{!recordId.Visit_Type__c} Application {!recordId.Name} has been approved by the Certifier {!$User.FirstName} {!$User.LastName} and is now ready to be marked as Complete.</text>
     </textTemplates>
     <textTemplates>
         <name>ReviewManagerTaskSubject</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>Review Manager Action Required: Additional Visit Application {!recordId.Name}</text>
+        <text>Review Manager Action Required: {!recordId.Visit_Type__c} Application {!recordId.Name}</text>
     </textTemplates>
     <variables>
         <description>Record ID of the record that triggers this flow</description>

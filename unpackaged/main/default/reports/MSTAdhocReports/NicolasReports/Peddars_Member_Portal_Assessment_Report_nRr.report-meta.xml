@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Application__c.Application_Type__c</field>
+    </columns>
+    <columns>
+        <field>PARENT.NAME</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Application__c.Paid__c</field>
+    </columns>
+    <columns>
+        <field>Application__c.Assessor__c</field>
+    </columns>
+    <columns>
+        <field>Application__c.Assessment_Date__c</field>
+    </columns>
+    <columns>
+        <field>Application__c.Assessment_Deadline__c</field>
+    </columns>
+    <columns>
+        <field>CDF1</field>
+    </columns>
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Application__c.Cancel_Application__c</field>
+    </columns>
+    <columns>
+        <field>Application__c.MST_Comments__c</field>
+    </columns>
+    <customDetailFormulas>
+        <calculatedFormula>IF(
+    ISNULL(Application__c.Date_of_Payment__c),&quot;Awaiting payment&quot;,
+    IF(ISNULL(Application__c.Assessment_Date__c),&quot;Awaiting appointment date&quot;,
+    IF(Application__c.Assessment_Date__c &gt; TODAY(),&quot;Awaiting assessment&quot;,
+    IF(ISNULL(Application__c.Application_Approved_By_Certifier_Date__c),&quot;Awaiting certification&quot;,
+    &quot;Certified&quot;
+))))</calculatedFormula>
+        <dataType>Text</dataType>
+        <developerName>CDF1</developerName>
+        <label>Assessment status</label>
+        <scale>2</scale>
+    </customDetailFormulas>
+    <description>Report to show key Application information for each Membership Group.  Members can download the report to a CSV file.</description>
+    <filter>
+        <criteriaItems>
+            <column>Account.Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>notEqual</operator>
+            <value>CANCELLED,LAPSED,SUSPENDED,SUSPENDED/LAPSED,WITHDRAWN</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Application__c.Application_Type__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>New,Renewal,Revisit,Transfer,Update</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Membership_Number__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>startsWith</operator>
+            <value>2600</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account.Membership_Number__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>ACCOUNT.NAME</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Peddars Member Portal Assessment Report</name>
+    <params>
+        <name>co</name>
+        <value>0</value>
+    </params>
+    <reportType>AccountCustomEntity$Application__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <sortColumn>CUST_NAME</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>DUE_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

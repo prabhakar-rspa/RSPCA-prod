@@ -5,6 +5,11 @@
         <visible>true</visible>
     </applicationVisibilities>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Backlog_Amnesty__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Checklist_Template_Section__c.Order__c</field>
         <readable>true</readable>

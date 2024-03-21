@@ -443,6 +443,11 @@
             <field>Account_Manager__c</field>
             <table>Account</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Site_Notes__c</field>
+            <table>Account</table>
+        </columns>
         <masterLabel>Accounts</masterLabel>
     </sections>
     <sections>
@@ -613,6 +618,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Assessor</displayNameOverride>
             <field>Assessor__c</field>
             <table>Account.ApplicationSite__r</table>
         </columns>
@@ -997,6 +1003,16 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Assessment_Date__c</field>
+            <table>Account.ApplicationSite__r.Assessment_Reports__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Assessment__c.Animals__c</field>
+            <table>Account.ApplicationSite__r.Assessment_Reports__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Assessment__c.Animals_List__c</field>
             <table>Account.ApplicationSite__r.Assessment_Reports__r</table>
         </columns>
         <masterLabel>Assessment Reports</masterLabel>

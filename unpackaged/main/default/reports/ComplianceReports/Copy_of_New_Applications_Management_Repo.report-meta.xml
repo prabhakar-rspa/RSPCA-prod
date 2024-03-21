@@ -49,6 +49,10 @@
     <columns>
         <field>Application__c.Application_Approved_By_Certifier_Date__c</field>
     </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Application__c.Cancel_Application__c</field>
+    </columns>
     <description>To show all New Applications that have not been paid</description>
     <filter>
         <criteriaItems>
@@ -71,7 +75,7 @@
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
-    <sortColumn>Application__c.Application_Approved_By_Certifier__c</sortColumn>
+    <sortColumn>CUST_CREATED_DATE</sortColumn>
     <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
         <dateColumn>DUE_DATE</dateColumn>

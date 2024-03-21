@@ -30,6 +30,9 @@
     <columns>
         <field>Account.SRM_PP_LeadSourceNotes__c</field>
     </columns>
+    <columns>
+        <field>ACCOUNT_SOURCE</field>
+    </columns>
     <filter>
         <criteriaItems>
             <column>RECORDTYPE</column>
@@ -50,7 +53,7 @@
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
-            <value>,ENQUIRY</value>
+            <value>,ADDITION,ARCHIVED,CANCELLED,ENQUIRY,FALLOW,INACTIVE,LAPSED,MEMBER,NEW,PRE-AUDIT,REINSTATE,RENEWR,REVISIT,SUSPENDED,WITHDRAWN</value>
         </criteriaItems>
         <criteriaItems>
             <column>Account.Head_Office_Number__c</column>
@@ -71,7 +74,7 @@
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
-            <value>Active</value>
+            <value>,Active,Inactive</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>

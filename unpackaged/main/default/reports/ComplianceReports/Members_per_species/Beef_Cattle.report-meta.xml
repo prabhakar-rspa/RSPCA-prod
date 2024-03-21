@@ -4,9 +4,6 @@
         <field>Account.ApplicationSite__r$Name</field>
     </columns>
     <columns>
-        <field>Account.ApplicationSite__r$Membership_Number__c</field>
-    </columns>
-    <columns>
         <field>Account$Name</field>
     </columns>
     <columns>
@@ -73,7 +70,12 @@
         </criteriaItems>
         <language>en_US</language>
     </filter>
-    <format>Tabular</format>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account.ApplicationSite__r$Membership_Number__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
     <name>Beef Cattle</name>
     <params>
         <name>co</name>
@@ -81,11 +83,9 @@
     </params>
     <reportType>Accounts_with_Applications_with_Application_Units__c</reportType>
     <scope>organization</scope>
-    <showDetails>true</showDetails>
+    <showDetails>false</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
-    <sortColumn>Account.ApplicationSite__r$Membership_Number__c</sortColumn>
-    <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
         <dateColumn>Account.ApplicationSite__r.ApplicationUnits__r$CreatedDate</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>

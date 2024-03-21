@@ -26,16 +26,23 @@
         <field>Application__c.Sage_Invoice__c</field>
     </columns>
     <columns>
-        <field>Application__c.Assessor__c</field>
-    </columns>
-    <columns>
-        <field>Application__c.Assessment_Date__c</field>
+        <field>Application__c.Date_of_Payment__c</field>
     </columns>
     <columns>
         <field>Application__c.Assessment_Deadline__c</field>
     </columns>
     <columns>
-        <field>Account.Sage_Intacct_Customer_Number__c</field>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>CDF1</field>
+    </columns>
+    <columns>
+        <field>Application__c.Assessment_Date__c</field>
+    </columns>
+    <columns>
+        <field>Application__c.Assessor__c</field>
+    </columns>
+    <columns>
+        <field>Account.Membership_Expiry_Date__c</field>
     </columns>
     <columns>
         <field>Application__c.Site_Postcode__c</field>
@@ -50,13 +57,30 @@
         <field>ADDRESS1_LINE1</field>
     </columns>
     <columns>
+        <field>Account.Sage_Intacct_Customer_Number__c</field>
+    </columns>
+    <columns>
         <aggregateTypes>Sum</aggregateTypes>
         <field>Application__c.Cancel_Application__c</field>
     </columns>
     <columns>
         <field>Application__c.MST_Comments__c</field>
     </columns>
-    <description>To show all Update Applications including if they have been paid</description>
+    <columns>
+        <field>Application__c.Calculated_Stage__c</field>
+    </columns>
+    <columns>
+        <field>Application__c.Assessment_Report__c</field>
+    </columns>
+    <customDetailFormulas>
+        <calculatedFormula>(Application__c.Assessment_Deadline__c -Application__c.Date_of_Payment__c)/7</calculatedFormula>
+        <dataType>Double</dataType>
+        <description>Number of weeks from date paid and assessment deadline</description>
+        <developerName>CDF1</developerName>
+        <label>Weeks since Paid</label>
+        <scale>0</scale>
+    </customDetailFormulas>
+    <description>Shows all transfer applications that are either unpaid or the assessment report field is blank so the assessment has not taken place yet with paperwork shared</description>
     <filter>
         <criteriaItems>
             <column>Application__c.Application_Type__c</column>
@@ -66,7 +90,28 @@
             <value>Transfer</value>
         </criteriaItems>
         <criteriaItems>
-            <column>Application__c.Stage__c</column>
+            <column>Application__c.Cancel_Application__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Application__c.Assessment_Report__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notContain</operator>
+            <value>http:,https:</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Application__c.Report__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notContain</operator>
+            <value>http:,https:</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Application__c.Calculated_Stage__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>notEqual</operator>

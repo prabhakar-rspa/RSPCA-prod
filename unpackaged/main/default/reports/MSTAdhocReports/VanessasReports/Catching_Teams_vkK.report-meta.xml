@@ -4,22 +4,25 @@
         <field>ACCOUNT.NAME</field>
     </columns>
     <columns>
-        <field>Unit__c.Production__c</field>
-    </columns>
-    <columns>
         <field>Unit__c.Animals_List__c</field>
     </columns>
     <columns>
-        <field>Unit__c.Animals__c</field>
+        <field>Account.Head_Office_Number_of_Parent_Account__c</field>
     </columns>
     <columns>
-        <field>Unit__c.Business__c</field>
+        <field>PARENT.NAME</field>
+    </columns>
+    <columns>
+        <field>Unit__c.Production__c</field>
     </columns>
     <columns>
         <field>Account.Membership_Expiry_Date__c</field>
     </columns>
     <columns>
         <field>Unit__c.Description__c</field>
+    </columns>
+    <columns>
+        <field>Account.Site_Notes__c</field>
     </columns>
     <columns>
         <field>CUST_NAME</field>
@@ -68,25 +71,22 @@
             <operator>equals</operator>
             <value>Catching</value>
         </criteriaItems>
+        <criteriaItems>
+            <column>Unit__c.Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Applying,Certified,Inactive,Lapsed</value>
+        </criteriaItems>
         <language>en_US</language>
     </filter>
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>PARENT.NAME</field>
-        <sortOrder>Asc</sortOrder>
-    </groupingsDown>
-    <groupingsDown>
-        <dateGranularity>Day</dateGranularity>
-        <field>Account.Head_Office_Number_of_Parent_Account__c</field>
-        <sortOrder>Asc</sortOrder>
-    </groupingsDown>
-    <groupingsDown>
-        <dateGranularity>Day</dateGranularity>
         <field>Account.Membership_Number__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>Catching Teams</name>
+    <name>Catching Team Members</name>
     <params>
         <name>co</name>
         <value>1</value>

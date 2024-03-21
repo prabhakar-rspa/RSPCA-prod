@@ -60,7 +60,7 @@
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
-            font-size: 22pt;
+            font-size: 26px;
             text-align: center;
         }
     </style>
@@ -98,7 +98,7 @@
                     Chief Operations Officer, RSPCA Assured </span><br/>
                     
                 </p> 
-                <br/> <br/> 
+              
                     <p style="text-align: center; font-size: 12px; line-height: 1.6"> This certificate is personal, is not assignable and remains the property of RSPCA Assured <br/>
                         To check its validity telephone 01403 286170 or write to<br/>
                         RSPCA Assured, Parkside, Chart Way, Horsham, West Sussex, RH12 1GY </p> <br/>
@@ -136,8 +136,9 @@
                 <div style="height: 560px; overflow: hidden;">
                     <p style="text-align: center; font-size: 16px; font-weight: bold;">Registration No {!currentRecord.Membership_Number__c}</p>
                     <p style="text-align: center; font-size: 14px;">This is to certify that</p>
-                    <div class="s1"><strong>{!currentRecord.Name}</strong></div>
-                    <p style="text-align: center; font-size: 14px;">{!currentRecord.BillingStreet}, {!currentRecord.BillingCity}, {!IF(NOT(ISBLANK(currentRecord.County__c)), currentRecord.County__c & ',', '' )} {!currentRecord.BillingPostalcode}</p>
+                    <div class="s1"><strong>{!currentRecord.Parent.Name}</strong></div><br/>
+                    <div class="s1"><strong>Site:{!currentRecord.Name}</strong></div>
+                    <p style="text-align: center; font-weight: bold;font-size: 15px;">{!currentRecord.BillingStreet}, {!currentRecord.BillingCity}, {!IF(NOT(ISBLANK(currentRecord.County__c)), currentRecord.County__c & ',', '' )} {!currentRecord.BillingPostalcode}</p>
                     <p style="text-align: center; font-size: 14px;">is hereby authorised for a period of one year from the date hereof to use the Trade Mark,
                         an exact copy of which appears at the top of this Certificate, in relation to the following</p>
                     <!-- Units List -->

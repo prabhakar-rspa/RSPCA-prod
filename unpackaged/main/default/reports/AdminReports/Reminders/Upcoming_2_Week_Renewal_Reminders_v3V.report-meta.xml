@@ -48,7 +48,7 @@
             <columnToColumn>false</columnToColumn>
             <isUnlocked>false</isUnlocked>
             <operator>equals</operator>
-            <value>1/2/2024</value>
+            <value>3/2/2024</value>
         </criteriaItems>
         <criteriaItems>
             <column>Account.Active__c</column>
@@ -76,7 +76,7 @@
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>PARENT.NAME</field>
+        <field>Account.Head_Office_Number_of_Parent_Account__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <name>MASTER Upcoming 1 month Renewal Reminder</name>

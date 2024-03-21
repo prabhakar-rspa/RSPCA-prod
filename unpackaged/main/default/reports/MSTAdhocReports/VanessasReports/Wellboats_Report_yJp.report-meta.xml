@@ -7,9 +7,6 @@
         <field>ACCOUNT.NAME</field>
     </columns>
     <columns>
-        <field>Unit__c.Production__c</field>
-    </columns>
-    <columns>
         <field>Unit__c.Animals_List__c</field>
     </columns>
     <columns>
@@ -19,10 +16,16 @@
         <field>Unit__c.Business__c</field>
     </columns>
     <columns>
-        <field>Account.Membership_Expiry_Date__c</field>
+        <field>Unit__c.Production__c</field>
+    </columns>
+    <columns>
+        <field>Unit__c.Vehicle_Type__c</field>
     </columns>
     <columns>
         <field>Unit__c.Description__c</field>
+    </columns>
+    <columns>
+        <field>Account.Membership_Expiry_Date__c</field>
     </columns>
     <columns>
         <field>CUST_NAME</field>

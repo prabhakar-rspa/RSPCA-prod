@@ -16,7 +16,7 @@
         <field>Unit__c.Business__c</field>
     </columns>
     <filter>
-        <booleanFilter>1 AND 2 AND 3 AND (4 OR 5)</booleanFilter>
+        <booleanFilter>1 AND 2 AND 3 AND (4 OR 5) AND 6</booleanFilter>
         <criteriaItems>
             <column>Account.Status__c</column>
             <columnToColumn>false</columnToColumn>
@@ -51,6 +51,13 @@
             <isUnlocked>true</isUnlocked>
             <operator>includes</operator>
             <value>Chickens,Laying Hens,Meat Chicken Chicks,Pullets,Turkeys</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Unit__c.Production__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Producer</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>

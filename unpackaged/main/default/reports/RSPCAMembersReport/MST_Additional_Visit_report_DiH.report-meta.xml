@@ -70,6 +70,20 @@
             <operator>equals</operator>
             <value>Revisit</value>
         </criteriaItems>
+        <criteriaItems>
+            <column>Application__c.Stage__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Complete</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Application__c.Add_Visit_Approved_By_Certifier__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notContain</operator>
+            <value>Diane or Dave</value>
+        </criteriaItems>
         <language>en_US</language>
     </filter>
     <format>Summary</format>

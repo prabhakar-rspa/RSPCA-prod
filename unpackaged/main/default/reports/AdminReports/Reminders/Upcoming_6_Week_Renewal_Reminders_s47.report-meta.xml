@@ -27,20 +27,21 @@
     <columns>
         <field>PARENT.NAME</field>
     </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Account.Renewal_Reminder_Ready__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Account.Create_Renewal_Price_Report__c</field>
+    </columns>
     <filter>
         <criteriaItems>
             <column>Account.X6_Week_Renewal_Scheduled_Date__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>false</isUnlocked>
             <operator>equals</operator>
-            <value>1/1/2024</value>
-        </criteriaItems>
-        <criteriaItems>
-            <column>Account.Six_Week_Renewal_Reminder_Sent__c</column>
-            <columnToColumn>false</columnToColumn>
-            <isUnlocked>false</isUnlocked>
-            <operator>equals</operator>
-            <value></value>
+            <value>3/1/2024</value>
         </criteriaItems>
         <criteriaItems>
             <column>Account.Status__c</column>
@@ -63,13 +64,6 @@
             <operator>equals</operator>
             <value>1</value>
         </criteriaItems>
-        <criteriaItems>
-            <column>Account.Renewal_Reminder_Ready__c</column>
-            <columnToColumn>false</columnToColumn>
-            <isUnlocked>false</isUnlocked>
-            <operator>equals</operator>
-            <value>0</value>
-        </criteriaItems>
         <language>en_US</language>
     </filter>
     <format>Summary</format>
@@ -88,8 +82,8 @@
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>false</showSubTotals>
-    <sortColumn>ACCOUNT.NAME</sortColumn>
-    <sortOrder>Asc</sortOrder>
+    <sortColumn>Account.Renewal_Reminder_Ready__c</sortColumn>
+    <sortOrder>Desc</sortOrder>
     <timeFrameFilter>
         <dateColumn>Account.X6_Week_Renewal_Scheduled_Date__c</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>

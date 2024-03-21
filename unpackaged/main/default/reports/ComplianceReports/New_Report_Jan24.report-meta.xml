@@ -39,6 +39,10 @@
     <columns>
         <field>Account.ApplicationSite__r$Assessment_Checklist__c</field>
     </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Account.ApplicationSite__r$Cancel_Application__c</field>
+    </columns>
     <filter>
         <criteriaItems>
             <column>Account.ApplicationSite__r$Assessment_Date__c</column>

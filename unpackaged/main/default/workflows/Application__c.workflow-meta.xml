@@ -155,6 +155,16 @@
         <reevaluateOnChange>false</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>Renewal_Assessment_Confirmation_Sent_v2</fullName>
+        <field>Assessment_Confirmation_Sent__c</field>
+        <literalValue>1</literalValue>
+        <name>Renewal Assessment Confirmation Sent_v2</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>Renewal_Certificate_Issue_Date</fullName>
         <field>Certificate_Issue_Date__c</field>
         <formula>IF(
@@ -239,6 +249,16 @@
         <field>Assessment_Confirmation_Sent__c</field>
         <literalValue>1</literalValue>
         <name>Update: Assessment Confirmation Sent</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Assessment_Confirmation_Sent_v2</fullName>
+        <field>Assessment_Confirmation_Sent__c</field>
+        <literalValue>1</literalValue>
+        <name>Update: Assessment Confirmation Sent_v2</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>
@@ -563,6 +583,31 @@
             <name>Update_Assessment_Confirmation_Sent</name>
             <type>FieldUpdate</type>
         </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Application__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Applications</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application__c.Stage__c</field>
+            <operation>equals</operation>
+            <value>Compliance</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application__c.Assessment_Confirmation_Sent__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
+        <description>Rule for sending out assessment confirmation to the applicant when the application reaches compliance stage.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>New Application Assessment Confirmation_v2</fullName>
+        <actions>
+            <name>Update_Assessment_Confirmation_Sent_v2</name>
+            <type>FieldUpdate</type>
+        </actions>
         <active>true</active>
         <criteriaItems>
             <field>Application__c.RecordTypeId</field>
@@ -666,6 +711,31 @@
         </actions>
         <actions>
             <name>Update_Assessment_Confirmation_Sent</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Application__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Renewal</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application__c.Renewal_Stage__c</field>
+            <operation>equals</operation>
+            <value>Compliance</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application__c.Assessment_Confirmation_Sent__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
+        <description>Rule for sending out assessment confirmation to the applicant when the application reaches compliance stage.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Renewal Application Assessment Confirmation v2</fullName>
+        <actions>
+            <name>Renewal_Assessment_Confirmation_Sent_v2</name>
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>

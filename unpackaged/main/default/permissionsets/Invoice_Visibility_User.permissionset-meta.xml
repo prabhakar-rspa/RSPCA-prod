@@ -23,6 +23,11 @@
         <enabled>true</enabled>
     </pageAccesses>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Backlog_Amnesty__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Application__c.Custom_Invoice_Message__c</field>
         <readable>true</readable>

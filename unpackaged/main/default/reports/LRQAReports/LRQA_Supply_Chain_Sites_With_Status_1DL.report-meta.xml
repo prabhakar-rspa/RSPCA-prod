@@ -35,6 +35,12 @@
         <field>ADDRESS1_LINE1</field>
     </columns>
     <columns>
+        <field>Account.Region__c</field>
+    </columns>
+    <columns>
+        <field>ADDRESS1_CITY</field>
+    </columns>
+    <columns>
         <field>ADDRESS1_COUNTRY_CODE</field>
     </columns>
     <columns>
@@ -55,9 +61,6 @@
     </columns>
     <columns>
         <field>ADDRESS1_STREET</field>
-    </columns>
-    <columns>
-        <field>ADDRESS1_CITY</field>
     </columns>
     <columns>
         <field>Account.Site_Notes__c</field>

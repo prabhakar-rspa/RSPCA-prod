@@ -49,7 +49,7 @@
         <language>en_US</language>
     </filter>
     <format>Tabular</format>
-    <name>Copy of Assessments without paperwork Em</name>
+    <name>Assessments without paperwork</name>
     <params>
         <name>co</name>
         <value>1</value>

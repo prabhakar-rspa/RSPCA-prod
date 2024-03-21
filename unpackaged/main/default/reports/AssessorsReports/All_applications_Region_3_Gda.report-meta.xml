@@ -16,6 +16,9 @@
         <field>Application__c.Site_Postcode__c</field>
     </columns>
     <columns>
+        <field>Application__c.Assessor__c</field>
+    </columns>
+    <columns>
         <field>Application__c.Previous_Assessment_Date__c</field>
     </columns>
     <columns>
@@ -23,13 +26,10 @@
         <field>CDF1</field>
     </columns>
     <columns>
-        <field>Application__c.Assessment_Deadline__c</field>
-    </columns>
-    <columns>
         <field>Application__c.Assessment_Date__c</field>
     </columns>
     <columns>
-        <field>Application__c.Assessor__c</field>
+        <field>Application__c.Assessment_Deadline__c</field>
     </columns>
     <columns>
         <field>Account.Status__c</field>

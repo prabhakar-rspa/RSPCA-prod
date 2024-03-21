@@ -4,7 +4,7 @@
         <name>Send_Additional_Visit_email_to_users</name>
         <label>Send Additional Visit Complete email to users</label>
         <locationX>523</locationX>
-        <locationY>3239</locationY>
+        <locationY>3539</locationY>
         <actionName>Application__c.Additional_Visit_Completed</actionName>
         <actionType>emailAlert</actionType>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
@@ -19,7 +19,7 @@
         <name>Send_email_to_allocated_assessor</name>
         <label>Send email to allocated assessor</label>
         <locationX>523</locationX>
-        <locationY>2939</locationY>
+        <locationY>3239</locationY>
         <actionName>Application__c.Additional_Visit_Allocation_Status_Accepted</actionName>
         <actionType>emailAlert</actionType>
         <connector>
@@ -84,7 +84,7 @@
         <name>Additional_Visit_Completed</name>
         <label>Additional Visit Completed</label>
         <locationX>655</locationX>
-        <locationY>3131</locationY>
+        <locationY>3431</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Report_added</name>
@@ -110,7 +110,7 @@
         <locationX>655</locationX>
         <locationY>323</locationY>
         <defaultConnector>
-            <targetReference>Stage_moved_to_review</targetReference>
+            <targetReference>Evidence_Not_Required</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -139,7 +139,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Stage_moved_to_review</targetReference>
+                <targetReference>Evidence_Not_Required</targetReference>
             </connector>
             <label>Updated</label>
         </rules>
@@ -148,7 +148,7 @@
         <name>Certifier_Approved</name>
         <label>Certifier approved</label>
         <locationX>655</locationX>
-        <locationY>2423</locationY>
+        <locationY>2723</locationY>
         <defaultConnector>
             <targetReference>Minimumfieldsarepopulated</targetReference>
         </defaultConnector>
@@ -235,12 +235,51 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Evidence_Not_Required</name>
+        <label>Evidence Not Required</label>
+        <locationX>655</locationX>
+        <locationY>1823</locationY>
+        <defaultConnector>
+            <targetReference>Stage_moved_to_review</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Update_Assessor_Approval</name>
+            <conditionLogic>1 AND (2 OR 3)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Evidence_Required__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>No</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Evidence_Required__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Approved_By_Assessor</targetReference>
+            </connector>
+            <label>Update Assessor Approval</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Is_primary_contact_blank_on_site</name>
         <label>Is primary contact blank on site?</label>
         <locationX>380</locationX>
         <locationY>1247</locationY>
         <defaultConnector>
-            <targetReference>Stage_moved_to_review</targetReference>
+            <targetReference>Evidence_Not_Required</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -263,7 +302,7 @@
         <name>Minimumfieldsarepopulated</name>
         <label>Minimum fields are populated</label>
         <locationX>655</locationX>
-        <locationY>2723</locationY>
+        <locationY>3023</locationY>
         <defaultConnector>
             <targetReference>Additional_Visit_Completed</targetReference>
         </defaultConnector>
@@ -331,7 +370,7 @@
         <name>Office_approved</name>
         <label>Office approved</label>
         <locationX>655</locationX>
-        <locationY>2123</locationY>
+        <locationY>2423</locationY>
         <defaultConnector>
             <targetReference>Certifier_Approved</targetReference>
         </defaultConnector>
@@ -357,7 +396,7 @@
         <name>Stage_moved_to_review</name>
         <label>Stage moved to review</label>
         <locationX>655</locationX>
-        <locationY>1823</locationY>
+        <locationY>2123</locationY>
         <defaultConnector>
             <targetReference>Office_approved</targetReference>
         </defaultConnector>
@@ -466,10 +505,38 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordUpdates>
+        <name>Approved_By_Assessor</name>
+        <label>Approved By Assessor</label>
+        <locationX>523</locationX>
+        <locationY>1931</locationY>
+        <connector>
+            <targetReference>Stage_moved_to_review</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Add_Visit_Approval_Date_inspector__c</field>
+            <value>
+                <elementReference>TodaysDate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Add_Visit_approved_by_inspector__c</field>
+            <value>
+                <elementReference>$User.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Evidence__c</field>
+            <value>
+                <stringValue>None Required</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
         <name>Pending_approvals</name>
         <label>Pending approvals</label>
         <locationX>523</locationX>
-        <locationY>1931</locationY>
+        <locationY>2231</locationY>
         <connector>
             <targetReference>Office_approved</targetReference>
         </connector>
@@ -491,7 +558,7 @@
         <name>Update_Allocation_Status_to_Accepted</name>
         <label>Update Allocation Status to Accepted and Update Stage</label>
         <locationX>523</locationX>
-        <locationY>2831</locationY>
+        <locationY>3131</locationY>
         <connector>
             <targetReference>Send_email_to_allocated_assessor</targetReference>
         </connector>
@@ -507,7 +574,7 @@
         <name>Update_name_and_date</name>
         <label>Update name and date</label>
         <locationX>523</locationX>
-        <locationY>2231</locationY>
+        <locationY>2531</locationY>
         <connector>
             <targetReference>Certifier_Approved</targetReference>
         </connector>
@@ -529,7 +596,7 @@
         <name>Update_name_and_date_0</name>
         <label>Update name and date</label>
         <locationX>523</locationX>
-        <locationY>2531</locationY>
+        <locationY>2831</locationY>
         <connector>
             <targetReference>Minimumfieldsarepopulated</targetReference>
         </connector>
@@ -553,7 +620,7 @@
         <locationX>314</locationX>
         <locationY>1463</locationY>
         <connector>
-            <targetReference>Stage_moved_to_review</targetReference>
+            <targetReference>Evidence_Not_Required</targetReference>
         </connector>
         <inputAssignments>
             <field>Contact__c</field>
@@ -569,7 +636,7 @@
         <locationX>50</locationX>
         <locationY>1463</locationY>
         <connector>
-            <targetReference>Stage_moved_to_review</targetReference>
+            <targetReference>Evidence_Not_Required</targetReference>
         </connector>
         <inputAssignments>
             <field>Contact__c</field>

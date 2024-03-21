@@ -4,6 +4,9 @@
         <field>Application__c$Name</field>
     </columns>
     <columns>
+        <field>Application__c$Membership_Number__c</field>
+    </columns>
+    <columns>
         <field>Application__c.Assessments__r$Name</field>
     </columns>
     <columns>
@@ -20,16 +23,10 @@
         <field>Application__c.Assessments__r$Assessment_Completion__c</field>
     </columns>
     <columns>
-        <field>Application__c$Membership_Number__c</field>
-    </columns>
-    <columns>
         <field>Application__c$Site__c</field>
     </columns>
     <columns>
         <field>Application__c$Assessor_Full_Name__c</field>
-    </columns>
-    <columns>
-        <field>Application__c.Assessments__r$Id</field>
     </columns>
     <crossFilters>
         <operation>with</operation>
@@ -38,21 +35,7 @@
         <relatedTableJoinColumn>Assessment_Checklist__c</relatedTableJoinColumn>
     </crossFilters>
     <filter>
-        <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
-        <criteriaItems>
-            <column>Application__c$Assessor__c</column>
-            <columnToColumn>false</columnToColumn>
-            <isUnlocked>true</isUnlocked>
-            <operator>notEqual</operator>
-            <value>Heather Vivash</value>
-        </criteriaItems>
-        <criteriaItems>
-            <column>Application__c$Assessment_Date__c</column>
-            <columnToColumn>false</columnToColumn>
-            <isUnlocked>true</isUnlocked>
-            <operator>lessOrEqual</operator>
-            <value>1/31/2023</value>
-        </criteriaItems>
+        <booleanFilter>1 AND 2 AND (3 OR 4) AND 5 AND 6</booleanFilter>
         <criteriaItems>
             <column>Application__c.Assessments__r$Assessment_Completion__c</column>
             <columnToColumn>false</columnToColumn>
@@ -67,6 +50,34 @@
             <operator>greaterOrEqual</operator>
             <value>10/3/2022</value>
         </criteriaItems>
+        <criteriaItems>
+            <column>Application__c.Assessments__r$Animals__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Lumpfish,Salmon,Trout,Wrasse</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Application__c.Assessments__r$Animals_List__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>includes</operator>
+            <value>Lumpfish,Salmon,Trout,Wrasse</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Application__c$Assessment_Date__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>lessOrEqual</operator>
+            <value>TODAY</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Application__c$Cancel_Application__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>0</value>
+        </criteriaItems>
         <language>en_US</language>
     </filter>
     <format>Summary</format>
@@ -74,7 +85,7 @@
         <field>Application__c$Assessment_Date__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>Checklists to import</name>
+    <name>Checklists to import (aquaculture)</name>
     <params>
         <name>co</name>
         <value>1</value>
@@ -83,7 +94,9 @@
     <scope>organization</scope>
     <showDetails>true</showDetails>
     <showGrandTotal>false</showGrandTotal>
-    <showSubTotals>false</showSubTotals>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>Application__c$Membership_Number__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
         <dateColumn>Application__c$CreatedDate</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>

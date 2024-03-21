@@ -5,9 +5,9 @@
         <backgroundColor2>#FFFFFF</backgroundColor2>
         <backgroundFadeDir>Diagonal</backgroundFadeDir>
         <chartSummaries>
-            <aggregate>Unique</aggregate>
+            <aggregate>Sum</aggregate>
             <axisBinding>y</axisBinding>
-            <column>Account.Membership_Number__c</column>
+            <column>Unit__c.Number_of_Animals__c</column>
         </chartSummaries>
         <chartType>HorizontalBarStacked</chartType>
         <enableHoverLabels>false</enableHoverLabels>
@@ -27,10 +27,6 @@
         <titleColor>#000000</titleColor>
         <titleSize>18</titleSize>
     </chart>
-    <columns>
-        <aggregateTypes>Unique</aggregateTypes>
-        <field>Account.Membership_Number__c</field>
-    </columns>
     <columns>
         <field>ACCOUNT.NAME</field>
     </columns>
@@ -149,6 +145,11 @@
         <field>Account.Previous_Assessor__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account.Membership_Number__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
     <name>Copy of Region 3 poultry units  laying h</name>
     <params>
         <name>co</name>
@@ -156,11 +157,9 @@
     </params>
     <reportType>AccountCustomEntity$Unit__c</reportType>
     <scope>organization</scope>
-    <showDetails>true</showDetails>
+    <showDetails>false</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>false</showSubTotals>
-    <sortColumn>Account.Membership_Number__c</sortColumn>
-    <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
         <dateColumn>DUE_DATE</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>

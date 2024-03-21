@@ -25,6 +25,11 @@
         <enabled>true</enabled>
     </pageAccesses>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Backlog_Amnesty__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Application_Line_Item__c.List_Price__c</field>
         <readable>true</readable>

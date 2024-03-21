@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Poultry_hatcheries</fullName>
+    <booleanFilter>1 AND 2 AND (3 OR 4)</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Description__c</columns>
+    <columns>Account__c</columns>
+    <columns>Business__c</columns>
+    <columns>Animals__c</columns>
+    <columns>Animals_List__c</columns>
+    <columns>Status__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Business__c</field>
+        <operation>equals</operation>
+        <value>Hatchery</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Applying,Certified,Inactive,Lapsed</value>
+    </filters>
+    <filters>
+        <field>Animals__c</field>
+        <operation>equals</operation>
+        <value>Ducklings,Laying Hen Chicks,Meat Chicken Chicks,Turkey Poults</value>
+    </filters>
+    <filters>
+        <field>Animals_List__c</field>
+        <operation>includes</operation>
+        <value>Ducklings,Laying Hen Chicks,Meat Chicken Chicks,Turkey Poults</value>
+    </filters>
+    <label>Poultry hatcheries</label>
+</ListView>

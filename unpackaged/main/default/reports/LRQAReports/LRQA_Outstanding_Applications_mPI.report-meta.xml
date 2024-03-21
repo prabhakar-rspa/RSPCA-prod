@@ -4,9 +4,6 @@
         <field>Account.Membership_Number__c</field>
     </columns>
     <columns>
-        <field>Application__c.Assessment_Deadline__c</field>
-    </columns>
-    <columns>
         <field>ACCOUNT.NAME</field>
     </columns>
     <columns>
@@ -16,24 +13,27 @@
         <field>CUST_NAME</field>
     </columns>
     <columns>
-        <field>CUST_RECORDTYPE</field>
+        <field>Account.Status__c</field>
     </columns>
     <columns>
         <field>Application__c.Assessor__c</field>
     </columns>
     <columns>
+        <field>Account.Previous_Assessment_Date__c</field>
+    </columns>
+    <columns>
         <field>Application__c.Assessment_Date__c</field>
     </columns>
     <columns>
-        <aggregateTypes>Sum</aggregateTypes>
-        <field>Application__c.Final_Evidence_Email_Sent__c</field>
-    </columns>
-    <columns>
-        <field>Account.Previous_Assessment_Date__c</field>
+        <field>Application__c.Assessment_Deadline__c</field>
     </columns>
     <columns>
         <aggregateTypes>Sum</aggregateTypes>
         <field>CDF1</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Application__c.Final_Evidence_Email_Sent__c</field>
     </columns>
     <columns>
         <field>Application__c.Site_Postcode__c</field>
@@ -98,6 +98,13 @@
             <operator>contains</operator>
             <value>Lloyds</value>
         </criteriaItems>
+        <criteriaItems>
+            <column>Application__c.Cancel_Application__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>0</value>
+        </criteriaItems>
         <language>en_US</language>
     </filter>
     <format>Tabular</format>
@@ -111,7 +118,7 @@
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
-    <sortColumn>Account.Membership_Number__c</sortColumn>
+    <sortColumn>Application__c.Assessment_Deadline__c</sortColumn>
     <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
         <dateColumn>DUE_DATE</dateColumn>

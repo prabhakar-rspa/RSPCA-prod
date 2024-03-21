@@ -55,6 +55,7 @@
         <field>Unit__c.Vehicle_Type__c</field>
     </columns>
     <columns>
+        <aggregateTypes>Unique</aggregateTypes>
         <field>Unit__c.Animals__c</field>
     </columns>
     <columns>

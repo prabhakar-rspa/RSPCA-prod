@@ -78,7 +78,7 @@
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
-            <value>Salmon,Trout,Wrasse</value>
+            <value>Salmon,Wrasse</value>
         </criteriaItems>
         <criteriaItems>
             <column>Unit__c.Business__c</column>

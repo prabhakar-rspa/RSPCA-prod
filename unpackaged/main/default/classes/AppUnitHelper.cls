@@ -54,6 +54,7 @@ public virtual class AppUnitHelper {
     // get price for a product from pricebook
     public static Decimal getPriceForProduct(String productId){
         Decimal price = 0;
+        System.debug('57 ==== allPricebookEntires =='+allPricebookEntires);
         for(PricebookEntry pbe : allPricebookEntires){
             if(pbe.Product2Id == productId){
                 price = pbe.UnitPrice;
@@ -154,11 +155,15 @@ public virtual class AppUnitHelper {
                         
                         for(String animal:selectedAnimalsList){
                             system.debug('animal:::'+animal);
-                            
                             if(prductAnimalsList.indexOf(animal) != -1){
                                 animalContains = true;
+                                system.debug('animal condition true:::');
                             }
                         }
+                        system.debug(p.Business__c+''+business);
+                        system.debug(p.Production__c+''+production);
+                        system.debug('animalContains'+animalContains);
+                        system.debug(p.Vehicle_Type__c+''+vehicleType);
                         if(
                             p.Business__c == business && 
                             p.Production__c.contains(production) && 

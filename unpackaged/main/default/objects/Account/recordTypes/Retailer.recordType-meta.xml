@@ -129,6 +129,17 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>Backlog_Amnesty__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Cancellation_Reason__c</picklist>
         <values>
             <fullName>As requested by group</fullName>

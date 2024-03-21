@@ -63,7 +63,7 @@
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
-            <value>12/15/2023</value>
+            <value>1/2/2024</value>
         </criteriaItems>
         <criteriaItems>
             <column>Account.ApplicationSite__r$RecordType</column>
@@ -91,7 +91,7 @@
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
-            <value>12/15/2023</value>
+            <value>1/2/2024</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>

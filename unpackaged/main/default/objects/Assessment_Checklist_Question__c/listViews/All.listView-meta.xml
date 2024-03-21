@@ -11,8 +11,12 @@
     <filterScope>Everything</filterScope>
     <filters>
         <field>Standard__c</field>
-        <operation>equals</operation>
-        <value>V1.9</value>
+        <operation>startsWith</operation>
+        <value>T</value>
+    </filters>
+    <filters>
+        <field>Compliant__c</field>
+        <operation>notEqual</operation>
     </filters>
     <label>All</label>
 </ListView>

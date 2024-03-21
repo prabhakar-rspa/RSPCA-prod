@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
     <columns>
+        <field>Account.Membership_Number__c</field>
+    </columns>
+    <columns>
         <field>Application__c.Application_Type__c</field>
     </columns>
     <columns>
         <field>CUST_NAME</field>
-    </columns>
-    <columns>
-        <field>CUST_RECORDTYPE</field>
     </columns>
     <columns>
         <field>Application__c.Assessment_Deadline__c</field>
@@ -71,13 +71,6 @@
             <value>1</value>
         </criteriaItems>
         <criteriaItems>
-            <column>Application__c.Assessor__c</column>
-            <columnToColumn>false</columnToColumn>
-            <isUnlocked>true</isUnlocked>
-            <operator>startsWith</operator>
-            <value>caren darby</value>
-        </criteriaItems>
-        <criteriaItems>
             <column>Application__c.Assessment_Report__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
@@ -98,6 +91,13 @@
             <operator>startsWith</operator>
             <value>2709</value>
         </criteriaItems>
+        <criteriaItems>
+            <column>Application__c.Assessor__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Janette Queen</value>
+        </criteriaItems>
         <language>en_US</language>
     </filter>
     <format>Tabular</format>
@@ -111,7 +111,7 @@
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
-    <sortColumn>CDF1</sortColumn>
+    <sortColumn>Application__c.Assessment_Deadline__c</sortColumn>
     <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
         <dateColumn>DUE_DATE</dateColumn>

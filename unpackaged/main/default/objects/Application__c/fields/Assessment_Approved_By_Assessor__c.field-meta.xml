@@ -4,7 +4,7 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
     <inlineHelpText>Technical review - are you satisfied you have completed and submitted all applicable documentation (see documentation below)?</inlineHelpText>
-    <label>Assessment Approved By (Assessor)</label>
+    <label>Assessment Submitted By (Assessor)</label>
     <referenceTo>User</referenceTo>
     <relationshipName>Applications4</relationshipName>
     <required>false</required>

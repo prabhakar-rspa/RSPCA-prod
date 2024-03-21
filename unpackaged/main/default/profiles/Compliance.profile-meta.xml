@@ -886,6 +886,11 @@
         <name>CMTD__EnhancedRelatedList__mdt</name>
     </customMetadataTypeAccesses>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.Backlog_Amnesty__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Application__c.Accounts_Email__c</field>
         <readable>true</readable>
@@ -896,12 +901,12 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Application__c.Add_Visit_Approval_Date_inspector__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Application__c.Add_Visit_Approved_By_Certifier__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -911,7 +916,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Application__c.Add_Visit_approved_by_inspector__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1298,6 +1303,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Application__c.Evidence_Reminder_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Application__c.Evidence_Required__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -8956,6 +8966,10 @@
     <tabVisibilities>
         <tab>standard-Contract</tab>
         <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>standard-LearningItem</tab>
+        <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>standard-OperatingHours</tab>

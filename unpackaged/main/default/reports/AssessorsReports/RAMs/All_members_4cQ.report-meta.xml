@@ -36,14 +36,14 @@
     <columns>
         <field>Account.Status__c</field>
     </columns>
-    <description>All members including Status of MEMBER, LAPSED and ENQUIRY (and including Supply Chain members)</description>
+    <description>All members including Status of MEMBER, LAPSED, PRE-AUDIT and ENQUIRY (and including Supply Chain members)</description>
     <filter>
         <criteriaItems>
             <column>Account.Status__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
-            <value>ENQUIRY,LAPSED,MEMBER</value>
+            <value>ENQUIRY,LAPSED,MEMBER,PRE-AUDIT</value>
         </criteriaItems>
         <criteriaItems>
             <column>RECORDTYPE</column>

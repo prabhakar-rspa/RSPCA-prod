@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validate_Evidence_Required</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND( 
+OR(RecordType.DeveloperName = &#39;Applications&#39;, RecordType.DeveloperName =&#39;Renewal&#39;),
+OR(Calculated_Stage__c = &#39;Review&#39;, Calculated_Stage__c = &#39;Compliance&#39; ),
+ISBLANK(TEXT(Evidence_Required__c))
+)</errorConditionFormula>
+    <errorDisplayField>Evidence_Required__c</errorDisplayField>
+    <errorMessage>Evidence required must be populated before moving the stage to &#39;Review&#39;  or &#39;Compliance&#39;</errorMessage>
+</ValidationRule>

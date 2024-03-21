@@ -1,6 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>57.0</apiVersion>
+    <assignments>
+        <name>Complete_Assessor_Task</name>
+        <label>Complete Assessor Task</label>
+        <locationX>1238</locationX>
+        <locationY>1190</locationY>
+        <assignmentItems>
+            <assignToReference>Get_Assessor_Task.Status</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Completed</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Assessor_Task</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Complete_Certifier_Task</name>
+        <label>Complete Certifier Task</label>
+        <locationX>2734</locationX>
+        <locationY>1754</locationY>
+        <assignmentItems>
+            <assignToReference>Get_Certifier_Task.Status</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Completed</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Certifier_Task</targetReference>
+        </connector>
+    </assignments>
     <choices>
         <name>Assessor</name>
         <choiceText>Assessor</choiceText>
@@ -34,10 +66,60 @@
         </value>
     </choices>
     <decisions>
+        <name>Certifier_Task_not_completed</name>
+        <label>Certifier Task not completed</label>
+        <locationX>2998</locationX>
+        <locationY>1646</locationY>
+        <defaultConnector>
+            <targetReference>Create_Task_for_MST</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Not_Completed_Certifier</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Certifier_Task</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Complete_Certifier_Task</targetReference>
+            </connector>
+            <label>Not Completed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Evidence_Not_Required</name>
+        <label>Evidence Not Required</label>
+        <locationX>2140</locationX>
+        <locationY>458</locationY>
+        <defaultConnector>
+            <targetReference>Screen_3_User_Role</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Not_Required</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>recordId.Evidence_Required__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>No</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>UserRole_Evidence_Not_Required</targetReference>
+            </connector>
+            <label>Not Required</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Has_Assessor_already_signed_it</name>
         <label>Has Assessor already signed it?</label>
         <locationX>50</locationX>
-        <locationY>878</locationY>
+        <locationY>974</locationY>
         <defaultConnector>
             <targetReference>Create_Task_for_Assessor</targetReference>
         </defaultConnector>
@@ -53,7 +135,7 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>recordId.Assessment_Approved_By_Assessor__c</leftValueReference>
+                <leftValueReference>recordId.Evidence_Approved_By_Assessor_Date__c</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
@@ -69,8 +151,8 @@
     <decisions>
         <name>Is_RT_Renewal</name>
         <label>Is RT Renewal?</label>
-        <locationX>842</locationX>
-        <locationY>878</locationY>
+        <locationX>2998</locationX>
+        <locationY>974</locationY>
         <defaultConnector>
             <targetReference>Copy_1_of_Renewal_Certifier_Approval_Stamps</targetReference>
         </defaultConnector>
@@ -92,19 +174,51 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Task_not_completed</name>
+        <label>Task not completed</label>
+        <locationX>1502</locationX>
+        <locationY>1082</locationY>
+        <defaultConnector>
+            <targetReference>Create_Task_for_Certifier</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Not_Completed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Assessor_Task</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Complete_Assessor_Task</targetReference>
+            </connector>
+            <label>Not Completed</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Who_Approved_Record</name>
         <label>Who Approved Record?</label>
-        <locationX>600</locationX>
-        <locationY>638</locationY>
+        <locationX>2140</locationX>
+        <locationY>758</locationY>
         <defaultConnector>
             <targetReference>CompleteApproval</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>OfficeSelected</name>
-            <conditionLogic>and</conditionLogic>
+            <conditionLogic>or</conditionLogic>
             <conditions>
                 <leftValueReference>I_am_a</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>Office</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>I_am_a1</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <elementReference>Office</elementReference>
@@ -117,9 +231,16 @@
         </rules>
         <rules>
             <name>AssessorSelected</name>
-            <conditionLogic>and</conditionLogic>
+            <conditionLogic>or</conditionLogic>
             <conditions>
                 <leftValueReference>I_am_a</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>Assessor</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>I_am_a1</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <elementReference>Assessor</elementReference>
@@ -132,9 +253,16 @@
         </rules>
         <rules>
             <name>CertifierSelected</name>
-            <conditionLogic>and</conditionLogic>
+            <conditionLogic>or</conditionLogic>
             <conditions>
                 <leftValueReference>I_am_a</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>Certifier</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>I_am_a1</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <elementReference>Certifier</elementReference>
@@ -146,6 +274,7 @@
             <label>Certifier</label>
         </rules>
     </decisions>
+    <environments>Default</environments>
     <formulas>
         <name>Certifier_User_id</name>
         <dataType>String</dataType>
@@ -181,10 +310,14 @@
         <name>Create_Task_for_Assessor</name>
         <label>Create Task for Assessor</label>
         <locationX>182</locationX>
-        <locationY>998</locationY>
+        <locationY>1082</locationY>
         <connector>
             <targetReference>Copy_1_of_Update_Approval_Stage_Picklist</targetReference>
         </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Error_Message</targetReference>
+        </faultConnector>
         <inputAssignments>
             <field>ActivityDate</field>
             <value>
@@ -227,11 +360,15 @@
     <recordCreates>
         <name>Create_Task_for_Certifier</name>
         <label>Create Task for Certifier</label>
-        <locationX>446</locationX>
-        <locationY>878</locationY>
+        <locationX>1502</locationX>
+        <locationY>1538</locationY>
         <connector>
             <targetReference>Update_Approval_Stage_Picklist</targetReference>
         </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Error_Message</targetReference>
+        </faultConnector>
         <inputAssignments>
             <field>ActivityDate</field>
             <value>
@@ -274,11 +411,15 @@
     <recordCreates>
         <name>Create_Task_for_MST</name>
         <label>Create Task for MST</label>
-        <locationX>842</locationX>
-        <locationY>1454</locationY>
+        <locationX>2998</locationX>
+        <locationY>2102</locationY>
         <connector>
             <targetReference>CompleteApproval</targetReference>
         </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Error_Message</targetReference>
+        </faultConnector>
         <inputAssignments>
             <field>ActivityDate</field>
             <value>
@@ -319,10 +460,87 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <recordLookups>
+        <name>Get_Assessor_Task</name>
+        <label>Get Assessor Task</label>
+        <locationX>1502</locationX>
+        <locationY>974</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Task_not_completed</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>WhatId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Status</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Completed</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Subject</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>AssessorTaskSubject</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Task</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Certifier_Task</name>
+        <label>Get Certifier Task</label>
+        <locationX>2998</locationX>
+        <locationY>1538</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Certifier_Task_not_completed</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>OwnerId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Certifier_User_id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>WhatId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Status</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Completed</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Subject</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>CertifierTaskSubject</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Task</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
         <name>Get_Certifier_User</name>
         <label>Get Certifier User</label>
-        <locationX>600</locationX>
-        <locationY>158</locationY>
+        <locationX>2140</locationX>
+        <locationY>134</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>ApproveButton</targetReference>
@@ -332,7 +550,7 @@
             <field>Alias</field>
             <operator>EqualTo</operator>
             <value>
-                <stringValue>easla</stringValue>
+                <stringValue>ddalt</stringValue>
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
@@ -342,11 +560,15 @@
     <recordUpdates>
         <name>Assessor_Approval_Stamps</name>
         <label>Assessor Approval Stamps</label>
-        <locationX>446</locationX>
-        <locationY>758</locationY>
+        <locationX>1502</locationX>
+        <locationY>866</locationY>
         <connector>
-            <targetReference>Create_Task_for_Certifier</targetReference>
+            <targetReference>Get_Assessor_Task</targetReference>
         </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Error_Message</targetReference>
+        </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -356,9 +578,21 @@
             </value>
         </filters>
         <inputAssignments>
+            <field>Assessment_Approved_By_Assessor_Date__c</field>
+            <value>
+                <elementReference>TodaysDate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>Assessment_Approved_By_Assessor__c</field>
             <value>
                 <elementReference>$User.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Evidence_Approved_By_Assessor_Date__c</field>
+            <value>
+                <elementReference>TodaysDate</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -372,11 +606,15 @@
     <recordUpdates>
         <name>Certifier_Approval_Stamps</name>
         <label>Certifier Approval Stamps</label>
-        <locationX>842</locationX>
-        <locationY>758</locationY>
+        <locationX>2998</locationX>
+        <locationY>866</locationY>
         <connector>
             <targetReference>Is_RT_Renewal</targetReference>
         </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Error_Message</targetReference>
+        </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -386,15 +624,33 @@
             </value>
         </filters>
         <inputAssignments>
+            <field>Application_Approved_By_Certifier_Date__c</field>
+            <value>
+                <elementReference>TodaysDate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>Application_Approved_By_Certifier__c</field>
             <value>
                 <elementReference>$User.Id</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>Assessment_Approved_By_Certifier_Date__c</field>
+            <value>
+                <elementReference>TodaysDate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>Assessment_Approved_By_Certifier__c</field>
             <value>
                 <elementReference>$User.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Evidence_Approved_By_Certifier_Date__c</field>
+            <value>
+                <elementReference>TodaysDate</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -408,11 +664,15 @@
     <recordUpdates>
         <name>Copy_1_of_Renewal_Certifier_Approval_Stamps</name>
         <label>Copy 1 of Renewal Certifier Approval Stamps</label>
-        <locationX>842</locationX>
-        <locationY>1214</locationY>
+        <locationX>2998</locationX>
+        <locationY>1322</locationY>
         <connector>
             <targetReference>Update_Approval_Stage_Picklist_Approved</targetReference>
         </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Error_Message</targetReference>
+        </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -445,10 +705,14 @@
         <name>Copy_1_of_Update_Approval_Stage_Picklist</name>
         <label>Update Approval Stage Picklist (Pending Assessor Approval)</label>
         <locationX>182</locationX>
-        <locationY>1118</locationY>
+        <locationY>1190</locationY>
         <connector>
             <targetReference>CompleteApproval</targetReference>
         </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Error_Message</targetReference>
+        </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -469,10 +733,13 @@
         <name>Office_Approval_Stamps</name>
         <label>Office Approval Stamps</label>
         <locationX>50</locationX>
-        <locationY>758</locationY>
+        <locationY>866</locationY>
         <connector>
             <targetReference>Has_Assessor_already_signed_it</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Error_Message</targetReference>
+        </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -482,15 +749,33 @@
             </value>
         </filters>
         <inputAssignments>
+            <field>Application_Approved_By_Office_Date__c</field>
+            <value>
+                <elementReference>TodaysDate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>Application_Approved_By_Office__c</field>
             <value>
                 <elementReference>$User.Id</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>Assessment_Approved_By_Office_Date__c</field>
+            <value>
+                <elementReference>TodaysDate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>Assessment_Approved_By_Office__c</field>
             <value>
                 <elementReference>$User.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Evidence_Approved_By_Office_Date__c</field>
+            <value>
+                <elementReference>TodaysDate</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -504,11 +789,15 @@
     <recordUpdates>
         <name>Renewal_Certifier_Approval_Stamps</name>
         <label>Renewal Certifier Approval Stamps</label>
-        <locationX>710</locationX>
-        <locationY>998</locationY>
+        <locationX>2734</locationX>
+        <locationY>1082</locationY>
         <connector>
             <targetReference>Copy_1_of_Renewal_Certifier_Approval_Stamps</targetReference>
         </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Error_Message</targetReference>
+        </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -540,11 +829,15 @@
     <recordUpdates>
         <name>Update_Approval_Stage_Picklist</name>
         <label>Update Approval Stage Picklist (Pending Certifier Approval)</label>
-        <locationX>446</locationX>
-        <locationY>998</locationY>
+        <locationX>1502</locationX>
+        <locationY>1646</locationY>
         <connector>
             <targetReference>CompleteApproval</targetReference>
         </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Error_Message</targetReference>
+        </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -564,10 +857,10 @@
     <recordUpdates>
         <name>Update_Approval_Stage_Picklist_Approved</name>
         <label>Update Approval Stage Picklist (Approved)</label>
-        <locationX>842</locationX>
-        <locationY>1334</locationY>
+        <locationX>2998</locationX>
+        <locationY>1430</locationY>
         <connector>
-            <targetReference>Create_Task_for_MST</targetReference>
+            <targetReference>Get_Certifier_Task</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -585,12 +878,40 @@
         </inputAssignments>
         <object>Application__c</object>
     </recordUpdates>
+    <recordUpdates>
+        <name>Update_Assessor_Task</name>
+        <label>Update Assessor Task</label>
+        <locationX>1238</locationX>
+        <locationY>1298</locationY>
+        <connector>
+            <targetReference>Create_Task_for_Certifier</targetReference>
+        </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Error_Message</targetReference>
+        </faultConnector>
+        <inputReference>Get_Assessor_Task</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Certifier_Task</name>
+        <label>Update Certifier Task</label>
+        <locationX>2734</locationX>
+        <locationY>1862</locationY>
+        <connector>
+            <targetReference>Create_Task_for_MST</targetReference>
+        </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Error_Message</targetReference>
+        </faultConnector>
+        <inputReference>Get_Certifier_Task</inputReference>
+    </recordUpdates>
     <runInMode>SystemModeWithoutSharing</runInMode>
     <screens>
         <name>ApproveButton</name>
         <label>Screen 1 - Approval Button</label>
-        <locationX>600</locationX>
-        <locationY>278</locationY>
+        <locationX>2140</locationX>
+        <locationY>242</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -609,8 +930,8 @@
     <screens>
         <name>CompleteApproval</name>
         <label>ApprovalComplete</label>
-        <locationX>600</locationX>
-        <locationY>1670</locationY>
+        <locationX>2140</locationX>
+        <locationY>2342</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -629,15 +950,31 @@
         <showHeader>false</showHeader>
     </screens>
     <screens>
+        <name>Error_Message</name>
+        <label>Error_Message</label>
+        <locationX>974</locationX>
+        <locationY>974</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Message</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(228, 10, 10);&quot;&gt;{!$Flow.FaultMessage}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>false</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
         <name>Screen_1</name>
         <label>Screen 2 - All Documentation</label>
-        <locationX>600</locationX>
-        <locationY>398</locationY>
+        <locationX>2140</locationX>
+        <locationY>350</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>UserType</targetReference>
+            <targetReference>Evidence_Not_Required</targetReference>
         </connector>
         <fields>
             <name>DocumentationLinks</name>
@@ -871,10 +1208,10 @@
         <showHeader>false</showHeader>
     </screens>
     <screens>
-        <name>UserType</name>
+        <name>Screen_3_User_Role</name>
         <label>Screen 3 - User Role</label>
-        <locationX>600</locationX>
-        <locationY>518</locationY>
+        <locationX>2272</locationX>
+        <locationY>566</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -882,7 +1219,7 @@
             <targetReference>Who_Approved_Record</targetReference>
         </connector>
         <fields>
-            <name>I_am_a</name>
+            <name>I_am_a1</name>
             <choiceReferences>Office</choiceReferences>
             <choiceReferences>Assessor</choiceReferences>
             <choiceReferences>Certifier</choiceReferences>
@@ -895,18 +1232,42 @@
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
+    <screens>
+        <name>UserRole_Evidence_Not_Required</name>
+        <label>Screen 3 - User Role</label>
+        <locationX>2008</locationX>
+        <locationY>566</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Who_Approved_Record</targetReference>
+        </connector>
+        <fields>
+            <name>I_am_a</name>
+            <choiceReferences>Office</choiceReferences>
+            <choiceReferences>Certifier</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>My Role</fieldText>
+            <fieldType>RadioButtons</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <nextOrFinishButtonLabel>Approve Application</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
     <start>
-        <locationX>474</locationX>
+        <locationX>2014</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Get_Certifier_User</targetReference>
         </connector>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
     <textTemplates>
         <name>AssessorTaskDescription</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>{!recordId.Assessor__r.FirstName}, the Application {!recordId.Name} has been approved by Office. You are now required to conduct and sign off the technical review. Thank you.
+        <text>{!recordId.Application_Type__c} Application {!recordId.Name} has been approved by Office user {!$User.FirstName} {!$User.LastName} and is now ready for your approval. Thank you.
 
 Date of Assessment: {!recordId.Assessment_Date__c}
 Name of Site: {!recordId.Site_Name__c}
@@ -915,12 +1276,12 @@ Membership Number: {!recordId.Membership_Number__c}</text>
     <textTemplates>
         <name>AssessorTaskSubject</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>Assessor Approval Required: Application {!recordId.Name}</text>
+        <text>Assessor Approval Required: {!recordId.Application_Type__c} Application {!recordId.Name}</text>
     </textTemplates>
     <textTemplates>
         <name>CertifierTaskDescription</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>The Application {!recordId.Name} has been approved by the Assessor {!recordId.Assessor__r.FirstName} {!recordId.Assessor__r.LastName} and is now ready for your approval. Thank you.
+        <text>{!recordId.Application_Type__c} Application {!recordId.Name} has been approved by the Assessor {!recordId.Assessor__r.FirstName} {!recordId.Assessor__r.LastName} and is now ready for your approval. Thank you.
 
 Date of Assessment: {!recordId.Assessment_Date__c}
 Name of Site: {!recordId.Site_Name__c}
@@ -929,12 +1290,12 @@ Membership Number: {!recordId.Membership_Number__c}</text>
     <textTemplates>
         <name>CertifierTaskSubject</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>Certifier Approval Required: Application {!recordId.Name}</text>
+        <text>Certifier Approval Required: {!recordId.Application_Type__c} Application {!recordId.Name}</text>
     </textTemplates>
     <textTemplates>
         <name>MSTTaskDescription</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>The Application {!recordId.Name} has been approved by the Certifier {!recordId.Add_Visit_Approved_By_Certifier__r.FirstName} {!recordId.Add_Visit_Approved_By_Certifier__r.LastName} and is now to be marked as Complete.
+        <text>{!recordId.Application_Type__c} Application {!recordId.Name} has been approved by the Certifier {!$User.FirstName} {!$User.LastName} and is now ready to be marked as Complete.
 
 Date of Assessment: {!recordId.Assessment_Date__c}
 Name of Site: {!recordId.Site_Name__c}
@@ -943,7 +1304,7 @@ Membership Number: {!recordId.Membership_Number__c}</text>
     <textTemplates>
         <name>MSTTaskSubject</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>Office Action Required: Application {!recordId.Name}</text>
+        <text>Office Action Required: {!recordId.Application_Type__c} Application {!recordId.Name}</text>
     </textTemplates>
     <variables>
         <description>Record ID of the record that triggers this flow</description>

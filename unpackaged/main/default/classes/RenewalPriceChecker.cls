@@ -12,7 +12,7 @@ public class RenewalPriceChecker extends AppUnitHelper{
     public void getRenewalPriceForUnits(List<Unit__c> unitsList){
 
         List<Unit__c> certifiedUnits = filterByCertifiedUnits(unitsList);
-        
+        System.debug('===15=== unitsList =='+unitsList);
 
         if(!certifiedUnits.isEmpty()){
             getAllSiteUnits(getSiteIdsforUnits(certifiedUnits));
@@ -96,6 +96,7 @@ public class RenewalPriceChecker extends AppUnitHelper{
                 }
                 //find product with matching fields
                 Product2 unitProduct = AppUnitHelper.getProduct(u.Business__c, u.Animals__c, u.Production__c, vehicleType,u.Animals_List__c);
+                System.debug('===99== unitProduct =='+unitProduct);
                 if(unitProduct != null){
                     if(unitProduct.Pricing_Method__c == 'Per Site'){
                         findPerSiteUnitPricing(u, unitProduct);
@@ -309,6 +310,7 @@ public class RenewalPriceChecker extends AppUnitHelper{
                     item.animalOrIngrediants = unit.Animals__c;
                     item.numberOfAnimals = unit.Number_of_Animals__c;
                     item.quantity = 1;
+                    
                     item.subtotal = item.priceExVAT * item.quantity;
                     if(site.Parent.BillingCountry == 'United Kingdom'){
                         item.vat = item.subtotal * 0.2;
@@ -355,10 +357,15 @@ public class RenewalPriceChecker extends AppUnitHelper{
                 }
                 if((!unit.Own_Catching__c) && (unitProduct.Business__c =='Catching') ){
                     LineItem item = new LineItem();
+                    System.debug('===358=== additionalQuantityProduct== '+additionalQuantityProduct);
+                    System.debug('===361=== item == '+item);
                     if(additionalQuantityProduct != null){
                         item.lineDescription = additionalQuantityProduct.Name;
                     	item.priceExVAT = getPriceForProduct(additionalQuantityProduct.Id);
+                        item.quantity = 1;
                         item.subtotal = item.priceExVAT * item.quantity;
+                        System.debug('===367=== item.subtotal== '+item.subtotal);
+                        
                     }
                     
                     item.animalOrIngrediants = unit.Animals__c;
@@ -370,6 +377,7 @@ public class RenewalPriceChecker extends AppUnitHelper{
                     }
                     item.production = unit.Production__c;
                     item.unitId = unit.Id;
+                    
                     lineItems.add(item);
                 }
             }
@@ -560,11 +568,15 @@ public class RenewalPriceChecker extends AppUnitHelper{
         site = [SELECT Id, Parent.BillingCountry, Membership_Expiry_Date__c, Pig_Discount_Eligibility__c, Create_Renewal_Price_Report__c FROM Account WHERE ID =:accountId];
         List<Unit__c> unitsRecords = [SELECT Id, Name, Account__c, Animals__c, Business__c, Chassis_Number__c, Description__c, House_Type__c, Ingredients__c, Order_Sizes__c, Own_Catching__c, Own_Transport__c, Production__c, Rearing_System__c, Status__c, Vehicle_Registration__c, Vehicle_Type__c, Number_of_Animals__c,Animals_List__c FROM Unit__c WHERE Account__c =:accountId AND Status__c = 'Certified'];
         getRenewalPriceForUnits(unitsRecords);
+        System.debug('===571 ===site ==='+site);
+        System.debug('===572 ===unitsRecords ==='+unitsRecords);
+        System.debug('===573 ===lineItems ==='+lineItems);
         if(!lineItems.isEmpty()){
             Renewal_Price_Report__c rpr = new Renewal_Price_Report__c();
             rpr.Site__c = accountId;
             rpr.Membership_Expiry_Date__c = site.Membership_Expiry_Date__c;
             insert rpr;
+            System.debug('===579 ===Renewal_Price_Report__c ==='+rpr);
             List<Renewal_Price_Line__c> rplList = new List<Renewal_Price_Line__c>();
             for(RenewalPriceChecker.LineItem li : lineItems){
                 Renewal_Price_Line__c rpl = new Renewal_Price_Line__c();

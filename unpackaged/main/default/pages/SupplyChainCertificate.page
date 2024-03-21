@@ -60,7 +60,7 @@
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
-            font-size: 22pt;
+            font-size: 26px;
             text-align: center;
         }
     </style>
@@ -122,11 +122,12 @@
         <tr style="background:">
             <td style="width: 50px">&nbsp;</td>
             <td style="padding: 0px 0px 0px 0px; text-align: left; font-family: Arial, sans-serif; font-size: 14px; mso-height-rule: exactly; line-height: 20px; color: #000000;">
-                <div style="height: 560px; overflow: hidden;">
+                <div style="height: 500px; overflow: hidden;">
                     <p style="text-align: center; font-size: 16px; font-weight: bold;">Registration No {!currentRecord.Membership_Number__c}</p>
                     <p style="text-align: center; font-size: 14px;">This is to certify that</p>
-                    <div class="s1"><strong>{!currentRecord.Name}</strong></div>
-                    <p style="text-align: center; font-size: 14px;">{!currentRecord.BillingStreet}, {!currentRecord.BillingCity}, {!IF(NOT(ISBLANK(currentRecord.County__c)), currentRecord.County__c & ',', '' )} {!currentRecord.BillingPostalcode}</p>
+                    <div class="s1"><strong>{!currentRecord.Parent.Name}</strong></div><br/>
+                    <div class="s1"><strong>Site:{!currentRecord.Name}</strong></div>
+                    <p style="text-align: center; font-weight: bold; font-size: 15px;">{!currentRecord.BillingStreet}, {!currentRecord.BillingCity}, {!IF(NOT(ISBLANK(currentRecord.County__c)), currentRecord.County__c & ',', '' )} {!currentRecord.BillingPostalcode}</p>
                     <p style="text-align: center; font-size: 14px;">is hereby authorised for a period of one year from the date hereof to use the Trade Mark,
                         an exact copy of which appears at the top of this Certificate, in relation to the following</p>
                     <!-- Units List -->

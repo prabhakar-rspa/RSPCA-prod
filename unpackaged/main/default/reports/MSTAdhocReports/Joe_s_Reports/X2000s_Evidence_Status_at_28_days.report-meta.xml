@@ -46,7 +46,7 @@
     </columns>
     <description>Assessment has taken place and paperwork shared, Evidence Deadline date is greater than today</description>
     <filter>
-        <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6 AND 7 AND 8</booleanFilter>
+        <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6 AND ((7 AND 8) OR 9)</booleanFilter>
         <criteriaItems>
             <column>Application__c$Evidence__c</column>
             <columnToColumn>false</columnToColumn>
@@ -102,6 +102,13 @@
             <isUnlocked>true</isUnlocked>
             <operator>lessOrEqual</operator>
             <value>2327</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Application__c$Membership_Number__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>startsWith</operator>
+            <value>40,41</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>

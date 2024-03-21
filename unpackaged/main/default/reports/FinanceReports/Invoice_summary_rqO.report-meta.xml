@@ -7,12 +7,6 @@
         <field>Application__c.Application_Type__c</field>
     </columns>
     <columns>
-        <field>FK_$Account.Sage_Intacct_Customer_Number__c</field>
-    </columns>
-    <columns>
-        <field>Account.Sage_Intacct_Customer_Number__c</field>
-    </columns>
-    <columns>
         <field>FK_$Opportunity.ia_crm__Intacct_Transaction_ID__c</field>
     </columns>
     <columns>
@@ -24,24 +18,35 @@
     </columns>
     <columns>
         <aggregateTypes>Sum</aggregateTypes>
-        <field>Application__c.VAT__c</field>
+        <field>Account.Pork__c</field>
     </columns>
     <columns>
         <aggregateTypes>Sum</aggregateTypes>
-        <field>Application__c.Total_Amount_Inc_VAT__c</field>
-    </columns>
-    <columns>
-        <field>LAST_UPDATE_BY</field>
+        <field>Account.Eggs__c</field>
     </columns>
     <columns>
         <aggregateTypes>Sum</aggregateTypes>
-        <field>Account.ia_crm__Sync_With_Intacct__c</field>
+        <field>Account.Salmon__c</field>
     </columns>
     <columns>
-        <field>Account.ia_crm__Intacct_Sync_Status__c</field>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Account.Trout__c</field>
     </columns>
     <columns>
-        <field>Account.ia_crm__Synced_With_Intacct_Date__c</field>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Account.Dairy__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Account.Value_Added__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Account.Chicken__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Account.Turkey__c</field>
     </columns>
     <filter>
         <criteriaItems>
@@ -51,13 +56,27 @@
             <operator>equals</operator>
             <value>Levy</value>
         </criteriaItems>
+        <criteriaItems>
+            <column>Account.Chicken__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>FK_$Opportunity.Turkey__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>0</value>
+        </criteriaItems>
         <language>en_US</language>
     </filter>
     <format>Tabular</format>
-    <name>Invoice summary</name>
+    <name>Invoice summary - Total 2023</name>
     <params>
         <name>co</name>
-        <value>1</value>
+        <value>0</value>
     </params>
     <reportType>AccountCustomEntity$Application__c@Application__c.Sage_Invoice__c</reportType>
     <scope>organization</scope>
@@ -68,8 +87,8 @@
     <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
         <dateColumn>Application__c.Invoice_Date__c</dateColumn>
-        <endDate>2023-11-02</endDate>
+        <endDate>2024-02-21</endDate>
         <interval>INTERVAL_CUSTOM</interval>
-        <startDate>2023-09-01</startDate>
+        <startDate>2023-03-28</startDate>
     </timeFrameFilter>
 </Report>

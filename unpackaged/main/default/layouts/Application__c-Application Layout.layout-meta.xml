@@ -260,7 +260,8 @@
                 <field>Extension_Request__c</field>
             </layoutItems>
             <layoutItems>
-                <emptySpace>true</emptySpace>
+                <behavior>Edit</behavior>
+                <field>Evidence_Required__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

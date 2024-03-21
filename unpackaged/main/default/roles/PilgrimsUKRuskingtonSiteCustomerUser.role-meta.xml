@@ -2,9 +2,9 @@
 <Role xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseAccessLevel>None</caseAccessLevel>
     <contactAccessLevel>Edit</contactAccessLevel>
-    <description>Pilgrims - Ruskington Site Customer User</description>
+    <description>Pilgrim&#39;s  Pride Ltd (Ruskington) Customer User</description>
     <mayForecastManagerShare>false</mayForecastManagerShare>
-    <name>Pilgrims - Ruskington Site Customer User</name>
+    <name>Pilgrim&#39;s  Pride Ltd (Ruskington) Customer User</name>
     <opportunityAccessLevel>None</opportunityAccessLevel>
     <parentRole>Assessors</parentRole>
 </Role>
